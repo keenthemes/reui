@@ -12,10 +12,6 @@ Follow [ReUI Documentation](https://reui.io/docs) to get started with ReUI quckl
 
 Follow [Components Setup](https://reui.io/docs/installation) guide to start using ReUI components in your React projects.
 
-## Install Apps
-
-Kickstart your Next.js projects with ReUI apps using the [Apps Setup Guide](https://reui.io/docs/apps).
-
 ## Contributing
 
 You are welcome for contribution to imrpvoe ReUI.
