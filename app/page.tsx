@@ -41,12 +41,6 @@ export default function Page() {
             crafted with React, Next.js and Tailwind CSS.
           </div>
 
-          <div className="text-sm leading-6 mb-4">
-            To get started, please use the main navigation above to browse
-            through our collection of apps tailored for Next.js and React
-            projects.
-          </div>
-
           <div className="text-sm leading-6">
             <div className="mb-5">
               Enjoying ReUI? Support us and stay connected! Star us on GitHub to

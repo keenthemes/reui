@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { CSSProperties, Fragment, ReactNode } from 'react';
 import {
   Cell,

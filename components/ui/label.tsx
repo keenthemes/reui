@@ -11,7 +11,7 @@ const labelVariants = cva(
     variants: {
       variant: {
         primary: 'font-medium',
-        secondary: 'text-normal',
+        secondary: 'font-normal',
       },
     },
     defaultVariants: {

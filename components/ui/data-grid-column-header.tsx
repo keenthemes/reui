@@ -99,7 +99,7 @@ function DataGridColumnHeader<TData, TValue>({
       <Button
         variant="ghost"
         className={cn(
-          'text-accent-foreground rounded-sm font-normal -ms-2 px-2 h-7 hover:bg-secondary data-[state=open]:bg-secondary hover:text-secondary-foreground data-[state=open]:text-secondary-foreground',
+          'text-accent-foreground rounded-md font-normal -ms-2 px-2 h-7 hover:bg-secondary data-[state=open]:bg-secondary hover:text-secondary-foreground data-[state=open]:text-secondary-foreground',
           className,
         )}
         disabled={isLoading || recordCount === 0}
@@ -135,7 +135,7 @@ function DataGridColumnHeader<TData, TValue>({
         mode="icon"
         size="sm"
         variant="ghost"
-        className="-me-1 size-7 rounded-sm"
+        className="-me-1 size-7 rounded-md"
         onClick={() => column.pin(false)}
         aria-label={`Unpin ${title} column`}
         title={`Unpin ${title} column`}

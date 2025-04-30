@@ -25,7 +25,7 @@ const accordionItemVariants = cva('', {
     variant: {
       default: 'border-b border-border',
       outline: 'border border-border rounded-lg px-4',
-      solid: 'rounded-lg bg-accent/30 px-4',
+      solid: 'rounded-lg bg-accent/70 px-4',
     },
   },
   defaultVariants: {
@@ -148,13 +148,13 @@ function AccordionTrigger(
         {children}
         {indicator === 'plus' && (
           <Plus
-            className="size-4 shrink-0 transition-transform opacity-80 duration-200"
+            className="size-4 shrink-0 transition-transform duration-200"
             strokeWidth={1}
           />
         )}
         {indicator === 'arrow' && (
           <ChevronDown
-            className="size-4 shrink-0 transition-transform opacity-80 duration-200"
+            className="size-4 shrink-0 transition-transform duration-200"
             strokeWidth={1}
           />
         )}

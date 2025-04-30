@@ -15,15 +15,19 @@ interface AccordionMenuContextValue {
   setNestedStates: React.Dispatch<
     React.SetStateAction<Record<string, string | string[]>>
   >;
+  onItemClick?: (value: string, event: React.MouseEvent) => void;
 }
 
 interface AccordionMenuClassNames {
+  root?: string;
   group?: string;
+  label?: string;
   separator?: string;
   item?: string;
   sub?: string;
   subTrigger?: string;
   subContent?: string;
+  subWrapper?: string;
   indicator?: string;
 }
 
@@ -31,6 +35,7 @@ interface AccordionMenuProps {
   selectedValue?: string;
   matchPath?: (href: string) => boolean;
   classNames?: AccordionMenuClassNames;
+  onItemClick?: (value: string, event: React.MouseEvent) => void;
 }
 
 const AccordionMenuContext = React.createContext<AccordionMenuContextValue>({
@@ -47,6 +52,7 @@ function AccordionMenu({
   classNames,
   children,
   selectedValue,
+  onItemClick,
   ...props
 }: React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Root> &
   AccordionMenuProps) {
@@ -118,6 +124,7 @@ function AccordionMenu({
         selectedValue: internalSelectedValue,
         setSelectedValue: setInternalSelectedValue,
         classNames,
+        onItemClick,
         nestedStates,
         setNestedStates,
       }}
@@ -126,7 +133,7 @@ function AccordionMenu({
         <AccordionPrimitive.Root
           data-slot="accordion-menu"
           value={singleValue}
-          className={cn('w-full', className)}
+          className={cn('w-full', classNames?.root, className)}
           onValueChange={(value: string) =>
             setNestedStates((prev) => ({ ...prev, root: value }))
           }
@@ -139,7 +146,7 @@ function AccordionMenu({
         <AccordionPrimitive.Root
           data-slot="accordion-menu"
           value={multipleValue}
-          className={cn('w-full', className)}
+          className={cn('w-full', classNames?.root, className)}
           onValueChange={(value: string | string[]) =>
             setNestedStates((prev) => ({ ...prev, root: value }))
           }
@@ -180,12 +187,15 @@ function AccordionMenuLabel({
   className,
   ...props
 }: AccordionMenuLabelProps) {
+  const { classNames } = React.useContext(AccordionMenuContext);
+
   return (
     <div
       data-slot="accordion-menu-label"
       role="presentation"
       className={cn(
         'px-2 py-1.5 text-xs font-medium text-muted-foreground',
+        classNames?.label,
         className,
       )}
       {...props}
@@ -213,7 +223,7 @@ function AccordionMenuSeparator({
 }
 
 const itemVariants = cva(
-  'relative cursor-pointer select-none flex w-full text-start items-center text-foreground rounded-md gap-2 px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground disabled:opacity-50 disabled:bg-transparent focus-visible:bg-accent focus-visible:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:opacity-60 [&_svg]:size-4 [&_svg]:shrink-0 [&_a]:flex [&_a,&>div]:w-full [&_a,&>div]:items-center [&_a,&>div]:gap-2',
+  'relative cursor-pointer select-none flex w-full text-start items-center text-foreground rounded-lg gap-2 px-2 py-1.5 text-sm outline-hidden transition-colors hover:bg-accent hover:text-accent-foreground data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground disabled:opacity-50 disabled:bg-transparent focus-visible:bg-accent focus-visible:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:opacity-60 [&_svg]:size-4 [&_svg]:shrink-0 [&_a]:flex [&_a,&>div]:w-full [&_a,&>div]:items-center [&_a,&>div]:gap-2',
   {
     variants: {
       variant: {
@@ -239,7 +249,7 @@ function AccordionMenuItem({
   VariantProps<typeof itemVariants> & {
     onClick?: React.MouseEventHandler<HTMLElement>;
   }) {
-  const { classNames, selectedValue, matchPath } =
+  const { classNames, selectedValue, matchPath, onItemClick } =
     React.useContext(AccordionMenuContext);
   return (
     <AccordionPrimitive.Item className="flex" {...props}>
@@ -249,6 +259,10 @@ function AccordionMenuItem({
           data-slot="accordion-menu-item"
           className={cn(itemVariants({ variant }), classNames?.item, className)}
           onClick={(e) => {
+            if (onItemClick) {
+              onItemClick(props.value, e);
+            }
+
             if (onClick) {
               onClick(e);
             }
@@ -304,7 +318,7 @@ function AccordionMenuSubTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-menu-sub-trigger"
         className={cn(
-          'w-full relative flex items-center cursor-pointer select-none text-start rounded-sm gap-2 px-2 py-1.5 text-sm outline-none text-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:bg-accent focus-visible:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:opacity-60 [&_svg]:size-4 [&_svg]:shrink-0',
+          'w-full relative flex items-center cursor-pointer select-none text-start rounded-lg gap-2 px-2 py-1.5 text-sm outline-hidden text-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:bg-accent focus-visible:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:opacity-60 [&_svg]:size-4 [&_svg]:shrink-0',
           classNames?.subTrigger,
           className,
         )}
@@ -312,8 +326,9 @@ function AccordionMenuSubTrigger({
         <>
           {children}
           <ChevronDown
+            data-slot="accordion-menu-sub-indicator"
             className={cn(
-              'ms-auto h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200 [[data-state=open]>&]:-rotate-180',
+              'ms-auto size-3.5! shrink-0 text-muted-foreground transition-transform duration-200 [[data-state=open]>&]:-rotate-180',
             )}
           />
         </>
@@ -370,7 +385,7 @@ function AccordionMenuSubContent({
     <AccordionPrimitive.Content
       data-slot="accordion-menu-sub-content"
       className={cn(
-        'ps-5 py-0.5',
+        'ps-5',
         'overflow-hidden transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down',
         classNames?.subContent,
         className,
@@ -379,10 +394,11 @@ function AccordionMenuSubContent({
     >
       {type === 'multiple' ? (
         <AccordionPrimitive.Root
-          className={cn('w-full')}
+          className={cn('w-full py-0.5', classNames?.subWrapper)}
           type="multiple"
           value={currentValue as string[]}
           role="menu"
+          data-slot="accordion-menu-sub-wrapper"
           onValueChange={(value: string | string[]) => {
             const newValue = Array.isArray(value) ? value : [value];
             setNestedStates((prev) => ({ ...prev, [parentValue]: newValue }));
@@ -392,11 +408,12 @@ function AccordionMenuSubContent({
         </AccordionPrimitive.Root>
       ) : (
         <AccordionPrimitive.Root
-          className={cn('w-full')}
+          className={cn('w-full py-0.5', classNames?.subWrapper)}
           type="single"
           collapsible={collapsible}
           value={currentValue as string}
           role="menu"
+          data-slot="accordion-menu-sub-wrapper"
           onValueChange={(value: string | string[]) =>
             setNestedStates((prev) => ({ ...prev, [parentValue]: value }))
           }
@@ -439,4 +456,5 @@ export {
   AccordionMenuSub,
   AccordionMenuSubContent,
   AccordionMenuSubTrigger,
+  type AccordionMenuClassNames,
 };

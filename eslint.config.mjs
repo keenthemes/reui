@@ -21,7 +21,7 @@ const eslintConfig = [
     },
   }),
   {
-    ignores: ['.next/**', 'node_modules/**', 'prisma/**'],
+    ignores: ['.next/**', 'node_modules/**'],
   },
 ];
 

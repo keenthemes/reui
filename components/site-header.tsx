@@ -35,7 +35,7 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-3 justify-end">
           <nav className="flex items-center gap-1">
-            <Button variant="ghost" mode="icon" size="xs" className="size-8">
+            <Button variant="ghost" mode="icon" size="sm" className="size-8">
               <Link
                 href={siteConfig.links.github}
                 target="_blank"
@@ -45,7 +45,7 @@ export function SiteHeader() {
                 <span className="sr-only">GitHub</span>
               </Link>
             </Button>
-            <Button variant="ghost" mode="icon" size="xs" className="size-8">
+            <Button variant="ghost" mode="icon" size="sm" className="size-8">
               <Link
                 href={siteConfig.links.twitter}
                 target="_blank"

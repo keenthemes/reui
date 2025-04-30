@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 type IconProps = React.HTMLAttributes<SVGElement>;
 
 function Spinner(props: IconProps) {

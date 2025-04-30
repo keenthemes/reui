@@ -10,10 +10,10 @@ const avatarStatusVariants = cva(
   {
     variants: {
       variant: {
-        online: 'bg-success',
+        online: 'bg-green-600',
         offline: 'bg-mono/50',
-        busy: 'bg-warning',
-        away: 'bg-info',
+        busy: 'bg-yellow-600',
+        away: 'bg-blue-600',
       },
     },
     defaultVariants: {
@@ -58,7 +58,7 @@ function AvatarFallback({
     <AvatarPrimitive.Fallback
       data-slot="avatar-fallback"
       className={cn(
-        'flex h-full w-full items-center justify-center rounded-full border border-border bg-accent text-xs',
+        'flex h-full w-full items-center justify-center rounded-full border border-border bg-accent text-accent-foreground text-xs',
         className,
       )}
       {...props}

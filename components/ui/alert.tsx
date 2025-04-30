@@ -9,7 +9,7 @@ const alertVariants = cva(
   {
     variants: {
       variant: {
-        default: '',
+        secondary: '',
         primary: '',
         destructive: '',
         success: '',
@@ -27,19 +27,18 @@ const alertVariants = cva(
       appearance: {
         solid: '',
         outline: '',
-        soft: '',
+        light: '',
         stroke: 'text-foreground',
       },
       size: {
         lg: 'rounded-lg p-4 gap-3 text-base [&>[data-slot=alert-icon]>svg]:size-6 *:data-slot=alert-icon:mt-0 *:data-slot=alert-close:mt-0.5 *:data-slot=alert-close:-me-0.5',
         md: 'rounded-lg p-3.5 gap-2.5 text-sm [&>[data-slot=alert-icon]>svg]:size-5 *:data-slot=alert-icon:mt-0 *:data-slot=alert-close:-me-0.5',
-        sm: 'rounded-md px-3 py-2.5 gap-2 text-[0.8125rem] leading-[--text-sm--line-height] [&>[data-slot=alert-icon]>svg]:size-4 *:data-alert-icon:mt-0.5 *:data-slot=alert-close:-me-0.5 [&>[data-slot=alert-close]>svg]:size-3.5!',
-        xs: 'rounded-md p-2 gap-1.5 text-xs [&>[data-slot=alert-icon]>svg]:size-4 *:data-slot=alert-icon:mt-0.5 [&>[data-slot=alert-title]]:pt-0.5	*:data-slot=alert-close:-me-0.5 [&>[data-slot=alert-close]>svg]:size-3.5!',
+        sm: 'rounded-md px-3 py-2.5 gap-2 text-xs [&>[data-slot=alert-icon]>svg]:size-4 *:data-alert-icon:mt-0.5 *:data-slot=alert-close:-me-0.5 [&>[data-slot=alert-close]>svg]:size-3.5!',
       },
     },
     compoundVariants: [
       {
-        variant: 'default',
+        variant: 'secondary',
         appearance: 'solid',
         className:
           'bg-muted text-foreground *:data-alert-close:text-foreground',
@@ -59,20 +58,17 @@ const alertVariants = cva(
       {
         variant: 'success',
         appearance: 'solid',
-        className:
-          'bg-success text-success-foreground *:data-alert-close:text-success-foreground',
+        className: 'bg-green-500 text-white *:data-alert-close:text-white',
       },
       {
         variant: 'info',
         appearance: 'solid',
-        className:
-          'bg-info text-info-foreground *:data-alert-close:text-info-foreground',
+        className: 'bg-violet-600 text-white *:data-alert-close:text-white',
       },
       {
         variant: 'warning',
         appearance: 'solid',
-        className:
-          'bg-warning text-warning-foreground *:data-alert-close:text-warning-foreground',
+        className: 'bg-yellow-500 text-white *:data-alert-close:text-white',
       },
       {
         variant: 'mono',
@@ -82,7 +78,7 @@ const alertVariants = cva(
       },
 
       {
-        variant: 'default',
+        variant: 'secondary',
         appearance: 'outline',
         className:
           'border border-border bg-background text-foreground *:data-alert-close:text-foreground',
@@ -103,19 +99,19 @@ const alertVariants = cva(
         variant: 'success',
         appearance: 'outline',
         className:
-          'border border-border bg-background text-success *:data-alert-close:text-foreground',
+          'border border-border bg-background text-green-500 *:data-alert-close:text-foreground',
       },
       {
         variant: 'info',
         appearance: 'outline',
         className:
-          'border border-border bg-background text-info *:data-alert-close:text-foreground',
+          'border border-border bg-background text-violet-600 *:data-alert-close:text-foreground',
       },
       {
         variant: 'warning',
         appearance: 'outline',
         className:
-          'border border-border bg-background text-warning *:data-alert-close:text-foreground',
+          'border border-border bg-background text-yellow-500 *:data-alert-close:text-foreground',
       },
       {
         variant: 'mono',
@@ -125,7 +121,7 @@ const alertVariants = cva(
       },
 
       {
-        variant: 'default',
+        variant: 'secondary',
         appearance: 'stroke',
         className:
           'border border-border bg-background [&>div:first-of-type>svg]:text-foreground',
@@ -146,19 +142,19 @@ const alertVariants = cva(
         variant: 'success',
         appearance: 'stroke',
         className:
-          'border border-borde bg-background [&>div:first-of-type>svg]:text-success',
+          'border border-border bg-background [&>div:first-of-type>svg]:text-green-500',
       },
       {
         variant: 'info',
         appearance: 'stroke',
         className:
-          'border border-border bg-background [&>div:first-of-type>svg]:text-info',
+          'border border-border bg-background [&>div:first-of-type>svg]:text-violet-600',
       },
       {
         variant: 'warning',
         appearance: 'stroke',
         className:
-          'border border-border bg-background [&>div:first-of-type>svg]:text-warning',
+          'border border-border bg-background [&>div:first-of-type>svg]:text-yellow-500',
       },
       {
         variant: 'mono',
@@ -168,45 +164,39 @@ const alertVariants = cva(
       },
 
       {
-        variant: 'default',
-        appearance: 'soft',
+        variant: 'secondary',
+        appearance: 'light',
         className: 'bg-muted border border-border text-foreground',
       },
       {
         variant: 'primary',
-        appearance: 'soft',
+        appearance: 'light',
         className:
           'bg-primary/5 border border-primary/10 text-foreground [&>div:first-of-type>svg]:text-primary',
       },
       {
         variant: 'destructive',
-        appearance: 'soft',
+        appearance: 'light',
         className:
           'bg-destructive/5 border border-destructive/10 text-foreground [&>div:first-of-type>svg]:text-destructive',
       },
       {
         variant: 'success',
-        appearance: 'soft',
+        appearance: 'light',
         className:
-          'bg-success/5 border border-success/20 text-foreground [&>div:first-of-type>svg]:text-success',
+          'bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-950/50 text-foreground [&>div:first-of-type>svg]:text-green-500',
       },
       {
         variant: 'info',
-        appearance: 'soft',
+        appearance: 'light',
         className:
-          'bg-info/5 border border-info/10 text-foreground [&>div:first-of-type>svg]:text-info',
+          'bg-violet-50 dark:bg-violet-950/30 border border-violet-200 dark:border-violet-950/50 text-foreground [&>div:first-of-type>svg]:text-violet-600',
       },
       {
         variant: 'warning',
-        appearance: 'soft',
+        appearance: 'light',
         className:
-          'bg-warning/5 border border-warning/20 text-foreground [&>div:first-of-type>svg]:text-warning',
-      },
-      {
-        variant: 'mono',
-        appearance: 'soft',
-        className:
-          'bg-mono/5 border border-mono/10 text-foreground [&>div:first-of-type>svg]:text-mono',
+          'bg-yellow-50 dark:bg-yellow-950/30 border border-yellow-200 dark:border-yellow-950/50 text-foreground [&>div:first-of-type>svg]:text-yellow-500',
       },
 
       {
@@ -217,12 +207,12 @@ const alertVariants = cva(
       {
         variant: 'mono',
         icon: 'warning',
-        className: '[&>div:first-of-type>svg]:text-warning',
+        className: '[&>div:first-of-type>svg]:text-yellow-500',
       },
       {
         variant: 'mono',
         icon: 'success',
-        className: '[&>div:first-of-type>svg]:text-success',
+        className: '[&>div:first-of-type>svg]:text-green-500',
       },
       {
         variant: 'mono',
@@ -232,11 +222,11 @@ const alertVariants = cva(
       {
         variant: 'mono',
         icon: 'info',
-        className: '[&>div:first-of-type>svg]:text-info',
+        className: '[&>div:first-of-type>svg]:text-violet-600',
       },
     ],
     defaultVariants: {
-      variant: 'default',
+      variant: 'secondary',
       appearance: 'solid',
       size: 'md',
     },
@@ -278,13 +268,13 @@ function Alert({
       {children}
       {close && (
         <Button
-          size="xs"
+          size="sm"
           variant="inverse"
           mode="icon"
           onClick={onClose}
           aria-label="Dismiss"
           data-alert-close="true"
-          className={cn('group shrink-0 size-5')}
+          className={cn('group shrink-0 size-4')}
         >
           <X className="opacity-60! group-hover:opacity-100! size-4!" />
         </Button>

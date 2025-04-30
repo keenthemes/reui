@@ -74,7 +74,7 @@ function DataGridPagination(props: DataGridPaginationProps) {
       buttons.push(
         <Button
           key={i}
-          size="xs"
+          size="sm"
           mode="icon"
           variant="ghost"
           className={cn(btnBaseClasses, 'text-muted-foreground', {
@@ -98,7 +98,7 @@ function DataGridPagination(props: DataGridPaginationProps) {
     if (currentGroupStart > 0) {
       return (
         <Button
-          size="xs"
+          size="sm"
           mode="icon"
           className={btnBaseClasses}
           variant="ghost"
@@ -118,7 +118,7 @@ function DataGridPagination(props: DataGridPaginationProps) {
         <Button
           className={btnBaseClasses}
           variant="ghost"
-          size="xs"
+          size="sm"
           mode="icon"
           onClick={() => table.setPageIndex(currentGroupEnd)}
         >
@@ -173,7 +173,7 @@ function DataGridPagination(props: DataGridPaginationProps) {
             {pageCount > 1 && (
               <div className="flex items-center space-x-1 order-1 sm:order-2">
                 <Button
-                  size="xs"
+                  size="sm"
                   mode="icon"
                   variant="ghost"
                   className={btnArrowClasses}
@@ -191,7 +191,7 @@ function DataGridPagination(props: DataGridPaginationProps) {
                 {renderEllipsisNextButton()}
 
                 <Button
-                  size="xs"
+                  size="sm"
                   mode="icon"
                   variant="ghost"
                   className={btnArrowClasses}

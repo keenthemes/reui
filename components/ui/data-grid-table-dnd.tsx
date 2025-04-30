@@ -80,7 +80,7 @@ function DataGridTableDndHeader<TData>({
       <div className="flex items-center justify-start gap-0.5">
         <Button
           mode="icon"
-          size="xs"
+          size="sm"
           variant="dim"
           className="-ms-2 size-6"
           {...attributes}

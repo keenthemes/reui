@@ -26,9 +26,9 @@ const badgeVariants = cva(
       variant: {
         primary: 'bg-primary text-primary-foreground',
         secondary: 'bg-secondary text-secondary-foreground',
-        success: 'bg-success text-success-foreground',
-        warning: 'bg-warning text-warning-foreground',
-        info: 'bg-info text-info-foreground',
+        success: 'bg-green-500 text-white',
+        warning: 'bg-yellow-500 text-white',
+        info: 'bg-violet-500 text-white',
         mono: 'bg-mono text-mono-foreground',
         destructive: 'bg-destructive text-destructive-foreground',
       },
@@ -57,103 +57,109 @@ const badgeVariants = cva(
       {
         variant: 'primary',
         appearance: 'outline',
-        className: 'bg-primary/5 border-primary/20 text-primary-darker',
+        className: 'bg-primary/10 border-primary/10 text-primary',
       },
       {
         variant: 'secondary',
         appearance: 'outline',
         className:
-          'bg-secondary/40 border-secondary-darker text-secondary-foreground',
+          'bg-secondary dark:bg-secondary/50 border-border text-secondary-foreground',
       },
       {
         variant: 'success',
-        appearance: 'outline',
-        className: 'bg-success/5 border-success/20 text-success-darker',
-      },
-      {
-        variant: 'warning',
-        appearance: 'outline',
-        className: 'bg-warning/5 border-warning/20 text-warning-darker',
-      },
-      {
-        variant: 'info',
-        appearance: 'outline',
-        className: 'bg-info/5 border-info/20 text-info-darker',
-      },
-      {
-        variant: 'mono',
-        appearance: 'outline',
-        className: 'bg-mono/10 border-mono/20 text-mono-darker',
-      },
-      {
-        variant: 'destructive',
         appearance: 'outline',
         className:
-          'bg-destructive/5 border-destructive/20 text-destructive-darker',
+          'border bg-green-100 text-green-700 border-green-200 dark:text-green-600 dark:bg-green-950/50 dark:border-green-950',
+      },
+      {
+        variant: 'warning',
+        appearance: 'outline',
+        className:
+          'border bg-yellow-100 text-yellow-700 border-yellow-200 dark:text-yellow-600 dark:bg-yellow-950/50 dark:border-yellow-950',
+      },
+      {
+        variant: 'info',
+        appearance: 'outline',
+        className:
+          'border bg-violet-100 text-violet-700 border-violet-200 dark:text-violet-600 dark:bg-violet-950/50 dark:border-violet-950',
+      },
+      {
+        variant: 'mono',
+        appearance: 'outline',
+        className: 'bg-mono/10 border-mono/10 text-mono',
+      },
+      {
+        variant: 'destructive',
+        appearance: 'outline',
+        className: 'bg-destructive/10 border-destructive/10 text-destructive',
       },
 
       {
         variant: 'primary',
         appearance: 'light',
-        className: 'bg-primary/10 border-0 text-primary-darker',
+        className: 'bg-primary/10 text-primary',
       },
       {
         variant: 'secondary',
         appearance: 'light',
-        className: 'bg-secondary/60 border-0 text-secondary-foreground',
+        className:
+          'bg-secondary dark:bg-secondary/50 text-secondary-foreground',
       },
       {
         variant: 'success',
         appearance: 'light',
-        className: 'bg-success/10 border-0 text-success-darker',
+        className:
+          'border bg-green-100 text-green-700 dark:text-green-600 dark:bg-green-950/50',
       },
       {
         variant: 'warning',
         appearance: 'light',
-        className: 'bg-warning/10 border-0 text-warning-darker',
+        className:
+          'border bg-yellow-100 text-yellow-700 dark:text-yellow-600 dark:bg-yellow-950/50',
       },
       {
         variant: 'info',
         appearance: 'light',
-        className: 'bg-info/10 border-0 text-info-darker',
+        className:
+          'border bg-violet-100 text-violet-700 dark:text-violet-600 dark:bg-violet-950/50',
       },
       {
         variant: 'mono',
         appearance: 'light',
-        className: 'bg-mono/10 border-0 text-mono-darker',
+        className: 'bg-mono/10 text-mono',
       },
       {
         variant: 'destructive',
         appearance: 'light',
-        className: 'bg-destructive/10 border-0 text-destructive-darker',
+        className: 'bg-destructive/10 text-destructive',
       },
 
       {
         variant: 'primary',
         appearance: 'ghost',
-        className: 'text-primary-darker',
+        className: 'text-primary',
       },
       {
         variant: 'secondary',
         appearance: 'ghost',
-        className: 'text-accent-foreground',
+        className: 'text-secondary-foreground',
       },
       {
         variant: 'success',
         appearance: 'ghost',
-        className: 'text-success-darker',
+        className: 'text-green-500',
       },
       {
         variant: 'warning',
         appearance: 'ghost',
-        className: 'text-warning-darker',
+        className: 'text-yellow-500',
       },
-      { variant: 'info', appearance: 'ghost', className: 'text-info-darker' },
-      { variant: 'mono', appearance: 'ghost', className: 'text-mono-darker' },
+      { variant: 'info', appearance: 'ghost', className: 'text-violet-500' },
+      { variant: 'mono', appearance: 'ghost', className: 'text-mono' },
       {
         variant: 'destructive',
         appearance: 'ghost',
-        className: 'text-destructive-darker',
+        className: 'text-destructive',
       },
 
       { size: 'lg', appearance: 'ghost', className: 'px-0' },

@@ -5,23 +5,23 @@ import { ChevronDown, LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-  'group whitespace-nowrap focus-visible:outline-hidden inline-flex items-center justify-center has-[[data-arrow=true]]:justify-between whitespace-nowrap text-sm font-medium ring-offset-background transition-[color,box-shadow] disabled:pointer-events-none disabled:opacity-50 [&_svg]:shrink-0',
+  'cursor-pointer group whitespace-nowrap focus-visible:outline-hidden inline-flex items-center justify-center has-data-[arrow=true]:justify-between whitespace-nowrap text-sm font-medium ring-offset-background transition-[color,box-shadow] disabled:pointer-events-none disabled:opacity-50 [&_svg]:shrink-0',
   {
     variants: {
       variant: {
         primary:
-          'bg-primary text-primary-foreground hover:bg-primary-darker data-[state=open]:bg-primary-darker',
-        mono: 'bg-mono text-mono-foreground hover:bg-mono-darker data-[state=open]:bg-mono-darker',
+          'bg-primary text-primary-foreground hover:bg-primary/90 data-[state=open]:bg-primary/90',
+        mono: 'bg-mono text-mono-foreground hover:bg-mono/90 data-[state=open]:bg-mono/90',
         destructive:
-          'bg-destructive text-destructive-foreground hover:bg-destructive-darker data-[state=open]:bg-destructive-darker',
+          'bg-destructive text-destructive-foreground hover:bg-destructive/90 data-[state=open]:bg-destructive/90',
         secondary:
-          'bg-secondary text-secondary-foreground hover:bg-secondary-darker data-[state=open]:bg-secondary-darker',
+          'bg-secondary text-secondary-foreground hover:bg-secondary/90 data-[state=open]:bg-secondary/90',
         outline:
-          'text-accent-foreground border border-input hover:bg-accent/50 data-[state=open]:bg-accent/50',
+          'bg-background text-accent-foreground border border-input hover:bg-accent data-[state=open]:bg-accent',
         dashed:
           'text-accent-foreground border border-input border-dashed bg-background hover:bg-accent hover:text-accent-foreground data-[state=open]:text-accent-foreground',
         ghost:
-          'text-accent-foreground hover:bg-accent hover:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-foreground',
+          'text-accent-foreground hover:bg-accent hover:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground',
         dim: 'text-muted-foreground hover:text-foreground data-[state=open]:text-foreground',
         foreground: '',
         inverse: '',
@@ -39,10 +39,9 @@ const buttonVariants = cva(
         dashed: '',
       },
       size: {
-        md: 'h-10 rounded-md px-3 text-sm gap-2 [&_svg]:size-4',
-        sm: 'h-9 rounded-md px-2.5 text-[0.8125rem] leading-[1.385] gap-1.5 [&_svg]:size-3.5',
-        xs: 'h-8 rounded-md px-2.5 text-xs gap-1 [&_svg]:size-3.5',
-        xxs: 'h-7 rounded-md px-2 text-xs gap-1 [&_svg]:size-3',
+        lg: 'h-10 rounded-md px-4 text-sm gap-1.5 [&_svg]:size-4',
+        md: 'h-8.5 rounded-md px-3 text-[0.8125rem] leading-(--text-sm--line-height) gap-1 [&_svg]:size-4',
+        sm: 'h-7 rounded-md px-2.5 text-xs gap-1 [&_svg]:size-3.5',
       },
       autoHeight: {
         true: '',
@@ -58,12 +57,12 @@ const buttonVariants = cva(
         icon: 'focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
         link: 'text-primary h-auto p-0 bg-transparent rounded-none hover:bg-transparent data-[state=open]:bg-transparent',
         input: `
-            justify-start font-normal hover:bg-transparent [&_svg]:transition-colors hover:[&_svg]:text-foreground data-[state=open]:bg-transparent 
-            focus-visible:border-ring focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/30 
-            [[data-state=open]>&]:border-ring [[data-state=open]>&]:outline-none [[data-state=open]>&]:ring-[3px] 
+            justify-start font-normal hover:bg-background [&_svg]:transition-colors [&_svg]:hover:text-foreground data-[state=open]:bg-background 
+            focus-visible:border-ring focus-visible:outline-hidden focus-visible:ring-[3px] focus-visible:ring-ring/30 
+            [[data-state=open]>&]:border-ring [[data-state=open]>&]:outline-hidden [[data-state=open]>&]:ring-[3px] 
             [[data-state=open]>&]:ring-ring/30 
             aria-invalid:border-destructive/60 aria-invalid:ring-destructive/10 dark:aria-invalid:border-destructive dark:aria-invalid:ring-destructive/20
-            [[data-invalid=true]_&]:border-destructive/60 [[data-invalid=true]_&]:ring-destructive/10  dark:[[data-invalid=true]_&]:border-destructive dark:[[data-invalid=true]_&]:ring-destructive/20
+            in-data-[invalid=true]:border-destructive/60 in-data-[invalid=true]:ring-destructive/10  dark:in-data-[invalid=true]:border-destructive dark:in-data-[invalid=true]:ring-destructive/20
           `,
       },
       placeholder: {
@@ -105,17 +104,17 @@ const buttonVariants = cva(
       {
         size: 'md',
         autoHeight: true,
-        className: 'h-auto min-h-10',
+        className: 'h-auto min-h-8.5',
       },
       {
         size: 'sm',
         autoHeight: true,
-        className: 'h-auto min-h-9',
+        className: 'h-auto min-h-7',
       },
       {
-        size: 'xs',
+        size: 'lg',
         autoHeight: true,
-        className: 'h-auto min-h-8',
+        className: 'h-auto min-h-10',
       },
 
       // Shadow support
@@ -200,28 +199,28 @@ const buttonVariants = cva(
         mode: 'link',
         underline: 'solid',
         className:
-          'font-medium text-primary hover:text-primary-darker [&_svg]:opacity-60 hover:underline hover:underline-offset-4 hover:decoration-solid',
+          'font-medium text-primary hover:text-primary/90 [&_svg]:opacity-60 hover:underline hover:underline-offset-4 hover:decoration-solid',
       },
       {
         variant: 'primary',
         mode: 'link',
         underline: 'dashed',
         className:
-          'font-medium text-primary hover:text-primary-darker [&_svg]:opacity-60 hover:underline hover:underline-offset-4 hover:decoration-dashed decoration-1',
+          'font-medium text-primary hover:text-primary/90 [&_svg]:opacity-60 hover:underline hover:underline-offset-4 hover:decoration-dashed decoration-1',
       },
       {
         variant: 'primary',
         mode: 'link',
         underlined: 'solid',
         className:
-          'font-medium text-primary hover:text-primary-darker [&_svg]:opacity-60 underline underline-offset-4 decoration-solid',
+          'font-medium text-primary hover:text-primary/90 [&_svg]:opacity-60 underline underline-offset-4 decoration-solid',
       },
       {
         variant: 'primary',
         mode: 'link',
         underlined: 'dashed',
         className:
-          'font-medium text-primary hover:text-primary-darker [&_svg]:opacity-60 underline underline-offset-4 decoration-dashed decoration-1',
+          'font-medium text-primary hover:text-primary/90 [&_svg]:opacity-60 underline underline-offset-4 decoration-dashed decoration-1',
       },
 
       {
@@ -287,31 +286,35 @@ const buttonVariants = cva(
         variant: 'primary',
         appearance: 'ghost',
         className:
-          'bg-transparent text-primary-darker hover:bg-primary/10 data-[state=open]:bg-primary/10',
+          'bg-transparent text-primary/90 hover:bg-primary/10 data-[state=open]:bg-primary/10',
       },
       {
         variant: 'destructive',
         appearance: 'ghost',
         className:
-          'bg-transparent text-destructive-darker hover:bg-destructive/10 data-[state=open]:bg-destructive/10',
+          'bg-transparent text-destructive/90 hover:bg-destructive/10 data-[state=open]:bg-destructive/10',
+      },
+      {
+        variant: 'ghost',
+        mode: 'icon',
+        className: 'text-muted-foreground',
       },
 
       // Size
-      { size: 'md', mode: 'icon', className: 'w-10 h-10 p-0 [&_svg]:size-4' },
+      {
+        size: 'md',
+        mode: 'icon',
+        className: 'w-8.5 h-8.5 p-0 [&_svg]:size-4',
+      },
       {
         size: 'sm',
         mode: 'icon',
-        className: 'w-9 h-9 p-0 [&_svg]:size-4',
-      },
-      {
-        size: 'xs',
-        mode: 'icon',
-        className: 'w-8 h-8 p-0 [&_svg]:size-3.5',
-      },
-      {
-        size: 'xxs',
-        mode: 'icon',
         className: 'w-7 h-7 p-0 [&_svg]:size-3.5',
+      },
+      {
+        size: 'lg',
+        mode: 'icon',
+        className: 'w-10 h-10 p-0 [&_svg]:size-4',
       },
 
       // Input mode
@@ -320,6 +323,24 @@ const buttonVariants = cva(
         placeholder: true,
         variant: 'outline',
         className: 'font-normal text-muted-foreground',
+      },
+      {
+        mode: 'input',
+        variant: 'outline',
+        size: 'sm',
+        className: 'gap-1.25',
+      },
+      {
+        mode: 'input',
+        variant: 'outline',
+        size: 'md',
+        className: 'gap-1.5',
+      },
+      {
+        mode: 'input',
+        variant: 'outline',
+        size: 'lg',
+        className: 'gap-1.5',
       },
     ],
     defaultVariants: {
