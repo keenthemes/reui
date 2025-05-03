@@ -31,9 +31,9 @@ const inputAddonVariants = cva(
   {
     variants: {
       size: {
-        sm: 'rounded-md h-7 min-w-7 text-xs px-2.5 [&_svg]:size-3.5',
-        md: 'rounded-md h-8.5 min-w-8.5 px-3 text-[0.8125rem] leading-(--text-sm--line-height) [&_svg]:size-4.5',
-        lg: 'rounded-md h-10 min-w-10 px-4 text-sm [&_svg]:size-4.5',
+        sm: 'rounded-md h-7 min-w-7 text-xs px-2.5 [&_svg:not([class*=size-])]:size-3.5',
+        md: 'rounded-md h-8.5 min-w-8.5 px-3 text-[0.8125rem] leading-(--text-sm--line-height) [&_svg:not([class*=size-])]:size-4.5',
+        lg: 'rounded-md h-10 min-w-10 px-4 text-sm [&_svg:not([class*=size-])]:size-4.5',
       },
       mode: {
         default: '',
@@ -73,7 +73,7 @@ const inputWrapperVariants = cva(
     has-[:focus-visible]:border-ring
     has-[:focus-visible]:outline-none 
     has-[:focus-visible]:ring-[3px]
-    
+
     [&>[data-slot=input]]:flex 
     [&>[data-slot=input]]:w-full 
     [&>[data-slot=input]]:outline-none 
@@ -94,9 +94,9 @@ const inputWrapperVariants = cva(
   {
     variants: {
       size: {
-        sm: 'gap-1.25 [&>svg]:size-3.5',
-        md: 'gap-1.5 [&>svg]:size-4',
-        lg: 'gap-1.5 [&>svg]:size-4',
+        sm: 'gap-1.25 [&_svg:not([class*=size-])]:size-3.5',
+        md: 'gap-1.5 [&_svg:not([class*=size-])]:size-4',
+        lg: 'gap-1.5 [&_svg:not([class*=size-])]:size-4',
       },
     },
     defaultVariants: {

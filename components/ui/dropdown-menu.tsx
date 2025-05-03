@@ -47,7 +47,7 @@ function DropdownMenuSubTrigger({
         'focus:bg-accent focus:text-foreground',
         'data-[state=open]:bg-accent data-[state=open]:text-foreground',
         'data-[here=true]:bg-accent data-[here=true]:text-foreground',
-        '[&>svg]:pointer-events-none [&>svg]:opacity-60 [&>svg]:size-4 [&>svg]:shrink-0',
+        '[&>svg]:pointer-events-none [&_svg:not([role=img]):not([class*=text-])]:opacity-60 [&>svg]:size-4 [&>svg]:shrink-0',
         inset && 'ps-8',
         className,
       )}
@@ -119,12 +119,12 @@ function DropdownMenuItem({
     <DropdownMenuPrimitive.Item
       data-slot="dropdown-menu-item"
       className={cn(
-        'text-foreground relative flex cursor-default select-none items-center gap-2 rounded-md px-2 py-1.5 text-sm outline-hidden transition-colors data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:opacity-60 [&_svg]:size-4 [&_svg]:shrink-0',
+        'text-foreground relative flex cursor-default select-none items-center gap-2 rounded-md px-2 py-1.5 text-sm outline-hidden transition-colors data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([role=img]):not([class*=text-])]:opacity-60 [&_svg:not([class*=size-])]:size-4 [&_svg]:shrink-0',
         'focus:bg-accent focus:text-foreground',
         'data-[active=true]:bg-accent data-[active=true]:text-accent-foreground',
         inset && 'ps-8',
         variant === 'destructive' &&
-          'text-destructive hover:text-destructive focus:text-destructive',
+          'text-destructive hover:text-destructive focus:text-destructive hover:bg-destructive/5 focus:bg-destructive/5 data-[active=true]:bg-destructive/5',
         className,
       )}
       {...props}
