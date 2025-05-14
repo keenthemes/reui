@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import * as CollapsiblePrimitive from '@radix-ui/react-collapsible';
 import { cn } from '@/lib/utils';
+import * as CollapsiblePrimitive from '@radix-ui/react-collapsible';
 
 function Collapsible({
   ...props

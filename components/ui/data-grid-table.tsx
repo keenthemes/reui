@@ -1,5 +1,8 @@
 import * as React from 'react';
 import { CSSProperties, Fragment, ReactNode } from 'react';
+import { cn } from '@/lib/utils';
+import { Checkbox } from '@/components/ui/checkbox';
+import { useDataGrid } from '@/components/ui/data-grid';
 import {
   Cell,
   Column,
@@ -9,9 +12,6 @@ import {
   Row,
 } from '@tanstack/react-table';
 import { cva } from 'class-variance-authority';
-import { cn } from '@/lib/utils';
-import { Checkbox } from '@/components/ui/checkbox';
-import { useDataGrid } from '@/components/ui/data-grid';
 
 const headerCellSpacingVariants = cva('', {
   variants: {

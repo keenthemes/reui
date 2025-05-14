@@ -1,10 +1,10 @@
 'use client';
 
 import * as React from 'react';
+import { cn } from '@/lib/utils';
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 import { cva, VariantProps } from 'class-variance-authority';
 import { Check, Minus } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 // Define the variants for the Checkbox using cva.
 const checkboxVariants = cva(

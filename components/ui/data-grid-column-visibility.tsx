@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import { Table } from '@tanstack/react-table';
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -7,6 +6,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { Table } from '@tanstack/react-table';
 
 function DataGridColumnVisibility<TData>({
   table,

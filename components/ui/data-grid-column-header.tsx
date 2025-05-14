@@ -1,17 +1,4 @@
 import { HTMLAttributes, ReactNode } from 'react';
-import { Column } from '@tanstack/react-table';
-import {
-  ArrowDown,
-  ArrowLeft,
-  ArrowLeftToLine,
-  ArrowRight,
-  ArrowRightToLine,
-  ArrowUp,
-  Check,
-  ChevronsUpDown,
-  PinOff,
-  Settings2,
-} from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { useDataGrid } from '@/components/ui/data-grid';
@@ -28,6 +15,19 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { Column } from '@tanstack/react-table';
+import {
+  ArrowDown,
+  ArrowLeft,
+  ArrowLeftToLine,
+  ArrowRight,
+  ArrowRightToLine,
+  ArrowUp,
+  Check,
+  ChevronsUpDown,
+  PinOff,
+  Settings2,
+} from 'lucide-react';
 
 interface DataGridColumnHeaderProps<TData, TValue>
   extends HTMLAttributes<HTMLDivElement> {

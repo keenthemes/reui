@@ -2,7 +2,9 @@ import { ReactNode, RefObject, useCallback, useEffect, useRef } from 'react';
 
 type ScrollspyProps = {
   children: ReactNode;
-  targetRef?: RefObject<HTMLElement | Document | undefined>;
+  targetRef?: RefObject<
+    HTMLElement | HTMLDivElement | Document | null | undefined
+  >;
   onUpdate?: (id: string) => void;
   offset?: number;
   smooth?: boolean;
@@ -21,127 +23,101 @@ export function Scrollspy({
   smooth = true,
   dataAttribute = 'scrollspy',
   history = true,
-  throttleTime = 200,
 }: ScrollspyProps) {
   const selfRef = useRef<HTMLDivElement | null>(null);
   const anchorElementsRef = useRef<Element[] | null>(null);
   const prevIdTracker = useRef<string | null>(null);
 
-  const throttle = <T extends (...args: unknown[]) => void>(
-    func: T,
-    limit: number,
-  ) => {
-    let lastFunc: ReturnType<typeof setTimeout> | undefined;
-    let lastRan: number | undefined;
-
-    return function (this: unknown, ...args: Parameters<T>) {
-      const now = Date.now();
-
-      if (lastRan === undefined) {
-        func.apply(this, args);
-        lastRan = now;
-      } else {
-        clearTimeout(lastFunc);
-        lastFunc = setTimeout(
-          () => {
-            if (now - lastRan! >= limit) {
-              // Type assertion
-              func.apply(this, args);
-              lastRan = now;
-            }
-          },
-          limit - (now - lastRan!),
-        ); // Type assertion
+  // Sets active nav, hash, prevIdTracker, and calls onUpdate
+  const setActiveSection = useCallback(
+    (sectionId: string | null, force = false) => {
+      if (!sectionId) return;
+      anchorElementsRef.current?.forEach((item) => {
+        const id = item.getAttribute(`data-${dataAttribute}-anchor`);
+        if (id === sectionId) {
+          item.setAttribute('data-active', 'true');
+        } else {
+          item.removeAttribute('data-active');
+        }
+      });
+      if (onUpdate) onUpdate(sectionId);
+      if (history && (force || prevIdTracker.current !== sectionId)) {
+        window.history.replaceState({}, '', `#${sectionId}`);
       }
-    };
-  };
-
-  // Check if the element is visible
-  const isVisible = (element: HTMLElement): boolean => {
-    if (!element || element.getClientRects().length === 0) {
-      return false;
-    }
-    return (
-      getComputedStyle(element).getPropertyValue('visibility') === 'visible'
-    );
-  };
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const replaceHash = useCallback(
-    throttle((sectionId) => {
-      window.history.replaceState({}, '', `#${sectionId}`);
-    }, throttleTime),
-    [throttleTime],
+      prevIdTracker.current = sectionId;
+    },
+    [anchorElementsRef, dataAttribute, history, onUpdate],
   );
 
-  // Update the active anchor based on the scroll position
-  const updateAnchor = (anchorElement: HTMLElement) => {
-    const sectionId = anchorElement.getAttribute(
-      `data-${dataAttribute}-anchor`,
-    );
-    const sectionElement = document.getElementById(sectionId!);
-
-    if (!sectionElement || !isVisible(sectionElement)) return;
-
-    const scrollPosition =
-      targetRef?.current === document
-        ? window.scrollY || document.documentElement.scrollTop
-        : (targetRef?.current as HTMLElement).scrollTop;
-
-    let customOffset = offset;
-    const dataOffset = anchorElement.getAttribute(
-      `data-${dataAttribute}-offset`,
-    );
-    if (dataOffset) {
-      customOffset = parseInt(dataOffset, 10);
-    }
-
-    const offsetTop = sectionElement.offsetTop;
-
-    if (scrollPosition + customOffset >= offsetTop) {
-      anchorElementsRef.current?.forEach((item) => {
-        item.removeAttribute('data-active');
-      });
-
-      anchorElement.setAttribute('data-active', 'true');
-
-      if (onUpdate && sectionId) {
-        onUpdate(sectionId);
-      }
-
-      prevIdTracker.current = sectionId;
-
-      if (history) {
-        replaceHash(sectionId);
-      }
-
-      const parentAnchorElements = anchorElement.closest(
-        `[data-${dataAttribute}-group`,
-      );
-      if (parentAnchorElements) {
-        parentAnchorElements
-          .querySelector(`[data-${dataAttribute}]`)
-          ?.setAttribute('data-active', 'true');
-      }
-    }
-  };
-
-  // Handle the scroll event
   const handleScroll = useCallback(() => {
-    anchorElementsRef.current?.forEach((element) => {
-      updateAnchor(element as HTMLElement); // Ensuring type as HTMLElement
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [anchorElementsRef]);
+    if (!anchorElementsRef.current || anchorElementsRef.current.length === 0)
+      return;
+    const scrollElement =
+      targetRef?.current === document ? window : targetRef?.current;
+    const scrollTop =
+      scrollElement === window
+        ? window.scrollY || document.documentElement.scrollTop
+        : (scrollElement as HTMLElement).scrollTop;
 
-  // Handle smooth scrolling to a section on click or when URL hash is present
+    // Find the anchor whose section is closest to but not past the top
+    let activeIdx = 0;
+    let minDelta = Infinity;
+    anchorElementsRef.current.forEach((anchor, idx) => {
+      const sectionId = anchor.getAttribute(`data-${dataAttribute}-anchor`);
+      const sectionElement = document.getElementById(sectionId!);
+      if (!sectionElement) return;
+      let customOffset = offset;
+      const dataOffset = anchor.getAttribute(`data-${dataAttribute}-offset`);
+      if (dataOffset) customOffset = parseInt(dataOffset, 10);
+      const delta = Math.abs(
+        sectionElement.offsetTop - customOffset - scrollTop,
+      );
+      if (
+        sectionElement.offsetTop - customOffset <= scrollTop &&
+        delta < minDelta
+      ) {
+        minDelta = delta;
+        activeIdx = idx;
+      }
+    });
+
+    // If at bottom, force last anchor
+    if (scrollElement) {
+      const scrollHeight =
+        scrollElement === window
+          ? document.documentElement.scrollHeight
+          : (scrollElement as HTMLElement).scrollHeight;
+      const clientHeight =
+        scrollElement === window
+          ? window.innerHeight
+          : (scrollElement as HTMLElement).clientHeight;
+      if (scrollTop + clientHeight >= scrollHeight - 2) {
+        activeIdx = anchorElementsRef.current.length - 1;
+      }
+    }
+
+    // Set only one anchor active and sync the URL hash
+    const activeAnchor = anchorElementsRef.current[activeIdx];
+    const sectionId =
+      activeAnchor?.getAttribute(`data-${dataAttribute}-anchor`) || null;
+    setActiveSection(sectionId);
+    // Remove data-active from all others
+    anchorElementsRef.current.forEach((item, idx) => {
+      if (idx !== activeIdx) {
+        item.removeAttribute('data-active');
+      }
+    });
+  }, [anchorElementsRef, targetRef, dataAttribute, offset, setActiveSection]);
+
   const scrollTo = useCallback(
     (anchorElement: HTMLElement) => (event?: Event) => {
       if (event) event.preventDefault();
-      const sectionId = anchorElement
-        .getAttribute(`data-${dataAttribute}-anchor`)
-        ?.replace('#', '');
-      const sectionElement = document.getElementById(sectionId!);
+      const sectionId =
+        anchorElement
+          .getAttribute(`data-${dataAttribute}-anchor`)
+          ?.replace('#', '') || null;
+      if (!sectionId) return;
+      const sectionElement = document.getElementById(sectionId);
       if (!sectionElement) return;
 
       const scrollToElement =
@@ -164,8 +140,9 @@ export function Scrollspy({
           behavior: smooth ? 'smooth' : 'auto',
         });
       }
+      setActiveSection(sectionId, true);
     },
-    [dataAttribute, offset, smooth, targetRef],
+    [dataAttribute, offset, smooth, targetRef, setActiveSection],
   );
 
   // Scroll to the section if the ID is present in the URL hash
@@ -203,6 +180,10 @@ export function Scrollspy({
     // Check if there's a hash in the URL and scroll to the corresponding section
     setTimeout(() => {
       scrollToHashSection();
+      // Wait for scroll to settle, then update nav highlighting
+      setTimeout(() => {
+        handleScroll();
+      }, 100);
     }, 100); // Adding a slight delay to ensure content is fully rendered
 
     return () => {
