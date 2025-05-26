@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "progress-default",
+  "type": "registry:component",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "@radix-ui/react-progress"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/progress.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/progress/default.tsx",
+      "content": "'use client';\n\nimport * as React from 'react';\nimport { Progress } from '@/registry/default/ui/progress';\n\nexport default function ProgressDemo() {\n  const [progress, setProgress] = React.useState(13);\n\n  React.useEffect(() => {\n    const timer = setTimeout(() => setProgress(66), 500);\n    return () => clearTimeout(timer);\n  }, []);\n\n  return <Progress value={progress} className=\"w-[75%]\" />;\n}\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "registry/default/ui/progress.tsx",
+      "content": "'use client';\n\nimport * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport * as ProgressPrimitive from '@radix-ui/react-progress';\n\nfunction Progress({\n  className,\n  indicatorClassName,\n  value,\n  ...props\n}: React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root> & {\n  indicatorClassName?: string;\n}) {\n  return (\n    <ProgressPrimitive.Root\n      data-slot=\"progress\"\n      className={cn(\n        'relative h-2 w-full overflow-hidden rounded-full bg-secondary',\n        className,\n      )}\n      {...props}\n    >\n      <ProgressPrimitive.Indicator\n        data-slot=\"progress-indicator\"\n        className={cn(\n          'h-full w-full flex-1 bg-primary transition-all',\n          indicatorClassName,\n        )}\n        style={{ transform: `translateX(-${100 - (value || 0)}%)` }}\n      />\n    </ProgressPrimitive.Root>\n  );\n}\n\nexport { Progress };\n",
+      "type": "registry:ui",
+      "target": ""
+    },
+    {
+      "path": "registry/default/lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from 'clsx';\nimport { twMerge } from 'tailwind-merge';\n\n/**\n * Merges Tailwind class names, resolving any conflicts.\n *\n * @param inputs - An array of class names to merge.\n * @returns A string of merged and optimized class names.\n */\nexport function cn(...inputs: ClassValue[]): string {\n  return twMerge(clsx(inputs));\n}\n",
+      "type": "registry:lib",
+      "target": ""
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "breadcrumb-icon",
+  "type": "registry:component",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "@radix-ui/react-slot",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/breadcrumb.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/breadcrumb/icon.tsx",
+      "content": "import {\n  Breadcrumb,\n  BreadcrumbItem,\n  BreadcrumbLink,\n  BreadcrumbList,\n  BreadcrumbPage,\n  BreadcrumbSeparator,\n} from '@/registry/default/ui/breadcrumb';\nimport { Home } from 'lucide-react';\n\nexport default function BreadcrumbDemo() {\n  return (\n    <Breadcrumb>\n      <BreadcrumbList>\n        <BreadcrumbItem>\n          <BreadcrumbLink href=\"/\">\n            <Home className=\"size-4\" />\n          </BreadcrumbLink>\n        </BreadcrumbItem>\n        <BreadcrumbSeparator />\n        <BreadcrumbItem>\n          <BreadcrumbLink href=\"/\">Components</BreadcrumbLink>\n        </BreadcrumbItem>\n        <BreadcrumbSeparator />\n        <BreadcrumbItem>\n          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>\n        </BreadcrumbItem>\n      </BreadcrumbList>\n    </Breadcrumb>\n  );\n}\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "registry/default/ui/breadcrumb.tsx",
+      "content": "import * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport { Slot } from '@radix-ui/react-slot';\nimport { ChevronRight, MoreHorizontal } from 'lucide-react';\n\nfunction Breadcrumb({\n  ...props\n}: React.ComponentPropsWithoutRef<'nav'> & {\n  separator?: React.ReactNode;\n}) {\n  return <nav data-slot=\"breadcrumb\" aria-label=\"breadcrumb\" {...props} />;\n}\n\nfunction BreadcrumbList({\n  className,\n  ...props\n}: React.ComponentPropsWithoutRef<'ol'>) {\n  return (\n    <ol\n      data-slot=\"breadcrumb-list\"\n      className={cn(\n        'flex flex-wrap items-center gap-1.5 break-words text-sm text-muted-foreground',\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction BreadcrumbItem({\n  className,\n  ...props\n}: React.ComponentPropsWithoutRef<'li'>) {\n  return (\n    <li\n      data-slot=\"breadcrumb-item\"\n      className={cn('inline-flex items-center gap-1.5', className)}\n      {...props}\n    />\n  );\n}\n\nfunction BreadcrumbLink({\n  asChild,\n  className,\n  ...props\n}: React.ComponentPropsWithoutRef<'a'> & {\n  asChild?: boolean;\n}) {\n  const Comp = asChild ? Slot : 'a';\n\n  return (\n    <Comp\n      data-slot=\"breadcrumb-link\"\n      className={cn('transition-colors hover:text-foreground', className)}\n      {...props}\n    />\n  );\n}\n\nfunction BreadcrumbPage({\n  className,\n  ...props\n}: React.ComponentPropsWithoutRef<'span'>) {\n  return (\n    <span\n      data-slot=\"breadcrumb-page\"\n      role=\"link\"\n      aria-disabled=\"true\"\n      aria-current=\"page\"\n      className={cn('font-normal text-foreground', className)}\n      {...props}\n    />\n  );\n}\n\nconst BreadcrumbSeparator = ({\n  children,\n  className,\n  ...props\n}: React.ComponentProps<'li'>) => (\n  <li\n    data-slot=\"breadcrumb-separator\"\n    role=\"presentation\"\n    aria-hidden=\"true\"\n    className={cn('[&>svg]:w-3.5 [&>svg]:h-3.5', className)}\n    {...props}\n  >\n    {children ?? <ChevronRight className=\"rtl:rotate-180\" />}\n  </li>\n);\n\nconst BreadcrumbEllipsis = ({\n  className,\n  ...props\n}: React.ComponentProps<'span'>) => (\n  <span\n    data-slot=\"breadcrumb-ellipsis\"\n    role=\"presentation\"\n    aria-hidden=\"true\"\n    className={cn('flex h-9 w-9 items-center justify-center', className)}\n    {...props}\n  >\n    <MoreHorizontal className=\"h-4 w-4\" />\n    <span className=\"sr-only\">More</span>\n  </span>\n);\n\nexport {\n  Breadcrumb,\n  BreadcrumbEllipsis,\n  BreadcrumbItem,\n  BreadcrumbLink,\n  BreadcrumbList,\n  BreadcrumbPage,\n  BreadcrumbSeparator,\n};\n",
+      "type": "registry:ui",
+      "target": ""
+    },
+    {
+      "path": "registry/default/lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from 'clsx';\nimport { twMerge } from 'tailwind-merge';\n\n/**\n * Merges Tailwind class names, resolving any conflicts.\n *\n * @param inputs - An array of class names to merge.\n * @returns A string of merged and optimized class names.\n */\nexport function cn(...inputs: ClassValue[]): string {\n  return twMerge(clsx(inputs));\n}\n",
+      "type": "registry:lib",
+      "target": ""
+    }
+  ]
+}

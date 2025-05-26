@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-otp",
+  "type": "registry:ui",
+  "dependencies": [
+    "input-otp",
+    "clsx",
+    "tailwind-merge",
+    "input-otp",
+    "lucide-react"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/input-otp.tsx",
+      "content": "'use client';\n\nimport * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport { OTPInput, OTPInputContext } from 'input-otp';\nimport { Dot } from 'lucide-react';\n\nfunction InputOTP({\n  className,\n  containerClassName,\n  ...props\n}: React.ComponentPropsWithoutRef<typeof OTPInput>) {\n  return (\n    <OTPInput\n      data-slot=\"input-otp\"\n      containerClassName={cn(\n        'flex items-center gap-2 has-disabled:opacity-50',\n        containerClassName,\n      )}\n      className={cn('disabled:cursor-not-allowed', className)}\n      {...props}\n    />\n  );\n}\n\nfunction InputOTPGroup({\n  className,\n  ...props\n}: React.ComponentPropsWithoutRef<'div'>) {\n  return (\n    <div\n      data-slot=\"input-otp-group\"\n      className={cn('flex items-center', className)}\n      {...props}\n    />\n  );\n}\n\nfunction InputOTPSlot({\n  index,\n  className,\n  ...props\n}: React.ComponentPropsWithoutRef<'div'> & { index: number }) {\n  const inputOTPContext = React.useContext(OTPInputContext);\n  const { char, hasFakeCaret, isActive } = inputOTPContext.slots[index];\n\n  return (\n    <div\n      data-slot=\"input-otp-slot\"\n      className={cn(\n        'relative flex h-10 w-10 items-center justify-center border-y border-e border-input text-sm transition-all first:rounded-s-md first:border-s last:rounded-e-md outline-hidden focus:border-ring',\n        isActive && 'z-10 ring-2 ring-ring ring-offset-background',\n        className,\n      )}\n      {...props}\n    >\n      {char}\n      {hasFakeCaret && (\n        <div className=\"pointer-events-none absolute inset-0 flex items-center justify-center\">\n          <div className=\"h-4 w-px animate-caret-blink bg-foreground duration-1000\" />\n        </div>\n      )}\n    </div>\n  );\n}\n\nfunction InputOTPSeparator({\n  ...props\n}: React.ComponentPropsWithoutRef<'div'>) {\n  return (\n    <div data-slot=\"input-otp-separator\" role=\"separator\" {...props}>\n      <Dot />\n    </div>\n  );\n}\n\nexport { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot };\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/default/lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from 'clsx';\nimport { twMerge } from 'tailwind-merge';\n\n/**\n * Merges Tailwind class names, resolving any conflicts.\n *\n * @param inputs - An array of class names to merge.\n * @returns A string of merged and optimized class names.\n */\nexport function cn(...inputs: ClassValue[]): string {\n  return twMerge(clsx(inputs));\n}\n",
+      "type": "registry:lib",
+      "target": ""
+    }
+  ]
+}

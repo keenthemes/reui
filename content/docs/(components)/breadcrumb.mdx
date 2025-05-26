@@ -1,0 +1,131 @@
+---
+title: Breadcrumb
+description: Displays a hierarchy of links to the current page or resource in an application.
+component: true
+links:
+  - label: '@radix-ui/react-slot'
+    url: https://www.radix-ui.com/primitives/docs/utilities/slot
+---
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="breadcrumb" />
+</TabsContent>
+
+<TabsContent value="manual">    
+<Steps>
+
+### Install ReUI
+
+Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+
+### Install dependencies
+
+```bash
+npm install @radix-ui/react-slot
+```
+
+### Add component
+
+Copy and paste the following code into your project’s `components/ui/breadcrumb.tsx` file.
+
+<ComponentPreview name="breadcrumb" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+### Default
+
+<ExamplePreview path="breadcrumb/default" />
+
+### Icon
+
+<ExamplePreview path="breadcrumb/icon" />
+
+### Separator
+
+<ExamplePreview path="breadcrumb/separator" />
+
+### Dropdown
+
+<ExamplePreview path="breadcrumb/dropdown" />
+
+### Card
+
+<ExamplePreview path="breadcrumb/card" />
+
+## API Reference
+
+This component provides a customizable breadcrumb system for displaying a hierarchy of links.
+
+### Breadcrumb
+
+This component is a flexible container for displaying breadcrumb items.
+
+| **Prop**                                                                                            | **Type**          | **Default**       |
+| --------------------------------------------------------------------------------------------------- | ----------------- | ----------------- |
+| `className` <PopoverInfo>Additional class names for styling the breadcrumb container.</PopoverInfo> | ~string~          | <Na/>             |
+| `separator` <PopoverInfo>The character or element used as a separator.</PopoverInfo>                | ~React.ReactNode~ | `<ChevronRight/>` |
+
+### BreadcrumbList
+
+This component is used to display a list of breadcrumb items.
+
+| **Prop**                                                                                       | **Type** | **Default** |
+| ---------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the breadcrumb list.</PopoverInfo> | ~string~ | <Na/>       |
+
+### BreadcrumbItem
+
+This component is used to display an individual breadcrumb item.
+
+| **Prop**                                                                                       | **Type** | **Default** |
+| ---------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the breadcrumb item.</PopoverInfo> | ~string~ | <Na/>       |
+
+### BreadcrumbLink
+
+This component is used to display a link within a breadcrumb item.
+
+| **Prop**                                                                                              | **Type**  | **Default** |
+| ----------------------------------------------------------------------------------------------------- | --------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the breadcrumb link.</PopoverInfo>        | ~string~  | <Na/>       |
+| `href` <PopoverInfo>The URL that the breadcrumb link points to.</PopoverInfo>                         | ~string~  | ~#~         |
+| `asChild` <PopoverInfo>Renders the link as a child element, using the `Slot` component.</PopoverInfo> | ~boolean~ | `false`     |
+
+### BreadcrumbPage
+
+This component is used to display the current page in the breadcrumb.
+
+| **Prop**                                                                                       | **Type** | **Default** |
+| ---------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the breadcrumb page.</PopoverInfo> | ~string~ | <Na/>       |
+
+### BreadcrumbSeparator
+
+This component is used to display a separator between breadcrumb items.
+
+| **Prop**                                                                                            | **Type** | **Default** |
+| --------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the breadcrumb separator.</PopoverInfo> | ~string~ | <Na/>       |
+
+### BreadcrumbEllipsis
+
+This component is used to display an ellipsis in the breadcrumb.
+
+| **Prop**                                                                                           | **Type** | **Default** |
+| -------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the breadcrumb ellipsis.</PopoverInfo> | ~string~ | <Na/>       |

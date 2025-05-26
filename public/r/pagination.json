@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pagination",
+  "type": "registry:ui",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "lucide-react"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/pagination.tsx",
+      "content": "'use client';\n\nimport * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport { MoreHorizontal } from 'lucide-react';\n\nconst Pagination = ({ className, ...props }: React.ComponentProps<'nav'>) => (\n  <nav\n    data-slot=\"pagination\"\n    role=\"navigation\"\n    aria-label=\"pagination\"\n    className={cn('mx-auto flex w-full justify-center', className)}\n    {...props}\n  />\n);\n\nfunction PaginationContent({\n  className,\n  ...props\n}: React.ComponentProps<'ul'>) {\n  return (\n    <ul\n      data-slot=\"pagination-content\"\n      className={cn('flex flex-row items-center gap-1', className)}\n      {...props}\n    />\n  );\n}\n\nfunction PaginationItem({ className, ...props }: React.ComponentProps<'li'>) {\n  return (\n    <li data-slot=\"pagination-item\" className={cn('', className)} {...props} />\n  );\n}\n\nconst PaginationEllipsis = ({\n  className,\n  ...props\n}: React.ComponentProps<'span'>) => (\n  <span\n    data-slot=\"pagination-ellipsis\"\n    aria-hidden\n    className={cn('flex h-9 w-9 items-center justify-center', className)}\n    {...props}\n  >\n    <MoreHorizontal className=\"h-4 w-4\" />\n    <span className=\"sr-only\">More pages</span>\n  </span>\n);\n\nexport { Pagination, PaginationContent, PaginationEllipsis, PaginationItem };\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/default/lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from 'clsx';\nimport { twMerge } from 'tailwind-merge';\n\n/**\n * Merges Tailwind class names, resolving any conflicts.\n *\n * @param inputs - An array of class names to merge.\n * @returns A string of merged and optimized class names.\n */\nexport function cn(...inputs: ClassValue[]): string {\n  return twMerge(clsx(inputs));\n}\n",
+      "type": "registry:lib",
+      "target": ""
+    }
+  ]
+}

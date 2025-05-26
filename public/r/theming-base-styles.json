@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "theming-base-styles",
+  "type": "registry:component",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/default/components/theming/base-styles.tsx",
+      "content": "import { cn } from '@/registry/default/lib/utils';\n\nexport const borderStyles = [\n  {\n    name: 'base border',\n    className: 'border border-border',\n  },\n  {\n    name: 'input border',\n    className: 'border border-input',\n  },\n  {\n    name: 'ring color',\n    className: 'ring-2 ring-ring',\n  },\n];\n\nexport const radiusStyles = [\n  {\n    name: 'rounded-xl',\n    className: 'bg-muted rounded-xl',\n  },\n  {\n    name: 'rounded-lg',\n    className: 'bg-muted rounded-lg',\n  },\n  {\n    name: 'rounded-md',\n    className: 'bg-muted rounded-md',\n  },\n  {\n    name: 'rounded-sm',\n    className: 'bg-muted rounded-sm',\n  },\n];\n\nexport default function ThemeDemo() {\n  return (\n    <div className=\"space-y-8 text-foreground\">\n      <div className=\"grid grid-cols-3 gap-6 text-sm\">\n        {borderStyles.map((style) => (\n          <div\n            key={style.name}\n            className={cn('p-4 overflow-hidden rounded-xl', style.className)}\n          >\n            {style.name}\n          </div>\n        ))}\n      </div>\n\n      <div className=\"grid grid-cols-4 gap-x-8 gap-y-4 text-sm\">\n        {radiusStyles.map((style) => (\n          <div\n            key={style.name}\n            className={cn('p-4 overflow-hidden', style.className)}\n          >\n            {style.name}\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "registry/default/lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from 'clsx';\nimport { twMerge } from 'tailwind-merge';\n\n/**\n * Merges Tailwind class names, resolving any conflicts.\n *\n * @param inputs - An array of class names to merge.\n * @returns A string of merged and optimized class names.\n */\nexport function cn(...inputs: ClassValue[]): string {\n  return twMerge(clsx(inputs));\n}\n",
+      "type": "registry:lib",
+      "target": ""
+    }
+  ]
+}

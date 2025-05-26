@@ -1,0 +1,110 @@
+---
+title: Date Picker
+description: A date input component that combines a calendar popover with an input field.
+component: true
+links:
+  - label: '@radix-ui/react-popover'
+    url: https://www.radix-ui.com/primitives/docs/components/popover
+  - label: 'react-day-picker'
+    url: https://daypicker.dev/
+---
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="date-picker" />
+</TabsContent>
+
+<TabsContent value="manual">    
+<Steps>
+
+### Install ReUI
+
+Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+
+### Install dependencies
+
+```bash
+npm install @radix-ui/react-popover react-day-picker date-fns
+```
+
+### Add required components
+
+Add [Button](/docs/button) and [Popover](/docs/popover) components used by ReUI Date Picker.
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+### Default
+
+<ExamplePreview path="date-picker/default" />
+
+### Date & Time
+
+<ExamplePreview path="date-picker/date-time" />
+
+### Range
+
+<ExamplePreview path="date-picker/range" />
+
+### Presets
+
+<ExamplePreview path="date-picker/presets" />
+
+### Form
+
+<ExamplePreview path="date-picker/form" />
+
+## API Reference
+
+This component is built using [react-day-picker](https://react-day-picker.js.org/) and [Radix UI Popover](https://www.radix-ui.com/primitives/docs/components/popover) primitives. For detailed information about the calendar functionality, please visit the react-day-picker documentation.
+
+### Calendar
+
+This component is based on the [DayPicker](https://react-day-picker.js.org/basics/customization) component from react-day-picker. For all available props, refer to the react-day-picker documentation. The component includes the following custom styling props:
+
+| **Prop**                                                                                          | **Type** | **Default**        |
+| ------------------------------------------------------------------------------------------------- | -------- | ------------------ |
+| `className` <PopoverInfo>Additional class names for styling the calendar container.</PopoverInfo> | ~string~ | ~undefined~        |
+| `classNames` <PopoverInfo>Custom class names for individual calendar elements.</PopoverInfo>      | ~object~ | ~See calendar.tsx~ |
+
+### DatePickerTrigger
+
+The trigger button that opens the date picker popover.
+
+| **Prop**                                                                                      | **Type**  | **Default**     |
+| --------------------------------------------------------------------------------------------- | --------- | --------------- |
+| `asInput` <PopoverInfo>Style the trigger as an input field.</PopoverInfo>                     | ~boolean~ | ~false~         |
+| `placeholder` <PopoverInfo>Placeholder text when no date is selected.</PopoverInfo>           | ~string~  | ~"Pick a date"~ |
+| `className` <PopoverInfo>Additional class names for styling the trigger button.</PopoverInfo> | ~string~  | ~undefined~     |
+
+### DatePickerContent
+
+The popover content that contains the calendar. This component extends Radix UI's Popover.Content.
+
+| **Prop**                                                                                       | **Type**                                                         | **Default** |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the popover content.</PopoverInfo> | ~string~                                                         | ~undefined~ |
+| `align` <PopoverInfo>Alignment of the popover relative to the trigger.</PopoverInfo>           | ~enum~ <PopoverInfo> "start" \| "center" \| "end" </PopoverInfo> | ~"center"~  |
+
+### DatePickerPresets
+
+A component for displaying preset date ranges.
+
+| **Prop**                                                                                         | **Type**                                        | **Default** |
+| ------------------------------------------------------------------------------------------------ | ----------------------------------------------- | ----------- |
+| `presets` <PopoverInfo>Array of preset date ranges.</PopoverInfo>                                | ~Array\<\{ label: string; range: DateRange \}>~ | <Na/>       |
+| `onSelect` <PopoverInfo>Callback function when a preset is selected.</PopoverInfo>               | ~(range: DateRange) => void~                    | <Na/>       |
+| `className` <PopoverInfo>Additional class names for styling the presets container.</PopoverInfo> | ~string~                                        | ~undefined~ |

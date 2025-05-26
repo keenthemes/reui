@@ -1,0 +1,82 @@
+name: CrudHunt Web Deployment Staging
+
+on:
+  push:
+    branches: [dev]
+    paths:
+      - '.github/**'
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+      # Step 1: Check out the code
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      # Step 2: Setup Node.js environment
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      # Step 3: Install dependencies and build locally
+      - name: Install Dependencies and Build
+        run: |
+          npm install --force
+          npx prisma generate --schema=./prisma/cruds/schema.prisma
+          npx prisma generate --schema=./prisma/site/schema.prisma
+          npm run build || { echo "Build failed, exiting."; exit 1; }
+
+      # Step 4: Remove .next folder on server and prepare for upload
+      - name: Prepare Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_PROD_HOST }}
+          username: ${{ secrets.SSH_PROD_USER }}
+          password: ${{ secrets.SSH_PROD_PSW }}
+          port: 22
+          script: |
+            export PATH=$PATH:/home/faizal/.nvm/versions/node/v20.18.3/bin
+            cd /var/www/crudhunt/crudhunt-web-staging
+            git reset --hard
+            git pull
+            rm -rf .next
+            rm -rf node_modules
+            rm -f package-lock.json
+            npm install --force
+
+      # Step 5: Upload .next folder to server
+      - name: Upload .next folder
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SSH_PROD_HOST }}
+          username: ${{ secrets.SSH_PROD_USER }}
+          password: ${{ secrets.SSH_PROD_PSW }}
+          port: 22
+          source: '.next'
+          target: '/var/www/crudhunt/crudhunt-web-staging'
+
+      # Step 6: Restart application
+      - name: Restart Application
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_PROD_HOST }}
+          username: ${{ secrets.SSH_PROD_USER }}
+          password: ${{ secrets.SSH_PROD_PSW }}
+          port: 22
+          script: |
+            cd /var/www/crudhunt/crudhunt-web-staging
+            pm2 restart "crudhunt-web-staging" --update-env || pm2 start npm --name "crudhunt-web-staging" -- start
+
+      # Step 7: Display Deployment Results
+      - name: Display Deployment Results
+        run: |
+          echo "Deployed successfully to https://stg.crudhunt.com"

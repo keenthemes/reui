@@ -1,0 +1,41 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "slider-tooltip",
+  "type": "registry:component",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "@radix-ui/react-slider",
+    "@radix-ui/react-tooltip",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/slider.json",
+    "https://reui.io/r/tooltip.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/slider/tooltip.tsx",
+      "content": "'use client';\n\nimport { useEffect, useState } from 'react';\nimport { Slider, SliderThumb } from '@/registry/default/ui/slider';\nimport {\n  Tooltip,\n  TooltipContent,\n  TooltipProvider,\n  TooltipTrigger,\n} from '@/registry/default/ui/tooltip';\n\nexport default function SliderDemo() {\n  const [value, setValue] = useState<number[]>([100, 450]);\n  const [isOpen, setIsOpen] = useState(false);\n\n  useEffect(() => {\n    setIsOpen(true);\n  }, []);\n\n  return (\n    <div className=\"w-full md:w-[400px]\">\n      <Slider\n        defaultValue={[100, 450]}\n        min={0}\n        max={600}\n        step={1}\n        onValueChange={(val) => {\n          setValue(val);\n        }}\n      >\n        <TooltipProvider>\n          <Tooltip open={isOpen}>\n            <TooltipTrigger asChild>\n              <SliderThumb />\n            </TooltipTrigger>\n            <TooltipContent side=\"top\" forceMount>\n              {value[1] ?? 0}\n            </TooltipContent>\n          </Tooltip>\n        </TooltipProvider>\n\n        <TooltipProvider>\n          <Tooltip open={isOpen}>\n            <TooltipTrigger asChild>\n              <SliderThumb />\n            </TooltipTrigger>\n            <TooltipContent side=\"top\" forceMount>\n              {value[1] ?? 0}\n            </TooltipContent>\n          </Tooltip>\n        </TooltipProvider>\n      </Slider>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "registry/default/ui/slider.tsx",
+      "content": "'use client';\n\nimport * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport * as SliderPrimitive from '@radix-ui/react-slider';\n\nfunction Slider({\n  className,\n  children,\n  ...props\n}: React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>) {\n  return (\n    <SliderPrimitive.Root\n      data-slot=\"slider\"\n      className={cn(\n        'relative flex h-4 w-full touch-none select-none items-center',\n        className,\n      )}\n      {...props}\n    >\n      <SliderPrimitive.Track className=\"relative h-1.5 w-full overflow-hidden rounded-full bg-accent\">\n        <SliderPrimitive.Range className=\"absolute h-full bg-primary\" />\n      </SliderPrimitive.Track>\n      {children}\n    </SliderPrimitive.Root>\n  );\n}\n\nfunction SliderThumb({\n  className,\n  ...props\n}: React.ComponentPropsWithoutRef<typeof SliderPrimitive.Thumb>) {\n  return (\n    <SliderPrimitive.Thumb\n      data-slot=\"slider-thumb\"\n      className={cn(\n        'box-content block size-4 shrink-0 cursor-pointer rounded-full border-[2px] border-primary bg-primary-foreground shadow-xs shadow-black/5 outline-hidden focus:outline-hidden',\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Slider, SliderThumb };\n",
+      "type": "registry:ui",
+      "target": ""
+    },
+    {
+      "path": "registry/default/lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from 'clsx';\nimport { twMerge } from 'tailwind-merge';\n\n/**\n * Merges Tailwind class names, resolving any conflicts.\n *\n * @param inputs - An array of class names to merge.\n * @returns A string of merged and optimized class names.\n */\nexport function cn(...inputs: ClassValue[]): string {\n  return twMerge(clsx(inputs));\n}\n",
+      "type": "registry:lib",
+      "target": ""
+    },
+    {
+      "path": "registry/default/ui/tooltip.tsx",
+      "content": "'use client';\n\nimport * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport * as TooltipPrimitive from '@radix-ui/react-tooltip';\nimport { cva, type VariantProps } from 'class-variance-authority';\n\nfunction TooltipProvider({\n  delayDuration = 0,\n  ...props\n}: React.ComponentProps<typeof TooltipPrimitive.Provider>) {\n  return (\n    <TooltipPrimitive.Provider\n      data-slot=\"tooltip-provider\"\n      delayDuration={delayDuration}\n      {...props}\n    />\n  );\n}\n\nfunction Tooltip({\n  ...props\n}: React.ComponentProps<typeof TooltipPrimitive.Root>) {\n  return (\n    <TooltipProvider>\n      <TooltipPrimitive.Root data-slot=\"tooltip\" {...props} />\n    </TooltipProvider>\n  );\n}\n\nfunction TooltipTrigger({\n  ...props\n}: React.ComponentProps<typeof TooltipPrimitive.Trigger>) {\n  return <TooltipPrimitive.Trigger data-slot=\"tooltip-trigger\" {...props} />;\n}\n\nconst tooltipVariants = cva(\n  'z-50 overflow-hidden rounded-md px-3 py-1.5 text-xs animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',\n  {\n    variants: {\n      variant: {\n        light:\n          'border border-border bg-background text-foreground shadow-md shadow-black/5',\n        dark: 'dark:border dark:border-border bg-zinc-950 text-white dark:bg-zinc-300 dark:text-black shadow-md shadow-black/5',\n      },\n    },\n    defaultVariants: {\n      variant: 'dark',\n    },\n  },\n);\n\nfunction TooltipContent({\n  className,\n  sideOffset = 4,\n  variant,\n  ...props\n}: React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content> &\n  VariantProps<typeof tooltipVariants>) {\n  return (\n    <TooltipPrimitive.Content\n      data-slot=\"tooltip-content\"\n      sideOffset={sideOffset}\n      className={cn(tooltipVariants({ variant }), className)}\n      {...props}\n    />\n  );\n}\n\nexport { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger };\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ]
+}

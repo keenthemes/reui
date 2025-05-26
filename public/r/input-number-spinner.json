@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-number-spinner",
+  "type": "registry:component",
+  "dependencies": [
+    "react-aria-components",
+    "lucide-react",
+    "react-aria-components"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/default/components/input/number-spinner.tsx",
+      "content": "'use client';\n\nimport { MinusIcon, PlusIcon } from 'lucide-react';\nimport { Button, Group, Input, NumberField } from 'react-aria-components';\n\nexport default function Component() {\n  return (\n    <div className=\"w-80\">\n      <NumberField defaultValue={2048} minValue={0}>\n        <Group className=\"border-input data-focus-within:border-ring data-focus-within:ring-ring/50 data-focus-within:has-aria-invalid:ring-destructive/20 dark:data-focus-within:has-aria-invalid:ring-destructive/40 data-focus-within:has-aria-invalid:border-destructive relative inline-flex h-9 w-full items-center overflow-hidden rounded-md border text-sm whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none data-disabled:opacity-50 data-focus-within:ring-[3px]\">\n          <Button\n            slot=\"decrement\"\n            className=\"border-input bg-background text-muted-foreground/80 hover:bg-accent hover:text-foreground -ms-px flex aspect-square h-[inherit] items-center justify-center rounded-s-md border text-sm transition-[color,box-shadow] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50\"\n          >\n            <MinusIcon size={16} aria-hidden=\"true\" />\n          </Button>\n          <Input className=\"bg-background text-foreground w-full grow px-3 py-2 text-center tabular-nums\" />\n          <Button\n            slot=\"increment\"\n            className=\"border-input bg-background text-muted-foreground/80 hover:bg-accent hover:text-foreground -me-px flex aspect-square h-[inherit] items-center justify-center rounded-e-md border text-sm transition-[color,box-shadow] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50\"\n          >\n            <PlusIcon size={16} aria-hidden=\"true\" />\n          </Button>\n        </Group>\n      </NumberField>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ]
+}

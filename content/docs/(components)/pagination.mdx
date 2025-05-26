@@ -1,0 +1,97 @@
+---
+title: Pagination
+description: A responsive pagination component for navigating through multiple pages of content.
+component: true
+---
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="pagination" />
+</TabsContent>
+
+<TabsContent value="manual">    
+<Steps>
+
+### Install ReUI
+
+Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+
+### Add component
+
+Copy and paste the following code into your project’s `components/ui/pagination.tsx` file.
+
+<ComponentPreview name="pagination" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+### Default
+
+<ExamplePreview path="pagination/default" />
+
+### Icon
+
+<ExamplePreview path="pagination/icon" />
+
+### Card
+
+<ExamplePreview path="pagination/card" />
+
+## API Reference
+
+This component provides a customizable pagination system with support for various layouts and styles.
+
+### Pagination
+
+This component is the root container for pagination elements.
+
+| **Prop**                                                                                            | **Type** | **Default** |
+| --------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the navigation container.</PopoverInfo> | ~string~ | <Na/>       |
+
+### PaginationContent
+
+This component provides the container for pagination items.
+
+| **Prop**                                                                                         | **Type** | **Default** |
+| ------------------------------------------------------------------------------------------------ | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the content container.</PopoverInfo> | ~string~ | <Na/>       |
+
+### PaginationItem
+
+This component represents an individual item in the pagination.
+
+| **Prop**                                                                                       | **Type** | **Default** |
+| ---------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the pagination item.</PopoverInfo> | ~string~ | <Na/>       |
+
+### PaginationLink
+
+This component represents a clickable pagination link.
+
+| **Prop**                                                                               | **Type**              | **Default** |
+| -------------------------------------------------------------------------------------- | --------------------- | ----------- |
+| `isActive` <PopoverInfo>Whether the pagination item is currently active.</PopoverInfo> | ~boolean~             | ~false~     |
+| `size` <PopoverInfo>The size of the pagination link.</PopoverInfo>                     | ~ButtonProps["size"]~ | <Na/>       |
+| `className` <PopoverInfo>Additional class names for styling the link.</PopoverInfo>    | ~string~              | <Na/>       |
+
+### PaginationEllipsis
+
+This component displays an ellipsis to indicate additional pages.
+
+| **Prop**                                                                                | **Type** | **Default** |
+| --------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the ellipsis.</PopoverInfo> | ~string~ | <Na/>       |

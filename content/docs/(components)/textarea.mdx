@@ -1,0 +1,69 @@
+---
+title: Textarea
+description: A multi-line text input field with support for custom styling and states.
+---
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="textarea" />
+</TabsContent>
+
+<TabsContent value="manual">    
+<Steps>
+
+### Install ReUI
+
+Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+
+### Add component
+
+Copy and paste the following code into your project’s `components/ui/textarea.tsx` file.
+
+<ComponentPreview name="textarea" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+### Default
+
+<ExamplePreview path="textarea/default" />
+
+### Disabled
+
+<ExamplePreview path="textarea/disabled" />
+
+### Readonly
+
+<ExamplePreview path="textarea/readonly" />
+
+### Size
+
+<ExamplePreview path="textarea/size" />
+
+### Form
+
+<ExamplePreview path="textarea/form" />
+
+## API Reference
+
+This is a custom component that extends the native HTML textarea element.
+
+### Textarea
+
+| **Prop**                                                                                | **Type** | **Default** |
+| --------------------------------------------------------------------------------------- | -------- | ----------- |
+| `variant` <PopoverInfo>Controls the variant of the textarea field.</PopoverInfo>                    | ~enum~ <PopoverInfo> "md" \| "sm" \| "xs" </PopoverInfo> | ~"md"~      |
+| `className` <PopoverInfo>Additional class names for styling the textarea field.</PopoverInfo> | ~string~                                                 | <Na/>       |

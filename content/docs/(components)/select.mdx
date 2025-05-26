@@ -1,0 +1,170 @@
+---
+title: Select
+description: Displays a list of options for the user to pick from—triggered by a button.
+component: true
+links:
+  - label: '@radix-ui/react-select'
+    url: https://www.radix-ui.com/primitives/docs/components/select
+---
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="select" />
+</TabsContent>
+
+<TabsContent value="manual">    
+<Steps>
+
+### Install ReUI
+
+Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+
+### Install dependencies
+
+```bash
+npm install @radix-ui/react-select
+```
+
+### Add component
+
+Copy and paste the following code into your project’s `components/ui/select.tsx` file.
+
+<ComponentPreview name="select" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+### Default
+
+<ExamplePreview path="select/default" />
+
+### Group
+
+<ExamplePreview path="select/group" />
+
+### Disabled
+
+<ExamplePreview path="select/disabled" />
+
+### Disabled Option
+
+<ExamplePreview path="select/disabled-option" />
+
+### Size
+
+<ExamplePreview path="select/size" />
+
+### Indicator Position
+
+<ExamplePreview path="select/indicator-position" />
+
+### Custom Indicator
+
+<ExamplePreview path="select/custom-indicator" />
+
+### Icon
+
+<ExamplePreview path="select/icon" />
+
+### Status
+
+<ExamplePreview path="select/status" />
+
+### Badge
+
+<ExamplePreview path="select/badge" />
+
+### Avatar
+
+<ExamplePreview path="select/avatar" />
+
+### Form
+
+<ExamplePreview path="select/form" />
+
+## API Reference
+
+This component is built using [Radix UI Select](https://www.radix-ui.com/primitives/docs/components/select) primitives. For detailed information, please visit the full API reference.
+
+### Select
+
+This component is based on the [Select.Root](https://www.radix-ui.com/primitives/docs/components/select#root) primitive and includes the following custom props:
+
+| **Prop**                                                                                             | **Type**                                              | **Default** |
+| ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | ----------- |
+| `indicatorPosition` <PopoverInfo>Position of the selection indicator.</PopoverInfo>                  | ~enum~ <PopoverInfo> "left" \| "right" </PopoverInfo> | ~"left"~    |
+| `indicatorVisibility` <PopoverInfo>Controls the visibility of the selection indicator.</PopoverInfo> | ~boolean~                                             | ~true~      |
+| `indicator` <PopoverInfo>Custom indicator element to replace the default check icon.</PopoverInfo>   | ~ReactNode~                                           | <Na/>       |
+
+### SelectTrigger
+
+This component is based on the [Select.Trigger](https://www.radix-ui.com/primitives/docs/components/select#trigger) primitive and includes the following custom props:
+
+| **Prop**                                                                               | **Type**                                                 | **Default** |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------- | ----------- |
+| `size` <PopoverInfo>Controls the size of the select trigger.</PopoverInfo>             | ~enum~ <PopoverInfo> "xs" \| "sm" \| "md" </PopoverInfo> | ~"md"~      |
+| `className` <PopoverInfo>Additional class names for styling the trigger.</PopoverInfo> | ~string~                                                 | <Na/>       |
+
+### SelectContent
+
+This component is based on the [Select.Content](https://www.radix-ui.com/primitives/docs/components/select#content) primitive and includes the following custom props:
+
+| **Prop**                                                                               | **Type**   | **Default** |
+| -------------------------------------------------------------------------------------- | ---------- | ----------- |
+| `position` <PopoverInfo>The positioning strategy to use.</PopoverInfo>                 | ~"popper"~ | ~"popper"~  |
+| `className` <PopoverInfo>Additional class names for styling the content.</PopoverInfo> | ~string~   | <Na/>       |
+
+### SelectItem
+
+This component is based on the [Select.Item](https://www.radix-ui.com/primitives/docs/components/select#item) primitive and includes the following custom props:
+
+| **Prop**                                                                            | **Type** | **Default** |
+| ----------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the item.</PopoverInfo> | ~string~ | <Na/>       |
+
+The component inherits indicator position and visibility settings from the Select context.
+
+### SelectLabel
+
+This component is based on the [Select.Label](https://www.radix-ui.com/primitives/docs/components/select#label) primitive and includes the following custom props:
+
+| **Prop**                                                                             | **Type** | **Default** |
+| ------------------------------------------------------------------------------------ | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the label.</PopoverInfo> | ~string~ | <Na/>       |
+
+### SelectSeparator
+
+This component is based on the [Select.Separator](https://www.radix-ui.com/primitives/docs/components/select#separator) primitive and includes the following custom props:
+
+| **Prop**                                                                                 | **Type** | **Default** |
+| ---------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the separator.</PopoverInfo> | ~string~ | <Na/>       |
+
+### SelectGroup
+
+This component is based on the [Select.Group](https://www.radix-ui.com/primitives/docs/components/select#group) primitive. For full details, visit the official documentation.
+
+### SelectValue
+
+This component is based on the [Select.Value](https://www.radix-ui.com/primitives/docs/components/select#value) primitive. For full details, visit the official documentation.
+
+### SelectScrollUpButton
+
+This component is based on the [Select.ScrollUpButton](https://www.radix-ui.com/primitives/docs/components/select#scrolldownbutton) primitive. For full details, visit the official documentation.
+
+### SelectScrollDownButton
+
+This component is based on the [Select.ScrollDownButton](https://www.radix-ui.com/primitives/docs/components/select#scrolldownbutton) primitive. For full details, visit the official documentation.

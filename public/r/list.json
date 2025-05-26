@@ -1,0 +1,12 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "list",
+  "type": "registry:ui",
+  "files": [
+    {
+      "path": "registry/default/ui/list.tsx",
+      "content": "'use client';\n\nimport * as React from 'react';\nimport * as Tabs from '@radix-ui/react-tabs';\n\ntype ListProps = React.ComponentPropsWithoutRef<typeof Tabs.Root>;\n\nfunction List({ orientation = 'vertical', children, ...props }: ListProps) {\n  const listRef = React.useRef<HTMLDivElement>(null);\n\n  return (\n    <Tabs.Root orientation={orientation} {...props}>\n      <Tabs.List ref={listRef}>{children}</Tabs.List>\n    </Tabs.Root>\n  );\n}\n\ntype ListItemProps = React.ComponentPropsWithoutRef<typeof Tabs.Trigger>;\n\nfunction ListItem({ children, ...props }: ListItemProps) {\n  return <Tabs.Trigger {...props}>{children}</Tabs.Trigger>;\n}\n\nexport { List, ListItem };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

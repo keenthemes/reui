@@ -1,0 +1,68 @@
+---
+title: Sonner
+description: An opinionated toast component for React.
+component: true
+links:
+  - label: 'sonner'
+    url: https://sonner.emilkowal.ski/
+---
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="sonner" />
+</TabsContent>
+
+<TabsContent value="manual">    
+<Steps>
+
+### Install ReUI
+
+Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+
+### Install dependencies
+
+```bash
+npm install sonner
+```
+
+### Add component
+
+Copy and paste the following code into your project’s `components/ui/sooner.tsx` file.
+
+<ComponentPreview name="sooner" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+### Default
+
+<ExamplePreview path="sonner/default" />
+
+### Variants
+
+<ExamplePreview path="sonner/variants" />
+
+## API Reference
+
+This component is built using [Sonner](https://sonner.emilkowal.ski/) toast library. For detailed information, please visit the full API reference.
+
+### Toaster
+
+This component extends the Sonner Toaster component with theme integration and custom styling. It accepts all props from the Sonner Toaster component.
+
+| **Prop**                                                                                        | **Type**                        | **Default** |
+| ----------------------------------------------------------------------------------------------- | ------------------------------- | ----------- |
+| `theme` <PopoverInfo>The theme to use for the toasts. Inherited from next-themes.</PopoverInfo> | ~"light" \| "dark" \| "system"~ | ~"system"~  |

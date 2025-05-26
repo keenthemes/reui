@@ -1,0 +1,124 @@
+---
+title: Card
+description: Containers for displaying content and actions about a single subject.
+component: true
+---
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="card" />
+</TabsContent>
+
+<TabsContent value="manual">    
+<Steps>
+
+### Install ReUI
+
+Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+
+### Add component
+
+Copy and paste the following code into your project’s `components/ui/card.tsx` file.
+
+<ComponentPreview name="card" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+### Default
+
+<ExamplePreview path="card/default" />
+
+### Accent
+
+<ExamplePreview path="card/accent" />
+
+## API Reference
+
+This component provides a customizable card system with various sections and styles.
+
+### Card
+
+The main container component that provides context and styling for all card elements.
+
+| **Prop**                                                                                      | **Type**                                                  | **Default** |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------- | ----------- |
+| `variant` <PopoverInfo>The visual style variant of the card.</PopoverInfo>                    | ~enum~ <PopoverInfo> "default" \| "accent" </PopoverInfo> | ~"default"~ |
+| `className` <PopoverInfo>Additional class names for styling the card container.</PopoverInfo> | ~string~                                                  | <Na/>       |
+
+### CardHeader
+
+A component for the header section of the card. Inherits variant from Card context.
+
+| **Prop**                                                                                   | **Type** | **Default** |
+| ------------------------------------------------------------------------------------------ | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the card header.</PopoverInfo> | ~string~ | <Na/>       |
+
+### CardHeading
+
+A container for the card's heading content with consistent spacing.
+
+| **Prop**                                                                                    | **Type** | **Default** |
+| ------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the card heading.</PopoverInfo> | ~string~ | <Na/>       |
+
+### CardToolbar
+
+A container for action items in the card header with flexbox layout.
+
+| **Prop**                                                                                    | **Type** | **Default** |
+| ------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the card toolbar.</PopoverInfo> | ~string~ | <Na/>       |
+
+### CardTitle
+
+A heading component for the card's title with default typography styles.
+
+| **Prop**                                                                                  | **Type** | **Default** |
+| ----------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the card title.</PopoverInfo> | ~string~ | <Na/>       |
+
+### CardDescription
+
+A component for descriptive text with muted styling.
+
+| **Prop**                                                                                        | **Type** | **Default** |
+| ----------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the card description.</PopoverInfo> | ~string~ | <Na/>       |
+
+### CardContent
+
+The main content area of the card. Inherits variant from Card context.
+
+| **Prop**                                                                                    | **Type** | **Default** |
+| ------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the card content.</PopoverInfo> | ~string~ | <Na/>       |
+
+### CardTable
+
+A grid container for table layouts within the card. Inherits variant from Card context.
+
+| **Prop**                                                                                  | **Type** | **Default** |
+| ----------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the card table.</PopoverInfo> | ~string~ | <Na/>       |
+
+### CardFooter
+
+The footer section of the card. Inherits variant from Card context.
+
+| **Prop**                                                                                   | **Type** | **Default** |
+| ------------------------------------------------------------------------------------------ | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the card footer.</PopoverInfo> | ~string~ | <Na/>       |

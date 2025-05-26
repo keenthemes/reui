@@ -1,0 +1,130 @@
+---
+title: Badge
+description: A Badge is a small, visually distinct element used to display contextual metadata, such as status, category, or notifications, enhancing the clarity and organization of your design.
+component: true
+links:
+  - label: '@radix-ui/react-slot'
+    url: https://www.radix-ui.com/primitives/docs/utilities/slot
+---
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="badge" />
+</TabsContent>
+
+<TabsContent value="manual">    
+<Steps>
+
+### Install ReUI
+
+Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+
+### Install dependencies
+
+```bash
+npm install @radix-ui/react-slot
+```
+
+### Add component
+
+Copy and paste the following code into your project’s `components/ui/badge.tsx` file.
+
+<ComponentPreview name="badge" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+### Default
+
+<ExamplePreview path="badge/default" />
+
+### Stroke
+
+<ExamplePreview path="badge/stroke" />
+
+### Variants
+
+<ExamplePreview path="badge/variants" />
+
+### Outline
+
+<ExamplePreview path="badge/outline" />
+
+### Light
+
+<ExamplePreview path="badge/light" />
+
+### Circle
+
+<ExamplePreview path="badge/circle" />
+
+### With Dot
+
+<ExamplePreview path="badge/with-dot" />
+
+### With Icon
+
+<ExamplePreview path="badge/with-icon" />
+
+### Remove Button
+
+<ExamplePreview path="badge/remove-button" />
+
+### Square
+
+<ExamplePreview path="badge/square" />
+
+### Size
+
+<ExamplePreview path="badge/size" />
+
+### asChild
+
+<ExamplePreview path="badge/as-child" />
+
+### Disabled
+
+<ExamplePreview path="badge/disabled" />
+
+## API Reference
+
+This component provides a customizable badge system with flexible variants, sizes, and appearances.
+
+### Badge
+
+| **Prop**                                                                                               | **Type**                                                                                                                    | **Default** |
+| ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `variant` <PopoverInfo>Specifies the badge's theme.</PopoverInfo>                                      | ~enum~ <PopoverInfo> "primary" \| "secondary" \| "success" \| "warning" \| "info" \| "mono" \| "destructive" </PopoverInfo> | `secondary` |
+| `appearance` <PopoverInfo>Determines the badge's visual appearance.</PopoverInfo>                      | ~enum~ <PopoverInfo> "solid" \| "outline" \| "stroke" \| "ghost" </PopoverInfo>                                             | `solid`     |
+| `size` <PopoverInfo>Sets the size of the badge.</PopoverInfo>                                          | ~enum~ <PopoverInfo> "md" \| "sm" \| "xs" </PopoverInfo>                                                                    | `md`        |
+| `shape` <PopoverInfo>Determines the shape of the badge.</PopoverInfo>                                  | ~enum~ <PopoverInfo> "default" \| "circle" </PopoverInfo>                                                                   | `default`   |
+| `disabled` <PopoverInfo>Specifies whether the badge is disabled.</PopoverInfo>                         | ~boolean~                                                                                                                   | `false`     |
+| `asChild` <PopoverInfo>Renders the badge as a child element, using the `Slot` component.</PopoverInfo> | ~boolean~                                                                                                                   | `false`     |
+| `className` <PopoverInfo>Additional class names for styling the badge.</PopoverInfo>                   | ~string~                                                                                                                    | <Na/>       |
+
+### BadgeButton
+
+| **Prop**                                                                                                | **Type**                                      | **Default** |
+| ------------------------------------------------------------------------------------------------------- | --------------------------------------------- | ----------- |
+| `variant` <PopoverInfo>Specifies the badge button's theme.</PopoverInfo>                                | ~enum~ <PopoverInfo> "default" </PopoverInfo> | `default`   |
+| `asChild` <PopoverInfo>Renders the button as a child element, using the `Slot` component.</PopoverInfo> | ~boolean~                                     | `false`     |
+| `className` <PopoverInfo>Additional class names for styling the badge button.</PopoverInfo>             | ~string~                                      | <Na/>       |
+
+### BadgeDot
+
+| **Prop**                                                                                 | **Type** | **Default** |
+| ---------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the badge dot.</PopoverInfo> | ~string~ | <Na/>       |

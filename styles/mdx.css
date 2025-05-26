@@ -1,0 +1,144 @@
+@utility step {
+  counter-increment: step;
+
+  &:before {
+    @apply bg-background border-border ring-background absolute inline-flex size-7 items-center justify-center rounded-full border text-center -indent-px font-mono text-sm font-medium ring-8;
+    @apply ml-[-46px];
+    content: counter(step);
+  }
+}
+
+@utility chunk-container {
+  @apply shadow-none;
+
+  &::after {
+    content: '';
+    @apply border-border absolute -inset-4 rounded-xl border shadow-xl;
+  }
+}
+
+@utility no-scrollbar {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+[data-theme='light'] {
+  display: block;
+}
+
+[data-theme='dark'] {
+  display: none;
+}
+
+.dark [data-theme='light'] {
+  display: none;
+}
+
+.dark [data-theme='dark'] {
+  display: block;
+}
+
+[data-rehype-pretty-code-fragment] {
+  @apply relative text-white;
+}
+
+[data-rehype-pretty-code-fragment] code {
+  @apply grid min-w-full rounded-none border-0 bg-transparent p-0 break-words;
+  counter-reset: line;
+  box-decoration-break: clone;
+}
+
+/* Dark mode scrollbar styling using the .dark class */
+html:not(.dark)
+  .dark
+  [data-rehype-pretty-code-fragment]
+  > pre::-webkit-scrollbar-thumb {
+  background: hsl(var(--mono));
+}
+html:not(.dark) .dark [data-rehype-pretty-code-fragment] > pre {
+  scrollbar-color: hsl(var(--mono)) transparent;
+}
+
+[data-rehype-pretty-code-fragment] .line {
+  @apply inline-block min-h-[1rem] w-full px-2 py-0.5;
+}
+
+[data-rehype-pretty-code-fragment] [data-line-numbers] .line {
+  @apply px-2;
+}
+
+[data-rehype-pretty-code-fragment] [data-line-numbers] > .line::before {
+  @apply text-muted-foreground text-xs;
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 2rem;
+  margin-right: 1rem;
+  text-align: right;
+}
+
+[data-rehype-pretty-code-fragment] .line--highlighted {
+  @apply bg-neutral-700/50;
+}
+
+[data-rehype-pretty-code-fragment] .line-highlighted span {
+  @apply relative;
+}
+
+[data-rehype-pretty-code-fragment] .word--highlighted {
+  @apply rounded-md border-neutral-700/70 bg-neutral-700/50 p-1;
+}
+
+.dark [data-rehype-pretty-code-fragment] .word--highlighted {
+  @apply bg-neutral-900;
+}
+
+[data-rehype-pretty-code-title] {
+  @apply text-foreground mt-2 px-4 pt-6 text-sm font-medium;
+}
+
+[data-rehype-pretty-code-title] + pre {
+  @apply mt-2;
+}
+
+.mdx > .steps:first-child > h3:first-child {
+  @apply mt-0;
+}
+
+.steps > h3 {
+  @apply mt-8 mb-4 text-base font-semibold;
+}
+
+.steps > h2 > span > a > .heading-icon,
+.steps > h3 > span > a > .heading-icon {
+  @apply hidden;
+}
+
+h2 > span,
+h3 > span {
+  @apply cursor-pointer;
+}
+
+h2 > span > a,
+h3 > span > a {
+  @apply inline-flex items-center;
+}
+
+h2 > span > a > .heading-icon,
+h3 > span > a > .heading-icon {
+  @apply relative top-[1px] -ms-5 size-4 opacity-0 transition-opacity;
+}
+
+h2 > span:hover > a > .heading-icon,
+h3 > span:hover > a > .heading-icon {
+  @apply opacity-100;
+}
+
+del {
+  @apply bg-accent text-accent-foreground relative rounded-sm px-[0.3rem] py-[0.2rem] text-[13px] no-underline;
+}

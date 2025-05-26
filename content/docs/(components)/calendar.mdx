@@ -1,0 +1,70 @@
+---
+title: Calendar
+description: A date field component that allows users to enter and edit dates.
+component: true
+links:
+  - label: 'react-day-picker'
+    url: https://daypicker.dev
+---
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="calendar" />
+</TabsContent>
+
+<TabsContent value="manual">    
+<Steps>
+
+### Install ReUI
+
+Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+
+### Install dependencies
+
+```bash
+npm install react-day-picker date-fns
+```
+
+### Add component
+
+Copy and paste the following code into your project’s `components/ui/calendar.tsx` file.
+
+<ComponentPreview name="calendar" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+### Default
+
+<ExamplePreview path="calendar/default" />
+
+### Multiple Months
+
+<ExamplePreview path="calendar/multiple-months" />
+
+## API Reference
+
+This component provides a customizable calendar system built on top of the `react-day-picker` library.
+
+### Calendar
+
+This component is based on the [DayPicker](https://daypicker.dev) component and extends its functionality with custom styling and navigation controls.
+
+| **Prop**                                                                                               | **Type**                  | **Default** |
+| ------------------------------------------------------------------------------------------------------ | ------------------------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the calendar container.</PopoverInfo>      | ~string~                  | <Na/>       |
+| `classNames` <PopoverInfo>Custom class names to override specific parts of the calendar.</PopoverInfo> | ~Record\<string, string>~ | <Na/>       |
+| `showOutsideDays` <PopoverInfo>Determines whether to show days from adjacent months.</PopoverInfo>     | ~boolean~                 | ~true~      |

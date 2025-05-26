@@ -1,0 +1,85 @@
+---
+title: Tooltip
+description: Displays brief, contextual information when hovering over or focusing on an element, improving clarity without cluttering the interface.
+component: true
+links:
+  - label: '@radix-ui/react-tooltip'
+    url: https://www.radix-ui.com/primitives/docs/components/tooltip
+---
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="tooltip" />
+</TabsContent>
+
+<TabsContent value="manual">    
+<Steps>
+
+### Install ReUI
+
+Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+
+### Install dependencies
+
+```bash
+npm install @radix-ui/react-tooltip
+```
+
+### Add component
+
+Copy and paste the following code into your project’s `components/ui/tooltip.tsx` file.
+
+<ComponentPreview name="tooltip" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+### Default
+
+<ExamplePreview path="tooltip/default" />
+
+### Light
+
+<ExamplePreview path="tooltip/light" />
+
+### Side
+
+<ExamplePreview path="tooltip/side" />
+
+## API Reference
+
+This component is built using [Radix UI Tooltip](https://www.radix-ui.com/primitives/docs/components/tooltip) primitives. For detailed information, please visit the full API reference.
+
+### Tooltip
+
+This component is based on the [Tooltip.Root](https://www.radix-ui.com/primitives/docs/components/tooltip#root) primitive. For full details, visit the official documentation.
+
+### TooltipTrigger
+
+This component is based on the [Tooltip.Trigger](https://www.radix-ui.com/primitives/docs/components/tooltip#trigger) primitive. For full details, visit the official documentation.
+
+### TooltipContent
+
+This component is based on the [Tooltip.Content](https://www.radix-ui.com/primitives/docs/components/tooltip#content) primitive and includes the following custom props:
+
+| **Prop**                                                                               | **Type** | **Default** |
+| -------------------------------------------------------------------------------------- | -------- | ----------- |
+| `sideOffset` <PopoverInfo>The distance in pixels from the trigger.</PopoverInfo>       | ~number~ | ~4~         |
+| `className` <PopoverInfo>Additional class names for styling the content.</PopoverInfo> | ~string~ | ~undefined~ |
+
+### TooltipProvider
+
+This component is based on the [Tooltip.Provider](https://www.radix-ui.com/primitives/docs/components/tooltip#provider) primitive. For full details, visit the official documentation.

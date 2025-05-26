@@ -1,0 +1,125 @@
+---
+title: Avatar
+description: An image element with a fallback for representing the user.
+component: true
+links:
+  - label: '@radix-ui/react-avatar'
+    url: https://www.radix-ui.com/primitives/docs/components/avatar
+---
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="avatar" />
+</TabsContent>
+
+<TabsContent value="manual">    
+<Steps>
+
+### Install ReUI
+
+Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+
+### Install dependencies
+
+```bash
+npm install @radix-ui/react-avatar
+```
+
+### Add component
+
+Copy and paste the following code into your project’s `components/ui/avatar.tsx` file.
+
+<ComponentPreview name="avatar" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+### Default
+
+<ExamplePreview path="avatar/default" />
+
+### Fallback
+
+<ExamplePreview path="avatar/fallback" />
+
+### Indicator
+
+<ExamplePreview path="avatar/indicator" />
+
+### Status
+
+<ExamplePreview path="avatar/status" />
+
+### Badge
+
+<ExamplePreview path="avatar/badge" />
+
+### Size
+
+<ExamplePreview path="avatar/size" />
+
+### Group
+
+<ExamplePreview path="avatar/group" />
+
+### Users
+
+<ExamplePreview path="avatar/users" />
+
+## API Reference
+
+This component builds on the Radix UI Avatar primitives, adding customization options such as indicators and status.
+
+### Avatar
+
+This component is based on the [Avatar.Root](https://www.radix-ui.com/primitives/docs/components/avatar#root) primitive.
+
+| **Prop**                                                                                        | **Type** | **Default** |
+| ----------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the avatar container.</PopoverInfo> | ~string~ | <Na/>       |
+
+### AvatarImage
+
+This component is based on the [Avatar.Image](https://www.radix-ui.com/primitives/docs/components/avatar#image) primitive.
+
+| **Prop**                                                                                    | **Type** | **Default** |
+| ------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the avatar image.</PopoverInfo> | ~string~ | <Na/>       |
+
+### AvatarFallback
+
+This component is based on the [Avatar.Fallback](https://www.radix-ui.com/primitives/docs/components/avatar#fallback) primitive.
+
+| **Prop**                                                                                        | **Type** | **Default** |
+| ----------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the fallback content.</PopoverInfo> | ~string~ | <Na/>       |
+
+### AvatarIndicator
+
+This is a custom component used to display an indicator within the avatar.
+
+| **Prop**                                                                                 | **Type** | **Default** |
+| ---------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the indicator.</PopoverInfo> | ~string~ | <Na/>       |
+
+### AvatarStatus
+
+This is a custom component for displaying a status indicator on the avatar.
+
+| **Prop**                                                                                        | **Type**                                                                      | **Default** |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------- |
+| `variant` <PopoverInfo>Specifies the status of the avatar.</PopoverInfo>                        | ~enum~ <PopoverInfo> "online" \| "offline" \| "busy" \| "away" </PopoverInfo> | `online`    |
+| `className` <PopoverInfo>Additional class names for styling the status indicator.</PopoverInfo> | ~string~                                                                      | <Na/>       |

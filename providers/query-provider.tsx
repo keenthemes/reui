@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { Alert, AlertIcon, AlertTitle } from '@/registry/default/ui/alert';
 import { RiErrorWarningFill } from '@remixicon/react';
 import {
   QueryCache,
@@ -8,7 +9,6 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query';
 import { toast } from 'sonner';
-import { Alert, AlertIcon, AlertTitle } from '@/components/ui/alert';
 
 const QueryProvider = ({ children }: { children: React.ReactNode }) => {
   const [queryClient] = useState(

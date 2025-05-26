@@ -1,0 +1,107 @@
+---
+title: Input
+description: Displays a form input field, input groups, number input spinners, date input, date time input, time inputs, etc.
+component: true
+links:
+  - label: 'react-aria-components'
+    url: https://react-spectrum.adobe.com/react-aria/index.html
+---
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="input" />
+</TabsContent>
+
+<TabsContent value="manual">    
+<Steps>
+
+### Install ReUI
+
+Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+
+### Add component
+
+Copy and paste the following code into your project’s `components/ui/input.tsx` file.
+
+<ComponentPreview name="input" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+### Default
+
+<ExamplePreview path="input/default" />
+
+### Disabled
+
+<ExamplePreview path="input/disabled" />
+
+### Readonly
+
+<ExamplePreview path="input/readonly" />
+
+### Addon
+
+<ExamplePreview path="input/addon" />
+
+### Icon
+
+<ExamplePreview path="input/icon" />
+
+### File
+
+<ExamplePreview path="input/file" />
+
+### Date
+
+<ExamplePreview path="input/date" />
+
+### Time
+
+<ExamplePreview path="input/time" />
+
+### Date & Time
+
+<ExamplePreview path="input/date-time" />
+
+### Copy to clipboard
+
+<ExamplePreview path="input/copy-to-clipboard" />
+
+### Clear button
+
+<ExamplePreview path="input/clear-button" />
+
+### Size
+
+<ExamplePreview path="input/size" />
+
+### Form
+
+<ExamplePreview path="input/form" />
+
+## API Reference
+
+This component extends the native HTML `<input>` element with additional styling and size variants.
+
+### Input
+
+This component is a custom implementation that extends the native HTML `<input>` element with the following custom props:
+
+| **Prop**                                                                                   | **Type**                                                 | **Default** |
+| ------------------------------------------------------------------------------------------ | -------------------------------------------------------- | ----------- |
+| `variant` <PopoverInfo>Controls the variant of the input field.</PopoverInfo>                    | ~enum~ <PopoverInfo> "md" \| "sm" \| "xs" </PopoverInfo> | ~"md"~      |
+| `className` <PopoverInfo>Additional class names for styling the input field.</PopoverInfo> | ~string~                                                 | <Na/>       |

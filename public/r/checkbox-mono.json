@@ -1,0 +1,42 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox-mono",
+  "type": "registry:component",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "@radix-ui/react-checkbox",
+    "class-variance-authority",
+    "lucide-react",
+    "@radix-ui/react-label"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/checkbox.json",
+    "https://reui.io/r/label.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/checkbox/mono.tsx",
+      "content": "'use client';\n\nimport { useId, useState } from 'react';\nimport { Checkbox } from '@/registry/default/ui/checkbox';\nimport { Label } from '@/registry/default/ui/label';\n\nexport default function CheckboxDemo() {\n  const id = useId();\n  const [checked, setChecked] = useState<boolean>(true);\n\n  return (\n    <div className=\"flex items-center space-x-2\">\n      <Checkbox\n        variant=\"mono\"\n        id={id}\n        checked={checked}\n        onCheckedChange={(value) => setChecked(!!value)}\n      />\n      <Label htmlFor={id}>Accept terms and conditions</Label>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "registry/default/ui/checkbox.tsx",
+      "content": "'use client';\n\nimport * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport * as CheckboxPrimitive from '@radix-ui/react-checkbox';\nimport { cva, VariantProps } from 'class-variance-authority';\nimport { Check, Minus } from 'lucide-react';\n\n// Define the variants for the Checkbox using cva.\nconst checkboxVariants = cva(\n  `\n    group peer bg-background shrink-0 rounded-md border border-input ring-offset-background focus-visible:outline-none \n    focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 \n    aria-invalid:border-destructive/60 aria-invalid:ring-destructive/10 dark:aria-invalid:border-destructive dark:aria-invalid:ring-destructive/20\n    [[data-invalid=true]_&]:border-destructive/60 [[data-invalid=true]_&]:ring-destructive/10  dark:[[data-invalid=true]_&]:border-destructive dark:[[data-invalid=true]_&]:ring-destructive/20\n    `,\n  {\n    variants: {\n      variant: {\n        primary:\n          'data-[state=checked]:bg-primary data-[state=checked]:border-primary data-[state=checked]:text-primary-foreground data-[state=indeterminate]:bg-primary data-[state=indeterminate]:border-primary data-[state=indeterminate]:text-primary-foreground',\n        mono: 'data-[state=checked]:bg-mono data-[state=checked]:border-mono data-[state=checked]:text-mono-foreground data-[state=indeterminate]:bg-mono data-[state=indeterminate]:border-mono data-[state=indeterminate]:text-mono-foreground',\n      },\n      size: {\n        sm: 'size-4.5 [&_svg]:size-3',\n        md: 'size-5 [&_svg]:size-3.5',\n        lg: 'size-5.5 [&_svg]:size-4',\n      },\n    },\n    defaultVariants: {\n      variant: 'primary',\n      size: 'md',\n    },\n  },\n);\n\n// Extend the Checkbox props with variant props.\nexport interface CheckboxProps\n  extends React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>,\n    VariantProps<typeof checkboxVariants> {}\n\nfunction Checkbox({ className, variant, size, ...props }: CheckboxProps) {\n  return (\n    <CheckboxPrimitive.Root\n      data-slot=\"checkbox\"\n      className={cn(checkboxVariants({ variant, size }), className)}\n      {...props}\n    >\n      <CheckboxPrimitive.Indicator\n        className={cn('flex items-center justify-center text-current')}\n      >\n        <Check className=\"group-data-[state=indeterminate]:hidden\" />\n        <Minus className=\"hidden group-data-[state=indeterminate]:block\" />\n      </CheckboxPrimitive.Indicator>\n    </CheckboxPrimitive.Root>\n  );\n}\n\nexport { Checkbox };\n",
+      "type": "registry:ui",
+      "target": ""
+    },
+    {
+      "path": "registry/default/lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from 'clsx';\nimport { twMerge } from 'tailwind-merge';\n\n/**\n * Merges Tailwind class names, resolving any conflicts.\n *\n * @param inputs - An array of class names to merge.\n * @returns A string of merged and optimized class names.\n */\nexport function cn(...inputs: ClassValue[]): string {\n  return twMerge(clsx(inputs));\n}\n",
+      "type": "registry:lib",
+      "target": ""
+    },
+    {
+      "path": "registry/default/ui/label.tsx",
+      "content": "'use client';\n\nimport * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport * as LabelPrimitive from '@radix-ui/react-label';\nimport { cva, type VariantProps } from 'class-variance-authority';\n\nconst labelVariants = cva(\n  'text-sm leading-none text-foreground peer-disabled:cursor-not-allowed peer-disabled:opacity-50',\n  {\n    variants: {\n      variant: {\n        primary: 'font-medium',\n        secondary: 'font-normal',\n      },\n    },\n    defaultVariants: {\n      variant: 'primary',\n    },\n  },\n);\n\nfunction Label({\n  className,\n  variant,\n  ...props\n}: React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root> &\n  VariantProps<typeof labelVariants>) {\n  return (\n    <LabelPrimitive.Root\n      data-slot=\"label\"\n      className={cn(labelVariants({ variant }), className)}\n      {...props}\n    />\n  );\n}\n\nexport { Label };\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ]
+}

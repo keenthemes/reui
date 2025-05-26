@@ -1,0 +1,66 @@
+---
+title: Separator
+description: Visually or semantically separates content into groups.
+component: true
+links:
+  - label: '@radix-ui/react-separator'
+    url: https://www.radix-ui.com/primitives/docs/components/separator
+---
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="separator" />
+</TabsContent>
+
+<TabsContent value="manual">    
+<Steps>
+
+### Install ReUI
+
+Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+
+### Install dependencies
+
+```bash
+npm install @radix-ui/react-separator
+```
+
+### Add component
+
+Copy and paste the following code into your project’s `components/ui/separator.tsx` file.
+
+<ComponentPreview name="separator" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+### Default
+
+<ExamplePreview path="separator/default" />
+
+## API Reference
+
+This component is built using [Radix UI Separator](https://www.radix-ui.com/primitives/docs/components/separator) primitives. For detailed information, please visit the full API reference.
+
+### Separator
+
+This component is based on the [Separator.Root](https://www.radix-ui.com/primitives/docs/components/separator#root) primitive and includes the following custom props:
+
+| **Prop**                                                                                                       | **Type**                                                       | **Default**    |
+| -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- | -------------- |
+| `orientation` <PopoverInfo>The orientation of the separator.</PopoverInfo>                                     | ~enum~ <PopoverInfo> "horizontal" \| "vertical" </PopoverInfo> | ~"horizontal"~ |
+| `decorative` <PopoverInfo>Whether the separator is purely decorative or semantically meaningful.</PopoverInfo> | ~boolean~                                                      | ~true~         |
+| `className` <PopoverInfo>Additional class names for styling the separator.</PopoverInfo>                       | ~string~                                                       | <Na/>          |

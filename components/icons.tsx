@@ -37,6 +37,33 @@ export const Icons = {
       />
     </svg>
   ),
+  shadcn: (props: IconProps) => (
+    <svg {...props} viewBox="0 0 256 256">
+      <rect width="256" height="256" fill="none"></rect>
+      <line
+        x1="208"
+        y1="128"
+        x2="128"
+        y2="208"
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="32"
+      ></line>
+      <line
+        x1="192"
+        y1="40"
+        x2="40"
+        y2="192"
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="32"
+      ></line>
+    </svg>
+  ),
   faecbook: (props: IconProps) => (
     <svg viewBox="0 0 32 32" fill="none" {...props}>
       <path
@@ -208,6 +235,18 @@ export const Icons = {
           <stop offset="1" stop-opacity="0" />
         </linearGradient>
       </defs>
+    </svg>
+  ),
+  supabase: (props: IconProps) => (
+    <svg width="109" height="113" viewBox="0 0 109 113" fill="none" {...props}>
+      <path
+        d="M63.7076 110.284C60.8481 113.885 55.0502 111.912 54.9813 107.314L53.9738 40.0627L99.1935 40.0627C107.384 40.0627 111.952 49.5228 106.859 55.9374L63.7076 110.284Z"
+        fill="currentColor"
+      />
+      <path
+        d="M45.317 2.07103C48.1765 -1.53037 53.9745 0.442937 54.0434 5.041L54.4849 72.2922H9.83113C1.64038 72.2922 -2.92775 62.8321 2.1655 56.4175L45.317 2.07103Z"
+        fill="currentColor"
+      />
     </svg>
   ),
   tailwind: (props: IconProps) => (

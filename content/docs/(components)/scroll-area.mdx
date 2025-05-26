@@ -1,0 +1,75 @@
+---
+title: Scroll Area
+description: Augments native scroll functionality for custom, cross-browser styling.
+component: true
+links:
+  - label: '@radix-ui/react-scroll-area'
+    url: https://www.radix-ui.com/primitives/docs/components/scroll-area
+---
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="scroll-area" />
+</TabsContent>
+
+<TabsContent value="manual">    
+<Steps>
+
+### Install ReUI
+
+Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+
+### Install dependencies
+
+```bash
+npm install @radix-ui/react-scroll-area
+```
+
+### Add component
+
+Copy and paste the following code into your project’s `components/ui/scroll-area.tsx` file.
+
+<ComponentPreview name="scroll-area" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+### Default
+
+<ExamplePreview path="scroll-area/default" />
+
+## API Reference
+
+This component is built using [Radix UI Scroll Area](https://www.radix-ui.com/primitives/docs/components/scroll-area) primitives. For detailed information, please visit the full API reference.
+
+### ScrollArea
+
+This component is based on the [ScrollArea.Root](https://www.radix-ui.com/primitives/docs/components/scroll-area#root) primitive and includes the following custom props:
+
+| **Prop**                                                                                             | **Type**                      | **Default** |
+| ---------------------------------------------------------------------------------------------------- | ----------------------------- | ----------- |
+| `viewportRef` <PopoverInfo>Reference to the viewport element.</PopoverInfo>                          | ~React.Ref\<HTMLDivElement\>~ | <Na/>       |
+| `viewportClassName` <PopoverInfo>Additional class names for styling the viewport.</PopoverInfo>      | ~string~                      | <Na/>       |
+| `className` <PopoverInfo>Additional class names for styling the scroll area container.</PopoverInfo> | ~string~                      | <Na/>       |
+
+### ScrollBar
+
+This component is based on the [ScrollArea.Scrollbar](https://www.radix-ui.com/primitives/docs/components/scroll-area#scrollbar) primitive and includes the following custom props:
+
+| **Prop**                                                                                 | **Type**                                                       | **Default**  |
+| ---------------------------------------------------------------------------------------- | -------------------------------------------------------------- | ------------ |
+| `orientation` <PopoverInfo>The orientation of the scrollbar.</PopoverInfo>               | ~enum~ <PopoverInfo> "vertical" \| "horizontal" </PopoverInfo> | ~"vertical"~ |
+| `className` <PopoverInfo>Additional class names for styling the scrollbar.</PopoverInfo> | ~string~                                                       | <Na/>        |

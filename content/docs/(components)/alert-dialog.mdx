@@ -1,0 +1,122 @@
+---
+title: Alert Dialog
+description: A modal dialog that interrupts the user with important content and expects a response.
+component: true
+links:
+  - label: '@radix-ui/react-alert-dialog'
+    url: https://www.radix-ui.com/primitives/docs/components/alert-dialog
+---
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="alert-dialog" />
+</TabsContent>
+
+<TabsContent value="manual">    
+<Steps>
+
+### Install ReUI
+
+Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+
+### Install dependencies
+
+```bash
+npm install @radix-ui/react-alert-dialog
+```
+
+### Add component
+
+Copy and paste the following code into your project’s `components/ui/alert-dialog.tsx` file.
+
+<ComponentPreview name="alert-dialog" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+### Default
+
+<ExamplePreview path="alert-dialog/default" />
+
+### Destructive
+
+<ExamplePreview path="alert-dialog/destructive" />
+
+## API Reference
+
+This component is built using [Radix UI AlertDialog](https://www.radix-ui.com/primitives/docs/components/alert-dialog) primitives. For detailed information, please visit the full API reference.
+
+### AlertDialog
+
+This component is based on the [AlertDialog.Root](https://www.radix-ui.com/primitives/docs/components/alert-dialog#root) primitive and includes the following custom props:
+
+| **Prop**                                                                                          | **Type**                                                           | **Default** |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ----------- |
+| `variant` <PopoverInfo>Determines the visual style of the alert dialog.</PopoverInfo>             | ~enum~ <PopoverInfo> "info" \| "warning" \| "error" </PopoverInfo> | ~info~      |
+| `dismissable` <PopoverInfo>Controls whether the alert can be dismissed by the user.</PopoverInfo> | ~boolean~                                                          | ~true~      |
+| `className` <PopoverInfo>Additional class names for styling the alert dialog root.</PopoverInfo>  | ~string~                                                           | <Na/>       |
+
+### AlertDialogTrigger
+
+This component is based on the [AlertDialog.Trigger](https://www.radix-ui.com/primitives/docs/components/alert-dialog#trigger) primitive. For more details, refer to the original documentation.
+
+### AlertDialogContent
+
+This component is based on the [AlertDialog.Content](https://www.radix-ui.com/primitives/docs/components/alert-dialog#content) primitive and includes the following custom props:
+
+| **Prop**                                                                               | **Type** | **Default** |
+| -------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the content.</PopoverInfo> | ~string~ | <Na/>       |
+
+### AlertDialogOverlay
+
+This component is based on the [AlertDialog.Overlay](https://www.radix-ui.com/primitives/docs/components/alert-dialog#overlay) primitive. For more details, refer to the original documentation.
+
+### AlertDialogHeader
+
+This component is a custom implementation and includes the following custom props:
+
+| **Prop**                                                                              | **Type** | **Default** |
+| ------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the header.</PopoverInfo> | ~string~ | <Na/>       |
+
+### AlertDialogFooter
+
+This component is a custom implementation and includes the following custom props:
+
+| **Prop**                                                                              | **Type** | **Default** |
+| ------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the footer.</PopoverInfo> | ~string~ | <Na/>       |
+
+### AlertDialogTitle
+
+This component is based on the [AlertDialog.Title](https://www.radix-ui.com/primitives/docs/components/alert-dialog#title) primitive. For more details, refer to the original documentation.
+
+### AlertDialogDescription
+
+This component is based on the [AlertDialog.Description](https://www.radix-ui.com/primitives/docs/components/alert-dialog#description) primitive. For more details, refer to the original documentation.
+
+### AlertDialogAction
+
+This component is based on the [AlertDialog.Action](https://www.radix-ui.com/primitives/docs/components/alert-dialog#action) primitive and includes the following custom props:
+
+| **Prop**                                                          | **Type**                                                              | **Default** |
+| ----------------------------------------------------------------- | --------------------------------------------------------------------- | ----------- |
+| `variant` <PopoverInfo>Determines the button style.</PopoverInfo> | ~enum~ <PopoverInfo> "default" \| "outline" \| "ghost" </PopoverInfo> | ~default~   |
+
+### AlertDialogCancel
+
+This component is based on the [AlertDialog.Cancel](https://www.radix-ui.com/primitives/docs/components/alert-dialog#cancel) primitive. For more details, refer to the original documentation.

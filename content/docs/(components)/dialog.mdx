@@ -1,0 +1,133 @@
+---
+title: Dialog
+description: A modal dialog that interrupts the user with important content and expects a response.
+component: true
+links:
+  - label: '@radix-ui/react-dialog'
+    url: https://www.radix-ui.com/primitives/docs/components/dialog
+---
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="dialog" />
+</TabsContent>
+
+<TabsContent value="manual">    
+<Steps>
+
+### Install ReUI
+
+Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+
+### Install dependencies
+
+```bash
+npm install @radix-ui/react-dialog
+```
+
+### Add component
+
+Copy and paste the following code into your project’s `components/ui/dialog.tsx` file.
+
+<ComponentPreview name="dialog" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+### Default
+
+<ExamplePreview path="dialog/default" />
+
+### No Overlay
+
+<ExamplePreview path="dialog/no-overlay" />
+
+### Scrollable
+
+<ExamplePreview path="dialog/scrollable" />
+
+### Fullscreen
+
+<ExamplePreview path="dialog/fullscreen" />
+
+## API Reference
+
+This component is built using [Radix UI Dialog](https://www.radix-ui.com/primitives/docs/components/dialog) primitives. For detailed information, please visit the full API reference.
+
+### Dialog
+
+This component is based on the [Dialog.Root](https://www.radix-ui.com/primitives/docs/components/dialog#root) primitive. For more details, refer to the original documentation.
+
+### DialogTrigger
+
+This component is based on the [Dialog.Trigger](https://www.radix-ui.com/primitives/docs/components/dialog#trigger) primitive. For more details, refer to the original documentation.
+
+### DialogPortal
+
+This component is based on the [Dialog.Portal](https://www.radix-ui.com/primitives/docs/components/dialog#portal) primitive. For more details, refer to the original documentation.
+
+### DialogOverlay
+
+This component is based on the [Dialog.Overlay](https://www.radix-ui.com/primitives/docs/components/dialog#overlay) primitive and includes the following custom props:
+
+| **Prop**                                                                               | **Type** | **Default** |
+| -------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the overlay.</PopoverInfo> | ~string~ | <Na/>       |
+
+### DialogContent
+
+This component is based on the [Dialog.Content](https://www.radix-ui.com/primitives/docs/components/dialog#content) primitive and includes the following custom props:
+
+| **Prop**                                                                                      | **Type**  | **Default** |
+| --------------------------------------------------------------------------------------------- | --------- | ----------- |
+| `close` <PopoverInfo>Controls whether the close button is displayed.</PopoverInfo>            | ~boolean~ | ~true~      |
+| `className` <PopoverInfo>Additional class names for styling the dialog content.</PopoverInfo> | ~string~  | <Na/>       |
+
+### DialogClose
+
+This component is based on the [Dialog.Close](https://www.radix-ui.com/primitives/docs/components/dialog#close) primitive. For more details, refer to the original documentation.
+
+### DialogHeader
+
+This component is a custom implementation for the dialog header section that provides a consistent layout for the title and description.
+
+| **Prop**                                                                                     | **Type** | **Default** |
+| -------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the dialog header.</PopoverInfo> | ~string~ | <Na/>       |
+
+### DialogFooter
+
+This component is a custom implementation for the dialog footer section that provides a responsive layout for action buttons.
+
+| **Prop**                                                                                     | **Type** | **Default** |
+| -------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the dialog footer.</PopoverInfo> | ~string~ | <Na/>       |
+
+### DialogTitle
+
+This component is based on the [Dialog.Title](https://www.radix-ui.com/primitives/docs/components/dialog#title) primitive and includes the following custom props:
+
+| **Prop**                                                                                    | **Type** | **Default** |
+| ------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the dialog title.</PopoverInfo> | ~string~ | <Na/>       |
+
+### DialogDescription
+
+This component is based on the [Dialog.Description](https://www.radix-ui.com/primitives/docs/components/dialog#description) primitive and includes the following custom props:
+
+| **Prop**                                                                                          | **Type** | **Default** |
+| ------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the dialog description.</PopoverInfo> | ~string~ | <Na/>       |

@@ -1,6 +1,6 @@
+dist
 node_modules
 .next
-dist
-public
 build
+.contentlayer
 prisma

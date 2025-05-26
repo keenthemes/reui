@@ -1,0 +1,329 @@
+---
+title: Installation
+description: This guide will help you get started with ReUI's copy-and-paste components in just a few minutes.
+---
+
+## Prerequisites
+
+Before you can install and use ReUI, make sure your project meets the following requirements:
+
+- **React**: Version 19 or higher.
+- **TypeScript**: Version 5.7 or higher.
+- **Tailwind CSS**: Version 4 or higher.
+
+## Install Components
+
+<Steps>
+
+### Get ReUI Source Code
+
+Download [ReUI](http://github.com/keenthemes/reui) source code or clone it via Git into your machine:
+
+```bash
+git clone https://github.com/keenthemes/reui.git
+```
+
+### Initialize a React Project
+
+ReUI is compatible with various React frameworks. Choose the one that best fits your needs:
+
+- [Next.js](https://nextjs.org/docs/app/api-reference/cli/create-next-app)
+- [Vite](https://vite.dev/guide/#scaffolding-your-first-vite-project)
+- [Remix](https://remix.run/docs/en/main/start/quickstart)
+- [Astro](https://docs.astro.build/en/install-and-setup/)
+- [Laravel Inertia](https://inertiajs.com/)
+- [Gatsby](https://www.gatsbyjs.com/docs/tutorial/getting-started/part-0/)
+- [Tanstack Start](https://tanstack.com/start/latest/docs/framework/react/build-from-scratch)
+
+<Alert variant="destructive" appearance="light" close={false}>
+  <AlertIcon>
+    <BookOpenCheck />
+  </AlertIcon>
+  <AlertTitle>
+    If you already have a React project with TypeScript and Tailwind CSS, you
+    can skip this step.
+  </AlertTitle>
+</Alert>
+
+### Install Tailwind
+
+Follow [Instalation Guide](https://tailwindcss.com/docs/installation/framework-guides) to setup Tailwind for your React project.
+
+### Add Tailwind CSS Animate
+
+```bash
+npm i tailwindcss-animate
+```
+
+This plugin is required for smooth animation effects used by Accordion, Dialog, Popover and other elements.
+
+### Integrate ReUI Styles
+
+Add below code into your Tailwind entry style file `styles/globals.css`:
+
+```css showLineNumbers
+@import 'tailwindcss';
+
+@plugin 'tailwindcss-animate';
+
+/** Dark Mode Variant **/
+@custom-variant dark (&:is(.dark *));
+
+/** Colors **/
+:root {
+  /** Base Colors **/
+  --background: oklch(1 0 0); /* --color-white */
+  --foreground: oklch(14.1% 0.005 285.823); /* --color-zinc-950 */
+  --card: oklch(1 0 0); /* --color-white */
+  --card-foreground: oklch(14.1% 0.005 285.823); /* --color-zinc-950 */
+  --popover: oklch(1 0 0); /* --color-white */
+  --popover-foreground: oklch(14.1% 0.005 285.823); /* --color-zinc-950 */
+  --primary: oklch(62.3% 0.214 259.815); /* --color-blue-500 */
+  --primary-foreground: oklch(1 0 0); /* --color-white */
+  --secondary: oklch(96.7% 0.003 264.542); /* --color-zinc-100 */
+  --secondary-foreground: oklch(21% 0.006 285.885); /* --color-zinc-900 */
+  --muted: oklch(96.7% 0.003 264.542); /* --color-zinc-100 */
+  --muted-foreground: oklch(55.2% 0.016 285.938); /* --color-zinc-500 */
+  --accent: oklch(96.7% 0.003 264.542); /* --color-zinc-100 */
+  --accent-foreground: oklch(21% 0.006 285.885); /* --color-zinc-900 */
+  --destructive: oklch(57.7% 0.245 27.325); /* --color-red-600 */
+  --destructive-foreground: oklch(1 0 0); /* --color-white */
+
+  /** Base Styles **/
+  --border: oklch(
+    94% 0.004 286.32
+  ); /* between --color-zinc-100 and --color-zinc-200 */
+  --input: oklch(92% 0.004 286.32); /* --color-zinc-200 */
+  --ring: oklch(87.1% 0.006 286.286); /* --color-zinc-400 */
+  --radius: 0.5rem;
+}
+
+.dark {
+  /** Base Colors **/
+  --background: oklch(14.1% 0.005 285.823); /* --color-zinc-950 */
+  --foreground: oklch(98.5% 0 0); /* --color-zinc-50 */
+  --card: oklch(14.1% 0.005 285.823); /* --color-zinc-950 */
+  --card-foreground: oklch(98.5% 0 0); /* --color-zinc-50 */
+  --popover: oklch(14.1% 0.005 285.823); /* --color-zinc-950 */
+  --popover-foreground: oklch(98.5% 0 0); /* --color-zinc-50 */
+  --primary: oklch(54.6% 0.245 262.881); /* --color-blue-600 */
+  --primary-foreground: oklch(1 0 0); /* --color-white */
+  --secondary: oklch(27.4% 0.006 286.033); /* --color-zinc-800 */
+  --secondary-foreground: oklch(98.5% 0 0); /* --color-zinc-50 */
+  --muted: oklch(21% 0.006 285.885); /* --color-zinc-900 */
+  --muted-foreground: oklch(55.2% 0.016 285.938); /* --color-zinc-500 */
+  --accent: oklch(21% 0.006 285.885); /* --color-zinc-900 */
+  --accent-foreground: oklch(98.5% 0 0); /* --color-zinc-50 */
+  --destructive: oklch(57.7% 0.245 27.325); /* --color-red-600 */
+  --destructive-foreground: oklch(1 0 0); /* --color-white */
+
+  /** Base Styles **/
+  --border: oklch(27.4% 0.006 286.033); /* --color-zinc-800 */
+  --input: oklch(27.4% 0.006 286.033); /* --color-zinc-800 */
+  --ring: oklch(27.4% 0.006 286.033); /* --color-zinc-600 */
+}
+
+/** Theme Setup **/
+@theme inline {
+  /** Base Colors **/
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  /** Base Styles **/
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-collapsible-down: collapsible-down 0.2s ease-out;
+  --animate-collapsible-up: collapsible-up 0.2s ease-out;
+  --animate-caret-blink: caret-blink 1.25s ease-out infinite;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+  @keyframes collapsible-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-collapsible-content-height);
+    }
+  }
+  @keyframes collapsible-up {
+    from {
+      height: var(--radix-collapsible-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+  @keyframes caret-blink {
+    0%,
+    70%,
+    100% {
+      opacity: 1;
+    }
+    20%,
+    50% {
+      opacity: 0;
+    }
+  }
+}
+
+/** Global Styles **/
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  *:focus-visible {
+    @apply outline-ring rounded-xs shadow-none outline-2 outline-offset-3 transition-none!;
+  }
+}
+
+/** Custom Scrollbar **/
+@layer base {
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--input);
+    border-radius: 5px;
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--input) transparent;
+  }
+}
+
+/** Custom Container **/
+@utility container {
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+  @media (width >= --theme(--breakpoint-sm)) {
+    max-width: none;
+  }
+  @media (width >= 1440px) {
+    padding-inline: 2rem;
+    max-width: 1440px;
+  }
+}
+
+/** Smooth scroll **/
+html {
+  scroll-behavior: smooth;
+}
+```
+
+### Setup Inter Font(Next.js)
+
+Add the following code to your root layout file (`app/layout.tsx` or `src/app/layout.tsx`):
+
+```tsx
+import { Inter } from 'next/font/google';
+import { cn } from '@/utils/cn';
+
+const inter = Inter({ subsets: ['latin'] });
+
+export default function RootLayout({ children }) {
+  return (
+    <html className="h-full">
+      <body
+        className={cn('flex h-full text-base antialiased', inter.className)}
+        style={{ overflow: 'visible !important', marginRight: '0 !important' }}
+      >
+        {children}
+      </body>
+    </html>
+  );
+}
+```
+
+<Alert variant="primary" appearance="light" close={false}>
+  <AlertIcon>
+    <BookOpenCheck />
+  </AlertIcon>
+  <AlertTitle>
+    For a modern and visually appealing design, we recommend using
+    [Inter](https://fonts.google.com/specimen/Inter) as the default font in your
+    ReUI project.
+  </AlertTitle>
+</Alert>
+
+### Add Lucide Icon Library
+
+```bash
+npm i lucide
+```
+
+### Add Remix Icon Library
+
+```bash
+npm i @remixicon/react
+```
+
+### Add Tailwind Merge and clsx Library
+
+Tailwind Merge and clsx are used to merge and create class names for the components.
+
+```bash
+npm i tailwind-merge
+```
+
+```bash
+npm i clsx
+```
+
+### Add Dependency Files
+
+Copy the `utils.ts` file from `lib` directory in the source code to the `lib` directory in your project.
+
+### Add Components
+
+Explore the [ReUI Components](/docs/accordion) and add the ones you need into your project.
+
+</Steps>

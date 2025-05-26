@@ -1,0 +1,133 @@
+---
+title: Tabs
+description: A set of layered sections of content—known as tab panels—that are displayed one at a time.
+component: true
+links:
+  - label: '@radix-ui/react-tabs'
+    url: https://www.radix-ui.com/primitives/docs/components/tabs
+---
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="tabs" />
+</TabsContent>
+
+<TabsContent value="manual">    
+<Steps>
+
+### Install ReUI
+
+Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+
+### Install dependencies
+
+```bash
+npm install @radix-ui/react-tabs
+```
+
+### Add component
+
+Copy and paste the following code into your project’s `components/ui/tabs.tsx` file.
+
+<ComponentPreview name="tabs" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+### Default
+
+<ExamplePreview path="tabs/default" />
+
+### Icon
+
+<ExamplePreview path="tabs/icon" />
+
+### Badge
+
+<ExamplePreview path="tabs/badge" />
+
+### Button
+
+<ExamplePreview path="tabs/button" />
+
+### Pill
+
+<ExamplePreview path="tabs/pill" />
+
+### Line
+
+<ExamplePreview path="tabs/line" />
+
+### Vertical
+
+<ExamplePreview path="tabs/vertical" />
+
+### Size - Large
+
+<ExamplePreview path="tabs/size-lg" />
+
+### Size - Medium
+
+<ExamplePreview path="tabs/size-md" />
+
+### Size - Small
+
+<ExamplePreview path="tabs/size-sm" />
+
+### Size - Xsmall
+
+<ExamplePreview path="tabs/size-xs" />
+
+### Disabled
+
+<ExamplePreview path="tabs/disabled" />
+
+## API Reference
+
+This component is built using [Radix UI Tabs](https://www.radix-ui.com/primitives/docs/components/tabs) primitives. For detailed information, please visit the full API reference.
+
+### Tabs
+
+This component is based on the [Tabs.Root](https://www.radix-ui.com/primitives/docs/components/tabs#root) primitive. For full details, visit the official documentation.
+
+### TabsList
+
+This component is based on the [Tabs.List](https://www.radix-ui.com/primitives/docs/components/tabs#list) primitive and includes the following custom props:
+
+| **Prop**                                                                            | **Type**                                                            | **Default** |
+| ----------------------------------------------------------------------------------- | ------------------------------------------------------------------- | ----------- |
+| `variant` <PopoverInfo>The visual style variant of the tabs list.</PopoverInfo>     | ~enum~ <PopoverInfo> "default" \| "button" \| "line" </PopoverInfo> | ~"default"~ |
+| `size` <PopoverInfo>The size of the tabs list.</PopoverInfo>                        | ~enum~ <PopoverInfo> "lg" \| "md" \| "sm" \| "xs" </PopoverInfo>    | ~"md"~      |
+| `className` <PopoverInfo>Additional class names for styling the list.</PopoverInfo> | ~string~                                                            | ~undefined~ |
+
+### TabsTrigger
+
+This component is based on the [Tabs.Trigger](https://www.radix-ui.com/primitives/docs/components/tabs#trigger) primitive and inherits the following props from context:
+
+| **Prop**                                                                               | **Type**                                                            | **Default** |
+| -------------------------------------------------------------------------------------- | ------------------------------------------------------------------- | ----------- |
+| `variant` <PopoverInfo>Inherited from TabsList context.</PopoverInfo>                  | ~enum~ <PopoverInfo> "default" \| "button" \| "line" </PopoverInfo> | ~"default"~ |
+| `size` <PopoverInfo>Inherited from TabsList context.</PopoverInfo>                     | ~enum~ <PopoverInfo> "lg" \| "md" \| "sm" \| "xs" </PopoverInfo>    | ~"md"~      |
+| `className` <PopoverInfo>Additional class names for styling the trigger.</PopoverInfo> | ~string~                                                            | ~undefined~ |
+
+### TabsContent
+
+This component is based on the [Tabs.Content](https://www.radix-ui.com/primitives/docs/components/tabs#content) primitive and includes the following custom props:
+
+| **Prop**                                                                               | **Type**                                      | **Default** |
+| -------------------------------------------------------------------------------------- | --------------------------------------------- | ----------- |
+| `variant` <PopoverInfo>The visual style variant of the content.</PopoverInfo>          | ~enum~ <PopoverInfo> "default" </PopoverInfo> | ~"default"~ |
+| `className` <PopoverInfo>Additional class names for styling the content.</PopoverInfo> | ~string~                                      | ~undefined~ |

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea-size",
+  "type": "registry:component",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/textarea.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/textarea/size.tsx",
+      "content": "import { Textarea } from '@/registry/default/ui/textarea';\n\nexport default function TextareaDemo() {\n  return (\n    <div className=\"w-full md:w-80 space-y-6\">\n      <Textarea placeholder=\"Small\" variant=\"sm\" />\n\n      <Textarea placeholder=\"Medium\" />\n\n      <Textarea placeholder=\"Large\" variant=\"lg\" />\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "registry/default/ui/textarea.tsx",
+      "content": "'use client';\n\nimport * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport { cva, type VariantProps } from 'class-variance-authority';\n\n// Define input size variants\nconst textareaVariants = cva(\n  `\n    w-full bg-background border border-input bg-background text-foreground shadow-xs shadow-black/5 transition-[color,box-shadow] \n    text-foreground placeholder:text-muted-foreground/80 focus-visible:border-ring focus-visible:outline-none focus-visible:ring-[3px] \n    focus-visible:ring-ring/30 disabled:cursor-not-allowed disabled:opacity-50 [&[readonly]]:opacity-70 aria-invalid:border-destructive\n    aria-invalid:border-destructive/60 aria-invalid:ring-destructive/10 dark:aria-invalid:border-destructive dark:aria-invalid:ring-destructive/20\n  `,\n  {\n    variants: {\n      variant: {\n        sm: 'px-2.5 py-2.5 text-xs rounded-md',\n        md: 'px-3 py-3 text-[0.8125rem] leading-(--text-sm--line-height) rounded-md',\n        lg: 'px-4 py-4 text-sm rounded-md',\n      },\n    },\n    defaultVariants: {\n      variant: 'md',\n    },\n  },\n);\n\nfunction Textarea({\n  className,\n  variant,\n  ...props\n}: React.ComponentProps<'textarea'> & VariantProps<typeof textareaVariants>) {\n  return (\n    <textarea\n      data-slot=\"textarea\"\n      className={cn(textareaVariants({ variant }), className)}\n      {...props}\n    />\n  );\n}\n\nexport { Textarea, textareaVariants };\n",
+      "type": "registry:ui",
+      "target": ""
+    },
+    {
+      "path": "registry/default/lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from 'clsx';\nimport { twMerge } from 'tailwind-merge';\n\n/**\n * Merges Tailwind class names, resolving any conflicts.\n *\n * @param inputs - An array of class names to merge.\n * @returns A string of merged and optimized class names.\n */\nexport function cn(...inputs: ClassValue[]): string {\n  return twMerge(clsx(inputs));\n}\n",
+      "type": "registry:lib",
+      "target": ""
+    }
+  ]
+}

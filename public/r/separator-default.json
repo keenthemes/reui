@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "separator-default",
+  "type": "registry:component",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "@radix-ui/react-separator"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/separator.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/separator/default.tsx",
+      "content": "import Link from 'next/link';\nimport { Separator } from '@/registry/default/ui/separator';\n\nexport default function SeparatorDemo() {\n  return (\n    <div className=\"text-foreground\">\n      <div className=\"space-y-1\">\n        <h4 className=\"text-sm font-medium leading-none\">ReUI</h4>\n        <p className=\"text-sm text-muted-foreground\">\n          A free ReUI UI component library.\n        </p>\n      </div>\n      <Separator className=\"my-4\" />\n      <div className=\"flex h-5 items-center space-x-4 text-sm\">\n        <Link\n          href=\"https://reui.io\"\n          className=\"hover:text-primary hover:underline hover:underline-offset-2\"\n        >\n          ReUI\n        </Link>\n        <Separator orientation=\"vertical\" />\n        <Link\n          href=\"https://reui.io/docs\"\n          className=\"hover:text-primary hover:underline hover:underline-offset-2\"\n        >\n          Docs\n        </Link>\n        <Separator orientation=\"vertical\" />\n        <Link\n          href=\"https://github.com/keenthemes/reui\"\n          className=\"hover:text-primary hover:underline hover:underline-offset-2\"\n        >\n          Source\n        </Link>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "registry/default/ui/separator.tsx",
+      "content": "'use client';\n\nimport * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport * as SeparatorPrimitive from '@radix-ui/react-separator';\n\nfunction Separator({\n  className,\n  orientation = 'horizontal',\n  decorative = true,\n  ...props\n}: React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>) {\n  return (\n    <SeparatorPrimitive.Root\n      data-slot=\"separator\"\n      decorative={decorative}\n      orientation={orientation}\n      className={cn(\n        'shrink-0 bg-border',\n        orientation === 'horizontal' ? 'h-px w-full' : 'h-full w-px',\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Separator };\n",
+      "type": "registry:ui",
+      "target": ""
+    },
+    {
+      "path": "registry/default/lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from 'clsx';\nimport { twMerge } from 'tailwind-merge';\n\n/**\n * Merges Tailwind class names, resolving any conflicts.\n *\n * @param inputs - An array of class names to merge.\n * @returns A string of merged and optimized class names.\n */\nexport function cn(...inputs: ClassValue[]): string {\n  return twMerge(clsx(inputs));\n}\n",
+      "type": "registry:lib",
+      "target": ""
+    }
+  ]
+}

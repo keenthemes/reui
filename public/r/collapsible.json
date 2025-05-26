@@ -1,0 +1,48 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "collapsible",
+  "type": "registry:ui",
+  "dependencies": [
+    "@radix-ui/react-collapsible",
+    "clsx",
+    "tailwind-merge",
+    "@radix-ui/react-collapsible"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/collapsible.tsx",
+      "content": "'use client';\n\nimport React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport * as CollapsiblePrimitive from '@radix-ui/react-collapsible';\n\nfunction Collapsible({\n  ...props\n}: React.ComponentProps<typeof CollapsiblePrimitive.Root>) {\n  return <CollapsiblePrimitive.Root data-slot=\"collapsible\" {...props} />;\n}\n\nfunction CollapsibleTrigger({\n  ...props\n}: React.ComponentProps<typeof CollapsiblePrimitive.CollapsibleTrigger>) {\n  return (\n    <CollapsiblePrimitive.CollapsibleTrigger\n      data-slot=\"collapsible-trigger\"\n      {...props}\n    />\n  );\n}\n\nfunction CollapsibleContent({\n  className,\n  children,\n  ...props\n}: React.ComponentPropsWithoutRef<\n  typeof CollapsiblePrimitive.CollapsibleContent\n>) {\n  return (\n    <CollapsiblePrimitive.CollapsibleContent\n      data-slot=\"collapsible-content\"\n      className={cn(\n        'overflow-hidden transition-all data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down',\n        className,\n      )}\n      {...props}\n    >\n      {children}\n    </CollapsiblePrimitive.CollapsibleContent>\n  );\n}\n\nexport { Collapsible, CollapsibleContent, CollapsibleTrigger };\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/default/lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from 'clsx';\nimport { twMerge } from 'tailwind-merge';\n\n/**\n * Merges Tailwind class names, resolving any conflicts.\n *\n * @param inputs - An array of class names to merge.\n * @returns A string of merged and optimized class names.\n */\nexport function cn(...inputs: ClassValue[]): string {\n  return twMerge(clsx(inputs));\n}\n",
+      "type": "registry:lib",
+      "target": ""
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "animate-collapsible-down": "collapsible-down 0.2s ease-out",
+      "animate-collapsible-up": "collapsible-up 0.2s ease-out"
+    }
+  },
+  "css": {
+    "@keyframes collapsible-down": {
+      "from": {
+        "height": "0"
+      },
+      "to": {
+        "height": "var(--radix-collapsible-content-height)"
+      }
+    },
+    "@keyframes collapsible-up": {
+      "from": {
+        "height": "var(--radix-collapsible-content-height)"
+      },
+      "to": {
+        "height": "0"
+      }
+    }
+  }
+}

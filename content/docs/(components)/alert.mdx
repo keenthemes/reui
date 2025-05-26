@@ -1,0 +1,132 @@
+---
+title: Alert
+description: Displays a callout for user attention, such as a success message, warning, or error.
+component: true
+---
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="alert" />
+</TabsContent>
+
+<TabsContent value="manual">    
+<Steps>
+
+### Install ReUI Dependencies
+
+Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+
+### Add component
+
+Copy and paste the following code into your project’s `components/ui/alert.tsx` file.
+
+<ComponentPreview name="alert" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+### Solid
+
+<ExamplePreview path="alert/solid" />
+
+### Mono
+
+<ExamplePreview path="alert/mono" />
+
+### Outline
+
+<ExamplePreview path="alert/outline" />
+
+### Stroke
+
+<ExamplePreview path="alert/stroke" />
+
+### Light
+
+<ExamplePreview path="alert/light" />
+
+### Size
+
+<ExamplePreview path="alert/size" />
+
+### Extended
+
+<ExamplePreview path="alert/extended" />
+
+### Actions
+
+<ExamplePreview path="alert/actions" />
+
+## API Reference
+
+The Alert component is a custom implementation that provides flexible and customizable alert messages. Here's the complete API reference:
+
+### Alert
+
+The root Alert component includes the following props:
+
+| **Prop**                                                                                 | **Type**                                                                                                                  | **Default** |
+| ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `variant` <PopoverInfo>Specifies the alert's theme.</PopoverInfo>                        | ~enum~ <PopoverInfo> "default" \| "primary" \| "destructive" \| "success" \| "info" \| "mono" \| "warning" </PopoverInfo> | ~default~   |
+| `appearance` <PopoverInfo>Determines the appearance of the alert.</PopoverInfo>          | ~enum~ <PopoverInfo> "solid" \| "outline" \| "light" \| "stroke" </PopoverInfo>                                           | ~solid~     |
+| `size` <PopoverInfo>Determines the size of the alert.</PopoverInfo>                      | ~enum~ <PopoverInfo> "xs" \| "sm" \| "md" </PopoverInfo>                                                                  | ~md~        |
+| `className` <PopoverInfo>Additional class names for styling the alert.</PopoverInfo>     | ~string~                                                                                                                  | <Na/>       |
+| `close` <PopoverInfo>Controls whether the alert can be closed by the user.</PopoverInfo> | ~boolean~                                                                                                                 | ~true~      |
+| `onClose` <PopoverInfo>Callback function when the alert is closed.</PopoverInfo>         | ~function~                                                                                                                | <Na/>       |
+
+### AlertTitle
+
+The AlertTitle component includes the following props:
+
+| **Prop**                                                                             | **Type**  | **Default** |
+| ------------------------------------------------------------------------------------ | --------- | ----------- |
+| `asChild` <PopoverInfo>Renders the title as a child element.</PopoverInfo>           | ~boolean~ | ~false~     |
+| `className` <PopoverInfo>Additional class names for styling the title.</PopoverInfo> | ~string~  | <Na/>       |
+
+### AlertDescription
+
+The AlertDescription component includes the following props:
+
+| **Prop**                                                                                   | **Type**  | **Default** |
+| ------------------------------------------------------------------------------------------ | --------- | ----------- |
+| `asChild` <PopoverInfo>Renders the description as a child element.</PopoverInfo>           | ~boolean~ | ~false~     |
+| `className` <PopoverInfo>Additional class names for styling the description.</PopoverInfo> | ~string~  | <Na/>       |
+
+### AlertIcon
+
+The AlertIcon component includes the following props:
+
+| **Prop**                                                                                  | **Type**                                                                                           | **Default** |
+| ----------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ----------- |
+| `variant` <PopoverInfo>Specifies the alert icon's theme.</PopoverInfo>                    | ~enum~ <PopoverInfo> "primary" \| "destructive" \| "success" \| "info" \| "warning" </PopoverInfo> | <Na/>       |
+| `className` <PopoverInfo>Additional class names for styling the alert icon.</PopoverInfo> | ~string~                                                                                           | <Na/>       |
+
+### AlertContent
+
+The AlertContent component includes the following props:
+
+| **Prop**                                                                                     | **Type** | **Default** |
+| -------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the alert content.</PopoverInfo> | ~string~ | <Na/>       |
+
+### AlertToolbar
+
+The AlertToolbar component includes the following props:
+
+| **Prop**                                                                                     | **Type**                                                                                           | **Default** |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ----------- |
+| `variant` <PopoverInfo>Specifies the alert toolbar's theme.</PopoverInfo>                    | ~enum~ <PopoverInfo> "primary" \| "destructive" \| "success" \| "info" \| "warning" </PopoverInfo> | <Na/>       |
+| `className` <PopoverInfo>Additional class names for styling the alert toolbar.</PopoverInfo> | ~string~                                                                                           | <Na/>       |

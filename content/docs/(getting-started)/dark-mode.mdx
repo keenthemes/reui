@@ -1,0 +1,42 @@
+---
+title: Dark Mode
+description: Enable dark mode support for your app.
+---
+
+## Setup
+
+<Steps>
+
+### Add Dark Mode Variant
+
+Ensure the following Tailwind Variant is added to your entry style file `styles/globals.css`:
+
+```css
+/** Dark Mode Variant **/
+@custom-variant dark (&:where(.dark, .dark *));
+```
+
+### Enable Dark Mode
+
+To enable dark mode, toggle the `dark` class on the `<html>` element.
+
+```tsx
+export default () => (
+  <html lang="en" className="dark">
+    <body>{/* Your app */}</body>
+  </html>
+);
+```
+
+<Alert variant="primary" appearance="light" close={false}>
+  <AlertIcon>
+    <BookOpenCheck />
+  </AlertIcon>
+  <AlertTitle>
+    For Next.js projects we recommend using
+    [next-themes](https://github.com/pacocoursey/next-themes) package for easy
+    dark mode toggle support in your app.
+  </AlertTitle>
+</Alert>
+
+</Steps>

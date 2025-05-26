@@ -1,0 +1,84 @@
+---
+title: Checkbox
+description: A control that allows the user to toggle between checked and not checked.
+component: true
+links:
+  - label: '@radix-ui/react-checkbox'
+    url: https://www.radix-ui.com/primitives/docs/components/checkbox
+---
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="checkbox" />
+</TabsContent>
+
+<TabsContent value="manual">    
+<Steps>
+
+### Install ReUI
+
+Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+
+### Install dependencies
+
+```bash
+npm install @radix-ui/react-checkbox
+```
+
+### Add component
+
+Copy and paste the following code into your project’s `components/ui/checkbox.tsx` file.
+
+<ComponentPreview name="checkbox" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+### Default
+
+<ExamplePreview path="checkbox/default" />
+
+### Checked
+
+<ExamplePreview path="checkbox/checked" />
+
+### Disabled
+
+<ExamplePreview path="checkbox/disabled" />
+
+### Indeterminate
+
+<ExamplePreview path="checkbox/indeterminate" />
+
+### Size
+
+<ExamplePreview path="checkbox/size" />
+
+### Form
+
+<ExamplePreview path="checkbox/form" />
+
+## API Reference
+
+This component is built using [Radix UI Checkbox](https://www.radix-ui.com/primitives/docs/components/checkbox) primitives. For detailed information about the base checkbox functionality, please visit the Radix UI documentation.
+
+### Checkbox
+
+A customized checkbox component that extends the Radix UI Checkbox primitive with additional styling and features. It supports all the props from Radix UI's Checkbox.Root component.
+
+| **Prop**                                                                                          | **Type** | **Default** |
+| ------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the checkbox container.</PopoverInfo> | ~string~ | <Na/>       |

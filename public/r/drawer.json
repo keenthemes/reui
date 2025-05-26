@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "drawer",
+  "type": "registry:ui",
+  "dependencies": [
+    "vaul",
+    "clsx",
+    "tailwind-merge",
+    "vaul"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/drawer.tsx",
+      "content": "'use client';\n\nimport * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport { Drawer as DrawerPrimitive } from 'vaul';\n\nconst Drawer = ({\n  shouldScaleBackground = true,\n  ...props\n}: React.ComponentProps<typeof DrawerPrimitive.Root>) => (\n  <DrawerPrimitive.Root\n    shouldScaleBackground={shouldScaleBackground}\n    {...props}\n  />\n);\n\nfunction DrawerTrigger({\n  ...props\n}: React.ComponentProps<typeof DrawerPrimitive.Trigger>) {\n  return <DrawerPrimitive.Trigger data-slot=\"drawer-trigger\" {...props} />;\n}\n\nfunction DrawerPortal({\n  ...props\n}: React.ComponentProps<typeof DrawerPrimitive.Portal>) {\n  return <DrawerPrimitive.Portal data-slot=\"drawer-portal\" {...props} />;\n}\n\nfunction DrawerClose({\n  ...props\n}: React.ComponentProps<typeof DrawerPrimitive.Close>) {\n  return <DrawerPrimitive.Close data-slot=\"drawer-close\" {...props} />;\n}\n\nfunction DrawerOverlay({\n  className,\n  ...props\n}: React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Overlay>) {\n  return (\n    <DrawerPrimitive.Overlay\n      data-slot=\"drawer-overlay\"\n      className={cn('fixed inset-0 z-50 bg-black/80', className)}\n      {...props}\n    />\n  );\n}\n\nfunction DrawerContent({\n  className,\n  children,\n  ...props\n}: React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content>) {\n  return (\n    <DrawerPortal>\n      <DrawerOverlay />\n      <DrawerPrimitive.Content\n        data-slot=\"drawer-content\"\n        className={cn(\n          'bg-background fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border',\n          className,\n        )}\n        {...props}\n      >\n        <div className=\"mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted\" />\n        {children}\n      </DrawerPrimitive.Content>\n    </DrawerPortal>\n  );\n}\n\nconst DrawerHeader = ({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) => (\n  <div\n    data-slot=\"drawer-header\"\n    className={cn('grid gap-1.5 p-4 text-center sm:text-left', className)}\n    {...props}\n  />\n);\n\nconst DrawerFooter = ({\n  className,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement>) => (\n  <div\n    data-slot=\"drawer-footer\"\n    className={cn('mt-auto flex flex-col gap-2 p-4', className)}\n    {...props}\n  />\n);\n\nfunction DrawerTitle({\n  className,\n  ...props\n}: React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Title>) {\n  return (\n    <DrawerPrimitive.Title\n      data-slot=\"drawer-title\"\n      className={cn(\n        'text-lg font-semibold leading-none tracking-tight',\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction DrawerDescription({\n  className,\n  ...props\n}: React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Description>) {\n  return (\n    <DrawerPrimitive.Description\n      data-slot=\"drawer-description\"\n      className={cn('text-sm text-muted-foreground', className)}\n      {...props}\n    />\n  );\n}\n\nexport {\n  Drawer,\n  DrawerClose,\n  DrawerContent,\n  DrawerDescription,\n  DrawerFooter,\n  DrawerHeader,\n  DrawerOverlay,\n  DrawerPortal,\n  DrawerTitle,\n  DrawerTrigger,\n};\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/default/lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from 'clsx';\nimport { twMerge } from 'tailwind-merge';\n\n/**\n * Merges Tailwind class names, resolving any conflicts.\n *\n * @param inputs - An array of class names to merge.\n * @returns A string of merged and optimized class names.\n */\nexport function cn(...inputs: ClassValue[]): string {\n  return twMerge(clsx(inputs));\n}\n",
+      "type": "registry:lib",
+      "target": ""
+    }
+  ]
+}
