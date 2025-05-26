@@ -1,4 +1,4 @@
-name: ReUI Prod
+name: ReUI Prod Preview
 
 on:
   push:
@@ -34,8 +34,6 @@ jobs:
             rm -rf node_modules
             rm -rf .next
             npm ci --force || npm install --force
-            npx prisma generate --schema=./prisma/apps/schema.prisma
-            npx prisma generate --schema=./prisma/site/schema.prisma
             npm run build || { echo "Build failed, exiting."; exit 1; }
             export PORT=3004
             pm2 restart "reui-web" --update-env || pm2 start npm --name "reui-web" -- start
