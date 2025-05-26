@@ -40,4 +40,4 @@ tsconfig.tsbuildinfo
 .vscode
 
 # Skip
-./scripts/sync-ui.mjs
+/scripts/sync-ui.mjs
