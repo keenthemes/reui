@@ -65,7 +65,7 @@ export const docsConfig: DocsConfig = {
           items: [],
         },
         {
-          title: 'Changelog',
+          title: 'Changelog - v1.0.15',
           href: '/docs/changelog',
           items: [],
         },
@@ -104,14 +104,7 @@ export const docsConfig: DocsConfig = {
           href: '/docs/accordion-menu',
           highlight: {
             order: 4,
-            examples: [
-              'Default',
-              'States',
-              'Sub-Menu',
-              'Multi Expand',
-              'Multi Level',
-              'Router',
-            ],
+            examples: ['Default', 'States', 'Sub-Menu', 'Multi Expand', 'Multi Level', 'Router'],
           },
         },
         {
@@ -145,16 +138,7 @@ export const docsConfig: DocsConfig = {
           title: 'Avatar',
           href: '/docs/avatar',
           highlight: {
-            examples: [
-              'Default',
-              'Fallback',
-              'Indicator',
-              'Status',
-              'Badge',
-              'Size',
-              'Group',
-              'Users',
-            ],
+            examples: ['Default', 'Fallback', 'Indicator', 'Status', 'Badge', 'Size', 'Group', 'Users'],
           },
         },
         {
@@ -233,14 +217,7 @@ export const docsConfig: DocsConfig = {
           href: '/docs/checkbox',
           highlight: {
             order: 16,
-            examples: [
-              'Default',
-              'Checked',
-              'Disabled',
-              'Indeterminate',
-              'Mono',
-              'Form',
-            ],
+            examples: ['Default', 'Checked', 'Disabled', 'Indeterminate', 'Mono', 'Form'],
           },
         },
         {
@@ -335,14 +312,7 @@ export const docsConfig: DocsConfig = {
           update: true,
           highlight: {
             order: 14,
-            examples: [
-              'Default',
-              'Disabled',
-              'Readonly',
-              'File',
-              'Size',
-              'Form',
-            ],
+            examples: ['Default', 'Disabled', 'Readonly', 'File', 'Size', 'Form'],
           },
         },
         {
