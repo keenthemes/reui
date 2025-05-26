@@ -9,15 +9,12 @@ const skipComponents = [];
 
 // Define the destination paths
 const destinationPaths = [
-  path.resolve('../reui/components/ui'),
-  path.resolve('../../market/nextjs-layouts/components/ui'),
-  path.resolve('../../market/nextjs-storely/components/ui'),
-  path.resolve(
-    '../../../site-generator/themes/metronic-tailwind-react/typescript/vite/src/components/ui',
-  ),
-  path.resolve(
-    '../../../site-generator/themes/metronic-tailwind-react/typescript/nextjs/components/ui',
-  ),
+  path.resolve('../market/nextjs-layouts/components/ui'),
+  path.resolve('../market/nextjs-storely/components/ui'),
+  path.resolve('../ktui/components/ui'),
+  path.resolve('../docs/components/ui'),
+  path.resolve('../../site-generator/themes/metronic-tailwind-react/typescript/vite/src/components/ui'),
+  path.resolve('../../site-generator/themes/metronic-tailwind-react/typescript/nextjs/components/ui'),
 ];
 
 // Function to check if a path exists
@@ -81,9 +78,7 @@ async function copyFolder(src, dest) {
           .replaceAll('@/registry/default/hooks/', '@/hooks/')
           .replaceAll('@/registry/default/lib/', '@/lib/');
         await fs.writeFile(destFile, code, 'utf-8');
-        console.log(
-          `📄 Copied and transformed file: ${srcFile} -> ${destFile}`,
-        );
+        console.log(`📄 Copied and transformed file: ${srcFile} -> ${destFile}`);
       }
     }
   } catch (error) {
