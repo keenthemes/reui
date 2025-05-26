@@ -17,8 +17,8 @@ export const docsConfig: DocsConfig = {
       href: '/docs',
     },
     {
-      title: 'Store',
-      href: 'https://keenthemes.com',
+      title: 'Studio',
+      href: 'https://keenthemes.studio?utm_source=reui_website&utm_medium=menu&utm_campaign=product_link&utm_content=studio',
       external: true,
     },
   ],
@@ -67,6 +67,37 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Changelog - v1.0.15',
           href: '/docs/changelog',
+          items: [],
+        },
+      ],
+    },
+
+    {
+      title: 'Templates',
+      items: [
+        {
+          title: 'Metronic',
+          href: 'https://keenthemes.com/metronic?utm_source=reui_website&utm_medium=menu&utm_campaign=product_link&utm_content=metronic',
+          external: true,
+          popular: true,
+          items: [],
+        },
+        {
+          title: 'Storely',
+          href: 'https://keenthemes.com/products/storely?utm_source=reui_website&utm_medium=menu&utm_campaign=product_link&utm_content=storely',
+          new: true,
+          items: [],
+        },
+        {
+          title: 'Shoplit',
+          href: 'https://keenthemes.com/products/shoplit?utm_source=reui_website&utm_medium=menu&utm_campaign=product_link&utm_content=shoplit',
+          external: true,
+          items: [],
+        },
+        {
+          title: 'Supastart',
+          href: 'https://keenthemes.com/products/supastart?utm_source=reui_website&utm_medium=menu&utm_campaign=product_link&utm_content=supastart',
+          external: true,
           items: [],
         },
       ],

@@ -67,6 +67,11 @@ export function DocsSidebarNavItems({
                 New
               </Badge>
             )}
+            {item.popular && (
+              <Badge variant="info" size="sm" appearance="outline">
+                Popular
+              </Badge>
+            )}
             {item.update && (
               <Badge variant="warning" size="sm" appearance="outline">
                 Update

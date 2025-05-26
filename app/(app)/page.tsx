@@ -20,7 +20,7 @@ import { getSlug } from '@/lib/helpers';
 import SiteHero from '@/components/site-hero';
 
 export default function Page() {
-  const components = docsConfig.sidebarNav[1];
+  const components = docsConfig.sidebarNav[2];
 
   const highlightedComponents =
     components.items
