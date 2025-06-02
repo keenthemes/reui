@@ -2,11 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "input-number-spinner",
   "type": "registry:component",
-  "dependencies": [
-    "react-aria-components",
-    "lucide-react",
-    "react-aria-components"
-  ],
+  "dependencies": ["react-aria-components", "lucide-react", "react-aria-components"],
   "registryDependencies": [],
   "files": [
     {

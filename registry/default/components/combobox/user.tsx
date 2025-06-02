@@ -20,11 +20,7 @@ import {
   CommandItem,
   CommandList,
 } from '@/registry/default/ui/command';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/registry/default/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@/registry/default/ui/popover';
 import { ScrollArea } from '@/registry/default/ui/scroll-area';
 
 const users = [
@@ -98,16 +94,11 @@ export default function ComboboxDemo() {
           {selectedUser ? (
             <span className="flex items-center gap-2">
               <Avatar className="size-6">
-                <AvatarImage
-                  src={selectedUser.avatar}
-                  alt={selectedUser.name}
-                />
+                <AvatarImage src={selectedUser.avatar} alt={selectedUser.name} />
                 <AvatarFallback>{selectedUser.name[0]}</AvatarFallback>
                 <AvatarIndicator className="-end-2 -bottom-2">
                   <AvatarStatus
-                    variant={
-                      selectedUser.status as keyof typeof avatarStatusVariants
-                    }
+                    variant={selectedUser.status as keyof typeof avatarStatusVariants}
                     className="size-2.5"
                   />
                 </AvatarIndicator>
@@ -142,25 +133,17 @@ export default function ComboboxDemo() {
                         <AvatarFallback>{user.name[0]}</AvatarFallback>
                         <AvatarIndicator className="-end-2 -bottom-2">
                           <AvatarStatus
-                            variant={
-                              user.status as keyof typeof avatarStatusVariants
-                            }
+                            variant={user.status as keyof typeof avatarStatusVariants}
                             className="size-2.5"
                           />
                         </AvatarIndicator>
                       </Avatar>
                       <span className="flex flex-col">
                         <span className="font-medium">{user.name}</span>
-                        <span className="text-muted-foreground text-sm">
-                          {user.email}
-                        </span>
+                        <span className="text-muted-foreground text-sm">{user.email}</span>
                       </span>
                     </span>
-                    <CommandCheck
-                      className={cn(
-                        value === user.name ? 'opacity-100' : 'opacity-0',
-                      )}
-                    />
+                    <CommandCheck className={cn(value === user.name ? 'opacity-100' : 'opacity-0')} />
                   </CommandItem>
                 ))}
               </CommandGroup>

@@ -9,19 +9,13 @@ export async function POST(request: Request) {
     const recaptchaToken = request.headers.get('x-recaptcha-token');
 
     if (!recaptchaToken) {
-      return NextResponse.json(
-        { message: 'reCAPTCHA verification required' },
-        { status: 400 },
-      );
+      return NextResponse.json({ message: 'reCAPTCHA verification required' }, { status: 400 });
     }
 
     const isValidToken = await verifyRecaptchaToken(recaptchaToken);
 
     if (!isValidToken) {
-      return NextResponse.json(
-        { message: 'reCAPTCHA verification failed' },
-        { status: 400 },
-      );
+      return NextResponse.json({ message: 'reCAPTCHA verification failed' }, { status: 400 });
     }
 
     // Parse the JSON body from the request
@@ -29,10 +23,7 @@ export async function POST(request: Request) {
 
     // Validate the email
     if (!email || typeof email !== 'string') {
-      return NextResponse.json(
-        { message: 'Invalid email provided.' },
-        { status: 400 },
-      );
+      return NextResponse.json({ message: 'Invalid email provided.' }, { status: 400 });
     }
 
     // Prepare the payload for Brevo
@@ -43,17 +34,14 @@ export async function POST(request: Request) {
     };
 
     // Call Brevo API to add the email to your list
-    const brevoResponse = await fetch(
-      'https://api.sendinblue.com/v3/contacts',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'api-key': BREVO_API_KEY || '',
-        },
-        body: JSON.stringify(payload),
+    const brevoResponse = await fetch('https://api.sendinblue.com/v3/contacts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'api-key': BREVO_API_KEY || '',
       },
-    );
+      body: JSON.stringify(payload),
+    });
 
     // Handle errors from Brevo
     if (!brevoResponse.ok) {
@@ -65,15 +53,9 @@ export async function POST(request: Request) {
     }
 
     // Successfully subscribed
-    return NextResponse.json(
-      { message: 'Successfully subscribed.' },
-      { status: 201 },
-    );
+    return NextResponse.json({ message: 'Successfully subscribed.' }, { status: 201 });
   } catch (error) {
     console.error('Subscription error:', error);
-    return NextResponse.json(
-      { message: 'Oops! Something went wrong. Please try again in a moment.' },
-      { status: 500 },
-    );
+    return NextResponse.json({ message: 'Oops! Something went wrong. Please try again in a moment.' }, { status: 500 });
   }
 }

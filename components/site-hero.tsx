@@ -1,10 +1,6 @@
 import Link from 'next/link';
 import { Button } from '@/registry/default/ui/button';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/registry/default/ui/tooltip';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/registry/default/ui/tooltip';
 import { Zap } from 'lucide-react';
 import { trackEvent } from '@/lib/analytics';
 import { Icons } from '@/components/icons';
@@ -86,9 +82,7 @@ export default function SiteHero() {
             <Zap className="size-4 text-muted-foreground" />
           </MovingLabel>
 
-          <h1 className="text-2xl lg:text-[48px] font-bold">
-            Full-stack React Components
-          </h1>
+          <h1 className="text-2xl lg:text-[48px] font-bold">Full-stack React Components</h1>
 
           <div className="text-center text-lg">
             Open-source, copy-and-paste UI components built for <br />
@@ -96,12 +90,7 @@ export default function SiteHero() {
           </div>
 
           <div className="flex items-center gap-3.5 mb-4">
-            <Button
-              asChild
-              variant="mono"
-              size="lg"
-              className="text-nowrap px-4 rounded-lg gap-1.5"
-            >
+            <Button asChild variant="mono" size="lg" className="text-nowrap px-4 rounded-lg gap-1.5">
               <Link href="/docs/installation" onClick={handleGetStartedClick}>
                 Get Started <span className="opacity-70">- It&apos;s free</span>
               </Link>
@@ -110,11 +99,7 @@ export default function SiteHero() {
 
           <div className="flex items-center justify-center gap-6">
             {brands.map((brand, index) => (
-              <div
-                key={index}
-                className="flex flex-col items-center"
-                onClick={() => handleBrandClick(brand.title)}
-              >
+              <div key={index} className="flex flex-col items-center" onClick={() => handleBrandClick(brand.title)}>
                 <Tooltip>
                   <TooltipTrigger className="size-6">
                     {brand.logo({ className: 'opacity-70 w-full h-full' })}

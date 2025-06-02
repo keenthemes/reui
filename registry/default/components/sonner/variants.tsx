@@ -2,11 +2,7 @@
 
 import { Alert, AlertIcon, AlertTitle } from '@/registry/default/ui/alert';
 import { Button } from '@/registry/default/ui/button';
-import {
-  RiCheckboxCircleFill,
-  RiErrorWarningFill,
-  RiSpam3Fill,
-} from '@remixicon/react';
+import { RiCheckboxCircleFill, RiErrorWarningFill, RiSpam3Fill } from '@remixicon/react';
 import { toast } from 'sonner';
 
 export default function SonnerDemo() {
@@ -19,11 +15,7 @@ export default function SonnerDemo() {
         onClick={() =>
           toast.custom(
             (t) => (
-              <Alert
-                variant="mono"
-                icon="success"
-                onClose={() => toast.dismiss(t)}
-              >
+              <Alert variant="mono" icon="success" onClose={() => toast.dismiss(t)}>
                 <AlertIcon>
                   <RiCheckboxCircleFill />
                 </AlertIcon>
@@ -45,11 +37,7 @@ export default function SonnerDemo() {
         onClick={() =>
           toast.custom(
             (t) => (
-              <Alert
-                variant="mono"
-                icon="info"
-                onClose={() => toast.dismiss(t)}
-              >
+              <Alert variant="mono" icon="info" onClose={() => toast.dismiss(t)}>
                 <AlertIcon>
                   <RiCheckboxCircleFill />
                 </AlertIcon>
@@ -71,11 +59,7 @@ export default function SonnerDemo() {
         onClick={() =>
           toast.custom(
             (t) => (
-              <Alert
-                variant="mono"
-                icon="warning"
-                onClose={() => toast.dismiss(t)}
-              >
+              <Alert variant="mono" icon="warning" onClose={() => toast.dismiss(t)}>
                 <AlertIcon>
                   <RiSpam3Fill />
                 </AlertIcon>
@@ -97,11 +81,7 @@ export default function SonnerDemo() {
         onClick={() =>
           toast.custom(
             (t) => (
-              <Alert
-                variant="mono"
-                icon="destructive"
-                onClose={() => toast.dismiss(t)}
-              >
+              <Alert variant="mono" icon="destructive" onClose={() => toast.dismiss(t)}>
                 <AlertIcon>
                   <RiErrorWarningFill />
                 </AlertIcon>

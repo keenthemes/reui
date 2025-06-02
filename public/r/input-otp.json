@@ -2,13 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "input-otp",
   "type": "registry:ui",
-  "dependencies": [
-    "input-otp",
-    "clsx",
-    "tailwind-merge",
-    "input-otp",
-    "lucide-react"
-  ],
+  "dependencies": ["input-otp", "clsx", "tailwind-merge", "input-otp", "lucide-react"],
   "files": [
     {
       "path": "registry/default/ui/input-otp.tsx",

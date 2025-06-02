@@ -39,11 +39,7 @@ export default function AccordionMenuDemo() {
             value="/inbox"
             onClick={() => {
               toast.custom((t) => (
-                <Alert
-                  variant="mono"
-                  icon="primary"
-                  onClose={() => toast.dismiss(t)}
-                >
+                <Alert variant="mono" icon="primary" onClose={() => toast.dismiss(t)}>
                   <AlertIcon>
                     <RiCheckboxCircleFill />
                   </AlertIcon>
@@ -65,11 +61,7 @@ export default function AccordionMenuDemo() {
             value="settings"
             onClick={() => {
               toast.custom((t) => (
-                <Alert
-                  variant="mono"
-                  icon="primary"
-                  onClose={() => toast.dismiss(t)}
-                >
+                <Alert variant="mono" icon="primary" onClose={() => toast.dismiss(t)}>
                   <AlertIcon>
                     <RiCheckboxCircleFill />
                   </AlertIcon>

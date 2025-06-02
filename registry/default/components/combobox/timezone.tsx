@@ -12,11 +12,7 @@ import {
   CommandItem,
   CommandList,
 } from '@/registry/default/ui/command';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/registry/default/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@/registry/default/ui/popover';
 import { ScrollArea } from '@/registry/default/ui/scroll-area';
 
 export default function TimezoneSelector() {
@@ -34,16 +30,13 @@ export default function TimezoneSelector() {
           timeZoneName: 'shortOffset',
         });
         const parts = formatter.formatToParts(new Date());
-        const offset =
-          parts.find((part) => part.type === 'timeZoneName')?.value || '';
+        const offset = parts.find((part) => part.type === 'timeZoneName')?.value || '';
         const formattedOffset = offset === 'GMT' ? 'GMT+0' : offset;
 
         return {
           value: timezone,
           label: `(${formattedOffset}) ${timezone.replace(/_/g, ' ')}`,
-          numericOffset: parseInt(
-            formattedOffset.replace('GMT', '').replace('+', '') || '0',
-          ),
+          numericOffset: parseInt(formattedOffset.replace('GMT', '').replace('+', '') || '0'),
         };
       })
       .sort((a, b) => a.numericOffset - b.numericOffset); // Sort by numeric offset
@@ -61,10 +54,7 @@ export default function TimezoneSelector() {
           className="w-[250px] justify-between"
         >
           <span className={cn('truncate')}>
-            {value
-              ? formattedTimezones.find((timezone) => timezone.value === value)
-                  ?.label
-              : 'Select a timezone'}
+            {value ? formattedTimezones.find((timezone) => timezone.value === value)?.label : 'Select a timezone'}
           </span>
           <ButtonArrow />
         </Button>

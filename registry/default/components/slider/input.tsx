@@ -21,13 +21,7 @@ export default function PriceRangeSlider() {
   const minValue = Math.min(...items.map((item) => item.price));
   const maxValue = Math.max(...items.map((item) => item.price));
 
-  const {
-    sliderValues,
-    inputValues,
-    handleSliderChange,
-    handleInputChange,
-    validateAndUpdateValue,
-  } = useSliderInput({
+  const { sliderValues, inputValues, handleSliderChange, handleInputChange, validateAndUpdateValue } = useSliderInput({
     minValue,
     maxValue,
     initialValue: [200, 800],

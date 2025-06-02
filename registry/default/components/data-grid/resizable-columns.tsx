@@ -1,9 +1,5 @@
 import { useMemo, useState } from 'react';
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@/registry/default/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/registry/default/ui/avatar';
 import { Badge } from '@/registry/default/ui/badge';
 import { DataGrid, DataGridContainer } from '@/registry/default/ui/data-grid';
 import { DataGridColumnHeader } from '@/registry/default/ui/data-grid-column-header';
@@ -212,35 +208,24 @@ export default function DataGridDemo() {
     pageIndex: 0,
     pageSize: 5,
   });
-  const [sorting, setSorting] = useState<SortingState>([
-    { id: 'name', desc: true },
-  ]);
+  const [sorting, setSorting] = useState<SortingState>([{ id: 'name', desc: true }]);
 
   const columns = useMemo<ColumnDef<IData>[]>(
     () => [
       {
         accessorKey: 'name',
         id: 'name',
-        header: ({ column }) => (
-          <DataGridColumnHeader title="Staff" column={column} />
-        ),
+        header: ({ column }) => <DataGridColumnHeader title="Staff" column={column} />,
         cell: ({ row }) => {
           return (
             <div className="flex items-center gap-3">
               <Avatar className="size-8">
-                <AvatarImage
-                  src={`/media/avatars/${row.original.avatar}`}
-                  alt={row.original.name}
-                />
+                <AvatarImage src={`/media/avatars/${row.original.avatar}`} alt={row.original.name} />
                 <AvatarFallback>N</AvatarFallback>
               </Avatar>
               <div className="space-y-px">
-                <div className="font-medium text-foreground">
-                  {row.original.name}
-                </div>
-                <div className="text-muted-foreground">
-                  {row.original.email}
-                </div>
+                <div className="font-medium text-foreground">{row.original.name}</div>
+                <div className="text-muted-foreground">{row.original.email}</div>
               </div>
             </div>
           );
@@ -252,18 +237,12 @@ export default function DataGridDemo() {
       {
         accessorKey: 'role',
         id: 'role',
-        header: ({ column }) => (
-          <DataGridColumnHeader title="Occupation" column={column} />
-        ),
+        header: ({ column }) => <DataGridColumnHeader title="Occupation" column={column} />,
         cell: ({ row }) => {
           return (
             <div className="space-y-0.5">
-              <div className="font-medium text-foreground">
-                {row.original.role}
-              </div>
-              <div className="text-muted-foreground">
-                {row.original.company}
-              </div>
+              <div className="font-medium text-foreground">{row.original.role}</div>
+              <div className="text-muted-foreground">{row.original.company}</div>
             </div>
           );
         },
@@ -273,16 +252,12 @@ export default function DataGridDemo() {
       },
       {
         accessorKey: 'location',
-        header: ({ column }) => (
-          <DataGridColumnHeader title="Location" column={column} />
-        ),
+        header: ({ column }) => <DataGridColumnHeader title="Location" column={column} />,
         cell: ({ row }) => {
           return (
             <div className="flex items-center gap-1.5">
               {row.original.flag}
-              <div className="font-medium text-foreground">
-                {row.original.location}
-              </div>
+              <div className="font-medium text-foreground">{row.original.location}</div>
             </div>
           );
         },
@@ -295,9 +270,7 @@ export default function DataGridDemo() {
       {
         accessorKey: 'status',
         id: 'status',
-        header: ({ column }) => (
-          <DataGridColumnHeader title="Status" column={column} />
-        ),
+        header: ({ column }) => <DataGridColumnHeader title="Status" column={column} />,
         cell: ({ row }) => {
           const status = row.original.status;
 
@@ -341,11 +314,7 @@ export default function DataGridDemo() {
   });
 
   return (
-    <DataGrid
-      table={table}
-      recordCount={demoData?.length || 0}
-      tableLayout={{ columnsResizable: true }}
-    >
+    <DataGrid table={table} recordCount={demoData?.length || 0} tableLayout={{ columnsResizable: true }}>
       <div className="w-full space-y-2.5">
         <DataGridContainer>
           <ScrollArea>

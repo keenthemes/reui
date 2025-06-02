@@ -83,8 +83,7 @@ export default function DialogDemo() {
     },
     {
       title: 'Learning Resources',
-      content:
-        'Access tutorials, webinars, and guides in the Help Center to get the most out of our platform.',
+      content: 'Access tutorials, webinars, and guides in the Help Center to get the most out of our platform.',
     },
     {
       title: 'Account Recovery',
@@ -185,9 +184,7 @@ export default function DialogDemo() {
       </DialogTrigger>
       <DialogContent className="p-0" variant="fullscreen" dir={direction}>
         <DialogHeader className="pt-5 pb-3 m-0 border-b border-border">
-          <DialogTitle className="px-6 text-base">
-            Frequently Asked Questions(FAQ)
-          </DialogTitle>
+          <DialogTitle className="px-6 text-base">Frequently Asked Questions(FAQ)</DialogTitle>
           <DialogDescription></DialogDescription>
         </DialogHeader>
         <ScrollArea className="text-sm h-full my-3 ps-6 pe-5 me-1">

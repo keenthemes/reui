@@ -2,13 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "menubar",
   "type": "registry:ui",
-  "dependencies": [
-    "@radix-ui/react-menubar",
-    "clsx",
-    "tailwind-merge",
-    "@radix-ui/react-menubar",
-    "lucide-react"
-  ],
+  "dependencies": ["@radix-ui/react-menubar", "clsx", "tailwind-merge", "@radix-ui/react-menubar", "lucide-react"],
   "files": [
     {
       "path": "registry/default/ui/menubar.tsx",

@@ -1,8 +1,4 @@
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@/registry/default/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/registry/default/ui/avatar';
 import {
   Select,
   SelectContent,
@@ -21,9 +17,7 @@ export default function SelectDemo() {
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectLabel className="text-xs py-1 font-normal text-muted-foreground ps-2">
-            Select a user
-          </SelectLabel>
+          <SelectLabel className="text-xs py-1 font-normal text-muted-foreground ps-2">Select a user</SelectLabel>
           <SelectItem value="1">
             <span className="flex items-center gap-2">
               <Avatar className="size-6">

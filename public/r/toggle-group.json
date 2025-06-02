@@ -10,9 +10,7 @@
     "class-variance-authority",
     "@radix-ui/react-toggle-group"
   ],
-  "registryDependencies": [
-    "https://reui.io/r/toggle.json"
-  ],
+  "registryDependencies": ["https://reui.io/r/toggle.json"],
   "files": [
     {
       "path": "registry/default/ui/toggle-group.tsx",

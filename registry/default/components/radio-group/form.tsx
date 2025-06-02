@@ -46,10 +46,7 @@ export default function RadioGroupForm() {
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="w-[300px] space-y-6"
-      >
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-[300px] space-y-6">
         <FormField
           control={form.control}
           name="selectedOption"
@@ -65,31 +62,20 @@ export default function RadioGroupForm() {
                     </FormLabel>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <RadioGroupItem
-                      value="intermediate"
-                      id="intermediate-option"
-                    />
-                    <FormLabel
-                      htmlFor="intermediate-option"
-                      className="font-normal"
-                    >
+                    <RadioGroupItem value="intermediate" id="intermediate-option" />
+                    <FormLabel htmlFor="intermediate-option" className="font-normal">
                       Intermediate
                     </FormLabel>
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="advanced" id="advanced-option" />
-                    <FormLabel
-                      htmlFor="advanced-option"
-                      className="font-normal"
-                    >
+                    <FormLabel htmlFor="advanced-option" className="font-normal">
                       Advanced
                     </FormLabel>
                   </div>
                 </RadioGroup>
               </FormControl>
-              <FormDescription>
-                Please select one of the options to proceed.
-              </FormDescription>
+              <FormDescription>Please select one of the options to proceed.</FormDescription>
               <FormMessage />
             </FormItem>
           )}

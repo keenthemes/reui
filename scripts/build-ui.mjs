@@ -4,13 +4,7 @@ import { codeToHtml } from 'shiki';
 
 // Paths configuration
 const sourcePath = path.resolve('./registry/default/ui');
-const cachePath = path.join(
-  process.cwd(),
-  'registry',
-  '.cache',
-  'default',
-  'ui',
-);
+const cachePath = path.join(process.cwd(), 'registry', '.cache', 'default', 'ui');
 
 // Ensure the cache directory exists
 async function ensureCacheDir() {
@@ -89,11 +83,7 @@ async function processComponent(filePath, componentName, sourcePath) {
 
     // Write the cache file (this is where we want to fail if it errors)
     try {
-      await fs.writeFile(
-        componentCacheFile,
-        JSON.stringify(cacheData, null, 2),
-        'utf-8',
-      );
+      await fs.writeFile(componentCacheFile, JSON.stringify(cacheData, null, 2), 'utf-8');
       console.log(`Cached: ${componentName} -> ${componentCacheFile}`);
     } catch (error) {
       console.error(`Failed to write cache file ${componentCacheFile}:`, error);
@@ -137,9 +127,7 @@ async function generateComponentCaches() {
       return;
     }
 
-    console.log(
-      `\nAll ${fileCount} component files cached successfully from ${sourcePath} into ${cachePath}.`,
-    );
+    console.log(`\nAll ${fileCount} component files cached successfully from ${sourcePath} into ${cachePath}.`);
   } catch (error) {
     console.error('Failed to generate component caches:', error);
     process.exit(1);

@@ -17,31 +17,17 @@ export default function CheckboxDemo() {
   return (
     <div className="space-y-5">
       <div className="flex items-center space-x-2">
-        <Checkbox
-          id={id}
-          checked={checked}
-          size="sm"
-          onCheckedChange={(value) => setChecked(!!value)}
-        />
+        <Checkbox id={id} checked={checked} size="sm" onCheckedChange={(value) => setChecked(!!value)} />
         <Label htmlFor={id}>Small</Label>
       </div>
 
       <div className="flex items-center space-x-2">
-        <Checkbox
-          id={id2}
-          checked={checked2}
-          onCheckedChange={(value) => setChecked2(!!value)}
-        />
+        <Checkbox id={id2} checked={checked2} onCheckedChange={(value) => setChecked2(!!value)} />
         <Label htmlFor={id2}>Medium</Label>
       </div>
 
       <div className="flex items-center space-x-2">
-        <Checkbox
-          id={id3}
-          checked={checked3}
-          size="lg"
-          onCheckedChange={(value) => setChecked3(!!value)}
-        />
+        <Checkbox id={id3} checked={checked3} size="lg" onCheckedChange={(value) => setChecked3(!!value)} />
         <Label htmlFor={id3}>Large</Label>
       </div>
     </div>

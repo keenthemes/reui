@@ -53,19 +53,9 @@ export default function DatePickerDemo() {
     <Popover>
       <PopoverTrigger asChild>
         <div className="relative w-[250px]">
-          <Button
-            type="button"
-            variant="outline"
-            mode="input"
-            placeholder={!date}
-            className="w-full"
-          >
+          <Button type="button" variant="outline" mode="input" placeholder={!date} className="w-full">
             <CalendarIcon />
-            {date ? (
-              format(date, 'PPP') + (time ? ` - ${time}` : '')
-            ) : (
-              <span>Pick a date and time</span>
-            )}
+            {date ? format(date, 'PPP') + (time ? ` - ${time}` : '') : <span>Pick a date and time</span>}
           </Button>
         </div>
       </PopoverTrigger>
@@ -88,9 +78,7 @@ export default function DatePickerDemo() {
               <ScrollArea className="h-full sm:border-s">
                 <div className="space-y-3">
                   <div className="flex h-5 shrink-0 items-center px-5">
-                    <p className="text-sm font-medium">
-                      {date ? format(date, 'EEEE, d') : 'Pick a date'}
-                    </p>
+                    <p className="text-sm font-medium">{date ? format(date, 'EEEE, d') : 'Pick a date'}</p>
                   </div>
                   <div className="grid gap-1.5 px-5 max-sm:grid-cols-2">
                     {timeSlots.map(({ time: timeSlot, available }) => (

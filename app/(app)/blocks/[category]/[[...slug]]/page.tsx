@@ -41,9 +41,7 @@ export default async function Page({ params }: PageProps) {
               className="block p-4 border border-border rounded-lg hover:bg-accent"
             >
               <h3 className="text-lg font-medium">{sub.title}</h3>
-              <p className="text-sm text-muted-foreground">
-                {sub.blocks?.length || 0} Blocks
-              </p>
+              <p className="text-sm text-muted-foreground">{sub.blocks?.length || 0} Blocks</p>
             </Link>
           ))}
         </div>

@@ -4,38 +4,23 @@ import * as React from 'react';
 import { cn } from '@/registry/default/lib/utils';
 import { Drawer as DrawerPrimitive } from 'vaul';
 
-const Drawer = ({
-  shouldScaleBackground = true,
-  ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Root>) => (
-  <DrawerPrimitive.Root
-    shouldScaleBackground={shouldScaleBackground}
-    {...props}
-  />
+const Drawer = ({ shouldScaleBackground = true, ...props }: React.ComponentProps<typeof DrawerPrimitive.Root>) => (
+  <DrawerPrimitive.Root shouldScaleBackground={shouldScaleBackground} {...props} />
 );
 
-function DrawerTrigger({
-  ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Trigger>) {
+function DrawerTrigger({ ...props }: React.ComponentProps<typeof DrawerPrimitive.Trigger>) {
   return <DrawerPrimitive.Trigger data-slot="drawer-trigger" {...props} />;
 }
 
-function DrawerPortal({
-  ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Portal>) {
+function DrawerPortal({ ...props }: React.ComponentProps<typeof DrawerPrimitive.Portal>) {
   return <DrawerPrimitive.Portal data-slot="drawer-portal" {...props} />;
 }
 
-function DrawerClose({
-  ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Close>) {
+function DrawerClose({ ...props }: React.ComponentProps<typeof DrawerPrimitive.Close>) {
   return <DrawerPrimitive.Close data-slot="drawer-close" {...props} />;
 }
 
-function DrawerOverlay({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Overlay>) {
+function DrawerOverlay({ className, ...props }: React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Overlay>) {
   return (
     <DrawerPrimitive.Overlay
       data-slot="drawer-overlay"
@@ -68,39 +53,19 @@ function DrawerContent({
   );
 }
 
-const DrawerHeader = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
-    data-slot="drawer-header"
-    className={cn('grid gap-1.5 p-4 text-center sm:text-left', className)}
-    {...props}
-  />
+const DrawerHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
+  <div data-slot="drawer-header" className={cn('grid gap-1.5 p-4 text-center sm:text-left', className)} {...props} />
 );
 
-const DrawerFooter = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
-    data-slot="drawer-footer"
-    className={cn('mt-auto flex flex-col gap-2 p-4', className)}
-    {...props}
-  />
+const DrawerFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
+  <div data-slot="drawer-footer" className={cn('mt-auto flex flex-col gap-2 p-4', className)} {...props} />
 );
 
-function DrawerTitle({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Title>) {
+function DrawerTitle({ className, ...props }: React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Title>) {
   return (
     <DrawerPrimitive.Title
       data-slot="drawer-title"
-      className={cn(
-        'text-lg font-semibold leading-none tracking-tight',
-        className,
-      )}
+      className={cn('text-lg font-semibold leading-none tracking-tight', className)}
       {...props}
     />
   );

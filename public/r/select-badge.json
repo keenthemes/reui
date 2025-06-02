@@ -10,10 +10,7 @@
     "@radix-ui/react-select",
     "lucide-react"
   ],
-  "registryDependencies": [
-    "https://reui.io/r/badge.json",
-    "https://reui.io/r/select.json"
-  ],
+  "registryDependencies": ["https://reui.io/r/badge.json", "https://reui.io/r/select.json"],
   "files": [
     {
       "path": "registry/default/components/select/badge.tsx",

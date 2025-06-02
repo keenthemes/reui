@@ -39,19 +39,14 @@ export default function SwitchForm() {
         <AlertIcon>
           <RiCheckboxCircleFill />
         </AlertIcon>
-        <AlertTitle>
-          Auto-update is {data.autoUpdate ? 'enabled' : 'disabled'}.
-        </AlertTitle>
+        <AlertTitle>Auto-update is {data.autoUpdate ? 'enabled' : 'disabled'}.</AlertTitle>
       </Alert>
     ));
   }
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="w-[300px] space-y-6"
-      >
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-[300px] space-y-6">
         {/* Switch Field */}
         <FormField
           control={form.control}
@@ -60,16 +55,12 @@ export default function SwitchForm() {
             <FormItem>
               <div className="flex items-center space-x-2">
                 <FormControl>
-                  <Switch
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                  />
+                  <Switch checked={field.value} onCheckedChange={field.onChange} />
                 </FormControl>
                 <FormLabel>Enable auto-update</FormLabel>
               </div>
               <FormDescription>
-                You must enable auto-update to receive the latest updates
-                automatically.
+                You must enable auto-update to receive the latest updates automatically.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -78,11 +69,7 @@ export default function SwitchForm() {
 
         {/* Submit and Reset Buttons */}
         <div className="flex items-center justify-end gap-2.5">
-          <Button
-            type="reset"
-            variant="outline"
-            onClick={() => form.reset({ autoUpdate: false })}
-          >
+          <Button type="reset" variant="outline" onClick={() => form.reset({ autoUpdate: false })}>
             Reset
           </Button>
           <Button type="submit">Submit</Button>

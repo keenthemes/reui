@@ -3,11 +3,7 @@
 import { useState } from 'react';
 import { Button } from '@/registry/default/ui/button';
 import { Calendar } from '@/registry/default/ui/calendar';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/registry/default/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@/registry/default/ui/popover';
 import { addDays, format } from 'date-fns';
 import { Calendar as CalendarIcon } from 'lucide-react';
 import { DateRange } from 'react-day-picker';
@@ -56,8 +52,7 @@ export default function DatePickerDemo() {
           {date?.from ? (
             date.to ? (
               <>
-                {format(date.from, 'LLL dd, y')} -{' '}
-                {format(date.to, 'LLL dd, y')}
+                {format(date.from, 'LLL dd, y')} - {format(date.to, 'LLL dd, y')}
               </>
             ) : (
               format(date.from, 'LLL dd, y')

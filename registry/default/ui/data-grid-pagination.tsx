@@ -1,14 +1,8 @@
 import { ReactNode } from 'react';
-import { cn } from '@/registry/default/lib/utils';
+import { cn } from '@/lib/utils';
 import { Button } from '@/registry/default/ui/button';
 import { useDataGrid } from '@/registry/default/ui/data-grid';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/registry/default/ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/registry/default/ui/select';
 import { Skeleton } from '@/registry/default/ui/skeleton';
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
 
@@ -22,6 +16,7 @@ interface DataGridPaginationProps {
   moreLimit?: number;
   info?: string;
   infoSkeleton?: ReactNode;
+  className?: string;
 }
 
 function DataGridPagination(props: DataGridPaginationProps) {
@@ -60,12 +55,8 @@ function DataGridPagination(props: DataGridPaginationProps) {
   const paginationMoreLimit = mergedProps?.moreLimit || 5;
 
   // Determine the start and end of the pagination group
-  const currentGroupStart =
-    Math.floor(pageIndex / paginationMoreLimit) * paginationMoreLimit;
-  const currentGroupEnd = Math.min(
-    currentGroupStart + paginationMoreLimit,
-    pageCount,
-  );
+  const currentGroupStart = Math.floor(pageIndex / paginationMoreLimit) * paginationMoreLimit;
+  const currentGroupEnd = Math.min(currentGroupStart + paginationMoreLimit, pageCount);
 
   // Render page buttons based on the current group
   const renderPageButtons = () => {
@@ -132,7 +123,7 @@ function DataGridPagination(props: DataGridPaginationProps) {
   return (
     <div
       data-slot="data-grid-pagination"
-      className="flex flex-wrap flex-col sm:flex-row justify-between items-center gap-2.5 py-2.5 sm:py-0 grow"
+      className={cn('flex flex-wrap flex-col sm:flex-row justify-between items-center gap-2.5 py-2.5 sm:py-0 grow', mergedProps?.className)}
     >
       <div className="flex flex-wrap items-center space-x-2.5 pb-2.5 sm:pb-0 order-2 sm:order-1">
         {isLoading ? (
@@ -148,7 +139,7 @@ function DataGridPagination(props: DataGridPaginationProps) {
                 table.setPageSize(newPageSize);
               }}
             >
-              <SelectTrigger className="w-fit h-8" size="sm">
+              <SelectTrigger className="w-fit" size="sm">
                 <SelectValue placeholder={`${pageSize}`} />
               </SelectTrigger>
               <SelectContent side="top" className="min-w-[50px]">
@@ -167,9 +158,7 @@ function DataGridPagination(props: DataGridPaginationProps) {
           mergedProps?.infoSkeleton
         ) : (
           <>
-            <div className="text-sm text-muted-foreground text-nowrap order-2 sm:order-1">
-              {paginationInfo}
-            </div>
+            <div className="text-sm text-muted-foreground text-nowrap order-2 sm:order-1">{paginationInfo}</div>
             {pageCount > 1 && (
               <div className="flex items-center space-x-1 order-1 sm:order-2">
                 <Button

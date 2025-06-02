@@ -1,10 +1,5 @@
 import { Button } from '@/registry/default/ui/button';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/registry/default/ui/tooltip';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/registry/default/ui/tooltip';
 import { Info } from 'lucide-react';
 
 export default function TooltipDemo() {

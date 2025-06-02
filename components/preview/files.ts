@@ -1,10 +1,5 @@
 import { blocksConfig } from '@/config/blocks';
-import {
-  ComponentCode,
-  ComponentExamples,
-  PreviewItem,
-  PreviewItemFile,
-} from '@/config/types';
+import { ComponentCode, ComponentExamples, PreviewItem, PreviewItemFile } from '@/config/types';
 
 export async function resolveBlock(path: string): Promise<PreviewItem | null> {
   const [categorySlug, subCategorySlug, blockSlug] = path.split('/');
@@ -22,21 +17,16 @@ export async function resolveBlock(path: string): Promise<PreviewItem | null> {
   }
 
   // Find the block
-  const item = subCategory.blocks.find(
-    (blk) => blk.slug === blockSlug,
-  ) as unknown as PreviewItem;
+  const item = subCategory.blocks.find((blk) => blk.slug === blockSlug) as unknown as PreviewItem;
   if (!item) {
     return null;
   }
 
   // Import the JSON cache file
   const resolvedPath = path.replaceAll('/', '.');
-  const cacheData = await import(
-    `@/registry/.cache/default/blocks/${resolvedPath}.json`,
-    {
-      assert: { type: 'json' },
-    }
-  );
+  const cacheData = await import(`@/registry/.cache/default/blocks/${resolvedPath}.json`, {
+    assert: { type: 'json' },
+  });
 
   const plainData = JSON.parse(JSON.stringify(cacheData.default || cacheData));
 
@@ -45,18 +35,13 @@ export async function resolveBlock(path: string): Promise<PreviewItem | null> {
   return item;
 }
 
-export async function resolveComponent(
-  name: string,
-): Promise<ComponentExamples> {
+export async function resolveComponent(name: string): Promise<ComponentExamples> {
   const result: ComponentExamples = {};
 
   try {
-    const cacheData = await import(
-      `@/registry/.cache/default/components/${name}.json`,
-      {
-        assert: { type: 'json' },
-      }
-    );
+    const cacheData = await import(`@/registry/.cache/default/components/${name}.json`, {
+      assert: { type: 'json' },
+    });
 
     return cacheData as ComponentExamples;
   } catch (error: unknown) {
@@ -90,12 +75,9 @@ export async function resolveCode(name: string): Promise<ComponentCode> {
 
   try {
     // Load the main component code
-    const cacheData = await import(
-      `@/registry/.cache/default/ui/${name}.json`,
-      {
-        assert: { type: 'json' },
-      }
-    );
+    const cacheData = await import(`@/registry/.cache/default/ui/${name}.json`, {
+      assert: { type: 'json' },
+    });
 
     // Merge the main component data into the result
     // Use .default since dynamic import returns a module object
@@ -106,12 +88,9 @@ export async function resolveCode(name: string): Promise<ComponentCode> {
     if (relatedComponents) {
       for (const component of relatedComponents) {
         try {
-          const relatedCacheData = await import(
-            `@/registry/.cache/default/ui/${component}.json`,
-            {
-              assert: { type: 'json' },
-            }
-          );
+          const relatedCacheData = await import(`@/registry/.cache/default/ui/${component}.json`, {
+            assert: { type: 'json' },
+          });
           // Merge related component data
           Object.assign(result, relatedCacheData as ComponentCode);
         } catch (error: unknown) {
@@ -119,10 +98,7 @@ export async function resolveCode(name: string): Promise<ComponentCode> {
           if (err.code === 'MODULE_NOT_FOUND') {
             console.warn(`No code found for related component "${component}".`);
           } else {
-            console.warn(
-              `Error resolving related component "${component}":`,
-              err,
-            );
+            console.warn(`Error resolving related component "${component}":`, err);
           }
         }
       }

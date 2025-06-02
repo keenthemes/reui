@@ -13,10 +13,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
   const pathname = usePathname();
 
   return (
-    <div
-      vaul-drawer-wrapper="true"
-      className="relative flex min-h-screen flex-col bg-background"
-    >
+    <div vaul-drawer-wrapper="true" className="relative flex min-h-screen flex-col bg-background">
       <div className="border-border/40 dark:border-border">
         <SiteHeader />
         <main className="flex-1">{children}</main>

@@ -3,11 +3,7 @@
 import * as React from 'react';
 import { Button } from '@/registry/default/ui/button';
 import { Calendar } from '@/registry/default/ui/calendar';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/registry/default/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@/registry/default/ui/popover';
 import { format } from 'date-fns';
 import { Calendar as CalendarIcon, X } from 'lucide-react';
 
@@ -23,13 +19,7 @@ export default function DatePickerDemo() {
     <Popover>
       <PopoverTrigger asChild>
         <div className="relative w-[250px]">
-          <Button
-            type="button"
-            variant="outline"
-            mode="input"
-            placeholder={!date}
-            className="w-full"
-          >
+          <Button type="button" variant="outline" mode="input" placeholder={!date} className="w-full">
             <CalendarIcon />
             {date ? format(date, 'PPP') : <span>Pick a date</span>}
           </Button>

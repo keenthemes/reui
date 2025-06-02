@@ -1,10 +1,6 @@
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@/registry/default/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/registry/default/ui/avatar';
 import { DataGrid, DataGridContainer } from '@/registry/default/ui/data-grid';
 import { DataGridPagination } from '@/registry/default/ui/data-grid-pagination';
 import { DataGridTable } from '@/registry/default/ui/data-grid-table';
@@ -212,9 +208,7 @@ export default function DataGridDemo() {
     pageSize: 5,
   });
 
-  const [sorting, setSorting] = useState<SortingState>([
-    { id: 'name', desc: true },
-  ]);
+  const [sorting, setSorting] = useState<SortingState>([{ id: 'name', desc: true }]);
 
   const columns = useMemo<ColumnDef<IData>[]>(
     () => [
@@ -226,16 +220,10 @@ export default function DataGridDemo() {
           return (
             <div className="flex items-center gap-2">
               <Avatar className="size-6">
-                <AvatarImage
-                  src={`/media/avatars/${row.original.avatar}`}
-                  alt={row.original.name}
-                />
+                <AvatarImage src={`/media/avatars/${row.original.avatar}`} alt={row.original.name} />
                 <AvatarFallback>N</AvatarFallback>
               </Avatar>
-              <Link
-                href="#"
-                className="font-medium text-foreground hover:text-primary"
-              >
+              <Link href="#" className="font-medium text-foreground hover:text-primary">
                 {row.original.name}
               </Link>
             </div>
@@ -249,10 +237,7 @@ export default function DataGridDemo() {
         accessorKey: 'email',
         header: 'Email',
         cell: (info) => (
-          <Link
-            href={`mailto:${info.getValue()}`}
-            className="hover:text-primary hover:underline"
-          >
+          <Link href={`mailto:${info.getValue()}`} className="hover:text-primary hover:underline">
             {info.getValue() as string}
           </Link>
         ),
@@ -268,9 +253,7 @@ export default function DataGridDemo() {
           return (
             <div className="flex items-center gap-1.5">
               {row.original.flag}
-              <div className="font-medium text-foreground">
-                {row.original.location}
-              </div>
+              <div className="font-medium text-foreground">{row.original.location}</div>
             </div>
           );
         },
@@ -283,11 +266,7 @@ export default function DataGridDemo() {
       {
         accessorKey: 'balance',
         header: 'Balance ($)',
-        cell: (info) => (
-          <span className="font-semibold">
-            ${(info.getValue() as number).toFixed(2)}
-          </span>
-        ),
+        cell: (info) => <span className="font-semibold">${(info.getValue() as number).toFixed(2)}</span>,
         size: 125,
         meta: {
           headerClassName: 'text-right rtl:text-left',
@@ -316,11 +295,7 @@ export default function DataGridDemo() {
   });
 
   return (
-    <DataGrid
-      table={table}
-      recordCount={demoData?.length || 0}
-      tableLayout={{ dense: true }}
-    >
+    <DataGrid table={table} recordCount={demoData?.length || 0} tableLayout={{ dense: true }}>
       <div className="w-full space-y-2.5">
         <DataGridContainer>
           <ScrollArea>

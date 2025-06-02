@@ -1,11 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@/registry/default/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/registry/default/ui/avatar';
 import { Badge } from '@/registry/default/ui/badge';
 import { Button } from '@/registry/default/ui/button';
 import {
@@ -128,29 +124,18 @@ export default function CardDemo() {
                 {/* Left: Avatar and User Info */}
                 <div className="flex items-center gap-3">
                   <Avatar className="size-8">
-                    <AvatarImage
-                      src={`/media/avatars/${user.avatar}`}
-                      alt={user.name}
-                    />
+                    <AvatarImage src={`/media/avatars/${user.avatar}`} alt={user.name} />
                     <AvatarFallback>N</AvatarFallback>
                   </Avatar>
                   <div>
-                    <Link
-                      href="#"
-                      className="text-sm font-medium text-foreground hover:text-primary"
-                    >
+                    <Link href="#" className="text-sm font-medium text-foreground hover:text-primary">
                       {user.name}
                     </Link>
-                    <div className="text-sm font-normal text-muted-foreground">
-                      {user.email}
-                    </div>
+                    <div className="text-sm font-normal text-muted-foreground">{user.email}</div>
                   </div>
                 </div>
                 {/* Right: Status Badge */}
-                <Badge
-                  appearance="outline"
-                  variant={user.status === 'active' ? 'success' : 'secondary'}
-                >
+                <Badge appearance="outline" variant={user.status === 'active' ? 'success' : 'secondary'}>
                   {user.status.charAt(0).toUpperCase() + user.status.slice(1)}
                 </Badge>
               </div>

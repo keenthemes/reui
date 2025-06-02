@@ -9,9 +9,7 @@
     "class-variance-authority",
     "react-aria-components"
   ],
-  "registryDependencies": [
-    "https://reui.io/r/input.json"
-  ],
+  "registryDependencies": ["https://reui.io/r/input.json"],
   "files": [
     {
       "path": "registry/default/ui/datefield-ra.tsx",

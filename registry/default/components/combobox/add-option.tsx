@@ -13,11 +13,7 @@ import {
   CommandList,
   CommandSeparator,
 } from '@/registry/default/ui/command';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/registry/default/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@/registry/default/ui/popover';
 import { ScrollArea } from '@/registry/default/ui/scroll-area';
 import { Plus } from 'lucide-react';
 
@@ -60,9 +56,7 @@ export default function ComboboxDemo() {
           className="w-[200px]"
         >
           <span className={cn('truncate')}>
-            {value
-              ? topCities.find((city) => city.value === value)?.label
-              : 'Select city...'}
+            {value ? topCities.find((city) => city.value === value)?.label : 'Select city...'}
           </span>
           <ButtonArrow />
         </Button>
@@ -92,11 +86,7 @@ export default function ComboboxDemo() {
           </CommandList>
           <CommandSeparator />
           <CommandGroup>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="w-full justify-start font-normal px-1.5"
-            >
+            <Button variant="ghost" size="sm" className="w-full justify-start font-normal px-1.5">
               <Plus className="size-4" aria-hidden="true" />
               Add new city
             </Button>

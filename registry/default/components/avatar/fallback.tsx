@@ -8,9 +8,7 @@ export default function AvatarDemo() {
         <AvatarFallback>CH</AvatarFallback>
       </Avatar>
       <Avatar>
-        <AvatarFallback className="text-destructive bg-destructive/10">
-          AJ
-        </AvatarFallback>
+        <AvatarFallback className="text-destructive bg-destructive/10">AJ</AvatarFallback>
       </Avatar>
       <Avatar>
         <AvatarFallback className="text-primary bg-primary/10">

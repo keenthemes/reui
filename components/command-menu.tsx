@@ -55,23 +55,20 @@ export function CommandMenu({ ...props }: DialogProps) {
     return () => document.removeEventListener('keydown', down);
   }, []);
 
-  const runCommand = React.useCallback(
-    (command: () => unknown, itemTitle?: string) => {
-      setOpen(false);
-      if (itemTitle) {
-        trackEvent({
-          name: `site_header_search_${itemTitle.toLowerCase().replace(/\s+/g, '_')}_click`,
-          properties: {
-            item: itemTitle,
-            category: 'search',
-            label: `Search Navigation - ${itemTitle}`,
-          },
-        });
-      }
-      command();
-    },
-    [],
-  );
+  const runCommand = React.useCallback((command: () => unknown, itemTitle?: string) => {
+    setOpen(false);
+    if (itemTitle) {
+      trackEvent({
+        name: `site_header_search_${itemTitle.toLowerCase().replace(/\s+/g, '_')}_click`,
+        properties: {
+          item: itemTitle,
+          category: 'search',
+          label: `Search Navigation - ${itemTitle}`,
+        },
+      });
+    }
+    command();
+  }, []);
 
   return (
     <>
@@ -94,12 +91,8 @@ export function CommandMenu({ ...props }: DialogProps) {
         {...props}
       >
         <Search />
-        <span className="hidden lg:inline-flex text-muted-foreground">
-          Search...
-        </span>
-        <span className="inline-flex lg:hidden text-muted-foreground">
-          Search...
-        </span>
+        <span className="hidden lg:inline-flex text-muted-foreground">Search...</span>
+        <span className="inline-flex lg:hidden text-muted-foreground">Search...</span>
         <kbd className="pointer-events-none absolute right-[5px] top-1/2 -translate-y-1/2 hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
           /
         </kbd>
@@ -120,10 +113,7 @@ export function CommandMenu({ ...props }: DialogProps) {
                   key={navItem.href}
                   value={navItem.title}
                   onSelect={() => {
-                    runCommand(
-                      () => router.push(navItem.href as string),
-                      navItem.title,
-                    );
+                    runCommand(() => router.push(navItem.href as string), navItem.title);
                   }}
                 >
                   <File className="opacity-80 text-muted-foreground" />
@@ -138,10 +128,7 @@ export function CommandMenu({ ...props }: DialogProps) {
                   key={navItem.href}
                   value={navItem.title}
                   onSelect={() => {
-                    runCommand(
-                      () => router.push(navItem.href as string),
-                      navItem.title,
-                    );
+                    runCommand(() => router.push(navItem.href as string), navItem.title);
                   }}
                 >
                   <Undo2 className="opacity-80 rotate-180 text-muted-foreground" />

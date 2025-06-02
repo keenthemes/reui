@@ -22,13 +22,7 @@ export async function copyToClipboardWithMeta(value: string, event?: Event) {
   }
 }
 
-export function CopyButton({
-  value,
-  className,
-  variant = 'ghost',
-  event,
-  ...props
-}: CopyButtonProps) {
+export function CopyButton({ value, className, variant = 'ghost', event, ...props }: CopyButtonProps) {
   const [hasCopied, setHasCopied] = React.useState(false);
 
   React.useEffect(() => {
@@ -62,11 +56,7 @@ export function CopyButton({
       {...props}
     >
       <span className="sr-only">Copy</span>
-      {hasCopied ? (
-        <Check className="size-4 text-white" />
-      ) : (
-        <Copy className="size-4" />
-      )}
+      {hasCopied ? <Check className="size-4 text-white" /> : <Copy className="size-4" />}
     </Button>
   );
 }

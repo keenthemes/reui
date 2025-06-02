@@ -27,9 +27,7 @@ export default function DemoSheet() {
         <SheetContent side="top" dir={direction}>
           <SheetHeader>
             <SheetTitle>Quick Feedback</SheetTitle>
-            <SheetDescription>
-              Share your feedback to help us improve.
-            </SheetDescription>
+            <SheetDescription>Share your feedback to help us improve.</SheetDescription>
           </SheetHeader>
           <SheetBody>
             <div className="grid gap-5">
@@ -46,14 +44,8 @@ export default function DemoSheet() {
               {/* Feedback */}
               <div className="flex flex-col gap-2">
                 <Label htmlFor="feedback">Feedback</Label>
-                <Textarea
-                  id="feedback"
-                  placeholder="Describe your suggestion."
-                  rows={4}
-                />
-                <p className="text-sm text-muted-foreground">
-                  Please don’t include any sensitive information
-                </p>
+                <Textarea id="feedback" placeholder="Describe your suggestion." rows={4} />
+                <p className="text-sm text-muted-foreground">Please don’t include any sensitive information</p>
               </div>
             </div>
           </SheetBody>
@@ -74,9 +66,7 @@ export default function DemoSheet() {
         <SheetContent side="right">
           <SheetHeader>
             <SheetTitle>Quick Feedback</SheetTitle>
-            <SheetDescription>
-              Share your feedback to help us improve.
-            </SheetDescription>
+            <SheetDescription>Share your feedback to help us improve.</SheetDescription>
           </SheetHeader>
           <SheetBody>
             <div className="grid gap-5">
@@ -93,14 +83,8 @@ export default function DemoSheet() {
               {/* Feedback */}
               <div className="flex flex-col gap-2">
                 <Label htmlFor="feedback">Feedback</Label>
-                <Textarea
-                  id="feedback"
-                  placeholder="Describe your suggestion."
-                  rows={4}
-                />
-                <p className="text-sm text-muted-foreground">
-                  Please don’t include any sensitive information
-                </p>
+                <Textarea id="feedback" placeholder="Describe your suggestion." rows={4} />
+                <p className="text-sm text-muted-foreground">Please don’t include any sensitive information</p>
               </div>
             </div>
           </SheetBody>
@@ -121,9 +105,7 @@ export default function DemoSheet() {
         <SheetContent side="bottom">
           <SheetHeader>
             <SheetTitle>Quick Feedback</SheetTitle>
-            <SheetDescription>
-              Share your feedback to help us improve.
-            </SheetDescription>
+            <SheetDescription>Share your feedback to help us improve.</SheetDescription>
           </SheetHeader>
           <SheetBody>
             <div className="grid gap-5">
@@ -140,14 +122,8 @@ export default function DemoSheet() {
               {/* Feedback */}
               <div className="flex flex-col gap-2">
                 <Label htmlFor="feedback">Feedback</Label>
-                <Textarea
-                  id="feedback"
-                  placeholder="Describe your suggestion."
-                  rows={4}
-                />
-                <p className="text-sm text-muted-foreground">
-                  Please don’t include any sensitive information
-                </p>
+                <Textarea id="feedback" placeholder="Describe your suggestion." rows={4} />
+                <p className="text-sm text-muted-foreground">Please don’t include any sensitive information</p>
               </div>
             </div>
           </SheetBody>
@@ -168,9 +144,7 @@ export default function DemoSheet() {
         <SheetContent side="left">
           <SheetHeader>
             <SheetTitle>Quick Feedback</SheetTitle>
-            <SheetDescription>
-              Share your feedback to help us improve.
-            </SheetDescription>
+            <SheetDescription>Share your feedback to help us improve.</SheetDescription>
           </SheetHeader>
           <SheetBody>
             <div className="grid gap-5">
@@ -187,14 +161,8 @@ export default function DemoSheet() {
               {/* Feedback */}
               <div className="flex flex-col gap-2">
                 <Label htmlFor="feedback">Feedback</Label>
-                <Textarea
-                  id="feedback"
-                  placeholder="Describe your suggestion."
-                  rows={4}
-                />
-                <p className="text-sm text-muted-foreground">
-                  Please don’t include any sensitive information
-                </p>
+                <Textarea id="feedback" placeholder="Describe your suggestion." rows={4} />
+                <p className="text-sm text-muted-foreground">Please don’t include any sensitive information</p>
               </div>
             </div>
           </SheetBody>

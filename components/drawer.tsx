@@ -14,10 +14,7 @@ const DrawerContent = forwardRef<
     <DrawerPrimitive.Overlay className="fixed inset-0 z-50 bg-black/80" />
     <DrawerPrimitive.Content
       ref={ref}
-      className={cn(
-        'fixed inset-x-0 bottom-0 z-50 mt-24 h-[96%] rounded-t-[10px] bg-background',
-        className,
-      )}
+      className={cn('fixed inset-x-0 bottom-0 z-50 mt-24 h-[96%] rounded-t-[10px] bg-background', className)}
       {...props}
     >
       <div className="absolute left-1/2 top-3 h-2 w-[100px] translate-x-[-50%] rounded-full bg-muted" />

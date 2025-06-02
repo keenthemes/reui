@@ -24,8 +24,7 @@ export default function ConfirmationDialog() {
         <AlertDialogHeader>
           <AlertDialogTitle>Confirm Your Action</AlertDialogTitle>
           <AlertDialogDescription>
-            Once confirmed, this action cannot be reversed. It will delete your
-            account and remove all associated data.
+            Once confirmed, this action cannot be reversed. It will delete your account and remove all associated data.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

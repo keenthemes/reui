@@ -5,10 +5,7 @@
  * @param limit - The minimum delay in milliseconds between calls.
  * @returns A throttled version of the provided function.
  */
-export const throttle = (
-  func: (...args: unknown[]) => void,
-  limit: number,
-): ((...args: unknown[]) => void) => {
+export const throttle = (func: (...args: unknown[]) => void, limit: number): ((...args: unknown[]) => void) => {
   let lastFunc: ReturnType<typeof setTimeout> | null = null;
   let lastRan: number | null = null;
 
@@ -73,10 +70,7 @@ export function uid(): string {
  * @param count - The number of initials to return. Defaults to all initials.
  * @returns A string of initials from the name.
  */
-export const getInitials = (
-  name: string | null | undefined,
-  count?: number,
-): string => {
+export const getInitials = (name: string | null | undefined, count?: number): string => {
   if (!name || typeof name !== 'string') {
     return '';
   }
@@ -86,9 +80,7 @@ export const getInitials = (
     .filter(Boolean)
     .map((part) => part[0].toUpperCase());
 
-  return count && count > 0
-    ? initials.slice(0, count).join('')
-    : initials.join('');
+  return count && count > 0 ? initials.slice(0, count).join('') : initials.join('');
 };
 
 /**
@@ -132,11 +124,7 @@ export function formatDateTime(input: Date | string | number): string {
  * @param locale - The locale for formatting (e.g., "en-US"). Defaults to "en-US".
  * @returns A string formatted as currency.
  */
-export function formatCurrency(
-  amount: number,
-  currency: string = 'USD',
-  locale: string = 'en-US',
-): string {
+export function formatCurrency(amount: number, currency: string = 'USD', locale: string = 'en-US'): string {
   return new Intl.NumberFormat(locale, {
     style: 'currency',
     currency,
@@ -169,16 +157,13 @@ export const getTimeZones = (): { label: string; value: string }[] => {
         timeZoneName: 'shortOffset',
       });
       const parts = formatter.formatToParts(new Date());
-      const offset =
-        parts.find((part) => part.type === 'timeZoneName')?.value || '';
+      const offset = parts.find((part) => part.type === 'timeZoneName')?.value || '';
       const formattedOffset = offset === 'GMT' ? 'GMT+0' : offset;
 
       return {
         value: timezone,
         label: `(${formattedOffset}) ${timezone.replace(/_/g, ' ')}`,
-        numericOffset: parseInt(
-          formattedOffset.replace('GMT', '').replace('+', '') || '0',
-        ),
+        numericOffset: parseInt(formattedOffset.replace('GMT', '').replace('+', '') || '0'),
       };
     })
     .sort((a, b) => a.numericOffset - b.numericOffset);

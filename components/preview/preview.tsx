@@ -5,18 +5,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useCopyToClipboard } from '@/registry/default/hooks/use-copy-to-clipboard';
 import { cn } from '@/registry/default/lib/utils';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/registry/default/ui/accordion';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/registry/default/ui/accordion';
 import { Button } from '@/registry/default/ui/button';
-import {
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
-} from '@/registry/default/ui/resizable';
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/registry/default/ui/resizable';
 import { Separator } from '@/registry/default/ui/separator';
 import { Tabs, TabsList, TabsTrigger } from '@/registry/default/ui/tabs';
 import {
@@ -33,12 +24,7 @@ import {
 } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { ImperativePanelHandle } from 'react-resizable-panels';
-import {
-  PreviewFilesTree,
-  PreviewItem,
-  PreviewItemFile,
-  PreviewMode,
-} from '@/config/types';
+import { PreviewFilesTree, PreviewItem, PreviewItemFile, PreviewMode } from '@/config/types';
 import { trackEvent } from '@/lib/analytics';
 
 type ThemeType = 'dark' | 'light' | '';
@@ -66,16 +52,12 @@ export interface PreviewPanelProps {
   item?: PreviewItem;
 }
 
-const PreviewPanelContext = React.createContext<PreviewPanelContext | null>(
-  null,
-);
+const PreviewPanelContext = React.createContext<PreviewPanelContext | null>(null);
 
 function usePreviewPanel() {
   const context = React.useContext(PreviewPanelContext);
   if (!context) {
-    throw new Error(
-      'usePreviewPanel must be used within a PreviewPanelProvider.',
-    );
+    throw new Error('usePreviewPanel must be used within a PreviewPanelProvider.');
   }
   return context;
 }
@@ -92,8 +74,7 @@ function PreviewPanelProvider({
   children: React.ReactNode;
 }) {
   const [view, setView] = useState<PreviewPanelContext['view']>('preview');
-  const [activeFile, setActiveFile] =
-    useState<PreviewPanelContext['activeFile']>(null);
+  const [activeFile, setActiveFile] = useState<PreviewPanelContext['activeFile']>(null);
   const resizablePanelRef = useRef<ImperativePanelHandle | null>(null);
 
   const [theme, setTheme] = useState<ThemeType>('');
@@ -129,11 +110,7 @@ function PreviewPanelProvider({
         reloadPreview,
       }}
     >
-      <div
-        id={path}
-        data-view={view}
-        className="flex min-w-0 flex-col items-stretch w-full"
-      >
+      <div id={path} data-view={view} className="flex min-w-0 flex-col items-stretch w-full">
         {children}
       </div>
     </PreviewPanelContext.Provider>
@@ -232,11 +209,7 @@ function ThemeToggleButton() {
       className="h-8 w-8 rounded-md p-0 text-muted-foreground"
       onClick={toggleTheme}
     >
-      {activeTheme === 'dark' ? (
-        <Sun className="h-3.5 w-3.5" />
-      ) : (
-        <Moon className="h-3.5 w-3.5" />
-      )}
+      {activeTheme === 'dark' ? <Sun className="h-3.5 w-3.5" /> : <Moon className="h-3.5 w-3.5" />}
     </Button>
   );
 }
@@ -304,24 +277,12 @@ function PreviewPanelToolbarButtons() {
     <div className="flex items-center gap-2">
       <ThemeToggleButton />
       <RtlToggleButton />
-      <Button
-        mode="icon"
-        size="sm"
-        variant="outline"
-        className={btnClass}
-        asChild
-      >
+      <Button mode="icon" size="sm" variant="outline" className={btnClass} asChild>
         <Link href={`${path}`} target="_blank" onClick={handleOpenClick}>
           <ArrowUpRight className={btnIconClass} />
         </Link>
       </Button>
-      <Button
-        mode="icon"
-        size="sm"
-        variant="outline"
-        className={btnClass}
-        onClick={handleReloadClick}
-      >
+      <Button mode="icon" size="sm" variant="outline" className={btnClass} onClick={handleReloadClick}>
         <RefreshCcw className={btnIconClass} />
       </Button>
     </div>
@@ -329,8 +290,7 @@ function PreviewPanelToolbarButtons() {
 }
 
 function PreviewPanelView() {
-  const { theme, rtl, path, view, resizablePanelRef, reloadKey } =
-    usePreviewPanel();
+  const { theme, rtl, path, view, resizablePanelRef, reloadKey } = usePreviewPanel();
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
 
   useEffect(() => {
@@ -362,17 +322,8 @@ function PreviewPanelView() {
   };
 
   return (
-    <div
-      className={cn(
-        '-mr-3',
-        view !== 'preview' && 'hidden',
-        theme === 'dark' && 'dark',
-      )}
-    >
-      <ResizablePanelGroup
-        direction="horizontal"
-        className="relative z-10 h-full"
-      >
+    <div className={cn('-mr-3', view !== 'preview' && 'hidden', theme === 'dark' && 'dark')}>
+      <ResizablePanelGroup direction="horizontal" className="relative z-10 h-full">
         <ResizablePanel
           ref={resizablePanelRef}
           className="relative rounded-xl border border-border bg-background md:aspect-auto"
@@ -382,10 +333,7 @@ function PreviewPanelView() {
           <div className="flex items-center bg-accent/50 dark:bg-accent/90 rounded-t-xl px-3 py-3.5">
             <div className="flex items-center gap-2">
               {[...Array(3)].map((_, i) => (
-                <div
-                  key={i}
-                  className="size-2.5 shrink-0 bg-muted-foreground/15 rounded-full"
-                ></div>
+                <div key={i} className="size-2.5 shrink-0 bg-muted-foreground/15 rounded-full"></div>
               ))}
             </div>
           </div>
@@ -423,12 +371,7 @@ function PreviewPanelCode() {
       ): PreviewItemFile | null => {
         const nodeList = Array.isArray(nodes) ? nodes : [nodes];
         for (const node of nodeList) {
-          if (
-            level === 0 &&
-            node.type === 'folder' &&
-            node.name === 'app' &&
-            node.children
-          ) {
+          if (level === 0 && node.type === 'folder' && node.name === 'app' && node.children) {
             const result = findFirstFile(node.children, level + 1);
             if (result) return result;
           }
@@ -460,10 +403,7 @@ function PreviewPanelCode() {
     setActiveFile(file);
   };
 
-  const renderTree = (
-    nodes: PreviewFilesTree[] | PreviewFilesTree,
-    level: number = 0,
-  ) => {
+  const renderTree = (nodes: PreviewFilesTree[] | PreviewFilesTree, level: number = 0) => {
     const spacingEnd = 'pe-[20px]';
     const spacing = [
       'ps-[20px]',
@@ -500,11 +440,7 @@ function PreviewPanelCode() {
       if (node.type === 'folder' && node.children) {
         const isOpen = openItems.includes(node.path);
         return (
-          <AccordionItem
-            key={node.path}
-            value={node.path}
-            className="border-0 p-0"
-          >
+          <AccordionItem key={node.path} value={node.path} className="border-0 p-0">
             <AccordionTrigger
               className={cn(
                 'flex flex-row justify-start items-center gap-1.5 no-underline hover:no-underline hover:bg-accent py-1.5 [&_svg]:hidden',
@@ -521,9 +457,7 @@ function PreviewPanelCode() {
               </span>
               {node.name}
             </AccordionTrigger>
-            <AccordionContent className="p-0">
-              {renderTree(node.children, level + 1)}
-            </AccordionContent>
+            <AccordionContent className="p-0">{renderTree(node.children, level + 1)}</AccordionContent>
           </AccordionItem>
         );
       }
@@ -533,10 +467,7 @@ function PreviewPanelCode() {
 
   return (
     <div
-      className={cn(
-        'dark relative h-(--height) [&::-webkit-scrollbar-thumb:bg-white!]',
-        view !== 'code' && 'hidden',
-      )}
+      className={cn('dark relative h-(--height) [&::-webkit-scrollbar-thumb:bg-white!]', view !== 'code' && 'hidden')}
     >
       <div
         className={cn(
@@ -551,11 +482,7 @@ function PreviewPanelCode() {
             </div>
             <div className="grid h-full w-full text-sm">
               <div className="overflow-auto">
-                <Accordion
-                  type="multiple"
-                  value={openItems}
-                  onValueChange={(values) => setOpenItems(values)}
-                >
+                <Accordion type="multiple" value={openItems} onValueChange={(values) => setOpenItems(values)}>
                   {item.files ? renderTree(item.files) : 'No files available'}
                 </Accordion>
               </div>
@@ -582,16 +509,10 @@ function PreviewPanelCode() {
                 }
               }}
             >
-              {copied ? (
-                <Check className="h-4 w-4" />
-              ) : (
-                <Copy className="h-4 w-4" />
-              )}
+              {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
             </Button>
           </div>
-          <div className="grid h-full">
-            {activeFile && <PreviewPanelCodeHighlight file={activeFile} />}
-          </div>
+          <div className="grid h-full">{activeFile && <PreviewPanelCodeHighlight file={activeFile} />}</div>
         </div>
       </div>
     </div>

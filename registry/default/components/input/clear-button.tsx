@@ -22,12 +22,7 @@ export default function InputDemo() {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
         />
-        <Button
-          onClick={handleClearInput}
-          variant="dim"
-          className="-me-4"
-          disabled={inputValue === ''}
-        >
+        <Button onClick={handleClearInput} variant="dim" className="-me-4" disabled={inputValue === ''}>
           {inputValue !== '' && <X size={16} />}
         </Button>
       </InputWrapper>

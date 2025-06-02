@@ -5,10 +5,7 @@ import { useEffect, useRef } from 'react';
 
 type ReCaptchaInstance = {
   ready: (callback: () => void) => void;
-  render: (
-    container: HTMLElement,
-    config: { sitekey: string; size: string; theme: string },
-  ) => number;
+  render: (container: HTMLElement, config: { sitekey: string; size: string; theme: string }) => number;
   reset: (id: number) => void;
   getResponse: (id: number) => string;
 };
@@ -21,10 +18,7 @@ function loadRecaptchaScript(): Promise<void> {
 
   scriptLoadPromise = new Promise((resolve) => {
     // If script already exists and grecaptcha is loaded
-    if (
-      document.getElementById(RECAPTCHA_SCRIPT_ID) &&
-      (window as any).grecaptcha
-    ) {
+    if (document.getElementById(RECAPTCHA_SCRIPT_ID) && (window as any).grecaptcha) {
       resolve();
       return;
     }

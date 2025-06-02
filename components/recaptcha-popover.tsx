@@ -20,8 +20,9 @@ export function RecaptchaPopover({
   trigger,
   verifyButtonText = 'Verify & Submit',
 }: RecaptchaPopoverProps) {
-  const { containerRef, getToken, resetCaptcha, initializeRecaptcha } =
-    useRecaptchaV2(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '');
+  const { containerRef, getToken, resetCaptcha, initializeRecaptcha } = useRecaptchaV2(
+    process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '',
+  );
 
   const handleOpenChange = (newOpen: boolean) => {
     onOpenChange(newOpen);
@@ -44,9 +45,7 @@ export function RecaptchaPopover({
               <AlertIcon>
                 <RiErrorWarningFill />
               </AlertIcon>
-              <AlertTitle>
-                Please complete the reCAPTCHA verification.
-              </AlertTitle>
+              <AlertTitle>Please complete the reCAPTCHA verification.</AlertTitle>
             </Alert>
           ),
           {
@@ -93,12 +92,7 @@ export function RecaptchaPopover({
         >
           <div className="flex flex-col gap-4">
             <div ref={containerRef} className="min-h-[78px]" />
-            <Button
-              type="button"
-              variant="mono"
-              onClick={handleVerify}
-              className="w-full"
-            >
+            <Button type="button" variant="mono" onClick={handleVerify} className="w-full">
               {verifyButtonText}
             </Button>
           </div>

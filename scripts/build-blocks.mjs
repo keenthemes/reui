@@ -3,13 +3,7 @@ import path from 'path';
 import { codeToHtml } from 'shiki';
 
 const sourcePath = path.resolve('./registry/default/blocks');
-const cacheBasePath = path.join(
-  process.cwd(),
-  'registry',
-  '.cache',
-  'default',
-  'blocks',
-);
+const cacheBasePath = path.join(process.cwd(), 'registry', '.cache', 'default', 'blocks');
 
 async function ensureCacheDir(dir) {
   await fs.mkdir(dir, { recursive: true });
@@ -18,9 +12,7 @@ async function ensureCacheDir(dir) {
 async function processSubCategoryBlocks(categorySlug, currentSlug, folderPath) {
   try {
     const entries = await fs.readdir(folderPath, { withFileTypes: true });
-    const pageFile = entries.find(
-      (entry) => entry.isFile() && entry.name === 'page.tsx',
-    );
+    const pageFile = entries.find((entry) => entry.isFile() && entry.name === 'page.tsx');
 
     if (pageFile) {
       console.log(`Found page.tsx in ${categorySlug}/${currentSlug}`);
@@ -49,11 +41,7 @@ async function processSubCategoryBlocks(categorySlug, currentSlug, folderPath) {
         type: 'tsx',
       };
       await ensureCacheDir(cacheBasePath);
-      await fs.writeFile(
-        cacheFilePath,
-        JSON.stringify(cacheData, null, 2),
-        'utf-8',
-      );
+      await fs.writeFile(cacheFilePath, JSON.stringify(cacheData, null, 2), 'utf-8');
       console.log(`Cached: ${cacheFileName}`);
     } else {
       console.log(`No page.tsx found in ${categorySlug}/${currentSlug}`);
@@ -105,9 +93,7 @@ async function generateBlockCaches() {
       }
     }
 
-    console.log(
-      'Block caches for deepest page.tsx files generated successfully.',
-    );
+    console.log('Block caches for deepest page.tsx files generated successfully.');
   } catch (error) {
     console.error('Error generating block caches:', error);
   }

@@ -2,16 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "select-group",
   "type": "registry:component",
-  "dependencies": [
-    "clsx",
-    "tailwind-merge",
-    "@radix-ui/react-select",
-    "class-variance-authority",
-    "lucide-react"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/select.json"
-  ],
+  "dependencies": ["clsx", "tailwind-merge", "@radix-ui/react-select", "class-variance-authority", "lucide-react"],
+  "registryDependencies": ["https://reui.io/r/select.json"],
   "files": [
     {
       "path": "registry/default/components/select/group.tsx",

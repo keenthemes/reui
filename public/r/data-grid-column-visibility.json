@@ -10,9 +10,7 @@
     "lucide-react",
     "@tanstack/react-table"
   ],
-  "registryDependencies": [
-    "https://reui.io/r/dropdown-menu.json"
-  ],
+  "registryDependencies": ["https://reui.io/r/dropdown-menu.json"],
   "files": [
     {
       "path": "registry/default/ui/data-grid-column-visibility.tsx",

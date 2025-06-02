@@ -11,11 +11,7 @@ import {
   CommandItem,
   CommandList,
 } from '@/registry/default/ui/command';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/registry/default/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@/registry/default/ui/popover';
 import { ScrollArea } from '@/registry/default/ui/scroll-area';
 import { Check, ChevronDown } from 'lucide-react';
 
@@ -249,26 +245,15 @@ export default function ComboboxDemo() {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState('');
 
-  const selectedCountry = countryFlags.find(
-    (country) => country.name === value,
-  );
+  const selectedCountry = countryFlags.find((country) => country.name === value);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <Button
-          variant="outline"
-          role="combobox"
-          aria-expanded={open}
-          className="w-[250px] justify-between"
-        >
+        <Button variant="outline" role="combobox" aria-expanded={open} className="w-[250px] justify-between">
           {selectedCountry ? (
             <span className="flex items-center gap-2">
-              <img
-                src={selectedCountry.flag}
-                alt={selectedCountry.code}
-                className="h-5 w-5 rounded-full"
-              />
+              <img src={selectedCountry.flag} alt={selectedCountry.code} className="h-5 w-5 rounded-full" />
               <span className="truncate">{selectedCountry.name}</span>
             </span>
           ) : (
@@ -294,16 +279,10 @@ export default function ComboboxDemo() {
                     }}
                   >
                     <span className="flex items-center gap-2">
-                      <img
-                        src={country.flag}
-                        alt={country.code}
-                        className="h-5 w-5 rounded-full"
-                      />
+                      <img src={country.flag} alt={country.code} className="h-5 w-5 rounded-full" />
                       <span className="truncate">{country.name}</span>
                     </span>
-                    {value === country.code && (
-                      <Check className={cn('size-4 ms-auto')} />
-                    )}
+                    {value === country.code && <Check className={cn('size-4 ms-auto')} />}
                   </CommandItem>
                 ))}
               </CommandGroup>

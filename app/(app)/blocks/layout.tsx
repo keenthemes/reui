@@ -24,11 +24,8 @@ const defaultDescription =
 
 export default function BlocksLayout({ children }: AppLayoutProps) {
   const pathname = usePathname();
-  const [currentCategory, setCurrentCategory] = useState<BlockCategory | null>(
-    null,
-  );
-  const [currentSubCategory, setCurrentSubCategory] =
-    useState<BlockSubCategory | null>(null);
+  const [currentCategory, setCurrentCategory] = useState<BlockCategory | null>(null);
+  const [currentSubCategory, setCurrentSubCategory] = useState<BlockSubCategory | null>(null);
 
   useEffect(() => {
     // Extract category and subcategory slugs from URL (e.g., /blocks/[category]/[subcategory])
@@ -38,16 +35,12 @@ export default function BlocksLayout({ children }: AppLayoutProps) {
 
     if (categorySlug && pathSegments.length > 1) {
       // Find the category in blocksConfig
-      const foundCategory = blocksConfig.find(
-        (category) => category.slug === categorySlug,
-      );
+      const foundCategory = blocksConfig.find((category) => category.slug === categorySlug);
       setCurrentCategory(foundCategory || null);
 
       // Find the subcategory if present
       if (subCategorySlug && foundCategory?.sub) {
-        const foundSubCategory = foundCategory.sub.find(
-          (sub) => sub.slug === subCategorySlug,
-        );
+        const foundSubCategory = foundCategory.sub.find((sub) => sub.slug === subCategorySlug);
         setCurrentSubCategory(foundSubCategory || null);
       } else {
         setCurrentSubCategory(null);
@@ -68,12 +61,7 @@ export default function BlocksLayout({ children }: AppLayoutProps) {
         <div className="flex items-center flex-col justify-between gap-6">
           <div>
             {isRootPage ? (
-              <Badge
-                className="bg-muted px-2.5 py-1.5"
-                size="lg"
-                shape="circle"
-                appearance="stroke"
-              >
+              <Badge className="bg-muted px-2.5 py-1.5" size="lg" shape="circle" appearance="stroke">
                 Blocks
               </Badge>
             ) : (
@@ -86,9 +74,7 @@ export default function BlocksLayout({ children }: AppLayoutProps) {
                   </BreadcrumbItem>
                   <BreadcrumbSeparator />
                   <BreadcrumbItem>
-                    <BreadcrumbPage>
-                      {currentCategory?.title || 'Category Not Found'}
-                    </BreadcrumbPage>
+                    <BreadcrumbPage>{currentCategory?.title || 'Category Not Found'}</BreadcrumbPage>
                   </BreadcrumbItem>
                 </BreadcrumbList>
               </Breadcrumb>
@@ -112,8 +98,7 @@ export default function BlocksLayout({ children }: AppLayoutProps) {
                 ? currentSubCategory?.description ||
                   currentCategory?.description ||
                   'No description available for this subcategory.'
-                : currentCategory?.description ||
-                  'No description available for this category.'}
+                : currentCategory?.description || 'No description available for this category.'}
           </div>
         </div>
       </div>

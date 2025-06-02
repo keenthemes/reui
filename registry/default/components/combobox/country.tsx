@@ -11,11 +11,7 @@ import {
   CommandItem,
   CommandList,
 } from '@/registry/default/ui/command';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/registry/default/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@/registry/default/ui/popover';
 import { ScrollArea } from '@/registry/default/ui/scroll-area';
 
 const countryFlags = [
@@ -248,9 +244,7 @@ export default function ComboboxDemo() {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState('');
 
-  const selectedCountry = countryFlags.find(
-    (country) => country.code === value,
-  );
+  const selectedCountry = countryFlags.find((country) => country.code === value);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -265,11 +259,7 @@ export default function ComboboxDemo() {
         >
           {selectedCountry ? (
             <span className="flex items-center gap-2">
-              <img
-                src={selectedCountry.flag}
-                alt={selectedCountry.code}
-                className="h-5 w-5 rounded-full"
-              />
+              <img src={selectedCountry.flag} alt={selectedCountry.code} className="h-5 w-5 rounded-full" />
               <span className="truncate">{selectedCountry.name}</span>
             </span>
           ) : (
@@ -295,11 +285,7 @@ export default function ComboboxDemo() {
                     }}
                   >
                     <span className="flex items-center gap-2">
-                      <img
-                        src={country.flag}
-                        alt={country.code}
-                        className="h-5 w-5 rounded-full"
-                      />
+                      <img src={country.flag} alt={country.code} className="h-5 w-5 rounded-full" />
                       <span className="truncate">{country.name}</span>
                     </span>
                     {value === country.code && <CommandCheck />}

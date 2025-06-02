@@ -14,10 +14,7 @@
     "next-themes",
     "jotai"
   ],
-  "registryDependencies": [
-    "https://reui.io/r/badge.json",
-    "https://reui.io/r/tabs.json"
-  ],
+  "registryDependencies": ["https://reui.io/r/badge.json", "https://reui.io/r/tabs.json"],
   "files": [
     {
       "path": "registry/default/components/tabs/vertical.tsx",

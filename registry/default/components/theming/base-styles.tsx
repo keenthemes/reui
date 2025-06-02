@@ -39,10 +39,7 @@ export default function ThemeDemo() {
     <div className="space-y-8 text-foreground">
       <div className="grid grid-cols-3 gap-6 text-sm">
         {borderStyles.map((style) => (
-          <div
-            key={style.name}
-            className={cn('p-4 overflow-hidden rounded-xl', style.className)}
-          >
+          <div key={style.name} className={cn('p-4 overflow-hidden rounded-xl', style.className)}>
             {style.name}
           </div>
         ))}
@@ -50,10 +47,7 @@ export default function ThemeDemo() {
 
       <div className="grid grid-cols-4 gap-x-8 gap-y-4 text-sm">
         {radiusStyles.map((style) => (
-          <div
-            key={style.name}
-            className={cn('p-4 overflow-hidden', style.className)}
-          >
+          <div key={style.name} className={cn('p-4 overflow-hidden', style.className)}>
             {style.name}
           </div>
         ))}

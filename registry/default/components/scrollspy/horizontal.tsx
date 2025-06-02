@@ -39,9 +39,7 @@ export default function Demo() {
               key={item.id}
               variant="outline"
               data-scrollspy-anchor={item.id}
-              className={
-                'data-[active=true]:bg-accent data-[active=true]:text-primary'
-              }
+              className={'data-[active=true]:bg-accent data-[active=true]:text-primary'}
             >
               {item.label}
             </Button>
@@ -49,10 +47,7 @@ export default function Demo() {
         </Scrollspy>
       </div>
       <div className="w-full">
-        <ScrollArea
-          className="h-[500px] grow pe-5 -me-5"
-          viewportRef={parentRef}
-        >
+        <ScrollArea className="h-[500px] grow pe-5 -me-5" viewportRef={parentRef}>
           <div className="space-y-8">
             {nav.map((item) => (
               <div key={item.id} id={item.id} className="space-y-2.5">

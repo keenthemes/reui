@@ -13,11 +13,7 @@ import {
   CommandList,
   CommandSeparator,
 } from '@/registry/default/ui/command';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/registry/default/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@/registry/default/ui/popover';
 import { ScrollArea } from '@/registry/default/ui/scroll-area';
 import { Plus } from 'lucide-react';
 
@@ -48,9 +44,7 @@ export default function ComboboxDemo() {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState('');
 
-  const selectedCategory = categories.find(
-    (category) => category.value === value,
-  );
+  const selectedCategory = categories.find((category) => category.value === value);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -64,10 +58,7 @@ export default function ComboboxDemo() {
           className="w-[250px]"
         >
           {selectedCategory ? (
-            <Badge
-              variant={selectedCategory.state as keyof BadgeProps['variant']}
-              appearance="outline"
-            >
+            <Badge variant={selectedCategory.state as keyof BadgeProps['variant']} appearance="outline">
               {selectedCategory.label}
             </Badge>
           ) : (
@@ -92,10 +83,7 @@ export default function ComboboxDemo() {
                       setOpen(false);
                     }}
                   >
-                    <Badge
-                      variant={category.state as keyof BadgeProps['variant']}
-                      appearance="outline"
-                    >
+                    <Badge variant={category.state as keyof BadgeProps['variant']} appearance="outline">
                       {category.label}
                     </Badge>
                     {value === category.value && <CommandCheck />}
@@ -106,11 +94,7 @@ export default function ComboboxDemo() {
           </CommandList>
           <CommandSeparator />
           <CommandGroup>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="w-full justify-start font-normal px-1.5"
-            >
+            <Button variant="ghost" size="sm" className="w-full justify-start font-normal px-1.5">
               <Plus className="size-4" aria-hidden="true" />
               Add category
             </Button>

@@ -10,10 +10,7 @@
     "lucide-react",
     "@radix-ui/react-label"
   ],
-  "registryDependencies": [
-    "https://reui.io/r/checkbox.json",
-    "https://reui.io/r/label.json"
-  ],
+  "registryDependencies": ["https://reui.io/r/checkbox.json", "https://reui.io/r/label.json"],
   "files": [
     {
       "path": "registry/default/components/checkbox/checked.tsx",

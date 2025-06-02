@@ -9,10 +9,7 @@
     "class-variance-authority",
     "@radix-ui/react-slot"
   ],
-  "registryDependencies": [
-    "https://reui.io/r/avatar.json",
-    "https://reui.io/r/badge.json"
-  ],
+  "registryDependencies": ["https://reui.io/r/avatar.json", "https://reui.io/r/badge.json"],
   "files": [
     {
       "path": "registry/default/components/avatar/badge.tsx",

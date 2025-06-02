@@ -2,12 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "separator",
   "type": "registry:ui",
-  "dependencies": [
-    "@radix-ui/react-separator",
-    "clsx",
-    "tailwind-merge",
-    "@radix-ui/react-separator"
-  ],
+  "dependencies": ["@radix-ui/react-separator", "clsx", "tailwind-merge", "@radix-ui/react-separator"],
   "files": [
     {
       "path": "registry/default/ui/separator.tsx",

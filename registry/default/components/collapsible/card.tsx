@@ -4,18 +4,8 @@ import * as React from 'react';
 import { cn } from '@/registry/default/lib/utils';
 import { Badge } from '@/registry/default/ui/badge';
 import { Button } from '@/registry/default/ui/button';
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardHeading,
-  CardToolbar,
-} from '@/registry/default/ui/card';
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@/registry/default/ui/collapsible';
+import { Card, CardContent, CardHeader, CardHeading, CardToolbar } from '@/registry/default/ui/card';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/registry/default/ui/collapsible';
 import { ArrowDown, ArrowUp, ChevronDown, ChevronUp } from 'lucide-react';
 
 export default function CollapsibleDemo() {
@@ -49,19 +39,10 @@ export default function CollapsibleDemo() {
       <Collapsible open={isOpen} onOpenChange={setIsOpen}>
         <CardHeader className="h-auto py-4">
           <CardHeading>
-            <div className="text-muted-foreground font-medium text-sm">
-              Conversion Rate
-            </div>
+            <div className="text-muted-foreground font-medium text-sm">Conversion Rate</div>
             <div className="flex items-center gap-1.5">
-              <span className="text-foreground font-semibold text-xl">
-                29.9%
-              </span>
-              <Badge
-                variant="primary"
-                appearance="outline"
-                size="sm"
-                shape="circle"
-              >
+              <span className="text-foreground font-semibold text-xl">29.9%</span>
+              <Badge variant="primary" appearance="outline" size="sm" shape="circle">
                 +4,5%
               </Badge>
             </div>
@@ -81,15 +62,11 @@ export default function CollapsibleDemo() {
               <div key={index} className="flex items-center justify-between">
                 <span className="text-muted-foreground">{stat.label}</span>
                 <div className="flex items-center space-x-2">
-                  <span className="text-foreground font-semibold">
-                    ${stat.value.toLocaleString()}
-                  </span>
+                  <span className="text-foreground font-semibold">${stat.value.toLocaleString()}</span>
                   <span
                     className={cn(
                       'flex items-center justify-end text-sm font-medium min-w-20',
-                      stat.changeType === 'increase'
-                        ? 'text-success'
-                        : 'text-destructive',
+                      stat.changeType === 'increase' ? 'text-success' : 'text-destructive',
                     )}
                   >
                     {stat.changeType === 'increase' ? (

@@ -2,12 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "chart",
   "type": "registry:ui",
-  "dependencies": [
-    "recharts",
-    "clsx",
-    "tailwind-merge",
-    "recharts"
-  ],
+  "dependencies": ["recharts", "clsx", "tailwind-merge", "recharts"],
   "files": [
     {
       "path": "registry/default/ui/chart.tsx",

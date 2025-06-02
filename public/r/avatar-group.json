@@ -10,10 +10,7 @@
     "@radix-ui/react-slot",
     "lucide-react"
   ],
-  "registryDependencies": [
-    "https://reui.io/r/avatar.json",
-    "https://reui.io/r/button.json"
-  ],
+  "registryDependencies": ["https://reui.io/r/avatar.json", "https://reui.io/r/button.json"],
   "files": [
     {
       "path": "registry/default/components/avatar/group.tsx",

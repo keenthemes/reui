@@ -39,13 +39,7 @@ export default function ThemeDemo() {
   return (
     <div className="grid grid-cols-3 gap-x-8 gap-y-4 text-sm">
       {colors.map((color) => (
-        <div
-          key={color.name}
-          className={cn(
-            'p-4 border border-border overflow-hidden rounded-xl',
-            color.className,
-          )}
-        >
+        <div key={color.name} className={cn('p-4 border border-border overflow-hidden rounded-xl', color.className)}>
           {color.name}
         </div>
       ))}

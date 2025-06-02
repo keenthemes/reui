@@ -5,52 +5,33 @@ import { cn } from '@/registry/default/lib/utils';
 import * as MenubarPrimitive from '@radix-ui/react-menubar';
 import { Check, ChevronRight, Circle } from 'lucide-react';
 
-function MenubarMenu({
-  ...props
-}: React.ComponentProps<typeof MenubarPrimitive.Menu>) {
+function MenubarMenu({ ...props }: React.ComponentProps<typeof MenubarPrimitive.Menu>) {
   return <MenubarPrimitive.Menu data-slot="menubar-menu" {...props} />;
 }
 
-function MenubarGroup({
-  ...props
-}: React.ComponentProps<typeof MenubarPrimitive.Group>) {
+function MenubarGroup({ ...props }: React.ComponentProps<typeof MenubarPrimitive.Group>) {
   return <MenubarPrimitive.Group data-slot="menubar-group" {...props} />;
 }
 
-function MenubarPortal({
-  ...props
-}: React.ComponentProps<typeof MenubarPrimitive.Portal>) {
+function MenubarPortal({ ...props }: React.ComponentProps<typeof MenubarPrimitive.Portal>) {
   return <MenubarPrimitive.Portal data-slot="menubar-portal" {...props} />;
 }
 
-function MenubarRadioGroup({
-  ...props
-}: React.ComponentProps<typeof MenubarPrimitive.RadioGroup>) {
-  return (
-    <MenubarPrimitive.RadioGroup data-slot="menubar-radio-group" {...props} />
-  );
+function MenubarRadioGroup({ ...props }: React.ComponentProps<typeof MenubarPrimitive.RadioGroup>) {
+  return <MenubarPrimitive.RadioGroup data-slot="menubar-radio-group" {...props} />;
 }
 
-function Menubar({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Root>) {
+function Menubar({ className, ...props }: React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Root>) {
   return (
     <MenubarPrimitive.Root
       data-slot="menubar"
-      className={cn(
-        'flex h-10 items-center space-x-1 rounded-md border bg-background p-1',
-        className,
-      )}
+      className={cn('flex h-10 items-center space-x-1 rounded-md border bg-background p-1', className)}
       {...props}
     />
   );
 }
 
-function MenubarTrigger({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Trigger>) {
+function MenubarTrigger({ className, ...props }: React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Trigger>) {
   return (
     <MenubarPrimitive.Trigger
       data-slot="menubar-trigger"
@@ -217,20 +198,13 @@ function MenubarLabel({
   return (
     <MenubarPrimitive.Label
       data-slot="menubar-label"
-      className={cn(
-        'px-2 py-1.5 text-sm font-semibold',
-        inset && 'ps-8',
-        className,
-      )}
+      className={cn('px-2 py-1.5 text-sm font-semibold', inset && 'ps-8', className)}
       {...props}
     />
   );
 }
 
-function MenubarSeparator({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Separator>) {
+function MenubarSeparator({ className, ...props }: React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Separator>) {
   return (
     <MenubarPrimitive.Separator
       data-slot="menubar-separator"
@@ -240,23 +214,15 @@ function MenubarSeparator({
   );
 }
 
-function MenubarSub({
-  ...props
-}: React.ComponentProps<typeof MenubarPrimitive.Sub>) {
+function MenubarSub({ ...props }: React.ComponentProps<typeof MenubarPrimitive.Sub>) {
   return <MenubarPrimitive.Sub data-slot="menubar-sub" {...props} />;
 }
 
-const MenubarShortcut = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLSpanElement>) => {
+const MenubarShortcut = ({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) => {
   return (
     <span
       data-slot="menubar-shortcut"
-      className={cn(
-        'ml-auto text-xs tracking-widest text-muted-foreground',
-        className,
-      )}
+      className={cn('ml-auto text-xs tracking-widest text-muted-foreground', className)}
       {...props}
     />
   );

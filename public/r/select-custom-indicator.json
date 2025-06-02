@@ -11,9 +11,7 @@
     "lucide-react",
     "@remixicon/react"
   ],
-  "registryDependencies": [
-    "https://reui.io/r/select.json"
-  ],
+  "registryDependencies": ["https://reui.io/r/select.json"],
   "files": [
     {
       "path": "registry/default/components/select/custom-indicator.tsx",

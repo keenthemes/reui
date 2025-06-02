@@ -12,11 +12,7 @@ import {
   CommandItem,
   CommandList,
 } from '@/registry/default/ui/command';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/registry/default/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@/registry/default/ui/popover';
 import { ScrollArea, ScrollBar } from '@/registry/default/ui/scroll-area';
 
 const groupedCountries = [
@@ -99,9 +95,7 @@ export default function ComboboxDemo() {
         >
           <span className={cn('truncate')}>
             {value
-              ? groupedCountries
-                  .flatMap((group) => group.countries)
-                  .find((country) => country.value === value)?.label
+              ? groupedCountries.flatMap((group) => group.countries).find((country) => country.value === value)?.label
               : 'Select country...'}
           </span>
           <ButtonArrow />

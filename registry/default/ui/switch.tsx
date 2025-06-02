@@ -134,11 +134,7 @@ function SwitchWrapper({
 }: React.HTMLAttributes<HTMLDivElement> & { permanent?: boolean }) {
   return (
     <SwitchContext.Provider value={{ permanent }}>
-      <div
-        data-slot="switch-wrapper"
-        className={cn('relative inline-flex items-center', className)}
-        {...props}
-      >
+      <div data-slot="switch-wrapper" className={cn('relative inline-flex items-center', className)} {...props}>
         {children}
       </div>
     </SwitchContext.Provider>
@@ -162,9 +158,7 @@ function Switch({
       className={cn(switchVariants({ shape, size, permanent }), className)}
       {...props}
     >
-      <SwitchPrimitives.Thumb
-        className={cn(switchThumbVariants({ shape, size }), thumbClassName)}
-      />
+      <SwitchPrimitives.Thumb className={cn(switchThumbVariants({ shape, size }), thumbClassName)} />
     </SwitchPrimitives.Root>
   );
 }
@@ -173,8 +167,7 @@ function SwitchIndicator({
   className,
   state,
   ...props
-}: React.HTMLAttributes<HTMLSpanElement> &
-  VariantProps<typeof switchIndicatorVariants>) {
+}: React.HTMLAttributes<HTMLSpanElement> & VariantProps<typeof switchIndicatorVariants>) {
   const context = useSwitchContext();
   const permanent = context?.permanent ?? false;
 

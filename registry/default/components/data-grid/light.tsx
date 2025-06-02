@@ -214,9 +214,7 @@ export default function DataGridDemo() {
     pageIndex: 0,
     pageSize: 5,
   });
-  const [sorting, setSorting] = useState<SortingState>([
-    { id: 'name', desc: true },
-  ]);
+  const [sorting, setSorting] = useState<SortingState>([{ id: 'name', desc: true }]);
 
   const columns = useMemo<ColumnDef<IData>[]>(
     () => [
@@ -225,28 +223,20 @@ export default function DataGridDemo() {
         id: 'name',
         header: 'Name',
         cell: ({ row }) => {
-          const availability = row.original
-            .availability as keyof typeof avatarStatusVariants;
+          const availability = row.original.availability as keyof typeof avatarStatusVariants;
 
           return (
             <div className="flex items-center gap-3">
               <Avatar className="size-8">
-                <AvatarImage
-                  src={`/media/avatars/${row.original.avatar}`}
-                  alt={row.original.name}
-                />
+                <AvatarImage src={`/media/avatars/${row.original.avatar}`} alt={row.original.name} />
                 <AvatarFallback>N</AvatarFallback>
                 <AvatarIndicator className="-end-2 -bottom-2">
                   <AvatarStatus variant={availability} className="size-2.5" />
                 </AvatarIndicator>
               </Avatar>
               <div className="space-y-px">
-                <div className="font-medium text-foreground">
-                  {row.original.name}
-                </div>
-                <div className="text-muted-foreground">
-                  {row.original.email}
-                </div>
+                <div className="font-medium text-foreground">{row.original.name}</div>
+                <div className="text-muted-foreground">{row.original.email}</div>
               </div>
             </div>
           );
@@ -262,12 +252,8 @@ export default function DataGridDemo() {
         cell: ({ row }) => {
           return (
             <div className="space-y-0.5">
-              <div className="font-medium text-foreground">
-                {row.original.role}
-              </div>
-              <div className="text-muted-foreground">
-                {row.original.company}
-              </div>
+              <div className="font-medium text-foreground">{row.original.role}</div>
+              <div className="text-muted-foreground">{row.original.company}</div>
             </div>
           );
         },
@@ -282,9 +268,7 @@ export default function DataGridDemo() {
           return (
             <div className="flex items-center gap-1.5">
               {row.original.flag}
-              <div className="font-medium text-foreground">
-                {row.original.location}
-              </div>
+              <div className="font-medium text-foreground">{row.original.location}</div>
             </div>
           );
         },

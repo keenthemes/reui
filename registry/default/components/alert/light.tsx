@@ -1,12 +1,5 @@
 import { Alert, AlertIcon, AlertTitle } from '@/registry/default/ui/alert';
-import {
-  Bell,
-  CircleAlert,
-  CircleCheck,
-  MessageSquareWarning,
-  ShieldAlert,
-  TriangleAlert,
-} from 'lucide-react';
+import { Bell, CircleAlert, CircleCheck, MessageSquareWarning, ShieldAlert, TriangleAlert } from 'lucide-react';
 
 export default function AlertDemo() {
   return (

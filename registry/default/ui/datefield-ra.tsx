@@ -17,11 +17,7 @@ import {
   TimeValue as TimeValueRa,
 } from 'react-aria-components';
 
-function DateField<T extends DateValueRa>({
-  className,
-  children,
-  ...props
-}: DateFieldProps<T>) {
+function DateField<T extends DateValueRa>({ className, children, ...props }: DateFieldProps<T>) {
   return (
     <DateFieldRa
       className={composeRenderProps(className, (className) => cn(className))}
@@ -33,11 +29,7 @@ function DateField<T extends DateValueRa>({
   );
 }
 
-function TimeField<T extends TimeValueRa>({
-  className,
-  children,
-  ...props
-}: TimeFieldProps<T>) {
+function TimeField<T extends TimeValueRa>({ className, children, ...props }: TimeFieldProps<T>) {
   return (
     <TimeFieldRa
       className={composeRenderProps(className, (className) => cn(className))}
@@ -76,18 +68,12 @@ const dateInputStyles = `
   data-focus-within:has-aria-invalid:ring-destructive/20 dark:data-focus-within:has-aria-invalid:ring-destructive/40 data-focus-within:has-aria-invalid:border-destructive
 `;
 
-interface DateInputProps
-  extends DateInputPropsRa,
-    VariantProps<typeof inputVariants> {
+interface DateInputProps extends DateInputPropsRa, VariantProps<typeof inputVariants> {
   className?: string;
   variant?: VariantProps<typeof inputVariants>['variant'];
 }
 
-function DateInput({
-  className,
-  variant = 'md',
-  ...props
-}: Omit<DateInputProps, 'children'>) {
+function DateInput({ className, variant = 'md', ...props }: Omit<DateInputProps, 'children'>) {
   return (
     <DateInputRa
       data-slot="input"

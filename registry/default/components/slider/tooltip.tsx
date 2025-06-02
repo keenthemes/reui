@@ -2,12 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Slider, SliderThumb } from '@/registry/default/ui/slider';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/registry/default/ui/tooltip';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/registry/default/ui/tooltip';
 
 export default function SliderDemo() {
   const [value, setValue] = useState<number[]>([100, 450]);

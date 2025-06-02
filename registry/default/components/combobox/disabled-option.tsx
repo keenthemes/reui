@@ -12,11 +12,7 @@ import {
   CommandItem,
   CommandList,
 } from '@/registry/default/ui/command';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/registry/default/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@/registry/default/ui/popover';
 
 const programmingLanguages = [
   {
@@ -67,9 +63,7 @@ export default function ComboboxDemo() {
           className="w-[200px]"
         >
           <span className={cn('truncate')}>
-            {value
-              ? programmingLanguages.find((lang) => lang.value === value)?.label
-              : 'Select language...'}
+            {value ? programmingLanguages.find((lang) => lang.value === value)?.label : 'Select language...'}
           </span>
           <ButtonArrow />
         </Button>
@@ -90,9 +84,7 @@ export default function ComboboxDemo() {
                       setOpen(false);
                     }
                   }}
-                  className={cn(
-                    lang.disabled && 'cursor-not-allowed opacity-50',
-                  )}
+                  className={cn(lang.disabled && 'cursor-not-allowed opacity-50')}
                   disabled={lang.disabled}
                 >
                   <span className="truncate">{lang.label}</span>

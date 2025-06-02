@@ -90,10 +90,7 @@ export default function TableDemo() {
           <TableCell className="text-right">
             {subscriptions
               .filter((sub) => sub.status === 'Active')
-              .reduce(
-                (total, sub) => total + parseFloat(sub.amount.slice(1)),
-                0,
-              )
+              .reduce((total, sub) => total + parseFloat(sub.amount.slice(1)), 0)
               .toLocaleString('en-US', {
                 style: 'currency',
                 currency: 'USD',

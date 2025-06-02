@@ -8,10 +8,7 @@ export function SiteFooter() {
       properties: {
         category: 'navigation',
         label: `Footer ${linkName} Click`,
-        destination:
-          linkName === 'keenthemes'
-            ? 'https://keenthemes.com'
-            : '/privacy-policy',
+        destination: linkName === 'keenthemes' ? 'https://keenthemes.com' : '/privacy-policy',
       },
     });
   };

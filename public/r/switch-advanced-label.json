@@ -9,10 +9,7 @@
     "class-variance-authority",
     "@radix-ui/react-switch"
   ],
-  "registryDependencies": [
-    "https://reui.io/r/label.json",
-    "https://reui.io/r/switch.json"
-  ],
+  "registryDependencies": ["https://reui.io/r/label.json", "https://reui.io/r/switch.json"],
   "files": [
     {
       "path": "registry/default/components/switch/advanced-label.tsx",

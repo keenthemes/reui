@@ -11,11 +11,7 @@ import {
   CommandItem,
   CommandList,
 } from '@/registry/default/ui/command';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/registry/default/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@/registry/default/ui/popover';
 import { RiCheckboxCircleFill } from '@remixicon/react';
 
 const topCities = [
@@ -61,9 +57,7 @@ export default function ComboboxDemo() {
           className="w-[200px]"
         >
           <span className={cn('truncate')}>
-            {value
-              ? topCities.find((city) => city.value === value)?.label
-              : 'Select city...'}
+            {value ? topCities.find((city) => city.value === value)?.label : 'Select city...'}
           </span>
           <ButtonArrow />
         </Button>
@@ -84,11 +78,7 @@ export default function ComboboxDemo() {
                   }}
                 >
                   <span className="truncate">{city.label}</span>
-                  {value === city.value && (
-                    <RiCheckboxCircleFill
-                      className={cn('size-4 ms-auto text-primary')}
-                    />
-                  )}
+                  {value === city.value && <RiCheckboxCircleFill className={cn('size-4 ms-auto text-primary')} />}
                 </CommandItem>
               ))}
             </CommandGroup>

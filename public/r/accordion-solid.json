@@ -2,16 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "accordion-solid",
   "type": "registry:component",
-  "dependencies": [
-    "clsx",
-    "tailwind-merge",
-    "@radix-ui/react-accordion",
-    "class-variance-authority",
-    "lucide-react"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/accordion.json"
-  ],
+  "dependencies": ["clsx", "tailwind-merge", "@radix-ui/react-accordion", "class-variance-authority", "lucide-react"],
+  "registryDependencies": ["https://reui.io/r/accordion.json"],
   "files": [
     {
       "path": "registry/default/components/accordion/solid.tsx",

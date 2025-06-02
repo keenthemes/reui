@@ -12,11 +12,7 @@ import {
   CommandItem,
   CommandList,
 } from '@/registry/default/ui/command';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/registry/default/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@/registry/default/ui/popover';
 import { X } from 'lucide-react';
 
 const topCities = [
@@ -34,15 +30,10 @@ const topCities = [
 
 export default function ComboboxDemo() {
   const [open, setOpen] = React.useState(false);
-  const [selectedValues, setSelectedValues] = React.useState<string[]>([
-    'london',
-    'tokyo',
-  ]);
+  const [selectedValues, setSelectedValues] = React.useState<string[]>(['london', 'tokyo']);
 
   const toggleSelection = (value: string) => {
-    setSelectedValues((prev) =>
-      prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value],
-    );
+    setSelectedValues((prev) => (prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]));
   };
 
   const removeSelection = (value: string) => {
@@ -94,11 +85,7 @@ export default function ComboboxDemo() {
               <CommandEmpty>No city found.</CommandEmpty>
               <CommandGroup>
                 {topCities.map((city) => (
-                  <CommandItem
-                    key={city.value}
-                    value={city.value}
-                    onSelect={() => toggleSelection(city.value)}
-                  >
+                  <CommandItem key={city.value} value={city.value} onSelect={() => toggleSelection(city.value)}>
                     <span className="truncate">{city.label}</span>
                     {selectedValues.includes(city.value) && <CommandCheck />}
                   </CommandItem>

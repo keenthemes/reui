@@ -3,9 +3,7 @@ import { cn } from '@/registry/default/lib/utils';
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
 
-export interface BadgeProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof badgeVariants> {
+export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof badgeVariants> {
   asChild?: boolean;
   dotClassName?: string;
   disabled?: boolean;
@@ -62,8 +60,7 @@ const badgeVariants = cva(
       {
         variant: 'secondary',
         appearance: 'outline',
-        className:
-          'bg-secondary dark:bg-secondary/50 border-border text-secondary-foreground',
+        className: 'bg-secondary dark:bg-secondary/50 border-border text-secondary-foreground',
       },
       {
         variant: 'success',
@@ -98,42 +95,37 @@ const badgeVariants = cva(
       {
         variant: 'primary',
         appearance: 'light',
-        className: 'bg-primary/10 text-primary',
+        className: 'bg-primary/10 border-0 text-primary',
       },
       {
         variant: 'secondary',
         appearance: 'light',
-        className:
-          'bg-secondary dark:bg-secondary/50 text-secondary-foreground',
+        className: 'bg-secondary dark:bg-secondary/50 border-0 text-secondary-foreground',
       },
       {
         variant: 'success',
         appearance: 'light',
-        className:
-          'border bg-green-100 text-green-700 dark:text-green-600 dark:bg-green-950/50',
+        className: 'border bg-green-100 border-0 text-green-700 dark:text-green-600 dark:bg-green-950/50',
       },
       {
         variant: 'warning',
         appearance: 'light',
-        className:
-          'border bg-yellow-100 text-yellow-700 dark:text-yellow-600 dark:bg-yellow-950/50',
+        className: 'border bg-yellow-100 border-0 text-yellow-700 dark:text-yellow-600 dark:bg-yellow-950/50',
       },
       {
-        variant: 'info',
+        variant: 'info',  
         appearance: 'light',
-        className:
-          'border bg-violet-100 text-violet-700 dark:text-violet-600 dark:bg-violet-950/50',
+        className: 'border bg-violet-100 border-0 text-violet-700 dark:text-violet-600 dark:bg-violet-950/50',
       },
       {
         variant: 'mono',
         appearance: 'light',
-        className:
-          'bg-zinc-200 dark:bg-zinc-300/10 text-zinc-950 dark:text-zinc-200',
+        className: 'bg-zinc-200 border-0 dark:bg-zinc-300/10 text-zinc-950 dark:text-zinc-200',
       },
       {
         variant: 'destructive',
         appearance: 'light',
-        className: 'bg-destructive/10 text-destructive',
+        className: 'bg-destructive/10 border-0 text-destructive',
       },
 
       {
@@ -191,35 +183,18 @@ const badgeButtonVariants = cva(
   },
 );
 
-function Badge({
-  className,
-  variant,
-  size,
-  appearance,
-  shape,
-  asChild = false,
-  disabled,
-  ...props
-}: BadgeProps) {
+function Badge({ className, variant, size, appearance, shape, asChild = false, disabled, ...props }: BadgeProps) {
   const Comp = asChild ? Slot : 'span';
   return (
     <Comp
       data-slot="badge"
-      className={cn(
-        badgeVariants({ variant, size, appearance, shape, disabled }),
-        className,
-      )}
+      className={cn(badgeVariants({ variant, size, appearance, shape, disabled }), className)}
       {...props}
     />
   );
 }
 
-function BadgeButton({
-  className,
-  variant,
-  asChild = false,
-  ...props
-}: BadgeButtonProps) {
+function BadgeButton({ className, variant, asChild = false, ...props }: BadgeButtonProps) {
   const Comp = asChild ? Slot : 'span';
   return (
     <Comp
@@ -235,10 +210,7 @@ function BadgeDot({ className, ...props }: BadgeDotProps) {
   return (
     <span
       data-slot="badge-dot"
-      className={cn(
-        'size-1.5 rounded-full bg-[currentColor] opacity-75',
-        className,
-      )}
+      className={cn('size-1.5 rounded-full bg-[currentColor] opacity-75', className)}
       {...props}
     />
   );

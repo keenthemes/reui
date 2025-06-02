@@ -24,15 +24,8 @@ function Label({
   className,
   variant,
   ...props
-}: React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root> &
-  VariantProps<typeof labelVariants>) {
-  return (
-    <LabelPrimitive.Root
-      data-slot="label"
-      className={cn(labelVariants({ variant }), className)}
-      {...props}
-    />
-  );
+}: React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root> & VariantProps<typeof labelVariants>) {
+  return <LabelPrimitive.Root data-slot="label" className={cn(labelVariants({ variant }), className)} {...props} />;
 }
 
 export { Label };

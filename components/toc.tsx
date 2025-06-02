@@ -98,16 +98,12 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
               href={item.url}
               className={cn(
                 'inline-block no-underline transition-colors hover:text-primary',
-                item.url === `#${activeItem}`
-                  ? 'font-medium text-primary'
-                  : 'text-accent-foreground',
+                item.url === `#${activeItem}` ? 'font-medium text-primary' : 'text-accent-foreground',
               )}
             >
               {item.title}
             </a>
-            {item.items?.length ? (
-              <Tree tree={item} level={level + 1} activeItem={activeItem} />
-            ) : null}
+            {item.items?.length ? <Tree tree={item} level={level + 1} activeItem={activeItem} /> : null}
           </li>
         );
       })}

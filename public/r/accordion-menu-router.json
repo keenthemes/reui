@@ -2,16 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "accordion-menu-router",
   "type": "registry:component",
-  "dependencies": [
-    "clsx",
-    "tailwind-merge",
-    "@radix-ui/react-accordion",
-    "class-variance-authority",
-    "lucide-react"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/accordion-menu.json"
-  ],
+  "dependencies": ["clsx", "tailwind-merge", "@radix-ui/react-accordion", "class-variance-authority", "lucide-react"],
+  "registryDependencies": ["https://reui.io/r/accordion-menu.json"],
   "files": [
     {
       "path": "registry/default/components/accordion-menu/router.tsx",

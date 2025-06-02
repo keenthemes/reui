@@ -12,11 +12,7 @@ import {
   CommandItem,
   CommandList,
 } from '@/registry/default/ui/command';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/registry/default/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@/registry/default/ui/popover';
 
 const topCities = [
   { value: 'tokyo', label: 'Tokyo' },
@@ -43,9 +39,7 @@ export default function ComboboxDemo() {
   ]);
 
   const toggleSelection = (value: string) => {
-    setSelectedValues((prev) =>
-      prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value],
-    );
+    setSelectedValues((prev) => (prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]));
   };
 
   return (
@@ -61,10 +55,7 @@ export default function ComboboxDemo() {
           >
             {selectedValues.length > 3 ? (
               <span>
-                <Badge className="font-medium text-foreground">
-                  {selectedValues.length}
-                </Badge>{' '}
-                cities selected
+                <Badge className="font-medium text-foreground">{selectedValues.length}</Badge> cities selected
               </span>
             ) : (
               <span>Select cities</span>
@@ -79,11 +70,7 @@ export default function ComboboxDemo() {
               <CommandEmpty>No city found.</CommandEmpty>
               <CommandGroup>
                 {topCities.map((city) => (
-                  <CommandItem
-                    key={city.value}
-                    value={city.value}
-                    onSelect={() => toggleSelection(city.value)}
-                  >
+                  <CommandItem key={city.value} value={city.value} onSelect={() => toggleSelection(city.value)}>
                     <span className="truncate">{city.label}</span>
                     {selectedValues.includes(city.value) && <CommandCheck />}
                   </CommandItem>

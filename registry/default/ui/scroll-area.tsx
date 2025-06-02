@@ -15,11 +15,7 @@ function ScrollArea({
   viewportClassName?: string;
 }) {
   return (
-    <ScrollAreaPrimitive.Root
-      data-slot="scroll-area"
-      className={cn('relative overflow-hidden', className)}
-      {...props}
-    >
+    <ScrollAreaPrimitive.Root data-slot="scroll-area" className={cn('relative overflow-hidden', className)} {...props}>
       <ScrollAreaPrimitive.Viewport
         ref={viewportRef}
         className={cn('h-full w-full rounded-[inherit]', viewportClassName)}
@@ -36,19 +32,15 @@ function ScrollBar({
   className,
   orientation = 'vertical',
   ...props
-}: React.ComponentPropsWithoutRef<
-  typeof ScrollAreaPrimitive.ScrollAreaScrollbar
->) {
+}: React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>) {
   return (
     <ScrollAreaPrimitive.ScrollAreaScrollbar
       data-slot="scroll-area-scrollbar"
       orientation={orientation}
       className={cn(
         'flex touch-none select-none transition-colors',
-        orientation === 'vertical' &&
-          'h-full w-2 border-l border-l-transparent p-[1px]',
-        orientation === 'horizontal' &&
-          'h-2 flex-col border-t border-t-transparent p-[1px]',
+        orientation === 'vertical' && 'h-full w-2 border-l border-l-transparent p-[1px]',
+        orientation === 'horizontal' && 'h-2 flex-col border-t border-t-transparent p-[1px]',
         className,
       )}
       {...props}

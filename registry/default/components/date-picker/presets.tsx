@@ -4,11 +4,7 @@ import { useEffect, useState } from 'react';
 import { cn } from '@/registry/default/lib/utils';
 import { Button } from '@/registry/default/ui/button';
 import { Calendar } from '@/registry/default/ui/calendar';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/registry/default/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@/registry/default/ui/popover';
 import {
   endOfMonth,
   endOfYear,
@@ -57,9 +53,7 @@ export default function DatePickerDemo() {
   const [month, setMonth] = useState(today);
   const defaultPreset = presets[2];
   const [date, setDate] = useState<DateRange | undefined>(defaultPreset.range); // Default: Last 7 days
-  const [selectedPreset, setSelectedPreset] = useState<string | null>(
-    defaultPreset.label,
-  );
+  const [selectedPreset, setSelectedPreset] = useState<string | null>(defaultPreset.label);
 
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
@@ -88,14 +82,8 @@ export default function DatePickerDemo() {
   useEffect(() => {
     const matchedPreset = presets.find(
       (preset) =>
-        isEqual(
-          startOfDay(preset.range.from),
-          startOfDay(date?.from || new Date(0)),
-        ) &&
-        isEqual(
-          startOfDay(preset.range.to),
-          startOfDay(date?.to || new Date(0)),
-        ),
+        isEqual(startOfDay(preset.range.from), startOfDay(date?.from || new Date(0))) &&
+        isEqual(startOfDay(preset.range.to), startOfDay(date?.to || new Date(0))),
     );
     setSelectedPreset(matchedPreset?.label || null);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -115,8 +103,7 @@ export default function DatePickerDemo() {
           {date?.from ? (
             date.to ? (
               <>
-                {format(date.from, 'LLL dd, y')} -{' '}
-                {format(date.to, 'LLL dd, y')}
+                {format(date.from, 'LLL dd, y')} - {format(date.to, 'LLL dd, y')}
               </>
             ) : (
               format(date.from, 'LLL dd, y')
@@ -136,10 +123,7 @@ export default function DatePickerDemo() {
                     key={index}
                     type="button"
                     variant="ghost"
-                    className={cn(
-                      'h-8 w-full justify-start',
-                      selectedPreset === preset.label && 'bg-accent',
-                    )}
+                    className={cn('h-8 w-full justify-start', selectedPreset === preset.label && 'bg-accent')}
                     onClick={() => {
                       setDate(preset.range);
 

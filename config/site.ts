@@ -7,8 +7,7 @@ export const siteConfig = {
   links: {
     twitter: 'https://x.com/reui_io',
     github: 'https://github.com/keenthemes/reui',
-    suggestions:
-      'https://github.com/keenthemes/reui/discussions/categories/suggestions',
+    suggestions: 'https://github.com/keenthemes/reui/discussions/categories/suggestions',
   },
 };
 

@@ -3,13 +3,7 @@ import path from 'path';
 import { codeToHtml } from 'shiki';
 
 const sourcePath = path.resolve('./registry/default/components');
-const cachePath = path.join(
-  process.cwd(),
-  'registry',
-  '.cache',
-  'default',
-  'components',
-);
+const cachePath = path.join(process.cwd(), 'registry', '.cache', 'default', 'components');
 
 // Ensure the cache directory exists
 async function ensureCacheDir() {
@@ -57,11 +51,7 @@ async function processComponentDocs(componentFolder, componentName) {
   }
 
   // Save component cache file
-  await fs.writeFile(
-    componentCacheFile,
-    JSON.stringify(cacheData, null, 2),
-    'utf-8',
-  );
+  await fs.writeFile(componentCacheFile, JSON.stringify(cacheData, null, 2), 'utf-8');
   console.log(`Cached: ${componentName}`);
 }
 

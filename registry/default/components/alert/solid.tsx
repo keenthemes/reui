@@ -1,9 +1,4 @@
-import {
-  Alert,
-  AlertIcon,
-  AlertTitle,
-  AlertToolbar,
-} from '@/registry/default/ui/alert';
+import { Alert, AlertIcon, AlertTitle, AlertToolbar } from '@/registry/default/ui/alert';
 import { Button } from '@/registry/default/ui/button';
 import {
   RiCheckboxCircleFill,
@@ -22,13 +17,7 @@ export default function AlertDemo() {
         </AlertIcon>
         <AlertTitle>This is a primary alert</AlertTitle>
         <AlertToolbar>
-          <Button
-            variant="inverse"
-            mode="link"
-            underlined="solid"
-            size="sm"
-            className="flex mt-0.5"
-          >
+          <Button variant="inverse" mode="link" underlined="solid" size="sm" className="flex mt-0.5">
             Upgrade
           </Button>
         </AlertToolbar>
@@ -40,13 +29,7 @@ export default function AlertDemo() {
         </AlertIcon>
         <AlertTitle>This is a success alert</AlertTitle>
         <AlertToolbar>
-          <Button
-            variant="inverse"
-            mode="link"
-            underlined="solid"
-            size="sm"
-            className="flex mt-0.5"
-          >
+          <Button variant="inverse" mode="link" underlined="solid" size="sm" className="flex mt-0.5">
             Upgrade
           </Button>
         </AlertToolbar>
@@ -58,13 +41,7 @@ export default function AlertDemo() {
         </AlertIcon>
         <AlertTitle>This is a destructive alert</AlertTitle>
         <AlertToolbar>
-          <Button
-            variant="inverse"
-            mode="link"
-            underlined="solid"
-            size="sm"
-            className="flex mt-0.5"
-          >
+          <Button variant="inverse" mode="link" underlined="solid" size="sm" className="flex mt-0.5">
             Upgrade
           </Button>
         </AlertToolbar>
@@ -76,13 +53,7 @@ export default function AlertDemo() {
         </AlertIcon>
         <AlertTitle>This is an info alert</AlertTitle>
         <AlertToolbar>
-          <Button
-            variant="inverse"
-            mode="link"
-            underlined="solid"
-            size="sm"
-            className="flex mt-0.5"
-          >
+          <Button variant="inverse" mode="link" underlined="solid" size="sm" className="flex mt-0.5">
             Upgrade
           </Button>
         </AlertToolbar>
@@ -94,13 +65,7 @@ export default function AlertDemo() {
         </AlertIcon>
         <AlertTitle>This is a warning alert</AlertTitle>
         <AlertToolbar>
-          <Button
-            variant="inverse"
-            mode="link"
-            underlined="solid"
-            size="sm"
-            className="flex mt-0.5"
-          >
+          <Button variant="inverse" mode="link" underlined="solid" size="sm" className="flex mt-0.5">
             Upgrade
           </Button>
         </AlertToolbar>

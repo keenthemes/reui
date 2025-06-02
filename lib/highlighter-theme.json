@@ -218,14 +218,7 @@
     },
     {
       "name": "Fallback keywords",
-      "scope": [
-        "storage.type.ts",
-        "keyword",
-        "keyword.other",
-        "keyword.control",
-        "storage.type",
-        "storage.modifier"
-      ],
+      "scope": ["storage.type.ts", "keyword", "keyword.other", "keyword.control", "storage.type", "storage.modifier"],
       "settings": {
         "foreground": "#fff8"
       }
@@ -316,11 +309,7 @@
     },
     {
       "name": "Fallback Properties & func arguments",
-      "scope": [
-        "variable.other.property",
-        "entity.name.goto-label",
-        "entity.name.variable.parameter"
-      ],
+      "scope": ["variable.other.property", "entity.name.goto-label", "entity.name.variable.parameter"],
       "settings": {
         "foreground": "#fff"
       }
@@ -340,10 +329,7 @@
     },
     {
       "name": "HTML Tags",
-      "scope": [
-        "meta.tag entity.name.tag.html",
-        "entity.name.tag.template.html"
-      ],
+      "scope": ["meta.tag entity.name.tag.html", "entity.name.tag.template.html"],
       "settings": {
         "foreground": "#fff"
       }

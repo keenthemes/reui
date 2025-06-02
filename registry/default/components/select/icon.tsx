@@ -1,10 +1,4 @@
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/registry/default/ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/registry/default/ui/select';
 import { RiGatsbyLine, RiNextjsLine, RiReactjsLine } from '@remixicon/react';
 
 export default function SelectDemo() {

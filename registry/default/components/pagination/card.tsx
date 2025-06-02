@@ -1,18 +1,8 @@
 import Link from 'next/link';
 import { Button } from '@/registry/default/ui/button';
 import { Card } from '@/registry/default/ui/card';
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-} from '@/registry/default/ui/pagination';
-import {
-  ChevronFirst,
-  ChevronLast,
-  ChevronLeft,
-  ChevronRight,
-} from 'lucide-react';
+import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem } from '@/registry/default/ui/pagination';
+import { ChevronFirst, ChevronLast, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function PaginationDemo() {
   return (

@@ -1,20 +1,9 @@
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@/registry/default/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/registry/default/ui/avatar';
 import { Badge } from '@/registry/default/ui/badge';
 import { Button } from '@/registry/default/ui/button';
-import {
-  Card,
-  CardFooter,
-  CardHeader,
-  CardTable,
-  CardTitle,
-  CardToolbar,
-} from '@/registry/default/ui/card';
+import { Card, CardFooter, CardHeader, CardTable, CardTitle, CardToolbar } from '@/registry/default/ui/card';
 import { DataGrid } from '@/registry/default/ui/data-grid';
 import { DataGridColumnHeader } from '@/registry/default/ui/data-grid-column-header';
 import { DataGridPagination } from '@/registry/default/ui/data-grid-pagination';
@@ -223,9 +212,7 @@ export default function DataGridDemo() {
     pageIndex: 0,
     pageSize: 5,
   });
-  const [sorting, setSorting] = useState<SortingState>([
-    { id: 'name', desc: true },
-  ]);
+  const [sorting, setSorting] = useState<SortingState>([{ id: 'name', desc: true }]);
   const [isLoading, setIsLoading] = useState(true);
 
   const handleToggleLoading = () => {
@@ -237,30 +224,17 @@ export default function DataGridDemo() {
       {
         accessorKey: 'name',
         id: 'name',
-        header: ({ column }) => (
-          <DataGridColumnHeader
-            title="User"
-            visibility={true}
-            column={column}
-          />
-        ),
+        header: ({ column }) => <DataGridColumnHeader title="User" visibility={true} column={column} />,
         cell: ({ row }) => {
           return (
             <div className="flex items-center gap-3">
               <Avatar className="size-8">
-                <AvatarImage
-                  src={`/media/avatars/${row.original.avatar}`}
-                  alt={row.original.name}
-                />
+                <AvatarImage src={`/media/avatars/${row.original.avatar}`} alt={row.original.name} />
                 <AvatarFallback>N</AvatarFallback>
               </Avatar>
               <div className="space-y-px">
-                <div className="font-medium text-foreground">
-                  {row.original.name}
-                </div>
-                <div className="text-muted-foreground">
-                  {row.original.email}
-                </div>
+                <div className="font-medium text-foreground">{row.original.name}</div>
+                <div className="text-muted-foreground">{row.original.email}</div>
               </div>
             </div>
           );
@@ -284,18 +258,9 @@ export default function DataGridDemo() {
       {
         accessorKey: 'email',
         id: 'email',
-        header: ({ column }) => (
-          <DataGridColumnHeader
-            title="Email"
-            visibility={true}
-            column={column}
-          />
-        ),
+        header: ({ column }) => <DataGridColumnHeader title="Email" visibility={true} column={column} />,
         cell: (info) => (
-          <Link
-            href={`mailto:${info.getValue()}`}
-            className="hover:text-primary hover:underline"
-          >
+          <Link href={`mailto:${info.getValue()}`} className="hover:text-primary hover:underline">
             {info.getValue() as string}
           </Link>
         ),
@@ -312,20 +277,12 @@ export default function DataGridDemo() {
       {
         accessorKey: 'location',
         id: 'location',
-        header: ({ column }) => (
-          <DataGridColumnHeader
-            title="Location"
-            visibility={true}
-            column={column}
-          />
-        ),
+        header: ({ column }) => <DataGridColumnHeader title="Location" visibility={true} column={column} />,
         cell: ({ row }) => {
           return (
             <div className="flex items-center gap-1.5">
               {row.original.flag}
-              <div className="font-medium text-foreground">
-                {row.original.location}
-              </div>
+              <div className="font-medium text-foreground">{row.original.location}</div>
             </div>
           );
         },
@@ -342,13 +299,7 @@ export default function DataGridDemo() {
       {
         accessorKey: 'status',
         id: 'status',
-        header: ({ column }) => (
-          <DataGridColumnHeader
-            title="Status"
-            visibility={true}
-            column={column}
-          />
-        ),
+        header: ({ column }) => <DataGridColumnHeader title="Status" visibility={true} column={column} />,
         cell: ({ row }) => {
           const status = row.original.status;
 
@@ -378,9 +329,7 @@ export default function DataGridDemo() {
     [],
   );
 
-  const [columnOrder, setColumnOrder] = useState<string[]>(
-    columns.map((column) => column.id as string),
-  );
+  const [columnOrder, setColumnOrder] = useState<string[]>(columns.map((column) => column.id as string));
 
   const table = useReactTable({
     columns,

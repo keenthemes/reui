@@ -1,10 +1,6 @@
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@/registry/default/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/registry/default/ui/avatar';
 import { DataGrid, DataGridContainer } from '@/registry/default/ui/data-grid';
 import { DataGridPagination } from '@/registry/default/ui/data-grid-pagination';
 import { DataGridTable } from '@/registry/default/ui/data-grid-table';
@@ -211,9 +207,7 @@ export default function DataGridDemo() {
     pageIndex: 0,
     pageSize: 5,
   });
-  const [sorting, setSorting] = useState<SortingState>([
-    { id: 'name', desc: true },
-  ]);
+  const [sorting, setSorting] = useState<SortingState>([{ id: 'name', desc: true }]);
 
   const columns = useMemo<ColumnDef<Data>[]>(
     () => [
@@ -225,16 +219,10 @@ export default function DataGridDemo() {
           return (
             <div className="flex items-center gap-2">
               <Avatar className="size-6">
-                <AvatarImage
-                  src={`/media/avatars/${row.original.avatar}`}
-                  alt={row.original.name}
-                />
+                <AvatarImage src={`/media/avatars/${row.original.avatar}`} alt={row.original.name} />
                 <AvatarFallback>N</AvatarFallback>
               </Avatar>
-              <Link
-                href="#"
-                className="font-medium text-foreground hover:text-primary"
-              >
+              <Link href="#" className="font-medium text-foreground hover:text-primary">
                 {row.original.name}
               </Link>
             </div>
@@ -248,10 +236,7 @@ export default function DataGridDemo() {
         accessorKey: 'email',
         header: 'Email',
         cell: (info) => (
-          <Link
-            href={`mailto:${info.getValue()}`}
-            className="hover:text-primary hover:underline"
-          >
+          <Link href={`mailto:${info.getValue()}`} className="hover:text-primary hover:underline">
             {info.getValue() as string}
           </Link>
         ),

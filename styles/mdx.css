@@ -54,10 +54,7 @@
 }
 
 /* Dark mode scrollbar styling using the .dark class */
-html:not(.dark)
-  .dark
-  [data-rehype-pretty-code-fragment]
-  > pre::-webkit-scrollbar-thumb {
+html:not(.dark) .dark [data-rehype-pretty-code-fragment] > pre::-webkit-scrollbar-thumb {
   background: hsl(var(--mono));
 }
 html:not(.dark) .dark [data-rehype-pretty-code-fragment] > pre {

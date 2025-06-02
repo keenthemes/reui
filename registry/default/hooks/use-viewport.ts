@@ -3,10 +3,7 @@ import { useEffect, useState } from 'react';
 type TUseViewport = [number, number];
 
 const useViewport = (): TUseViewport => {
-  const [dimensions, setDimensions] = useState<TUseViewport>([
-    window.innerHeight,
-    window.innerWidth,
-  ]);
+  const [dimensions, setDimensions] = useState<TUseViewport>([window.innerHeight, window.innerWidth]);
 
   useEffect(() => {
     const handleResize = (): void => {

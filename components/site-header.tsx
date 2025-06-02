@@ -50,12 +50,7 @@ export function SiteHeader() {
           <CommandMenu />
 
           <nav className="flex items-center gap-1">
-            <Button
-              variant="ghost"
-              mode="icon"
-              size="sm"
-              className="size-8 text-foreground"
-            >
+            <Button variant="ghost" mode="icon" size="sm" className="size-8 text-foreground">
               <Link
                 href={siteConfig.links.github}
                 target="_blank"
@@ -66,12 +61,7 @@ export function SiteHeader() {
                 <span className="sr-only">GitHub</span>
               </Link>
             </Button>
-            <Button
-              variant="ghost"
-              mode="icon"
-              size="sm"
-              className="size-8 text-foreground"
-            >
+            <Button variant="ghost" mode="icon" size="sm" className="size-8 text-foreground">
               <Link
                 href={siteConfig.links.twitter}
                 target="_blank"

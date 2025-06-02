@@ -11,10 +11,7 @@
     "lucide-react",
     "@tanstack/react-table"
   ],
-  "registryDependencies": [
-    "https://reui.io/r/checkbox.json",
-    "https://reui.io/r/data-grid.json"
-  ],
+  "registryDependencies": ["https://reui.io/r/checkbox.json", "https://reui.io/r/data-grid.json"],
   "files": [
     {
       "path": "registry/default/ui/data-grid-table.tsx",

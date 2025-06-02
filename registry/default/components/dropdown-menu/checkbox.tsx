@@ -17,8 +17,7 @@ export default function DropdownMenuDemo() {
 
   const [showTaskList, setShowTaskList] = React.useState<Checked>(true);
   const [showCalendar, setShowCalendar] = React.useState<Checked>(false);
-  const [showNotifications, setShowNotifications] =
-    React.useState<Checked>(true);
+  const [showNotifications, setShowNotifications] = React.useState<Checked>(true);
   const [showAnalytics, setShowAnalytics] = React.useState<Checked>(false);
 
   return (

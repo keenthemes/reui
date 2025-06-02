@@ -1,9 +1,5 @@
 import { useMemo, useState } from 'react';
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@/registry/default/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/registry/default/ui/avatar';
 import { DataGrid, DataGridContainer } from '@/registry/default/ui/data-grid';
 import { DataGridPagination } from '@/registry/default/ui/data-grid-pagination';
 import { DataGridTable } from '@/registry/default/ui/data-grid-table';
@@ -211,9 +207,7 @@ export default function DataGridDemo() {
     pageIndex: 0,
     pageSize: 5,
   });
-  const [sorting, setSorting] = useState<SortingState>([
-    { id: 'name', desc: true },
-  ]);
+  const [sorting, setSorting] = useState<SortingState>([{ id: 'name', desc: true }]);
   const [columnOrder, setColumnOrder] = useState<ColumnOrderState>([]);
 
   const columns = useMemo<ColumnDef<IData>[]>(
@@ -226,19 +220,12 @@ export default function DataGridDemo() {
           return (
             <div className="flex items-center gap-3">
               <Avatar className="size-8">
-                <AvatarImage
-                  src={`/media/avatars/${row.original.avatar}`}
-                  alt={row.original.name}
-                />
+                <AvatarImage src={`/media/avatars/${row.original.avatar}`} alt={row.original.name} />
                 <AvatarFallback>N</AvatarFallback>
               </Avatar>
               <div className="space-y-px">
-                <div className="font-medium text-foreground">
-                  {row.original.name}
-                </div>
-                <div className="text-muted-foreground">
-                  {row.original.email}
-                </div>
+                <div className="font-medium text-foreground">{row.original.name}</div>
+                <div className="text-muted-foreground">{row.original.email}</div>
               </div>
             </div>
           );
@@ -268,11 +255,7 @@ export default function DataGridDemo() {
       {
         accessorKey: 'balance',
         header: 'Salary',
-        cell: (info) => (
-          <span className="font-semibold">
-            ${(info.getValue() as number).toFixed(2)}
-          </span>
-        ),
+        cell: (info) => <span className="font-semibold">${(info.getValue() as number).toFixed(2)}</span>,
         size: 120,
       },
     ],

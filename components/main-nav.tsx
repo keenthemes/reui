@@ -36,9 +36,7 @@ export function MainNav() {
             onClick={() => handleMenuClick(item)}
             className={cn(
               'relative transition-colors hover:text-foreground/80 inline-flex items-center gap-1',
-              item.href &&
-                (item.href === pathname ||
-                  (item.href !== '/' && pathname?.startsWith(item.href)))
+              item.href && (item.href === pathname || (item.href !== '/' && pathname?.startsWith(item.href)))
                 ? 'text-foreground'
                 : 'text-foreground/60',
             )}

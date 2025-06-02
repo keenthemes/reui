@@ -13,11 +13,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/registry/default/ui/form';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/registry/default/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@/registry/default/ui/popover';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { RiCheckboxCircleFill } from '@remixicon/react';
 import { format } from 'date-fns';
@@ -44,10 +40,7 @@ const FormSchema = z.object({
       (val) =>
         !val ||
         (!val.from && !val.to) ||
-        (val.from &&
-          val.to &&
-          !isNaN(Date.parse(val.from)) &&
-          !isNaN(Date.parse(val.to))),
+        (val.from && val.to && !isNaN(Date.parse(val.from)) && !isNaN(Date.parse(val.to))),
       {
         message: 'Please select a valid date range.',
         path: ['rangeDate'],
@@ -74,8 +67,7 @@ export default function CombinedDatePickerForm() {
         `Range: ${format(new Date(data.rangeDate.from), 'PPP')} - ${format(new Date(data.rangeDate.to), 'PPP')}`,
       );
     }
-    const finalMessage =
-      message.length > 0 ? message.join(' | ') : 'No dates selected';
+    const finalMessage = message.length > 0 ? message.join(' | ') : 'No dates selected';
 
     toast.custom((t) => (
       <Alert variant="mono" icon="primary" onClose={() => toast.dismiss(t)}>
@@ -93,10 +85,7 @@ export default function CombinedDatePickerForm() {
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="w-[300px] space-y-6"
-      >
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-[300px] space-y-6">
         <FormField
           control={form.control}
           name="singleDate"
@@ -115,11 +104,7 @@ export default function CombinedDatePickerForm() {
                         className="w-full"
                       >
                         <CalendarIcon />
-                        {field.value ? (
-                          format(new Date(field.value), 'dd MMM, yyyy')
-                        ) : (
-                          <span>Pick a date</span>
-                        )}
+                        {field.value ? format(new Date(field.value), 'dd MMM, yyyy') : <span>Pick a date</span>}
                       </Button>
                       {field.value && (
                         <Button
@@ -153,9 +138,7 @@ export default function CombinedDatePickerForm() {
                   </PopoverContent>
                 </Popover>
               </FormControl>
-              <FormDescription>
-                Enter your single date to proceed
-              </FormDescription>
+              <FormDescription>Enter your single date to proceed</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -195,11 +178,7 @@ export default function CombinedDatePickerForm() {
                           className="absolute top-1/2 -end-0 -translate-y-1/2"
                           onClick={(e) => {
                             e.preventDefault();
-                            form.setValue(
-                              'rangeDate',
-                              { from: '', to: '' },
-                              { shouldValidate: true },
-                            );
+                            form.setValue('rangeDate', { from: '', to: '' }, { shouldValidate: true });
                           }}
                         >
                           <X />
@@ -234,9 +213,7 @@ export default function CombinedDatePickerForm() {
                   </PopoverContent>
                 </Popover>
               </FormControl>
-              <FormDescription>
-                Enter your date range to proceed
-              </FormDescription>
+              <FormDescription>Enter your date range to proceed</FormDescription>
               <FormMessage />
             </FormItem>
           )}

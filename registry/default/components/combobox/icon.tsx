@@ -13,11 +13,7 @@ import {
   CommandList,
   CommandSeparator,
 } from '@/registry/default/ui/command';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/registry/default/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@/registry/default/ui/popover';
 import { ScrollArea } from '@/registry/default/ui/scroll-area';
 import {
   Activity,
@@ -66,9 +62,7 @@ export default function ComboboxDemo() {
           className="w-[250px] justify-between"
         >
           <span className={cn('truncate')}>
-            {value
-              ? serviceCategories.find((item) => item.value === value)?.label
-              : 'Select a category...'}
+            {value ? serviceCategories.find((item) => item.value === value)?.label : 'Select a category...'}
           </span>
           <ButtonArrow />
         </Button>
@@ -101,11 +95,7 @@ export default function ComboboxDemo() {
           </CommandList>
           <CommandSeparator />
           <CommandGroup>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="w-full justify-start font-normal px-2.5"
-            >
+            <Button variant="ghost" size="sm" className="w-full justify-start font-normal px-2.5">
               <Plus className="size-4" aria-hidden="true" />
               Add category
             </Button>

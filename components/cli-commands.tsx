@@ -1,11 +1,6 @@
 'use client';
 
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from '@/registry/default/ui/tabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/registry/default/ui/tabs';
 import { useConfig } from '@/hooks/use-config';
 import CliCopyButton from '@/components/cli-copy-button';
 
@@ -60,16 +55,11 @@ export default function CliCommands({ name }: { name: string }) {
         </TabsList>
         {Object.entries(commands).map(([pkg, command]) => (
           <TabsContent className="m-0" key={pkg} value={pkg}>
-            <pre className="overflow-auto p-4 font-mono text-[13px] text-zinc-100">
-              {command}
-            </pre>
+            <pre className="overflow-auto p-4 font-mono text-[13px] text-zinc-100">{command}</pre>
           </TabsContent>
         ))}
       </Tabs>
-      <CliCopyButton
-        componentSource={commands[packageManager as keyof typeof commands]}
-        className="top-1"
-      />
+      <CliCopyButton componentSource={commands[packageManager as keyof typeof commands]} className="top-1" />
     </div>
   );
 }

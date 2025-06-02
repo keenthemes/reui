@@ -4,15 +4,11 @@ import * as React from 'react';
 import { cn } from '@/registry/default/lib/utils';
 import * as PopoverPrimitive from '@radix-ui/react-popover';
 
-function Popover({
-  ...props
-}: React.ComponentProps<typeof PopoverPrimitive.Root>) {
+function Popover({ ...props }: React.ComponentProps<typeof PopoverPrimitive.Root>) {
   return <PopoverPrimitive.Root data-slot="popover" {...props} />;
 }
 
-function PopoverTrigger({
-  ...props
-}: React.ComponentProps<typeof PopoverPrimitive.Trigger>) {
+function PopoverTrigger({ ...props }: React.ComponentProps<typeof PopoverPrimitive.Trigger>) {
   return <PopoverPrimitive.Trigger data-slot="popover-trigger" {...props} />;
 }
 

@@ -5,13 +5,7 @@ import { cn } from '@/registry/default/lib/utils';
 import { Button } from '@/registry/default/ui/button';
 import { Check, Copy } from 'lucide-react';
 
-const CliCopyButton = ({
-  componentSource,
-  className,
-}: {
-  componentSource: string | null;
-  className?: string;
-}) => {
+const CliCopyButton = ({ componentSource, className }: { componentSource: string | null; className?: string }) => {
   const { copied, copy } = useCopyToClipboard();
 
   return (
@@ -24,11 +18,7 @@ const CliCopyButton = ({
         aria-label={copied ? 'Copied' : 'Copy component source'}
         disabled={copied}
       >
-        {copied ? (
-          <Check className="size-4 text-white" />
-        ) : (
-          <Copy className="size-4" />
-        )}
+        {copied ? <Check className="size-4 text-white" /> : <Copy className="size-4" />}
       </Button>
     </div>
   );

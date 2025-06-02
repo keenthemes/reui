@@ -20,12 +20,8 @@ export function DocsSidebarNav({ config }: DocsSidebarNavProps) {
     <div className="w-full">
       {items.map((item, index) => (
         <div key={index} className={cn('pb-4')}>
-          <h4 className="mb-0 rounded-md px-0 pt-2 pb-2 text-sm font-semibold">
-            {item.title}
-          </h4>
-          {item?.items?.length && (
-            <DocsSidebarNavItems items={item.items} pathname={pathname} />
-          )}
+          <h4 className="mb-0 rounded-md px-0 pt-2 pb-2 text-sm font-semibold">{item.title}</h4>
+          {item?.items?.length && <DocsSidebarNavItems items={item.items} pathname={pathname} />}
         </div>
       ))}
     </div>
@@ -37,10 +33,7 @@ interface DocsSidebarNavItemsProps {
   pathname: string | null;
 }
 
-export function DocsSidebarNavItems({
-  items,
-  pathname,
-}: DocsSidebarNavItemsProps) {
+export function DocsSidebarNavItems({ items, pathname }: DocsSidebarNavItemsProps) {
   return items?.length ? (
     <div className="grid grid-flow-row auto-rows-max gap-0.5 text-sm">
       {items.map((item, index) =>

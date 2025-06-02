@@ -7,16 +7,9 @@ type ModuleType = 'user' | 'system' | 'ecommerce';
 // Submodules for each main module
 type UserSubModuleType = 'users' | 'roles' | 'permissions' | 'account';
 type SystemSubModuleType = 'logs' | 'settings' | 'backups';
-type EcommerceSubModuleType =
-  | 'products'
-  | 'categories'
-  | 'orders'
-  | 'customers';
+type EcommerceSubModuleType = 'products' | 'categories' | 'orders' | 'customers';
 
-type SubModuleType =
-  | UserSubModuleType
-  | SystemSubModuleType
-  | EcommerceSubModuleType;
+type SubModuleType = UserSubModuleType | SystemSubModuleType | EcommerceSubModuleType;
 
 interface TrackEventProps {
   event_name: string;
@@ -30,15 +23,7 @@ interface TrackEventProps {
 
 export const useAnalytics = () => {
   const trackEvent = useCallback(
-    ({
-      event_name,
-      module,
-      submodule,
-      item_type,
-      item_id,
-      action,
-      delete_type,
-    }: TrackEventProps) => {
+    ({ event_name, module, submodule, item_type, item_id, action, delete_type }: TrackEventProps) => {
       if (typeof window !== 'undefined' && (window as any).gtag) {
         (window as any).gtag('event', event_name, {
           module,
@@ -57,12 +42,7 @@ export const useAnalytics = () => {
   );
 
   const trackCreate = useCallback(
-    (
-      module: ModuleType,
-      submodule: SubModuleType,
-      itemType: string,
-      itemId?: string,
-    ) => {
+    (module: ModuleType, submodule: SubModuleType, itemType: string, itemId?: string) => {
       trackEvent({
         event_name: 'crud_create',
         module,
@@ -76,12 +56,7 @@ export const useAnalytics = () => {
   );
 
   const trackUpdate = useCallback(
-    (
-      module: ModuleType,
-      submodule: SubModuleType,
-      itemType: string,
-      itemId: string,
-    ) => {
+    (module: ModuleType, submodule: SubModuleType, itemType: string, itemId: string) => {
       trackEvent({
         event_name: 'crud_update',
         module,
@@ -95,13 +70,7 @@ export const useAnalytics = () => {
   );
 
   const trackDelete = useCallback(
-    (
-      module: ModuleType,
-      submodule: SubModuleType,
-      itemType: string,
-      itemId: string,
-      isHardDelete: boolean = false,
-    ) => {
+    (module: ModuleType, submodule: SubModuleType, itemType: string, itemId: string, isHardDelete: boolean = false) => {
       trackEvent({
         event_name: 'crud_delete',
         module,

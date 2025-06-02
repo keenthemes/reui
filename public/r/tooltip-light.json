@@ -10,10 +10,7 @@
     "lucide-react",
     "@radix-ui/react-tooltip"
   ],
-  "registryDependencies": [
-    "https://reui.io/r/button.json",
-    "https://reui.io/r/tooltip.json"
-  ],
+  "registryDependencies": ["https://reui.io/r/button.json", "https://reui.io/r/tooltip.json"],
   "files": [
     {
       "path": "registry/default/components/tooltip/light.tsx",

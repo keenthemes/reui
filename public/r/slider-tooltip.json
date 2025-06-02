@@ -9,10 +9,7 @@
     "@radix-ui/react-tooltip",
     "class-variance-authority"
   ],
-  "registryDependencies": [
-    "https://reui.io/r/slider.json",
-    "https://reui.io/r/tooltip.json"
-  ],
+  "registryDependencies": ["https://reui.io/r/slider.json", "https://reui.io/r/tooltip.json"],
   "files": [
     {
       "path": "registry/default/components/slider/tooltip.tsx",

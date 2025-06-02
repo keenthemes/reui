@@ -12,11 +12,7 @@ import {
   CommandItem,
   CommandList,
 } from '@/registry/default/ui/command';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/registry/default/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@/registry/default/ui/popover';
 
 const statusOptions = [
   {
@@ -65,12 +61,7 @@ export default function ComboboxDemo() {
         >
           {selectedStatus ? (
             <span className="flex items-center gap-2.5">
-              <span
-                className={cn(
-                  'ms-0.5 size-1.5 rounded-full',
-                  selectedStatus.state,
-                )}
-              ></span>
+              <span className={cn('ms-0.5 size-1.5 rounded-full', selectedStatus.state)}></span>
               <span className="truncate">{selectedStatus.label}</span>
             </span>
           ) : (
@@ -95,9 +86,7 @@ export default function ComboboxDemo() {
                   }}
                 >
                   <span className="flex items-center gap-2.5">
-                    <span
-                      className={cn('ms-1 size-1.5 rounded-full', status.state)}
-                    ></span>
+                    <span className={cn('ms-1 size-1.5 rounded-full', status.state)}></span>
                     <span className="truncate">{status.label}</span>
                   </span>
                   {value === status.value && <CommandCheck />}

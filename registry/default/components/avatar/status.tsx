@@ -1,10 +1,4 @@
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-  AvatarIndicator,
-  AvatarStatus,
-} from '@/registry/default/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage, AvatarIndicator, AvatarStatus } from '@/registry/default/ui/avatar';
 
 export default function AvatarDemo() {
   return (

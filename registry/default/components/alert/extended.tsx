@@ -1,10 +1,4 @@
-import {
-  Alert,
-  AlertContent,
-  AlertDescription,
-  AlertIcon,
-  AlertTitle,
-} from '@/registry/default/ui/alert';
+import { Alert, AlertContent, AlertDescription, AlertIcon, AlertTitle } from '@/registry/default/ui/alert';
 import { RiAlertFill } from '@remixicon/react';
 
 export default function AlertDemo() {
@@ -17,8 +11,7 @@ export default function AlertDemo() {
         <AlertContent>
           <AlertTitle>Example Alert Title</AlertTitle>
           <AlertDescription>
-            Insert the alert description here. It would look better as two lines
-            of text.
+            Insert the alert description here. It would look better as two lines of text.
           </AlertDescription>
         </AlertContent>
       </Alert>
@@ -29,8 +22,7 @@ export default function AlertDemo() {
         <AlertContent>
           <AlertTitle>Example Alert Title</AlertTitle>
           <AlertDescription>
-            Insert the alert description here. It would look better as two lines
-            of text.
+            Insert the alert description here. It would look better as two lines of text.
           </AlertDescription>
         </AlertContent>
       </Alert>

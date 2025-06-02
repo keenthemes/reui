@@ -39,10 +39,7 @@ export const trackCodeCopy = (componentPath: string) => {
 };
 
 // Function to track theme mode changes
-export const trackThemeChange = (
-  componentPath: string,
-  newTheme: 'dark' | 'light',
-) => {
+export const trackThemeChange = (componentPath: string, newTheme: 'dark' | 'light') => {
   const componentName = getComponentName(componentPath);
   trackEvent({
     name: 'doc_select_theme',
@@ -56,10 +53,7 @@ export const trackThemeChange = (
 };
 
 // Function to track RTL/LTR changes
-export const trackDirectionChange = (
-  componentPath: string,
-  newDirection: 'rtl' | 'ltr',
-) => {
+export const trackDirectionChange = (componentPath: string, newDirection: 'rtl' | 'ltr') => {
   const componentName = getComponentName(componentPath);
   trackEvent({
     name: 'doc_select_direction',
@@ -73,10 +67,7 @@ export const trackDirectionChange = (
 };
 
 // Function to track view mode changes
-export const trackViewChange = (
-  componentPath: string,
-  newView: 'preview' | 'code',
-) => {
+export const trackViewChange = (componentPath: string, newView: 'preview' | 'code') => {
   const componentName = getComponentName(componentPath);
   trackEvent({
     name: 'doc_select_view',
@@ -90,11 +81,7 @@ export const trackViewChange = (
 };
 
 // Function to track item creation events
-export const trackItemCreate = (
-  module: string,
-  itemType: string,
-  itemId?: string | number,
-) => {
+export const trackItemCreate = (module: string, itemType: string, itemId?: string | number) => {
   trackEvent({
     name: 'crud_create',
     properties: {
@@ -108,11 +95,7 @@ export const trackItemCreate = (
 };
 
 // Function to track item view/read events
-export const trackItemView = (
-  module: string,
-  itemType: string,
-  itemId: string | number,
-) => {
+export const trackItemView = (module: string, itemType: string, itemId: string | number) => {
   trackEvent({
     name: 'crud_view',
     properties: {
@@ -126,11 +109,7 @@ export const trackItemView = (
 };
 
 // Function to track item update events
-export const trackItemUpdate = (
-  module: string,
-  itemType: string,
-  itemId: string | number,
-) => {
+export const trackItemUpdate = (module: string, itemType: string, itemId: string | number) => {
   trackEvent({
     name: 'crud_update',
     properties: {
@@ -164,11 +143,7 @@ export const trackItemDelete = (
 };
 
 // Function to track item restore events
-export const trackItemRestore = (
-  module: string,
-  itemType: string,
-  itemId: string | number,
-) => {
+export const trackItemRestore = (module: string, itemType: string, itemId: string | number) => {
   trackEvent({
     name: 'crud_restore',
     properties: {

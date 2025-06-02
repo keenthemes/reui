@@ -2,17 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "pagination-default",
   "type": "registry:component",
-  "dependencies": [
-    "clsx",
-    "tailwind-merge",
-    "@radix-ui/react-slot",
-    "class-variance-authority",
-    "lucide-react"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/button.json",
-    "https://reui.io/r/pagination.json"
-  ],
+  "dependencies": ["clsx", "tailwind-merge", "@radix-ui/react-slot", "class-variance-authority", "lucide-react"],
+  "registryDependencies": ["https://reui.io/r/button.json", "https://reui.io/r/pagination.json"],
   "files": [
     {
       "path": "registry/default/components/pagination/default.tsx",

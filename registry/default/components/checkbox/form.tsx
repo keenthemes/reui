@@ -43,10 +43,7 @@ export default function CheckboxForm() {
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="w-[300px] space-y-6"
-      >
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-[300px] space-y-6">
         <FormField
           control={form.control}
           name="acceptTerms"
@@ -54,10 +51,7 @@ export default function CheckboxForm() {
             <FormItem>
               <div className="flex items-center space-x-2">
                 <FormControl>
-                  <Checkbox
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                  />
+                  <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                 </FormControl>
                 <FormLabel>I accept the terms and conditions</FormLabel>
               </div>

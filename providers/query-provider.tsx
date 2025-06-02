@@ -3,11 +3,7 @@
 import { useState } from 'react';
 import { Alert, AlertIcon, AlertTitle } from '@/registry/default/ui/alert';
 import { RiErrorWarningFill } from '@remixicon/react';
-import {
-  QueryCache,
-  QueryClient,
-  QueryClientProvider,
-} from '@tanstack/react-query';
+import { QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 const QueryProvider = ({ children }: { children: React.ReactNode }) => {
@@ -16,8 +12,7 @@ const QueryProvider = ({ children }: { children: React.ReactNode }) => {
       new QueryClient({
         queryCache: new QueryCache({
           onError: (error) => {
-            const message =
-              error.message || 'Something went wrong. Please try again.';
+            const message = error.message || 'Something went wrong. Please try again.';
 
             toast.custom(
               () => (
@@ -37,9 +32,7 @@ const QueryProvider = ({ children }: { children: React.ReactNode }) => {
       }),
   );
 
-  return (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-  );
+  return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
 };
 
 export { QueryProvider };

@@ -3,16 +3,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/registry/default/ui/button';
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@/registry/default/ui/collapsible';
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from '@radix-ui/react-hover-card';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/registry/default/ui/collapsible';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '@radix-ui/react-hover-card';
 import { Minus, Plus } from 'lucide-react';
 import { blocksConfig } from '@/config/blocks';
 import { BlockCategory, BlockItem, BlockSubCategory } from '@/config/types';
@@ -28,30 +20,17 @@ export default function Page() {
     <>
       {blocksConfig.map((category: BlockCategory) => (
         <div key={category.slug} className="space-y-5 mb-10">
-          <h1 className="text-lg font-semibold text-foreground">
-            {category.title}
-          </h1>
+          <h1 className="text-lg font-semibold text-foreground">{category.title}</h1>
           {category.sub && category.sub.length > 0 ? (
             <div className="grid lg:grid-cols-3 gap-7.5">
               {category.sub.map((component: BlockSubCategory) => (
                 <div key={component.slug} className="">
-                  <Collapsible
-                    open={openStates[component.title]}
-                    onOpenChange={handleOpenChange(component.title)}
-                  >
+                  <Collapsible open={openStates[component.title]} onOpenChange={handleOpenChange(component.title)}>
                     <div className="space-y-3">
                       <div className="relative border border-border bg-muted/60 rounded-xl">
-                        <Link
-                          href={`/blocks/${category.slug}/${component.slug}`}
-                          className="h-[225px] block"
-                        ></Link>
+                        <Link href={`/blocks/${category.slug}/${component.slug}`} className="h-[225px] block"></Link>
                         <CollapsibleTrigger asChild>
-                          <Button
-                            variant="outline"
-                            mode="icon"
-                            size="sm"
-                            className="absolute bottom-3 end-3"
-                          >
+                          <Button variant="outline" mode="icon" size="sm" className="absolute bottom-3 end-3">
                             {openStates[component.title] ? <Minus /> : <Plus />}
                           </Button>
                         </CollapsibleTrigger>
@@ -74,19 +53,11 @@ export default function Page() {
                               {component.blocks.map((block: BlockItem) => (
                                 <HoverCard key={block.slug} openDelay={100}>
                                   <HoverCardTrigger asChild>
-                                    <Button
-                                      variant="outline"
-                                      shape="circle"
-                                      size="sm"
-                                    >
+                                    <Button variant="outline" shape="circle" size="sm">
                                       {block.title}
                                     </Button>
                                   </HoverCardTrigger>
-                                  <HoverCardContent
-                                    side="bottom"
-                                    align="start"
-                                    className="w-80"
-                                  >
+                                  <HoverCardContent side="bottom" align="start" className="w-80">
                                     Wow!!!!
                                   </HoverCardContent>
                                 </HoverCard>

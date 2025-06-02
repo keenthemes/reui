@@ -2,14 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "progress-default",
   "type": "registry:component",
-  "dependencies": [
-    "clsx",
-    "tailwind-merge",
-    "@radix-ui/react-progress"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/progress.json"
-  ],
+  "dependencies": ["clsx", "tailwind-merge", "@radix-ui/react-progress"],
+  "registryDependencies": ["https://reui.io/r/progress.json"],
   "files": [
     {
       "path": "registry/default/components/progress/default.tsx",

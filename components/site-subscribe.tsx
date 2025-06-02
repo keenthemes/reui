@@ -20,9 +20,7 @@ export function SiteSubscribe() {
             <AlertIcon>
               <RiErrorWarningFill />
             </AlertIcon>
-            <AlertTitle>
-              Invalid email address. Please check and try again.
-            </AlertTitle>
+            <AlertTitle>Invalid email address. Please check and try again.</AlertTitle>
           </Alert>
         ),
         {
@@ -94,9 +92,7 @@ export function SiteSubscribe() {
               <AlertIcon>
                 <RiCheckboxCircleFill />
               </AlertIcon>
-              <AlertTitle>
-                Thank you for your subscription. Expect amazing stuff soon!
-              </AlertTitle>
+              <AlertTitle>Thank you for your subscription. Expect amazing stuff soon!</AlertTitle>
             </Alert>
           ),
           {
@@ -119,10 +115,7 @@ export function SiteSubscribe() {
               <AlertIcon>
                 <RiErrorWarningFill />
               </AlertIcon>
-              <AlertTitle>
-                {data.message ||
-                  'Oops! Something unexpected happened. Please try again later.'}
-              </AlertTitle>
+              <AlertTitle>{data.message || 'Oops! Something unexpected happened. Please try again later.'}</AlertTitle>
             </Alert>
           ),
           {
@@ -138,9 +131,7 @@ export function SiteSubscribe() {
             <AlertIcon>
               <RiErrorWarningFill />
             </AlertIcon>
-            <AlertTitle>
-              Oops! Something unexpected happened. Please try again later.
-            </AlertTitle>
+            <AlertTitle>Oops! Something unexpected happened. Please try again later.</AlertTitle>
           </Alert>
         ),
         {
@@ -167,12 +158,8 @@ export function SiteSubscribe() {
           style={style}
         >
           <div className="flex flex-col gap-1.5">
-            <h2 className="text-white text-3xl font-medium">
-              Stay notified on every new release
-            </h2>
-            <div className="text-white/50 text-2xl font-medium">
-              Only the updates worth knowing
-            </div>
+            <h2 className="text-white text-3xl font-medium">Stay notified on every new release</h2>
+            <div className="text-white/50 text-2xl font-medium">Only the updates worth knowing</div>
           </div>
 
           <form onSubmit={handleSubmit} className="flex gap-2.5">

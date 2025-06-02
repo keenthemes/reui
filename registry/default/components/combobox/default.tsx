@@ -12,11 +12,7 @@ import {
   CommandItem,
   CommandList,
 } from '@/registry/default/ui/command';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/registry/default/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@/registry/default/ui/popover';
 
 const topCities = [
   {
@@ -61,9 +57,7 @@ export default function ComboboxDemo() {
           className="w-[200px]"
         >
           <span className={cn('truncate')}>
-            {value
-              ? topCities.find((city) => city.value === value)?.label
-              : 'Select city...'}
+            {value ? topCities.find((city) => city.value === value)?.label : 'Select city...'}
           </span>
           <ButtonArrow />
         </Button>

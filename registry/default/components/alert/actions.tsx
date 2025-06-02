@@ -1,10 +1,4 @@
-import {
-  Alert,
-  AlertContent,
-  AlertDescription,
-  AlertIcon,
-  AlertTitle,
-} from '@/registry/default/ui/alert';
+import { Alert, AlertContent, AlertDescription, AlertIcon, AlertTitle } from '@/registry/default/ui/alert';
 import { Button } from '@/registry/default/ui/button';
 import { RiAlertFill } from '@remixicon/react';
 
@@ -19,16 +13,10 @@ export default function AlertDemo() {
           <AlertTitle>Example Alert Title</AlertTitle>
           <AlertDescription>
             <p>
-              Insert the alert description here. This is an example of a
-              two-line message for better visual clarity.
+              Insert the alert description here. This is an example of a two-line message for better visual clarity.
             </p>
             <div className="space-x-3.5">
-              <Button
-                variant="inverse"
-                mode="link"
-                underlined="solid"
-                size="md"
-              >
+              <Button variant="inverse" mode="link" underlined="solid" size="md">
                 Upgrade
               </Button>
               <Button variant="inverse" mode="link" underline="solid" size="md">
@@ -46,24 +34,13 @@ export default function AlertDemo() {
           <AlertTitle>Example Alert Title</AlertTitle>
           <AlertDescription>
             <p>
-              Insert the alert description here. This is an example of a
-              two-line message for better visual clarity.
+              Insert the alert description here. This is an example of a two-line message for better visual clarity.
             </p>
             <div className="space-x-3.5">
-              <Button
-                variant="foreground"
-                mode="link"
-                underlined="solid"
-                size="md"
-              >
+              <Button variant="foreground" mode="link" underlined="solid" size="md">
                 Upgrade
               </Button>
-              <Button
-                variant="foreground"
-                mode="link"
-                underline="solid"
-                size="md"
-              >
+              <Button variant="foreground" mode="link" underline="solid" size="md">
                 Dismiss
               </Button>
             </div>

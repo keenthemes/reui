@@ -20,9 +20,7 @@ export default function ButtonDemo() {
   return (
     <div className="flex items-center gap-4">
       <Button variant="primary" disabled={isDisabled}>
-        {isDisabled ? (
-          <LoaderCircleIcon className="animate-spin size-4" />
-        ) : null}
+        {isDisabled ? <LoaderCircleIcon className="animate-spin size-4" /> : null}
         {isDisabled ? 'Submitting...' : 'Submit'}
       </Button>
     </div>

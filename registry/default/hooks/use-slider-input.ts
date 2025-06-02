@@ -7,15 +7,9 @@ interface UseSliderInputProps {
   initialValue: [number, number];
 }
 
-export function useSliderInput({
-  minValue,
-  maxValue,
-  initialValue,
-}: UseSliderInputProps) {
-  const [sliderValues, setSliderValues] =
-    useState<[number, number]>(initialValue);
-  const [inputValues, setInputValues] =
-    useState<[number, number]>(initialValue);
+export function useSliderInput({ minValue, maxValue, initialValue }: UseSliderInputProps) {
+  const [sliderValues, setSliderValues] = useState<[number, number]>(initialValue);
+  const [inputValues, setInputValues] = useState<[number, number]>(initialValue);
 
   // Handle slider changes and sync with input values
   const handleSliderChange = useCallback((values: [number, number]) => {

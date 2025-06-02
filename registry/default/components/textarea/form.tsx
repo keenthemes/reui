@@ -45,10 +45,7 @@ export default function TextareaDemo() {
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="w-full max-w-md space-y-6"
-      >
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full max-w-md space-y-6">
         {/* Textarea Field */}
         <FormField
           control={form.control}
@@ -59,9 +56,7 @@ export default function TextareaDemo() {
               <FormControl>
                 <Textarea placeholder="Type your message here..." {...field} />
               </FormControl>
-              <FormDescription>
-                Share your thoughts or feedback between 10 to 500 characters.
-              </FormDescription>
+              <FormDescription>Share your thoughts or feedback between 10 to 500 characters.</FormDescription>
               <FormMessage />
             </FormItem>
           )}

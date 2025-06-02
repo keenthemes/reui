@@ -4,13 +4,7 @@ import { useId } from 'react';
 import { useSliderInput } from '@/registry/default/hooks/use-slider-input';
 import { Alert, AlertIcon, AlertTitle } from '@/registry/default/ui/alert';
 import { Button } from '@/registry/default/ui/button';
-import {
-  Form,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/registry/default/ui/form';
+import { Form, FormField, FormItem, FormLabel, FormMessage } from '@/registry/default/ui/form';
 import { Input } from '@/registry/default/ui/input';
 import { Label } from '@/registry/default/ui/label';
 import { Slider, SliderThumb } from '@/registry/default/ui/slider';
@@ -46,18 +40,12 @@ export default function PriceRangeForm() {
   const minValue = Math.min(...items.map((item) => item.price));
   const maxValue = Math.max(...items.map((item) => item.price));
 
-  const {
-    sliderValues,
-    setSliderValues,
-    inputValues,
-    handleSliderChange,
-    handleInputChange,
-    validateAndUpdateValue,
-  } = useSliderInput({
-    minValue,
-    maxValue,
-    initialValue: [200, 500],
-  });
+  const { sliderValues, setSliderValues, inputValues, handleSliderChange, handleInputChange, validateAndUpdateValue } =
+    useSliderInput({
+      minValue,
+      maxValue,
+      initialValue: [200, 500],
+    });
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),

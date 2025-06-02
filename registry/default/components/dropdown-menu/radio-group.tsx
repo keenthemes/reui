@@ -23,26 +23,14 @@ export default function DropdownMenuDemo() {
       <DropdownMenuContent className="w-48">
         <DropdownMenuLabel>Notification Method</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuRadioGroup
-          value={notificationMethod}
-          onValueChange={setNotificationMethod}
-        >
-          <DropdownMenuRadioItem
-            value="email"
-            onSelect={(event) => event.preventDefault()}
-          >
+        <DropdownMenuRadioGroup value={notificationMethod} onValueChange={setNotificationMethod}>
+          <DropdownMenuRadioItem value="email" onSelect={(event) => event.preventDefault()}>
             Email Notifications
           </DropdownMenuRadioItem>
-          <DropdownMenuRadioItem
-            value="sms"
-            onSelect={(event) => event.preventDefault()}
-          >
+          <DropdownMenuRadioItem value="sms" onSelect={(event) => event.preventDefault()}>
             SMS Notifications
           </DropdownMenuRadioItem>
-          <DropdownMenuRadioItem
-            value="push"
-            onSelect={(event) => event.preventDefault()}
-          >
+          <DropdownMenuRadioItem value="push" onSelect={(event) => event.preventDefault()}>
             Push Notifications
           </DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>

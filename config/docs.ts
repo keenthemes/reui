@@ -102,23 +102,6 @@ export const docsConfig: DocsConfig = {
         },
       ],
     },
-
-    /*
-    {
-      title: 'Landing',
-      items: [
-        {
-          title: 'Marquee',
-          href: '/docs/marquee',
-        },
-        {
-          title: 'Moving Border',
-          href: '/docs/moving-border',
-        },
-      ],
-    },
-    */
-
     {
       title: 'Components',
       items: [
@@ -386,6 +369,11 @@ export const docsConfig: DocsConfig = {
           highlight: {
             examples: ['Default'],
           },
+        },
+        {
+          title: 'Stepper',
+          href: '/docs/stepper',
+          new: true,
         },
         {
           title: 'Scrollspy',

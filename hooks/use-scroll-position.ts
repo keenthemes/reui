@@ -4,9 +4,7 @@ interface IUseScrollPositionProps {
   targetRef?: RefObject<HTMLElement | Document | undefined>; // Ref to the scrollable element
 }
 
-const useScrollPosition = ({
-  targetRef,
-}: IUseScrollPositionProps = {}): number => {
+const useScrollPosition = ({ targetRef }: IUseScrollPositionProps = {}): number => {
   const [scrollPosition, setScrollPosition] = useState<number>(0);
 
   useEffect(() => {
@@ -16,10 +14,7 @@ const useScrollPosition = ({
 
     const updatePosition = () => {
       // Determine if we're scrolling the document or a specific element
-      const scrollY =
-        target === document
-          ? window.scrollY
-          : (target as HTMLElement).scrollTop;
+      const scrollY = target === document ? window.scrollY : (target as HTMLElement).scrollTop;
       setScrollPosition(scrollY);
     };
 

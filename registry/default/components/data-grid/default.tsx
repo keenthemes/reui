@@ -206,18 +206,14 @@ export default function DataGridDemo() {
     pageIndex: 0,
     pageSize: 5,
   });
-  const [sorting, setSorting] = useState<SortingState>([
-    { id: 'name', desc: true },
-  ]);
+  const [sorting, setSorting] = useState<SortingState>([{ id: 'name', desc: true }]);
 
   const columns = useMemo<ColumnDef<IData>[]>(
     () => [
       {
         accessorKey: 'name',
         header: 'Name',
-        cell: (info) => (
-          <span className="font-medium">{info.getValue() as string}</span>
-        ),
+        cell: (info) => <span className="font-medium">{info.getValue() as string}</span>,
         size: 175,
         meta: {
           headerClassName: '',
@@ -228,10 +224,7 @@ export default function DataGridDemo() {
         accessorKey: 'email',
         header: 'Email',
         cell: (info) => (
-          <Link
-            href={`mailto:${info.getValue()}`}
-            className="hover:text-primary hover:underline"
-          >
+          <Link href={`mailto:${info.getValue()}`} className="hover:text-primary hover:underline">
             {info.getValue() as string}
           </Link>
         ),
@@ -254,11 +247,7 @@ export default function DataGridDemo() {
       {
         accessorKey: 'balance',
         header: 'Balance ($)',
-        cell: (info) => (
-          <span className="font-semibold">
-            ${(info.getValue() as number).toFixed(2)}
-          </span>
-        ),
+        cell: (info) => <span className="font-semibold">${(info.getValue() as number).toFixed(2)}</span>,
         size: 120,
         meta: {
           headerClassName: 'text-right rtl:text-left',

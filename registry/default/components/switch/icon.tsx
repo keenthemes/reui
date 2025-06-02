@@ -1,10 +1,6 @@
 import { useId } from 'react';
 import { Label } from '@/registry/default/ui/label';
-import {
-  Switch,
-  SwitchIndicator,
-  SwitchWrapper,
-} from '@/registry/default/ui/switch';
+import { Switch, SwitchIndicator, SwitchWrapper } from '@/registry/default/ui/switch';
 import { Moon, Sun } from 'lucide-react';
 
 export default function SwitchDemo() {

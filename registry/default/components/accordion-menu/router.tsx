@@ -37,8 +37,7 @@ import {
 export default function AccordionMenuDemo() {
   const pathname = usePathname();
 
-  const matchPath = (path: string) =>
-    path === pathname || (path.length > 1 && pathname.startsWith(path));
+  const matchPath = (path: string) => path === pathname || (path.length > 1 && pathname.startsWith(path));
 
   return (
     <div className="w-full md:w-[250px] overflow-hidden border border-border rounded-md p-2">
@@ -59,11 +58,7 @@ export default function AccordionMenuDemo() {
               <Folder />
               <span>General</span>
             </AccordionMenuSubTrigger>
-            <AccordionMenuSubContent
-              type="single"
-              collapsible
-              parentValue="components"
-            >
+            <AccordionMenuSubContent type="single" collapsible parentValue="components">
               <AccordionMenuGroup>
                 {/* Level 2: Core Components */}
                 <AccordionMenuItem value="/docs/accordion">
@@ -95,11 +90,7 @@ export default function AccordionMenuDemo() {
                     <Grid />
                     <span>Interactive</span>
                   </AccordionMenuSubTrigger>
-                  <AccordionMenuSubContent
-                    type="single"
-                    collapsible
-                    parentValue="interactive"
-                  >
+                  <AccordionMenuSubContent type="single" collapsible parentValue="interactive">
                     <AccordionMenuGroup>
                       {/* Level 3: Interactive Components */}
                       <AccordionMenuItem value="/docs/tooltip">
@@ -140,11 +131,7 @@ export default function AccordionMenuDemo() {
                     <Box />
                     <span>Data Display</span>
                   </AccordionMenuSubTrigger>
-                  <AccordionMenuSubContent
-                    type="single"
-                    collapsible
-                    parentValue="data-display"
-                  >
+                  <AccordionMenuSubContent type="single" collapsible parentValue="data-display">
                     <AccordionMenuGroup>
                       {/* Level 3: Data Display Components */}
                       <AccordionMenuItem value="/docs/table">
@@ -190,11 +177,7 @@ export default function AccordionMenuDemo() {
               <Calendar />
               <span>Navigation</span>
             </AccordionMenuSubTrigger>
-            <AccordionMenuSubContent
-              type="single"
-              collapsible
-              parentValue="navigation"
-            >
+            <AccordionMenuSubContent type="single" collapsible parentValue="navigation">
               <AccordionMenuGroup>
                 <AccordionMenuItem value="/docs/separator">
                   <Link href="/docs/separator">
@@ -213,11 +196,7 @@ export default function AccordionMenuDemo() {
                     <Info />
                     <span>Overlays</span>
                   </AccordionMenuSubTrigger>
-                  <AccordionMenuSubContent
-                    type="single"
-                    collapsible
-                    parentValue="overlays"
-                  >
+                  <AccordionMenuSubContent type="single" collapsible parentValue="overlays">
                     <AccordionMenuGroup>
                       {/* Level 3: Overlay Components */}
                       <AccordionMenuItem value="/docs/tooltip">
@@ -263,11 +242,7 @@ export default function AccordionMenuDemo() {
               <Settings />
               <span>Utilities</span>
             </AccordionMenuSubTrigger>
-            <AccordionMenuSubContent
-              type="single"
-              collapsible
-              parentValue="utilities"
-            >
+            <AccordionMenuSubContent type="single" collapsible parentValue="utilities">
               <AccordionMenuGroup>
                 <AccordionMenuItem value="/docs/scroll-area">
                   <Link href="/docs/scroll-area">
@@ -298,11 +273,7 @@ export default function AccordionMenuDemo() {
                     <User />
                     <span>Inputs</span>
                   </AccordionMenuSubTrigger>
-                  <AccordionMenuSubContent
-                    type="single"
-                    collapsible
-                    parentValue="inputs"
-                  >
+                  <AccordionMenuSubContent type="single" collapsible parentValue="inputs">
                     <AccordionMenuGroup>
                       {/* Level 3: Input Components */}
                       <AccordionMenuItem value="/docs/checkbox">

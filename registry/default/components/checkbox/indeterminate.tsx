@@ -6,9 +6,7 @@ import { Label } from '@/registry/default/ui/label';
 
 export default function CheckboxDemo() {
   const id = useId();
-  const [checked, setChecked] = useState<'indeterminate' | boolean>(
-    'indeterminate',
-  );
+  const [checked, setChecked] = useState<'indeterminate' | boolean>('indeterminate');
 
   return (
     <div className="flex items-center space-x-2">

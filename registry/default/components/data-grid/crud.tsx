@@ -1,21 +1,10 @@
 import { useMemo, useState } from 'react';
 import { useCopyToClipboard } from '@/registry/default/hooks/use-copy-to-clipboard';
 import { Alert, AlertIcon, AlertTitle } from '@/registry/default/ui/alert';
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@/registry/default/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/registry/default/ui/avatar';
 import { Badge } from '@/registry/default/ui/badge';
 import { Button } from '@/registry/default/ui/button';
-import {
-  Card,
-  CardFooter,
-  CardHeader,
-  CardHeading,
-  CardTable,
-  CardToolbar,
-} from '@/registry/default/ui/card';
+import { Card, CardFooter, CardHeader, CardHeading, CardTable, CardToolbar } from '@/registry/default/ui/card';
 import { Checkbox } from '@/registry/default/ui/checkbox';
 import { DataGrid } from '@/registry/default/ui/data-grid';
 import { DataGridColumnHeader } from '@/registry/default/ui/data-grid-column-header';
@@ -33,11 +22,7 @@ import {
 } from '@/registry/default/ui/dropdown-menu';
 import { Input } from '@/registry/default/ui/input';
 import { Label } from '@/registry/default/ui/label';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/registry/default/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@/registry/default/ui/popover';
 import { ScrollArea, ScrollBar } from '@/registry/default/ui/scroll-area';
 import { DropdownMenu } from '@radix-ui/react-dropdown-menu';
 import { RiCheckboxCircleFill } from '@remixicon/react';
@@ -248,12 +233,7 @@ function ActionsCell({ row }: { row: Row<IData> }) {
     const message = `Employee ID successfully copied: ${row.original.id}`;
     toast.custom(
       (t) => (
-        <Alert
-          variant="mono"
-          icon="primary"
-          close={false}
-          onClose={() => toast.dismiss(t)}
-        >
+        <Alert variant="mono" icon="primary" close={false} onClose={() => toast.dismiss(t)}>
           <AlertIcon>
             <RiCheckboxCircleFill />
           </AlertIcon>
@@ -290,17 +270,14 @@ export default function DataGridDemo() {
     pageIndex: 0,
     pageSize: 5,
   });
-  const [sorting, setSorting] = useState<SortingState>([
-    { id: 'name', desc: true },
-  ]);
+  const [sorting, setSorting] = useState<SortingState>([{ id: 'name', desc: true }]);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedStatuses, setSelectedStatuses] = useState<string[]>([]);
 
   const filteredData = useMemo(() => {
     return demoData.filter((item) => {
       // Filter by status
-      const matchesStatus =
-        !selectedStatuses?.length || selectedStatuses.includes(item.status);
+      const matchesStatus = !selectedStatuses?.length || selectedStatuses.includes(item.status);
 
       // Filter by search query (case-insensitive)
       const searchLower = searchQuery.toLowerCase();
@@ -351,30 +328,17 @@ export default function DataGridDemo() {
       {
         accessorKey: 'name',
         id: 'name',
-        header: ({ column }) => (
-          <DataGridColumnHeader
-            title="User"
-            visibility={true}
-            column={column}
-          />
-        ),
+        header: ({ column }) => <DataGridColumnHeader title="User" visibility={true} column={column} />,
         cell: ({ row }) => {
           return (
             <div className="flex items-center gap-3">
               <Avatar className="size-8">
-                <AvatarImage
-                  src={`/media/avatars/${row.original.avatar}`}
-                  alt={row.original.name}
-                />
+                <AvatarImage src={`/media/avatars/${row.original.avatar}`} alt={row.original.name} />
                 <AvatarFallback>N</AvatarFallback>
               </Avatar>
               <div className="space-y-px">
-                <div className="font-medium text-foreground">
-                  {row.original.name}
-                </div>
-                <div className="text-muted-foreground">
-                  {row.original.email}
-                </div>
+                <div className="font-medium text-foreground">{row.original.name}</div>
+                <div className="text-muted-foreground">{row.original.email}</div>
               </div>
             </div>
           );
@@ -387,20 +351,12 @@ export default function DataGridDemo() {
       {
         accessorKey: 'location',
         id: 'location',
-        header: ({ column }) => (
-          <DataGridColumnHeader
-            title="Location"
-            visibility={true}
-            column={column}
-          />
-        ),
+        header: ({ column }) => <DataGridColumnHeader title="Location" visibility={true} column={column} />,
         cell: ({ row }) => {
           return (
             <div className="flex items-center gap-1.5">
               {row.original.flag}
-              <div className="font-medium text-foreground">
-                {row.original.location}
-              </div>
+              <div className="font-medium text-foreground">{row.original.location}</div>
             </div>
           );
         },
@@ -416,13 +372,7 @@ export default function DataGridDemo() {
       {
         accessorKey: 'status',
         id: 'status',
-        header: ({ column }) => (
-          <DataGridColumnHeader
-            title="Status"
-            visibility={true}
-            column={column}
-          />
-        ),
+        header: ({ column }) => <DataGridColumnHeader title="Status" visibility={true} column={column} />,
         cell: ({ row }) => {
           const status = row.original.status;
 
@@ -470,9 +420,7 @@ export default function DataGridDemo() {
     [],
   );
 
-  const [columnOrder, setColumnOrder] = useState<string[]>(
-    columns.map((column) => column.id as string),
-  );
+  const [columnOrder, setColumnOrder] = useState<string[]>(columns.map((column) => column.id as string));
 
   const table = useReactTable({
     columns,
@@ -542,27 +490,21 @@ export default function DataGridDemo() {
                 </PopoverTrigger>
                 <PopoverContent className="w-40 p-3" align="start">
                   <div className="space-y-3">
-                    <div className="text-xs font-medium text-muted-foreground">
-                      Filters
-                    </div>
+                    <div className="text-xs font-medium text-muted-foreground">Filters</div>
                     <div className="space-y-3">
                       {Object.keys(statusCounts).map((status) => (
                         <div key={status} className="flex items-center gap-2.5">
                           <Checkbox
                             id={status}
                             checked={selectedStatuses.includes(status)}
-                            onCheckedChange={(checked) =>
-                              handleStatusChange(checked === true, status)
-                            }
+                            onCheckedChange={(checked) => handleStatusChange(checked === true, status)}
                           />
                           <Label
                             htmlFor={status}
                             className="grow flex items-center justify-between font-normal gap-1.5"
                           >
                             {status}
-                            <span className="text-muted-foreground">
-                              {statusCounts[status]}
-                            </span>
+                            <span className="text-muted-foreground">{statusCounts[status]}</span>
                           </Label>
                         </div>
                       ))}

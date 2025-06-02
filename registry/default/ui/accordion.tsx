@@ -89,18 +89,10 @@ function Accordion(
       indicator?: 'arrow' | 'plus';
     },
 ) {
-  const {
-    className,
-    variant = 'default',
-    indicator = 'arrow',
-    children,
-    ...rest
-  } = props;
+  const { className, variant = 'default', indicator = 'arrow', children, ...rest } = props;
 
   return (
-    <AccordionContext.Provider
-      value={{ variant: variant || 'default', indicator }}
-    >
+    <AccordionContext.Provider value={{ variant: variant || 'default', indicator }}>
       <AccordionPrimitive.Root
         data-slot="accordion"
         className={cn(accordionRootVariants({ variant }), className)}
@@ -112,9 +104,7 @@ function Accordion(
   );
 }
 
-function AccordionItem(
-  props: React.ComponentProps<typeof AccordionPrimitive.Item>,
-) {
+function AccordionItem(props: React.ComponentProps<typeof AccordionPrimitive.Item>) {
   const { className, children, ...rest } = props;
   const { variant } = React.useContext(AccordionContext);
 
@@ -129,9 +119,7 @@ function AccordionItem(
   );
 }
 
-function AccordionTrigger(
-  props: React.ComponentProps<typeof AccordionPrimitive.Trigger>,
-) {
+function AccordionTrigger(props: React.ComponentProps<typeof AccordionPrimitive.Trigger>) {
   const { className, children, ...rest } = props;
   const { variant, indicator } = React.useContext(AccordionContext);
 
@@ -139,33 +127,20 @@ function AccordionTrigger(
     <AccordionPrimitive.Header className="flex">
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
-        className={cn(
-          accordionTriggerVariants({ variant, indicator }),
-          className,
-        )}
+        className={cn(accordionTriggerVariants({ variant, indicator }), className)}
         {...rest}
       >
         {children}
-        {indicator === 'plus' && (
-          <Plus
-            className="size-4 shrink-0 transition-transform duration-200"
-            strokeWidth={1}
-          />
-        )}
+        {indicator === 'plus' && <Plus className="size-4 shrink-0 transition-transform duration-200" strokeWidth={1} />}
         {indicator === 'arrow' && (
-          <ChevronDown
-            className="size-4 shrink-0 transition-transform duration-200"
-            strokeWidth={1}
-          />
+          <ChevronDown className="size-4 shrink-0 transition-transform duration-200" strokeWidth={1} />
         )}
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   );
 }
 
-function AccordionContent(
-  props: React.ComponentProps<typeof AccordionPrimitive.Content>,
-) {
+function AccordionContent(props: React.ComponentProps<typeof AccordionPrimitive.Content>) {
   const { className, children, ...rest } = props;
   const { variant } = React.useContext(AccordionContext);
 

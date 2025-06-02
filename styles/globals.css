@@ -85,6 +85,7 @@
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
   --animate-border-move: border-move 5s linear infinite;
+  --animate-border-beam: border-beam var(--duration) infinite linear;
 
   @keyframes accordion-down {
     from {
@@ -151,6 +152,12 @@
       transform: translateY(calc(-100% - var(--gap)));
     }
   }
+
+  @keyframes border-beam {
+    100% {
+      offset-distance: 100%;
+    }
+  }
 }
 
 /** Global Styles **/
@@ -203,11 +210,11 @@ html {
 /** Docs Styles **/
 @theme {
   --font-sans:
-    var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
   --font-mono:
-    var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco,
-    Consolas, 'Liberation Mono', 'Courier New', monospace;
+    var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+    monospace;
 }
 
 @import './mdx.css';

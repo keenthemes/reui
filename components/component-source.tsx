@@ -27,15 +27,12 @@ export interface ComponentSourceProps {
   codeCollapsed?: boolean;
 }
 
-const ComponentSourceContext =
-  React.createContext<ComponentSourceContext | null>(null);
+const ComponentSourceContext = React.createContext<ComponentSourceContext | null>(null);
 
 export function useComponentSource() {
   const context = React.useContext(ComponentSourceContext);
   if (!context) {
-    throw new Error(
-      'useComponentSource must be used within a ComponentSourceProvider.',
-    );
+    throw new Error('useComponentSource must be used within a ComponentSourceProvider.');
   }
   return context;
 }
@@ -85,8 +82,7 @@ function ComponentSourceProvider({
 function PreviewCopyCodeButton() {
   const { code, name } = useComponentSource();
   const { copy, copied } = useCopyToClipboard();
-  const btnClass =
-    'h-6 w-6 rounded-md p-0 text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50 absolute top-4 end-4';
+  const btnClass = 'h-6 w-6 rounded-md p-0 text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50 absolute top-4 end-4';
   const btnIconClass = 'h-3.5 w-3.5';
 
   return (
@@ -100,11 +96,7 @@ function PreviewCopyCodeButton() {
         trackCodeCopy(name);
       }}
     >
-      {copied ? (
-        <Check className={btnIconClass} />
-      ) : (
-        <Copy className={btnIconClass} />
-      )}
+      {copied ? <Check className={btnIconClass} /> : <Copy className={btnIconClass} />}
     </Button>
   );
 }
@@ -131,19 +123,13 @@ function ComponentSourceCode() {
 
   return (
     <div>
-      <div
-        className={cn(
-          'relative overflow-hidden rounded-xl bg-neutral-950 dark:bg-neutral-900 text-white',
-        )}
-      >
+      <div className={cn('relative overflow-hidden rounded-xl bg-neutral-950 dark:bg-neutral-900 text-white')}>
         <div
           data-rehype-pretty-code-fragment
           dangerouslySetInnerHTML={{ __html: highlightedCode || '' }}
           className={cn(
             'relative [tab-size:2] flex-1 overflow-hidden after:absolute after:inset-y-0 after:left-0 after:w-10 after:bg-neutral-950 dark:after:bg-neutral-900 [&_.line:before]:sticky [&_.line:before]:left-2 [&_.line:before]:z-10 [&_.line:before]:translate-y-[-1px] [&_.line:before]:pr-1 [&_pre]:max-h-(--height) [&_pre]:overflow-auto [&_pre]:!bg-transparent [&_pre]:pt-4 [&_pre]:font-mono [&_pre]:text-sm [&_pre]:leading-relaxed',
-            codeCollapsed
-              ? '[&_pre]:max-h-[var(--collapsed-height)]'
-              : '[&_pre]:max-h-[var(--height)]',
+            codeCollapsed ? '[&_pre]:max-h-[var(--collapsed-height)]' : '[&_pre]:max-h-[var(--height)]',
           )}
         />
         <PreviewCopyCodeButton />

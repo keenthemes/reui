@@ -32,12 +32,6 @@
     "noUnusedParameters": false,
     "preserveWatchOutput": true
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    ".contentlayer/generated"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", ".contentlayer/generated"],
   "exclude": ["node_modules"]
 }

@@ -1,10 +1,6 @@
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@/registry/default/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/registry/default/ui/avatar';
 import { Badge } from '@/registry/default/ui/badge';
 import { Button } from '@/registry/default/ui/button';
 import { DataGrid, DataGridContainer } from '@/registry/default/ui/data-grid';
@@ -53,8 +49,7 @@ const demoData: IData[] = [
     joined: '2021-04-15',
     location: 'San Francisco, USA',
     balance: 5143.03,
-    details:
-      'Kathryn is a visionary leader at Apple, focusing on innovation and team growth.',
+    details: 'Kathryn is a visionary leader at Apple, focusing on innovation and team growth.',
   },
   {
     id: '2',
@@ -69,8 +64,7 @@ const demoData: IData[] = [
     joined: '2020-07-20',
     location: 'London, UK',
     balance: 4321.87,
-    details:
-      'Robert is a technology pioneer specializing in artificial intelligence and machine learning.',
+    details: 'Robert is a technology pioneer specializing in artificial intelligence and machine learning.',
   },
   {
     id: '3',
@@ -85,8 +79,7 @@ const demoData: IData[] = [
     joined: '2019-03-12',
     location: 'Toronto, Canada',
     balance: 7654.98,
-    details:
-      'Sophia is a creative designer passionate about building user-centric experiences.',
+    details: 'Sophia is a creative designer passionate about building user-centric experiences.',
   },
   {
     id: '4',
@@ -101,8 +94,7 @@ const demoData: IData[] = [
     joined: '2022-01-18',
     location: 'Sydney, Australia',
     balance: 3456.45,
-    details:
-      'Lucas is a talented developer focused on innovative solutions in automotive technology.',
+    details: 'Lucas is a talented developer focused on innovative solutions in automotive technology.',
   },
   {
     id: '5',
@@ -117,8 +109,7 @@ const demoData: IData[] = [
     joined: '2023-05-23',
     location: 'Berlin, Germany',
     balance: 9876.54,
-    details:
-      'Emily is a corporate lawyer specializing in technology and software agreements.',
+    details: 'Emily is a corporate lawyer specializing in technology and software agreements.',
   },
   {
     id: '6',
@@ -133,8 +124,7 @@ const demoData: IData[] = [
     joined: '2018-11-30',
     location: 'Kuala Lumpur, MY',
     balance: 6214.22,
-    details:
-      'James oversees product development and team leadership at Keenthemes.',
+    details: 'James oversees product development and team leadership at Keenthemes.',
   },
   {
     id: '7',
@@ -149,8 +139,7 @@ const demoData: IData[] = [
     joined: '2021-06-14',
     location: 'Barcelona, Spain',
     balance: 5321.77,
-    details:
-      'Isabella manages product development and strategy for BBVA’s digital platforms.',
+    details: 'Isabella manages product development and strategy for BBVA’s digital platforms.',
   },
   {
     id: '8',
@@ -165,8 +154,7 @@ const demoData: IData[] = [
     joined: '2020-10-22',
     location: 'Tokyo, Japan',
     balance: 8452.39,
-    details:
-      'Benjamin leads innovative marketing campaigns for Sony’s flagship products.',
+    details: 'Benjamin leads innovative marketing campaigns for Sony’s flagship products.',
   },
   {
     id: '9',
@@ -181,8 +169,7 @@ const demoData: IData[] = [
     joined: '2019-09-17',
     location: 'Paris, France',
     balance: 7345.1,
-    details:
-      'Olivia is a data scientist optimizing sales and marketing analytics at LVMH.',
+    details: 'Olivia is a data scientist optimizing sales and marketing analytics at LVMH.',
   },
   {
     id: '10',
@@ -197,8 +184,7 @@ const demoData: IData[] = [
     joined: '2023-02-11',
     location: 'Milan, Italy',
     balance: 5214.88,
-    details:
-      'Michael is a lead engineer developing sustainable energy solutions at ENI.',
+    details: 'Michael is a lead engineer developing sustainable energy solutions at ENI.',
   },
   {
     id: '11',
@@ -213,8 +199,7 @@ const demoData: IData[] = [
     joined: '2022-12-01',
     location: 'Rio de Janeiro, Brazil',
     balance: 9421.5,
-    details:
-      'Ava develops cutting-edge software to optimize mining operations at Vale.',
+    details: 'Ava develops cutting-edge software to optimize mining operations at Vale.',
   },
   {
     id: '12',
@@ -229,8 +214,7 @@ const demoData: IData[] = [
     joined: '2020-03-27',
     location: 'Mumbai, India',
     balance: 4521.67,
-    details:
-      'David manages international sales for Tata’s industrial and automotive products.',
+    details: 'David manages international sales for Tata’s industrial and automotive products.',
   },
 ];
 
@@ -239,9 +223,7 @@ export default function DataGridDemo() {
     pageIndex: 0,
     pageSize: 5,
   });
-  const [sorting, setSorting] = useState<SortingState>([
-    { id: 'name', desc: true },
-  ]);
+  const [sorting, setSorting] = useState<SortingState>([{ id: 'name', desc: true }]);
 
   const columns = useMemo<ColumnDef<IData>[]>(
     () => [
@@ -264,11 +246,7 @@ export default function DataGridDemo() {
         },
         size: 12,
         meta: {
-          expandedContent: (row) => (
-            <div className="ms-12 py-3 text-muted-foreground text-sm">
-              {row.details}
-            </div>
-          ),
+          expandedContent: (row) => <div className="ms-12 py-3 text-muted-foreground text-sm">{row.details}</div>,
         },
       },
       {
@@ -279,16 +257,10 @@ export default function DataGridDemo() {
           return (
             <div className="flex items-center gap-2">
               <Avatar className="size-6">
-                <AvatarImage
-                  src={`/media/avatars/${row.original.avatar}`}
-                  alt={row.original.name}
-                />
+                <AvatarImage src={`/media/avatars/${row.original.avatar}`} alt={row.original.name} />
                 <AvatarFallback>N</AvatarFallback>
               </Avatar>
-              <Link
-                href="#"
-                className="font-medium text-foreground hover:text-primary"
-              >
+              <Link href="#" className="font-medium text-foreground hover:text-primary">
                 {row.original.name}
               </Link>
             </div>
@@ -302,10 +274,7 @@ export default function DataGridDemo() {
         accessorKey: 'email',
         header: 'Email',
         cell: (info) => (
-          <Link
-            href={`mailto:${info.getValue()}`}
-            className="hover:text-primary hover:underline"
-          >
+          <Link href={`mailto:${info.getValue()}`} className="hover:text-primary hover:underline">
             {info.getValue() as string}
           </Link>
         ),
@@ -367,11 +336,7 @@ export default function DataGridDemo() {
   });
 
   return (
-    <DataGrid
-      table={table}
-      recordCount={demoData?.length || 0}
-      tableLayout={{ headerBackground: false }}
-    >
+    <DataGrid table={table} recordCount={demoData?.length || 0} tableLayout={{ headerBackground: false }}>
       <div className="w-full space-y-2.5">
         <DataGridContainer border={false}>
           <ScrollArea>

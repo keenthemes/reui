@@ -79,14 +79,7 @@ export const Icons = {
         fill="url(#paint0_linear_177_3289)"
       />
       <defs>
-        <linearGradient
-          id="paint0_linear_177_3289"
-          x1="16"
-          y1="27.2824"
-          x2="16"
-          y2="4"
-          gradientUnits="userSpaceOnUse"
-        >
+        <linearGradient id="paint0_linear_177_3289" x1="16" y1="27.2824" x2="16" y2="4" gradientUnits="userSpaceOnUse">
           <stop stopColor="#0062E0" />
           <stop offset="1" stopColor="#19AFFF" />
         </linearGradient>
@@ -121,10 +114,7 @@ export const Icons = {
   ),
   radix: (props: IconProps) => (
     <svg viewBox="0 0 25 25" fill="none" {...props}>
-      <path
-        d="M12 25C7.58173 25 4 21.4183 4 17C4 12.5817 7.58173 9 12 9V25Z"
-        fill="currentcolor"
-      ></path>
+      <path d="M12 25C7.58173 25 4 21.4183 4 17C4 12.5817 7.58173 9 12 9V25Z" fill="currentcolor"></path>
       <path d="M12 0H4V8H12V0Z" fill="currentcolor"></path>
       <path
         d="M17 8C19.2091 8 21 6.20914 21 4C21 1.79086 19.2091 0 17 0C14.7909 0 13 1.79086 13 4C13 6.20914 14.7909 8 17 8Z"
@@ -190,10 +180,7 @@ export const Icons = {
   ),
   radixui: (props: IconProps) => (
     <svg fill="none" viewBox="4 0 17 25" {...props}>
-      <path
-        d="M12 25a8 8 0 1 1 0-16v16zM12 0H4v8h8V0zM17 8a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"
-        fill="currentcolor"
-      />
+      <path d="M12 25a8 8 0 1 1 0-16v16zM12 0H4v8h8V0zM17 8a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" fill="currentcolor" />
     </svg>
   ),
   supabaseColorful: (props: IconProps) => (

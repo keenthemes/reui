@@ -13,19 +13,8 @@ import {
   CommandItem,
   CommandList,
 } from '@/registry/default/ui/command';
-import {
-  Form,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/registry/default/ui/form';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/registry/default/ui/popover';
+import { Form, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/registry/default/ui/form';
+import { Popover, PopoverContent, PopoverTrigger } from '@/registry/default/ui/popover';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { RiCheckboxCircleFill } from '@remixicon/react';
 import { useForm } from 'react-hook-form';
@@ -59,19 +48,14 @@ export default function ComboboxForm() {
         <AlertIcon>
           <RiCheckboxCircleFill />
         </AlertIcon>
-        <AlertTitle>
-          Your form with &quot;{value}&quot; has successfully submitted
-        </AlertTitle>
+        <AlertTitle>Your form with &quot;{value}&quot; has successfully submitted</AlertTitle>
       </Alert>
     ));
   }
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="w-[300px] space-y-6"
-      >
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-[300px] space-y-6">
         <FormField
           control={form.control}
           name="city"
@@ -89,10 +73,7 @@ export default function ComboboxForm() {
                     className="w-full"
                   >
                     <span className={cn('truncate')}>
-                      {field.value
-                        ? topCities.find((city) => city.value === field.value)
-                            ?.label
-                        : 'Select a city...'}
+                      {field.value ? topCities.find((city) => city.value === field.value)?.label : 'Select a city...'}
                     </span>
                     <ButtonArrow />
                   </Button>

@@ -1,9 +1,5 @@
 import { useMemo, useState } from 'react';
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@/registry/default/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/registry/default/ui/avatar';
 import { DataGrid, DataGridContainer } from '@/registry/default/ui/data-grid';
 import { DataGridColumnHeader } from '@/registry/default/ui/data-grid-column-header';
 import { DataGridPagination } from '@/registry/default/ui/data-grid-pagination';
@@ -211,35 +207,24 @@ export default function DataGridDemo() {
     pageIndex: 0,
     pageSize: 5,
   });
-  const [sorting, setSorting] = useState<SortingState>([
-    { id: 'name', desc: true },
-  ]);
+  const [sorting, setSorting] = useState<SortingState>([{ id: 'name', desc: true }]);
 
   const columns = useMemo<ColumnDef<IData>[]>(
     () => [
       {
         accessorKey: 'name',
         id: 'name',
-        header: ({ column }) => (
-          <DataGridColumnHeader title="Staff" column={column} />
-        ),
+        header: ({ column }) => <DataGridColumnHeader title="Staff" column={column} />,
         cell: ({ row }) => {
           return (
             <div className="flex items-center gap-3">
               <Avatar className="size-8">
-                <AvatarImage
-                  src={`/media/avatars/${row.original.avatar}`}
-                  alt={row.original.name}
-                />
+                <AvatarImage src={`/media/avatars/${row.original.avatar}`} alt={row.original.name} />
                 <AvatarFallback>N</AvatarFallback>
               </Avatar>
               <div className="space-y-px">
-                <div className="font-medium text-foreground">
-                  {row.original.name}
-                </div>
-                <div className="text-muted-foreground">
-                  {row.original.email}
-                </div>
+                <div className="font-medium text-foreground">{row.original.name}</div>
+                <div className="text-muted-foreground">{row.original.email}</div>
               </div>
             </div>
           );
@@ -250,9 +235,7 @@ export default function DataGridDemo() {
       },
       {
         accessorKey: 'company',
-        header: ({ column }) => (
-          <DataGridColumnHeader title="Company" column={column} />
-        ),
+        header: ({ column }) => <DataGridColumnHeader title="Company" column={column} />,
         cell: (info) => <span>{info.getValue() as string}</span>,
         size: 150,
         enableSorting: true,
@@ -260,9 +243,7 @@ export default function DataGridDemo() {
       },
       {
         accessorKey: 'role',
-        header: ({ column }) => (
-          <DataGridColumnHeader title="Occupation" column={column} />
-        ),
+        header: ({ column }) => <DataGridColumnHeader title="Occupation" column={column} />,
         cell: (info) => <span>{info.getValue() as string}</span>,
         size: 125,
         enableSorting: true,
@@ -270,9 +251,7 @@ export default function DataGridDemo() {
       },
       {
         accessorKey: 'balance',
-        header: ({ column }) => (
-          <DataGridColumnHeader title="Dividend" column={column} />
-        ),
+        header: ({ column }) => <DataGridColumnHeader title="Dividend" column={column} />,
         cell: (info) => <span>${(info.getValue() as number).toFixed(2)}</span>,
         size: 120,
         meta: {

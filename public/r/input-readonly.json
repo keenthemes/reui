@@ -2,14 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "input-readonly",
   "type": "registry:component",
-  "dependencies": [
-    "clsx",
-    "tailwind-merge",
-    "class-variance-authority"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/input.json"
-  ],
+  "dependencies": ["clsx", "tailwind-merge", "class-variance-authority"],
+  "registryDependencies": ["https://reui.io/r/input.json"],
   "files": [
     {
       "path": "registry/default/components/input/readonly.tsx",

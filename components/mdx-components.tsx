@@ -1,40 +1,15 @@
 import React, { ReactNode } from 'react';
 import Link from 'next/link';
 import { cn } from '@/registry/default/lib/utils';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/registry/default/ui/accordion';
-import {
-  Alert,
-  AlertContent,
-  AlertDescription,
-  AlertIcon,
-  AlertTitle,
-} from '@/registry/default/ui/alert';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/registry/default/ui/accordion';
+import { Alert, AlertContent, AlertDescription, AlertIcon, AlertTitle } from '@/registry/default/ui/alert';
 import { AspectRatio } from '@/registry/default/ui/aspect-ratio';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/registry/default/ui/popover';
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from '@/registry/default/ui/tabs';
+import { Popover, PopoverContent, PopoverTrigger } from '@/registry/default/ui/popover';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/registry/default/ui/tabs';
 import { PopoverContentProps } from '@radix-ui/react-popover';
 import { BookOpenCheck, CircleAlert, ExternalLink, Minus } from 'lucide-react';
 import { useMDXComponent } from 'next-contentlayer2/hooks';
-import {
-  ComponentCode,
-  ComponentExamples,
-  ExampleCodesProps,
-  ExamplePreviewProps,
-} from '@/config/types';
+import { ComponentCode, ComponentExamples, ExampleCodesProps, ExamplePreviewProps } from '@/config/types';
 import { Event } from '@/lib/events';
 import { Callout } from '@/components/callout';
 import { CopyButton } from '@/components/copy-button';
@@ -45,10 +20,7 @@ import { ComponentSource } from './component-source';
 
 export { isType } from 'contentlayer2/client';
 
-const components = (
-  componentExamples: ComponentExamples | undefined,
-  componentCode: ComponentCode | undefined,
-) => ({
+const components = (componentExamples: ComponentExamples | undefined, componentCode: ComponentCode | undefined) => ({
   ExamplePreview: ({ path, ...props }: ExamplePreviewProps) => {
     if (!componentExamples) return <></>;
 
@@ -57,14 +29,7 @@ const components = (
       console.warn(`No preview item found for path: ${path}`);
       return null;
     }
-    return (
-      <ComponentPreview
-        {...props}
-        path={path}
-        code={example.code}
-        highlightedCode={example.highlightedCode}
-      />
-    );
+    return <ComponentPreview {...props} path={path} code={example.code} highlightedCode={example.highlightedCode} />;
   },
   ComponentPreview: ({ name, ...props }: ExampleCodesProps) => {
     if (!componentCode) return <></>;
@@ -77,14 +42,7 @@ const components = (
 
     console.log(`Wow: ${code}`);
 
-    return (
-      <ComponentSource
-        {...props}
-        name={name}
-        code={code.code}
-        highlightedCode={code.highlightedCode}
-      />
-    );
+    return <ComponentSource {...props} name={name} code={code.code} highlightedCode={code.highlightedCode} />;
   },
   PopoverInfo: ({
     children,
@@ -100,22 +58,14 @@ const components = (
         <PopoverTrigger className="inline-flex" asChild>
           <CircleAlert className="size-3.5 text-muted-foreground/80 ms-[1px] mt-[-2px]" />
         </PopoverTrigger>
-        <PopoverContent
-          className={cn(
-            'text-wrap max-w-56 text-accent-foreground text-sm',
-            width,
-          )}
-          {...props}
-        >
+        <PopoverContent className={cn('text-wrap max-w-56 text-accent-foreground text-sm', width)} {...props}>
           {children}
         </PopoverContent>
       </Popover>
     );
   },
   Na: () => {
-    return (
-      <Minus className="text-accent-foreground size-3.5" strokeWidth="1" />
-    );
+    return <Minus className="text-accent-foreground size-3.5" strokeWidth="1" />;
   },
   CliCommands,
   Alert,
@@ -131,75 +81,31 @@ const components = (
   BookOpenCheck,
   CircleAlert,
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h1
-      className={cn(
-        'font-heading mt-2 scroll-m-20 text-2xl font-bold',
-        className,
-      )}
-      {...props}
-    />
+    <h1 className={cn('font-heading mt-2 scroll-m-20 text-2xl font-bold', className)} {...props} />
   ),
-  h2: ({
-    children,
-    className,
-    ...props
-  }: React.HTMLAttributes<HTMLHeadingElement>) => (
+  h2: ({ children, className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2
-      className={cn(
-        'font-heading mt-12 scroll-m-15 text-xl font-semibold tracking-tight first:mt-0',
-        className,
-      )}
+      className={cn('font-heading mt-12 scroll-m-15 text-xl font-semibold tracking-tight first:mt-0', className)}
       {...props}
     >
       <span>{children}</span>
     </h2>
   ),
-  h3: ({
-    children,
-    className,
-    ...props
-  }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h3
-      className={cn(
-        'font-heading mt-8 scroll-m-20 text-lg font-semibold tracking-tight',
-        className,
-      )}
-      {...props}
-    >
+  h3: ({ children, className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+    <h3 className={cn('font-heading mt-8 scroll-m-20 text-lg font-semibold tracking-tight', className)} {...props}>
       <span>{children}</span>
     </h3>
   ),
   h4: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h4
-      className={cn(
-        'font-heading mt-8 scroll-m-20 text-base font-semibold tracking-tight',
-        className,
-      )}
-      {...props}
-    />
+    <h4 className={cn('font-heading mt-8 scroll-m-20 text-base font-semibold tracking-tight', className)} {...props} />
   ),
   h5: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h5
-      className={cn(
-        'mt-8 scroll-m-20 text-base font-semibold tracking-tight',
-        className,
-      )}
-      {...props}
-    />
+    <h5 className={cn('mt-8 scroll-m-20 text-base font-semibold tracking-tight', className)} {...props} />
   ),
   h6: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h6
-      className={cn(
-        'mt-8 scroll-m-20 text-base font-semibold tracking-tight',
-        className,
-      )}
-      {...props}
-    />
+    <h6 className={cn('mt-8 scroll-m-20 text-base font-semibold tracking-tight', className)} {...props} />
   ),
-  a: ({
-    className,
-    ...props
-  }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
+  a: ({ className, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
     const isExternal = props.href?.startsWith('http');
 
     return (
@@ -222,13 +128,7 @@ const components = (
     <p className={cn('not-first:mt-4', className)} {...props} />
   ),
   ul: ({ className, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
-    <ul
-      className={cn(
-        'my-6 ml-6 list-disc marker:text-muted-foreground',
-        className,
-      )}
-      {...props}
-    />
+    <ul className={cn('my-6 ml-6 list-disc marker:text-muted-foreground', className)} {...props} />
   ),
   ol: ({ className, ...props }: React.HTMLAttributes<HTMLOListElement>) => (
     <ol className={cn('my-6 ml-6 list-decimal', className)} {...props} />
@@ -237,45 +137,26 @@ const components = (
     <li className={cn('mt-2', className)} {...props} />
   ),
   blockquote: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
-    <blockquote
-      className={cn('mt-6 border-l-2 pl-6 italic', className)}
-      {...props}
-    />
+    <blockquote className={cn('mt-6 border-l-2 pl-6 italic', className)} {...props} />
   ),
   strong: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
     <strong className={cn('font-semibold', className)} {...props} />
   ),
-  img: ({
-    className,
-    alt,
-    ...props
-  }: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img
-      className={cn('rounded-lg border border-input', className)}
-      alt={alt}
-      {...props}
-    />
+  img: ({ className, alt, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => (
+    <img className={cn('rounded-lg border border-input', className)} alt={alt} {...props} />
   ),
-  hr: ({ ...props }: React.HTMLAttributes<HTMLHRElement>) => (
-    <hr className="my-4 md:my-8" {...props} />
-  ),
+  hr: ({ ...props }: React.HTMLAttributes<HTMLHRElement>) => <hr className="my-4 md:my-8" {...props} />,
   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
     <div className="table-fixed my-6 w-full overflow-y-auto border border-border/50 text-sm rounded-md">
       <table
-        className={cn(
-          'min-w-[750px] relative w-full overflow-hidden border-none text-sm',
-          className,
-        )}
+        className={cn('min-w-[750px] relative w-full overflow-hidden border-none text-sm', className)}
         {...props}
       />
     </div>
   ),
   tr: ({ className, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
     <tr
-      className={cn(
-        'last:border-b-0 m-0 border-b border-border/50 [&>*:last-child]:border-r-0',
-        className,
-      )}
+      className={cn('last:border-b-0 m-0 border-b border-border/50 [&>*:last-child]:border-r-0', className)}
       {...props}
     />
   ),
@@ -346,39 +227,21 @@ const components = (
   Callout,
   AspectRatio,
   Step: ({ className, ...props }: React.ComponentProps<'h3'>) => (
-    <h3
-      className={cn(
-        'font-heading mt-8 scroll-m-20 text-xl font-semibold tracking-tight',
-        className,
-      )}
-      {...props}
-    />
+    <h3 className={cn('font-heading mt-8 scroll-m-20 text-xl font-semibold tracking-tight', className)} {...props} />
   ),
   Steps: ({ ...props }) => (
-    <div
-      className="[&>h3]:step steps mb-12 ml-4 border-l pl-8 [counter-reset:step]"
-      {...props}
-    />
+    <div className="[&>h3]:step steps mb-12 ml-4 border-l pl-8 [counter-reset:step]" {...props} />
   ),
   Tabs: ({ className, ...props }: React.ComponentProps<typeof Tabs>) => (
     <Tabs className={cn('relative mt-6 w-full', className)} {...props} />
   ),
-  TabsList: ({
-    className,
-    ...props
-  }: React.ComponentProps<typeof TabsList>) => (
+  TabsList: ({ className, ...props }: React.ComponentProps<typeof TabsList>) => (
     <TabsList
-      className={cn(
-        'flex gap-4 w-full justify-start rounded-none border-b bg-transparent p-0 mb-5',
-        className,
-      )}
+      className={cn('flex gap-4 w-full justify-start rounded-none border-b bg-transparent p-0 mb-5', className)}
       {...props}
     />
   ),
-  TabsTrigger: ({
-    className,
-    ...props
-  }: React.ComponentProps<typeof TabsTrigger>) => (
+  TabsTrigger: ({ className, ...props }: React.ComponentProps<typeof TabsTrigger>) => (
     <TabsTrigger
       className={cn(
         'relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-zinc-950 dark:data-[state=active]:border-b-zinc-300 data-[state=active]:text-foreground data-[state=active]:shadow-none',
@@ -387,22 +250,13 @@ const components = (
       {...props}
     />
   ),
-  TabsContent: ({
-    className,
-    ...props
-  }: React.ComponentProps<typeof TabsContent>) => (
+  TabsContent: ({ className, ...props }: React.ComponentProps<typeof TabsContent>) => (
     <TabsContent
-      className={cn(
-        'relative [&_h3.font-heading]:text-base [&_h3.font-heading]:font-semibold',
-        className,
-      )}
+      className={cn('relative [&_h3.font-heading]:text-base [&_h3.font-heading]:font-semibold', className)}
       {...props}
     />
   ),
-  FrameworkDocs: ({
-    className,
-    ...props
-  }: React.ComponentProps<typeof FrameworkDocs>) => (
+  FrameworkDocs: ({ className, ...props }: React.ComponentProps<typeof FrameworkDocs>) => (
     <FrameworkDocs className={cn(className)} {...props} />
   ),
   Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => (

@@ -12,14 +12,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/registry/default/ui/dialog';
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormMessage,
-} from '@/registry/default/ui/form';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from '@/registry/default/ui/form';
 import { Textarea } from '@/registry/default/ui/textarea';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useDirection } from '@radix-ui/react-direction';
@@ -33,10 +26,7 @@ export default function DialogDemo() {
   const direction = useDirection();
 
   const FormSchema = z.object({
-    feedback: z
-      .string()
-      .min(1, 'Feedback is required')
-      .max(200, 'Feedback cannot exceed 200 characters'),
+    feedback: z.string().min(1, 'Feedback is required').max(200, 'Feedback cannot exceed 200 characters'),
   });
 
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -78,14 +68,9 @@ export default function DialogDemo() {
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
-                      <Textarea
-                        placeholder="Tell us how we can improve our product"
-                        {...field}
-                      />
+                      <Textarea placeholder="Tell us how we can improve our product" {...field} />
                     </FormControl>
-                    <FormDescription>
-                      Please don’t include any sensitive information
-                    </FormDescription>
+                    <FormDescription>Please don’t include any sensitive information</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}

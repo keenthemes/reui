@@ -1,10 +1,6 @@
 import { Badge } from '@/registry/default/ui/badge';
 import { Button } from '@/registry/default/ui/button';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/registry/default/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@/registry/default/ui/popover';
 
 export default function PopoverDemo() {
   return (
@@ -18,8 +14,8 @@ export default function PopoverDemo() {
 
         {/* Description */}
         <p className="text-muted-foreground">
-          Advanced analytics provides deeper insights into your data, including
-          trends, predictions, and detailed user behavior.
+          Advanced analytics provides deeper insights into your data, including trends, predictions, and detailed user
+          behavior.
         </p>
 
         {/* Additional Note */}
@@ -27,9 +23,7 @@ export default function PopoverDemo() {
           <Badge variant="destructive" size="sm">
             Note!
           </Badge>
-          <span className="text-xs text-muted-foreground">
-            Plan upgrade is required.
-          </span>
+          <span className="text-xs text-muted-foreground">Plan upgrade is required.</span>
         </p>
       </PopoverContent>
     </Popover>

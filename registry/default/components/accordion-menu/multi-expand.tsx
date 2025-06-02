@@ -38,11 +38,7 @@ export default function AccordionMenuWithSubmenusDemo() {
             value="overview"
             onClick={() =>
               toast.custom((t) => (
-                <Alert
-                  variant="mono"
-                  icon="primary"
-                  onClose={() => toast.dismiss(t)}
-                >
+                <Alert variant="mono" icon="primary" onClose={() => toast.dismiss(t)}>
                   <AlertIcon>
                     <RiCheckboxCircleFill />
                   </AlertIcon>
@@ -68,11 +64,7 @@ export default function AccordionMenuWithSubmenusDemo() {
                   value="inbox"
                   onClick={() =>
                     toast.custom((t) => (
-                      <Alert
-                        variant="mono"
-                        icon="primary"
-                        onClose={() => toast.dismiss(t)}
-                      >
+                      <Alert variant="mono" icon="primary" onClose={() => toast.dismiss(t)}>
                         <AlertIcon>
                           <RiCheckboxCircleFill />
                         </AlertIcon>
@@ -87,11 +79,7 @@ export default function AccordionMenuWithSubmenusDemo() {
                   value="sent"
                   onClick={() =>
                     toast.custom((t) => (
-                      <Alert
-                        variant="mono"
-                        icon="primary"
-                        onClose={() => toast.dismiss(t)}
-                      >
+                      <Alert variant="mono" icon="primary" onClose={() => toast.dismiss(t)}>
                         <AlertIcon>
                           <RiCheckboxCircleFill />
                         </AlertIcon>
@@ -106,11 +94,7 @@ export default function AccordionMenuWithSubmenusDemo() {
                   value="drafts"
                   onClick={() =>
                     toast.custom((t) => (
-                      <Alert
-                        variant="mono"
-                        icon="primary"
-                        onClose={() => toast.dismiss(t)}
-                      >
+                      <Alert variant="mono" icon="primary" onClose={() => toast.dismiss(t)}>
                         <AlertIcon>
                           <RiCheckboxCircleFill />
                         </AlertIcon>
@@ -125,11 +109,7 @@ export default function AccordionMenuWithSubmenusDemo() {
                   value="spam"
                   onClick={() =>
                     toast.custom((t) => (
-                      <Alert
-                        variant="mono"
-                        icon="destructive"
-                        onClose={() => toast.dismiss(t)}
-                      >
+                      <Alert variant="mono" icon="destructive" onClose={() => toast.dismiss(t)}>
                         <AlertIcon>
                           <RiCheckboxCircleFill />
                         </AlertIcon>
@@ -157,11 +137,7 @@ export default function AccordionMenuWithSubmenusDemo() {
                   value="preferences-general"
                   onClick={() =>
                     toast.custom((t) => (
-                      <Alert
-                        variant="mono"
-                        icon="primary"
-                        onClose={() => toast.dismiss(t)}
-                      >
+                      <Alert variant="mono" icon="primary" onClose={() => toast.dismiss(t)}>
                         <AlertIcon>
                           <RiCheckboxCircleFill />
                         </AlertIcon>
@@ -176,11 +152,7 @@ export default function AccordionMenuWithSubmenusDemo() {
                   value="preferences-privacy"
                   onClick={() =>
                     toast.custom((t) => (
-                      <Alert
-                        variant="mono"
-                        icon="primary"
-                        onClose={() => toast.dismiss(t)}
-                      >
+                      <Alert variant="mono" icon="primary" onClose={() => toast.dismiss(t)}>
                         <AlertIcon>
                           <RiCheckboxCircleFill />
                         </AlertIcon>
@@ -195,11 +167,7 @@ export default function AccordionMenuWithSubmenusDemo() {
                   value="preferences-notifications"
                   onClick={() =>
                     toast.custom((t) => (
-                      <Alert
-                        variant="mono"
-                        icon="primary"
-                        onClose={() => toast.dismiss(t)}
-                      >
+                      <Alert variant="mono" icon="primary" onClose={() => toast.dismiss(t)}>
                         <AlertIcon>
                           <RiCheckboxCircleFill />
                         </AlertIcon>
@@ -214,11 +182,7 @@ export default function AccordionMenuWithSubmenusDemo() {
                   value="preferences-display"
                   onClick={() =>
                     toast.custom((t) => (
-                      <Alert
-                        variant="mono"
-                        icon="primary"
-                        onClose={() => toast.dismiss(t)}
-                      >
+                      <Alert variant="mono" icon="primary" onClose={() => toast.dismiss(t)}>
                         <AlertIcon>
                           <RiCheckboxCircleFill />
                         </AlertIcon>
@@ -233,11 +197,7 @@ export default function AccordionMenuWithSubmenusDemo() {
                   value="preferences-language"
                   onClick={() =>
                     toast.custom((t) => (
-                      <Alert
-                        variant="mono"
-                        icon="primary"
-                        onClose={() => toast.dismiss(t)}
-                      >
+                      <Alert variant="mono" icon="primary" onClose={() => toast.dismiss(t)}>
                         <AlertIcon>
                           <RiCheckboxCircleFill />
                         </AlertIcon>
@@ -257,11 +217,7 @@ export default function AccordionMenuWithSubmenusDemo() {
             value="companyInfo"
             onClick={() =>
               toast.custom((t) => (
-                <Alert
-                  variant="mono"
-                  icon="primary"
-                  onClose={() => toast.dismiss(t)}
-                >
+                <Alert variant="mono" icon="primary" onClose={() => toast.dismiss(t)}>
                   <AlertIcon>
                     <Briefcase />
                   </AlertIcon>
@@ -290,11 +246,7 @@ export default function AccordionMenuWithSubmenusDemo() {
                   value="faq"
                   onClick={() =>
                     toast.custom((t) => (
-                      <Alert
-                        variant="mono"
-                        icon="primary"
-                        onClose={() => toast.dismiss(t)}
-                      >
+                      <Alert variant="mono" icon="primary" onClose={() => toast.dismiss(t)}>
                         <AlertIcon>
                           <LifeBuoy />
                         </AlertIcon>
@@ -309,11 +261,7 @@ export default function AccordionMenuWithSubmenusDemo() {
                   value="contact"
                   onClick={() =>
                     toast.custom((t) => (
-                      <Alert
-                        variant="mono"
-                        icon="primary"
-                        onClose={() => toast.dismiss(t)}
-                      >
+                      <Alert variant="mono" icon="primary" onClose={() => toast.dismiss(t)}>
                         <AlertIcon>
                           <LifeBuoy />
                         </AlertIcon>
@@ -328,11 +276,7 @@ export default function AccordionMenuWithSubmenusDemo() {
                   value="support-tickets"
                   onClick={() =>
                     toast.custom((t) => (
-                      <Alert
-                        variant="mono"
-                        icon="primary"
-                        onClose={() => toast.dismiss(t)}
-                      >
+                      <Alert variant="mono" icon="primary" onClose={() => toast.dismiss(t)}>
                         <AlertIcon>
                           <LifeBuoy />
                         </AlertIcon>
@@ -347,11 +291,7 @@ export default function AccordionMenuWithSubmenusDemo() {
                   value="live-chat"
                   onClick={() =>
                     toast.custom((t) => (
-                      <Alert
-                        variant="mono"
-                        icon="primary"
-                        onClose={() => toast.dismiss(t)}
-                      >
+                      <Alert variant="mono" icon="primary" onClose={() => toast.dismiss(t)}>
                         <AlertIcon>
                           <LifeBuoy />
                         </AlertIcon>

@@ -94,13 +94,7 @@ const REGISTRY = {
 };
 
 // List of dependencies to skip from being added to the dependencies array
-const SKIP_DEPENDENCIES = [
-  'react',
-  'react-dom',
-  'next',
-  'lucide-react',
-  'class-variance-authority',
-];
+const SKIP_DEPENDENCIES = ['react', 'react-dom', 'next', 'lucide-react', 'class-variance-authority'];
 
 const REGISTRY_ROOT = path.resolve(process.cwd(), 'registry/default');
 const OUTPUT_FILE = path.resolve(process.cwd(), 'registry.json');
@@ -141,10 +135,7 @@ async function getFilesRecursive(dir, base = '') {
     const rel = path.join(base, dirent.name);
     if (dirent.isDirectory()) {
       files = files.concat(await getFilesRecursive(res, rel));
-    } else if (
-      dirent.isFile() &&
-      (dirent.name.endsWith('.ts') || dirent.name.endsWith('.tsx'))
-    ) {
+    } else if (dirent.isFile() && (dirent.name.endsWith('.ts') || dirent.name.endsWith('.tsx'))) {
       files.push(rel);
     }
   }
@@ -156,9 +147,7 @@ async function buildRegistry() {
   // Read package.json dependencies
   const pkgJsonPath = path.resolve(process.cwd(), 'package.json');
   const pkgJson = JSON.parse(await fs.readFile(pkgJsonPath, 'utf8'));
-  const thirdPartyDeps = pkgJson.dependencies
-    ? Object.keys(pkgJson.dependencies)
-    : [];
+  const thirdPartyDeps = pkgJson.dependencies ? Object.keys(pkgJson.dependencies) : [];
 
   // Helper to extract 3rd-party deps from file content
   function extractThirdPartyDepsFromContent(content) {
@@ -171,18 +160,14 @@ async function buildRegistry() {
       // Only consider top-level packages, not relative or aliased imports
       if (!dep.startsWith('.') && !dep.startsWith('@/')) {
         // For scoped packages, keep scope/name only
-        const base = dep.startsWith('@')
-          ? dep.split('/').slice(0, 2).join('/')
-          : dep.split('/')[0];
+        const base = dep.startsWith('@') ? dep.split('/').slice(0, 2).join('/') : dep.split('/')[0];
         if (thirdPartyDeps.includes(base)) deps.add(base);
       }
     }
     while ((match = requireRegex.exec(content))) {
       const dep = match[1];
       if (!dep.startsWith('.') && !dep.startsWith('@/')) {
-        const base = dep.startsWith('@')
-          ? dep.split('/').slice(0, 2).join('/')
-          : dep.split('/')[0];
+        const base = dep.startsWith('@') ? dep.split('/').slice(0, 2).join('/') : dep.split('/')[0];
         if (thirdPartyDeps.includes(base)) deps.add(base);
       }
     }
@@ -194,9 +179,7 @@ async function buildRegistry() {
     try {
       const files = await getFilesRecursive(absFolder);
       for (const file of files) {
-        const parts = file
-          .split(path.sep)
-          .map((p) => p.replace(/\.[^/.]+$/, ''));
+        const parts = file.split(path.sep).map((p) => p.replace(/\.[^/.]+$/, ''));
         const name = parts.join('-');
         const relPath = `registry/default/${folder}/${file.replace(/\\/g, '/')}`;
         // Read file content and extract 3rd-party deps
@@ -215,17 +198,10 @@ async function buildRegistry() {
         console.log(`[DEBUG] Detected dependencies:`, deps);
         // Scan for registry UI and component imports
         const uiImportRegex = /['"]@\/registry\/default\/ui\/([\w-]+)['"]/g;
-        const compImportRegex =
-          /['"]@\/registry\/default\/components\/([\w\/-]+)(?:\.tsx)?['"]/g;
+        const compImportRegex = /['"]@\/registry\/default\/components\/([\w\/-]+)(?:\.tsx)?['"]/g;
         const uiMatches = Array.from(fileContent.matchAll(uiImportRegex));
         const compMatches = Array.from(fileContent.matchAll(compImportRegex));
-        const uiDeps = [
-          ...new Set(
-            uiMatches.map(
-              (m) => `https://reui.io/r/${m[1].replace(/\//g, '-')}.json`,
-            ),
-          ),
-        ];
+        const uiDeps = [...new Set(uiMatches.map((m) => `https://reui.io/r/${m[1].replace(/\//g, '-')}.json`))];
         const compDeps = [
           ...new Set(
             compMatches.map((m) => {
@@ -280,13 +256,8 @@ async function buildRegistry() {
         ...staticEntry,
         ...item,
         cssVars:
-          staticEntry.cssVars || item.cssVars
-            ? { ...(staticEntry.cssVars || {}), ...(item.cssVars || {}) }
-            : undefined,
-        css:
-          staticEntry.css || item.css
-            ? { ...(staticEntry.css || {}), ...(item.css || {}) }
-            : undefined,
+          staticEntry.cssVars || item.cssVars ? { ...(staticEntry.cssVars || {}), ...(item.cssVars || {}) } : undefined,
+        css: staticEntry.css || item.css ? { ...(staticEntry.css || {}), ...(item.css || {}) } : undefined,
       };
     }
     return item;

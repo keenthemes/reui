@@ -1,10 +1,5 @@
 import { Badge } from '@/registry/default/ui/badge';
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from '@/registry/default/ui/tabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/registry/default/ui/tabs';
 import { Bell, ShieldCheck, UserRound } from 'lucide-react';
 
 export default function TabsDemo() {

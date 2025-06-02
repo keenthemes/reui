@@ -13,9 +13,7 @@
     "@radix-ui/react-slot",
     "react-hook-form"
   ],
-  "registryDependencies": [
-    "https://reui.io/r/label.json"
-  ],
+  "registryDependencies": ["https://reui.io/r/label.json"],
   "files": [
     {
       "path": "registry/default/ui/form.tsx",

@@ -42,8 +42,7 @@ export const blocksConfig: BlocksConfig = [
   {
     title: 'Widgets',
     slug: 'widgets',
-    description:
-      'Complete widgets for dashboards with charts and rich elements',
+    description: 'Complete widgets for dashboards with charts and rich elements',
     sub: [
       {
         title: 'Layout 1',
