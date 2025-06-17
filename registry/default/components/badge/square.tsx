@@ -22,30 +22,24 @@ export default function BadgeDemo() {
         <Badge variant="destructive" shape="circle">
           5
         </Badge>
-        <Badge variant="mono" shape="circle">
-          5
-        </Badge>
       </div>
       <div className="flex items-center gap-4">
-        <Badge variant="primary" appearance="outline" shape="circle">
+        <Badge variant="primary" appearance="light" shape="circle">
           9
         </Badge>
-        <Badge variant="secondary" appearance="outline" shape="circle">
+        <Badge variant="secondary" appearance="light" shape="circle">
           9
         </Badge>
-        <Badge variant="success" appearance="outline" shape="circle">
+        <Badge variant="success" appearance="light" shape="circle">
           9
         </Badge>
-        <Badge variant="warning" appearance="outline" shape="circle">
+        <Badge variant="warning" appearance="light" shape="circle">
           9
         </Badge>
-        <Badge variant="info" appearance="outline" shape="circle">
+        <Badge variant="info" appearance="light" shape="circle">
           9
         </Badge>
-        <Badge variant="destructive" appearance="outline" shape="circle">
-          9
-        </Badge>
-        <Badge variant="mono" appearance="outline" shape="circle">
+        <Badge variant="destructive" appearance="light" shape="circle">
           9
         </Badge>
       </div>

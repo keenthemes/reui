@@ -6,9 +6,6 @@ export default function BadgeDemo() {
       <Badge variant="primary" appearance="light">
         Primary
       </Badge>
-      <Badge variant="secondary" appearance="light">
-        Secondary
-      </Badge>
       <Badge variant="success" appearance="light">
         Success
       </Badge>
@@ -20,9 +17,6 @@ export default function BadgeDemo() {
       </Badge>
       <Badge variant="destructive" appearance="light">
         Destructive
-      </Badge>
-      <Badge variant="mono" appearance="light">
-        Mono
       </Badge>
     </div>
   );

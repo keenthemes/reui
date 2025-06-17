@@ -29,121 +29,93 @@ const alertVariants = cva('flex items-stretch w-full gap-2 group-[.toaster]:w-(-
       stroke: 'text-foreground',
     },
     size: {
-      lg: 'rounded-lg p-4 gap-3 text-base [&>[data-slot=alert-icon]>svg]:size-6 *:data-slot=alert-icon:mt-0 *:data-slot=alert-close:mt-0.5 *:data-slot=alert-close:-me-0.5',
-      md: 'rounded-lg p-3.5 gap-2.5 text-sm [&>[data-slot=alert-icon]>svg]:size-5 *:data-slot=alert-icon:mt-0 *:data-slot=alert-close:-me-0.5',
-      sm: 'rounded-md px-3 py-2.5 gap-2 text-xs [&>[data-slot=alert-icon]>svg]:size-4 *:data-alert-icon:mt-0.5 *:data-slot=alert-close:-me-0.5 [&>[data-slot=alert-close]>svg]:size-3.5!',
+      lg: 'rounded-lg p-4 gap-3 text-base [&>[data-slot=alert-icon]>svg]:size-6 *:data-slot=alert-icon:mt-0.5 [&_[data-slot=alert-close]]:mt-1',
+      md: 'rounded-lg p-3.5 gap-2.5 text-sm [&>[data-slot=alert-icon]>svg]:size-5 *:data-slot=alert-icon:mt-0 [&_[data-slot=alert-close]]:mt-0.5',
+      sm: 'rounded-md px-3 py-2.5 gap-2 text-xs [&>[data-slot=alert-icon]>svg]:size-4 *:data-alert-icon:mt-0.5 [&_[data-slot=alert-close]]:mt-0.25 [&_[data-slot=alert-close]_svg]:size-3.5',
     },
   },
   compoundVariants: [
+    /* Solid */
     {
       variant: 'secondary',
       appearance: 'solid',
-      className: 'bg-muted text-foreground *:data-alert-close:text-foreground',
+      className: 'bg-muted text-foreground',
     },
     {
       variant: 'primary',
       appearance: 'solid',
-      className: 'bg-primary text-primary-foreground *:data-alert-close:text-primary-foreground',
+      className: 'bg-primary text-primary-foreground',
     },
     {
       variant: 'destructive',
       appearance: 'solid',
-      className: 'bg-destructive text-destructive-foreground *:data-alert-close:text-destructive-foreground',
+      className: 'bg-destructive text-destructive-foreground',
     },
     {
       variant: 'success',
-      appearance: 'solid',
-      className: 'bg-green-500 text-white *:data-alert-close:text-white',
-    },
-    {
-      variant: 'info',
-      appearance: 'solid',
-      className: 'bg-violet-600 text-white *:data-alert-close:text-white',
-    },
-    {
-      variant: 'warning',
-      appearance: 'solid',
-      className: 'bg-yellow-500 text-white *:data-alert-close:text-white',
-    },
-    {
-      variant: 'mono',
       appearance: 'solid',
       className:
-        'bg-zinc-950 text-white dark:bg-zinc-300 dark:text-black *:data-alert-close:text-white dark:*:data-alert-close:text-black',
+        'bg-[var(--color-success,var(--color-green-500))] text-[var(--color-success-foreground,var(--color-white))]',
+    },
+    {
+      variant: 'info',
+      appearance: 'solid',
+      className:
+        'bg-[var(--color-info,var(--color-violet-600))] text-[var(--color-info-foreground,var(--color-white))]',
+    },
+    {
+      variant: 'warning',
+      appearance: 'solid',
+      className:
+        'bg-[var(--color-warning,var(--color-yellow-500))] text-[var(--color-warning-foreground,var(--color-white))]',
+    },
+    {
+      variant: 'mono',
+      appearance: 'solid',
+      className: 'bg-zinc-950 text-white dark:bg-zinc-300 dark:text-black *:data-slot-[alert=close]:text-white',
     },
 
+    /* Outline */
     {
       variant: 'secondary',
       appearance: 'outline',
-      className: 'border border-border bg-background text-foreground *:data-alert-close:text-foreground',
+      className: 'border border-border bg-background text-foreground [&_[data-slot=alert-close]]:text-foreground',
     },
     {
       variant: 'primary',
       appearance: 'outline',
-      className: 'border border-border bg-background text-primary *:data-alert-close:text-foreground',
+      className: 'border border-border bg-background text-primary [&_[data-slot=alert-close]]:text-foreground',
     },
     {
       variant: 'destructive',
       appearance: 'outline',
-      className: 'border border-border bg-background text-destructive *:data-alert-close:text-foreground',
+      className: 'border border-border bg-background text-destructive [&_[data-slot=alert-close]]:text-foreground',
     },
     {
       variant: 'success',
       appearance: 'outline',
-      className: 'border border-border bg-background text-green-500 *:data-alert-close:text-foreground',
+      className:
+        'border border-border bg-background text-[var(--color-success,var(--color-green-500))] [&_[data-slot=alert-close]]:text-foreground',
     },
     {
       variant: 'info',
       appearance: 'outline',
-      className: 'border border-border bg-background text-violet-600 *:data-alert-close:text-foreground',
+      className:
+        'border border-border bg-background text-[var(--color-info,var(--color-violet-600))] [&_[data-slot=alert-close]]:text-foreground',
     },
     {
       variant: 'warning',
       appearance: 'outline',
-      className: 'border border-border bg-background text-yellow-500 *:data-alert-close:text-foreground',
+      className:
+        'border border-border bg-background text-[var(--color-warning,var(--color-yellow-500))] [&_[data-slot=alert-close]]:text-foreground',
     },
     {
       variant: 'mono',
       appearance: 'outline',
-      className: 'border border-border bg-background text-foreground *:data-alert-close:text-foreground',
+      className: 'border border-border bg-background text-foreground [&_[data-slot=alert-close]]:text-foreground',
     },
 
-    {
-      variant: 'secondary',
-      appearance: 'stroke',
-      className: 'border border-border bg-background [&>div:first-of-type>svg]:text-foreground',
-    },
-    {
-      variant: 'primary',
-      appearance: 'stroke',
-      className: 'border border-border bg-background [&>div:first-of-type>svg]:text-primary',
-    },
-    {
-      variant: 'destructive',
-      appearance: 'stroke',
-      className: 'border border-border bg-background [&>div:first-of-type>svg]:text-destructive',
-    },
-    {
-      variant: 'success',
-      appearance: 'stroke',
-      className: 'border border-border bg-background [&>div:first-of-type>svg]:text-green-500',
-    },
-    {
-      variant: 'info',
-      appearance: 'stroke',
-      className: 'border border-border bg-background [&>div:first-of-type>svg]:text-violet-600',
-    },
-    {
-      variant: 'warning',
-      appearance: 'stroke',
-      className: 'border border-border bg-background [&>div:first-of-type>svg]:text-yellow-500',
-    },
-    {
-      variant: 'mono',
-      appearance: 'stroke',
-      className: 'border border-border bg-background [&>div:first-of-type>svg]:text-foreground',
-    },
-
+    /* Light */
     {
       variant: 'secondary',
       appearance: 'light',
@@ -152,57 +124,59 @@ const alertVariants = cva('flex items-stretch w-full gap-2 group-[.toaster]:w-(-
     {
       variant: 'primary',
       appearance: 'light',
-      className: 'bg-primary/5 border border-primary/10 text-foreground [&>div:first-of-type>svg]:text-primary',
+      className:
+        'text-foreground bg-[var(--color-primary-soft,var(--color-blue-50))] border border-[var(--color-primary-alpha,var(--color-blue-100))] [&_[data-slot=alert-icon]]:text-primary dark:bg-[var(--color-primary-soft,var(--color-blue-950))] dark:border-[var(--color-primary-alpha,var(--color-blue-900))]',
     },
     {
       variant: 'destructive',
       appearance: 'light',
       className:
-        'bg-destructive/5 border border-destructive/10 text-foreground [&>div:first-of-type>svg]:text-destructive',
+        'bg-[var(--color-destructive-soft,var(--color-red-50))] border border-[var(--color-destructive-alpha,var(--color-red-100))] text-foreground [&_[data-slot=alert-icon]]:text-destructive dark:bg-[var(--color-destructive-soft,var(--color-red-950))] dark:border-[var(--color-destructive-alpha,var(--color-red-900))] ',
     },
     {
       variant: 'success',
       appearance: 'light',
       className:
-        'bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-950/50 text-foreground [&>div:first-of-type>svg]:text-green-500',
+        'bg-[var(--color-success-soft,var(--color-green-50))] border border-[var(--color-success-alpha,var(--color-green-100))] text-foreground [&_[data-slot=alert-icon]]:text-[var(--color-success-foreground,var(--color-green-600))] dark:bg-[var(--color-success-soft,var(--color-green-950))] dark:border-[var(--color-success-alpha,var(--color-green-900))]',
     },
     {
       variant: 'info',
       appearance: 'light',
       className:
-        'bg-violet-50 dark:bg-violet-950/30 border border-violet-200 dark:border-violet-950/50 text-foreground [&>div:first-of-type>svg]:text-violet-600',
+        'bg-[var(--color-info-soft,var(--color-violet-50))] border border-[var(--color-info-alpha,var(--color-violet-100))] text-foreground [&_[data-slot=alert-icon]]:text-[var(--color-info-foreground,var(--color-violet-600))] dark:bg-[var(--color-info-soft,var(--color-violet-950))] dark:border-[var(--color-info-alpha,var(--color-violet-900))]',
     },
     {
       variant: 'warning',
       appearance: 'light',
       className:
-        'bg-yellow-50 dark:bg-yellow-950/30 border border-yellow-200 dark:border-yellow-950/50 text-foreground [&>div:first-of-type>svg]:text-yellow-500',
+        'bg-[var(--color-warning-soft,var(--color-yellow-50))] border border-[var(--color-warning-alpha,var(--color-yellow-100))] text-foreground [&_[data-slot=alert-icon]]:text-[var(--color-warning-foreground,var(--color-yellow-600))] dark:bg-[var(--color-warning-soft,var(--color-yellow-950))] dark:border-[var(--color-warning-alpha,var(--color-yellow-900))]',
     },
 
+    /* Mono */
     {
       variant: 'mono',
       icon: 'primary',
-      className: '[&>div:first-of-type>svg]:text-primary',
+      className: '[&_[data-slot=alert-icon]]:text-primary',
     },
     {
       variant: 'mono',
       icon: 'warning',
-      className: '[&>div:first-of-type>svg]:text-yellow-500',
+      className: '[&_[data-slot=alert-icon]]:text-[var(--color-warning-foreground,var(--color-yellow-600))]',
     },
     {
       variant: 'mono',
       icon: 'success',
-      className: '[&>div:first-of-type>svg]:text-green-500',
+      className: '[&_[data-slot=alert-icon]]:text-[var(--color-success-foreground,var(--color-green-600))]',
     },
     {
       variant: 'mono',
       icon: 'destructive',
-      className: '[&>div:first-of-type>svg]:text-destructive',
+      className: '[&_[data-slot=alert-icon]]:text-destructive',
     },
     {
       variant: 'mono',
       icon: 'info',
-      className: '[&>div:first-of-type>svg]:text-violet-600',
+      className: '[&_[data-slot=alert-icon]]:text-[var(--color-info-foreground,var(--color-violet-600))]',
     },
   ],
   defaultVariants: {
@@ -235,10 +209,10 @@ function Alert({ className, variant, size, icon, appearance, close = false, onCl
           mode="icon"
           onClick={onClose}
           aria-label="Dismiss"
-          data-alert-close="true"
+          data-slot="alert-close"
           className={cn('group shrink-0 size-4')}
         >
-          <X className="opacity-60! group-hover:opacity-100! size-4!" />
+          <X className="opacity-60 group-hover:opacity-100 size-4" />
         </Button>
       )}
     </div>

@@ -1,23 +1,9 @@
 import { Badge } from '@/registry/default/ui/badge';
-import { Activity, Check, Mail, Tag } from 'lucide-react';
+import { Activity, Mail, Tag } from 'lucide-react';
 
 export default function BadgeDemo() {
   return (
     <div className="flex flex-col items-center gap-6">
-      <div className="flex items-center gap-4">
-        <Badge appearance="ghost">
-          <Tag /> Ghost
-        </Badge>
-        <Badge>
-          <Mail /> Solid
-        </Badge>
-        <Badge appearance="outline">
-          <Activity /> Outline
-        </Badge>
-        <Badge appearance="stroke">
-          <Check /> Stroke
-        </Badge>
-      </div>
       <div className="flex items-center gap-4">
         <Badge variant="primary" appearance="ghost">
           <Tag /> Ghost
@@ -25,11 +11,8 @@ export default function BadgeDemo() {
         <Badge variant="primary">
           <Mail /> Solid
         </Badge>
-        <Badge variant="primary" appearance="outline">
-          <Activity /> Outline
-        </Badge>
-        <Badge appearance="stroke">
-          <Check className="text-primary" /> Stroke
+        <Badge variant="primary" appearance="light">
+          <Activity /> light
         </Badge>
       </div>
       <div className="flex items-center gap-4">
@@ -39,11 +22,8 @@ export default function BadgeDemo() {
         <Badge variant="success">
           <Mail /> Solid
         </Badge>
-        <Badge variant="success" appearance="outline">
-          <Activity /> Outline
-        </Badge>
-        <Badge appearance="stroke">
-          <Check className="text-success" /> Stroke
+        <Badge variant="success" appearance="light">
+          <Activity /> light
         </Badge>
       </div>
       <div className="flex items-center gap-4">
@@ -53,11 +33,8 @@ export default function BadgeDemo() {
         <Badge variant="info">
           <Mail /> Solid
         </Badge>
-        <Badge variant="info" appearance="outline">
-          <Activity /> Outline
-        </Badge>
-        <Badge appearance="stroke">
-          <Check className="text-info" /> Stroke
+        <Badge variant="info" appearance="light">
+          <Activity /> light
         </Badge>
       </div>
       <div className="flex items-center gap-4">
@@ -67,11 +44,8 @@ export default function BadgeDemo() {
         <Badge variant="warning">
           <Mail /> Solid
         </Badge>
-        <Badge variant="warning" appearance="outline">
-          <Activity /> Outline
-        </Badge>
-        <Badge appearance="stroke">
-          <Check className="text-warning" /> Stroke
+        <Badge variant="warning" appearance="light">
+          <Activity /> light
         </Badge>
       </div>
       <div className="flex items-center gap-4">
@@ -81,22 +55,8 @@ export default function BadgeDemo() {
         <Badge variant="destructive">
           <Mail /> Solid
         </Badge>
-        <Badge variant="destructive" appearance="outline">
-          <Activity /> Outline
-        </Badge>
-        <Badge appearance="stroke">
-          <Check className="text-destructive" /> Stroke
-        </Badge>
-      </div>
-      <div className="flex items-center gap-4">
-        <Badge variant="mono" appearance="ghost">
-          <Tag /> Ghost
-        </Badge>
-        <Badge variant="mono">
-          <Mail /> Solid
-        </Badge>
-        <Badge variant="mono" appearance="outline">
-          <Activity /> Outline
+        <Badge variant="destructive" appearance="light">
+          <Activity /> light
         </Badge>
       </div>
     </div>

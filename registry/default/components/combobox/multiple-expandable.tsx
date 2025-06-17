@@ -103,7 +103,7 @@ export default function ComboboxDemo() {
                 <span className="px-2.5">Select cities</span>
               )}
             </div>
-            <ButtonArrow className="absolute top-[0.7rem] end-3" />
+            <ButtonArrow className="absolute top-2 end-3" />
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-(--radix-popper-anchor-width) p-0">

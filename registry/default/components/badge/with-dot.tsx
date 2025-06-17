@@ -8,21 +8,10 @@ export default function BadgeDemo() {
           <BadgeDot /> Ghost
         </Badge>
         <Badge>
-          <BadgeDot /> Solid
+          <BadgeDot /> Default
         </Badge>
-        <Badge appearance="outline">
-          <BadgeDot /> Outline
-        </Badge>
-      </div>
-      <div className="flex items-center gap-4">
-        <Badge variant="primary" appearance="ghost">
-          <BadgeDot /> Ghost
-        </Badge>
-        <Badge variant="primary">
-          <BadgeDot /> Solid
-        </Badge>
-        <Badge variant="primary" appearance="outline">
-          <BadgeDot /> Outline
+        <Badge appearance="light">
+          <BadgeDot /> Light
         </Badge>
       </div>
       <div className="flex items-center gap-4">
@@ -30,10 +19,10 @@ export default function BadgeDemo() {
           <BadgeDot /> Ghost
         </Badge>
         <Badge variant="success">
-          <BadgeDot /> Solid
+          <BadgeDot /> Default
         </Badge>
-        <Badge variant="success" appearance="outline">
-          <BadgeDot /> Outline
+        <Badge variant="success" appearance="light">
+          <BadgeDot /> Light
         </Badge>
       </div>
       <div className="flex items-center gap-4">
@@ -41,10 +30,10 @@ export default function BadgeDemo() {
           <BadgeDot /> Ghost
         </Badge>
         <Badge variant="info">
-          <BadgeDot /> Solid
+          <BadgeDot /> Default
         </Badge>
-        <Badge variant="info" appearance="outline">
-          <BadgeDot /> Outline
+        <Badge variant="info" appearance="light">
+          <BadgeDot /> Light
         </Badge>
       </div>
       <div className="flex items-center gap-4">
@@ -52,10 +41,10 @@ export default function BadgeDemo() {
           <BadgeDot /> Ghost
         </Badge>
         <Badge variant="warning">
-          <BadgeDot /> Solid
+          <BadgeDot /> Default
         </Badge>
-        <Badge variant="warning" appearance="outline">
-          <BadgeDot /> Outline
+        <Badge variant="warning" appearance="light">
+          <BadgeDot /> Light
         </Badge>
       </div>
       <div className="flex items-center gap-4">
@@ -63,21 +52,10 @@ export default function BadgeDemo() {
           <BadgeDot /> Ghost
         </Badge>
         <Badge variant="destructive">
-          <BadgeDot /> Solid
+          <BadgeDot /> Default
         </Badge>
-        <Badge variant="destructive" appearance="outline">
-          <BadgeDot /> Outline
-        </Badge>
-      </div>
-      <div className="flex items-center gap-4">
-        <Badge variant="mono" appearance="ghost">
-          <BadgeDot /> Ghost
-        </Badge>
-        <Badge variant="mono">
-          <BadgeDot /> Solid
-        </Badge>
-        <Badge variant="mono" appearance="outline">
-          <BadgeDot /> Outline
+        <Badge variant="destructive" appearance="light">
+          <BadgeDot /> Light
         </Badge>
       </div>
     </div>

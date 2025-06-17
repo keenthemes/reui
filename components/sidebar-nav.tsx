@@ -51,22 +51,22 @@ export function DocsSidebarNavItems({ items, pathname }: DocsSidebarNavItemsProp
           >
             {item.title}
             {item.label && (
-              <Badge variant="success" size="sm" appearance="outline">
+              <Badge variant="success" size="sm" appearance="light">
                 {item.label}
               </Badge>
             )}
             {item.new && (
-              <Badge variant="success" size="sm" appearance="outline">
+              <Badge variant="success" size="sm" appearance="light">
                 New
               </Badge>
             )}
             {item.popular && (
-              <Badge variant="info" size="sm" appearance="outline">
+              <Badge variant="info" size="sm" appearance="light">
                 Popular
               </Badge>
             )}
             {item.update && (
-              <Badge variant="warning" size="sm" appearance="outline">
+              <Badge variant="warning" size="sm" appearance="light">
                 Update
               </Badge>
             )}
@@ -81,7 +81,7 @@ export function DocsSidebarNavItems({ items, pathname }: DocsSidebarNavItemsProp
           >
             {item.title}
             {item.label && (
-              <Badge variant="success" size="sm" appearance="outline">
+              <Badge variant="success" size="sm" appearance="light">
                 {item.label}
               </Badge>
             )}
