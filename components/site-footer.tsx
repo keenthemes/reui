@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Separator } from '@/registry/default/ui/separator';
 import { trackEvent } from '@/lib/analytics';
 
 export function SiteFooter() {
@@ -33,6 +34,15 @@ export function SiteFooter() {
               Keenthemes
             </Link>
           </div>
+          <Separator orientation="vertical" className="h-4" />
+          <Link
+            className="font-medium text-foreground hover:underline hover:underline-offset-2"
+            href="https://keenthemes.studio"
+            target="_blank"
+            onClick={() => handleLinkClick('hireus')}
+          >
+            Hire Us
+          </Link>
         </div>
       </div>
     </footer>

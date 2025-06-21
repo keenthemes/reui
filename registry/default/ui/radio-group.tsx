@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 import { cn } from '@/registry/default/lib/utils';
-import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
 import { cva, VariantProps } from 'class-variance-authority';
 import { Circle } from 'lucide-react';
+import { RadioGroup as RadioGroupPrimitive } from 'radix-ui';
 
 type RadioVariant = 'primary' | 'mono';
 type RadioSize = 'sm' | 'md' | 'lg';

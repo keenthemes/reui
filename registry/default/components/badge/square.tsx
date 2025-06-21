@@ -43,6 +43,26 @@ export default function BadgeDemo() {
           9
         </Badge>
       </div>
+      <div className="flex items-center gap-4">
+        <Badge variant="primary" appearance="outline" shape="circle">
+          5
+        </Badge>
+        <Badge variant="secondary" appearance="outline" shape="circle">
+          5
+        </Badge>
+        <Badge variant="success" appearance="outline" shape="circle">
+          5
+        </Badge>
+        <Badge variant="warning" appearance="outline" shape="circle">
+          5
+        </Badge>
+        <Badge variant="info" appearance="outline" shape="circle">
+          5
+        </Badge>
+        <Badge variant="destructive" appearance="outline" shape="circle">
+          5
+        </Badge>
+      </div>
     </div>
   );
 }

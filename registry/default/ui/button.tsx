@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { ChevronDown, LucideIcon } from 'lucide-react';
+import { Slot as SlotPrimitive } from 'radix-ui';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
@@ -72,34 +72,34 @@ const buttonVariants = cva(
       {
         variant: 'ghost',
         mode: 'default',
-        className: '[&_svg:not([role=img]):not([class*=text-])]:opacity-60',
+        className: '[&_svg:not([role=img]):not([class*=text-]):not([class*=opacity-])]:opacity-60',
       },
       {
         variant: 'outline',
         mode: 'default',
-        className: '[&_svg:not([role=img]):not([class*=text-])]:opacity-60',
+        className: '[&_svg:not([role=img]):not([class*=text-]):not([class*=opacity-])]:opacity-60',
       },
       {
         variant: 'dashed',
         mode: 'default',
-        className: '[&_svg:not([role=img]):not([class*=text-])]:opacity-60',
+        className: '[&_svg:not([role=img]):not([class*=text-]):not([class*=opacity-])]:opacity-60',
       },
       {
         variant: 'secondary',
         mode: 'default',
-        className: '[&_svg:not([role=img]):not([class*=text-])]:opacity-60',
+        className: '[&_svg:not([role=img]):not([class*=text-]):not([class*=opacity-])]:opacity-60',
       },
 
       // Icons opacity for default mode
       {
         variant: 'outline',
         mode: 'input',
-        className: '[&_svg:not([role=img]):not([class*=text-])]:opacity-60',
+        className: '[&_svg:not([role=img]):not([class*=text-]):not([class*=opacity-])]:opacity-60',
       },
       {
         variant: 'outline',
         mode: 'icon',
-        className: '[&_svg:not([role=img]):not([class*=text-])]:opacity-60',
+        className: '[&_svg:not([role=img]):not([class*=text-]):not([class*=opacity-])]:opacity-60',
       },
 
       // Auto height
@@ -376,7 +376,7 @@ function Button({
     selected?: boolean;
     asChild?: boolean;
   }) {
-  const Comp = asChild ? Slot : 'button';
+  const Comp = asChild ? SlotPrimitive.Slot : 'button';
   return (
     <Comp
       data-slot="button"

@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { cn } from '@/registry/default/lib/utils';
-import * as MenubarPrimitive from '@radix-ui/react-menubar';
 import { Check, ChevronRight, Circle } from 'lucide-react';
+import { Menubar as MenubarPrimitive } from 'radix-ui';
 
 function MenubarMenu({ ...props }: React.ComponentProps<typeof MenubarPrimitive.Menu>) {
   return <MenubarPrimitive.Menu data-slot="menubar-menu" {...props} />;
@@ -21,7 +21,7 @@ function MenubarRadioGroup({ ...props }: React.ComponentProps<typeof MenubarPrim
   return <MenubarPrimitive.RadioGroup data-slot="menubar-radio-group" {...props} />;
 }
 
-function Menubar({ className, ...props }: React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Root>) {
+function Menubar({ className, ...props }: React.ComponentProps<typeof MenubarPrimitive.Root>) {
   return (
     <MenubarPrimitive.Root
       data-slot="menubar"
@@ -31,7 +31,7 @@ function Menubar({ className, ...props }: React.ComponentPropsWithoutRef<typeof 
   );
 }
 
-function MenubarTrigger({ className, ...props }: React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Trigger>) {
+function MenubarTrigger({ className, ...props }: React.ComponentProps<typeof MenubarPrimitive.Trigger>) {
   return (
     <MenubarPrimitive.Trigger
       data-slot="menubar-trigger"
@@ -53,7 +53,7 @@ function MenubarSubTrigger({
   inset,
   children,
   ...props
-}: React.ComponentPropsWithoutRef<typeof MenubarPrimitive.SubTrigger> & {
+}: React.ComponentProps<typeof MenubarPrimitive.SubTrigger> & {
   inset?: boolean;
 }) {
   return (
@@ -76,10 +76,7 @@ function MenubarSubTrigger({
   );
 }
 
-function MenubarSubContent({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<typeof MenubarPrimitive.SubContent>) {
+function MenubarSubContent({ className, ...props }: React.ComponentProps<typeof MenubarPrimitive.SubContent>) {
   return (
     <MenubarPrimitive.SubContent
       data-slot="menubar-sub-content"
@@ -98,7 +95,7 @@ function MenubarContent({
   alignOffset = -4,
   sideOffset = 8,
   ...props
-}: React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Content>) {
+}: React.ComponentProps<typeof MenubarPrimitive.Content>) {
   return (
     <MenubarPrimitive.Portal>
       <MenubarPrimitive.Content
@@ -120,7 +117,7 @@ function MenubarItem({
   className,
   inset,
   ...props
-}: React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Item> & {
+}: React.ComponentProps<typeof MenubarPrimitive.Item> & {
   inset?: boolean;
 }) {
   return (
@@ -143,7 +140,7 @@ function MenubarCheckboxItem({
   children,
   checked,
   ...props
-}: React.ComponentPropsWithoutRef<typeof MenubarPrimitive.CheckboxItem>) {
+}: React.ComponentProps<typeof MenubarPrimitive.CheckboxItem>) {
   return (
     <MenubarPrimitive.CheckboxItem
       data-slot="menubar-checkbox-item"
@@ -164,11 +161,7 @@ function MenubarCheckboxItem({
   );
 }
 
-function MenubarRadioItem({
-  className,
-  children,
-  ...props
-}: React.ComponentPropsWithoutRef<typeof MenubarPrimitive.RadioItem>) {
+function MenubarRadioItem({ className, children, ...props }: React.ComponentProps<typeof MenubarPrimitive.RadioItem>) {
   return (
     <MenubarPrimitive.RadioItem
       data-slot="menubar-radio-item"
@@ -192,7 +185,7 @@ function MenubarLabel({
   className,
   inset,
   ...props
-}: React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Label> & {
+}: React.ComponentProps<typeof MenubarPrimitive.Label> & {
   inset?: boolean;
 }) {
   return (
@@ -204,7 +197,7 @@ function MenubarLabel({
   );
 }
 
-function MenubarSeparator({ className, ...props }: React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Separator>) {
+function MenubarSeparator({ className, ...props }: React.ComponentProps<typeof MenubarPrimitive.Separator>) {
   return (
     <MenubarPrimitive.Separator
       data-slot="menubar-separator"
@@ -218,7 +211,7 @@ function MenubarSub({ ...props }: React.ComponentProps<typeof MenubarPrimitive.S
   return <MenubarPrimitive.Sub data-slot="menubar-sub" {...props} />;
 }
 
-const MenubarShortcut = ({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) => {
+const MenubarShortcut = ({ className, ...props }: React.ComponentProps<'span'>) => {
   return (
     <span
       data-slot="menubar-shortcut"

@@ -482,7 +482,7 @@ export default function DataGridDemo() {
                     <Filter />
                     Status
                     {selectedStatuses.length > 0 && (
-                      <Badge size="sm" appearance="stroke">
+                      <Badge size="sm" appearance="outline">
                         {selectedStatuses.length}
                       </Badge>
                     )}

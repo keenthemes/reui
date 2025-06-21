@@ -95,7 +95,7 @@ export default function CardDemo() {
                 </div>
               </div>
               {/* Right: Status Badge */}
-              <Badge appearance="outline" variant={user.status === 'active' ? 'primary' : 'secondary'}>
+              <Badge appearance="light" variant={user.status === 'active' ? 'primary' : 'secondary'}>
                 {user.status.charAt(0).toUpperCase() + user.status.slice(1)}
               </Badge>
             </div>

@@ -10,18 +10,11 @@ Before you can install and use ReUI, make sure your project meets the following 
 - **React**: Version 19 or higher.
 - **TypeScript**: Version 5.7 or higher.
 - **Tailwind CSS**: Version 4 or higher.
+- **Radix UI**: Version 1 or higher.
 
 ## Install Components
 
 <Steps>
-
-### Get ReUI Source Code
-
-Download [ReUI](http://github.com/keenthemes/reui) source code or clone it via Git into your machine:
-
-```bash
-git clone https://github.com/keenthemes/reui.git
-```
 
 ### Initialize a React Project
 
@@ -42,6 +35,14 @@ ReUI is compatible with various React frameworks. Choose the one that best fits 
   <AlertTitle>If you already have a React project with TypeScript and Tailwind CSS, you can skip this step.</AlertTitle>
 </Alert>
 
+### Install Radix UI
+
+Follow [Radix UI Installation Guide](https://www.radix-ui.com/docs/getting-started/introduction) to setup Radix UI for your React project.
+
+```bash
+npm i radix-ui
+```
+
 ### Install Tailwind
 
 Follow [Instalation Guide](https://tailwindcss.com/docs/installation/framework-guides) to setup Tailwind for your React project.
@@ -52,7 +53,7 @@ Follow [Instalation Guide](https://tailwindcss.com/docs/installation/framework-g
 npm i tailwindcss-animate
 ```
 
-This plugin is required for smooth animation effects used by Accordion, Dialog, Popover and other elements.
+This plugin is required for smooth animation effects used by [Accordion](/docs/accordion), [Dialog](/docs/dialog), [Popover](/docs/popover) and other elements.
 
 ### Integrate ReUI Styles
 
@@ -266,13 +267,8 @@ const inter = Inter({ subsets: ['latin'] });
 
 export default function RootLayout({ children }) {
   return (
-    <html className="h-full">
-      <body
-        className={cn('flex h-full text-base antialiased', inter.className)}
-        style={{ overflow: 'visible !important', marginRight: '0 !important' }}
-      >
-        {children}
-      </body>
+    <html>
+      <body className={cn('text-base antialiased', inter.className)}>{children}</body>
     </html>
   );
 }

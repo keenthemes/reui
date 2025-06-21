@@ -1,12 +1,12 @@
 import {
   Stepper,
+  StepperContent,
   StepperIndicator,
   StepperItem,
+  StepperNav,
+  StepperPanel,
   StepperSeparator,
   StepperTrigger,
-  StepperContent,
-  StepperPanel,
-  StepperNav,
 } from '@/registry/default/ui/stepper';
 
 const steps = [1, 2, 3, 4];
@@ -22,7 +22,7 @@ export default function Component() {
                 {step}
               </StepperIndicator>
             </StepperTrigger>
-            {steps.length > step && <StepperSeparator />}
+            {steps.length > step && <StepperSeparator className="group-data-[state=completed]/step:bg-green-500" />}
           </StepperItem>
         ))}
       </StepperNav>

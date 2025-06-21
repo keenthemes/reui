@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { cn } from '@/registry/default/lib/utils';
-import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { Tooltip as TooltipPrimitive } from 'radix-ui';
 
 function TooltipProvider({ delayDuration = 0, ...props }: React.ComponentProps<typeof TooltipPrimitive.Provider>) {
   return <TooltipPrimitive.Provider data-slot="tooltip-provider" delayDuration={delayDuration} {...props} />;
@@ -41,7 +41,7 @@ function TooltipContent({
   sideOffset = 4,
   variant,
   ...props
-}: React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content> & VariantProps<typeof tooltipVariants>) {
+}: React.ComponentProps<typeof TooltipPrimitive.Content> & VariantProps<typeof tooltipVariants>) {
   return (
     <TooltipPrimitive.Content
       data-slot="tooltip-content"

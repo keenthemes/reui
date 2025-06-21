@@ -2,14 +2,14 @@
 
 import * as React from 'react';
 import { cn } from '@/registry/default/lib/utils';
-import * as ProgressPrimitive from '@radix-ui/react-progress';
+import { Progress as ProgressPrimitive } from 'radix-ui';
 
 function Progress({
   className,
   indicatorClassName,
   value,
   ...props
-}: React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root> & {
+}: React.ComponentProps<typeof ProgressPrimitive.Root> & {
   indicatorClassName?: string;
 }) {
   return (

@@ -105,7 +105,7 @@ export default function AccordionMenuDemo() {
                             >
                               <span>Android</span>
                               <AccordionMenuIndicator>
-                                <Badge variant="primary" appearance="outline" shape="circle" size="sm">
+                                <Badge variant="primary" shape="circle" size="sm">
                                   New
                                 </Badge>
                               </AccordionMenuIndicator>

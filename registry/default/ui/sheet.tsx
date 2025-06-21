@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 import { cn } from '@/registry/default/lib/utils';
-import * as SheetPrimitive from '@radix-ui/react-dialog';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { X } from 'lucide-react';
+import { Dialog as SheetPrimitive } from 'radix-ui';
 
 function Sheet({ ...props }: React.ComponentProps<typeof SheetPrimitive.Root>) {
   return <SheetPrimitive.Root data-slot="sheet" {...props} />;
@@ -22,7 +22,7 @@ function SheetPortal({ ...props }: React.ComponentProps<typeof SheetPrimitive.Po
   return <SheetPrimitive.Portal data-slot="sheet-portal" {...props} />;
 }
 
-function SheetOverlay({ className, ...props }: React.ComponentPropsWithoutRef<typeof SheetPrimitive.Overlay>) {
+function SheetOverlay({ className, ...props }: React.ComponentProps<typeof SheetPrimitive.Overlay>) {
   return (
     <SheetPrimitive.Overlay
       data-slot="sheet-overlay"
@@ -55,7 +55,7 @@ const sheetVariants = cva(
 );
 
 interface SheetContentProps
-  extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>,
+  extends React.ComponentProps<typeof SheetPrimitive.Content>,
     VariantProps<typeof sheetVariants> {
   overlay?: boolean;
   close?: boolean;
@@ -68,7 +68,7 @@ function SheetContent({
   className,
   children,
   ...props
-}: SheetContentProps) {
+}: React.ComponentProps<typeof SheetPrimitive.Content> & SheetContentProps) {
   return (
     <SheetPortal>
       {overlay && <SheetOverlay />}
@@ -88,27 +88,31 @@ function SheetContent({
   );
 }
 
-const SheetHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
-    data-slot="sheet-header"
-    className={cn('flex flex-col space-y-1 text-center sm:text-start', className)}
-    {...props}
-  />
-);
+function SheetHeader({ className, ...props }: React.ComponentProps<'div'>) {
+  return (
+    <div
+      data-slot="sheet-header"
+      className={cn('flex flex-col space-y-1 text-center sm:text-start', className)}
+      {...props}
+    />
+  );
+}
 
-const SheetBody = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div data-slot="sheet-body" className={cn('py-2.5', className)} {...props} />
-);
+function SheetBody({ className, ...props }: React.ComponentProps<'div'>) {
+  return <div data-slot="sheet-body" className={cn('py-2.5', className)} {...props} />;
+}
 
-const SheetFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
-    data-slot="sheet-footer"
-    className={cn('flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2', className)}
-    {...props}
-  />
-);
+function SheetFooter({ className, ...props }: React.ComponentProps<'div'>) {
+  return (
+    <div
+      data-slot="sheet-footer"
+      className={cn('flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2', className)}
+      {...props}
+    />
+  );
+}
 
-function SheetTitle({ className, ...props }: React.ComponentPropsWithoutRef<typeof SheetPrimitive.Title>) {
+function SheetTitle({ className, ...props }: React.ComponentProps<typeof SheetPrimitive.Title>) {
   return (
     <SheetPrimitive.Title
       data-slot="sheet-title"
@@ -118,7 +122,7 @@ function SheetTitle({ className, ...props }: React.ComponentPropsWithoutRef<type
   );
 }
 
-function SheetDescription({ className, ...props }: React.ComponentPropsWithoutRef<typeof SheetPrimitive.Description>) {
+function SheetDescription({ className, ...props }: React.ComponentProps<typeof SheetPrimitive.Description>) {
   return (
     <SheetPrimitive.Description
       data-slot="sheet-description"

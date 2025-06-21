@@ -9,6 +9,9 @@ export default function BadgeDemo() {
       <Badge variant="primary" disabled>
         Solid
       </Badge>
+      <Badge variant="primary" appearance="light" disabled>
+        Light
+      </Badge>
       <Badge variant="primary" appearance="outline" disabled>
         Outline
       </Badge>

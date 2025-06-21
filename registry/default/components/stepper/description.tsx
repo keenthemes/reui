@@ -1,12 +1,12 @@
 import {
   Stepper,
+  StepperContent,
   StepperIndicator,
   StepperItem,
+  StepperNav,
+  StepperPanel,
   StepperSeparator,
   StepperTrigger,
-  StepperContent,
-  StepperPanel,
-  StepperNav,
 } from '@/registry/default/ui/stepper';
 
 const steps = [1, 2, 3, 4];

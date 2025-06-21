@@ -30,7 +30,7 @@ Refer to the [Installation Guide](/docs/installation) for detailed instructions 
 ### Install dependencies
 
 ```bash
-npm install @radix-ui/react-slot
+npm i radix-ui
 ```
 
 ### Add component
@@ -54,6 +54,10 @@ Copy and paste the following code into your project’s `components/ui/badge.tsx
 ### Light
 
 <ExamplePreview path="badge/light" />
+
+### Outline
+
+<ExamplePreview path="badge/outline" />
 
 ### Circle
 
@@ -93,15 +97,15 @@ This component provides a customizable badge system with flexible variants, size
 
 ### Badge
 
-| **Prop**                                                                                               | **Type**                                                                                                                    | **Default** |
-| ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `variant` <PopoverInfo>Specifies the badge's theme.</PopoverInfo>                                      | ~enum~ <PopoverInfo> "primary" \| "secondary" \| "outline" \|"success" \| "warning" \| "info" \| "mono" \| "destructive" </PopoverInfo> | `secondary` |
-| `appearance` <PopoverInfo>Determines the badge's visual appearance.</PopoverInfo>                      | ~enum~ <PopoverInfo> "default" \| "light" \| "ghost" </PopoverInfo>                                             | `default`     |
-| `size` <PopoverInfo>Sets the size of the badge.</PopoverInfo>                                          | ~enum~ <PopoverInfo> "lg" \| "md" \| "sm" \| "xs" </PopoverInfo>                                                                    | `md`        |
-| `shape` <PopoverInfo>Determines the shape of the badge.</PopoverInfo>                                  | ~enum~ <PopoverInfo> "default" \| "circle" </PopoverInfo>                                                                   | `default`   |
-| `disabled` <PopoverInfo>Specifies whether the badge is disabled.</PopoverInfo>                         | ~boolean~                                                                                                                   | `false`     |
-| `asChild` <PopoverInfo>Renders the badge as a child element, using the `Slot` component.</PopoverInfo> | ~boolean~                                                                                                                   | `false`     |
-| `className` <PopoverInfo>Additional class names for styling the badge.</PopoverInfo>                   | ~string~                                                                                                                    | <Na/>       |
+| **Prop**                                                                                               | **Type**                                                                                                                                | **Default** |
+| ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `variant` <PopoverInfo>Specifies the badge's theme.</PopoverInfo>                                      | ~enum~ <PopoverInfo> "primary" \| "secondary" \| "outline" \|"success" \| "warning" \| "info" \| "destructive" </PopoverInfo> | `secondary` |
+| `appearance` <PopoverInfo>Determines the badge's visual appearance.</PopoverInfo>                      | ~enum~ <PopoverInfo> "default" \| "outline" \| "light" \| "ghost" </PopoverInfo>                                                                     | `default`   |
+| `size` <PopoverInfo>Sets the size of the badge.</PopoverInfo>                                          | ~enum~ <PopoverInfo> "lg" \| "md" \| "sm" \| "xs" </PopoverInfo>                                                                        | `md`        |
+| `shape` <PopoverInfo>Determines the shape of the badge.</PopoverInfo>                                  | ~enum~ <PopoverInfo> "default" \| "circle" </PopoverInfo>                                                                               | `default`   |
+| `disabled` <PopoverInfo>Specifies whether the badge is disabled.</PopoverInfo>                         | ~boolean~                                                                                                                               | `false`     |
+| `asChild` <PopoverInfo>Renders the badge as a child element, using the `Slot` component.</PopoverInfo> | ~boolean~                                                                                                                               | `false`     |
+| `className` <PopoverInfo>Additional class names for styling the badge.</PopoverInfo>                   | ~string~                                                                                                                                | <Na/>       |
 
 ### BadgeButton
 

@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 import { cn } from '@/registry/default/lib/utils';
-import * as SliderPrimitive from '@radix-ui/react-slider';
+import { Slider as SliderPrimitive } from 'radix-ui';
 
-function Slider({ className, children, ...props }: React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>) {
+function Slider({ className, children, ...props }: React.ComponentProps<typeof SliderPrimitive.Root>) {
   return (
     <SliderPrimitive.Root
       data-slot="slider"
@@ -19,7 +19,7 @@ function Slider({ className, children, ...props }: React.ComponentPropsWithoutRe
   );
 }
 
-function SliderThumb({ className, ...props }: React.ComponentPropsWithoutRef<typeof SliderPrimitive.Thumb>) {
+function SliderThumb({ className, ...props }: React.ComponentProps<typeof SliderPrimitive.Thumb>) {
   return (
     <SliderPrimitive.Thumb
       data-slot="slider-thumb"

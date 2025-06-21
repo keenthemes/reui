@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { cn } from '@/registry/default/lib/utils';
-import { Slot } from '@radix-ui/react-slot';
 import { ChevronRight, MoreHorizontal } from 'lucide-react';
+import { Slot as SlotPrimitive } from 'radix-ui';
 
 function Breadcrumb({
   ...props
-}: React.ComponentPropsWithoutRef<'nav'> & {
+}: React.ComponentProps<'nav'> & {
   separator?: React.ReactNode;
 }) {
   return <nav data-slot="breadcrumb" aria-label="breadcrumb" {...props} />;
 }
 
-function BreadcrumbList({ className, ...props }: React.ComponentPropsWithoutRef<'ol'>) {
+function BreadcrumbList({ className, ...props }: React.ComponentProps<'ol'>) {
   return (
     <ol
       data-slot="breadcrumb-list"
@@ -21,7 +21,7 @@ function BreadcrumbList({ className, ...props }: React.ComponentPropsWithoutRef<
   );
 }
 
-function BreadcrumbItem({ className, ...props }: React.ComponentPropsWithoutRef<'li'>) {
+function BreadcrumbItem({ className, ...props }: React.ComponentProps<'li'>) {
   return <li data-slot="breadcrumb-item" className={cn('inline-flex items-center gap-1.5', className)} {...props} />;
 }
 
@@ -29,17 +29,17 @@ function BreadcrumbLink({
   asChild,
   className,
   ...props
-}: React.ComponentPropsWithoutRef<'a'> & {
+}: React.ComponentProps<'a'> & {
   asChild?: boolean;
 }) {
-  const Comp = asChild ? Slot : 'a';
+  const Comp = asChild ? SlotPrimitive.Slot : 'a';
 
   return (
     <Comp data-slot="breadcrumb-link" className={cn('transition-colors hover:text-foreground', className)} {...props} />
   );
 }
 
-function BreadcrumbPage({ className, ...props }: React.ComponentPropsWithoutRef<'span'>) {
+function BreadcrumbPage({ className, ...props }: React.ComponentProps<'span'>) {
   return (
     <span
       data-slot="breadcrumb-page"

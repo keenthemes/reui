@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { cn } from '@/registry/default/lib/utils';
-import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { Slot as SlotPrimitive } from 'radix-ui';
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof badgeVariants> {
   asChild?: boolean;
@@ -94,7 +94,31 @@ const badgeVariants = cva(
         variant: 'primary',
         appearance: 'outline',
         className:
-          'text-[var(--color-primary-accent,var(--color-blue-700))] border-[var(--color-primary-soft,var(--color-blue-50))] bg-[var(--color-primary-soft,var(--color-blue-50))] dark:bg-[var(--color-primary-soft,var(--color-blue-950))] dark:text-[var(--color-primary-soft,var(--color-blue-600))]',
+          'text-[var(--color-primary-accent,var(--color-blue-700))] border-[var(--color-primary-soft,var(--color-blue-100))] bg-[var(--color-primary-soft,var(--color-blue-50))] dark:bg-[var(--color-primary-soft,var(--color-blue-950))] dark:border-[var(--color-primary-soft,var(--color-blue-900))] dark:text-[var(--color-primary-soft,var(--color-blue-600))]',
+      },
+      {
+        variant: 'success',
+        appearance: 'outline',
+        className:
+          'text-[var(--color-success-accent,var(--color-green-700))] border-[var(--color-success-soft,var(--color-green-200))] bg-[var(--color-success-soft,var(--color-green-50))] dark:bg-[var(--color-success-soft,var(--color-green-950))] dark:border-[var(--color-success-soft,var(--color-green-900))] dark:text-[var(--color-success-soft,var(--color-green-600))]',
+      },
+      {
+        variant: 'warning',
+        appearance: 'outline',
+        className:
+          'text-[var(--color-warning-accent,var(--color-yellow-700))] border-[var(--color-warning-soft,var(--color-yellow-200))] bg-[var(--color-warning-soft,var(--color-yellow-50))] dark:bg-[var(--color-warning-soft,var(--color-yellow-950))] dark:border-[var(--color-warning-soft,var(--color-yellow-900))] dark:text-[var(--color-warning-soft,var(--color-yellow-600))]',
+      },
+      {
+        variant: 'info',
+        appearance: 'outline',
+        className:
+          'text-[var(--color-info-accent,var(--color-violet-700))] border-[var(--color-info-soft,var(--color-violet-100))] bg-[var(--color-info-soft,var(--color-violet-50))] dark:bg-[var(--color-info-soft,var(--color-violet-950))] dark:border-[var(--color-info-soft,var(--color-violet-900))] dark:text-[var(--color-info-soft,var(--color-violet-400))]',
+      },
+      {
+        variant: 'destructive',
+        appearance: 'outline',
+        className:
+          'text-[var(--color-destructive-accent,var(--color-red-700))] border-[var(--color-destructive-soft,var(--color-red-100))] bg-[var(--color-destructive-soft,var(--color-red-50))] dark:bg-[var(--color-destructive-soft,var(--color-red-950))] dark:border-[var(--color-destructive-soft,var(--color-red-900))] dark:text-[var(--color-destructive-soft,var(--color-red-600))]',
       },
       /* Ghost */
       {
@@ -155,8 +179,18 @@ const badgeButtonVariants = cva(
   },
 );
 
-function Badge({ className, variant, size, appearance, shape, asChild = false, disabled, ...props }: BadgeProps) {
-  const Comp = asChild ? Slot : 'span';
+function Badge({
+  className,
+  variant,
+  size,
+  appearance,
+  shape,
+  asChild = false,
+  disabled,
+  ...props
+}: React.ComponentProps<'span'> & VariantProps<typeof badgeVariants> & { asChild?: boolean }) {
+  const Comp = asChild ? SlotPrimitive.Slot : 'span';
+
   return (
     <Comp
       data-slot="badge"
@@ -166,8 +200,13 @@ function Badge({ className, variant, size, appearance, shape, asChild = false, d
   );
 }
 
-function BadgeButton({ className, variant, asChild = false, ...props }: BadgeButtonProps) {
-  const Comp = asChild ? Slot : 'span';
+function BadgeButton({
+  className,
+  variant,
+  asChild = false,
+  ...props
+}: React.ComponentProps<'button'> & VariantProps<typeof badgeButtonVariants> & { asChild?: boolean }) {
+  const Comp = asChild ? SlotPrimitive.Slot : 'span';
   return (
     <Comp
       data-slot="badge-button"
@@ -178,7 +217,7 @@ function BadgeButton({ className, variant, asChild = false, ...props }: BadgeBut
   );
 }
 
-function BadgeDot({ className, ...props }: BadgeDotProps) {
+function BadgeDot({ className, ...props }: React.ComponentProps<'span'>) {
   return (
     <span
       data-slot="badge-dot"

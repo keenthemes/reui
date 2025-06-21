@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { cn } from '@/registry/default/lib/utils';
-import * as AvatarPrimitive from '@radix-ui/react-avatar';
 import { cva, VariantProps } from 'class-variance-authority';
+import { Avatar as AvatarPrimitive } from 'radix-ui';
 
 const avatarStatusVariants = cva('flex items-center rounded-full size-2 border-2 border-background', {
   variants: {
@@ -19,13 +19,13 @@ const avatarStatusVariants = cva('flex items-center rounded-full size-2 border-2
   },
 });
 
-function Avatar({ className, ...props }: React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>) {
+function Avatar({ className, ...props }: React.ComponentProps<typeof AvatarPrimitive.Root>) {
   return (
     <AvatarPrimitive.Root data-slot="avatar" className={cn('relative flex shrink-0 size-10', className)} {...props} />
   );
 }
 
-function AvatarImage({ className, ...props }: React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>) {
+function AvatarImage({ className, ...props }: React.ComponentProps<typeof AvatarPrimitive.Image>) {
   return (
     <div className={cn('relative overflow-hidden rounded-full', className)}>
       <AvatarPrimitive.Image data-slot="avatar-image" className={cn('aspect-square h-full w-full')} {...props} />
@@ -33,7 +33,7 @@ function AvatarImage({ className, ...props }: React.ComponentPropsWithoutRef<typ
   );
 }
 
-function AvatarFallback({ className, ...props }: React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>) {
+function AvatarFallback({ className, ...props }: React.ComponentProps<typeof AvatarPrimitive.Fallback>) {
   return (
     <AvatarPrimitive.Fallback
       data-slot="avatar-fallback"

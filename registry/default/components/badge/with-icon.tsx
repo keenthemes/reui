@@ -14,6 +14,9 @@ export default function BadgeDemo() {
         <Badge variant="primary" appearance="light">
           <Activity /> light
         </Badge>
+        <Badge variant="primary" appearance="outline">
+          <Tag /> outline
+        </Badge>
       </div>
       <div className="flex items-center gap-4">
         <Badge variant="success" appearance="ghost">
@@ -24,6 +27,9 @@ export default function BadgeDemo() {
         </Badge>
         <Badge variant="success" appearance="light">
           <Activity /> light
+        </Badge>
+        <Badge variant="success" appearance="outline">
+          <Tag /> outline
         </Badge>
       </div>
       <div className="flex items-center gap-4">
@@ -36,6 +42,9 @@ export default function BadgeDemo() {
         <Badge variant="info" appearance="light">
           <Activity /> light
         </Badge>
+        <Badge variant="info" appearance="outline">
+          <Tag /> outline
+        </Badge>
       </div>
       <div className="flex items-center gap-4">
         <Badge variant="warning" appearance="ghost">
@@ -47,6 +56,9 @@ export default function BadgeDemo() {
         <Badge variant="warning" appearance="light">
           <Activity /> light
         </Badge>
+        <Badge variant="warning" appearance="outline">
+          <Tag /> outline
+        </Badge>
       </div>
       <div className="flex items-center gap-4">
         <Badge variant="destructive" appearance="ghost">
@@ -57,6 +69,9 @@ export default function BadgeDemo() {
         </Badge>
         <Badge variant="destructive" appearance="light">
           <Activity /> light
+        </Badge>
+        <Badge variant="destructive" appearance="outline">
+          <Tag /> outline
         </Badge>
       </div>
     </div>

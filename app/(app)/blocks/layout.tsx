@@ -61,7 +61,7 @@ export default function BlocksLayout({ children }: AppLayoutProps) {
         <div className="flex items-center flex-col justify-between gap-6">
           <div>
             {isRootPage ? (
-              <Badge className="bg-muted px-2.5 py-1.5" size="lg" shape="circle" appearance="stroke">
+              <Badge className="bg-muted px-2.5 py-1.5" size="lg" shape="circle" appearance="outline">
                 Blocks
               </Badge>
             ) : (

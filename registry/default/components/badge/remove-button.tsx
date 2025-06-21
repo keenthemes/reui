@@ -6,19 +6,25 @@ export default function BadgeDemo() {
     <div className="flex flex-col items-center gap-4">
       <div className="flex items-center gap-4">
         <Badge variant="secondary" appearance="ghost">
-          Ghost{' '}
+          Ghost
           <BadgeButton>
             <X />
           </BadgeButton>
         </Badge>
         <Badge variant="secondary">
-          Solid{' '}
+          Solid
           <BadgeButton>
             <X />
           </BadgeButton>
         </Badge>
         <Badge variant="secondary" appearance="light">
-          light{' '}
+          Light
+          <BadgeButton>
+            <X />
+          </BadgeButton>
+        </Badge>
+        <Badge variant="outline">
+          Outline
           <BadgeButton>
             <X />
           </BadgeButton>
@@ -26,19 +32,25 @@ export default function BadgeDemo() {
       </div>
       <div className="flex items-center gap-4">
         <Badge variant="primary" appearance="ghost">
-          Ghost{' '}
+          Ghost
           <BadgeButton>
             <X />
           </BadgeButton>
         </Badge>
         <Badge variant="primary">
-          Solid{' '}
+          Solid
           <BadgeButton>
             <X />
           </BadgeButton>
         </Badge>
         <Badge variant="primary" appearance="light">
-          light{' '}
+          light
+          <BadgeButton>
+            <X />
+          </BadgeButton>
+        </Badge>
+        <Badge variant="primary" appearance="outline">
+          Outline
           <BadgeButton>
             <X />
           </BadgeButton>
@@ -46,19 +58,25 @@ export default function BadgeDemo() {
       </div>
       <div className="flex items-center gap-4">
         <Badge variant="success" appearance="ghost">
-          Ghost{' '}
+          Ghost
           <BadgeButton>
             <X />
           </BadgeButton>
         </Badge>
         <Badge variant="success">
-          Solid{' '}
+          Solid
           <BadgeButton>
             <X />
           </BadgeButton>
         </Badge>
         <Badge variant="success" appearance="light">
-          light{' '}
+          light
+          <BadgeButton>
+            <X />
+          </BadgeButton>
+        </Badge>
+        <Badge variant="success" appearance="outline">
+          Outline
           <BadgeButton>
             <X />
           </BadgeButton>
@@ -66,19 +84,25 @@ export default function BadgeDemo() {
       </div>
       <div className="flex items-center gap-4">
         <Badge variant="info" appearance="ghost">
-          Ghost{' '}
+          Ghost
           <BadgeButton>
             <X />
           </BadgeButton>
         </Badge>
         <Badge variant="info">
-          Solid{' '}
+          Solid
           <BadgeButton>
             <X />
           </BadgeButton>
         </Badge>
         <Badge variant="info" appearance="light">
-          light{' '}
+          light
+          <BadgeButton>
+            <X />
+          </BadgeButton>
+        </Badge>
+        <Badge variant="info" appearance="outline">
+          Outline
           <BadgeButton>
             <X />
           </BadgeButton>
@@ -86,19 +110,25 @@ export default function BadgeDemo() {
       </div>
       <div className="flex items-center gap-4">
         <Badge variant="warning" appearance="ghost">
-          Ghost{' '}
+          Ghost
           <BadgeButton>
             <X />
           </BadgeButton>
         </Badge>
         <Badge variant="warning">
-          Solid{' '}
+          Solid
           <BadgeButton>
             <X />
           </BadgeButton>
         </Badge>
         <Badge variant="warning" appearance="light">
-          light{' '}
+          light
+          <BadgeButton>
+            <X />
+          </BadgeButton>
+        </Badge>
+        <Badge variant="warning" appearance="outline">
+          Outline
           <BadgeButton>
             <X />
           </BadgeButton>
@@ -106,19 +136,25 @@ export default function BadgeDemo() {
       </div>
       <div className="flex items-center gap-4">
         <Badge variant="destructive" appearance="ghost">
-          Ghost{' '}
+          Ghost
           <BadgeButton>
             <X />
           </BadgeButton>
         </Badge>
         <Badge variant="destructive">
-          Solid{' '}
+          Solid
           <BadgeButton>
             <X />
           </BadgeButton>
         </Badge>
         <Badge variant="destructive" appearance="light">
-          light{' '}
+          light
+          <BadgeButton>
+            <X />
+          </BadgeButton>
+        </Badge>
+        <Badge variant="destructive" appearance="outline">
+          Outline
           <BadgeButton>
             <X />
           </BadgeButton>

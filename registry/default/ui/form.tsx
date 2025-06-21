@@ -3,8 +3,8 @@
 import * as React from 'react';
 import { cn } from '@/registry/default/lib/utils';
 import { Label } from '@/registry/default/ui/label';
-import * as LabelPrimitive from '@radix-ui/react-label';
 import { Slot } from '@radix-ui/react-slot';
+import { Label as LabelPrimitive } from 'radix-ui';
 import { Controller, ControllerProps, FieldPath, FieldValues, FormProvider, useFormContext } from 'react-hook-form';
 
 const Form = FormProvider;
@@ -71,7 +71,7 @@ function FormItem({ className, ...props }: React.HTMLAttributes<HTMLDivElement>)
   );
 }
 
-function FormLabel({ className, ...props }: React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>) {
+function FormLabel({ className, ...props }: React.ComponentProps<typeof LabelPrimitive.Root>) {
   const { formItemId } = useFormField();
 
   return (
@@ -84,7 +84,7 @@ function FormLabel({ className, ...props }: React.ComponentPropsWithoutRef<typeo
   );
 }
 
-function FormControl({ ...props }: React.ComponentPropsWithoutRef<typeof Slot>) {
+function FormControl({ ...props }: React.ComponentProps<typeof Slot>) {
   const { error, formItemId, formDescriptionId, formMessageId } = useFormField();
 
   return (

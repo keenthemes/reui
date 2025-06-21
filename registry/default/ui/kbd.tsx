@@ -22,9 +22,7 @@ const kbdVariants = cva('inline-flex items-center justify-center font-mono round
   },
 });
 
-export interface KbdProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof kbdVariants> {}
-
-function Kbd({ className, variant, size, ...props }: KbdProps) {
+function Kbd({ className, variant, size, ...props }: React.ComponentProps<'kbd'> & VariantProps<typeof kbdVariants>) {
   return <kbd data-slot="kbd" className={cn(kbdVariants({ variant, size }), className)} {...props} />;
 }
 

@@ -21,9 +21,6 @@ export default function BadgeDemo() {
       <Badge variant="destructive" appearance="ghost">
         Destructive
       </Badge>
-      <Badge variant="mono" appearance="ghost">
-        Mono
-      </Badge>
     </div>
   );
 }

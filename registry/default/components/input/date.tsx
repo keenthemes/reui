@@ -1,6 +1,6 @@
 'use client';
 
-import { DateField, DateInput } from '@/registry/default/ui/datefield-ra';
+import { DateField, DateInput } from '@/registry/default/ui/datefield';
 import { InputAddon, InputGroup, InputWrapper } from '@/registry/default/ui/input';
 import { CalendarDays } from 'lucide-react';
 

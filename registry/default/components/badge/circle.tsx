@@ -37,6 +37,23 @@ export default function Component() {
           Destructive
         </Badge>
       </div>
+      <div className="flex items-center gap-4">
+        <Badge variant="primary" appearance="outline" shape="circle">
+          Primary
+        </Badge>
+        <Badge variant="success" appearance="outline" shape="circle">
+          Success
+        </Badge>
+        <Badge variant="warning" appearance="outline" shape="circle">
+          Warining
+        </Badge>
+        <Badge variant="info" appearance="outline" shape="circle">
+          Info
+        </Badge>
+        <Badge variant="destructive" appearance="outline" shape="circle">
+          Destructive
+        </Badge>
+      </div>
     </div>
   );
 }

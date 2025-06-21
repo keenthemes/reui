@@ -1,6 +1,6 @@
 'use client';
 
-import { DateInput, TimeField } from '@/registry/default/ui/datefield-ra';
+import { DateInput, TimeField } from '@/registry/default/ui/datefield';
 import { InputAddon, InputGroup, InputWrapper } from '@/registry/default/ui/input';
 import { Clock3 } from 'lucide-react';
 

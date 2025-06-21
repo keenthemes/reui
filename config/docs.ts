@@ -16,11 +16,6 @@ export const docsConfig: DocsConfig = {
       title: 'Docs',
       href: '/docs',
     },
-    {
-      title: 'Studio',
-      href: 'https://keenthemes.studio?utm_source=reui_website&utm_medium=menu&utm_campaign=product_link&utm_content=studio',
-      external: true,
-    },
   ],
   sidebarNav: [
     {
@@ -36,14 +31,12 @@ export const docsConfig: DocsConfig = {
           href: '/docs/installation',
           items: [],
         },
-        /*
         {
           title: 'MCP',
           href: '/docs/mcp',
           new: true,
           items: [],
         },
-        */
         {
           title: 'Theming',
           href: '/docs/theming',
@@ -65,7 +58,7 @@ export const docsConfig: DocsConfig = {
           items: [],
         },
         {
-          title: 'Changelog - v1.0.15',
+          title: 'Changelog - v1.1.0',
           href: '/docs/changelog',
           items: [],
         },
@@ -80,6 +73,12 @@ export const docsConfig: DocsConfig = {
           href: 'https://keenthemes.com/metronic?utm_source=reui_website&utm_medium=menu&utm_campaign=product_link&utm_content=metronic',
           external: true,
           popular: true,
+          items: [],
+        },
+        {
+          title: 'SaaSify',
+          href: 'https://keenthemes.com/products/saasify?utm_source=reui_website&utm_medium=menu&utm_campaign=product_link&utm_content=saasify',
+          new: true,
           items: [],
         },
         {
@@ -103,7 +102,7 @@ export const docsConfig: DocsConfig = {
       ],
     },
     {
-      title: 'Components',
+      title: 'UI Components',
       items: [
         {
           title: 'Accordion',
@@ -321,6 +320,10 @@ export const docsConfig: DocsConfig = {
           },
         },
         {
+          title: 'File Upload',
+          href: '/docs/file-upload',
+        },
+        {
           title: 'Input',
           href: '/docs/input',
           update: true,
@@ -498,6 +501,46 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Toggle Group',
           href: '/docs/toggle-group',
+        },
+        {
+          title: 'Tree',
+          href: '/docs/tree',
+        },
+      ],
+    },
+    {
+      title: 'Special Effects',
+      items: [
+        {
+          title: 'Marquee',
+          href: '/docs/marquee',
+        },
+      ],
+    },
+    {
+      title: 'Animated Buttons',
+      items: [
+        {
+          title: 'GitHub Button',
+          href: '/docs/github-button',
+        },
+      ],
+    },
+    {
+      title: 'Text Animations',
+      items: [
+        {
+          title: 'Text Reveal',
+          href: '/docs/text-reveal',
+        },
+      ],
+    },
+    {
+      title: 'Background Effects',
+      items: [
+        {
+          title: 'Background Parallax',
+          href: '/docs/background-parallax',
         },
       ],
     },

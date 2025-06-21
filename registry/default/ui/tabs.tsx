@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { cn } from '@/registry/default/lib/utils';
-import * as TabsPrimitive from '@radix-ui/react-tabs';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { Tabs as TabsPrimitive } from 'radix-ui';
 
 // Variants for TabsList
 const tabsListVariants = cva('flex items-center shrink-0', {
@@ -155,7 +155,7 @@ function TabsList({
   shape = 'default',
   size = 'md',
   ...props
-}: React.ComponentPropsWithoutRef<typeof TabsPrimitive.List> & VariantProps<typeof tabsListVariants>) {
+}: React.ComponentProps<typeof TabsPrimitive.List> & VariantProps<typeof tabsListVariants>) {
   return (
     <TabsContext.Provider value={{ variant: variant || 'default', size: size || 'md' }}>
       <TabsPrimitive.List
@@ -167,7 +167,7 @@ function TabsList({
   );
 }
 
-function TabsTrigger({ className, ...props }: React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>) {
+function TabsTrigger({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.Trigger>) {
   const { variant, size } = React.useContext(TabsContext);
 
   return (
@@ -183,7 +183,7 @@ function TabsContent({
   className,
   variant,
   ...props
-}: React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content> & VariantProps<typeof tabsContentVariants>) {
+}: React.ComponentProps<typeof TabsPrimitive.Content> & VariantProps<typeof tabsContentVariants>) {
   return (
     <TabsPrimitive.Content
       data-slot="tabs-content"

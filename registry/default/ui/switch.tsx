@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { cn } from '@/registry/default/lib/utils';
-import * as SwitchPrimitives from '@radix-ui/react-switch';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { Switch as SwitchPrimitive } from 'radix-ui';
 
 // Define a context for `permanent` state
 const SwitchContext = React.createContext<{ permanent: boolean }>({
@@ -147,19 +147,19 @@ function Switch({
   shape,
   size,
   ...props
-}: React.ComponentProps<typeof SwitchPrimitives.Root> &
+}: React.ComponentProps<typeof SwitchPrimitive.Root> &
   VariantProps<typeof switchVariants> & { thumbClassName?: string }) {
   const context = useSwitchContext();
   const permanent = context?.permanent ?? false;
 
   return (
-    <SwitchPrimitives.Root
+    <SwitchPrimitive.Root
       data-slot="switch"
       className={cn(switchVariants({ shape, size, permanent }), className)}
       {...props}
     >
-      <SwitchPrimitives.Thumb className={cn(switchThumbVariants({ shape, size }), thumbClassName)} />
-    </SwitchPrimitives.Root>
+      <SwitchPrimitive.Thumb className={cn(switchThumbVariants({ shape, size }), thumbClassName)} />
+    </SwitchPrimitive.Root>
   );
 }
 

@@ -1,10 +1,10 @@
 import { ReactNode } from 'react';
-import { cn } from '@/lib/utils';
 import { Button } from '@/registry/default/ui/button';
 import { useDataGrid } from '@/registry/default/ui/data-grid';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/registry/default/ui/select';
 import { Skeleton } from '@/registry/default/ui/skeleton';
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface DataGridPaginationProps {
   sizes?: number[];
@@ -123,7 +123,10 @@ function DataGridPagination(props: DataGridPaginationProps) {
   return (
     <div
       data-slot="data-grid-pagination"
-      className={cn('flex flex-wrap flex-col sm:flex-row justify-between items-center gap-2.5 py-2.5 sm:py-0 grow', mergedProps?.className)}
+      className={cn(
+        'flex flex-wrap flex-col sm:flex-row justify-between items-center gap-2.5 py-2.5 sm:py-0 grow',
+        mergedProps?.className,
+      )}
     >
       <div className="flex flex-wrap items-center space-x-2.5 pb-2.5 sm:pb-0 order-2 sm:order-1">
         {isLoading ? (
