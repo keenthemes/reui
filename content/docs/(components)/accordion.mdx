@@ -1,10 +1,7 @@
 ---
 title: Accordion
-description: Accordion component based on Radix UI.
+description: A collapsible panel that can be expanded or collapsed.
 component: true
-links:
-  - label: '@radix-ui/react-accordion'
-    url: https://www.radix-ui.com/primitives/docs/components/accordion
 ---
 
 ## Installation
@@ -69,25 +66,14 @@ Copy and paste the following code into your project’s `components/ui/accordion
 
 ## API Reference
 
-This component is built using [Radix UI Accordion](https://www.radix-ui.com/primitives/docs/components/accordion) primitives. For detailed information please visit the full API reference.
-
 ### Accordion
 
-This component is based on the [Accordion.Root](https://www.radix-ui.com/primitives/docs/components/accordion#root) primitive and includes the following custom props:
+This component is based on the [Radix UI Accordion](https://www.radix-ui.com/primitives/docs/components/accordion#root) primitive and includes the following custom props:
 
 | **Prop**                                                                                      | **Type**                                                              | **Default** |
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- | ----------- |
 | `variant` <PopoverInfo>Determines the visual style of the accordion.</PopoverInfo>            | ~enum~ <PopoverInfo> "default" \| "outline" \| "solid" </PopoverInfo> | ~default~   |
 | `indicator` <PopoverInfo>Specifies the indicator type to display on triggers.</PopoverInfo>   | ~enum~ <PopoverInfo> "arrow" \| "plus" \| "none" </PopoverInfo>       | ~arrow~     |
-| `className` <PopoverInfo>Additional class names for styling the accordion root.</PopoverInfo> | ~string~                                                              | <Na/>       |
-
-### AccordionItem
-
-This component is based on the [Accordion.Item](https://www.radix-ui.com/primitives/docs/components/accordion#item) primitive and applies custom styles based on the `variant` from the `Accordion` context.
-
-| **Prop**                                                                                      | **Type** | **Default** |
-| --------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `className` <PopoverInfo>Additional class names for styling the accordion item.</PopoverInfo> | ~string~ | <Na/>       |
 
 ### AccordionTrigger
 
@@ -96,12 +82,8 @@ This component is based on the [Accordion.Trigger](https://www.radix-ui.com/prim
 | **Prop**                                                                                         | **Type**                                                        | **Default** |
 | ------------------------------------------------------------------------------------------------ | --------------------------------------------------------------- | ----------- |
 | `indicator` <PopoverInfo>Specifies the indicator type for the trigger.</PopoverInfo>             | ~enum~ <PopoverInfo> "arrow" \| "plus" \| "none" </PopoverInfo> | ~arrow~     |
-| `className` <PopoverInfo>Additional class names for styling the accordion trigger.</PopoverInfo> | ~string~                                                        | <Na/>       |
 
-### AccordionContent
 
-This component is based on the [Accordion.Content](https://www.radix-ui.com/primitives/docs/components/accordion#content) primitive and includes the following custom props:
+## Credits
 
-| **Prop**                                                                                         | **Type** | **Default** |
-| ------------------------------------------------------------------------------------------------ | -------- | ----------- |
-| `className` <PopoverInfo>Additional class names for styling the accordion content.</PopoverInfo> | ~string~ | <Na/>       |
+- Used [Radix UI](https://www.radix-ui.com/primitives/docs/components/accordion) for the accordion component.

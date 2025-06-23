@@ -58,7 +58,7 @@ export const docsConfig: DocsConfig = {
           items: [],
         },
         {
-          title: 'Changelog - v1.1.0',
+          title: 'Changelog - v1.0.16',
           href: '/docs/changelog',
           items: [],
         },
@@ -123,6 +123,7 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Alert',
           href: '/docs/alert',
+          update: true,
           highlight: {
             order: 8,
             examples: [
@@ -157,6 +158,7 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Badge',
           href: '/docs/badge',
+          update: true,
           highlight: {
             order: 5,
             examples: [
@@ -322,6 +324,7 @@ export const docsConfig: DocsConfig = {
         {
           title: 'File Upload',
           href: '/docs/file-upload',
+          new: true,
         },
         {
           title: 'Input',
@@ -505,6 +508,7 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Tree',
           href: '/docs/tree',
+          new: true,
         },
       ],
     },
@@ -514,15 +518,12 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Marquee',
           href: '/docs/marquee',
+          new: true,
         },
-      ],
-    },
-    {
-      title: 'Animated Buttons',
-      items: [
         {
           title: 'GitHub Button',
           href: '/docs/github-button',
+          new: true,
         },
       ],
     },
@@ -530,8 +531,19 @@ export const docsConfig: DocsConfig = {
       title: 'Text Animations',
       items: [
         {
-          title: 'Text Reveal',
-          href: '/docs/text-reveal',
+          title: 'Typing Text',
+          href: '/docs/typing-text',
+          new: true,
+        },
+        {
+          title: 'Word Rotate',
+          href: '/docs/word-rotate',
+          new: true,
+        },
+        {
+          title: 'Video Text',
+          href: '/docs/video-text',
+          new: true,
         },
       ],
     },

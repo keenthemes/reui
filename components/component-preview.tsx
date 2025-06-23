@@ -95,6 +95,7 @@ function ComponentPreviewProvider({
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function ThemeToggleButton() {
   const { resolvedTheme } = useTheme();
   const { theme, setTheme } = useComponentPreview();
@@ -221,7 +222,6 @@ function ComponentPreviewToolbar() {
         <div className="flex items-center gap-2">
           <CliCodeButton name={path.replaceAll('/', '-')} />
           <OpenInV0Button name={path.replaceAll('/', '-')} />
-          <ThemeToggleButton />
           <RtlToggleButton />
           <PreviewCopyCodeButton />
         </div>

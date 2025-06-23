@@ -4,19 +4,23 @@
 import * as React from 'react';
 import { cn } from '@/registry/default/lib/utils';
 import { ItemInstance } from '@headless-tree/core';
-import { ChevronDownIcon } from 'lucide-react';
+import { ChevronDownIcon, SquareMinus, SquarePlus } from 'lucide-react';
 import { Slot as SlotPrimitive } from 'radix-ui';
+
+type ToggleIconType = 'chevron' | 'plus-minus';
 
 interface TreeContextValue<T = any> {
   indent: number;
   currentItem?: ItemInstance<T>;
   tree?: any;
+  toggleIconType?: ToggleIconType;
 }
 
 const TreeContext = React.createContext<TreeContextValue>({
   indent: 20,
   currentItem: undefined,
   tree: undefined,
+  toggleIconType: 'plus-minus',
 });
 
 function useTreeContext<T = any>() {
@@ -26,9 +30,10 @@ function useTreeContext<T = any>() {
 interface TreeProps extends React.HTMLAttributes<HTMLDivElement> {
   indent?: number;
   tree?: any;
+  toggleIconType?: ToggleIconType;
 }
 
-function Tree({ indent = 20, tree, className, ...props }: TreeProps) {
+function Tree({ indent = 20, tree, className, toggleIconType = 'chevron', ...props }: TreeProps) {
   const containerProps = tree && typeof tree.getContainerProps === 'function' ? tree.getContainerProps() : {};
   const mergedProps = { ...props, ...containerProps };
 
@@ -42,7 +47,7 @@ function Tree({ indent = 20, tree, className, ...props }: TreeProps) {
   } as React.CSSProperties;
 
   return (
-    <TreeContext.Provider value={{ indent, tree }}>
+    <TreeContext.Provider value={{ indent, tree, toggleIconType }}>
       <div data-slot="tree" style={mergedStyle} className={cn('flex flex-col', className)} {...otherProps} />
     </TreeContext.Provider>
   );
@@ -55,7 +60,8 @@ interface TreeItemProps<T = any> extends React.HTMLAttributes<HTMLButtonElement>
 }
 
 function TreeItem<T = any>({ item, className, asChild, children, ...props }: Omit<TreeItemProps<T>, 'indent'>) {
-  const { indent } = useTreeContext<T>();
+  const parentContext = useTreeContext<T>();
+  const { indent } = parentContext;
 
   const itemProps = typeof item.getProps === 'function' ? item.getProps() : {};
   const mergedProps = { ...props, ...itemProps };
@@ -72,7 +78,7 @@ function TreeItem<T = any>({ item, className, asChild, children, ...props }: Omi
   const Comp = asChild ? SlotPrimitive.Slot : 'button';
 
   return (
-    <TreeContext.Provider value={{ indent, currentItem: item }}>
+    <TreeContext.Provider value={{ ...parentContext, currentItem: item }}>
       <Comp
         data-slot="tree-item"
         style={mergedStyle}
@@ -99,7 +105,7 @@ interface TreeItemLabelProps<T = any> extends React.HTMLAttributes<HTMLSpanEleme
 }
 
 function TreeItemLabel<T = any>({ item: propItem, children, className, ...props }: TreeItemLabelProps<T>) {
-  const { currentItem } = useTreeContext<T>();
+  const { currentItem, toggleIconType } = useTreeContext<T>();
   const item = propItem || currentItem;
 
   if (!item) {
@@ -116,9 +122,16 @@ function TreeItemLabel<T = any>({ item: propItem, children, className, ...props 
       )}
       {...props}
     >
-      {item.isFolder() && (
-        <ChevronDownIcon className="text-muted-foreground size-4 in-aria-[expanded=false]:-rotate-90" />
-      )}
+      {item.isFolder() &&
+        (toggleIconType === 'plus-minus' ? (
+          item.isExpanded() ? (
+            <SquareMinus className="text-muted-foreground size-3.5" stroke="currentColor" strokeWidth="1" />
+          ) : (
+            <SquarePlus className="text-muted-foreground size-3.5" stroke="currentColor" strokeWidth="1" />
+          )
+        ) : (
+          <ChevronDownIcon className="text-muted-foreground size-4 in-aria-[expanded=false]:-rotate-90" />
+        ))}
       {children || (typeof item.getItemName === 'function' ? item.getItemName() : null)}
     </span>
   );

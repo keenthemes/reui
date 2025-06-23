@@ -2,13 +2,6 @@
 title: Form
 description: Building forms with React Hook Form and Zod schema validation.
 component: true
-links:
-  - label: 'zod'
-    url: https://zod.dev/
-  - label: 'react-hook-form'
-    url: https://react-hook-form.com/
-  - label: '@hookform/resolvers'
-    url: https://github.com/react-hook-form/resolvers
 ---
 
 ## Installation
@@ -55,59 +48,7 @@ Copy and paste the following code into your project’s `components/ui/form.tsx`
 
 <ExamplePreview path="form/default" />
 
-## API Reference
+## Credits
 
-This component is built using [React Hook Form](https://react-hook-form.com/) and [Zod](https://zod.dev/) for form validation. For detailed information, please visit their documentation.
-
-### Form
-
-This component is based on the [FormProvider](https://react-hook-form.com/api/useformcontext) from React Hook Form. For more details, refer to the original documentation.
-
-### FormField
-
-This component is based on the [Controller](https://react-hook-form.com/api/usecontroller/controller) from React Hook Form and provides context for form field components.
-
-| **Prop**                                                                         | **Type**  | **Default** |
-| -------------------------------------------------------------------------------- | --------- | ----------- |
-| `name` <PopoverInfo>The name of the form field in the form values.</PopoverInfo> | ~string~  | <Na/>       |
-| `control` <PopoverInfo>The form control from useForm hook.</PopoverInfo>         | ~Control~ | <Na/>       |
-
-### FormItem
-
-This component provides context and styling for form field items.
-
-| **Prop**                                                                                           | **Type** | **Default** |
-| -------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `className` <PopoverInfo>Additional class names for styling the form item container.</PopoverInfo> | ~string~ | <Na/>       |
-
-### FormLabel
-
-This component extends Radix UI's Label component with form-specific styling and error states.
-
-| **Prop**                                                                                  | **Type** | **Default** |
-| ----------------------------------------------------------------------------------------- | -------- | ----------- |
-| `className` <PopoverInfo>Additional class names for styling the form label.</PopoverInfo> | ~string~ | <Na/>       |
-
-### FormControl
-
-This component provides form control context and accessibility attributes.
-
-| **Prop**                                                                              | **Type**  | **Default** |
-| ------------------------------------------------------------------------------------- | --------- | ----------- |
-| `asChild` <PopoverInfo>Whether to merge props onto the immediate child.</PopoverInfo> | ~boolean~ | ~false~     |
-
-### FormDescription
-
-This component displays helper text for form fields and is hidden when there are errors.
-
-| **Prop**                                                                                        | **Type** | **Default** |
-| ----------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `className` <PopoverInfo>Additional class names for styling the description text.</PopoverInfo> | ~string~ | <Na/>       |
-
-### FormMessage
-
-This component displays error messages for form fields.
-
-| **Prop**                                                                                     | **Type** | **Default** |
-| -------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `className` <PopoverInfo>Additional class names for styling the error message.</PopoverInfo> | ~string~ | <Na/>       |
+- Used [React Hook Form](https://react-hook-form.com/) for the form component.
+- Used [Zod](https://zod.dev/) for the form validation.

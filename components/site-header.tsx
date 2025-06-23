@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/registry/default/ui/button';
+import { GithubButton } from '@/registry/default/ui/github-button';
 import { siteConfig } from '@/config/site';
 import { trackEvent } from '@/lib/analytics';
 import { CommandMenu } from '@/components/command-menu';
@@ -47,10 +48,12 @@ export function SiteHeader() {
         </div>
 
         <div className="flex items-center gap-3 justify-end">
+          <GithubButton targetStars={150} initialStars={0} fixedWidth={false} label="GitHub Stars" className="h-8" />
+
           <CommandMenu />
 
           <nav className="flex items-center gap-1">
-            <Button variant="ghost" mode="icon" size="sm" className="size-8 text-foreground">
+            <Button variant="ghost" mode="icon" size="sm" className="size-8 text-foreground hidden">
               <Link
                 href={siteConfig.links.github}
                 target="_blank"
@@ -61,7 +64,7 @@ export function SiteHeader() {
                 <span className="sr-only">GitHub</span>
               </Link>
             </Button>
-            <Button variant="ghost" mode="icon" size="sm" className="size-8 text-foreground">
+            <Button variant="ghost" mode="icon" size="sm" className="size-8 text-foreground ">
               <Link
                 href={siteConfig.links.twitter}
                 target="_blank"

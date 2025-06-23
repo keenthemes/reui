@@ -2,11 +2,6 @@
 title: Date Picker
 description: A date input component that combines a calendar popover with an input field.
 component: true
-links:
-  - label: '@radix-ui/react-popover'
-    url: https://www.radix-ui.com/primitives/docs/components/popover
-  - label: 'react-day-picker'
-    url: https://daypicker.dev/
 ---
 
 ## Installation
@@ -108,3 +103,8 @@ A component for displaying preset date ranges.
 | `presets` <PopoverInfo>Array of preset date ranges.</PopoverInfo>                                | ~Array\<\{ label: string; range: DateRange \}>~ | <Na/>       |
 | `onSelect` <PopoverInfo>Callback function when a preset is selected.</PopoverInfo>               | ~(range: DateRange) => void~                    | <Na/>       |
 | `className` <PopoverInfo>Additional class names for styling the presets container.</PopoverInfo> | ~string~                                        | ~undefined~ |
+
+## Credits
+
+- Used [React DayPicker](https://daypicker.dev/) for the date picker component.
+- Used [Radix UI](https://www.radix-ui.com/primitives/docs/components/popover) for the date picker component.

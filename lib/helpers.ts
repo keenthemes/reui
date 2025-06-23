@@ -142,6 +142,18 @@ export function absoluteUrl(path: string): string {
 }
 
 /**
+ * Constructs an absolute URL for media assets.
+ *
+ * @param path - The relative path to the media asset (e.g., "/media/avatars/1.png").
+ * @returns A string representing the absolute URL to the media asset.
+ */
+export function toAbsoluteUrl(path: string): string {
+  // Remove leading slash if present to avoid double slashes
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  return `/${cleanPath}`;
+}
+
+/**
 	Retrieves a list of supported time zones with their labels and values.
 	This function fetches the available time zones from the environment,
 	formats their offsets (e.g., "GMT+2"), and returns them in a sorted array.

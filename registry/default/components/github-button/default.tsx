@@ -2,8 +2,8 @@ import { GithubButton } from '@/registry/default/ui/github-button';
 
 export default function Component() {
   return (
-    <div className="w-80">
-      <GithubButton />
+    <div className="space-y-4">
+      <GithubButton targetStars={1501} label="Github Stars" />
     </div>
   );
 }
