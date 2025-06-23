@@ -27,15 +27,14 @@ jobs:
           password: ${{ secrets.SSH_PROD_PSW }}
           port: 22
           script: |
-            export PATH=$PATH:/home/faizal/.nvm/versions/node/v20.18.3/bin
             cd /var/www/reui/reui
             git reset --hard
             git pull
             rm -rf node_modules
             rm -rf .next
             npm ci --force || npm install --force
-            npm run build || { echo "Build failed, exiting."; exit 1; }
             export PORT=3004
+            npm run build || { echo "Build failed, exiting."; exit 1; }
             pm2 restart "reui-web" --update-env || pm2 start npm --name "reui-web" -- start
 
       # Step 3: Display Deployment Results

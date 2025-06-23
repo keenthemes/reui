@@ -97,7 +97,7 @@
     "prettier-plugin-tailwindcss": "^0.6.13",
     "rehype": "^12.0.1",
     "rehype-autolink-headings": "^7.1.0",
-    "rehype-pretty-code": "^0.6.0",
+    "rehype-pretty-code": "^0.14.1",
     "rehype-slug": "^5.1.0",
     "remark": "^15.0.1",
     "remark-code-import": "^1.2.0",
