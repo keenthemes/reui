@@ -16,6 +16,10 @@ export const docsConfig: DocsConfig = {
       title: 'Docs',
       href: '/docs',
     },
+    {
+      title: 'Changelog',
+      href: '/docs/changelog',
+    },
   ],
   sidebarNav: [
     {
@@ -525,6 +529,11 @@ export const docsConfig: DocsConfig = {
           href: '/docs/github-button',
           new: true,
         },
+        {
+          title: 'Avatars Glow',
+          href: '/docs/avatars-glow',
+          new: true,
+        },
       ],
     },
     {
@@ -543,6 +552,31 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Video Text',
           href: '/docs/video-text',
+          new: true,
+        },
+        {
+          title: 'SVG Text',
+          href: '/docs/svg-text',
+          new: true,
+        },
+        {
+          title: 'Counting Number',
+          href: '/docs/counting-number',
+          new: true,
+        },
+        {
+          title: 'Sliding Number',
+          href: '/docs/sliding-number',
+          new: true,
+        },
+        {
+          title: 'Shimmering Text',
+          href: '/docs/shimmering-text',
+          new: true,
+        },
+        {
+          title: 'Text Reveal',
+          href: '/docs/text-reveal',
           new: true,
         },
       ],

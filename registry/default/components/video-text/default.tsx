@@ -3,7 +3,7 @@ import { toAbsoluteUrl } from '@/lib/helpers';
 
 export default function Component() {
   return (
-    <div className="flex flex-col gap-8 items-center">
+    <div className="flex items-center justify-center">
       {/* Basic example */}
       <VideoText src={toAbsoluteUrl('/media/videos/1.mp4')} className="tracking-tight font-bold" fontSize="12rem">
         REUI

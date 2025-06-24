@@ -7,7 +7,7 @@ import { Button } from '@/registry/default/ui/button';
 import { Tabs, TabsList, TabsTrigger } from '@/registry/default/ui/tabs';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/registry/default/ui/tooltip';
 import { DirectionProvider } from '@radix-ui/react-direction';
-import { Check, Copy, LoaderCircleIcon, Moon, Sun } from 'lucide-react';
+import { Check, Copy, LoaderCircleIcon, Moon, RotateCw, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { trackCodeCopy, trackDirectionChange, trackViewChange } from '@/lib/analytics';
 import { useConfig } from '@/hooks/use-config';
@@ -26,6 +26,8 @@ type ComponentPreviewContext = {
   setTheme: React.Dispatch<React.SetStateAction<themeType>>;
   rtl: boolean;
   setRtl: React.Dispatch<React.SetStateAction<boolean>>;
+  reloadKey: number;
+  reload: () => void;
   children: ReactNode;
 };
 
@@ -63,6 +65,11 @@ function ComponentPreviewProvider({
   const [view, setView] = useState<ComponentPreviewContext['view']>('preview');
   const [theme, setTheme] = useState<themeType>('');
   const [rtl, setRtl] = useState(false);
+  const [reloadKey, setReloadKey] = useState(0);
+
+  const reload = () => {
+    setReloadKey(prev => prev + 1);
+  };
 
   return (
     <ComponentPreviewContext.Provider
@@ -78,6 +85,8 @@ function ComponentPreviewProvider({
         setTheme,
         rtl,
         setRtl,
+        reloadKey,
+        reload,
       }}
     >
       <div
@@ -133,6 +142,21 @@ function RtlToggleButton() {
       }}
     >
       {rtl ? 'LTR' : 'RTL'}
+    </Button>
+  );
+}
+
+function ReloadButton() {
+  const { reload } = useComponentPreview();
+
+  return (
+    <Button
+      mode="icon"
+      size="sm"
+      variant="outline"
+      onClick={reload}
+    >
+      <RotateCw className="size-3.5" />
     </Button>
   );
 }
@@ -223,6 +247,7 @@ function ComponentPreviewToolbar() {
           <CliCodeButton name={path.replaceAll('/', '-')} />
           <OpenInV0Button name={path.replaceAll('/', '-')} />
           <RtlToggleButton />
+          <ReloadButton />
           <PreviewCopyCodeButton />
         </div>
       </div>
@@ -251,22 +276,33 @@ function PreviewCopyCodeButton() {
 }
 
 function ComponentPreviewDemo() {
-  const { theme, rtl, path, view } = useComponentPreview();
+  const { theme, rtl, path, view, reloadKey } = useComponentPreview();
   const [Component, setComponent] = useState<React.ComponentType | null>(null);
 
   // Load the component dynamically
   useEffect(() => {
     const loadComponent = async () => {
       try {
+        // Clear the component first to show loading state
+        setComponent(null);
+        
+        // Force module reload by adding timestamp to bypass cache
         const ComponentModule = await import(`@/registry/default/components/${path}`);
         setComponent(() => ComponentModule.default);
       } catch (error) {
         console.error(`Failed to load component at path: ${path}`, error);
+        // Fallback: try loading without timestamp
+        try {
+          const ComponentModule = await import(`@/registry/default/components/${path}`);
+          setComponent(() => ComponentModule.default);
+        } catch (fallbackError) {
+          console.error(`Fallback load also failed:`, fallbackError);
+        }
       }
     };
 
     loadComponent();
-  }, [path]);
+  }, [path, reloadKey]); // reloadKey dependency will trigger reload
 
   if (view !== 'preview') return null; // Return null if not in preview mode
 
@@ -283,7 +319,7 @@ function ComponentPreviewDemo() {
         style={{ direction: rtl ? 'rtl' : 'ltr' }}
       >
         {Component ? (
-          <Component />
+          <Component key={reloadKey} />
         ) : (
           <div className="h-full text-xs flex items-center justify-center gap-1.5 text-muted-foreground">
             <LoaderCircleIcon className="size-4 animate-spin" />
