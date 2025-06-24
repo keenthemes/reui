@@ -530,8 +530,8 @@ export const docsConfig: DocsConfig = {
           new: true,
         },
         {
-          title: 'Avatars Glow',
-          href: '/docs/avatars-glow',
+          title: 'Avatar Group',
+          href: '/docs/avatar-group',
           new: true,
         },
       ],
@@ -585,8 +585,19 @@ export const docsConfig: DocsConfig = {
       title: 'Background Effects',
       items: [
         {
-          title: 'Background Parallax',
-          href: '/docs/background-parallax',
+          title: 'Gradient Background',
+          href: '/docs/gradient-background',
+          new: true,
+        },
+        {
+          title: 'Grid Background',
+          href: '/docs/grid-background',
+          new: true,
+        },
+        {
+          title: 'Hover Background',
+          href: '/docs/hover-background',
+          new: true,
         },
       ],
     },

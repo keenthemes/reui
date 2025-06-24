@@ -1,0 +1,67 @@
+---
+title: Gradient Background
+description: An animated gradient background component with smooth color transitions and customizable timing.
+component: true
+---
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="gradient-background" />
+</TabsContent>
+
+<TabsContent value="manual">    
+<Steps>
+
+### Install ReUI
+
+Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+
+### Install dependencies
+
+```bash
+npm install motion
+```
+
+### Add component
+
+Copy and paste the following code into your project's `components/ui/gradient-background.tsx` file.
+
+<ComponentPreview name="gradient-background" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { GradientBackground } from "@/components/ui/gradient-background"
+
+export default function Example() {
+  return (
+    <div className="w-full h-64 rounded-lg overflow-hidden">
+      <GradientBackground />
+    </div>
+  )
+}
+```
+
+## Examples
+
+### Default
+
+<ExamplePreview path="gradient-background/default" />
+
+### Dark
+
+<ExamplePreview path="gradient-background/dark" />
