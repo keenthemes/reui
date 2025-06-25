@@ -2,12 +2,15 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "theming-base-colors",
   "type": "registry:component",
-  "dependencies": ["clsx", "tailwind-merge"],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
   "registryDependencies": [],
   "files": [
     {
       "path": "registry/default/components/theming/base-colors.tsx",
-      "content": "import { cn } from '@/registry/default/lib/utils';\n\nexport const colors = [\n  {\n    name: 'body',\n    className: 'bg-background text-foreground',\n  },\n  {\n    name: 'popover',\n    className: 'bg-popover text-popover-foreground',\n  },\n  {\n    name: 'card',\n    className: 'bg-card text-card-foreground',\n  },\n  {\n    name: 'muted',\n    className: 'bg-muted text-muted-foreground',\n  },\n  {\n    name: 'accent',\n    className: 'bg-accent text-accent-foreground',\n  },\n  {\n    name: 'secondary',\n    className: 'bg-secondary text-secondary-foreground',\n  },\n  {\n    name: 'primary',\n    className: 'bg-primary text-primary-foreground',\n  },\n  {\n    name: 'destructive',\n    className: 'bg-destructive text-destructive-foreground',\n  },\n];\n\nexport default function ThemeDemo() {\n  return (\n    <div className=\"grid grid-cols-3 gap-x-8 gap-y-4 text-sm\">\n      {colors.map((color) => (\n        <div\n          key={color.name}\n          className={cn(\n            'p-4 border border-border overflow-hidden rounded-xl',\n            color.className,\n          )}\n        >\n          {color.name}\n        </div>\n      ))}\n    </div>\n  );\n}\n",
+      "content": "import { cn } from '@/registry/default/lib/utils';\n\nexport const colors = [\n  {\n    name: 'body',\n    className: 'bg-background text-foreground',\n  },\n  {\n    name: 'popover',\n    className: 'bg-popover text-popover-foreground',\n  },\n  {\n    name: 'card',\n    className: 'bg-card text-card-foreground',\n  },\n  {\n    name: 'muted',\n    className: 'bg-muted text-muted-foreground',\n  },\n  {\n    name: 'accent',\n    className: 'bg-accent text-accent-foreground',\n  },\n  {\n    name: 'secondary',\n    className: 'bg-secondary text-secondary-foreground',\n  },\n  {\n    name: 'primary',\n    className: 'bg-primary text-primary-foreground',\n  },\n  {\n    name: 'destructive',\n    className: 'bg-destructive text-destructive-foreground',\n  },\n];\n\nexport default function ThemeDemo() {\n  return (\n    <div className=\"grid grid-cols-3 gap-x-8 gap-y-4 text-sm\">\n      {colors.map((color) => (\n        <div key={color.name} className={cn('p-4 border border-border overflow-hidden rounded-xl', color.className)}>\n          {color.name}\n        </div>\n      ))}\n    </div>\n  );\n}\n",
       "type": "registry:component"
     },
     {

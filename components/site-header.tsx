@@ -48,7 +48,14 @@ export function SiteHeader() {
         </div>
 
         <div className="flex items-center gap-3 justify-end">
-          <GithubButton targetStars={150} initialStars={0} fixedWidth={false} label="GitHub Stars" className="h-8" />
+          <GithubButton
+            targetStars={150}
+            initialStars={0}
+            fixedWidth={false}
+            label="GitHub Stars"
+            className="h-8"
+            repoUrl="https://github.com/keenthemes/reui"
+          />
 
           <CommandMenu />
 

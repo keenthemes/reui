@@ -12,7 +12,7 @@ export default function HoverBackgroundDark() {
             'bg-green-500/30',
             'bg-lime-500/30',
             'bg-cyan-500/30',
-            'bg-blue-500/30'
+            'bg-blue-500/30',
           ],
           glow: 'shadow-emerald-400/70',
         }}
@@ -20,9 +20,7 @@ export default function HoverBackgroundDark() {
       >
         <div className="flex items-center justify-center h-full">
           <div className="text-center space-y-4">
-            <h2 className="text-4xl font-bold text-white/90">
-              Dark Theme
-            </h2>
+            <h2 className="text-4xl font-bold text-white/90">Dark Theme</h2>
             <p className="text-lg text-emerald-100/80 max-w-md">
               A sophisticated dark background with emerald and teal accents.
             </p>
@@ -31,4 +29,4 @@ export default function HoverBackgroundDark() {
       </HoverBackground>
     </div>
   );
-} 
+}

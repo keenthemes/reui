@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "file-upload",
+  "type": "registry:ui",
+  "dependencies": [],
+  "files": [
+    {
+      "path": "registry/default/ui/file-upload.tsx",
+      "content": "",
+      "type": "registry:ui"
+    }
+  ]
+}

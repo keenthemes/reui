@@ -68,7 +68,7 @@ function ComponentPreviewProvider({
   const [reloadKey, setReloadKey] = useState(0);
 
   const reload = () => {
-    setReloadKey(prev => prev + 1);
+    setReloadKey((prev) => prev + 1);
   };
 
   return (
@@ -150,12 +150,7 @@ function ReloadButton() {
   const { reload } = useComponentPreview();
 
   return (
-    <Button
-      mode="icon"
-      size="sm"
-      variant="outline"
-      onClick={reload}
-    >
+    <Button mode="icon" size="sm" variant="outline" onClick={reload}>
       <RotateCw className="size-3.5" />
     </Button>
   );
@@ -285,7 +280,7 @@ function ComponentPreviewDemo() {
       try {
         // Clear the component first to show loading state
         setComponent(null);
-        
+
         // Force module reload by adding timestamp to bypass cache
         const ComponentModule = await import(`@/registry/default/components/${path}`);
         setComponent(() => ComponentModule.default);

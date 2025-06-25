@@ -3,7 +3,7 @@
 import { formatBytes, useFileUpload, type FileWithPreview } from '@/registry/default/hooks/use-file-upload';
 import { Alert, AlertContent, AlertDescription, AlertIcon, AlertTitle } from '@/registry/default/ui/alert';
 import { Button } from '@/registry/default/ui/button';
-import { Camera, TriangleAlert, User, X } from 'lucide-react';
+import { TriangleAlert, User, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface AvatarUploadProps {
@@ -47,8 +47,9 @@ export default function AvatarUpload({
       <div className="relative">
         <div
           className={cn(
-            'group/avatar relative h-24 w-24 cursor-pointer overflow-hidden rounded-full border-2 transition-colors',
+            'group/avatar relative h-24 w-24 cursor-pointer overflow-hidden rounded-full border border-dashed transition-colors',
             isDragging ? 'border-primary bg-primary/5' : 'border-muted-foreground/25 hover:border-muted-foreground/20',
+            previewUrl && 'border-solid',
           )}
           onDragEnter={handleDragEnter}
           onDragLeave={handleDragLeave}
@@ -61,24 +62,19 @@ export default function AvatarUpload({
           {previewUrl ? (
             <img src={previewUrl} alt="Avatar" className="h-full w-full object-cover" />
           ) : (
-            <div className="flex h-full w-full items-center justify-center bg-muted group-hover/avatar:hidden">
+            <div className="flex h-full w-full items-center justify-center">
               <User className="size-6 text-muted-foreground" />
             </div>
           )}
-
-          {/* Overlay */}
-          <div className="absolute inset-0 flex items-center justify-center bg-black/20 dark:bg-zinc-900/20 opacity-0 transition-opacity hover:opacity-100">
-            <Camera className="size-6 text-muted-foreground" />
-          </div>
         </div>
 
         {/* Remove Button - only show when file is uploaded */}
         {currentFile && (
           <Button
             size="icon"
-            variant="primary"
+            variant="outline"
             onClick={handleRemove}
-            className="size-6 absolute end-0 top-0 rounded-full border-2 border-background"
+            className="size-6 absolute end-0 top-0 rounded-full"
             aria-label="Remove avatar"
           >
             <X className="size-3.5" />
@@ -87,7 +83,7 @@ export default function AvatarUpload({
       </div>
 
       {/* Upload Instructions */}
-      <div className="text-center">
+      <div className="text-center space-y-0.5">
         <p className="text-sm font-medium">{currentFile ? 'Avatar uploaded' : 'Upload avatar'}</p>
         <p className="text-xs text-muted-foreground">PNG, JPG up to {formatBytes(maxSize)}</p>
       </div>

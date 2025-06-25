@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "gradient-background-default",
+  "type": "registry:component",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/gradient-background.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/gradient-background/default.tsx",
+      "content": "import { GradientBackground } from '@/registry/default/ui/gradient-background';\n\nexport default function Component() {\n  return (\n    <div className=\"w-full h-64 rounded-lg overflow-hidden\">\n      <GradientBackground />\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "registry/default/ui/gradient-background.tsx",
+      "content": "'use client';\n\nimport * as React from 'react';\nimport { HTMLMotionProps, motion, type Transition } from 'motion/react';\nimport { cn } from '@/lib/utils';\n\ntype GradientBackgroundProps = HTMLMotionProps<'div'> & {\n  transition?: Transition;\n};\n\nfunction GradientBackground({\n  className,\n  transition = { duration: 10, ease: 'easeInOut', repeat: Infinity },\n  ...props\n}: GradientBackgroundProps) {\n  return (\n    <motion.div\n      data-slot=\"gradient-background\"\n      className={cn(\n        'size-full bg-gradient-to-br from-fuchsia-400 from-0% via-50% via-violet-500 to-fuchsia-600 to-100% bg-[length:300%_300%]',\n        className,\n      )}\n      animate={{\n        backgroundPosition: ['0% 0%', '50% 50%', '100% 0%', '50% 100%', '0% 50%', '100% 100%', '0% 0%'],\n      }}\n      whileTap={{\n        scale: 0.98,\n      }}\n      transition={transition}\n      {...props}\n    />\n  );\n}\n\nexport { GradientBackground, type GradientBackgroundProps };\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ]
+}

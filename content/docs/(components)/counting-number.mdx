@@ -38,7 +38,7 @@ Copy and paste the following code into your project's `components/ui/counting-nu
 
 ## Examples
 
-### Default 
+### Default
 
 <ExamplePreview path="counting-number/default" />
 
@@ -49,6 +49,21 @@ Copy and paste the following code into your project's `components/ui/counting-nu
 ### Format
 
 <ExamplePreview path="counting-number/format" />
+
+## API Reference
+
+| **Prop**                                                                                            | **Type**                    | **Default** |
+| --------------------------------------------------------------------------------------------------- | --------------------------- | ----------- |
+| `from` <PopoverInfo>Starting number for the counting animation.</PopoverInfo>                       | ~number~                    | ~0~         |
+| `to` <PopoverInfo>Target number to count to.</PopoverInfo>                                          | ~number~                    | ~100~       |
+| `duration` <PopoverInfo>Animation duration in seconds.</PopoverInfo>                                | ~number~                    | ~2~         |
+| `delay` <PopoverInfo>Delay before starting animation in milliseconds.</PopoverInfo>                 | ~number~                    | ~0~         |
+| `className` <PopoverInfo>CSS class for the number element.</PopoverInfo>                            | ~string~                    | <Na/>       |
+| `startOnView` <PopoverInfo>Whether to start animation when component enters viewport.</PopoverInfo> | ~boolean~                   | ~true~      |
+| `once` <PopoverInfo>Whether to animate only once when using startOnView.</PopoverInfo>              | ~boolean~                   | ~false~     |
+| `inViewMargin` <PopoverInfo>Margin for in-view detection trigger area.</PopoverInfo>                | ~string~                    | <Na/>       |
+| `onComplete` <PopoverInfo>Callback function when counting animation completes.</PopoverInfo>        | ~() => void~                | <Na/>       |
+| `format` <PopoverInfo>Custom formatting function for the displayed number.</PopoverInfo>            | ~(value: number) => string~ | <Na/>       |
 
 ## Credits
 

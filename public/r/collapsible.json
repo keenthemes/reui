@@ -2,11 +2,15 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "collapsible",
   "type": "registry:ui",
-  "dependencies": ["@radix-ui/react-collapsible", "clsx", "tailwind-merge", "@radix-ui/react-collapsible"],
+  "dependencies": [
+    "radix-ui",
+    "clsx",
+    "tailwind-merge"
+  ],
   "files": [
     {
       "path": "registry/default/ui/collapsible.tsx",
-      "content": "'use client';\n\nimport React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport * as CollapsiblePrimitive from '@radix-ui/react-collapsible';\n\nfunction Collapsible({\n  ...props\n}: React.ComponentProps<typeof CollapsiblePrimitive.Root>) {\n  return <CollapsiblePrimitive.Root data-slot=\"collapsible\" {...props} />;\n}\n\nfunction CollapsibleTrigger({\n  ...props\n}: React.ComponentProps<typeof CollapsiblePrimitive.CollapsibleTrigger>) {\n  return (\n    <CollapsiblePrimitive.CollapsibleTrigger\n      data-slot=\"collapsible-trigger\"\n      {...props}\n    />\n  );\n}\n\nfunction CollapsibleContent({\n  className,\n  children,\n  ...props\n}: React.ComponentPropsWithoutRef<\n  typeof CollapsiblePrimitive.CollapsibleContent\n>) {\n  return (\n    <CollapsiblePrimitive.CollapsibleContent\n      data-slot=\"collapsible-content\"\n      className={cn(\n        'overflow-hidden transition-all data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down',\n        className,\n      )}\n      {...props}\n    >\n      {children}\n    </CollapsiblePrimitive.CollapsibleContent>\n  );\n}\n\nexport { Collapsible, CollapsibleContent, CollapsibleTrigger };\n",
+      "content": "'use client';\n\nimport React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport { Collapsible as CollapsiblePrimitive } from 'radix-ui';\n\nfunction Collapsible({ ...props }: React.ComponentProps<typeof CollapsiblePrimitive.Root>) {\n  return <CollapsiblePrimitive.Root data-slot=\"collapsible\" {...props} />;\n}\n\nfunction CollapsibleTrigger({ ...props }: React.ComponentProps<typeof CollapsiblePrimitive.CollapsibleTrigger>) {\n  return <CollapsiblePrimitive.CollapsibleTrigger data-slot=\"collapsible-trigger\" {...props} />;\n}\n\nfunction CollapsibleContent({\n  className,\n  children,\n  ...props\n}: React.ComponentProps<typeof CollapsiblePrimitive.CollapsibleContent>) {\n  return (\n    <CollapsiblePrimitive.CollapsibleContent\n      data-slot=\"collapsible-content\"\n      className={cn(\n        'overflow-hidden transition-all data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down',\n        className,\n      )}\n      {...props}\n    >\n      {children}\n    </CollapsiblePrimitive.CollapsibleContent>\n  );\n}\n\nexport { Collapsible, CollapsibleContent, CollapsibleTrigger };\n",
       "type": "registry:ui"
     },
     {

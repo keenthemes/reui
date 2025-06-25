@@ -1,15 +1,19 @@
-"use client";
+'use client';
 
-import { useEffect, useRef, useState } from "react";
-import {
-  MotionValue,
-  motion,
-  useSpring,
-  useTransform,
-  useInView,
-} from "framer-motion";
+import { useEffect, useRef, useState } from 'react';
+import { motion, MotionValue, useInView, useSpring, useTransform } from 'framer-motion';
 
-function Digit({ place, value, digitHeight, duration }: { place: number; value: number; digitHeight: number; duration: number }) {
+function Digit({
+  place,
+  value,
+  digitHeight,
+  duration,
+}: {
+  place: number;
+  value: number;
+  digitHeight: number;
+  duration: number;
+}) {
   const valueRoundedToPlace = Math.floor(value / place);
   const animatedValue = useSpring(valueRoundedToPlace, {
     duration: duration * 1000, // Convert to milliseconds
@@ -43,10 +47,7 @@ function Number({ mv, number, digitHeight }: { mv: MotionValue<number>; number: 
   });
 
   return (
-    <motion.span
-      style={{ y }}
-      className="absolute inset-0 flex items-center justify-center"
-    >
+    <motion.span style={{ y }} className="absolute inset-0 flex items-center justify-center">
       {number}
     </motion.span>
   );
@@ -70,8 +71,8 @@ export function SlidingNumber({
   duration = 2,
   delay = 0,
   startOnView = true,
-  once = false, 
-  className = "",
+  once = false,
+  className = '',
   onComplete,
   digitHeight = 40,
 }: SlidingNumberProps) {
@@ -85,28 +86,28 @@ export function SlidingNumber({
   useEffect(() => {
     setCurrentValue(from);
     setHasAnimated(false);
-    setAnimationKey(prev => prev + 1);
+    setAnimationKey((prev) => prev + 1);
   }, []); // Empty dependency array - runs on every mount
 
   // Reset animation state when from/to values change
   useEffect(() => {
     setCurrentValue(from);
     setHasAnimated(false);
-    setAnimationKey(prev => prev + 1);
+    setAnimationKey((prev) => prev + 1);
   }, [from, to]);
 
   // Manage animation triggering manually
   useEffect(() => {
     if (!startOnView || !isInView) return;
-    
+
     // If once=true and already animated on this mount, don't animate again
     if (once && hasAnimated) return;
-    
+
     // Trigger animation
     const timer = setTimeout(() => {
-      setAnimationKey(prev => prev + 1);
+      setAnimationKey((prev) => prev + 1);
     }, 50);
-    
+
     return () => clearTimeout(timer);
   }, [isInView, startOnView, once, hasAnimated]);
 
@@ -146,21 +147,16 @@ export function SlidingNumber({
   // Round the current value to avoid showing decimals during animation
   const roundedValue = Math.round(currentValue);
   const absValue = Math.abs(roundedValue);
-  
+
   // Determine the maximum number of digits needed
-  const maxDigits = Math.max(
-    Math.abs(from).toString().length,
-    Math.abs(to).toString().length
-  );
-  
+  const maxDigits = Math.max(Math.abs(from).toString().length, Math.abs(to).toString().length);
+
   // Create array of place values (1, 10, 100, 1000, etc.)
-  const places = Array.from({ length: maxDigits }, (_, i) => 
-    Math.pow(10, maxDigits - i - 1)
-  );
+  const places = Array.from({ length: maxDigits }, (_, i) => Math.pow(10, maxDigits - i - 1));
 
   return (
     <div ref={ref} className={`flex items-center ${className}`}>
-      {roundedValue < 0 && "-"}
+      {roundedValue < 0 && '-'}
       {places.map((place) => (
         <Digit
           key={`${place}-${animationKey}`}

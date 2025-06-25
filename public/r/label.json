@@ -3,16 +3,15 @@
   "name": "label",
   "type": "registry:ui",
   "dependencies": [
-    "@radix-ui/react-label",
+    "radix-ui",
     "clsx",
     "tailwind-merge",
-    "@radix-ui/react-label",
     "class-variance-authority"
   ],
   "files": [
     {
       "path": "registry/default/ui/label.tsx",
-      "content": "'use client';\n\nimport * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport * as LabelPrimitive from '@radix-ui/react-label';\nimport { cva, type VariantProps } from 'class-variance-authority';\n\nconst labelVariants = cva(\n  'text-sm leading-none text-foreground peer-disabled:cursor-not-allowed peer-disabled:opacity-50',\n  {\n    variants: {\n      variant: {\n        primary: 'font-medium',\n        secondary: 'font-normal',\n      },\n    },\n    defaultVariants: {\n      variant: 'primary',\n    },\n  },\n);\n\nfunction Label({\n  className,\n  variant,\n  ...props\n}: React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root> &\n  VariantProps<typeof labelVariants>) {\n  return (\n    <LabelPrimitive.Root\n      data-slot=\"label\"\n      className={cn(labelVariants({ variant }), className)}\n      {...props}\n    />\n  );\n}\n\nexport { Label };\n",
+      "content": "'use client';\n\nimport * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport { Label as LabelPrimitive } from 'radix-ui';\n\nconst labelVariants = cva(\n  'text-sm leading-none text-foreground peer-disabled:cursor-not-allowed peer-disabled:opacity-50',\n  {\n    variants: {\n      variant: {\n        primary: 'font-medium',\n        secondary: 'font-normal',\n      },\n    },\n    defaultVariants: {\n      variant: 'primary',\n    },\n  },\n);\n\nfunction Label({\n  className,\n  variant,\n  ...props\n}: React.ComponentProps<typeof LabelPrimitive.Root> & VariantProps<typeof labelVariants>) {\n  return <LabelPrimitive.Root data-slot=\"label\" className={cn(labelVariants({ variant }), className)} {...props} />;\n}\n\nexport { Label };\n",
       "type": "registry:ui"
     },
     {

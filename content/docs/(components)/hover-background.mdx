@@ -42,26 +42,6 @@ Copy and paste the following code into your project's `components/ui/hover-backg
 
 </Tabs>
 
-## Usage
-
-```tsx
-import { HoverBackground } from "@/components/ui/hover-background"
-
-export default function Example() {
-  return (
-    <div className="w-full h-64 rounded-lg overflow-hidden">
-      <HoverBackground>
-        <div className="flex items-center justify-center h-full">
-          <h2 className="text-4xl font-bold text-white">
-            Your Content Here
-          </h2>
-        </div>
-      </HoverBackground>
-    </div>
-  )
-}
-```
-
 ## Examples
 
 ### Default
@@ -70,4 +50,15 @@ export default function Example() {
 
 ### Dark
 
-<ExamplePreview path="hover-background/dark" /> 
+<ExamplePreview path="hover-background/dark" />
+
+## API Reference
+
+| **Prop**                                                                                  | **Type**                                                                                        | **Default**                                                                                                             |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `objectCount` <PopoverInfo>Number of animated objects to display (1-12).</PopoverInfo>    | ~enum~ <PopoverInfo> 1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7 \| 8 \| 9 \| 10 \| 11 \| 12 </PopoverInfo> | ~12~                                                                                                                    |
+| `children` <PopoverInfo>Content to display over the interactive background.</PopoverInfo> | ~ReactNode~                                                                                     | <Na/>                                                                                                                   |
+| `className` <PopoverInfo>CSS class for the background container.</PopoverInfo>            | ~string~                                                                                        | <Na/>                                                                                                                   |
+| `colors.background` <PopoverInfo>Background gradient CSS class.</PopoverInfo>             | ~string~                                                                                        | ~"bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900"~                                                        |
+| `colors.objects` <PopoverInfo>Array of CSS classes for object colors.</PopoverInfo>       | ~string[]~                                                                                      | ~["bg-cyan-400/20", "bg-purple-400/20", "bg-fuchsia-400/20", "bg-violet-400/20", "bg-blue-400/20", "bg-indigo-400/20"]~ |
+| `colors.glow` <PopoverInfo>Glow effect color for hover interactions.</PopoverInfo>        | ~string~                                                                                        | ~"shadow-cyan-400/50"~                                                                                                  |

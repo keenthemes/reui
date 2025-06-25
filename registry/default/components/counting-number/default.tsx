@@ -6,4 +6,4 @@ export default function Component() {
       <CountingNumber from={0} to={500} duration={3} className="text-4xl font-bold" />
     </div>
   );
-} 
+}

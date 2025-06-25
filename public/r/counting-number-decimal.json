@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "counting-number-decimal",
+  "type": "registry:component",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/counting-number.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/counting-number/decimal.tsx",
+      "content": "import { CountingNumber } from '@/registry/default/ui/counting-number';\n\nexport default function Component() {\n  return (\n    <div className=\"flex items-center justify-center\">\n      <CountingNumber\n        from={0}\n        to={99.99}\n        duration={3}\n        className=\"text-4xl font-bold\"\n        format={(value) => value.toFixed(2)}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "registry/default/ui/counting-number.tsx",
+      "content": "'use client';\n\nimport React, { useEffect, useRef, useState } from 'react';\nimport { animate, motion, useInView, UseInViewOptions, useMotionValue } from 'motion/react';\nimport { cn } from '@/lib/utils';\n\ninterface CountingNumberProps {\n  from?: number;\n  to?: number;\n  duration?: number; // seconds\n  delay?: number; // ms\n  className?: string;\n  startOnView?: boolean;\n  once?: boolean;\n  inViewMargin?: UseInViewOptions['margin'];\n  onComplete?: () => void;\n  format?: (value: number) => string;\n}\n\nexport function CountingNumber({\n  from = 0,\n  to = 100,\n  duration = 2,\n  delay = 0,\n  className,\n  startOnView = true,\n  once = false,\n  inViewMargin,\n  onComplete,\n  format,\n  ...props\n}: CountingNumberProps) {\n  const ref = useRef<HTMLSpanElement>(null);\n  const isInView = useInView(ref, { once, margin: inViewMargin });\n  const [hasAnimated, setHasAnimated] = useState(false);\n  const [display, setDisplay] = useState(from);\n  const motionValue = useMotionValue(from);\n\n  // Should start animation?\n  const shouldStart = !startOnView || (isInView && (!once || !hasAnimated));\n\n  useEffect(() => {\n    if (!shouldStart) return;\n    setHasAnimated(true);\n    const timeout = setTimeout(() => {\n      const controls = animate(motionValue, to, {\n        duration,\n        onUpdate: (v) => setDisplay(v),\n        onComplete,\n      });\n      return () => controls.stop();\n    }, delay);\n    return () => clearTimeout(timeout);\n    // eslint-disable-next-line react-hooks/exhaustive-deps\n  }, [shouldStart, from, to, duration, delay]);\n\n  return (\n    <motion.span ref={ref} className={cn('inline-block', className)} {...props}>\n      {format ? format(display) : Math.round(display)}\n    </motion.span>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ]
+}

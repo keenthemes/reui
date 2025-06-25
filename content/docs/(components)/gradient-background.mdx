@@ -42,20 +42,6 @@ Copy and paste the following code into your project's `components/ui/gradient-ba
 
 </Tabs>
 
-## Usage
-
-```tsx
-import { GradientBackground } from "@/components/ui/gradient-background"
-
-export default function Example() {
-  return (
-    <div className="w-full h-64 rounded-lg overflow-hidden">
-      <GradientBackground />
-    </div>
-  )
-}
-```
-
 ## Examples
 
 ### Default
@@ -65,3 +51,10 @@ export default function Example() {
 ### Dark
 
 <ExamplePreview path="gradient-background/dark" />
+
+## API Reference
+
+| **Prop**                                                                                            | **Type**     | **Default**                                               |
+| --------------------------------------------------------------------------------------------------- | ------------ | --------------------------------------------------------- |
+| `className` <PopoverInfo>CSS class for the background container.</PopoverInfo>                      | ~string~     | <Na/>                                                     |
+| `transition` <PopoverInfo>Motion transition configuration for the gradient animation.</PopoverInfo> | ~Transition~ | ~\{ duration: 10, ease: 'easeInOut', repeat: Infinity \}~ |

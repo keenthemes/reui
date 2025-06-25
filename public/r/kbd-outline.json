@@ -2,8 +2,15 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "kbd-outline",
   "type": "registry:component",
-  "dependencies": ["clsx", "tailwind-merge", "class-variance-authority", "lucide-react"],
-  "registryDependencies": ["https://reui.io/r/kbd.json"],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "class-variance-authority",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/kbd.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/kbd/outline.tsx",
@@ -12,7 +19,7 @@
     },
     {
       "path": "registry/default/ui/kbd.tsx",
-      "content": "'use client';\n\nimport * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport { cva, type VariantProps } from 'class-variance-authority';\n\nconst kbdVariants = cva(\n  'inline-flex items-center justify-center font-mono rounded-md',\n  {\n    variants: {\n      variant: {\n        default: 'bg-accent border border-border text-accent-foreground',\n        outline: 'text-accent-foreground border border-input',\n      },\n      size: {\n        md: 'h-7 min-w-7 px-1.5 text-xs [&_svg]:size-3.5',\n        sm: 'h-6 min-w-6 px-1 text-[0.75rem] leading-[0.75rem] [&_svg]:size-3',\n        xs: 'h-5 min-w-5 px-1 text-[0.6875rem] leading-[0.75rem] [&_svg]:size-3',\n      },\n    },\n    defaultVariants: {\n      variant: 'default',\n      size: 'md',\n    },\n  },\n);\n\nexport interface KbdProps\n  extends React.HTMLAttributes<HTMLDivElement>,\n    VariantProps<typeof kbdVariants> {}\n\nfunction Kbd({ className, variant, size, ...props }: KbdProps) {\n  return (\n    <kbd\n      data-slot=\"kbd\"\n      className={cn(kbdVariants({ variant, size }), className)}\n      {...props}\n    />\n  );\n}\n\nexport { Kbd, kbdVariants };\n",
+      "content": "'use client';\n\nimport * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport { cva, type VariantProps } from 'class-variance-authority';\n\nconst kbdVariants = cva('inline-flex items-center justify-center font-mono rounded-md', {\n  variants: {\n    variant: {\n      default: 'bg-accent border border-border text-accent-foreground',\n      outline: 'text-accent-foreground border border-input',\n    },\n    size: {\n      md: 'h-7 min-w-7 px-1.5 text-xs [&_svg]:size-3.5',\n      sm: 'h-6 min-w-6 px-1 text-[0.75rem] leading-[0.75rem] [&_svg]:size-3',\n      xs: 'h-5 min-w-5 px-1 text-[0.6875rem] leading-[0.75rem] [&_svg]:size-3',\n    },\n  },\n  defaultVariants: {\n    variant: 'default',\n    size: 'md',\n  },\n});\n\nfunction Kbd({ className, variant, size, ...props }: React.ComponentProps<'kbd'> & VariantProps<typeof kbdVariants>) {\n  return <kbd data-slot=\"kbd\" className={cn(kbdVariants({ variant, size }), className)} {...props} />;\n}\n\nexport { Kbd, kbdVariants };\n",
       "type": "registry:ui",
       "target": ""
     },

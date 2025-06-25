@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useMemo } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { motion, useInView, UseInViewOptions } from 'motion/react';
 import { cn } from '@/lib/utils';
 
@@ -42,8 +42,8 @@ export function ShimmeringText({
   once = false,
   inViewMargin,
   spread = 2,
-	color,
-	shimmerColor,
+  color,
+  shimmerColor,
 }: ShimmeringTextProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once, margin: inViewMargin });
@@ -65,22 +65,28 @@ export function ShimmeringText({
         '[background-repeat:no-repeat,padding-box]',
         '[--shimmer-bg:linear-gradient(90deg,transparent_calc(50%-var(--spread)),var(--shimmer-color),transparent_calc(50%+var(--spread)))]',
         'dark:[--base-color:var(--color-zinc-600)] dark:[--shimmer-color:var(--color-white)]',
-        className
+        className,
       )}
-      style={{
-        '--spread': `${dynamicSpread}px`,
-				...(color && { '--base-color': color }),
-				...(shimmerColor && { '--shimmer-color': shimmerColor }),
-        backgroundImage: `var(--shimmer-bg), linear-gradient(var(--base-color), var(--base-color))`,
-      } as React.CSSProperties}
-      initial={{ 
+      style={
+        {
+          '--spread': `${dynamicSpread}px`,
+          ...(color && { '--base-color': color }),
+          ...(shimmerColor && { '--shimmer-color': shimmerColor }),
+          backgroundImage: `var(--shimmer-bg), linear-gradient(var(--base-color), var(--base-color))`,
+        } as React.CSSProperties
+      }
+      initial={{
         backgroundPosition: '100% center',
-        opacity: 0 
+        opacity: 0,
       }}
-      animate={shouldAnimate ? {
-        backgroundPosition: '0% center',
-        opacity: 1,
-      } : {}}
+      animate={
+        shouldAnimate
+          ? {
+              backgroundPosition: '0% center',
+              opacity: 1,
+            }
+          : {}
+      }
       transition={{
         backgroundPosition: {
           repeat: repeat ? Infinity : 0,
@@ -92,10 +98,10 @@ export function ShimmeringText({
         opacity: {
           duration: 0.3,
           delay,
-        }
+        },
       }}
     >
       {text}
     </motion.span>
   );
-} 
+}

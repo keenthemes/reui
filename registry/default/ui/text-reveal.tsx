@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, useInView, Variants } from 'motion/react';
 import { cn } from '@/lib/utils';
 
@@ -228,7 +228,7 @@ export function TextReveal({
   staggerDelay = 0.03,
   once = true,
   startOnView = true,
-  wordLevel = false
+  wordLevel = false,
 }: TextRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once, margin: '-10%' });
@@ -254,18 +254,19 @@ export function TextReveal({
 
   // Use original item variants - only override duration if explicitly different from default
   const originalVariant = itemVariants[variant];
-  const customItemVariants = duration === 0.6 
-    ? originalVariant  // Use original variant unchanged if default duration
-    : {
-        hidden: originalVariant.hidden,
-        visible: {
-          ...originalVariant.visible,
-          transition: {
-            ...(originalVariant.visible as Record<string, unknown>).transition as Record<string, unknown>,
-            duration,
+  const customItemVariants =
+    duration === 0.6
+      ? originalVariant // Use original variant unchanged if default duration
+      : {
+          hidden: originalVariant.hidden,
+          visible: {
+            ...originalVariant.visible,
+            transition: {
+              ...((originalVariant.visible as Record<string, unknown>).transition as Record<string, unknown>),
+              duration,
+            },
           },
-        },
-      };
+        };
 
   useEffect(() => {
     if (shouldAnimate && !hasAnimated) {
@@ -329,4 +330,4 @@ export function TextReveal({
       )}
     </motion.div>
   );
-} 
+}

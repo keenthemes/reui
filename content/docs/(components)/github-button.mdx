@@ -50,7 +50,29 @@ Copy and paste the following code into your project’s `components/ui/github-bu
 
 <ExamplePreview path="github-button/sizes" />
 
+## API Reference
+
+| **Prop**                                                                                       | **Type**                 | **Default**        |
+| ---------------------------------------------------------------------------------------------- | ------------------------ | ------------------ |
+| `variant` <PopoverInfo>Button visual style variant.</PopoverInfo>                              | ~'default' \| 'outline'~ | ~'default'~        |
+| `size` <PopoverInfo>Button size variant.</PopoverInfo>                                         | ~'md' \| 'sm' \| 'lg'~   | ~'md'~             |
+| `className` <PopoverInfo>Optional CSS class name to apply custom styles.</PopoverInfo>         | ~string~                 | <Na/>              |
+| `roundStars` <PopoverInfo>Whether to round stars number with units (k, M, B, T).</PopoverInfo> | ~boolean~                | ~false~            |
+| `fixedWidth` <PopoverInfo>Whether to maintain fixed width for consistent layout.</PopoverInfo> | ~boolean~                | ~true~             |
+| `initialStars` <PopoverInfo>Initial number of stars to display.</PopoverInfo>                  | ~number~                 | ~0~                |
+| `starsClass` <PopoverInfo>CSS class for the stars counter element.</PopoverInfo>               | ~string~                 | <Na/>              |
+| `targetStars` <PopoverInfo>Target number of stars to animate to.</PopoverInfo>                 | ~number~                 | <Na/>              |
+| `animationDuration` <PopoverInfo>Animation duration in seconds.</PopoverInfo>                  | ~number~                 | ~2~                |
+| `animationDelay` <PopoverInfo>Animation delay in seconds before starting.</PopoverInfo>        | ~number~                 | ~0~                |
+| `autoAnimate` <PopoverInfo>Whether to start animation automatically.</PopoverInfo>             | ~boolean~                | ~true~             |
+| `showGithubIcon` <PopoverInfo>Whether to display the GitHub icon.</PopoverInfo>                | ~boolean~                | ~true~             |
+| `filled` <PopoverInfo>Whether stars should start filled.</PopoverInfo>                         | ~boolean~                | ~false~            |
+| `repoUrl` <PopoverInfo>Repository URL for actual GitHub integration.</PopoverInfo>             | ~string~                 | <Na/>              |
+| `label` <PopoverInfo>Button text label.</PopoverInfo>                                          | ~string~                 | ~'Star'~           |
+| `useInViewTrigger` <PopoverInfo>Use in-view detection to trigger animation.</PopoverInfo>      | ~boolean~                | ~false~            |
+| `inViewOptions` <PopoverInfo>Options for in-view detection trigger.</PopoverInfo>              | ~UseInViewOptions~       | ~`{ once: true }`~ |
+| `transition` <PopoverInfo>Spring transition options for motion animations.</PopoverInfo>       | ~SpringOptions~          | <Na/>              |
+
 ## Credits
 
-- Inspired by [Animate UI](https://animate-ui.com/docs/buttons/github-stars) for the github button component.
-
+- Inspired by [Animate UI](https://animate-ui.com/docs/buttons/github-stars).

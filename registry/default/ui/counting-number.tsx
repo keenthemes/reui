@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import React, { useEffect, useRef, useState } from "react";
-import { animate, motion, useMotionValue, useInView, UseInViewOptions } from "motion/react";
+import React, { useEffect, useRef, useState } from 'react';
+import { animate, motion, useInView, UseInViewOptions, useMotionValue } from 'motion/react';
 import { cn } from '@/lib/utils';
 
 interface CountingNumberProps {
@@ -55,11 +55,7 @@ export function CountingNumber({
   }, [shouldStart, from, to, duration, delay]);
 
   return (
-    <motion.span
-      ref={ref}
-      className={cn("inline-block", className)}
-      {...props}
-    >
+    <motion.span ref={ref} className={cn('inline-block', className)} {...props}>
       {format ? format(display) : Math.round(display)}
     </motion.span>
   );

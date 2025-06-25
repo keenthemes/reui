@@ -42,6 +42,24 @@ Copy and paste the following code into your project's `components/ui/video-text.
 
 <ExamplePreview path="video-text/default" />
 
+## API Reference
+
+| **Prop**                                                                                          | **Type**                                                           | **Default** |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ----------- |
+| `src` <PopoverInfo>Video source URL or array of sources for multiple formats.</PopoverInfo>       | ~string \| string[]~                                               | <Na/>       |
+| `children` <PopoverInfo>Content to display with video background effect.</PopoverInfo>            | ~ReactNode~                                                        | <Na/>       |
+| `className` <PopoverInfo>CSS class for the container element.</PopoverInfo>                       | ~string~                                                           | <Na/>       |
+| `autoPlay` <PopoverInfo>Whether to autoplay the video.</PopoverInfo>                              | ~boolean~                                                          | ~true~      |
+| `muted` <PopoverInfo>Whether to mute the video audio.</PopoverInfo>                               | ~boolean~                                                          | ~true~      |
+| `loop` <PopoverInfo>Whether to loop the video playback.</PopoverInfo>                             | ~boolean~                                                          | ~true~      |
+| `preload` <PopoverInfo>Video preload strategy.</PopoverInfo>                                      | ~enum~ <PopoverInfo> "auto" \| "metadata" \| "none" </PopoverInfo> | ~"auto"~    |
+| `fontSize` <PopoverInfo>Font size for the text mask in CSS units or viewport width.</PopoverInfo> | ~string \| number~                                                 | ~"20vw"~    |
+| `fontWeight` <PopoverInfo>Font weight for the text mask.</PopoverInfo>                            | ~string \| number~                                                 | ~"bold"~    |
+| `as` <PopoverInfo>HTML element type to render for the container.</PopoverInfo>                    | ~ElementType~                                                      | ~"div"~     |
+| `onPlay` <PopoverInfo>Callback when video starts playing.</PopoverInfo>                           | ~() => void~                                                       | <Na/>       |
+| `onPause` <PopoverInfo>Callback when video is paused.</PopoverInfo>                               | ~() => void~                                                       | <Na/>       |
+| `onEnded` <PopoverInfo>Callback when video playback ends.</PopoverInfo>                           | ~() => void~                                                       | <Na/>       |
+
 ## Credits
 
 - Inspired by [Magic UI](https://magicui.design/)

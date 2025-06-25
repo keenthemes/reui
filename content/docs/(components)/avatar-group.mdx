@@ -51,3 +51,33 @@ Copy and paste the following code into your project's `components/ui/avatar-grou
 ### Flip Animation
 
 <ExamplePreview path="avatar-group/flip-animation" />
+
+## API Reference
+
+### AvatarGroup
+
+| **Prop**                                                                                                | **Type**                                                            | **Default** |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- | ----------- |
+| `children` <PopoverInfo>Child components to be rendered inside the avatar group.</PopoverInfo>          | ~ReactNode~                                                         | <Na/>       |
+| `className` <PopoverInfo>Optional CSS class name to apply custom styles.</PopoverInfo>                  | ~string~                                                            | <Na/>       |
+| `tooltipClassName` <PopoverInfo>CSS class for tooltip styling applied to all child items.</PopoverInfo> | ~string~                                                            | <Na/>       |
+| `animation` <PopoverInfo>Animation type for tooltip transitions.</PopoverInfo>                          | ~enum~ <PopoverInfo> "default" \| "flip" \| "reveal" </PopoverInfo> | ~'default'~ |
+
+### AvatarGroupItem
+
+| **Prop**                                                                                              | **Type**    | **Default** |
+| ----------------------------------------------------------------------------------------------------- | ----------- | ----------- |
+| `children` <PopoverInfo>Child components including avatar and tooltip content.</PopoverInfo>          | ~ReactNode~ | <Na/>       |
+| `className` <PopoverInfo>Optional CSS class name to apply custom styles.</PopoverInfo>                | ~string~    | <Na/>       |
+| `tooltipClassName` <PopoverInfo>CSS class for tooltip styling, overrides group setting.</PopoverInfo> | ~string~    | <Na/>       |
+
+### AvatarGroupTooltip
+
+| **Prop**                                                                               | **Type**    | **Default** |
+| -------------------------------------------------------------------------------------- | ----------- | ----------- |
+| `children` <PopoverInfo>Content to be displayed in the tooltip.</PopoverInfo>          | ~ReactNode~ | <Na/>       |
+| `className` <PopoverInfo>Optional CSS class name to apply custom styles.</PopoverInfo> | ~string~    | <Na/>       |
+
+## Credits
+
+- Inspired by [Aceternity UI](https://ui.aceternity.com/components/animated-tooltip).

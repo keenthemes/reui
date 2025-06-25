@@ -1,4 +1,4 @@
-import { SvgText } from "@/registry/default/ui/svg-text"
+import { SvgText } from '@/registry/default/ui/svg-text';
 
 const LiquidSvg = () => (
   <svg width="400" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
@@ -19,46 +19,46 @@ const LiquidSvg = () => (
         <stop offset="100%" stopColor="#1e40af40" />
       </linearGradient>
     </defs>
-    
+
     {/* Background liquid */}
     <rect width="100%" height="100%" fill="url(#liquidGradient)" />
-    
+
     {/* Animated wave layer 1 */}
     <path fill="url(#waveGradient1)" opacity="0.6">
-      <animate 
-        attributeName="d" 
-        dur="3s" 
+      <animate
+        attributeName="d"
+        dur="3s"
         repeatCount="indefinite"
         values="M0,100 Q100,80 200,100 T400,100 L400,200 L0,200 Z;
                 M0,100 Q100,120 200,100 T400,100 L400,200 L0,200 Z;
                 M0,100 Q100,80 200,100 T400,100 L400,200 L0,200 Z"
       />
     </path>
-    
+
     {/* Animated wave layer 2 */}
     <path fill="url(#waveGradient2)" opacity="0.4">
-      <animate 
-        attributeName="d" 
-        dur="4s" 
+      <animate
+        attributeName="d"
+        dur="4s"
         repeatCount="indefinite"
         values="M0,120 Q150,100 300,120 T600,120 L600,200 L0,200 Z;
                 M0,120 Q150,140 300,120 T600,120 L600,200 L0,200 Z;
                 M0,120 Q150,100 300,120 T600,120 L600,200 L0,200 Z"
       />
     </path>
-    
+
     {/* Surface waves */}
     <path fill="url(#waveGradient1)" opacity="0.3">
-      <animate 
-        attributeName="d" 
-        dur="2s" 
+      <animate
+        attributeName="d"
+        dur="2s"
         repeatCount="indefinite"
         values="M0,90 Q200,70 400,90 L400,110 Q200,130 0,110 Z;
                 M0,90 Q200,110 400,90 L400,110 Q200,90 0,110 Z;
                 M0,90 Q200,70 400,90 L400,110 Q200,130 0,110 Z"
       />
     </path>
-    
+
     {/* Floating bubbles */}
     <circle r="3" fill="#ffffff40">
       <animateMotion dur="6s" repeatCount="indefinite" path="M50,150 Q200,50 350,150 Q200,100 50,150" />
@@ -78,13 +78,9 @@ const LiquidSvg = () => (
 export default function Component() {
   return (
     <div className="flex items-center justify-center">
-      <SvgText 
-        svg={<LiquidSvg />}
-        fontSize="12rem"
-        fontWeight="900"
-      >
+      <SvgText svg={<LiquidSvg />} fontSize="12rem" fontWeight="900">
         REUI
       </SvgText>
     </div>
-  )
-} 
+  );
+}

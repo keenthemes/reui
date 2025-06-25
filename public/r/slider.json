@@ -2,11 +2,15 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "slider",
   "type": "registry:ui",
-  "dependencies": ["@radix-ui/react-slider", "clsx", "tailwind-merge", "@radix-ui/react-slider"],
+  "dependencies": [
+    "radix-ui",
+    "clsx",
+    "tailwind-merge"
+  ],
   "files": [
     {
       "path": "registry/default/ui/slider.tsx",
-      "content": "'use client';\n\nimport * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport * as SliderPrimitive from '@radix-ui/react-slider';\n\nfunction Slider({\n  className,\n  children,\n  ...props\n}: React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>) {\n  return (\n    <SliderPrimitive.Root\n      data-slot=\"slider\"\n      className={cn(\n        'relative flex h-4 w-full touch-none select-none items-center',\n        className,\n      )}\n      {...props}\n    >\n      <SliderPrimitive.Track className=\"relative h-1.5 w-full overflow-hidden rounded-full bg-accent\">\n        <SliderPrimitive.Range className=\"absolute h-full bg-primary\" />\n      </SliderPrimitive.Track>\n      {children}\n    </SliderPrimitive.Root>\n  );\n}\n\nfunction SliderThumb({\n  className,\n  ...props\n}: React.ComponentPropsWithoutRef<typeof SliderPrimitive.Thumb>) {\n  return (\n    <SliderPrimitive.Thumb\n      data-slot=\"slider-thumb\"\n      className={cn(\n        'box-content block size-4 shrink-0 cursor-pointer rounded-full border-[2px] border-primary bg-primary-foreground shadow-xs shadow-black/5 outline-hidden focus:outline-hidden',\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Slider, SliderThumb };\n",
+      "content": "'use client';\n\nimport * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport { Slider as SliderPrimitive } from 'radix-ui';\n\nfunction Slider({ className, children, ...props }: React.ComponentProps<typeof SliderPrimitive.Root>) {\n  return (\n    <SliderPrimitive.Root\n      data-slot=\"slider\"\n      className={cn('relative flex h-4 w-full touch-none select-none items-center', className)}\n      {...props}\n    >\n      <SliderPrimitive.Track className=\"relative h-1.5 w-full overflow-hidden rounded-full bg-accent\">\n        <SliderPrimitive.Range className=\"absolute h-full bg-primary\" />\n      </SliderPrimitive.Track>\n      {children}\n    </SliderPrimitive.Root>\n  );\n}\n\nfunction SliderThumb({ className, ...props }: React.ComponentProps<typeof SliderPrimitive.Thumb>) {\n  return (\n    <SliderPrimitive.Thumb\n      data-slot=\"slider-thumb\"\n      className={cn(\n        'box-content block size-4 shrink-0 cursor-pointer rounded-full border-[2px] border-primary bg-primary-foreground shadow-xs shadow-black/5 outline-hidden focus:outline-hidden',\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Slider, SliderThumb };\n",
       "type": "registry:ui"
     },
     {

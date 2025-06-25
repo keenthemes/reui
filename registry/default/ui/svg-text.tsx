@@ -80,7 +80,7 @@ export function SvgText({
       <div
         ref={textRef}
         className="opacity-0 absolute pointer-events-none font-bold whitespace-nowrap"
-        style={{ 
+        style={{
           fontSize: typeof fontSize === 'number' ? `${fontSize}px` : fontSize,
           fontWeight,
           fontFamily: 'system-ui, -apple-system, sans-serif',
@@ -120,11 +120,11 @@ export function SvgText({
             </text>
           </mask>
         </defs>
-        
+
         {/* Background SVG with proper scaling */}
         <g mask={`url(#${maskId})`}>
-          <foreignObject 
-            width="100%" 
+          <foreignObject
+            width="100%"
             height="100%"
             style={{
               overflow: 'visible',
@@ -158,4 +158,4 @@ export function SvgText({
       <span className="sr-only">{content}</span>
     </Component>
   );
-} 
+}

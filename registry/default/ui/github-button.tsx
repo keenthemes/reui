@@ -11,7 +11,8 @@ const githubButtonVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-zinc-950 hover:bg-zinc-900 text-white border-gray-700',
+        default:
+          'bg-zinc-950 hover:bg-zinc-900 text-white border-gray-700 dark:bg-zinc-50 dark:border-gray-300 dark:text-zinc-950 dark:hover:bg-zinc-50',
         outline: 'bg-background text-accent-foreground border border-input hover:bg-accent',
       },
       size: {
@@ -64,7 +65,7 @@ interface GithubButtonProps extends React.ComponentProps<'button'>, VariantProps
 
 function GithubButton({
   initialStars = 0,
-  targetStars = 1501,
+  targetStars = 0,
   starsClass = '',
   fixedWidth = true,
   animationDuration = 2,
@@ -73,7 +74,6 @@ function GithubButton({
   className,
   variant = 'default',
   size = 'default',
-  onAnimationComplete,
   showGithubIcon = true,
   roundStars = false,
   filled = false,
@@ -141,15 +141,14 @@ function GithubButton({
         setCurrentStars(endValue);
         setStarProgress(100);
         setIsAnimating(false);
-        setHasAnimated(true); // Mark as animated to prevent re-animation
-        onAnimationComplete?.();
+        setHasAnimated(true);
       }
     };
 
     setTimeout(() => {
       requestAnimationFrame(animate);
     }, animationDelay * 1000);
-  }, [isAnimating, hasAnimated, targetStars, animationDuration, animationDelay, onAnimationComplete]);
+  }, [isAnimating, hasAnimated, targetStars, animationDuration, animationDelay]);
 
   // Use in-view detection if enabled
   const ref = React.useRef(null);
@@ -166,13 +165,57 @@ function GithubButton({
     }
   }, [autoAnimate, useInViewTrigger, isInView, hasAnimated, startAnimation]);
 
+  const navigateToRepo = () => {
+    if (!repoUrl) {
+      return;
+    }
+
+    // Next.js compatible navigation approach
+    try {
+      // Create a temporary anchor element for reliable navigation
+      const link = document.createElement('a');
+      link.href = repoUrl;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+
+      // Temporarily add to DOM and click
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch {
+      // Fallback to window.open
+      try {
+        window.open(repoUrl, '_blank', 'noopener,noreferrer');
+      } catch {
+        // Final fallback
+        window.location.href = repoUrl;
+      }
+    }
+  };
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (onClick) {
       onClick(event);
-    } else if (repoUrl) {
-      window.open(repoUrl, '_blank', 'noopener,noreferrer');
+      return;
+    }
+
+    if (repoUrl) {
+      navigateToRepo();
     } else if (!hasAnimated) {
       startAnimation();
+    }
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    // Handle Enter and Space key presses for accessibility
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+
+      if (repoUrl) {
+        navigateToRepo();
+      } else if (!hasAnimated) {
+        startAnimation();
+      }
     }
   };
 
@@ -181,6 +224,10 @@ function GithubButton({
       ref={ref}
       className={cn(githubButtonVariants({ variant, size, className }))}
       onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      role="button"
+      tabIndex={0}
+      aria-label={repoUrl ? `Star ${label} on GitHub` : label}
       {...props}
     >
       {showGithubIcon && (

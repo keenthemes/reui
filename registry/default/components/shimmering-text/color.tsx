@@ -6,11 +6,11 @@ export default function Component() {
       <ShimmeringText
         text="Custom color"
         className="text-2xl font-bold"
-				color="var(--color-primary)"
-				shimmerColor="var(--color-white)"
+        color="var(--color-primary)"
+        shimmerColor="var(--color-white)"
         duration={1.5}
         repeatDelay={1}
       />
     </div>
   );
-} 
+}

@@ -53,3 +53,18 @@ Copy and paste the following code into your project's `components/ui/word-rotate
 ### Scale
 
 <ExamplePreview path="word-rotate/scale" />
+
+## API Reference
+
+| **Prop**                                                                                            | **Type**                                                                                      | **Default** |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | ----------- |
+| `words` <PopoverInfo>Array of words to rotate through in sequence.</PopoverInfo>                    | ~string[]~                                                                                    | <Na/>       |
+| `duration` <PopoverInfo>Duration each word is visible in milliseconds.</PopoverInfo>                | ~number~                                                                                      | ~1500~      |
+| `animationStyle` <PopoverInfo>Animation style for word transitions.</PopoverInfo>                   | ~enum~ <PopoverInfo> "fade" \| "slide-up" \| "slide-down" \| "scale" \| "flip" </PopoverInfo> | ~"fade"~    |
+| `loop` <PopoverInfo>Whether to loop through words continuously.</PopoverInfo>                       | ~boolean~                                                                                     | ~true~      |
+| `pauseDuration` <PopoverInfo>Pause duration between word transitions in milliseconds.</PopoverInfo> | ~number~                                                                                      | ~300~       |
+| `className` <PopoverInfo>CSS class for the word element.</PopoverInfo>                              | ~string~                                                                                      | <Na/>       |
+| `containerClassName` <PopoverInfo>CSS class for the container element.</PopoverInfo>                | ~string~                                                                                      | <Na/>       |
+| `startOnView` <PopoverInfo>Whether to start animation when component enters viewport.</PopoverInfo> | ~boolean~                                                                                     | ~true~      |
+| `once` <PopoverInfo>Whether to animate only once when using startOnView.</PopoverInfo>              | ~boolean~                                                                                     | ~false~     |
+| `inViewMargin` <PopoverInfo>Margin for in-view detection trigger area.</PopoverInfo>                | ~string~                                                                                      | <Na/>       |

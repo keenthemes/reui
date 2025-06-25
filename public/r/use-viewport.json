@@ -6,7 +6,7 @@
   "files": [
     {
       "path": "registry/default/hooks/use-viewport.ts",
-      "content": "import { useEffect, useState } from 'react';\n\ntype TUseViewport = [number, number];\n\nconst useViewport = (): TUseViewport => {\n  const [dimensions, setDimensions] = useState<TUseViewport>([\n    window.innerHeight,\n    window.innerWidth,\n  ]);\n\n  useEffect(() => {\n    const handleResize = (): void => {\n      setDimensions([window.innerHeight, window.innerWidth]);\n    };\n\n    window.addEventListener('resize', handleResize);\n\n    return () => {\n      window.removeEventListener('resize', handleResize);\n    };\n  }, []);\n\n  return dimensions;\n};\n\nexport { useViewport };\n",
+      "content": "import { useEffect, useState } from 'react';\n\ntype TUseViewport = [number, number];\n\nconst useViewport = (): TUseViewport => {\n  const [dimensions, setDimensions] = useState<TUseViewport>([window.innerHeight, window.innerWidth]);\n\n  useEffect(() => {\n    const handleResize = (): void => {\n      setDimensions([window.innerHeight, window.innerWidth]);\n    };\n\n    window.addEventListener('resize', handleResize);\n\n    return () => {\n      window.removeEventListener('resize', handleResize);\n    };\n  }, []);\n\n  return dimensions;\n};\n\nexport { useViewport };\n",
       "type": "registry:hook"
     }
   ]

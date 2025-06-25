@@ -2,8 +2,13 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "skeleton-default",
   "type": "registry:component",
-  "dependencies": ["clsx", "tailwind-merge"],
-  "registryDependencies": ["https://reui.io/r/skeleton.json"],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/skeleton.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/skeleton/default.tsx",
@@ -12,7 +17,7 @@
     },
     {
       "path": "registry/default/ui/skeleton.tsx",
-      "content": "import * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\n\nfunction Skeleton({ className, ...props }: React.ComponentProps<'div'>) {\n  return (\n    <div\n      data-slot=\"skeleton\"\n      className={cn('animate-pulse rounded-md bg-accent', className)}\n      {...props}\n    />\n  );\n}\n\nexport { Skeleton };\n",
+      "content": "import * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\n\nfunction Skeleton({ className, ...props }: React.ComponentProps<'div'>) {\n  return <div data-slot=\"skeleton\" className={cn('animate-pulse rounded-md bg-accent', className)} {...props} />;\n}\n\nexport { Skeleton };\n",
       "type": "registry:ui",
       "target": ""
     },

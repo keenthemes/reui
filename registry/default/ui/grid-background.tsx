@@ -2,10 +2,9 @@
 
 import * as React from 'react';
 import { HTMLMotionProps, motion } from 'motion/react';
-
 import { cn } from '@/lib/utils';
 
-type GridSize = '6:6' | '6:8' | '8:8' | '8:12' | '10:10' | '12:12' | '12:16' | '16:16';
+type GridSize = '4:4' | '5:5' | '6:6' | '6:8' | '8:8' | '8:12' | '10:10' | '12:12' | '12:16' | '16:16';
 
 type GridBackgroundProps = HTMLMotionProps<'div'> & {
   children?: React.ReactNode;
@@ -41,7 +40,7 @@ function GridBackground({
   } = colors;
 
   const {
-    count = 6,
+    count = 12,
     colors: beamColors = [
       'bg-cyan-400',
       'bg-purple-400',
@@ -49,9 +48,15 @@ function GridBackground({
       'bg-violet-400',
       'bg-blue-400',
       'bg-indigo-400',
+      'bg-green-400',
+      'bg-yellow-400',
+      'bg-orange-400',
+      'bg-red-400',
+      'bg-pink-400',
+      'bg-rose-400',
     ],
     shadow = 'shadow-lg shadow-cyan-400/50 rounded-full',
-    speed = 3,
+    speed = 4,
   } = beams;
 
   // Parse grid dimensions
@@ -63,17 +68,18 @@ function GridBackground({
       Array.from({ length: Math.min(count, 12) }, (_, i) => {
         const direction = Math.random() > 0.5 ? 'horizontal' : 'vertical';
         const startPosition = Math.random() > 0.5 ? 'start' : 'end';
-        
+
         return {
           id: i,
           color: beamColors[i % beamColors.length],
           direction,
           startPosition,
-          // For horizontal beams: choose a row index (0 to rows)
-          // For vertical beams: choose a column index (0 to cols)
-          gridLine: direction === 'horizontal' 
-            ? Math.floor(Math.random() * (rows + 1))
-            : Math.floor(Math.random() * (cols + 1)),
+          // For horizontal beams: choose a row index (1 to rows-1) - exclude edges
+          // For vertical beams: choose a column index (1 to cols-1) - exclude edges
+          gridLine:
+            direction === 'horizontal'
+              ? Math.floor(Math.random() * (rows - 1)) + 1
+              : Math.floor(Math.random() * (cols - 1)) + 1,
           delay: Math.random() * 2,
           duration: speed + Math.random() * 2,
         };
@@ -94,24 +100,27 @@ function GridBackground({
     >
       {/* Grid Container */}
       <div
-        className="absolute inset-0 size-full"
+        className={cn('absolute inset-0 size-full', borderColor)}
         style={{
           display: 'grid',
           gridTemplateColumns: `repeat(${cols}, 1fr)`,
           gridTemplateRows: `repeat(${rows}, 1fr)`,
+          borderRightWidth: borderSize,
+          borderBottomWidth: borderSize,
+          borderRightStyle: borderStyle,
+          borderBottomStyle: borderStyle,
         }}
       >
         {/* Grid Cells */}
         {Array.from({ length: cols * rows }).map((_, index) => (
           <div
             key={index}
-            className={cn(
-              'relative',
-              borderColor
-            )}
+            className={cn('relative', borderColor)}
             style={{
-              borderWidth: borderSize,
-              borderStyle: borderStyle,
+              borderTopWidth: borderSize,
+              borderLeftWidth: borderSize,
+              borderTopStyle: borderStyle,
+              borderLeftStyle: borderStyle,
             }}
           />
         ))}
@@ -122,7 +131,7 @@ function GridBackground({
         // Calculate exact grid line positions as percentages
         const horizontalPosition = (beam.gridLine / rows) * 100;
         const verticalPosition = (beam.gridLine / cols) * 100;
-        
+
         return (
           <motion.div
             key={beam.id}
@@ -130,7 +139,7 @@ function GridBackground({
               'absolute rounded-full backdrop-blur-sm z-20',
               beam.color,
               beam.direction === 'horizontal' ? 'w-6 h-0.5' : 'w-0.5 h-6',
-              shadow
+              shadow,
             )}
             style={{
               ...(beam.direction === 'horizontal'
@@ -155,15 +164,11 @@ function GridBackground({
               ...(beam.direction === 'horizontal'
                 ? {
                     // Move across the full width of the container
-                    x: beam.startPosition === 'start' 
-                      ? [0, 'calc(100vw + 24px)'] 
-                      : [0, 'calc(-100vw - 24px)'],
+                    x: beam.startPosition === 'start' ? [0, 'calc(100vw + 24px)'] : [0, 'calc(-100vw - 24px)'],
                   }
                 : {
                     // Move across the full height of the container
-                    y: beam.startPosition === 'start' 
-                      ? [0, 'calc(100vh + 24px)'] 
-                      : [0, 'calc(-100vh - 24px)'],
+                    y: beam.startPosition === 'start' ? [0, 'calc(100vh + 24px)'] : [0, 'calc(-100vh - 24px)'],
                   }),
             }}
             transition={{
@@ -184,4 +189,4 @@ function GridBackground({
   );
 }
 
-export { GridBackground, type GridBackgroundProps }; 
+export { GridBackground, type GridBackgroundProps };

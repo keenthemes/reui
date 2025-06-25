@@ -2,11 +2,15 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "progress",
   "type": "registry:ui",
-  "dependencies": ["@radix-ui/react-progress", "clsx", "tailwind-merge", "@radix-ui/react-progress"],
+  "dependencies": [
+    "radix-ui",
+    "clsx",
+    "tailwind-merge"
+  ],
   "files": [
     {
       "path": "registry/default/ui/progress.tsx",
-      "content": "'use client';\n\nimport * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport * as ProgressPrimitive from '@radix-ui/react-progress';\n\nfunction Progress({\n  className,\n  indicatorClassName,\n  value,\n  ...props\n}: React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root> & {\n  indicatorClassName?: string;\n}) {\n  return (\n    <ProgressPrimitive.Root\n      data-slot=\"progress\"\n      className={cn(\n        'relative h-2 w-full overflow-hidden rounded-full bg-secondary',\n        className,\n      )}\n      {...props}\n    >\n      <ProgressPrimitive.Indicator\n        data-slot=\"progress-indicator\"\n        className={cn(\n          'h-full w-full flex-1 bg-primary transition-all',\n          indicatorClassName,\n        )}\n        style={{ transform: `translateX(-${100 - (value || 0)}%)` }}\n      />\n    </ProgressPrimitive.Root>\n  );\n}\n\nexport { Progress };\n",
+      "content": "'use client';\n\nimport * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport { Progress as ProgressPrimitive } from 'radix-ui';\n\nfunction Progress({\n  className,\n  indicatorClassName,\n  value,\n  ...props\n}: React.ComponentProps<typeof ProgressPrimitive.Root> & {\n  indicatorClassName?: string;\n}) {\n  return (\n    <ProgressPrimitive.Root\n      data-slot=\"progress\"\n      className={cn('relative h-2 w-full overflow-hidden rounded-full bg-secondary', className)}\n      {...props}\n    >\n      <ProgressPrimitive.Indicator\n        data-slot=\"progress-indicator\"\n        className={cn('h-full w-full flex-1 bg-primary transition-all', indicatorClassName)}\n        style={{ transform: `translateX(-${100 - (value || 0)}%)` }}\n      />\n    </ProgressPrimitive.Root>\n  );\n}\n\nexport { Progress };\n",
       "type": "registry:ui"
     },
     {

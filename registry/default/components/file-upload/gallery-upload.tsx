@@ -160,13 +160,13 @@ export default function GalleryUpload({
                     size="icon"
                     className="size-7"
                   >
-                    <ZoomInIcon className="h-4 w-4" />
+                    <ZoomInIcon className="opacity-100/80" />
                   </Button>
                 )}
 
                 {/* Remove Button */}
-                <Button onClick={() => removeFile(fileItem.id)} variant="destructive" size="icon" className="size-7">
-                  <XIcon className="h-4 w-4" />
+                <Button onClick={() => removeFile(fileItem.id)} variant="secondary" size="icon" className="size-7">
+                  <XIcon className="opacity-100/80" />
                 </Button>
               </div>
 
@@ -202,7 +202,7 @@ export default function GalleryUpload({
       {/* Image Preview Modal */}
       {selectedImage && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm transition-all duration-300 p-4"
           onClick={() => setSelectedImage(null)}
         >
           <div className="relative max-h-full max-w-full">
