@@ -1,6 +1,6 @@
 ## Overview
 
-ReUI is a collection of open-source, copy-and-paste components built with React, Next.js, and Tailwind CSS.
+Open-source collection of UI components and animated effects built with React, Typescript, Tailwind CSS, and Motion. Pairs beautifully with shadcn/ui.
 
 **Live Demo** → [https://reui.io](https://reui.io)
 
