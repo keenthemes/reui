@@ -27,11 +27,18 @@ export default function SiteHero() {
       title: 'Radix UI',
       logo: Icons.radixui,
       tooltip: '',
+      className: 'h-full w-full ms-1',
     },
     {
-      title: 'Shadcn Registry',
+      title: 'shadcn/ui',
       logo: Icons.shadcn,
       tooltip: '',
+    },
+    {
+      title: 'Motion',
+      logo: Icons.motion,
+      tooltip: '',
+      className: 'size-10 -mt-2',
     },
   ];
 
@@ -82,11 +89,12 @@ export default function SiteHero() {
             <Zap className="size-4 text-muted-foreground" />
           </MovingLabel>
 
-          <h1 className="text-2xl lg:text-[48px] font-bold">Full-stack React Components</h1>
+          <h1 className="text-2xl lg:text-[48px] font-bold text-center">UI Library for React</h1>
 
-          <div className="text-center text-lg">
-            Open-source, copy-and-paste UI components built for <br />
-            Shadcn Registry with React and Tailwind CSS
+          <div className="text-center text-l max-w-2xl">
+            Open-source collection of UI components and animated effects 
+            built with <strong>React</strong>, <strong>Typescript</strong>, <strong>Tailwind CSS</strong>, and <strong>Motion</strong>. 
+            Pairs beautifully with <strong>shadcn/ui</strong>.
           </div>
 
           <div className="flex items-center gap-3.5 mb-4">
@@ -97,12 +105,12 @@ export default function SiteHero() {
             </Button>
           </div>
 
-          <div className="flex items-center justify-center gap-6">
+          <div className="flex items-center justify-center gap-6 -ms-3">
             {brands.map((brand, index) => (
               <div key={index} className="flex flex-col items-center" onClick={() => handleBrandClick(brand.title)}>
                 <Tooltip>
                   <TooltipTrigger className="size-6">
-                    {brand.logo({ className: 'opacity-70 w-full h-full' })}
+                    {brand.logo({ className: 'opacity-70' + (brand.className ? ` ${brand.className}` : 'w-full h-full') })}
                   </TooltipTrigger>
                   <TooltipContent>{brand.title}</TooltipContent>
                 </Tooltip>
