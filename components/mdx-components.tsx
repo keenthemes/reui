@@ -195,7 +195,7 @@ const components = (componentExamples: ComponentExamples | undefined, componentC
       <>
         <pre
           className={cn(
-            'relative [tab-size:2] [&_code:not([data-line-numbers])]:!ps-4 mb-4 mt-2 max-h-[650px] overflow-x-auto rounded-xl border py-4 bg-neutral-950 dark:bg-neutral-900',
+            'relative [tab-size:2] [&_code:not([data-line-numbers])]:!ps-4 mb-4 mt-2 max-h-[650px] overflow-x-auto rounded-xl border py-4 bg-neutral-950! dark:bg-neutral-900! [&_code]:bg-neutral-950! dark:[&_code]:bg-neutral-900!',
             className,
           )}
           {...props}
