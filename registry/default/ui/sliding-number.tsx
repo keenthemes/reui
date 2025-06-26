@@ -87,6 +87,7 @@ export function SlidingNumber({
     setCurrentValue(from);
     setHasAnimated(false);
     setAnimationKey((prev) => prev + 1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Empty dependency array - runs on every mount
 
   // Reset animation state when from/to values change
