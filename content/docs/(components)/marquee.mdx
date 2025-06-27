@@ -30,6 +30,35 @@ Copy and paste the following code into your project’s `components/ui/marquee.t
 
 <ComponentPreview name="marquee" />
 
+### Add CSS animations
+
+Add the following animations to your global CSS file.
+
+```css
+@theme inline {
+  --animate-marquee: marquee var(--duration) infinite linear;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+
+  @keyframes marquee-vertical {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
+    }
+  }
+}
+```
+
 </Steps>
 
 </TabsContent>

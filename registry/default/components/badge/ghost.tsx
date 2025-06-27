@@ -13,7 +13,7 @@ export default function BadgeDemo() {
         Success
       </Badge>
       <Badge variant="warning" appearance="ghost">
-        Warining
+        Warning
       </Badge>
       <Badge variant="info" appearance="ghost">
         Info

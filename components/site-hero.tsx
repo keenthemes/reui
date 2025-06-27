@@ -92,9 +92,9 @@ export default function SiteHero() {
           <h1 className="text-2xl lg:text-[48px] font-bold text-center">UI Library for React</h1>
 
           <div className="text-center text-l max-w-2xl">
-            Open-source collection of UI components and animated effects 
-            built with <strong>React</strong>, <strong>Typescript</strong>, <strong>Tailwind CSS</strong>, and <strong>Motion</strong>. 
-            Pairs beautifully with <strong>shadcn/ui</strong>.
+            Open-source collection of UI components and animated effects built with <strong>React</strong>,{' '}
+            <strong>Typescript</strong>, <strong>Tailwind CSS</strong>, and <strong>Motion</strong>. Pairs beautifully
+            with <strong>shadcn/ui</strong>.
           </div>
 
           <div className="flex items-center gap-3.5 mb-4">
@@ -110,7 +110,9 @@ export default function SiteHero() {
               <div key={index} className="flex flex-col items-center" onClick={() => handleBrandClick(brand.title)}>
                 <Tooltip>
                   <TooltipTrigger className="size-6">
-                    {brand.logo({ className: 'opacity-70' + (brand.className ? ` ${brand.className}` : 'w-full h-full') })}
+                    {brand.logo({
+                      className: 'opacity-70' + (brand.className ? ` ${brand.className}` : 'w-full h-full'),
+                    })}
                   </TooltipTrigger>
                   <TooltipContent>{brand.title}</TooltipContent>
                 </Tooltip>

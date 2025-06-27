@@ -11,6 +11,7 @@ Before you can install and use ReUI, make sure your project meets the following 
 - **TypeScript**: Version 5.7 or higher.
 - **Tailwind CSS**: Version 4 or higher.
 - **Radix UI**: Version 1 or higher.
+- **Motion**: Version 12.19 or higher.
 
 ## Install Components
 
@@ -18,26 +19,19 @@ Before you can install and use ReUI, make sure your project meets the following 
 
 ### Initialize a React Project
 
-ReUI is compatible with various React frameworks. Choose the one that best fits your needs:
+ReUI is fully compatible with Shadcn and extends it with advanced component options.
+To get started, set up your React project following the [Shadcn Installation Guide](https://ui.shadcn.com/docs/installation).
 
-- [Next.js](https://nextjs.org/docs/app/api-reference/cli/create-next-app)
-- [Vite](https://vite.dev/guide/#scaffolding-your-first-vite-project)
-- [Remix](https://remix.run/docs/en/main/start/quickstart)
-- [Astro](https://docs.astro.build/en/install-and-setup/)
-- [Laravel Inertia](https://inertiajs.com/)
-- [Gatsby](https://www.gatsbyjs.com/docs/tutorial/getting-started/part-0/)
-- [Tanstack Start](https://tanstack.com/start/latest/docs/framework/react/build-from-scratch)
-
-<Alert variant="destructive" appearance="light" close={false}>
+<Alert variant="success" appearance="light" close={false} className="mt-3.5">
   <AlertIcon>
     <BookOpenCheck />
   </AlertIcon>
-  <AlertTitle>If you already have a React project with TypeScript and Tailwind CSS, you can skip this step.</AlertTitle>
+  <AlertTitle>If you already have a project compatible with Shadcn, you can skip this guide.</AlertTitle>
 </Alert>
 
 ### Install Radix UI
 
-Follow [Radix UI Installation Guide](https://www.radix-ui.com/docs/getting-started/introduction) to setup Radix UI for your React project.
+Follow [Radix UI Installation Guide](https://www.radix-ui.com/primitives/docs/overview/introduction#incremental-adoption) to install Radix UI package.
 
 ```bash
 npm i radix-ui
@@ -45,32 +39,28 @@ npm i radix-ui
 
 ### Install Motion
 
-To use animated effects, follow [Motion Installation Guide](https://motion.dev/) to setup Motion for your React project.
+To use animated effects, follow [Motion Installation Guide](https://motion.dev/) to install Motion.
 
 ```bash
 npm i motion
 ```
 
-### Install Tailwind
-
-Follow [Instalation Guide](https://tailwindcss.com/docs/installation/framework-guides) to setup Tailwind for your React project.
-
-### Add Tailwind CSS Animate
-
-```bash
-npm i tailwindcss-animate
-```
+### Add tw-animate-css
 
 This plugin is required for smooth animation effects used by [Accordion](/docs/accordion), [Dialog](/docs/dialog), [Popover](/docs/popover) and other elements.
 
+```bash
+npm i tw-animate-css
+```
+
 ### Integrate ReUI Styles
 
-Add below code into your Tailwind entry style file `styles/globals.css`:
+Add below code into your entry css file `globals.css`:
 
 ```css showLineNumbers
 @import 'tailwindcss';
 
-@plugin 'tailwindcss-animate';
+@import 'tw-animate-css';
 
 /** Dark Mode Variant **/
 @custom-variant dark (&:is(.dark *));
@@ -132,25 +122,18 @@ Add below code into your Tailwind entry style file `styles/globals.css`:
   /** Base Colors **/
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
-
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
-
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
-
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
-
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
-
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
-
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
 
@@ -158,59 +141,29 @@ Add below code into your Tailwind entry style file `styles/globals.css`:
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-
   --radius-xl: calc(var(--radius) + 4px);
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
 
-  --animate-accordion-down: accordion-down 0.2s ease-out;
-  --animate-accordion-up: accordion-up 0.2s ease-out;
-  --animate-collapsible-down: collapsible-down 0.2s ease-out;
-  --animate-collapsible-up: collapsible-up 0.2s ease-out;
-  --animate-caret-blink: caret-blink 1.25s ease-out infinite;
+  /** Animations **/
+  --animate-marquee: marquee var(--duration) infinite linear;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
 
-  @keyframes accordion-down {
+  @keyframes marquee {
     from {
-      height: 0;
+      transform: translateX(0);
     }
     to {
-      height: var(--radix-accordion-content-height);
+      transform: translateX(calc(-100% - var(--gap)));
     }
   }
-  @keyframes accordion-up {
+  @keyframes marquee-vertical {
     from {
-      height: var(--radix-accordion-content-height);
+      transform: translateY(0);
     }
     to {
-      height: 0;
-    }
-  }
-  @keyframes collapsible-down {
-    from {
-      height: 0;
-    }
-    to {
-      height: var(--radix-collapsible-content-height);
-    }
-  }
-  @keyframes collapsible-up {
-    from {
-      height: var(--radix-collapsible-content-height);
-    }
-    to {
-      height: 0;
-    }
-  }
-  @keyframes caret-blink {
-    0%,
-    70%,
-    100% {
-      opacity: 1;
-    }
-    20%,
-    50% {
-      opacity: 0;
+      transform: translateY(calc(-100% - var(--gap)));
     }
   }
 }
@@ -282,7 +235,7 @@ export default function RootLayout({ children }) {
 }
 ```
 
-<Alert variant="primary" appearance="light" close={false}>
+<Alert variant="success" appearance="light" close={false}>
   <AlertIcon>
     <BookOpenCheck />
   </AlertIcon>
@@ -298,7 +251,7 @@ export default function RootLayout({ children }) {
 npm i lucide
 ```
 
-### Add Remix Icon Library
+### Add Remix Icon Library(optional)
 
 ```bash
 npm i @remixicon/react
@@ -316,9 +269,24 @@ npm i tailwind-merge
 npm i clsx
 ```
 
-### Add Dependency Files
+### Add utils
 
-Copy the `utils.ts` file from `lib` directory in the source code to the `lib` directory in your project.
+Copy the code below and paste it into a `utils.ts` file within your project's `lib` directory.
+
+```ts
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+/**
+ * Merges Tailwind class names, resolving any conflicts.
+ *
+ * @param inputs - An array of class names to merge.
+ * @returns A string of merged and optimized class names.
+ */
+export function cn(...inputs: ClassValue[]): string {
+  return twMerge(clsx(inputs));
+}
+```
 
 ### Add Components
 

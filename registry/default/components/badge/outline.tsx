@@ -10,7 +10,7 @@ export default function BadgeDemo() {
         Success
       </Badge>
       <Badge variant="warning" appearance="outline">
-        Warining
+        Warning
       </Badge>
       <Badge variant="info" appearance="outline">
         Info

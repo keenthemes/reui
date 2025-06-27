@@ -14,7 +14,7 @@
   "files": [
     {
       "path": "registry/default/components/avatar/default.tsx",
-      "content": "import { Avatar, AvatarFallback, AvatarImage } from '@/registry/default/ui/avatar';\n\nexport default function AvatarDemo() {\n  return (\n    <Avatar>\n      <AvatarImage src=\"/media/avatars/14.png\" alt=\"@crudhunt\" />\n      <AvatarFallback>CH</AvatarFallback>\n    </Avatar>\n  );\n}\n",
+      "content": "import { Avatar, AvatarFallback, AvatarImage } from '@/registry/default/ui/avatar';\n\nexport default function AvatarDemo() {\n  return (\n    <Avatar>\n      <AvatarImage src=\"/media/avatars/14.png\" alt=\"@reui\" />\n      <AvatarFallback>CH</AvatarFallback>\n    </Avatar>\n  );\n}\n",
       "type": "registry:component"
     },
     {

@@ -1,9 +1,11 @@
 export const siteConfig = {
+  version: '1.0.17',
   name: 'ReUI',
   url: 'https://reui.io',
   ogImage: 'https://reui.io/og.jpg',
+  githubStars: 221,
   description:
-    'An open-source collection of copy-and-paste UI components and layouts build with React, Next.js and Tailwind CSS',
+    'Open-source collection of UI components and animated effects built with React, Typescript, Tailwind CSS, and Motion. Pairs beautifully with shadcn/ui.',
   links: {
     twitter: 'https://x.com/reui_io',
     github: 'https://github.com/keenthemes/reui',

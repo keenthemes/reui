@@ -14,7 +14,7 @@
   "files": [
     {
       "path": "registry/default/components/badge/ghost.tsx",
-      "content": "import { Badge } from '@/registry/default/ui/badge';\n\nexport default function BadgeDemo() {\n  return (\n    <div className=\"flex items-center gap-4\">\n      <Badge variant=\"primary\" appearance=\"ghost\">\n        Primary\n      </Badge>\n      <Badge variant=\"secondary\" appearance=\"ghost\">\n        Secondary\n      </Badge>\n      <Badge variant=\"success\" appearance=\"ghost\">\n        Success\n      </Badge>\n      <Badge variant=\"warning\" appearance=\"ghost\">\n        Warining\n      </Badge>\n      <Badge variant=\"info\" appearance=\"ghost\">\n        Info\n      </Badge>\n      <Badge variant=\"destructive\" appearance=\"ghost\">\n        Destructive\n      </Badge>\n    </div>\n  );\n}\n",
+      "content": "import { Badge } from '@/registry/default/ui/badge';\n\nexport default function BadgeDemo() {\n  return (\n    <div className=\"flex items-center gap-4\">\n      <Badge variant=\"primary\" appearance=\"ghost\">\n        Primary\n      </Badge>\n      <Badge variant=\"secondary\" appearance=\"ghost\">\n        Secondary\n      </Badge>\n      <Badge variant=\"success\" appearance=\"ghost\">\n        Success\n      </Badge>\n      <Badge variant=\"warning\" appearance=\"ghost\">\n        Warning\n      </Badge>\n      <Badge variant=\"info\" appearance=\"ghost\">\n        Info\n      </Badge>\n      <Badge variant=\"destructive\" appearance=\"ghost\">\n        Destructive\n      </Badge>\n    </div>\n  );\n}\n",
       "type": "registry:component"
     },
     {

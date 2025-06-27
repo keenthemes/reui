@@ -21,7 +21,7 @@ export default function SelectDemo() {
           <SelectItem value="1">
             <span className="flex items-center gap-2">
               <Avatar className="size-6">
-                <AvatarImage src="/media/avatars/3.png" alt="@crudhunt" />
+                <AvatarImage src="/media/avatars/3.png" alt="@reui" />
                 <AvatarFallback>AB</AvatarFallback>
               </Avatar>
               <span>Alan Bold</span>
@@ -30,7 +30,7 @@ export default function SelectDemo() {
           <SelectItem value="2">
             <span className="flex items-center gap-2">
               <Avatar className="size-6">
-                <AvatarImage src="/media/avatars/4.png" alt="@crudhunt" />
+                <AvatarImage src="/media/avatars/4.png" alt="@reui" />
                 <AvatarFallback>EJ</AvatarFallback>
               </Avatar>
               <span>Ethan James</span>
@@ -39,7 +39,7 @@ export default function SelectDemo() {
           <SelectItem value="3">
             <span className="flex items-center gap-2">
               <Avatar className="size-6">
-                <AvatarImage src="/media/avatars/10.png" alt="@crudhunt" />
+                <AvatarImage src="/media/avatars/10.png" alt="@reui" />
                 <AvatarFallback>NK</AvatarFallback>
               </Avatar>
               <span>Nina Clark</span>
@@ -48,7 +48,7 @@ export default function SelectDemo() {
           <SelectItem value="4">
             <span className="flex items-center gap-2">
               <Avatar className="size-6">
-                <AvatarImage src="/media/avatars/12.png" alt="@crudhunt" />
+                <AvatarImage src="/media/avatars/12.png" alt="@reui" />
                 <AvatarFallback>JA</AvatarFallback>
               </Avatar>
               <span>Sean Otto</span>

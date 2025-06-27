@@ -57,9 +57,9 @@ export default function SelectForm() {
                     <SelectValue placeholder="Select email address" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="m@example.com">hello@crudhunt.com</SelectItem>
-                    <SelectItem value="m@google.com">support@crudhunt.com</SelectItem>
-                    <SelectItem value="m@support.com">finance@crudhunt.com</SelectItem>
+                    <SelectItem value="m@example.com">hello@reui.com</SelectItem>
+                    <SelectItem value="m@google.com">support@reui.com</SelectItem>
+                    <SelectItem value="m@support.com">finance@reui.com</SelectItem>
                   </SelectContent>
                 </Select>
               </FormControl>

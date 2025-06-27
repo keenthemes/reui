@@ -49,7 +49,7 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-3 justify-end">
           <GithubButton
-            targetStars={171}
+            targetStars={siteConfig.githubStars}
             initialStars={0}
             fixedWidth={false}
             label="GitHub Stars"

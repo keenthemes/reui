@@ -11,7 +11,7 @@ export default function Component() {
           Success
         </Badge>
         <Badge variant="warning" shape="circle">
-          Warining
+          Warning
         </Badge>
         <Badge variant="info" shape="circle">
           Info
@@ -28,7 +28,7 @@ export default function Component() {
           Success
         </Badge>
         <Badge variant="warning" appearance="light" shape="circle">
-          Warining
+          Warning
         </Badge>
         <Badge variant="info" appearance="light" shape="circle">
           Info
@@ -45,7 +45,7 @@ export default function Component() {
           Success
         </Badge>
         <Badge variant="warning" appearance="outline" shape="circle">
-          Warining
+          Warning
         </Badge>
         <Badge variant="info" appearance="outline" shape="circle">
           Info

@@ -28,6 +28,7 @@ export const metadata: Metadata = {
     'React Templates',
     'Next.js Templates',
     'React Components',
+    'Motion',
     'Headless Components',
     'Accordion',
     'Alert',

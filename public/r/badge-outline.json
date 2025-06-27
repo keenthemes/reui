@@ -14,7 +14,7 @@
   "files": [
     {
       "path": "registry/default/components/badge/outline.tsx",
-      "content": "import { Badge } from '@/registry/default/ui/badge';\n\nexport default function BadgeDemo() {\n  return (\n    <div className=\"flex items-center gap-4\">\n      <Badge variant=\"primary\" appearance=\"outline\">\n        Primary\n      </Badge>\n      <Badge variant=\"success\" appearance=\"outline\">\n        Success\n      </Badge>\n      <Badge variant=\"warning\" appearance=\"outline\">\n        Warining\n      </Badge>\n      <Badge variant=\"info\" appearance=\"outline\">\n        Info\n      </Badge>\n      <Badge variant=\"destructive\" appearance=\"outline\">\n        Destructive\n      </Badge>\n    </div>\n  );\n}\n",
+      "content": "import { Badge } from '@/registry/default/ui/badge';\n\nexport default function BadgeDemo() {\n  return (\n    <div className=\"flex items-center gap-4\">\n      <Badge variant=\"primary\" appearance=\"outline\">\n        Primary\n      </Badge>\n      <Badge variant=\"success\" appearance=\"outline\">\n        Success\n      </Badge>\n      <Badge variant=\"warning\" appearance=\"outline\">\n        Warning\n      </Badge>\n      <Badge variant=\"info\" appearance=\"outline\">\n        Info\n      </Badge>\n      <Badge variant=\"destructive\" appearance=\"outline\">\n        Destructive\n      </Badge>\n    </div>\n  );\n}\n",
       "type": "registry:component"
     },
     {

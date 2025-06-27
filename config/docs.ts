@@ -1,3 +1,4 @@
+import { siteConfig } from './site';
 import { FooterNavItem, MainNavItem, SidebarNavItem } from './types';
 
 export interface DocsConfig {
@@ -64,7 +65,7 @@ export const docsConfig: DocsConfig = {
           items: [],
         },
         {
-          title: 'Changelog - v1.0.16',
+          title: 'Changelog - v' + siteConfig.version,
           href: '/docs/changelog',
           items: [],
         },
