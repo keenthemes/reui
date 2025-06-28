@@ -1,0 +1,81 @@
+---
+title: Code
+description: Code is a component used to display inline code, with ability to copy the content by a button.
+component: true
+---
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="code" />
+</TabsContent>
+
+<TabsContent value="manual">    
+<Steps>
+
+### Install ReUI
+
+Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+
+### Install dependencies
+
+```bash
+npm i class-variance-authority lucide-react
+```
+
+### Add component
+
+Copy and paste the following code into your project's `components/ui/code.tsx` file.
+
+<ComponentPreview name="code" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+### Default
+
+<ExamplePreview path="code/default" />
+
+### With Copy Button
+
+<ExamplePreview path="code/with-copy-button" />
+
+### Variants
+
+<ExamplePreview path="code/variants" />
+
+### Sizes
+
+<ExamplePreview path="code/sizes" />
+
+## API Reference
+
+This component provides a flexible way to display inline code snippets with optional copy functionality.
+
+### Code
+
+| **Prop**                                                                                              | **Type**                                                                    | **Default** |
+| ----------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ----------- |
+| `variant` <PopoverInfo>Specifies the code's theme variant.</PopoverInfo>                              | ~enum~ <PopoverInfo> "default" \| "destructive" \| "outline" </PopoverInfo> | `default`   |
+| `size` <PopoverInfo>Sets the size of the code component.</PopoverInfo>                                | ~enum~ <PopoverInfo> "sm" \| "default" \| "lg" </PopoverInfo>               | `default`   |
+| `showCopyButton` <PopoverInfo>Whether to show a copy button next to the code.</PopoverInfo>           | ~boolean~                                                                   | `false`     |
+| `copyText` <PopoverInfo>Custom text to copy when the copy button is clicked.</PopoverInfo>            | ~string~                                                                    | <Na/>       |
+| `asChild` <PopoverInfo>Renders the code as a child element, using the `Slot` component.</PopoverInfo> | ~boolean~                                                                   | `false`     |
+| `className` <PopoverInfo>Additional class names for styling the code component.</PopoverInfo>         | ~string~                                                                    | <Na/>       |
+
+## Credits
+
+- Built with [class-variance-authority](https://cva.style/docs) for variant management.
+- Icons from [Lucide React](https://lucide.dev/guide/packages/lucide-react).
