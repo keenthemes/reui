@@ -3,7 +3,7 @@ export const siteConfig = {
   name: 'ReUI',
   url: 'https://reui.io',
   ogImage: 'https://reui.io/og.jpg',
-  githubStars: 221,
+  githubStars: 253,
   description:
     'Open-source collection of UI components and animated effects built with React, Typescript, Tailwind CSS, and Motion. Pairs beautifully with shadcn/ui.',
   links: {
