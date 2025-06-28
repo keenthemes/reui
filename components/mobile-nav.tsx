@@ -11,6 +11,7 @@ import { Menu } from 'lucide-react';
 import { docsConfig } from '@/config/docs';
 import { siteConfig } from '@/config/site';
 import { useMetaColor } from '@/hooks/use-meta-color';
+import { CommandMenu } from '@/components/command-menu';
 
 export function MobileNav() {
   const [open, setOpen] = React.useState(false);
@@ -36,6 +37,7 @@ export function MobileNav() {
         <DrawerContent className="max-h-[60svh] p-0">
           <div className="overflow-auto p-6">
             <div className="flex flex-col space-y-3">
+              <CommandMenu />
               {docsConfig.mainNav?.map(
                 (item) =>
                   item.href && (
@@ -46,6 +48,7 @@ export function MobileNav() {
               )}
             </div>
             <div className="flex flex-col space-y-2">
+
               {docsConfig.sidebarNav.map((item, index) => (
                 <div key={index} className="flex flex-col space-y-3 pt-6">
                   <h4 className="font-medium">{item.title}</h4>
