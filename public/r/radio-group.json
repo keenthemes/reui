@@ -2,13 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "radio-group",
   "type": "registry:ui",
-  "dependencies": [
-    "radix-ui",
-    "clsx",
-    "tailwind-merge",
-    "class-variance-authority",
-    "lucide-react"
-  ],
+  "dependencies": ["radix-ui", "clsx", "tailwind-merge", "class-variance-authority", "lucide-react"],
   "files": [
     {
       "path": "registry/default/ui/radio-group.tsx",

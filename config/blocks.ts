@@ -2,146 +2,53 @@ import { BlocksConfig } from './types';
 
 export const blocksConfig: BlocksConfig = [
   {
-    title: 'Layouts',
-    slug: 'layouts',
+    title: 'Application UI',
+    slug: 'application-ui',
     description: 'Complete layout for apps',
     sub: [
       {
-        title: 'Layout 1',
-        slug: 'layout-1',
-      },
-      {
-        title: 'Layout 2',
-        slug: 'layout-2',
-      },
-      {
-        title: 'Layout 3',
-        slug: 'layout-3',
-      },
-    ],
-  },
-  {
-    title: 'Forms',
-    slug: 'forms',
-    description: 'Advanced forms for apps',
-    sub: [
-      {
-        title: 'Layout 1',
-        slug: 'layout-1',
-      },
-      {
-        title: 'Layout 2',
-        slug: 'layout-2',
-      },
-      {
-        title: 'Layout 3',
-        slug: 'layout-3',
+        title: 'Sub-category title',
+        slug: 'slug',
+        blocks: [
+          {
+            id: '1',
+            title: '',
+            published: true,
+          },
+        ],
       },
     ],
   },
   {
-    title: 'Widgets',
-    slug: 'widgets',
-    description: 'Complete widgets for dashboards with charts and rich elements',
+    title: 'Marketing',
+    slug: 'application-ui',
+    description: 'Complete layout for apps',
     sub: [
       {
-        title: 'Layout 1',
-        slug: 'layout-1',
-      },
-      {
-        title: 'Layout 2',
-        slug: 'layout-2',
-      },
-      {
-        title: 'Layout 3',
-        slug: 'layout-3',
+        title: 'Headers',
+        slug: 'headers',
       },
     ],
   },
   {
-    title: 'Authentication',
-    slug: 'authentication',
-    description: 'Complete authentication and onboarding pages',
+    title: 'Onboarding',
+    slug: 'application-ui',
+    description: 'Complete layout for apps',
     sub: [
       {
-        title: 'Layout 1',
-        slug: 'layout-1',
-      },
-      {
-        title: 'Layout 2',
-        slug: 'layout-2',
-      },
-      {
-        title: 'Layout 3',
-        slug: 'layout-3',
+        title: 'Headers',
+        slug: 'headers',
       },
     ],
   },
   {
-    title: 'CRUD',
-    slug: 'crud',
-    description: 'Complete CRUD pages for apps',
+    title: 'E-commerce',
+    slug: 'application-ui',
+    description: 'Complete layout for apps',
     sub: [
       {
-        title: 'Layout 1',
-        slug: 'layout-1',
-      },
-      {
-        title: 'Layout 2',
-        slug: 'layout-2',
-      },
-      {
-        title: 'Layout 3',
-        slug: 'layout-3',
-      },
-    ],
-  },
-  {
-    title: 'Overlays',
-    slug: 'overlays',
-    description: 'Complete dropdown, drawer and modal overlay contents',
-    sub: [
-      {
-        title: 'Layout 1',
-        slug: 'layout-1',
-      },
-      {
-        title: 'Layout 2',
-        slug: 'layout-2',
-      },
-      {
-        title: 'Layout 3',
-        slug: 'layout-3',
-      },
-    ],
-  },
-  {
-    title: 'Navigations',
-    slug: 'navigations',
-    description: 'Navigations, menus and toolbars for pages',
-    sub: [
-      {
-        title: 'Layout 1',
-        slug: 'layout-1',
-      },
-      {
-        title: 'Layout 2',
-        slug: 'layout-2',
-      },
-      {
-        title: 'Layout 3',
-        slug: 'layout-3',
-      },
-    ],
-  },
-  {
-    title: 'Pages',
-    slug: 'page',
-    description: 'Multi-purpose custom pages',
-    sub: [
-      {
-        title: 'Layout 1',
-        slug: 'layout-1',
+        title: 'Headers',
+        slug: 'headers',
       },
     ],
   },

@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Progress } from '@/registry/default/ui/progress';
 
-export default function ProgressDemo() {
+export default function Component() {
   const [progress, setProgress] = React.useState(13);
 
   React.useEffect(() => {
@@ -11,5 +11,9 @@ export default function ProgressDemo() {
     return () => clearTimeout(timer);
   }, []);
 
-  return <Progress value={progress} className="w-[75%]" />;
+  return (
+    <div className="w-full max-w-md">
+      <Progress value={progress} />
+    </div>
+  );
 }

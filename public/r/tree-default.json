@@ -2,17 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "tree-default",
   "type": "registry:component",
-  "dependencies": [
-    "@headless-tree/core",
-    "@headless-tree/react",
-    "clsx",
-    "tailwind-merge",
-    "lucide-react",
-    "radix-ui"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/tree.json"
-  ],
+  "dependencies": ["@headless-tree/core", "@headless-tree/react", "clsx", "tailwind-merge", "lucide-react", "radix-ui"],
+  "registryDependencies": ["https://reui.io/r/tree.json"],
   "files": [
     {
       "path": "registry/default/components/tree/default.tsx",

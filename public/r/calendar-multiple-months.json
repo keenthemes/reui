@@ -10,9 +10,7 @@
     "radix-ui",
     "react-day-picker"
   ],
-  "registryDependencies": [
-    "https://reui.io/r/calendar.json"
-  ],
+  "registryDependencies": ["https://reui.io/r/calendar.json"],
   "files": [
     {
       "path": "registry/default/components/calendar/multiple-months.tsx",

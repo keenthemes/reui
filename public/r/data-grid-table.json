@@ -10,10 +10,7 @@
     "lucide-react",
     "radix-ui"
   ],
-  "registryDependencies": [
-    "https://reui.io/r/checkbox.json",
-    "https://reui.io/r/data-grid.json"
-  ],
+  "registryDependencies": ["https://reui.io/r/checkbox.json", "https://reui.io/r/data-grid.json"],
   "files": [
     {
       "path": "registry/default/ui/data-grid-table.tsx",

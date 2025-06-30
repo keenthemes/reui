@@ -13,6 +13,16 @@ export const docsConfig: DocsConfig = {
       title: 'Components',
       href: '/',
     },
+    /*
+    {
+      title: 'Blocks',
+      href: '/blocks',
+    },
+    {
+      title: 'Themes',
+      href: '/themes',
+    },
+    */
     {
       title: 'Docs',
       href: '/docs',
@@ -276,6 +286,11 @@ export const docsConfig: DocsConfig = {
           },
         },
         {
+          title: 'Code',
+          href: '/docs/code',
+          new: true,
+        },
+        {
           title: 'Data Grid',
           href: '/docs/data-grid',
           highlight: {
@@ -367,6 +382,7 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Progress',
           href: '/docs/progress',
+          update: true,
           items: [],
         },
         {

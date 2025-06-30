@@ -2,13 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "breadcrumb-dropdown",
   "type": "registry:component",
-  "dependencies": [
-    "clsx",
-    "tailwind-merge",
-    "lucide-react",
-    "radix-ui",
-    "class-variance-authority"
-  ],
+  "dependencies": ["clsx", "tailwind-merge", "lucide-react", "radix-ui", "class-variance-authority"],
   "registryDependencies": [
     "https://reui.io/r/breadcrumb.json",
     "https://reui.io/r/button.json",

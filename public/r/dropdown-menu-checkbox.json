@@ -10,10 +10,7 @@
     "tailwind-merge",
     "@radix-ui/react-dropdown-menu"
   ],
-  "registryDependencies": [
-    "https://reui.io/r/button.json",
-    "https://reui.io/r/dropdown-menu.json"
-  ],
+  "registryDependencies": ["https://reui.io/r/button.json", "https://reui.io/r/dropdown-menu.json"],
   "files": [
     {
       "path": "registry/default/components/dropdown-menu/checkbox.tsx",

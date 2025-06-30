@@ -49,7 +49,6 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-3 justify-end">
           <div className="hidden md:block">
-
             <GithubButton
               targetStars={siteConfig.githubStars}
               initialStars={0}

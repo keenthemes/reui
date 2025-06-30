@@ -2,11 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "drawer",
   "type": "registry:ui",
-  "dependencies": [
-    "vaul",
-    "clsx",
-    "tailwind-merge"
-  ],
+  "dependencies": ["vaul", "clsx", "tailwind-merge"],
   "files": [
     {
       "path": "registry/default/ui/drawer.tsx",

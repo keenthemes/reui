@@ -2,13 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "stepper-default",
   "type": "registry:component",
-  "dependencies": [
-    "clsx",
-    "tailwind-merge"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/stepper.json"
-  ],
+  "dependencies": ["clsx", "tailwind-merge"],
+  "registryDependencies": ["https://reui.io/r/stepper.json"],
   "files": [
     {
       "path": "registry/default/components/stepper/default.tsx",

@@ -10,9 +10,7 @@
     "lucide-react",
     "radix-ui"
   ],
-  "registryDependencies": [
-    "https://reui.io/r/alert.json"
-  ],
+  "registryDependencies": ["https://reui.io/r/alert.json"],
   "files": [
     {
       "path": "registry/default/components/alert/extended.tsx",

@@ -2,17 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "stepper-controlled",
   "type": "registry:component",
-  "dependencies": [
-    "class-variance-authority",
-    "lucide-react",
-    "radix-ui",
-    "clsx",
-    "tailwind-merge"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/button.json",
-    "https://reui.io/r/stepper.json"
-  ],
+  "dependencies": ["class-variance-authority", "lucide-react", "radix-ui", "clsx", "tailwind-merge"],
+  "registryDependencies": ["https://reui.io/r/button.json", "https://reui.io/r/stepper.json"],
   "files": [
     {
       "path": "registry/default/components/stepper/controlled.tsx",

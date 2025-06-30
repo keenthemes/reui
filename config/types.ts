@@ -46,9 +46,10 @@ export interface BlockSubCategory {
 }
 
 export interface BlockItem {
+  id: string;
   title: string;
-  disabled?: boolean;
-  slug: string;
+  description?: string;
+  published: boolean;
   new?: boolean;
   previewHeight?: number;
 }

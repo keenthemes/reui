@@ -1,0 +1,114 @@
+# ReUI Project AI Instructions
+
+## Project Overview
+ReUI is an open-source collection of copy-and-paste UI components built with React, TypeScript, Tailwind CSS, and Motion. It extends shadcn/ui with advanced component variants and functionality.
+
+## Component Creation Workflow
+
+When adding a new component to ReUI, follow this exact process:
+
+### 1. Create Main Component File
+**Location**: `registry/default/ui/[component-name].tsx`
+- Use TypeScript with proper prop interfaces
+- Follow shadcn/ui patterns and conventions
+- Include comprehensive JSDoc comments for all props
+- Use class-variance-authority (cva) for variant styling
+- Use simple function declaration (no forwardRef)
+- Include proper TypeScript generics where needed
+
+### 2. Create Example Components
+**Location**: `registry/default/components/[example-short-name]/`
+- Create multiple example files: `default.tsx`, `variant.tsx`, etc.
+- Each example should be a complete, working demo
+- Use clear, descriptive function names (e.g., `AccordionDemo`)
+- Keep examples focused on single use cases
+
+### 3. Create Documentation
+**Location**: `content/docs/(components)/[component-name].mdx`
+- Follow the exact MDX structure used by existing components
+- Include installation instructions with CLI and manual tabs
+- Add multiple example sections showing different use cases
+- Skip API Reference section initially (focus on examples)
+
+### 4. Update Navigation
+**Location**: `config/docs.ts`
+- As parent category before modifing the config
+- Add component to the appropriate section in alphabetical order
+- Use the exact same structure as existing entries
+
+## Code Style Guidelines
+
+### Component Structure
+Use the badge `registry/default/ui/badge.tsx` component as the reference pattern:
+
+## Memory Guidelines
+
+Key memories to follow:
+- Use backticks (`) only for prop names in API tables
+- Use tildes (~) for types and default values in API tables
+- For union types, use PopoverInfo format with escaped pipes (\|)
+- Always describe prop values specifically instead of generic types
+- Follow alphabetical ordering in navigation menus
+
+## Component Standards
+
+### Accessibility
+- Include proper ARIA attributes
+- Support keyboard navigation
+- Provide screen reader compatibility
+- Use semantic HTML elements
+
+### Performance
+- Use React.memo where appropriate
+- Implement proper dependency arrays for hooks
+- Avoid unnecessary re-renders
+- Use useCallback for event handlers when needed
+- Use simple function declarations instead of forwardRef
+
+### Styling
+- Use Tailwind CSS utility classes
+- Implement CSS variables for theming
+- Support dark mode variants
+- Use consistent spacing and sizing scales
+
+### TypeScript
+- Provide comprehensive type definitions
+- Use generic types where beneficial
+- Export all necessary types
+- Include proper JSDoc documentation
+
+## File Naming Conventions
+- Use kebab-case for file names
+- Use PascalCase for component names
+- Use descriptive example names (default, outline, solid, etc.)
+
+## Testing Guidelines
+- Ensure components work in isolation
+- Test different prop combinations
+- Verify accessibility features
+- Check responsive behavior
+
+## Documentation Standards
+- Include clear installation instructions
+- Provide multiple usage examples
+- Show different component variants
+- Include credits for inspiration sources
+- Link to related external libraries when used
+
+## Dependencies
+- Prefer Radix UI primitives for base functionality
+- Use Motion for animations
+- Use Shadcn classes
+- Integrate with react-hook-form and Zod for forms
+- Leverage Tanstack Query/Table for data components
+
+## Quality Checklist
+Before submitting a component:
+- [ ] Component follows TypeScript best practices
+- [ ] All props are documented with JSDoc
+- [ ] Examples demonstrate key use cases
+- [ ] Documentation follows MDX structure
+- [ ] Component is added to navigation menu
+- [ ] Accessibility features are implemented
+- [ ] Dark mode support is included
+- [ ] Component is responsive 
