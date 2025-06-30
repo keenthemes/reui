@@ -1,0 +1,37 @@
+{
+    "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+    "name": "code",
+    "type": "registry:component",
+    "dependencies": ["class-variance-authority", "lucide-react", "radix-ui", "clsx", "tailwind-merge"],
+    "registryDependencies": [
+      "https://reui.io/r/button.json"
+    ],
+    "files": [
+      {
+        "path": "registry/default/ui/code.tsx",
+        "content": "import * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport { Slot as SlotPrimitive } from 'radix-ui';\nimport { useCopyToClipboard } from '@/registry/default/hooks/use-copy-to-clipboard';
+        import { Button } from '@/registry/default/ui/button';
+        import { Check, Copy } from 'lucide-react';
+        
+        export interface CodeProps extends React.HTMLAttributes<HTMLElement>, VariantProps<typeof codeVariants> {\n          asChild?: boolean;\n          showCopyButton?: boolean;\n          copyText?: string;\n        }\n        
+        const codeVariants = cva(\n          'relative rounded-md bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold',\n          {\n            variants: {\n              variant: {\n                default: 'bg-muted text-muted-foreground',\n                destructive: 'bg-destructive/10 text-destructive',\n                outline: 'border border-border bg-background text-foreground',\n              },\n              size: {\n                default: 'text-sm',\n                sm: 'text-xs',\n                lg: 'text-base',\n              },\n            },\n            defaultVariants: {\n              variant: 'default',\n              size: 'default',\n            },\n          },\n        );
+        
+        function Code({\n          className,\n          variant,\n          size,\n          asChild = false,\n          showCopyButton = false,\n          copyText,\n          children,\n          ...props\n        }: CodeProps) {\n          const { copy, copied } = useCopyToClipboard();
+          const Comp = asChild ? SlotPrimitive.Slot : 'code';
+          const textToCopy = copyText || (typeof children === 'string' ? children : '');
+          
+          return (\n            <div className=\"relative inline-flex items-center\">\n              <Comp\n                data-slot=\"code\"\n                className={cn(codeVariants({ variant, size }), className)}\n                {...props}\n              >\n                {children}\n              </Comp>\n              {showCopyButton && textToCopy && (\n                <Button\n                  mode=\"icon\"\n                  size=\"sm\"\n                  variant=\"ghost\"\n                  className=\"ml-1 h-4 w-4 p-0 opacity-60 hover:opacity-100\"\n                  onClick={() => copy(textToCopy)}\n                >\n                  {copied ? <Check className=\"h-3 w-3\" /> : <Copy className=\"h-3 w-3\" />}\n                </Button>\n              )}\n            </div>\n          );
+        }\n        
+        export { Code, codeVariants };",
+        "type": "registry:ui",
+        "target": ""
+      },
+      {
+        "path": "registry/default/hooks/use-copy-to-clipboard.ts",
+        "content": "'use client';\n\nimport * as React from 'react';\n\nexport function useCopyToClipboard({\n  timeout = 2000,\n  onCopy,\n}: {\n  timeout?: number;\n  onCopy?: () => void;\n} = {}) {\n  const [copied, setCopied] = React.useState(false);\n\n  const copy = (value: string) => {\n    if (typeof window === 'undefined' || !navigator.clipboard.writeText) {\n      return;\n    }\n\n    if (!value) return;\n\n    navigator.clipboard.writeText(value).then(() => {\n      setCopied(true);\n\n      if (onCopy) {\n        onCopy();\n      }\n\n      setTimeout(() => {\n        setCopied(false);\n      }, timeout);\n    }, console.error);\n  };\n\n  return { copied, copy };\n}",
+        "type": "registry:hook",
+        "target": ""
+      }
+    ]
+  }
+  
