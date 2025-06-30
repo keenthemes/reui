@@ -2,8 +2,15 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "avatar-users",
   "type": "registry:component",
-  "dependencies": ["clsx", "tailwind-merge", "class-variance-authority", "radix-ui"],
-  "registryDependencies": ["https://reui.io/r/avatar.json"],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "class-variance-authority",
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/avatar.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/avatar/users.tsx",

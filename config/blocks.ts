@@ -9,11 +9,17 @@ export const blocksConfig: BlocksConfig = [
       {
         title: 'Sub-category title',
         slug: 'slug',
-        blocks: [
+        sub: [
           {
-            id: '1',
-            title: '',
-            published: true,
+            title: 'Sub-category title',
+            slug: 'slug',
+            blocks: [
+              {
+                id: '1',
+                title: '',
+                published: true,
+              },
+            ],
           },
         ],
       },

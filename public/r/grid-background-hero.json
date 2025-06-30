@@ -2,8 +2,16 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "grid-background-hero",
   "type": "registry:component",
-  "dependencies": ["class-variance-authority", "lucide-react", "radix-ui", "motion"],
-  "registryDependencies": ["https://reui.io/r/button.json", "https://reui.io/r/grid-background.json"],
+  "dependencies": [
+    "class-variance-authority",
+    "lucide-react",
+    "radix-ui",
+    "motion"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/button.json",
+    "https://reui.io/r/grid-background.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/grid-background/hero.tsx",

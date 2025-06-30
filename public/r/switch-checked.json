@@ -2,8 +2,16 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "switch-checked",
   "type": "registry:component",
-  "dependencies": ["clsx", "tailwind-merge", "class-variance-authority", "radix-ui"],
-  "registryDependencies": ["https://reui.io/r/label.json", "https://reui.io/r/switch.json"],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "class-variance-authority",
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/label.json",
+    "https://reui.io/r/switch.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/switch/checked.tsx",

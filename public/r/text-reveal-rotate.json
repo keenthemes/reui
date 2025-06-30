@@ -2,8 +2,12 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "text-reveal-rotate",
   "type": "registry:component",
-  "dependencies": ["motion"],
-  "registryDependencies": ["https://reui.io/r/text-reveal.json"],
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/text-reveal.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/text-reveal/rotate.tsx",

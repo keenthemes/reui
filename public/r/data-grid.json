@@ -2,7 +2,11 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "data-grid",
   "type": "registry:ui",
-  "dependencies": ["@tanstack/react-table", "clsx", "tailwind-merge"],
+  "dependencies": [
+    "@tanstack/react-table",
+    "clsx",
+    "tailwind-merge"
+  ],
   "registryDependencies": [
     "https://reui.io/r/data-grid-column-filter.json",
     "https://reui.io/r/data-grid-column-header.json",

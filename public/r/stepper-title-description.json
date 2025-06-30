@@ -2,8 +2,14 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "stepper-title-description",
   "type": "registry:component",
-  "dependencies": ["clsx", "tailwind-merge", "lucide-react"],
-  "registryDependencies": ["https://reui.io/r/stepper.json"],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/stepper.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/stepper/title-description.tsx",

@@ -2,8 +2,13 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "stepper-title-bar",
   "type": "registry:component",
-  "dependencies": ["clsx", "tailwind-merge"],
-  "registryDependencies": ["https://reui.io/r/stepper.json"],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/stepper.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/stepper/title-bar.tsx",

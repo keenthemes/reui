@@ -2,8 +2,15 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "sonner-default",
   "type": "registry:component",
-  "dependencies": ["sonner", "class-variance-authority", "lucide-react", "radix-ui"],
-  "registryDependencies": ["https://reui.io/r/button.json"],
+  "dependencies": [
+    "sonner",
+    "class-variance-authority",
+    "lucide-react",
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/button.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/sonner/default.tsx",

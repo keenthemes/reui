@@ -2,8 +2,17 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "avatar-group-default",
   "type": "registry:component",
-  "dependencies": ["clsx", "tailwind-merge", "class-variance-authority", "radix-ui", "motion"],
-  "registryDependencies": ["https://reui.io/r/avatar.json", "https://reui.io/r/avatar-group.json"],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "class-variance-authority",
+    "radix-ui",
+    "motion"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/avatar.json",
+    "https://reui.io/r/avatar-group.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/avatar-group/default.tsx",

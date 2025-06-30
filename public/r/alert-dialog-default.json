@@ -10,7 +10,10 @@
     "radix-ui",
     "@radix-ui/react-direction"
   ],
-  "registryDependencies": ["https://reui.io/r/alert-dialog.json", "https://reui.io/r/button.json"],
+  "registryDependencies": [
+    "https://reui.io/r/alert-dialog.json",
+    "https://reui.io/r/button.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/alert-dialog/default.tsx",

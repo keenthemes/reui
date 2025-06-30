@@ -2,8 +2,17 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "input-icon",
   "type": "registry:component",
-  "dependencies": ["class-variance-authority", "lucide-react", "radix-ui", "clsx", "tailwind-merge"],
-  "registryDependencies": ["https://reui.io/r/button.json", "https://reui.io/r/input.json"],
+  "dependencies": [
+    "class-variance-authority",
+    "lucide-react",
+    "radix-ui",
+    "clsx",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/button.json",
+    "https://reui.io/r/input.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/input/icon.tsx",

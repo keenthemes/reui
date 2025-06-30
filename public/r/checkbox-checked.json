@@ -2,8 +2,17 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "checkbox-checked",
   "type": "registry:component",
-  "dependencies": ["clsx", "tailwind-merge", "class-variance-authority", "lucide-react", "radix-ui"],
-  "registryDependencies": ["https://reui.io/r/checkbox.json", "https://reui.io/r/label.json"],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "class-variance-authority",
+    "lucide-react",
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/checkbox.json",
+    "https://reui.io/r/label.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/checkbox/checked.tsx",

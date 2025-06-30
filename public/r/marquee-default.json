@@ -2,7 +2,12 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "marquee-default",
   "type": "registry:component",
-  "dependencies": ["clsx", "tailwind-merge", "class-variance-authority", "radix-ui"],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "class-variance-authority",
+    "radix-ui"
+  ],
   "registryDependencies": [
     "https://reui.io/r/avatar.json",
     "https://reui.io/r/card.json",

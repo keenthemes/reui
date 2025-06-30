@@ -2,7 +2,13 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "popover-default",
   "type": "registry:component",
-  "dependencies": ["clsx", "tailwind-merge", "class-variance-authority", "radix-ui", "lucide-react"],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "class-variance-authority",
+    "radix-ui",
+    "lucide-react"
+  ],
   "registryDependencies": [
     "https://reui.io/r/badge.json",
     "https://reui.io/r/button.json",

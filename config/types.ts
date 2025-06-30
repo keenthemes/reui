@@ -39,15 +39,17 @@ export interface BlockCategory {
 
 export interface BlockSubCategory {
   title: string;
-  slug: string;
+  slug?: string;
   disabled?: boolean;
   description?: string;
+  sub?: BlockSubCategory[];
   blocks?: BlockItem[];
 }
 
 export interface BlockItem {
   id: string;
   title: string;
+  slug?: string;
   description?: string;
   published: boolean;
   new?: boolean;

@@ -2,7 +2,11 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "button",
   "type": "registry:ui",
-  "dependencies": ["radix-ui", "class-variance-authority", "lucide-react"],
+  "dependencies": [
+    "radix-ui",
+    "class-variance-authority",
+    "lucide-react"
+  ],
   "files": [
     {
       "path": "registry/default/ui/button.tsx",

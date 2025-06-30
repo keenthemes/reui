@@ -2,8 +2,17 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "tabs-pill",
   "type": "registry:component",
-  "dependencies": ["clsx", "tailwind-merge", "class-variance-authority", "radix-ui", "lucide-react"],
-  "registryDependencies": ["https://reui.io/r/badge.json", "https://reui.io/r/tabs.json"],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "class-variance-authority",
+    "radix-ui",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/badge.json",
+    "https://reui.io/r/tabs.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/tabs/pill.tsx",

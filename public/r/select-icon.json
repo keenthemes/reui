@@ -10,7 +10,9 @@
     "lucide-react",
     "radix-ui"
   ],
-  "registryDependencies": ["https://reui.io/r/select.json"],
+  "registryDependencies": [
+    "https://reui.io/r/select.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/select/icon.tsx",

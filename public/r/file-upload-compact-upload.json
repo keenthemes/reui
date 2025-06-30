@@ -2,8 +2,17 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "file-upload-compact-upload",
   "type": "registry:component",
-  "dependencies": ["clsx", "tailwind-merge", "class-variance-authority", "lucide-react", "radix-ui"],
-  "registryDependencies": ["https://reui.io/r/alert.json", "https://reui.io/r/button.json"],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "class-variance-authority",
+    "lucide-react",
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/alert.json",
+    "https://reui.io/r/button.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/file-upload/compact-upload.tsx",
