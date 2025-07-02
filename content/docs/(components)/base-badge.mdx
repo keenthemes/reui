@@ -1,0 +1,139 @@
+---
+title: Base Badge
+description: A customizable badge component built with Base UI and useRender hook for composition.
+component: true
+---
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="base-badge" />
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+### Install ReUI
+
+Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+
+### Install dependencies
+
+```bash
+npm install @base-ui-components/react
+```
+
+### Add component
+
+Copy and paste the following code into your project's `components/ui/base-badge.tsx` file.
+
+<ComponentPreview name="base-badge" />
+
+### Update imports
+
+Update the import paths to match your project setup.
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { Badge, BadgeButton, BadgeDot } from '@/components/ui/base-badge'
+```
+
+```tsx
+<Badge>Badge</Badge>
+```
+
+## Examples
+
+### Default
+
+<ExamplePreview path="base-badge/default" />
+
+### Outline
+
+<ExamplePreview path="base-badge/outline" />
+
+### Light
+
+<ExamplePreview path="base-badge/light" />
+
+### Ghost
+
+<ExamplePreview path="base-badge/ghost" />
+
+### Disabled
+
+<ExamplePreview path="base-badge/disabled" />
+
+### Size
+
+<ExamplePreview path="base-badge/size" />
+
+### Circle
+
+<ExamplePreview path="base-badge/circle" />
+
+### Square
+
+<ExamplePreview path="base-badge/square" />
+
+### With Icon
+
+<ExamplePreview path="base-badge/with-icon" />
+
+### With Dot
+
+<ExamplePreview path="base-badge/with-dot" />
+
+### Remove Button
+
+<ExamplePreview path="base-badge/remove-button" />
+
+### Render Prop
+
+<ExamplePreview path="base-badge/as-child" />
+
+## API Reference
+
+This component supports both Base UI's `useRender` hook pattern and traditional `asChild` prop for backward compatibility.
+
+### Badge
+
+| **Prop**                                                                                         | **Type**                                                                                                                                                          | **Default** |
+| ------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `render` <PopoverInfo>Element or component to render the badge as.</PopoverInfo>                | ~React.ReactElement~                                                                                                                                              | `<span />`  |
+| `asChild` <PopoverInfo>Change the default rendered element for the one passed as a child, merging their props and behavior.</PopoverInfo> | ~boolean~                                                                                                                                                         | `false`     |
+| `variant` <PopoverInfo>The visual style variant of the badge.</PopoverInfo>                     | ~enum~ <PopoverInfo> "primary" \| "secondary" \| "success" \| "warning" \| "info" \| "outline" \| "destructive" </PopoverInfo>                                | `primary`   |
+| `appearance` <PopoverInfo>The appearance style of the badge.</PopoverInfo>                      | ~enum~ <PopoverInfo> "default" \| "light" \| "outline" \| "ghost" </PopoverInfo>                                                                                 | `default`   |
+| `size` <PopoverInfo>The size of the badge.</PopoverInfo>                                        | ~enum~ <PopoverInfo> "xs" \| "sm" \| "md" \| "lg" </PopoverInfo>                                                                                                 | `md`        |
+| `shape` <PopoverInfo>The shape of the badge.</PopoverInfo>                                      | ~enum~ <PopoverInfo> "default" \| "circle" </PopoverInfo>                                                                                                        | `default`   |
+| `disabled` <PopoverInfo>Whether the badge is disabled.</PopoverInfo>                            | ~boolean~                                                                                                                                                         | `false`     |
+
+### BadgeButton
+
+| **Prop**                                                                              | **Type**             | **Default**   |
+| ------------------------------------------------------------------------------------- | -------------------- | ------------- |
+| `render` <PopoverInfo>Element or component to render the badge button as.</PopoverInfo> | ~React.ReactElement~ | `<button />` |
+| `asChild` <PopoverInfo>Change the default rendered element for the one passed as a child, merging their props and behavior.</PopoverInfo> | ~boolean~            | `false`       |
+
+### BadgeDot
+
+This is a simple span element with no additional props beyond standard HTML attributes.
+
+## Credits
+
+- Used [Base UI](https://base-ui.com/react/components/avatar) `useRender` hook for composition patterns. 

@@ -1,0 +1,81 @@
+---
+title: Collapsible
+description: An interactive component that expands/collapses a panel.
+component: true
+---
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="base-collapsible" />
+</TabsContent>
+
+<TabsContent value="manual">    
+<Steps>
+
+### Install ReUI
+
+Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+
+### Install dependencies
+
+```bash
+npm install @base-ui-components/react
+```
+
+### Add component
+
+Copy and paste the following code into your project’s `components/ui/base-collapsible.tsx` file.
+
+<ComponentPreview name="base-collapsible" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+### Default
+
+<ExamplePreview path="base-collapsible/default" />
+
+### Card
+
+<ExamplePreview path="base-collapsible/card" />
+
+## API Reference
+
+This component provides a customizable collapsible system with various styles and states.
+
+### Collapsible
+
+This component is based on the [Collapsible.Root](https://www.radix-ui.com/primitives/docs/components/collapsible#root) primitive and includes the following custom props:
+
+| **Prop**                                                                                             | **Type** | **Default** |
+| ---------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the collapsible container.</PopoverInfo> | ~string~ | <Na/>       |
+
+### CollapsibleTrigger
+
+This component is based on the [Collapsible.Trigger](https://www.radix-ui.com/primitives/docs/components/collapsible#trigger) primitive.
+
+### CollapsiblePanel
+
+This component is based on the [Collapsible.Panel](https://www.radix-ui.com/primitives/docs/components/collapsible#panel) primitive and includes the following custom props:
+
+| **Prop**                                                                                           | **Type** | **Default** |
+| -------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the collapsible content.</PopoverInfo> | ~string~ | <Na/>       |
+
+## Credits
+
+- Used [Radix UI](https://www.radix-ui.com/primitives/docs/components/collapsible) for the collapsible component.

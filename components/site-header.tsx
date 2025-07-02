@@ -9,8 +9,12 @@ import { Icons } from '@/components/icons';
 import { MainNav } from '@/components/main-nav';
 import { MobileNav } from '@/components/mobile-nav';
 import { ModeSwitcher } from '@/components/mode-switcher';
+import { usePathname } from 'next/navigation'
+import { cn } from '@/lib/utils';
 
 export function SiteHeader() {
+  const pathname = usePathname();
+
   const handleSocialClick = (platform: string) => {
     trackEvent({
       name: `site_header_${platform}_link_click`,
@@ -24,7 +28,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur-sm supports-backdrop-filter:bg-background/60 dark:border-border">
-      <div className="flex h-16 items-center container justify-between gap-4">
+      <div className={cn("flex h-16 items-center justify-between gap-4", pathname.includes('blocks') ? 'container-fluid' : 'container')}>
         <MobileNav />
 
         <div className="hidden md:flex items-center gap-3.5">

@@ -27,7 +27,7 @@ export const blocksConfig: BlocksConfig = [
   },
   {
     title: 'Marketing',
-    slug: 'application-ui',
+    slug: 'marketing',
     description: 'Complete layout for apps',
     sub: [
       {
@@ -38,7 +38,7 @@ export const blocksConfig: BlocksConfig = [
   },
   {
     title: 'Onboarding',
-    slug: 'application-ui',
+    slug: 'onboarding',
     description: 'Complete layout for apps',
     sub: [
       {
@@ -49,7 +49,7 @@ export const blocksConfig: BlocksConfig = [
   },
   {
     title: 'E-commerce',
-    slug: 'application-ui',
+    slug: 'e-commerce',
     description: 'Complete layout for apps',
     sub: [
       {

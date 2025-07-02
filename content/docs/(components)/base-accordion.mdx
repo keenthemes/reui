@@ -1,0 +1,112 @@
+---
+title: Base Accordion
+description: A set of collapsible panels with headings, built with Base UI components.
+component: true
+---
+
+<ComponentPreview name="base-accordion/default" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="base-accordion" />
+</TabsContent>
+
+<TabsContent value="manual">
+<Steps>
+
+### Install ReUI
+
+Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+
+### Install dependencies
+
+```bash
+npm install @base-ui-components/react
+```
+
+### Add component
+
+Copy and paste the following code into your project's `components/ui/base-accordion.tsx` file.
+
+<ComponentPreview name="base-accordion" />
+
+### Update imports
+
+Update the import paths to match your project setup.
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import {
+  Accordion,
+  AccordionPanel,
+  AccordionItem,
+  AccordionHeader,
+  AccordionTrigger,
+} from "@/components/ui/base-accordion"
+```
+
+```tsx
+<Accordion openMultiple={false}>
+  <AccordionItem value="item-1">
+    <AccordionHeader>
+      <AccordionTrigger>Is it accessible?</AccordionTrigger>
+    </AccordionHeader>
+    <AccordionPanel>
+      Yes. It adheres to the WAI-ARIA design pattern.
+    </AccordionPanel>
+  </AccordionItem>
+</Accordion>
+```
+
+## Examples
+
+### Default
+
+<ExamplePreview path="base-accordion/default" />
+
+### Outline
+
+<ExamplePreview path="base-accordion/outline" />
+
+### Solid
+
+<ExamplePreview path="base-accordion/solid" />
+
+### Indicator
+
+<ExamplePreview path="base-accordion/indicator" />
+
+### Nested
+
+<ExamplePreview path="base-accordion/nested" />
+
+
+## API Reference
+
+### Accordion
+
+This component is based on the [Base UI Accordion](https://base-ui.com/react/components/accordion) primitive and includes the following custom props:
+
+| **Prop** | **Type** | **Default** | **Description** |
+| --- | --- | --- | --- |
+| `variant` | ~enum~ <PopoverInfo> "default" \| "outline" \| "solid" </PopoverInfo> | ~"default"~ | The visual style variant of the accordion |
+| `indicator` | ~enum~ <PopoverInfo> "arrow" \| "plus" \| "none" </PopoverInfo> | ~"arrow"~ | The type of indicator icon to display |
+
+## Credits
+
+- Built with [Base UI](https://base-ui.com/react/components/accordion).

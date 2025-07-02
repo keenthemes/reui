@@ -1,8 +1,12 @@
 import Link from 'next/link';
 import { Separator } from '@/registry/default/ui/separator';
 import { trackEvent } from '@/lib/analytics';
+import { cn } from '@/lib/utils';
+import { usePathname } from 'next/navigation';
 
 export function SiteFooter() {
+  const pathname = usePathname();
+  
   const handleLinkClick = (linkName: string) => {
     trackEvent({
       name: `site_footer_${linkName}_link_click`,
@@ -16,7 +20,7 @@ export function SiteFooter() {
 
   return (
     <footer className="border-t border-border py-5 md:py-0">
-      <div className="container flex flex-col items-center justify-between gap-4 md:h-16 py-4 md:flex-row">
+      <div className={cn("flex flex-col items-center justify-between gap-4 md:h-16 py-4 md:flex-row", pathname.includes('blocks') ? 'container-fluid' : 'container')}>
         <div className="text-balance text-center text-sm leading-loose text-muted-foreground md:text-left">
           &copy;
           {new Date().getFullYear()} ReUI. All rights reserved.

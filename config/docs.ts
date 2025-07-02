@@ -13,7 +13,6 @@ export const docsConfig: DocsConfig = {
       title: 'Components',
       href: '/',
     },
-    /*
     {
       title: 'Blocks',
       href: '/blocks',
@@ -22,7 +21,6 @@ export const docsConfig: DocsConfig = {
       title: 'Themes',
       href: '/themes',
     },
-    */
     {
       title: 'Docs',
       href: '/docs',
@@ -118,6 +116,49 @@ export const docsConfig: DocsConfig = {
         },
       ],
     },
+
+    {
+      title: 'Base UI Components',
+      items: [
+        {
+          title: 'Accordion',
+          href: '/docs/base-accordion',
+        },
+        {
+          title: 'Alert Dialog',
+          href: '/docs/base-alert-dialog',
+        },
+        {
+          title: 'Avatar',
+          href: '/docs/base-avatar',
+        },
+        {
+          title: 'Badge',
+          href: '/docs/base-badge',
+        },
+        {
+          title: 'Breadcrumb',
+          href: '/docs/base-breadcrumb',
+        },
+        {
+          title: 'Button',
+          href: '/docs/base-button',
+        },
+        {
+          title: 'Checkbox',
+          href: '/docs/base-checkbox',
+        },
+        {
+          title: 'Collapsible',
+          href: '/docs/base-collapsible',
+        },
+        {
+          title: 'Input',
+          href: '/docs/base-input',
+        },
+      ],
+    },
+
     {
       title: 'UI Components',
       items: [

@@ -1,0 +1,123 @@
+---
+title: Base Avatar
+description: An easily stylable avatar component built with Base UI components.
+component: true
+---
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="base-avatar" />
+</TabsContent>
+
+<TabsContent value="manual">
+<Steps>
+
+### Install ReUI
+
+Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+
+### Install dependencies
+
+```bash
+npm install @base-ui-components/react
+```
+
+### Add component
+
+Copy and paste the following code into your project's `components/ui/base-avatar.tsx` file.
+
+<ComponentPreview name="base-avatar" />
+
+### Update imports
+
+Update the import paths to match your project setup.
+
+</Steps>
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/base-avatar"
+```
+
+```tsx
+<Avatar>
+  <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+  <AvatarFallback>CN</AvatarFallback>
+</Avatar>
+```
+
+## Examples
+
+### Default
+
+<ExamplePreview path="base-avatar/default" />
+
+### Fallback
+
+<ExamplePreview path="base-avatar/fallback" />
+
+### Indicator
+
+<ExamplePreview path="base-avatar/indicator" />
+
+### Status
+
+<ExamplePreview path="base-avatar/status" />
+
+### Badge
+
+<ExamplePreview path="base-avatar/badge" />
+
+### Size
+
+<ExamplePreview path="base-avatar/size" />
+
+### Group
+
+<ExamplePreview path="base-avatar/group" />
+
+### Users
+
+<ExamplePreview path="base-avatar/users" />
+
+## API Reference
+
+This component is based on the [Base UI Avatar](https://base-ui.com/react/components/avatar) primitive.
+
+### AvatarIndicator
+
+This is a custom component used to display an indicator within the avatar.
+
+| **Prop**                                                                                 | **Type** | **Default** |
+| ---------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the indicator.</PopoverInfo> | ~string~ | <Na/>       |
+
+### AvatarStatus
+
+This is a custom component for displaying a status indicator on the avatar.
+
+| **Prop**                                                                                        | **Type**                                                                      | **Default** |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------- |
+| `variant` <PopoverInfo>Specifies the status of the avatar.</PopoverInfo>                        | ~enum~ <PopoverInfo> "online" \| "offline" \| "busy" \| "away" </PopoverInfo> | `online`    |
+| `className` <PopoverInfo>Additional class names for styling the status indicator.</PopoverInfo> | ~string~                                                                      | <Na/>       |
+
+
+## Credits
+
+- Built with [Base UI](https://base-ui.com/react/components/avatar). 

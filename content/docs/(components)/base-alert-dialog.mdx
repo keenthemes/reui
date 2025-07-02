@@ -1,0 +1,122 @@
+---
+title: Base Alert Dialog
+description: A dialog that requires user response to proceed, built with Base UI components.
+component: true
+---
+
+<ComponentPreview name="base-alert-dialog/default" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="base-alert-dialog" />
+</TabsContent>
+
+<TabsContent value="manual">
+<Steps>
+
+### Install ReUI
+
+Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+
+### Install dependencies
+
+```bash
+npm install @base-ui-components/react
+```
+
+### Add component
+
+Copy and paste the following code into your project's `components/ui/base-alert-dialog.tsx` file.
+
+<ComponentPreview name="base-alert-dialog" />
+
+### Update imports
+
+Update the import paths to match your project setup.
+
+</Steps>
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import {
+  AlertDialog,
+  AlertDialogBackdrop,
+  AlertDialogClose,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogPopup,
+  AlertDialogPortal,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/base-alert-dialog"
+```
+
+```tsx
+<AlertDialog>
+  <AlertDialogTrigger asChild>
+    <Button>Open</Button>
+  </AlertDialogTrigger>
+  <AlertDialogPortal>
+    <AlertDialogBackdrop />
+    <AlertDialogPopup>
+      <AlertDialogHeader>
+        <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+        <AlertDialogDescription>
+          This action cannot be undone.
+        </AlertDialogDescription>
+      </AlertDialogHeader>
+      <AlertDialogFooter>
+        <AlertDialogClose asChild>
+          <Button variant="outline">Cancel</Button>
+        </AlertDialogClose>
+        <AlertDialogClose asChild>
+          <Button variant="destructive">Continue</Button>
+        </AlertDialogClose>
+      </AlertDialogFooter>
+    </AlertDialogPopup>
+  </AlertDialogPortal>
+</AlertDialog>
+```
+
+## Examples
+
+### Default
+
+<ExamplePreview path="base-alert-dialog/default" />
+
+### Destructive
+
+<ExamplePreview path="base-alert-dialog/destructive" />
+
+## API Reference
+
+This component is based on the [Base UI Alert Dialog](https://base-ui.com/react/components/alert-dialog) primitive and includes the following custom props:
+
+### AlertDialogTrigger
+
+| **Prop** | **Type** | **Default** |
+| --- | --- | --- |
+| `asChild` <PopoverInfo>When true, the trigger will render as its child element, passing all props to the child.</PopoverInfo> | ~boolean~ | ~false~ |
+
+### AlertDialogClose
+
+| **Prop** | **Type** | **Default** |
+| --- | --- | --- |
+| `asChild` <PopoverInfo>When true, the close button will render as its child element, passing all props to the child.</PopoverInfo> | ~boolean~ | ~false~ |
+
+## Credits
+
+- Built with [Base UI](https://base-ui.com/react/components/alert-dialog). 

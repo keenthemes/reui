@@ -1,0 +1,85 @@
+---
+title: Checkbox
+description: A control that allows the user to toggle between checked and not checked.
+component: true
+---
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="checkbox" />
+</TabsContent>
+
+<TabsContent value="manual">    
+<Steps>
+
+### Install ReUI
+
+Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+
+### Install dependencies
+
+```bash
+npm install @base-ui-components/react
+```
+
+### Add component
+
+Copy and paste the following code into your project’s `components/ui/base-checkbox.tsx` file.
+
+<ComponentPreview name="base-checkbox" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+### Default
+
+<ExamplePreview path="base-checkbox/default" />
+
+### Checked
+
+<ExamplePreview path="base-checkbox/checked" />
+
+### Disabled
+
+<ExamplePreview path="base-checkbox/disabled" />
+
+### Indeterminate
+
+<ExamplePreview path="base-checkbox/indeterminate" />
+
+### Size
+
+<ExamplePreview path="base-checkbox/size" />
+
+### Form
+
+<ExamplePreview path="base-checkbox/form" />
+
+## API Reference
+
+This component is based on the [Base UI Checkbox](https://base-ui.com/react/components/checkbox) primitive.
+
+### Checkbox
+
+A customized checkbox component that extends the Radix UI Checkbox primitive with additional styling and features. It supports all the props from Radix UI's Checkbox.Root component.
+
+| **Prop**                                                                                          | **Type** | **Default** |
+| ------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` <PopoverInfo>Additional class names for styling the checkbox container.</PopoverInfo> | ~string~ | <Na/>       |
+
+## Credits
+
+- Built with [Base UI](https://base-ui.com/react/components/checkbox). 
