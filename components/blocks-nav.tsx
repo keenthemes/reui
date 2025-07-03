@@ -6,21 +6,15 @@ import {
   AccordionMenu,
   AccordionMenuGroup,
   AccordionMenuItem,
-  AccordionMenuLabel,
-  AccordionMenuSeparator,
   AccordionMenuSub,
   AccordionMenuSubContent,
   AccordionMenuSubTrigger,
 } from '@/registry/default/ui/accordion-menu';
 import {
-  Box,
-  Calendar,
-  ChevronRight,
   FileText,
   Folder,
   Grid,
   Layout,
-  Package,
   ShoppingCart,
   UserPlus,
 } from 'lucide-react';
@@ -41,16 +35,6 @@ const getCategoryIcon = (slug: string) => {
     default:
       return Folder;
   }
-};
-
-// Icon mapping for subcategories
-const getSubCategoryIcon = (title: string) => {
-  const lowerTitle = title.toLowerCase();
-  if (lowerTitle.includes('header')) return Box;
-  if (lowerTitle.includes('form')) return FileText;
-  if (lowerTitle.includes('card')) return Package;
-  if (lowerTitle.includes('navigation')) return Calendar;
-  return ChevronRight;
 };
 
 export default function BlocksNav() {
@@ -79,14 +63,11 @@ export default function BlocksNav() {
   const renderSubCategories = (subCategories: BlockSubCategory[], parentSlug: string, level: number = 0) => {
     return subCategories.map((subCategory, index) => {
       const subCategorySlug = `${parentSlug}/${subCategory.slug || index}`;
-      const IconComponent = getSubCategoryIcon(subCategory.title);
-
       // If this subcategory has blocks, render them
       if (subCategory.blocks && subCategory.blocks.length > 0) {
         return (
           <AccordionMenuSub key={subCategory.slug || index} value={subCategorySlug}>
             <AccordionMenuSubTrigger>
-              <IconComponent />
               <span>{subCategory.title}</span>
             </AccordionMenuSubTrigger>
             <AccordionMenuSubContent type="single" collapsible parentValue={subCategorySlug}>
@@ -103,7 +84,6 @@ export default function BlocksNav() {
         return (
           <AccordionMenuSub key={subCategory.slug || index} value={subCategorySlug}>
             <AccordionMenuSubTrigger>
-              <IconComponent />
               <span>{subCategory.title}</span>
             </AccordionMenuSubTrigger>
             <AccordionMenuSubContent type="single" collapsible parentValue={subCategorySlug}>
@@ -120,7 +100,6 @@ export default function BlocksNav() {
       return (
         <AccordionMenuItem key={subCategory.slug || index} value={itemPath}>
           <Link href={itemPath}>
-            <IconComponent />
             <span>{subCategory.title}</span>
           </Link>
         </AccordionMenuItem>
@@ -139,7 +118,6 @@ export default function BlocksNav() {
         return (
           <AccordionMenuItem key={category.slug} value={categoryPath}>
             <Link href={categoryPath}>
-              <CategoryIcon />
               <span>{category.title}</span>
             </Link>
           </AccordionMenuItem>
@@ -164,20 +142,22 @@ export default function BlocksNav() {
   };
 
   return (
-    <div className="w-full md:w-[250px] overflow-hidden border border-border rounded-md p-2">
+    <div className="w-full grow px-5.5 py-4">
       <AccordionMenu
         selectedValue={pathname}
         matchPath={matchPath}
-        type="single"
-        collapsible
-        classNames={{ separator: '-mx-2 mb-2.5' }}
+        type="multiple"
+        classNames={{ 
+          separator: '-mx-2 mb-2.5',
+          root: 'space-y-1',
+          item: '',
+          sub: 'relative',
+          subContent: 'ml-4 pl-4 border-l border-border relative before:absolute before:-left-px before:top-0 before:bottom-0 before:w-px before:bg-background before:content-[""] before:z-10',
+          subWrapper: 'relative',
+          group: 'space-y-1 relative'
+        }}
       >
-        <AccordionMenuLabel>Blocks</AccordionMenuLabel>
-        <AccordionMenuSeparator />
-
-        <AccordionMenuGroup>
-          {renderCategories(blocksConfig)}
-        </AccordionMenuGroup>
+        {renderCategories(blocksConfig)}
       </AccordionMenu>
     </div>
   );

@@ -53,31 +53,19 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-3 justify-end">
           <div className="hidden md:block">
-            <GithubButton
-              targetStars={siteConfig.githubStars}
-              initialStars={0}
-              fixedWidth={false}
-              label="GitHub Stars"
-              className="h-8"
-              repoUrl="https://github.com/keenthemes/reui"
-            />
-          </div>
-          <div className="block md:hidden">
-            <GithubButton
-              targetStars={siteConfig.githubStars}
-              initialStars={0}
-              fixedWidth={false}
-              label="Stars"
-              className="h-8"
-              repoUrl="https://github.com/keenthemes/reui"
-            />
-          </div>
-
-          <div className="hidden md:block">
             <CommandMenu />
           </div>
 
           <nav className="flex items-center gap-1">
+            <GithubButton
+              variant="outline"
+              targetStars={siteConfig.githubStars}
+              initialStars={0}
+              fixedWidth={false}
+              label=""
+              className="h-8 px-2.5"
+              repoUrl="https://github.com/keenthemes/reui"
+            />
             <Button variant="ghost" mode="icon" size="sm" className="size-8 text-foreground hidden">
               <Link
                 href={siteConfig.links.github}

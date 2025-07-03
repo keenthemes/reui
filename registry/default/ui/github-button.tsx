@@ -79,7 +79,7 @@ function GithubButton({
   filled = false,
   repoUrl,
   onClick,
-  label = 'Star',
+  label = '',
   useInViewTrigger = false,
   inViewOptions = { once: true },
   transition,
@@ -236,7 +236,7 @@ function GithubButton({
         </svg>
       )}
 
-      <span>{label}</span>
+      {label && <span>{label}</span>}
 
       {/* Animated Star Icon */}
       <div className="relative inline-flex shrink-0">

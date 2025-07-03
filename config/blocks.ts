@@ -2,17 +2,17 @@ import { BlocksConfig } from './types';
 
 export const blocksConfig: BlocksConfig = [
   {
-    title: 'Application UI',
+    title: 'Application',
     slug: 'application-ui',
     description: 'Complete layout for apps',
     sub: [
       {
-        title: 'Sub-category title',
-        slug: 'slug',
+        title: 'Headings',
+        slug: 'headings',
         sub: [
           {
-            title: 'Sub-category title',
-            slug: 'slug',
+            title: 'Page Headings',
+            slug: 'page-headings',
             blocks: [
               {
                 id: '1',
@@ -20,6 +20,87 @@ export const blocksConfig: BlocksConfig = [
                 published: true,
               },
             ],
+          },
+          {
+            title: 'Card Headings',
+            slug: 'card-headings',
+            blocks: [
+              {
+                id: '1',
+                title: '',
+                published: true,
+              },
+            ],
+          },
+          {
+            title: 'Section Headings',
+            slug: 'section-headings',
+            blocks: [
+              {
+                id: '1',
+                title: '',
+                published: true,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        title: 'Tooltips',
+        slug: 'tooltips',
+        sub: [
+          {
+            title: 'Page Toolbars',
+            slug: 'page-toolbars',
+            blocks: [
+              {
+                id: '1',
+                title: '',
+                published: true,
+              },
+            ],
+          },
+          {
+            title: 'Card Toolbars',
+            slug: 'card-headings',
+            blocks: [
+              {
+                id: '1',
+                title: '',
+                published: true,
+              },
+            ],
+          },
+          {
+            title: 'Section Toolbars',
+            slug: 'section-toolbars',
+            blocks: [
+              {
+                id: '1',
+                title: '',
+                published: true,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        title: 'Forms',
+        slug: 'forms',
+        sub: [
+          {
+            title: 'Page Forms',
+            slug: 'page-forms',
+          },
+        ],
+      },
+      {
+        title: 'Forms',
+        slug: 'forms',
+        sub: [
+          {
+            title: 'Page Forms',
+            slug: 'page-forms',
           },
         ],
       },
@@ -37,8 +118,8 @@ export const blocksConfig: BlocksConfig = [
     ],
   },
   {
-    title: 'Onboarding',
-    slug: 'onboarding',
+    title: 'E-commerce',
+    slug: 'e-commerce',
     description: 'Complete layout for apps',
     sub: [
       {
@@ -48,8 +129,8 @@ export const blocksConfig: BlocksConfig = [
     ],
   },
   {
-    title: 'E-commerce',
-    slug: 'e-commerce',
+    title: 'Onboarding',
+    slug: 'onboarding',
     description: 'Complete layout for apps',
     sub: [
       {

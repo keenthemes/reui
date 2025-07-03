@@ -160,7 +160,7 @@ export const docsConfig: DocsConfig = {
     },
 
     {
-      title: 'UI Components',
+      title: 'Radix UI Components',
       items: [
         {
           title: 'Accordion',
