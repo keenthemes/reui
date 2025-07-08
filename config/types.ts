@@ -29,46 +29,50 @@ export type FooterNavItem = NavItem;
 
 export type SidebarNavItem = NavItemWithChildren;
 
-export interface BlockCategory {
+export interface BlockPrimaryCategory {
   title: string;
+  default?: boolean;
   slug: string;
-  disabled?: boolean;
   description?: string;
-  sub?: BlockSubCategory[];
+  published?: boolean;
+  keywords?: string[];
+  new?: boolean;
+  sub?: BlockSecondaryCategory[];
 }
 
-export interface BlockSubCategory {
+export interface BlockSecondaryCategory {
   title: string;
-  slug?: string;
-  disabled?: boolean;
+  slug: string;
+  new?: boolean;
+  published?: boolean;
   description?: string;
-  sub?: BlockSubCategory[];
-  blocks?: BlockItem[];
+  keywords?: string[];
+  sub?: BlockTertiaryCategory[];
+}
+
+export interface BlockTertiaryCategory {
+  title: string;
+  slug: string;
+  new?: boolean;
+  published?: boolean;
+  description?: string;
+  keywords?: string[];
+  blocks: BlockItem[];
 }
 
 export interface BlockItem {
-  id: string;
-  title: string;
-  slug?: string;
-  description?: string;
+  slug: string;
+  path?: string;
   published: boolean;
   new?: boolean;
   previewHeight?: number;
+  name?: string;
+  filename?: string;
+  code?: string;
+  highlightedCode?: string;
 }
 
-export type BlocksConfig = BlockCategory[];
-
-export interface PreviewConfig {
-  [key: string]: PreviewCategory | PreviewItem;
-}
-
-export interface PreviewCategory {
-  title: string;
-  description?: string;
-  children: {
-    [key: string]: PreviewCategory | PreviewItem;
-  };
-}
+export type BlocksConfig = BlockPrimaryCategory[];
 
 export interface ExamplePreviewProps {
   path: string;
@@ -76,37 +80,6 @@ export interface ExamplePreviewProps {
 
 export interface ExampleCodesProps {
   name: string;
-}
-
-export interface PreviewItem {
-  title: string;
-  path?: string;
-  description?: string;
-  published?: boolean;
-  previewHeight?: number;
-  new?: boolean;
-  hot?: boolean;
-  free?: boolean;
-  related?: string[];
-  file?: PreviewItemFile;
-  files?: PreviewFilesTree[];
-}
-
-export interface PreviewFilesTree {
-  name: string;
-  type: 'file' | 'folder';
-  path: string;
-  meta?: PreviewItemFile; // Meta field for file nodes
-  children?: PreviewFilesTree[]; // For folders
-}
-
-export interface PreviewItemFile {
-  filename?: string;
-  filePath?: string;
-  type?: string;
-  path: string;
-  code?: string;
-  highlightedCode?: string;
 }
 
 export interface ComponentExamples {

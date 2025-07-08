@@ -11,7 +11,7 @@ import { absoluteUrl } from '@/lib/helpers';
 import { getTableOfContents } from '@/lib/toc';
 import { Mdx } from '@/components/mdx-components';
 import { DocsPager } from '@/components/pager';
-import { resolveCode, resolveComponent } from '@/components/preview/files';
+import { resolveCode, resolveComponent } from '@/lib/docs';
 import { DashboardTableOfContents } from '@/components/toc';
 
 interface DocPageProps {

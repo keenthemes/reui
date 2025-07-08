@@ -6,11 +6,11 @@ export default function BlocksNavToggle() {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <Button variant="ghost" size="icon" className="-ms-0.5">
+        <Button variant="ghost" size="icon" className="-ms-2 size-8">
           <PanelRightOpen/>
         </Button>
       </TooltipTrigger>
-      <TooltipContent  align="center" side="right">Toggle navigation</TooltipContent>
+      <TooltipContent>Toggle sidebar navigation</TooltipContent>
     </Tooltip>
   );
 }

@@ -2,100 +2,327 @@ import fs from 'fs/promises';
 import path from 'path';
 import { codeToHtml } from 'shiki';
 
-const sourcePath = path.resolve('./registry/default/blocks');
+// Import the blocks config (we'll need to handle ES modules)
+const blocksConfigPath = path.resolve('./config/blocks.ts');
+const sourceBasePath = path.resolve('./registry/default/blocks');
 const cacheBasePath = path.join(process.cwd(), 'registry', '.cache', 'default', 'blocks');
 
 async function ensureCacheDir(dir) {
   await fs.mkdir(dir, { recursive: true });
 }
 
-async function processSubCategoryBlocks(categorySlug, currentSlug, folderPath) {
+async function loadBlocksConfig() {
   try {
-    const entries = await fs.readdir(folderPath, { withFileTypes: true });
-    const pageFile = entries.find((entry) => entry.isFile() && entry.name === 'page.tsx');
+    // For now, we'll parse the TypeScript file manually
+    // In production, you might want to use a proper TypeScript loader
+    const configContent = await fs.readFile(blocksConfigPath, 'utf-8');
 
-    if (pageFile) {
-      console.log(`Found page.tsx in ${categorySlug}/${currentSlug}`);
-      const filePath = path.join(folderPath, pageFile.name);
-      const code = await fs.readFile(filePath, 'utf-8');
-      const highlightedCode = await codeToHtml(code, {
-        lang: 'tsx',
-        theme: 'github-dark-default',
-        transformers: [
-          {
-            code(node) {
-              node.properties['data-line-numbers'] = '';
-            },
-          },
-        ],
-      });
-
-      // Updated: Remove '.page' from the filename
-      const cacheFileName = `${categorySlug}.${currentSlug}.json`;
-      const cacheFilePath = path.join(cacheBasePath, cacheFileName);
-
-      const cacheData = {
-        code,
-        highlightedCode,
-        filename: 'page.tsx',
-        type: 'tsx',
-      };
-      await ensureCacheDir(cacheBasePath);
-      await fs.writeFile(cacheFilePath, JSON.stringify(cacheData, null, 2), 'utf-8');
-      console.log(`Cached: ${cacheFileName}`);
-    } else {
-      console.log(`No page.tsx found in ${categorySlug}/${currentSlug}`);
+    // Extract the config object (this is a simplified approach)
+    // In production, consider using a proper TypeScript parser
+    const configMatch = configContent.match(/export const blocksConfig.*?=\s*(\[[\s\S]*?\]);/);
+    if (!configMatch) {
+      throw new Error('Could not parse blocksConfig from blocks.ts');
     }
+
+    // This is a simplified approach - you might want to use a proper parser
+    return eval('(' + configMatch[1] + ')');
   } catch (error) {
-    console.error(`Error processing ${categorySlug}/${currentSlug}:`, error);
+    console.error('Error loading blocks config:', error);
+    // Return a fallback empty config
+    return [];
   }
 }
 
-async function processFolder(categorySlug, currentSlug, folderPath) {
-  const entries = await fs.readdir(folderPath, { withFileTypes: true });
-  const hasSubDirs = entries.some((entry) => entry.isDirectory());
+function getAllTertiaryCategories(config) {
+  const categories = [];
 
-  if (!hasSubDirs) {
-    await processSubCategoryBlocks(categorySlug, currentSlug, folderPath);
-  } else {
-    for (const entry of entries) {
-      if (entry.isDirectory()) {
-        const newSlug = `${currentSlug}.${entry.name}`;
-        const newFolderPath = path.join(folderPath, entry.name);
-        await processFolder(categorySlug, newSlug, newFolderPath);
+  for (const primary of config) {
+    if (primary.sub) {
+      for (const secondary of primary.sub) {
+        if (secondary.sub) {
+          for (const tertiary of secondary.sub) {
+            // Include all tertiary categories regardless of blocks content
+            // blocks is now array of BlockItem objects
+            categories.push({
+              primary: primary.slug,
+              secondary: secondary.slug,
+              tertiary: tertiary.slug,
+              title: tertiary.title,
+              blockItems: tertiary.blocks || [], // blocks is now array of BlockItem objects
+              cacheKey: `${primary.slug}.${secondary.slug}.${tertiary.slug}`,
+            });
+          }
+        }
       }
     }
+  }
+
+  return categories;
+}
+
+async function getBlockFilesInCategory(primary, secondary, tertiary) {
+  try {
+    const categoryPath = path.join(sourceBasePath, primary, secondary, tertiary);
+    console.log(`     Checking directory: ${categoryPath}`);
+
+    const entries = await fs.readdir(categoryPath, { withFileTypes: true });
+    const blockFiles = entries
+      .filter((entry) => entry.isFile() && (entry.name.endsWith('.tsx') || entry.name.endsWith('.ts')))
+      .map((entry) => ({
+        filename: entry.name,
+        relativePath: path.join(primary, secondary, tertiary, entry.name),
+        fullPath: path.join(categoryPath, entry.name),
+      }));
+
+    console.log(`     Found ${blockFiles.length} block files: ${blockFiles.map((f) => f.filename).join(', ')}`);
+    return blockFiles;
+  } catch {
+    // Try alternative directory names (handle plural/singular mismatches)
+    const alternativePaths = [
+      path.join(sourceBasePath, primary, secondary, tertiary.replace(/s$/, '')), // Remove trailing 's'
+      path.join(sourceBasePath, primary, secondary, tertiary + 's'), // Add trailing 's'
+    ];
+
+    for (const altPath of alternativePaths) {
+      try {
+        console.log(`     Trying alternative directory: ${altPath}`);
+        const entries = await fs.readdir(altPath, { withFileTypes: true });
+        const blockFiles = entries
+          .filter((entry) => entry.isFile() && (entry.name.endsWith('.tsx') || entry.name.endsWith('.ts')))
+          .map((entry) => ({
+            filename: entry.name,
+            relativePath: path.join(primary, secondary, tertiary, entry.name), // Use original tertiary slug, not the directory name
+            fullPath: path.join(altPath, entry.name),
+          }));
+
+        if (blockFiles.length > 0) {
+          console.log(
+            `     ✓ Found ${blockFiles.length} block files in alternative path: ${blockFiles.map((f) => f.filename).join(', ')}`,
+          );
+          return blockFiles;
+        }
+      } catch {
+        // Continue trying other alternatives
+      }
+    }
+
+    console.log(`     ⚠️ Directory not found: ${path.join(sourceBasePath, primary, secondary, tertiary)}`);
+    return [];
+  }
+}
+
+async function processBlockFile(blockFile, blockItem) {
+  try {
+    const code = await fs.readFile(blockFile.fullPath, 'utf-8');
+
+    // Generate syntax highlighted code
+    const highlightedCode = await codeToHtml(code, {
+      lang: 'tsx',
+      theme: 'github-dark-default',
+      transformers: [
+        {
+          code(node) {
+            node.properties['data-line-numbers'] = '';
+          },
+        },
+      ],
+    });
+
+    // Extract block name from filename (remove extension)
+    const blockName = path.basename(blockFile.filename, path.extname(blockFile.filename));
+
+    return {
+      slug: blockItem.slug,
+      name: blockItem.name || blockName,
+      filename: blockFile.filename,
+      code,
+      highlightedCode,
+      path: blockItem.path || blockFile.relativePath.replace(/\.(tsx|ts)$/, ''), // Use relativePath without extension if no path in config
+      published: blockItem.published ?? true,
+      new: blockItem.new ?? false,
+      previewHeight: blockItem.previewHeight,
+      relativePath: blockFile.relativePath,
+    };
+  } catch (error) {
+    console.error(`Error processing ${blockFile.filename}:`, error);
+    return null;
+  }
+}
+
+async function processCategory(category) {
+  try {
+    console.log(`   📁 Category: ${category.cacheKey} (${category.blockItems?.length || 0} block items)`);
+
+    // Get block files from the category-specific directory
+    const blockFiles = await getBlockFilesInCategory(category.primary, category.secondary, category.tertiary);
+
+    const processedBlocks = [];
+
+    // Process each block item defined in the config
+    if (category.blockItems && category.blockItems.length > 0) {
+      console.log(`     Processing ${category.blockItems.length} block items...`);
+
+      for (const blockItem of category.blockItems) {
+        console.log(`     Looking for block: ${blockItem.slug}`);
+
+        // Find the corresponding block file
+        // Look for files that match the block slug
+        const matchingFile = blockFiles.find((file) => {
+          const baseName = path.basename(file.filename, path.extname(file.filename));
+          const matches =
+            baseName === blockItem.slug ||
+            baseName === `block-${blockItem.slug}` ||
+            file.filename === blockItem.filename;
+
+          if (matches) {
+            console.log(`     ✓ Found matching file: ${file.filename} for block: ${blockItem.slug}`);
+          }
+          return matches;
+        });
+
+        if (matchingFile) {
+          console.log(`     Processing block file: ${matchingFile.filename}`);
+          const processedBlock = await processBlockFile(matchingFile, blockItem);
+          if (processedBlock) {
+            processedBlocks.push(processedBlock);
+            console.log(`     ✓ Successfully processed: ${processedBlock.slug}`);
+          }
+        } else {
+          console.warn(`     ⚠️  Block file not found for "${blockItem.slug}"`);
+          console.warn(`     Available files: ${blockFiles.map((f) => f.filename).join(', ')}`);
+        }
+      }
+    } else {
+      console.log(`     No block items defined for ${category.cacheKey}`);
+    }
+
+    console.log(`   ✓ ${category.cacheKey}: ${processedBlocks.length} blocks processed`);
+    return {
+      ...category,
+      blocks: processedBlocks,
+    };
+  } catch (error) {
+    console.error(`Error processing category ${category.cacheKey}:`, error);
+    return {
+      ...category,
+      blocks: [],
+    };
+  }
+}
+
+async function generateCategoryCache(category) {
+  try {
+    const cacheFileName = `${category.cacheKey}.json`;
+    const cacheFilePath = path.join(cacheBasePath, cacheFileName);
+
+    const cacheData = {
+      category: {
+        primary: category.primary,
+        secondary: category.secondary,
+        tertiary: category.tertiary,
+        title: category.title,
+        cacheKey: category.cacheKey,
+      },
+      blocks: category.blocks,
+      total: category.blocks.length,
+      generatedAt: new Date().toISOString(),
+    };
+
+    await ensureCacheDir(cacheBasePath);
+    await fs.writeFile(cacheFilePath, JSON.stringify(cacheData, null, 2), 'utf-8');
+    console.log(`✓ Cached: ${category.cacheKey} → ${category.blocks.length} blocks`);
+
+    return cacheData;
+  } catch (error) {
+    console.error(`Error generating cache for ${category.cacheKey}:`, error);
+    return null;
+  }
+}
+
+async function generateMasterIndex(categoryCaches) {
+  try {
+    const indexPath = path.join(cacheBasePath, 'index.json');
+    const validCaches = categoryCaches.filter(Boolean);
+
+    const indexData = {
+      categories: validCaches.map((cache) => ({
+        cacheKey: cache.category.cacheKey,
+        primary: cache.category.primary,
+        secondary: cache.category.secondary,
+        tertiary: cache.category.tertiary,
+        title: cache.category.title,
+        totalBlocks: cache.total,
+        filename: `${cache.category.cacheKey}.json`,
+      })),
+      totalCategories: validCaches.length,
+      totalBlocks: validCaches.reduce((sum, cache) => sum + cache.total, 0),
+      generatedAt: new Date().toISOString(),
+    };
+
+    await fs.writeFile(indexPath, JSON.stringify(indexData, null, 2), 'utf-8');
+    console.log(`✓ Generated master index: ${validCaches.length} categories, ${indexData.totalBlocks} total blocks`);
+  } catch (error) {
+    console.error('Error generating master index:', error);
   }
 }
 
 async function generateBlockCaches() {
   try {
+    console.log('🚀 Starting block cache generation...');
+    console.log(`📁 Source: ${sourceBasePath}`);
+    console.log(`💾 Cache: ${cacheBasePath}`);
+    console.log('');
+
     await ensureCacheDir(cacheBasePath);
-    const categoryFolders = await fs.readdir(sourcePath, {
-      withFileTypes: true,
-    });
 
-    for (const categoryEntry of categoryFolders) {
-      if (!categoryEntry.isDirectory()) continue;
+    // Load blocks configuration
+    console.log('📖 Loading blocks configuration...');
+    const blocksConfig = await loadBlocksConfig();
+    const tertiaryCategories = getAllTertiaryCategories(blocksConfig);
+    console.log(`   Found ${tertiaryCategories.length} tertiary categories`);
+    console.log('');
 
-      const categorySlug = categoryEntry.name;
-      const categoryFolder = path.join(sourcePath, categorySlug);
-      const subCategoryEntries = await fs.readdir(categoryFolder, {
-        withFileTypes: true,
-      });
-
-      for (const subCategoryEntry of subCategoryEntries) {
-        if (!subCategoryEntry.isDirectory()) continue;
-
-        const subCategorySlug = subCategoryEntry.name;
-        const subCategoryFolder = path.join(categoryFolder, subCategorySlug);
-        await processFolder(categorySlug, subCategorySlug, subCategoryFolder);
+    // Process each category and its blocks
+    console.log('🔄 Processing categories and blocks...');
+    const processedCategories = [];
+    for (const category of tertiaryCategories) {
+      const result = await processCategory(category);
+      if (result) {
+        processedCategories.push(result);
       }
     }
+    console.log('');
 
-    console.log('Block caches for deepest page.tsx files generated successfully.');
+    // Generate category cache files (only for categories with blocks)
+    console.log('💾 Generating category caches...');
+    const categoryCaches = [];
+    const categoriesWithBlocks = processedCategories.filter((category) => category.blocks.length > 0);
+
+    console.log(
+      `   Found ${categoriesWithBlocks.length} categories with blocks out of ${processedCategories.length} total categories`,
+    );
+
+    for (const category of categoriesWithBlocks) {
+      const result = await generateCategoryCache(category);
+      if (result) {
+        categoryCaches.push(result);
+      }
+    }
+    console.log('');
+
+    // Generate master index
+    console.log('📋 Generating master index...');
+    await generateMasterIndex(categoryCaches);
+    console.log('');
+
+    console.log('✅ Block caches generated successfully!');
+    console.log(`📊 Total: ${categoryCaches.length} category caches`);
+    console.log(`📁 Cache location: ${cacheBasePath}`);
+    console.log('');
+    console.log('📝 Cache files generated:');
+    categoryCaches.forEach((cache) => console.log(`   - ${cache.category.cacheKey}.json (${cache.total} blocks)`));
   } catch (error) {
-    console.error('Error generating block caches:', error);
+    console.error('❌ Error generating block caches:', error);
   }
 }
 

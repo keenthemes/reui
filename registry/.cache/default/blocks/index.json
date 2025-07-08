@@ -1,0 +1,16 @@
+{
+  "categories": [
+    {
+      "cacheKey": "application.navigation.dropdowns",
+      "primary": "application",
+      "secondary": "navigation",
+      "tertiary": "dropdowns",
+      "title": "Dropdowns",
+      "totalBlocks": 2,
+      "filename": "application.navigation.dropdowns.json"
+    }
+  ],
+  "totalCategories": 1,
+  "totalBlocks": 2,
+  "generatedAt": "2025-07-08T19:47:20.123Z"
+}

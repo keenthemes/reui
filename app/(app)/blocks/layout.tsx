@@ -1,30 +1,30 @@
 'use client';
 
-import BlocksNavToggle from "@/components/blocks-nav-toggle";
 import BlocksNav from "@/components/blocks-nav";
 import BlocksSuggestion from "@/components/blocks-suggest";
-import BlocksBreadcrumb from "@/components/blocks-breadcrumb";
+import BlocksCategories from "@/components/blocks-categories";
 
 export default function BlocksLayout({ children }: { children: React.ReactNode }) {
   return (
     <div>
-      <div className="border-b border-border py-2.5">
+      <div className="border-b border-border">
         <div className="container-fluid flex justify-between items-center gap-2.5">
           <div className="flex items-center gap-2.5">
-            <BlocksNavToggle />
-            <BlocksBreadcrumb />
+            <BlocksCategories/>
           </div>
-          <div>
+          <div className="flex items-center gap-2.5">
             <BlocksSuggestion />
           </div>
         </div>
       </div>
-      <div className="flex grow">
-        <div className="sticky top-0 hidden lg:block w-[280px] flex-shrink-0">
-          <BlocksNav />
+      <div className="flex">
+        <div className="hidden lg:block w-[250px] flex-shrink-0">
+          <div className="sticky top-16 max-h-screen overflow-y-auto py-1">
+            <BlocksNav />
+          </div>
         </div>
         <main className="flex-1 border-l border-border">
-          <div className="container-fluid">
+          <div className="container-fluid py-5">
             {children}
           </div>
         </main>
