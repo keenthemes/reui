@@ -14,17 +14,24 @@ import {
   Copy,
   File,
   LoaderCircleIcon,
+  Monitor,
   Moon,
   RefreshCcw,
+  Smartphone,
   Sun,
+  Tablet,
 } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { ImperativePanelHandle } from 'react-resizable-panels';
 import { trackEvent } from '@/lib/analytics';
 import { BlockItem } from '@/config/types';
 import { toAbsoluteUrl } from '@/lib/helpers';
+import { OpenInV0IconButton } from './open-in-v0-icon-button';
+import { CliCodeCopyButton } from './cli-code-copy-button';
 
 type ThemeType = 'dark' | 'light' | '';
+
+type ResponsiveMode = 'desktop' | 'tablet' | 'mobile';
 
 type PreviewPanelContext = {
   block: BlockItem;
@@ -37,6 +44,10 @@ type PreviewPanelContext = {
   setRtl: React.Dispatch<React.SetStateAction<boolean>>;
   reloadKey: number;
   reloadPreview: () => void;
+  responsiveMode: ResponsiveMode;
+  setResponsiveMode: React.Dispatch<React.SetStateAction<ResponsiveMode>>;
+  panelWidth: number;
+  setPanelWidth: React.Dispatch<React.SetStateAction<number>>;
 };
 
 const PreviewPanelContext = React.createContext<PreviewPanelContext | null>(null);
@@ -62,9 +73,23 @@ function PreviewPanelProvider({
   const [theme, setTheme] = useState<ThemeType>('');
   const [rtl, setRtl] = useState(false);
   const [reloadKey, setReloadKey] = useState(0);
+  const [responsiveMode, setResponsiveMode] = useState<ResponsiveMode>('desktop');
+  const [panelWidth, setPanelWidth] = useState(1024);
+
   const reloadPreview = () => {
     setReloadKey((prev) => prev + 1);
   };
+
+  // Auto-detect responsive mode based on panel width
+  useEffect(() => {
+    if (panelWidth >= 1024) {
+      setResponsiveMode('desktop');
+    } else if (panelWidth >= 768) {
+      setResponsiveMode('tablet');
+    } else {
+      setResponsiveMode('mobile');
+    }
+  }, [panelWidth]);
 
   return (
     <PreviewPanelContext.Provider
@@ -79,6 +104,10 @@ function PreviewPanelProvider({
         setRtl,
         reloadKey,
         reloadPreview,
+        responsiveMode,
+        setResponsiveMode,
+        panelWidth,
+        setPanelWidth,
       }}
     >
       <div data-view={view} className="flex min-w-0 flex-col items-stretch w-full">
@@ -89,15 +118,89 @@ function PreviewPanelProvider({
 }
 
 function PreviewPanelToolbar() {
+  const { block } = usePreviewPanel();
   return (
     <div className="flex items-center gap-2.5 justify-between mb-3">
       <div className="flex items-center grow gap-2">
         <PreviewPanelToolbarTabs />
       </div>
-      <div className={cn('flex items-center justify-between gap-2')}>
+      <div className={cn('flex items-center justify-between gap-1.5')}>
+        <PreviewPanelResponsive />
         <Separator orientation="vertical" className="mx-2 hidden h-5 xl:flex" />
+        {block.name && <CliCodeCopyButton name={block.name} />}
+        <Separator orientation="vertical" className="mx-2 hidden h-5 lg:flex" />
         <PreviewPanelToolbarButtons />
       </div>
+    </div>
+  );
+}
+
+function PreviewPanelResponsive() {
+  const { responsiveMode, setResponsiveMode, resizablePanelRef } = usePreviewPanel();
+
+  const handleResponsiveModeChange = (mode: ResponsiveMode) => {
+    setResponsiveMode(mode);
+    
+    // Resize the panel to match the selected mode
+    if (resizablePanelRef.current) {
+      let targetSize: number;
+      switch (mode) {
+        case 'mobile':
+          targetSize = 25; // ~25% of available width for mobile view
+          break;
+        case 'tablet':
+          targetSize = 50; // ~50% of available width for tablet view
+          break;
+        case 'desktop':
+        default:
+          targetSize = 100; // Full width for desktop view
+          break;
+      }
+      resizablePanelRef.current.resize(targetSize);
+    }
+
+    trackEvent({
+      name: `site_preview_responsive_${mode}_click`,
+      properties: {
+        category: 'engagement',
+        label: `Preview Responsive ${mode.charAt(0).toUpperCase() + mode.slice(1)} Click`,
+        mode,
+      },
+    });
+  };
+
+  return (
+    <div className="h-7.5 px-1 hidden lg:flex border border-border rounded-md items-center gap-1.5">
+      <Button
+        mode="icon"
+        size="sm"
+        variant="ghost"
+        className={cn("size-6 rounded-md p-0", responsiveMode === 'desktop' && 'bg-accent')}
+        title="Desktop view"
+        onClick={() => handleResponsiveModeChange('desktop')}
+      >
+        <Monitor />
+      </Button>
+      <Button
+        mode="icon"
+        size="sm"
+        variant="ghost"
+        className={cn("size-6 rounded-md p-0", responsiveMode === 'tablet' && 'bg-accent')}
+        title="Tablet view"
+        onClick={() => handleResponsiveModeChange('tablet')}
+      >
+        <Tablet />
+      </Button>
+      <Button
+        mode="icon"
+        size="sm"
+        variant="ghost"
+        className={cn("size-6 rounded-md p-0", responsiveMode === 'mobile' && 'bg-accent')}
+        title="Mobile view"
+        onClick={() => handleResponsiveModeChange('mobile')}
+      >
+        <Smartphone />
+      </Button>
     </div>
   );
 }
@@ -164,10 +267,9 @@ function ThemeToggleButton() {
       mode="icon"
       size="sm"
       variant="outline"
-      className="h-8 w-8 rounded-md p-0 text-muted-foreground"
       onClick={toggleTheme}
     >
-      {activeTheme === 'dark' ? <Sun className="h-3.5 w-3.5" /> : <Moon className="h-3.5 w-3.5" />}
+      {activeTheme === 'dark' ? <Sun/> : <Moon/>}
     </Button>
   );
 }
@@ -193,10 +295,7 @@ function RtlToggleButton() {
       mode="icon"
       size="sm"
       variant="outline"
-      className={cn(
-        'h-8 w-8 rounded-md p-0 text-muted-foreground',
-        'inline-flex items-center leading-none text-[0.65rem]',
-      )}
+      className="text-muted-foreground text-[0.6rem]"
       onClick={toggleRtl}
     >
       {rtl ? 'LTR' : 'RTL'}
@@ -206,8 +305,6 @@ function RtlToggleButton() {
 
 function PreviewPanelToolbarButtons() {
   const { block, reloadPreview } = usePreviewPanel();
-  const btnClass = 'h-8 w-8 rounded-md p-0 text-muted-foreground';
-  const btnIconClass = 'h-3.5 w-3.5';
 
   const handleOpenClick = () => {
     trackEvent({
@@ -232,24 +329,30 @@ function PreviewPanelToolbarButtons() {
   };
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2">      
       <ThemeToggleButton />
+      
       <RtlToggleButton />
-      <Button mode="icon" size="sm" variant="outline" className={btnClass} asChild>
-        <Link href={`${block.path}`} target="_blank" onClick={handleOpenClick}>
-          <ArrowUpRight className={btnIconClass} />
-        </Link>
+
+      {block.name && <OpenInV0IconButton name={block.name} className=""/>}
+
+      <Button mode="icon" size="sm" variant="outline" title="Reload Preview" onClick={handleReloadClick}>
+        <RefreshCcw />
       </Button>
-      <Button mode="icon" size="sm" variant="outline" className={btnClass} onClick={handleReloadClick}>
-        <RefreshCcw className={btnIconClass} />
+
+      <Button mode="icon" size="sm" variant="outline" asChild title="Open in New Tab">
+        <Link href={`/preview/${block.path}`} target="_blank" onClick={handleOpenClick}>
+          <ArrowUpRight />
+        </Link>
       </Button>
     </div>
   );
 }
 
 function PreviewPanelView() {
-  const { theme, rtl, view, resizablePanelRef, reloadKey, block } = usePreviewPanel();
+  const { theme, rtl, view, resizablePanelRef, reloadKey, block, setPanelWidth } = usePreviewPanel();
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
+  const panelContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const iframe = iframeRef.current;
@@ -273,6 +376,25 @@ function PreviewPanelView() {
     }
   }, [block.path, reloadKey]);
 
+  // Track panel width changes using ResizeObserver
+  useEffect(() => {
+    const panelContainer = panelContainerRef.current;
+    if (!panelContainer) return;
+
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const width = entry.contentRect.width;
+        setPanelWidth(width);
+      }
+    });
+
+    resizeObserver.observe(panelContainer);
+
+    return () => {
+      resizeObserver.unobserve(panelContainer);
+    };
+  }, [setPanelWidth]);
+
   const [loading, setLoading] = useState(true);
 
   const handleLoad = () => {
@@ -280,7 +402,10 @@ function PreviewPanelView() {
   };
 
   return (
-    <div className={cn('-mr-3', view !== 'preview' && 'hidden', theme === 'dark' && 'dark')}>
+    <div className={cn('relative -mr-3', view !== 'preview' && 'hidden', theme === 'dark' && 'dark')}>
+      <div className="absolute inset-0 rounded-xl right-4 bg-muted/30 overflow-hidden">
+        <div className="absolute inset-0 rounded-xl [background-image:radial-gradient(#d4d4d4_1px,transparent_1px)] [background-size:16px_16px] dark:[background-image:radial-gradient(#404040_1px,transparent_1px)]"></div>
+      </div>
       <ResizablePanelGroup direction="horizontal" className="relative z-10 h-full">
         <ResizablePanel
           ref={resizablePanelRef}
@@ -288,25 +413,20 @@ function PreviewPanelView() {
           defaultSize={100}
           minSize={30}
         >
-          <div className="flex items-center bg-accent/50 dark:bg-accent/90 rounded-t-xl px-3 py-3.5">
-            <div className="flex items-center gap-2">
-              {[...Array(3)].map((_, i) => (
-                <div key={i} className="size-2.5 shrink-0 bg-muted-foreground/15 rounded-full"></div>
-              ))}
-            </div>
+          <div ref={panelContainerRef} className="h-full w-full">
+            <iframe
+              ref={iframeRef}
+              onLoad={handleLoad}
+              src={toAbsoluteUrl('/preview/' + block.path) || '#'}
+              className="relative w-full h-(--height) overflow-auto bg-background"
+            />
+            {loading && (
+              <div className="z-[1] absolute top-1/2 start-1/2 -translate-x-1/2 -translate-y-1/2 h-full min-h-screen text-xs flex items-center justify-center gap-1.5 text-muted-foreground">
+                <LoaderCircleIcon className="size-4 animate-spin" />
+                Loading...
+              </div>
+            )}
           </div>
-          <iframe
-            ref={iframeRef}
-            onLoad={handleLoad}
-            src={toAbsoluteUrl('/preview/' + block.path) || '#'}
-            className="relative w-full h-(--height) overflow-auto bg-background"
-          />
-          {loading && (
-            <div className="z-[1] absolute top-1/2 start-1/2 -translate-x-1/2 -translate-y-1/2 h-full min-h-screen text-xs flex items-center justify-center gap-1.5 text-muted-foreground">
-              <LoaderCircleIcon className="size-4 animate-spin" />
-              Loading...
-            </div>
-          )}
         </ResizablePanel>
         <ResizableHandle className="relative hidden w-3 bg-transparent p-0 after:absolute after:right-0 after:top-1/2 after:h-8 after:w-[6px] after:-translate-y-1/2 after:translate-x-[-1px] after:rounded-full after:bg-border after:transition-all hover:after:h-10 md:block" />
         <ResizablePanel defaultSize={0} minSize={0} />
@@ -333,7 +453,7 @@ function PreviewPanelCode() {
           <div className="flex items-center justify-between bg-card px-5 h-12 text-sm border-b border-border">
             <div className="inline-flex gap-2.5 items-center">
               <File className="size-4 opacity-60" />
-              {block.path}
+              {block.relativePath}
             </div>
             <Button
               mode="icon"

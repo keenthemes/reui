@@ -6,10 +6,11 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from '@/registry/default/ui/breadcrumb';
-import BlocksNavToggle from '@/components/blocks-nav-toggle';
+import { BlocksNavToggle } from '@/components/blocks-nav-toggle';
 import { BreadcrumbPage } from '@/registry/default/ui/base-breadcrumb';
 import { BlockPreview } from '@/components/block-preview';
 import { getBlocks, getPrimaryCategory, getSecondaryCategory, getTertiaryCategory } from '@/lib/blocks';
+import { BlocksNavMobileToggle } from '@/components/blocks-nav-mobile-toggle';
 
 interface PageProps {
   params: Promise<{ slug?: string[] }>; 
@@ -26,9 +27,10 @@ export default async function Page({ params }: PageProps) {
   const blocks = await getBlocks(primaryCategory, secondaryCategory, tertiaryCategory);  
 
   return (
-    <div className="space-y-4">
-      <div className="flex items-center gap-1.5">
-        <BlocksNavToggle />
+    <div className="container-fixed space-y-4 px-0 lg:px-6 transition-all duration-300">
+      <div className="flex items-center gap-1.5 min-h-8">
+        <BlocksNavMobileToggle />
+        <BlocksNavToggle />     
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
@@ -72,7 +74,7 @@ export default async function Page({ params }: PageProps) {
           ))
         ) : (
           <div className="text-center py-8">
-            <p className="text-muted-foreground">No blocks found in this category.</p>
+            <p className="text-sm text-muted-foreground">No blocks found in this category.</p>
           </div>
         )}
       </div>

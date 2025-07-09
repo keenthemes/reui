@@ -103,7 +103,7 @@ export default function BlocksNav() {
 
   return (
     <div className="w-full grow px-1 py-2.5">
-      <ScrollArea className="h-[calc(100vh-10rem)] px-4">
+      <ScrollArea className="lg:h-[calc(100vh-10rem)] px-4">
         {/* Render all secondary categories of the active primary category */}
         {currentCategory?.sub && currentCategory.sub.length > 0 && (
           <div className="space-y-5">

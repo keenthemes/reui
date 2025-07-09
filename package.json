@@ -3,7 +3,7 @@
   "version": "1.0.17",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3333",
+    "dev": "next dev --turbopack -p 3333",
     "build": "next build",
     "build:content": "contentlayer2 build",
     "start": "next start",

@@ -13,9 +13,10 @@ const CliCopyButton = ({ componentSource, className }: { componentSource: string
       <Button
         variant="ghost"
         mode="icon"
-        className="text-muted-foreground hover:text-foreground transition-none hover:bg-transparent disabled:opacity-100"
+        className="size-7.5 text-muted-foreground hover:text-foreground transition-none hover:bg-transparent disabled:opacity-100"
         onClick={() => copy(componentSource || '')}
         aria-label={copied ? 'Copied' : 'Copy component source'}
+        title="Copy component source"
         disabled={copied}
       >
         {copied ? <Check className="size-4 text-white" /> : <Copy className="size-4" />}
@@ -24,4 +25,4 @@ const CliCopyButton = ({ componentSource, className }: { componentSource: string
   );
 };
 
-export default CliCopyButton;
+export { CliCopyButton };

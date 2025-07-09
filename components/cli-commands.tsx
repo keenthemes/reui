@@ -2,7 +2,7 @@
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/registry/default/ui/tabs';
 import { useConfig } from '@/hooks/use-config';
-import CliCopyButton from '@/components/cli-copy-button';
+import { CliCopyButton } from '@/components/cli-copy-button';
 
 export default function CliCommands({ name }: { name: string }) {
   const [config, setConfig] = useConfig();

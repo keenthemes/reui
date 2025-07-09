@@ -66,18 +66,7 @@ export function SiteHeader() {
               className="h-8 px-2.5"
               repoUrl="https://github.com/keenthemes/reui"
             />
-            <Button variant="ghost" mode="icon" size="sm" className="size-8 text-foreground hidden">
-              <Link
-                href={siteConfig.links.github}
-                target="_blank"
-                rel="noreferrer"
-                onClick={() => handleSocialClick('github')}
-              >
-                <Icons.github className="h-4! w-4!" />
-                <span className="sr-only">GitHub</span>
-              </Link>
-            </Button>
-            <Button variant="ghost" mode="icon" size="sm" className="size-8 text-foreground ">
+            <Button variant="ghost" mode="icon" size="sm" className="ms-1.5 size-8 text-foreground ">
               <Link
                 href={siteConfig.links.twitter}
                 target="_blank"

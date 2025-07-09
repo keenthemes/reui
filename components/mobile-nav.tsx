@@ -29,7 +29,7 @@ export function MobileNav() {
     <div className="flex md:hidden items-center gap-1.5">
       <Drawer open={open} onOpenChange={onOpenChange}>
         <DrawerTrigger asChild>
-          <Button variant="ghost" className="size-8 p-0 -ms-1.5">
+          <Button variant="ghost" className="size-8 p-0 -ms-2.5">
             <Menu className="size-4" />
             <span className="sr-only">Toggle Menu</span>
           </Button>

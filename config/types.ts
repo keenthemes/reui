@@ -63,6 +63,7 @@ export interface BlockTertiaryCategory {
 export interface BlockItem {
   slug: string;
   path?: string;
+  relativePath?: string;
   published: boolean;
   new?: boolean;
   previewHeight?: number;
