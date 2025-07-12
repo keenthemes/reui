@@ -13,4 +13,4 @@ export default function Component() {
       <Label htmlFor={id}>Accept terms and conditions</Label>
     </div>
   );
-} 
+}

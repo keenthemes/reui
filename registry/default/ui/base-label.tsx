@@ -19,11 +19,7 @@ const labelVariants = cva(
   },
 );
 
-function Label({
-  className,
-  variant,
-  ...props
-}: React.ComponentProps<'label'> & VariantProps<typeof labelVariants>) {
+function Label({ className, variant, ...props }: React.ComponentProps<'label'> & VariantProps<typeof labelVariants>) {
   return <label data-slot="label" className={cn(labelVariants({ variant }), className)} {...props} />;
 }
 

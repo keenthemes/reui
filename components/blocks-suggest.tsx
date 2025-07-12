@@ -1,7 +1,7 @@
-import { siteConfig } from '@/config/site';
+import Link from 'next/link';
 import { Button } from '@/registry/default/ui/button';
 import { Lightbulb } from 'lucide-react';
-import Link from 'next/link';
+import { siteConfig } from '@/config/site';
 
 export default function BlocksSuggestion() {
   return (

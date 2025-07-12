@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Checkbox as BaseCheckbox } from '@base-ui-components/react/checkbox';
 import { cn } from '@/registry/default/lib/utils';
+import { Checkbox as BaseCheckbox } from '@base-ui-components/react/checkbox';
 import { cva, VariantProps } from 'class-variance-authority';
 import { Check, Minus } from 'lucide-react';
 
@@ -27,18 +27,13 @@ const checkboxVariants = cva(
   },
 );
 
-
 function Checkbox({
   className,
   size,
   ...props
 }: React.ComponentProps<typeof BaseCheckbox.Root> & VariantProps<typeof checkboxVariants>) {
   return (
-    <BaseCheckbox.Root 
-      data-slot="checkbox" 
-      className={cn(checkboxVariants({ size }), className)} 
-      {...props}
-    >
+    <BaseCheckbox.Root data-slot="checkbox" className={cn(checkboxVariants({ size }), className)} {...props}>
       <BaseCheckbox.Indicator className={cn('flex items-center justify-center text-current')}>
         <Check className="data-[indeterminate]:hidden" />
         <Minus className="hidden data-[indeterminate]:block" />
@@ -47,4 +42,4 @@ function Checkbox({
   );
 }
 
-export { Checkbox, checkboxVariants }; 
+export { Checkbox, checkboxVariants };

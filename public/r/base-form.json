@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "base-form",
+  "type": "registry:ui",
+  "dependencies": [
+    "@base-ui-components/react",
+    "clsx",
+    "tailwind-merge"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/base-form.tsx",
+      "content": "import { cn } from '@/registry/default/lib/utils';\nimport { Form as BaseForm } from '@base-ui-components/react/form';\n\nfunction Form({ className, ...props }: React.ComponentProps<typeof BaseForm>) {\n  return <BaseForm data-slot=\"form\" className={cn('flex w-full flex-col gap-4', className)} {...props} />;\n}\n\nexport { Form };\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/default/lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from 'clsx';\nimport { twMerge } from 'tailwind-merge';\n\n/**\n * Merges Tailwind class names, resolving any conflicts.\n *\n * @param inputs - An array of class names to merge.\n * @returns A string of merged and optimized class names.\n */\nexport function cn(...inputs: ClassValue[]): string {\n  return twMerge(clsx(inputs));\n}\n",
+      "type": "registry:lib",
+      "target": ""
+    }
+  ]
+}

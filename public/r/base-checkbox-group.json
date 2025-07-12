@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "base-checkbox-group",
+  "type": "registry:ui",
+  "dependencies": [
+    "@base-ui-components/react",
+    "clsx",
+    "tailwind-merge"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/base-checkbox-group.tsx",
+      "content": "import { cn } from '@/registry/default/lib/utils';\nimport { CheckboxGroup as BaseCheckboxGroup } from '@base-ui-components/react/checkbox-group';\n\nfunction CheckboxGroup({ className, ...props }: React.ComponentProps<typeof BaseCheckboxGroup>) {\n  return (\n    <BaseCheckboxGroup\n      data-slot=\"checkbox-group\"\n      className={cn('flex flex-col items-start gap-1.5', className)}\n      {...props}\n    />\n  );\n}\n\nexport { CheckboxGroup };\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/default/lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from 'clsx';\nimport { twMerge } from 'tailwind-merge';\n\n/**\n * Merges Tailwind class names, resolving any conflicts.\n *\n * @param inputs - An array of class names to merge.\n * @returns A string of merged and optimized class names.\n */\nexport function cn(...inputs: ClassValue[]): string {\n  return twMerge(clsx(inputs));\n}\n",
+      "type": "registry:lib",
+      "target": ""
+    }
+  ]
+}

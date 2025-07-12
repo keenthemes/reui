@@ -5,92 +5,7 @@ const REGISTRY = {
   $schema: 'https://ui.shadcn.com/schema/registry.json',
   name: 'reui',
   homepage: 'https://reui.io',
-  items: [
-    {
-      name: 'accordion',
-      type: 'registry:ui',
-      cssVars: {
-        theme: {
-          'animate-accordion-down': 'accordion-down 0.2s ease-out',
-          'animate-accordion-up': 'accordion-up 0.2s ease-out',
-        },
-      },
-      css: {
-        '@keyframes accordion-down': {
-          from: {
-            height: '0',
-          },
-          to: {
-            height: 'var(--radix-accordion-content-height)',
-          },
-        },
-        '@keyframes accordion-up': {
-          from: {
-            height: 'var(--radix-accordion-content-height)',
-          },
-          to: {
-            height: '0',
-          },
-        },
-      },
-    },
-    {
-      name: 'accordion-menu',
-      type: 'registry:ui',
-      cssVars: {
-        theme: {
-          'animate-accordion-down': 'accordion-down 0.2s ease-out',
-          'animate-accordion-up': 'accordion-up 0.2s ease-out',
-        },
-      },
-      css: {
-        '@keyframes accordion-down': {
-          from: {
-            height: '0',
-          },
-          to: {
-            height: 'var(--radix-accordion-content-height)',
-          },
-        },
-        '@keyframes accordion-up': {
-          from: {
-            height: 'var(--radix-accordion-content-height)',
-          },
-          to: {
-            height: '0',
-          },
-        },
-      },
-    },
-    {
-      name: 'collapsible',
-      type: 'registry:ui',
-      cssVars: {
-        theme: {
-          'animate-collapsible-down': 'collapsible-down 0.2s ease-out',
-          'animate-collapsible-up': 'collapsible-up 0.2s ease-out',
-        },
-      },
-      css: {
-        '@keyframes collapsible-down': {
-          from: {
-            height: '0',
-          },
-          to: {
-            height: 'var(--radix-collapsible-content-height)',
-          },
-        },
-        '@keyframes collapsible-up': {
-          from: {
-            height: 'var(--radix-collapsible-content-height)',
-          },
-          to: {
-            height: '0',
-          },
-        },
-      },
-    },
-  ],
+  items: [],
 };
 
 // List of dependencies to skip from being added to the dependencies array
@@ -98,8 +13,10 @@ const SKIP_DEPENDENCIES = ['react', 'react-dom', 'next', 'lucide-react', 'class-
 
 const REGISTRY_ROOT = path.resolve(process.cwd(), 'registry/default');
 const OUTPUT_FILE = path.resolve(process.cwd(), 'registry.json');
+const OUTPUT_PUBLIC_FILE = path.resolve(process.cwd(), 'public/r/registry.json');
 
 const FOLDER_TYPE_MAP = {
+  blocks: 'registry:block',
   components: 'registry:component',
   hooks: 'registry:hook',
   lib: 'registry:lib',
@@ -107,8 +24,8 @@ const FOLDER_TYPE_MAP = {
 };
 
 const DEPENDENCIES_VERSION_MAP = {
-  cmdk: 'cmdk@1.0.0',
-  'react-resizable-panels': 'react-resizable-panels@2.1.9',
+  cmdk: 'cmdk@1.1.1',
+  recharts: 'recharts@2.15.1',
 };
 
 const REGISTRY_DEPENDENCIES = {
@@ -176,11 +93,12 @@ async function buildRegistry() {
 
   for (const [folder, type] of Object.entries(FOLDER_TYPE_MAP)) {
     const absFolder = path.join(REGISTRY_ROOT, folder);
+    console.log('type:', type);
     try {
       const files = await getFilesRecursive(absFolder);
       for (const file of files) {
         const parts = file.split(path.sep).map((p) => p.replace(/\.[^/.]+$/, ''));
-        const name = parts.join('-');
+        const name = type === 'registry:block' ? parts[parts.length - 1] : parts.join('-');
         const relPath = `registry/default/${folder}/${file.replace(/\\/g, '/')}`;
         // Read file content and extract 3rd-party deps
 
@@ -263,18 +181,17 @@ async function buildRegistry() {
     return item;
   });
   // Write merged registry
-  await fs.writeFile(
-    OUTPUT_FILE,
-    JSON.stringify(
-      {
-        ...REGISTRY,
-        items: mergedItems,
-      },
-      null,
-      2,
-    ),
-  );
+  const registryData = {
+    ...REGISTRY,
+    items: mergedItems,
+  };
+
+  await fs.writeFile(OUTPUT_FILE, JSON.stringify(registryData, null, 2));
   console.log(`Registry written to ${OUTPUT_FILE}`);
+
+  // Also write to public directory
+  await fs.writeFile(OUTPUT_PUBLIC_FILE, JSON.stringify(registryData, null, 2));
+  console.log(`Registry written to ${OUTPUT_PUBLIC_FILE}`);
 }
 
 buildRegistry();

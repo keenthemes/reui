@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "base-breadcrumb",
+  "type": "registry:ui",
+  "dependencies": [
+    "@base-ui-components/react",
+    "clsx",
+    "tailwind-merge",
+    "lucide-react"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/base-breadcrumb.tsx",
+      "content": "import * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport { mergeProps } from '@base-ui-components/react/merge-props';\nimport { useRender } from '@base-ui-components/react/use-render';\nimport { ChevronRight, MoreHorizontal } from 'lucide-react';\n\nexport interface BreadcrumbLinkProps extends useRender.ComponentProps<'a'> {\n  asChild?: boolean;\n}\n\nfunction Breadcrumb(props: React.ComponentProps<'nav'>) {\n  return <nav data-slot=\"breadcrumb\" aria-label=\"breadcrumb\" {...props} />;\n}\n\nfunction BreadcrumbList({ className, ...props }: React.ComponentProps<'ol'>) {\n  return (\n    <ol\n      data-slot=\"breadcrumb-list\"\n      className={cn('flex flex-wrap items-center gap-1.5 break-words text-sm text-muted-foreground', className)}\n      {...props}\n    />\n  );\n}\n\nfunction BreadcrumbItem({ className, ...props }: React.ComponentProps<'li'>) {\n  return <li data-slot=\"breadcrumb-item\" className={cn('inline-flex items-center gap-1.5', className)} {...props} />;\n}\n\nfunction BreadcrumbLink({ render, asChild = false, children, className, ...props }: BreadcrumbLinkProps) {\n  const defaultProps = {\n    'data-slot': 'breadcrumb-link',\n    className: cn('transition-colors hover:text-foreground', className),\n  };\n\n  // Determine render element based on asChild prop\n  const renderElement =\n    asChild && React.isValidElement(children)\n      ? (children as React.ReactElement<Record<string, unknown>, string | React.JSXElementConstructor<unknown>>)\n      : render || <a />;\n\n  // When using asChild, children becomes the element props, otherwise use children normally\n  const finalProps =\n    asChild && React.isValidElement(children)\n      ? mergeProps(defaultProps, props)\n      : mergeProps(defaultProps, { ...props, children });\n\n  const element = useRender({\n    render: renderElement,\n    props: finalProps,\n  });\n\n  return element;\n}\n\nfunction BreadcrumbPage({ className, ...props }: React.ComponentProps<'span'>) {\n  return (\n    <span\n      data-slot=\"breadcrumb-page\"\n      role=\"link\"\n      aria-disabled=\"true\"\n      aria-current=\"page\"\n      className={cn('font-normal text-foreground', className)}\n      {...props}\n    />\n  );\n}\n\nfunction BreadcrumbSeparator({ children, className, ...props }: React.ComponentProps<'li'>) {\n  return (\n    <li\n      data-slot=\"breadcrumb-separator\"\n      role=\"presentation\"\n      aria-hidden=\"true\"\n      className={cn('[&>svg]:w-3.5 [&>svg]:h-3.5', className)}\n      {...props}\n    >\n      {children ?? <ChevronRight className=\"rtl:rotate-180\" />}\n    </li>\n  );\n}\n\nfunction BreadcrumbEllipsis({ children, className, ...props }: React.ComponentProps<'span'>) {\n  const content = children ?? (\n    <>\n      <MoreHorizontal className=\"h-4 w-4\" />\n      <span className=\"sr-only\">More</span>\n    </>\n  );\n\n  return (\n    <span\n      data-slot=\"breadcrumb-ellipsis\"\n      role=\"presentation\"\n      aria-hidden=\"true\"\n      className={cn('flex h-9 w-9 items-center justify-center', className)}\n      {...props}\n    >\n      {content}\n    </span>\n  );\n}\n\nexport {\n  Breadcrumb,\n  BreadcrumbEllipsis,\n  BreadcrumbItem,\n  BreadcrumbLink,\n  BreadcrumbList,\n  BreadcrumbPage,\n  BreadcrumbSeparator,\n};\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/default/lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from 'clsx';\nimport { twMerge } from 'tailwind-merge';\n\n/**\n * Merges Tailwind class names, resolving any conflicts.\n *\n * @param inputs - An array of class names to merge.\n * @returns A string of merged and optimized class names.\n */\nexport function cn(...inputs: ClassValue[]): string {\n  return twMerge(clsx(inputs));\n}\n",
+      "type": "registry:lib",
+      "target": ""
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+---
+title: Kanban
+description: A drag-and-drop kanban component designed for seamless item organization across customizable columns.
+component: true
+---
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="kanban" />
+</TabsContent>
+
+<TabsContent value="manual">    
+<Steps>
+
+### Install ReUI
+
+Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+
+### Install dependencies
+
+```bash
+npm i @dnd-kit/core @dnd-kit/sortable @dnd-kit/modifiers @dnd-kit/utilities
+```
+
+### Add component
+
+Copy and paste the following code into your project’s `components/ui/kanban.tsx` file.
+
+<ComponentPreview name="kanban" />
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+### Default
+
+<ExamplePreview path="kanban/default" />
+
+### Overlay
+
+<ExamplePreview path="kanban/overlay" />

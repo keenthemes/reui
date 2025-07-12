@@ -11,9 +11,9 @@ export default function Component() {
 
   return (
     <div className="flex items-center space-x-2">
-      <Checkbox 
-        id={id} 
-        checked={checked} 
+      <Checkbox
+        id={id}
+        checked={checked}
         indeterminate={indeterminate}
         onCheckedChange={(newChecked) => {
           setChecked(newChecked as boolean);
@@ -23,4 +23,4 @@ export default function Component() {
       <Label htmlFor={id}>Indeterminate state</Label>
     </div>
   );
-} 
+}

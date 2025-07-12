@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 import { cn } from '@/registry/default/lib/utils';
+import { Accordion } from '@base-ui-components/react/accordion';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { ChevronDown, Plus } from 'lucide-react';
-import { Accordion } from '@base-ui-components/react/accordion';
 
 // Variants
 const accordionRootVariants = cva('', {
@@ -33,21 +33,18 @@ const accordionItemVariants = cva('', {
   },
 });
 
-const accordionHeaderVariants = cva(
-  'flex',
-  {
-    variants: {
-      variant: {
-        default: '',
-        outline: '',
-        solid: '',
-      },
-    },
-    defaultVariants: {
-      variant: 'default',
+const accordionHeaderVariants = cva('flex', {
+  variants: {
+    variant: {
+      default: '',
+      outline: '',
+      solid: '',
     },
   },
-);
+  defaultVariants: {
+    variant: 'default',
+  },
+});
 
 const accordionTriggerVariants = cva(
   'flex flex-1 items-center justify-between py-4 gap-2.5 text-foreground font-medium transition-all [&[data-panel-open]>svg]:rotate-180 cursor-pointer',
@@ -99,8 +96,9 @@ const AccordionContext = React.createContext<AccordionContextType>({
 });
 
 // Base UI Accordion Root
-interface AccordionRootProps extends React.ComponentProps<typeof Accordion.Root>,
-  VariantProps<typeof accordionRootVariants> {
+interface AccordionRootProps
+  extends React.ComponentProps<typeof Accordion.Root>,
+    VariantProps<typeof accordionRootVariants> {
   indicator?: 'arrow' | 'plus' | 'none';
 }
 
@@ -109,11 +107,7 @@ function AccordionRoot(props: AccordionRootProps) {
 
   return (
     <AccordionContext.Provider value={{ variant: variant || 'default', indicator }}>
-      <Accordion.Root
-        data-slot="accordion"
-        className={cn(accordionRootVariants({ variant }), className)}
-        {...rest}
-      >
+      <Accordion.Root data-slot="accordion" className={cn(accordionRootVariants({ variant }), className)} {...rest}>
         {children}
       </Accordion.Root>
     </AccordionContext.Provider>
@@ -126,11 +120,7 @@ function AccordionItem(props: React.ComponentProps<typeof Accordion.Item>) {
   const { variant } = React.useContext(AccordionContext);
 
   return (
-    <Accordion.Item
-      data-slot="accordion-item"
-      className={cn(accordionItemVariants({ variant }), className)}
-      {...rest}
-    >
+    <Accordion.Item data-slot="accordion-item" className={cn(accordionItemVariants({ variant }), className)} {...rest}>
       {children}
     </Accordion.Item>
   );
@@ -189,10 +179,4 @@ function AccordionPanel(props: React.ComponentProps<typeof Accordion.Panel>) {
 }
 
 // Exports with proper naming to match Base UI pattern
-export { 
-  AccordionRoot as Accordion,
-  AccordionItem, 
-  AccordionHeader,
-  AccordionTrigger, 
-  AccordionPanel 
-};
+export { AccordionRoot as Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionPanel };

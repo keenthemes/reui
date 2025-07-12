@@ -7,11 +7,11 @@ import { allDocs } from 'contentlayer/generated';
 import { ExternalLink } from 'lucide-react';
 import Balancer from 'react-wrap-balancer';
 import { siteConfig } from '@/config/site';
+import { resolveCode, resolveComponent } from '@/lib/docs';
 import { absoluteUrl } from '@/lib/helpers';
 import { getTableOfContents } from '@/lib/toc';
 import { Mdx } from '@/components/mdx-components';
 import { DocsPager } from '@/components/pager';
-import { resolveCode, resolveComponent } from '@/lib/docs';
 import { DashboardTableOfContents } from '@/components/toc';
 
 interface DocPageProps {
@@ -71,6 +71,7 @@ export default async function DocPage({ params }: DocPageProps) {
   const doc = await getDocFromParams({ params });
 
   if (!doc) {
+    console.log('doc not found', params);
     notFound();
   }
 

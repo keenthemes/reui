@@ -1,4 +1,10 @@
-import { Accordion, AccordionPanel, AccordionItem, AccordionHeader, AccordionTrigger } from '@/registry/default/ui/base-accordion';
+import {
+  Accordion,
+  AccordionHeader,
+  AccordionItem,
+  AccordionPanel,
+  AccordionTrigger,
+} from '@/registry/default/ui/base-accordion';
 
 export default function Component() {
   return (

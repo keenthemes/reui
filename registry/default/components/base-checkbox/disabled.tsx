@@ -13,4 +13,4 @@ export default function Component() {
       <Label htmlFor={id}>Disabled checkbox</Label>
     </div>
   );
-} 
+}

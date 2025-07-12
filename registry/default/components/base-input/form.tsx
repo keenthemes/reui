@@ -1,14 +1,14 @@
 'use client';
 
+import { useState } from 'react';
 import { Alert, AlertIcon, AlertTitle } from '@/registry/default/ui/alert';
 import { Button } from '@/registry/default/ui/base-button';
+import { Field, FieldDescription, FieldError, FieldLabel } from '@/registry/default/ui/base-field';
 import { Form } from '@/registry/default/ui/base-form';
-import { Field, FieldLabel, FieldDescription, FieldError } from '@/registry/default/ui/base-field';
 import { Input } from '@/registry/default/ui/base-input';
 import { RiCheckboxCircleFill } from '@remixicon/react';
 import { toast } from 'sonner';
 import { z } from 'zod';
-import { useState } from 'react';
 
 const FormSchema = z.object({
   email: z.string().min(1, 'Email is required').email({ message: 'Please enter a valid email address.' }),
@@ -19,10 +19,10 @@ export default function InputDemo() {
 
   async function submitForm(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-  
+
     const formData = new FormData(event.currentTarget);
     const result = FormSchema.safeParse(Object.fromEntries(formData as never));
-  
+
     if (!result.success) {
       return {
         errors: result.error.flatten().fieldErrors,
@@ -38,7 +38,7 @@ export default function InputDemo() {
         <AlertTitle>Your form has been successfully submitted</AlertTitle>
       </Alert>
     ));
-  
+
     return {
       errors: {},
     };

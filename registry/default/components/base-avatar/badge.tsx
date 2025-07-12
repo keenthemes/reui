@@ -1,5 +1,5 @@
-import { Avatar, AvatarFallback, AvatarImage, AvatarIndicator } from '@/registry/default/ui/base-avatar';
 import { Badge } from '@/registry/default/ui/badge';
+import { Avatar, AvatarFallback, AvatarImage, AvatarIndicator } from '@/registry/default/ui/base-avatar';
 
 export default function AvatarDemo() {
   return (

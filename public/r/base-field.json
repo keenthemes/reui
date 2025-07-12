@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "base-field",
+  "type": "registry:ui",
+  "dependencies": [
+    "@base-ui-components/react",
+    "clsx",
+    "tailwind-merge"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/base-field.tsx",
+      "content": "import { cn } from '@/registry/default/lib/utils';\nimport { Field as BaseField } from '@base-ui-components/react/field';\n\nfunction Field({ className, ...props }: React.ComponentProps<typeof BaseField.Root>) {\n  return <BaseField.Root data-slot=\"field\" className={cn('space-y-2', className)} {...props} />;\n}\n\nfunction FieldLabel({ className, ...props }: React.ComponentProps<typeof BaseField.Label>) {\n  return (\n    <BaseField.Label\n      data-slot=\"field-label\"\n      className={cn('text-sm font-medium text-foreground', className)}\n      {...props}\n    />\n  );\n}\n\nfunction FieldError({ className, ...props }: React.ComponentProps<typeof BaseField.Error>) {\n  return (\n    <BaseField.Error\n      data-slot=\"field-error\"\n      className={cn('-mt-0.5 text-xs font-normal text-destructive', className)}\n      {...props}\n    />\n  );\n}\n\nfunction FieldDescription({ className, ...props }: React.ComponentProps<typeof BaseField.Description>) {\n  return (\n    <BaseField.Description\n      data-slot=\"field-description\"\n      className={cn('text-sm text-muted-foreground', className)}\n      {...props}\n    />\n  );\n}\n\nfunction FieldControl({ ...props }: React.ComponentProps<typeof BaseField.Control>) {\n  return <BaseField.Control data-slot=\"field-control\" {...props} />;\n}\n\nexport { Field, FieldLabel, FieldError, FieldDescription, FieldControl };\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/default/lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from 'clsx';\nimport { twMerge } from 'tailwind-merge';\n\n/**\n * Merges Tailwind class names, resolving any conflicts.\n *\n * @param inputs - An array of class names to merge.\n * @returns A string of merged and optimized class names.\n */\nexport function cn(...inputs: ClassValue[]): string {\n  return twMerge(clsx(inputs));\n}\n",
+      "type": "registry:lib",
+      "target": ""
+    }
+  ]
+}

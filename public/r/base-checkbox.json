@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "base-checkbox",
+  "type": "registry:ui",
+  "dependencies": [
+    "@base-ui-components/react",
+    "clsx",
+    "tailwind-merge",
+    "class-variance-authority",
+    "lucide-react"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/base-checkbox.tsx",
+      "content": "import * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport { Checkbox as BaseCheckbox } from '@base-ui-components/react/checkbox';\nimport { cva, VariantProps } from 'class-variance-authority';\nimport { Check, Minus } from 'lucide-react';\n\n// Define the variants for the Checkbox using cva.\nconst checkboxVariants = cva(\n  `\n    group peer bg-background shrink-0 rounded-md border border-input ring-offset-background focus-visible:outline-none \n    focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 \n    aria-invalid:border-destructive/60 aria-invalid:ring-destructive/10 dark:aria-invalid:border-destructive dark:aria-invalid:ring-destructive/20\n    [[data-invalid=true]_&]:border-destructive/60 [[data-invalid=true]_&]:ring-destructive/10  dark:[[data-invalid=true]_&]:border-destructive dark:[[data-invalid=true]_&]:ring-destructive/20\n    data-[checked]:bg-primary data-[checked]:border-primary data-[checked]:text-primary-foreground data-[indeterminate]:bg-primary data-[indeterminate]:border-primary data-[indeterminate]:text-primary-foreground\n    `,\n  {\n    variants: {\n      size: {\n        sm: 'size-4.5 [&_svg]:size-3',\n        md: 'size-5 [&_svg]:size-3.5',\n        lg: 'size-5.5 [&_svg]:size-4',\n      },\n    },\n    defaultVariants: {\n      size: 'md',\n    },\n  },\n);\n\nfunction Checkbox({\n  className,\n  size,\n  ...props\n}: React.ComponentProps<typeof BaseCheckbox.Root> & VariantProps<typeof checkboxVariants>) {\n  return (\n    <BaseCheckbox.Root data-slot=\"checkbox\" className={cn(checkboxVariants({ size }), className)} {...props}>\n      <BaseCheckbox.Indicator className={cn('flex items-center justify-center text-current')}>\n        <Check className=\"data-[indeterminate]:hidden\" />\n        <Minus className=\"hidden data-[indeterminate]:block\" />\n      </BaseCheckbox.Indicator>\n    </BaseCheckbox.Root>\n  );\n}\n\nexport { Checkbox, checkboxVariants };\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/default/lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from 'clsx';\nimport { twMerge } from 'tailwind-merge';\n\n/**\n * Merges Tailwind class names, resolving any conflicts.\n *\n * @param inputs - An array of class names to merge.\n * @returns A string of merged and optimized class names.\n */\nexport function cn(...inputs: ClassValue[]): string {\n  return twMerge(clsx(inputs));\n}\n",
+      "type": "registry:lib",
+      "target": ""
+    }
+  ]
+}

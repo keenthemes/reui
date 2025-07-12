@@ -4,8 +4,8 @@ import * as React from 'react';
 import { cn } from '@/registry/default/lib/utils';
 import { Badge } from '@/registry/default/ui/base-badge';
 import { Button } from '@/registry/default/ui/base-button';
-import { Card, CardContent, CardHeader, CardHeading, CardToolbar } from '@/registry/default/ui/card';
 import { Collapsible, CollapsiblePanel, CollapsibleTrigger } from '@/registry/default/ui/base-collapsible';
+import { Card, CardContent, CardHeader, CardHeading, CardToolbar } from '@/registry/default/ui/card';
 import { ArrowDown, ArrowUp, ChevronDown, ChevronUp } from 'lucide-react';
 
 export default function CollapsibleDemo() {

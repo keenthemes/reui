@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "base-label",
+  "type": "registry:ui",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "class-variance-authority"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/base-label.tsx",
+      "content": "'use client';\n\nimport * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport { cva, type VariantProps } from 'class-variance-authority';\n\nconst labelVariants = cva(\n  'text-sm leading-none text-foreground peer-disabled:cursor-not-allowed peer-disabled:opacity-50',\n  {\n    variants: {\n      variant: {\n        primary: 'font-medium',\n        secondary: 'font-normal',\n      },\n    },\n    defaultVariants: {\n      variant: 'primary',\n    },\n  },\n);\n\nfunction Label({ className, variant, ...props }: React.ComponentProps<'label'> & VariantProps<typeof labelVariants>) {\n  return <label data-slot=\"label\" className={cn(labelVariants({ variant }), className)} {...props} />;\n}\n\nexport { Label };\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/default/lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from 'clsx';\nimport { twMerge } from 'tailwind-merge';\n\n/**\n * Merges Tailwind class names, resolving any conflicts.\n *\n * @param inputs - An array of class names to merge.\n * @returns A string of merged and optimized class names.\n */\nexport function cn(...inputs: ClassValue[]): string {\n  return twMerge(clsx(inputs));\n}\n",
+      "type": "registry:lib",
+      "target": ""
+    }
+  ]
+}

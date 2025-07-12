@@ -1,0 +1,41 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "base-checkbox-disabled",
+  "type": "registry:component",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "@base-ui-components/react",
+    "class-variance-authority",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/base-checkbox.json",
+    "https://reui.io/r/base-label.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/base-checkbox/disabled.tsx",
+      "content": "'use client';\n\nimport { useId } from 'react';\nimport { Checkbox } from '@/registry/default/ui/base-checkbox';\nimport { Label } from '@/registry/default/ui/base-label';\n\nexport default function Component() {\n  const id = useId();\n\n  return (\n    <div className=\"flex items-center space-x-2\">\n      <Checkbox id={id} disabled />\n      <Label htmlFor={id}>Disabled checkbox</Label>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "registry/default/ui/base-checkbox.tsx",
+      "content": "import * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport { Checkbox as BaseCheckbox } from '@base-ui-components/react/checkbox';\nimport { cva, VariantProps } from 'class-variance-authority';\nimport { Check, Minus } from 'lucide-react';\n\n// Define the variants for the Checkbox using cva.\nconst checkboxVariants = cva(\n  `\n    group peer bg-background shrink-0 rounded-md border border-input ring-offset-background focus-visible:outline-none \n    focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 \n    aria-invalid:border-destructive/60 aria-invalid:ring-destructive/10 dark:aria-invalid:border-destructive dark:aria-invalid:ring-destructive/20\n    [[data-invalid=true]_&]:border-destructive/60 [[data-invalid=true]_&]:ring-destructive/10  dark:[[data-invalid=true]_&]:border-destructive dark:[[data-invalid=true]_&]:ring-destructive/20\n    data-[checked]:bg-primary data-[checked]:border-primary data-[checked]:text-primary-foreground data-[indeterminate]:bg-primary data-[indeterminate]:border-primary data-[indeterminate]:text-primary-foreground\n    `,\n  {\n    variants: {\n      size: {\n        sm: 'size-4.5 [&_svg]:size-3',\n        md: 'size-5 [&_svg]:size-3.5',\n        lg: 'size-5.5 [&_svg]:size-4',\n      },\n    },\n    defaultVariants: {\n      size: 'md',\n    },\n  },\n);\n\nfunction Checkbox({\n  className,\n  size,\n  ...props\n}: React.ComponentProps<typeof BaseCheckbox.Root> & VariantProps<typeof checkboxVariants>) {\n  return (\n    <BaseCheckbox.Root data-slot=\"checkbox\" className={cn(checkboxVariants({ size }), className)} {...props}>\n      <BaseCheckbox.Indicator className={cn('flex items-center justify-center text-current')}>\n        <Check className=\"data-[indeterminate]:hidden\" />\n        <Minus className=\"hidden data-[indeterminate]:block\" />\n      </BaseCheckbox.Indicator>\n    </BaseCheckbox.Root>\n  );\n}\n\nexport { Checkbox, checkboxVariants };\n",
+      "type": "registry:ui",
+      "target": ""
+    },
+    {
+      "path": "registry/default/ui/base-label.tsx",
+      "content": "'use client';\n\nimport * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport { cva, type VariantProps } from 'class-variance-authority';\n\nconst labelVariants = cva(\n  'text-sm leading-none text-foreground peer-disabled:cursor-not-allowed peer-disabled:opacity-50',\n  {\n    variants: {\n      variant: {\n        primary: 'font-medium',\n        secondary: 'font-normal',\n      },\n    },\n    defaultVariants: {\n      variant: 'primary',\n    },\n  },\n);\n\nfunction Label({ className, variant, ...props }: React.ComponentProps<'label'> & VariantProps<typeof labelVariants>) {\n  return <label data-slot=\"label\" className={cn(labelVariants({ variant }), className)} {...props} />;\n}\n\nexport { Label };\n",
+      "type": "registry:ui",
+      "target": ""
+    },
+    {
+      "path": "registry/default/lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from 'clsx';\nimport { twMerge } from 'tailwind-merge';\n\n/**\n * Merges Tailwind class names, resolving any conflicts.\n *\n * @param inputs - An array of class names to merge.\n * @returns A string of merged and optimized class names.\n */\nexport function cn(...inputs: ClassValue[]): string {\n  return twMerge(clsx(inputs));\n}\n",
+      "type": "registry:lib",
+      "target": ""
+    }
+  ]
+}

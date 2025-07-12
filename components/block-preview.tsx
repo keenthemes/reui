@@ -23,11 +23,11 @@ import {
 } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { ImperativePanelHandle } from 'react-resizable-panels';
-import { trackEvent } from '@/lib/analytics';
 import { BlockItem } from '@/config/types';
+import { trackEvent } from '@/lib/analytics';
 import { toAbsoluteUrl } from '@/lib/helpers';
-import { OpenInV0IconButton } from './open-in-v0-icon-button';
 import { CliCodeCopyButton } from './cli-code-copy-button';
+import { OpenInV0IconButton } from './open-in-v0-icon-button';
 
 type ThemeType = 'dark' | 'light' | '';
 
@@ -60,13 +60,7 @@ function usePreviewPanel() {
   return context;
 }
 
-function PreviewPanelProvider({
-  block,
-  children,
-}: {
-  block: BlockItem;
-  children: React.ReactNode;
-}) {
+function PreviewPanelProvider({ block, children }: { block: BlockItem; children: React.ReactNode }) {
   const [view, setView] = useState<PreviewPanelContext['view']>('preview');
   const resizablePanelRef = useRef<ImperativePanelHandle | null>(null);
 
@@ -140,7 +134,7 @@ function PreviewPanelResponsive() {
 
   const handleResponsiveModeChange = (mode: ResponsiveMode) => {
     setResponsiveMode(mode);
-    
+
     // Resize the panel to match the selected mode
     if (resizablePanelRef.current) {
       let targetSize: number;
@@ -175,7 +169,7 @@ function PreviewPanelResponsive() {
         mode="icon"
         size="sm"
         variant="ghost"
-        className={cn("size-6 rounded-md p-0", responsiveMode === 'desktop' && 'bg-accent')}
+        className={cn('size-6 rounded-md p-0', responsiveMode === 'desktop' && 'bg-accent')}
         title="Desktop view"
         onClick={() => handleResponsiveModeChange('desktop')}
       >
@@ -185,7 +179,7 @@ function PreviewPanelResponsive() {
         mode="icon"
         size="sm"
         variant="ghost"
-        className={cn("size-6 rounded-md p-0", responsiveMode === 'tablet' && 'bg-accent')}
+        className={cn('size-6 rounded-md p-0', responsiveMode === 'tablet' && 'bg-accent')}
         title="Tablet view"
         onClick={() => handleResponsiveModeChange('tablet')}
       >
@@ -195,7 +189,7 @@ function PreviewPanelResponsive() {
         mode="icon"
         size="sm"
         variant="ghost"
-        className={cn("size-6 rounded-md p-0", responsiveMode === 'mobile' && 'bg-accent')}
+        className={cn('size-6 rounded-md p-0', responsiveMode === 'mobile' && 'bg-accent')}
         title="Mobile view"
         onClick={() => handleResponsiveModeChange('mobile')}
       >
@@ -263,13 +257,8 @@ function ThemeToggleButton() {
   };
 
   return (
-    <Button
-      mode="icon"
-      size="sm"
-      variant="outline"
-      onClick={toggleTheme}
-    >
-      {activeTheme === 'dark' ? <Sun/> : <Moon/>}
+    <Button mode="icon" size="sm" variant="outline" onClick={toggleTheme}>
+      {activeTheme === 'dark' ? <Sun /> : <Moon />}
     </Button>
   );
 }
@@ -291,13 +280,7 @@ function RtlToggleButton() {
   };
 
   return (
-    <Button
-      mode="icon"
-      size="sm"
-      variant="outline"
-      className="text-muted-foreground text-[0.6rem]"
-      onClick={toggleRtl}
-    >
+    <Button mode="icon" size="sm" variant="outline" className="text-muted-foreground text-[0.6rem]" onClick={toggleRtl}>
       {rtl ? 'LTR' : 'RTL'}
     </Button>
   );
@@ -329,12 +312,12 @@ function PreviewPanelToolbarButtons() {
   };
 
   return (
-    <div className="flex items-center gap-2">      
+    <div className="flex items-center gap-2">
       <ThemeToggleButton />
-      
+
       <RtlToggleButton />
 
-      {block.name && <OpenInV0IconButton name={block.name} className=""/>}
+      {block.name && <OpenInV0IconButton name={block.name} className="" />}
 
       <Button mode="icon" size="sm" variant="outline" title="Reload Preview" onClick={handleReloadClick}>
         <RefreshCcw />
@@ -470,7 +453,7 @@ function PreviewPanelCode() {
             </Button>
           </div>
           <div className="grid h-full">
-            <PreviewPanelCodeHighlight block={block} />  
+            <PreviewPanelCodeHighlight block={block} />
           </div>
         </div>
       </div>

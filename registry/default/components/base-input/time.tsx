@@ -1,7 +1,7 @@
 'use client';
 
-import { DateInput, TimeField } from '@/registry/default/ui/datefield';
 import { InputAddon, InputGroup, InputWrapper } from '@/registry/default/ui/base-input';
+import { DateInput, TimeField } from '@/registry/default/ui/datefield';
 import { Clock3 } from 'lucide-react';
 
 export default function InputDemo() {

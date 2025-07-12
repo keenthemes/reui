@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dropdown-2",
+  "type": "registry:block",
+  "dependencies": [],
+  "files": [
+    {
+      "path": "registry/default/blocks/application/navigation/dropdowns/dropdown-2.tsx",
+      "content": "export default function Dropdown2() {\n  return <div>Hello World 2</div>;\n}\n",
+      "type": "registry:block"
+    }
+  ]
+}

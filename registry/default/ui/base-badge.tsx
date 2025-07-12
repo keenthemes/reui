@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { cn } from '@/registry/default/lib/utils';
-import { cva, type VariantProps } from 'class-variance-authority';
-import { useRender } from '@base-ui-components/react/use-render';
 import { mergeProps } from '@base-ui-components/react/merge-props';
+import { useRender } from '@base-ui-components/react/use-render';
+import { cva, type VariantProps } from 'class-variance-authority';
 
 export interface BadgeProps extends useRender.ComponentProps<'span'>, VariantProps<typeof badgeVariants> {
   asChild?: boolean;
@@ -10,9 +10,7 @@ export interface BadgeProps extends useRender.ComponentProps<'span'>, VariantPro
   disabled?: boolean;
 }
 
-export interface BadgeButtonProps
-  extends useRender.ComponentProps<'button'>,
-    VariantProps<typeof badgeButtonVariants> {
+export interface BadgeButtonProps extends useRender.ComponentProps<'button'>, VariantProps<typeof badgeButtonVariants> {
   asChild?: boolean;
 }
 
@@ -198,14 +196,16 @@ function Badge({
   };
 
   // Determine render element based on asChild prop
-  const renderElement = asChild && React.isValidElement(children) 
-    ? children as React.ReactElement<Record<string, unknown>, string | React.JSXElementConstructor<unknown>>
-    : render || <span />;
+  const renderElement =
+    asChild && React.isValidElement(children)
+      ? (children as React.ReactElement<Record<string, unknown>, string | React.JSXElementConstructor<unknown>>)
+      : render || <span />;
 
   // When using asChild, children becomes the element props, otherwise use children normally
-  const finalProps = asChild && React.isValidElement(children)
-    ? mergeProps(defaultProps, props)
-    : mergeProps(defaultProps, { ...props, children });
+  const finalProps =
+    asChild && React.isValidElement(children)
+      ? mergeProps(defaultProps, props)
+      : mergeProps(defaultProps, { ...props, children });
 
   const element = useRender({
     render: renderElement,
@@ -215,14 +215,7 @@ function Badge({
   return element;
 }
 
-function BadgeButton({
-  render,
-  asChild = false,
-  children,
-  className,
-  variant,
-  ...props
-}: BadgeButtonProps) {
+function BadgeButton({ render, asChild = false, children, className, variant, ...props }: BadgeButtonProps) {
   const defaultProps = {
     className: cn(badgeButtonVariants({ variant, className })),
     role: 'button' as const,
@@ -230,14 +223,16 @@ function BadgeButton({
   };
 
   // Determine render element based on asChild prop
-  const renderElement = asChild && React.isValidElement(children) 
-    ? children as React.ReactElement<Record<string, unknown>, string | React.JSXElementConstructor<unknown>>
-    : render || <button />;
+  const renderElement =
+    asChild && React.isValidElement(children)
+      ? (children as React.ReactElement<Record<string, unknown>, string | React.JSXElementConstructor<unknown>>)
+      : render || <button />;
 
   // When using asChild, children becomes the element props, otherwise use children normally
-  const finalProps = asChild && React.isValidElement(children)
-    ? mergeProps(defaultProps, props)
-    : mergeProps(defaultProps, { ...props, children });
+  const finalProps =
+    asChild && React.isValidElement(children)
+      ? mergeProps(defaultProps, props)
+      : mergeProps(defaultProps, { ...props, children });
 
   const element = useRender({
     render: renderElement,
@@ -257,4 +252,4 @@ function BadgeDot({ className, ...props }: BadgeDotProps) {
   );
 }
 
-export { Badge, BadgeButton, BadgeDot, badgeVariants }; 
+export { Badge, BadgeButton, BadgeDot, badgeVariants };

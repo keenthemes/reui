@@ -1,16 +1,16 @@
-import { Button } from '@/registry/default/ui/button';
 import {
   AlertDialog,
   AlertDialogBackdrop,
-  AlertDialogPopup,
-  AlertDialogPortal,
+  AlertDialogClose,
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
+  AlertDialogPopup,
+  AlertDialogPortal,
   AlertDialogTitle,
   AlertDialogTrigger,
-  AlertDialogClose,
 } from '@/registry/default/ui/base-alert-dialog';
+import { Button } from '@/registry/default/ui/button';
 
 export default function Component() {
   return (
@@ -39,4 +39,4 @@ export default function Component() {
       </AlertDialogPortal>
     </AlertDialog>
   );
-} 
+}

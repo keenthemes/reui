@@ -16,13 +16,13 @@ export default async function Page({ params }: { params: Promise<{ slug?: string
   // Check if this is a specific block route (4 segments: primary/secondary/tertiary/block)
   if (primaryCategory && secondaryCategory && tertiaryCategory && slug.length === 4) {
     const blockSlug = slug[3];
-    
+
     // Load blocks for the tertiary category
     const blocks = await getBlocks(primaryCategory, secondaryCategory, tertiaryCategory);
-    
+
     // Find the specific block
-    const block = blocks.find(b => b.slug === blockSlug);
-    
+    const block = blocks.find((b) => b.slug === blockSlug);
+
     if (!block) {
       notFound();
     }
@@ -30,7 +30,7 @@ export default async function Page({ params }: { params: Promise<{ slug?: string
     try {
       // Try to import the actual block file using the relativePath
       const blockModule = await import(`@/registry/default/blocks/${block.path}`);
-      
+
       // Return the default export (the React component)
       return <blockModule.default />;
     } catch (error) {

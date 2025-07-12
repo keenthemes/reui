@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dropdown-1",
+  "type": "registry:block",
+  "dependencies": [],
+  "files": [
+    {
+      "path": "registry/default/blocks/application/navigation/dropdowns/dropdown-1.tsx",
+      "content": "export default function Dropdown1() {\n  return (\n    <div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n      <div>Test</div>\n    </div>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ]
+}

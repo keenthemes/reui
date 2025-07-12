@@ -13,4 +13,4 @@ export default function Component() {
       <Label htmlFor={id}>Checked by default</Label>
     </div>
   );
-} 
+}

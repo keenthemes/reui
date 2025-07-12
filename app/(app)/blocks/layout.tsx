@@ -1,8 +1,8 @@
 'use client';
 
-import BlocksNav from "@/components/blocks-nav";
-import BlocksSuggestion from "@/components/blocks-suggest";
-import BlocksCategories from "@/components/blocks-categories";
+import BlocksCategories from '@/components/blocks-categories';
+import BlocksNav from '@/components/blocks-nav';
+import BlocksSuggestion from '@/components/blocks-suggest';
 
 export default function BlocksLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -10,7 +10,7 @@ export default function BlocksLayout({ children }: { children: React.ReactNode }
       <div className="border-b border-border">
         <div className="container-fluid">
           <div className="flex justify-between items-center gap-2.5">
-            <BlocksCategories/>
+            <BlocksCategories />
             <BlocksSuggestion />
           </div>
         </div>
@@ -22,9 +22,7 @@ export default function BlocksLayout({ children }: { children: React.ReactNode }
           </div>
         </div>
         <main className="flex-1 border-l border-border">
-          <div className="container-fluid py-5">
-            {children}
-          </div>
+          <div className="container-fluid py-5">{children}</div>
         </main>
       </div>
     </div>

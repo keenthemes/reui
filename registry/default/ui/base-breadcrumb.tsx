@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { cn } from '@/registry/default/lib/utils';
-import { ChevronRight, MoreHorizontal } from 'lucide-react';
-import { useRender } from '@base-ui-components/react/use-render';
 import { mergeProps } from '@base-ui-components/react/merge-props';
+import { useRender } from '@base-ui-components/react/use-render';
+import { ChevronRight, MoreHorizontal } from 'lucide-react';
 
 export interface BreadcrumbLinkProps extends useRender.ComponentProps<'a'> {
   asChild?: boolean;
@@ -26,27 +26,23 @@ function BreadcrumbItem({ className, ...props }: React.ComponentProps<'li'>) {
   return <li data-slot="breadcrumb-item" className={cn('inline-flex items-center gap-1.5', className)} {...props} />;
 }
 
-function BreadcrumbLink({
-  render,
-  asChild = false,
-  children,
-  className,
-  ...props
-}: BreadcrumbLinkProps) {
+function BreadcrumbLink({ render, asChild = false, children, className, ...props }: BreadcrumbLinkProps) {
   const defaultProps = {
     'data-slot': 'breadcrumb-link',
     className: cn('transition-colors hover:text-foreground', className),
   };
 
   // Determine render element based on asChild prop
-  const renderElement = asChild && React.isValidElement(children) 
-    ? children as React.ReactElement<Record<string, unknown>, string | React.JSXElementConstructor<unknown>>
-    : render || <a />;
+  const renderElement =
+    asChild && React.isValidElement(children)
+      ? (children as React.ReactElement<Record<string, unknown>, string | React.JSXElementConstructor<unknown>>)
+      : render || <a />;
 
   // When using asChild, children becomes the element props, otherwise use children normally
-  const finalProps = asChild && React.isValidElement(children)
-    ? mergeProps(defaultProps, props)
-    : mergeProps(defaultProps, { ...props, children });
+  const finalProps =
+    asChild && React.isValidElement(children)
+      ? mergeProps(defaultProps, props)
+      : mergeProps(defaultProps, { ...props, children });
 
   const element = useRender({
     render: renderElement,
@@ -112,4 +108,4 @@ export {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-}; 
+};

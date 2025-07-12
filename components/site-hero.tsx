@@ -30,6 +30,12 @@ export default function SiteHero() {
       className: 'h-full w-full ms-1',
     },
     {
+      title: 'Base UI',
+      logo: Icons.baseui,
+      tooltip: '',
+      className: 'h-full w-full ms-1',
+    },
+    {
       title: 'shadcn/ui',
       logo: Icons.shadcn,
       tooltip: '',

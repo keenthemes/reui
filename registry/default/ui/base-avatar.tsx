@@ -21,16 +21,7 @@ const avatarStatusVariants = cva('flex items-center rounded-full size-2 border-2
 
 // Base UI Avatar Root
 function AvatarRoot({ className, ...props }: React.ComponentProps<typeof Avatar.Root>) {
-  return (
-    <Avatar.Root
-      data-slot="avatar"
-      className={cn(
-        'relative flex h-10 w-10 shrink-0',
-        className,
-      )}
-      {...props}
-    />
-  );
+  return <Avatar.Root data-slot="avatar" className={cn('relative flex h-10 w-10 shrink-0', className)} {...props} />;
 }
 
 // Base UI Avatar Image
@@ -77,11 +68,4 @@ function AvatarStatus({
 }
 
 // Exports with proper naming to match Base UI pattern
-export {
-  AvatarRoot as Avatar,
-  AvatarImage,
-  AvatarFallback,
-  AvatarIndicator,
-  AvatarStatus,
-  avatarStatusVariants
-}; 
+export { AvatarRoot as Avatar, AvatarImage, AvatarFallback, AvatarIndicator, AvatarStatus, avatarStatusVariants };

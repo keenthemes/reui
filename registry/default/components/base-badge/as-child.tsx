@@ -11,7 +11,7 @@ export default function BadgeDemo() {
           asChild
         </Link>
       </Badge>
-      
+
       {/* Using render prop */}
       <Badge render={<Link href="#" />} appearance="light" shape="circle">
         <BadgeDot className="bg-primary" />
@@ -19,4 +19,4 @@ export default function BadgeDemo() {
       </Badge>
     </div>
   );
-} 
+}

@@ -10,23 +10,23 @@ function AlertDialogRoot({ ...props }: React.ComponentProps<typeof AlertDialog.R
 }
 
 // Base UI Alert Dialog Trigger with asChild support
-function AlertDialogTrigger({ 
-  asChild = false, 
-  children, 
-  ...props 
+function AlertDialogTrigger({
+  asChild = false,
+  children,
+  ...props
 }: React.ComponentProps<typeof AlertDialog.Trigger> & { asChild?: boolean }) {
   const triggerProps = {
     'data-slot': 'alert-dialog-trigger' as const,
     ...props,
-    ...(asChild && { render: children as React.ReactElement<Record<string, unknown>, string | React.JSXElementConstructor<unknown>> }),
+    ...(asChild && {
+      render: children as React.ReactElement<Record<string, unknown>, string | React.JSXElementConstructor<unknown>>,
+    }),
   };
 
   return asChild ? (
     <AlertDialog.Trigger {...triggerProps} />
   ) : (
-    <AlertDialog.Trigger {...triggerProps}>
-      {children}
-    </AlertDialog.Trigger>
+    <AlertDialog.Trigger {...triggerProps}>{children}</AlertDialog.Trigger>
   );
 }
 
@@ -84,19 +84,12 @@ const AlertDialogFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDiv
 // Base UI Alert Dialog Title
 function AlertDialogTitle({ className, ...props }: React.ComponentProps<typeof AlertDialog.Title>) {
   return (
-    <AlertDialog.Title
-      data-slot="alert-dialog-title"
-      className={cn('text-lg font-semibold', className)}
-      {...props}
-    />
+    <AlertDialog.Title data-slot="alert-dialog-title" className={cn('text-lg font-semibold', className)} {...props} />
   );
 }
 
 // Base UI Alert Dialog Description
-function AlertDialogDescription({
-  className,
-  ...props
-}: React.ComponentProps<typeof AlertDialog.Description>) {
+function AlertDialogDescription({ className, ...props }: React.ComponentProps<typeof AlertDialog.Description>) {
   return (
     <AlertDialog.Description
       data-slot="alert-dialog-description"
@@ -107,25 +100,25 @@ function AlertDialogDescription({
 }
 
 // Base UI Alert Dialog Close (generic) with asChild support
-function AlertDialogClose({ 
+function AlertDialogClose({
   asChild = false,
-  className, 
+  className,
   children,
-  ...props 
+  ...props
 }: React.ComponentProps<typeof AlertDialog.Close> & { asChild?: boolean }) {
   const closeProps = {
     'data-slot': 'alert-dialog-close' as const,
     className: cn(className),
     ...props,
-    ...(asChild && { render: children as React.ReactElement<Record<string, unknown>, string | React.JSXElementConstructor<unknown>> }),
+    ...(asChild && {
+      render: children as React.ReactElement<Record<string, unknown>, string | React.JSXElementConstructor<unknown>>,
+    }),
   };
 
   return asChild ? (
     <AlertDialog.Close {...closeProps} />
   ) : (
-    <AlertDialog.Close {...closeProps}>
-      {children}
-    </AlertDialog.Close>
+    <AlertDialog.Close {...closeProps}>{children}</AlertDialog.Close>
   );
 }
 
@@ -141,4 +134,4 @@ export {
   AlertDialogClose,
   AlertDialogHeader,
   AlertDialogFooter,
-}; 
+};

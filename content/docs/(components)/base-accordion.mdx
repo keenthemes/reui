@@ -53,11 +53,11 @@ Update the import paths to match your project setup.
 ```tsx
 import {
   Accordion,
-  AccordionPanel,
-  AccordionItem,
   AccordionHeader,
+  AccordionItem,
+  AccordionPanel,
   AccordionTrigger,
-} from "@/components/ui/base-accordion"
+} from '@/components/ui/base-accordion';
 ```
 
 ```tsx
@@ -66,9 +66,7 @@ import {
     <AccordionHeader>
       <AccordionTrigger>Is it accessible?</AccordionTrigger>
     </AccordionHeader>
-    <AccordionPanel>
-      Yes. It adheres to the WAI-ARIA design pattern.
-    </AccordionPanel>
+    <AccordionPanel>Yes. It adheres to the WAI-ARIA design pattern.</AccordionPanel>
   </AccordionItem>
 </Accordion>
 ```
@@ -95,17 +93,16 @@ import {
 
 <ExamplePreview path="base-accordion/nested" />
 
-
 ## API Reference
 
 ### Accordion
 
 This component is based on the [Base UI Accordion](https://base-ui.com/react/components/accordion) primitive and includes the following custom props:
 
-| **Prop** | **Type** | **Default** | **Description** |
-| --- | --- | --- | --- |
-| `variant` | ~enum~ <PopoverInfo> "default" \| "outline" \| "solid" </PopoverInfo> | ~"default"~ | The visual style variant of the accordion |
-| `indicator` | ~enum~ <PopoverInfo> "arrow" \| "plus" \| "none" </PopoverInfo> | ~"arrow"~ | The type of indicator icon to display |
+| **Prop**    | **Type**                                                              | **Default** | **Description**                           |
+| ----------- | --------------------------------------------------------------------- | ----------- | ----------------------------------------- |
+| `variant`   | ~enum~ <PopoverInfo> "default" \| "outline" \| "solid" </PopoverInfo> | ~"default"~ | The visual style variant of the accordion |
+| `indicator` | ~enum~ <PopoverInfo> "arrow" \| "plus" \| "none" </PopoverInfo>       | ~"arrow"~   | The type of indicator icon to display     |
 
 ## Credits
 

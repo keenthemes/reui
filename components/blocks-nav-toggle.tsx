@@ -1,17 +1,16 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/registry/default/ui/button';
-import { PanelRightOpen } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/registry/default/ui/tooltip';
+import { PanelRightOpen } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 export function BlocksNavToggle() {
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const isMobile = useIsMobile();  
+  const isMobile = useIsMobile();
 
   const handleToggle = () => {
-    
     if (!isMobile) {
       setIsCollapsed(!isCollapsed);
     }
@@ -29,13 +28,8 @@ export function BlocksNavToggle() {
     <div className="-ms-2 hidden lg:block">
       <Tooltip delayDuration={1250}>
         <TooltipTrigger asChild>
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            className="size-8"
-            onClick={handleToggle}
-          >
-            <PanelRightOpen className="in-data-sidebar-collapse:-rotate-180 transition-transform duration-300"/>
+          <Button variant="ghost" size="icon" className="size-8" onClick={handleToggle}>
+            <PanelRightOpen className="in-data-sidebar-collapse:-rotate-180 transition-transform duration-300" />
           </Button>
         </TooltipTrigger>
         <TooltipContent>Toggle sidebar navigation</TooltipContent>

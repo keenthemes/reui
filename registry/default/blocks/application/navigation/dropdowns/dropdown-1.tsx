@@ -52,5 +52,5 @@ export default function Dropdown1() {
       <div>Test</div>
       <div>Test</div>
     </div>
-  )
+  );
 }

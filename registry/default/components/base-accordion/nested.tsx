@@ -1,4 +1,10 @@
-import { Accordion, AccordionPanel, AccordionItem, AccordionHeader, AccordionTrigger } from '@/registry/default/ui/base-accordion';
+import {
+  Accordion,
+  AccordionHeader,
+  AccordionItem,
+  AccordionPanel,
+  AccordionTrigger,
+} from '@/registry/default/ui/base-accordion';
 
 export default function Component() {
   return (
@@ -52,9 +58,7 @@ export default function Component() {
               <AccordionHeader>
                 <AccordionTrigger>Can I customize ReUI CRUDs?</AccordionTrigger>
               </AccordionHeader>
-              <AccordionPanel>
-                Yes! ReUI CRUDs are fully customizable to suit your project&apos;s needs.
-              </AccordionPanel>
+              <AccordionPanel>Yes! ReUI CRUDs are fully customizable to suit your project&apos;s needs.</AccordionPanel>
             </AccordionItem>
           </Accordion>
         </AccordionPanel>

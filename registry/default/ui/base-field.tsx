@@ -1,56 +1,42 @@
-import { Field as BaseField } from '@base-ui-components/react/field';
 import { cn } from '@/registry/default/lib/utils';
+import { Field as BaseField } from '@base-ui-components/react/field';
 
-function Field({
-  className,
-  ...props
-}: React.ComponentProps<typeof BaseField.Root>) {
+function Field({ className, ...props }: React.ComponentProps<typeof BaseField.Root>) {
+  return <BaseField.Root data-slot="field" className={cn('space-y-2', className)} {...props} />;
+}
+
+function FieldLabel({ className, ...props }: React.ComponentProps<typeof BaseField.Label>) {
   return (
-    <BaseField.Root 
-      data-slot="field" 
-      className={cn('space-y-2', className)}
+    <BaseField.Label
+      data-slot="field-label"
+      className={cn('text-sm font-medium text-foreground', className)}
       {...props}
     />
   );
 }
 
-function FieldLabel({ className, ...props } : React.ComponentProps<typeof BaseField.Label>) {
+function FieldError({ className, ...props }: React.ComponentProps<typeof BaseField.Error>) {
   return (
-		<BaseField.Label 
-			data-slot="field-label" 
-			className={cn('text-sm font-medium text-foreground', className)}
-			{...props}
-		/>
-	);
+    <BaseField.Error
+      data-slot="field-error"
+      className={cn('-mt-0.5 text-xs font-normal text-destructive', className)}
+      {...props}
+    />
+  );
 }
 
-function FieldError({ className, ...props } : React.ComponentProps<typeof BaseField.Error>) {
+function FieldDescription({ className, ...props }: React.ComponentProps<typeof BaseField.Description>) {
   return (
-		<BaseField.Error 
-			data-slot="field-error" 
-			className={cn('-mt-0.5 text-xs font-normal text-destructive', className)}
-			{...props}
-		/>
-	);
+    <BaseField.Description
+      data-slot="field-description"
+      className={cn('text-sm text-muted-foreground', className)}
+      {...props}
+    />
+  );
 }
 
-function FieldDescription({ className, ...props } : React.ComponentProps<typeof BaseField.Description>) {
-  return (
-		<BaseField.Description 
-			data-slot="field-description" 
-			className={cn('text-sm text-muted-foreground', className)}
-			{...props}
-		/>
-	);
+function FieldControl({ ...props }: React.ComponentProps<typeof BaseField.Control>) {
+  return <BaseField.Control data-slot="field-control" {...props} />;
 }
 
-function FieldControl({ ...props } : React.ComponentProps<typeof BaseField.Control>) {
-  return (
-		<BaseField.Control 
-			data-slot="field-control" 
-			{...props}
-		/>
-	);
-}
-
-export { Field, FieldLabel, FieldError, FieldDescription, FieldControl};	
+export { Field, FieldLabel, FieldError, FieldDescription, FieldControl };

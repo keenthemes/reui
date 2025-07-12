@@ -1,7 +1,7 @@
-import { useConfig } from "@/hooks/use-config";
-import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
-import { Button } from "@/registry/default/ui/button";
-import { Check } from "lucide-react";
+import { Button } from '@/registry/default/ui/button';
+import { Check } from 'lucide-react';
+import { useConfig } from '@/hooks/use-config';
+import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard';
 
 export function CliCodeCopyButton({ name }: { name: string } & React.ComponentProps<typeof Button>) {
   const { copy, copied } = useCopyToClipboard();

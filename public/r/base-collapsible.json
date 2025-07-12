@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "base-collapsible",
+  "type": "registry:ui",
+  "dependencies": [
+    "@base-ui-components/react",
+    "clsx",
+    "tailwind-merge"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/base-collapsible.tsx",
+      "content": "'use client';\n\nimport React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport { Collapsible as BaseCollapsible } from '@base-ui-components/react/collapsible';\n\nfunction Collapsible({ ...props }: React.ComponentProps<typeof BaseCollapsible.Root>) {\n  return <BaseCollapsible.Root data-slot=\"collapsible\" {...props} />;\n}\n\nfunction CollapsibleTrigger({\n  children,\n  className,\n  asChild = false,\n  ...props\n}: React.ComponentProps<typeof BaseCollapsible.Trigger> & { asChild?: boolean }) {\n  const triggerProps = {\n    'data-slot': 'alert-dialog-trigger' as const,\n    className,\n    ...props,\n    ...(asChild && {\n      render: children as React.ReactElement<Record<string, unknown>, string | React.JSXElementConstructor<unknown>>,\n    }),\n  };\n\n  return asChild ? (\n    <BaseCollapsible.Trigger {...triggerProps} />\n  ) : (\n    <BaseCollapsible.Trigger {...triggerProps}>{children}</BaseCollapsible.Trigger>\n  );\n}\n\nfunction CollapsiblePanel({ className, children, ...props }: React.ComponentProps<typeof BaseCollapsible.Panel>) {\n  return (\n    <BaseCollapsible.Panel\n      data-slot=\"collapsible-panel\"\n      className={cn(\n        'overflow-hidden h-[var(--collapsible-panel-height)] transition-all ease-out data-[ending-style]:h-0 data-[starting-style]:h-0',\n        className,\n      )}\n      {...props}\n    >\n      {children}\n    </BaseCollapsible.Panel>\n  );\n}\n\nexport { Collapsible, CollapsiblePanel, CollapsibleTrigger };\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/default/lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from 'clsx';\nimport { twMerge } from 'tailwind-merge';\n\n/**\n * Merges Tailwind class names, resolving any conflicts.\n *\n * @param inputs - An array of class names to merge.\n * @returns A string of merged and optimized class names.\n */\nexport function cn(...inputs: ClassValue[]): string {\n  return twMerge(clsx(inputs));\n}\n",
+      "type": "registry:lib",
+      "target": ""
+    }
+  ]
+}

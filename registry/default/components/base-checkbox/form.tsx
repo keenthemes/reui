@@ -1,11 +1,11 @@
 'use client';
 
+import { useState } from 'react';
 import { Button } from '@/registry/default/ui/base-button';
 import { Checkbox } from '@/registry/default/ui/base-checkbox';
+import { Field, FieldDescription, FieldError, FieldLabel } from '@/registry/default/ui/base-field';
 import { Form } from '@/registry/default/ui/base-form';
-import { Field, FieldLabel, FieldDescription, FieldError } from '@/registry/default/ui/base-field';
 import { z } from 'zod';
-import { useState } from 'react';
 
 export default function Component() {
   const [errors, setErrors] = useState({});
@@ -18,16 +18,16 @@ export default function Component() {
 
   async function submitForm(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-  
+
     const formData = new FormData(event.currentTarget);
     const result = schema.safeParse(Object.fromEntries(formData as never));
-  
+
     if (!result.success) {
       return {
         errors: result.error.flatten().fieldErrors,
       };
     }
-  
+
     return {
       errors: {},
     };
@@ -59,4 +59,4 @@ export default function Component() {
       </div>
     </Form>
   );
-} 
+}

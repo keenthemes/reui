@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { cn } from '@/registry/default/lib/utils';
 import { Badge } from '@/registry/default/ui/badge';
 import { type DocsConfig } from '@/config/docs';
+import { siteConfig } from '@/config/site';
 import { SidebarNavItem } from '@/config/types';
 
 export interface DocsSidebarNavProps {
@@ -63,6 +64,16 @@ export function DocsSidebarNavItems({ items, pathname }: DocsSidebarNavItemsProp
             {item.popular && (
               <Badge variant="info" size="sm" appearance="light">
                 Popular
+              </Badge>
+            )}
+            {item.changelog && (
+              <Badge variant="primary" size="sm" appearance="light">
+                v{siteConfig.version}
+              </Badge>
+            )}
+            {item.premium && (
+              <Badge variant="info" size="sm" appearance="light">
+                Premium
               </Badge>
             )}
             {item.update && (

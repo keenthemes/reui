@@ -8,34 +8,29 @@ function Collapsible({ ...props }: React.ComponentProps<typeof BaseCollapsible.R
   return <BaseCollapsible.Root data-slot="collapsible" {...props} />;
 }
 
-function CollapsibleTrigger({ 
+function CollapsibleTrigger({
   children,
   className,
   asChild = false,
-  ...props 
+  ...props
 }: React.ComponentProps<typeof BaseCollapsible.Trigger> & { asChild?: boolean }) {
-
   const triggerProps = {
     'data-slot': 'alert-dialog-trigger' as const,
     className,
     ...props,
-    ...(asChild && { render: children as React.ReactElement<Record<string, unknown>, string | React.JSXElementConstructor<unknown>> }),
+    ...(asChild && {
+      render: children as React.ReactElement<Record<string, unknown>, string | React.JSXElementConstructor<unknown>>,
+    }),
   };
 
   return asChild ? (
     <BaseCollapsible.Trigger {...triggerProps} />
   ) : (
-    <BaseCollapsible.Trigger {...triggerProps}>
-      {children}
-    </BaseCollapsible.Trigger>
+    <BaseCollapsible.Trigger {...triggerProps}>{children}</BaseCollapsible.Trigger>
   );
 }
 
-function CollapsiblePanel({
-  className,
-  children,
-  ...props
-}: React.ComponentProps<typeof BaseCollapsible.Panel>) {
+function CollapsiblePanel({ className, children, ...props }: React.ComponentProps<typeof BaseCollapsible.Panel>) {
   return (
     <BaseCollapsible.Panel
       data-slot="collapsible-panel"

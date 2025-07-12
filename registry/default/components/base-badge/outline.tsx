@@ -20,4 +20,4 @@ export default function BadgeDemo() {
       </Badge>
     </div>
   );
-} 
+}

@@ -3,11 +3,10 @@
   "name": "resizable",
   "type": "registry:ui",
   "dependencies": [
-    "react-resizable-panels@2.1.9",
+    "react-resizable-panels",
     "clsx",
     "tailwind-merge",
-    "lucide-react",
-    "react-resizable-panels"
+    "lucide-react"
   ],
   "files": [
     {

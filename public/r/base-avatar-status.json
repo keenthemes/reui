@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "base-avatar-status",
+  "type": "registry:component",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "@base-ui-components/react",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/base-avatar.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/base-avatar/status.tsx",
+      "content": "import { Avatar, AvatarFallback, AvatarImage, AvatarIndicator, AvatarStatus } from '@/registry/default/ui/base-avatar';\n\nexport default function AvatarDemo() {\n  return (\n    <div className=\"flex flex-wrap gap-6\">\n      <Avatar>\n        <AvatarImage src=\"/media/avatars/14.png\" alt=\"@reui\" />\n        <AvatarFallback>CH</AvatarFallback>\n        <AvatarIndicator className=\"-end-1.5 -top-1.5\">\n          <AvatarStatus variant=\"online\" className=\"size-2.5\" />\n        </AvatarIndicator>\n      </Avatar>\n      <Avatar>\n        <AvatarImage src=\"/media/avatars/14.png\" alt=\"@reui\" />\n        <AvatarFallback>CH</AvatarFallback>\n        <AvatarIndicator className=\"-end-1.5 -top-1.5\">\n          <AvatarStatus variant=\"offline\" className=\"size-2.5\" />\n        </AvatarIndicator>\n      </Avatar>\n      <Avatar>\n        <AvatarImage src=\"/media/avatars/14.png\" alt=\"@reui\" />\n        <AvatarFallback>CH</AvatarFallback>\n        <AvatarIndicator className=\"-end-1.5 -bottom-1.5\">\n          <AvatarStatus variant=\"busy\" className=\"size-2.5\" />\n        </AvatarIndicator>\n      </Avatar>\n      <Avatar>\n        <AvatarImage src=\"/media/avatars/14.png\" alt=\"@reui\" />\n        <AvatarFallback>CH</AvatarFallback>\n        <AvatarIndicator className=\"-end-1.5 -bottom-1.5\">\n          <AvatarStatus variant=\"away\" className=\"size-2.5\" />\n        </AvatarIndicator>\n      </Avatar>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "registry/default/ui/base-avatar.tsx",
+      "content": "'use client';\n\nimport * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport { Avatar } from '@base-ui-components/react/avatar';\nimport { cva, VariantProps } from 'class-variance-authority';\n\nconst avatarStatusVariants = cva('flex items-center rounded-full size-2 border-2 border-background', {\n  variants: {\n    variant: {\n      online: 'bg-green-600',\n      offline: 'bg-zinc-600 dark:bg-zinc-300',\n      busy: 'bg-yellow-600',\n      away: 'bg-blue-600',\n    },\n  },\n  defaultVariants: {\n    variant: 'online',\n  },\n});\n\n// Base UI Avatar Root\nfunction AvatarRoot({ className, ...props }: React.ComponentProps<typeof Avatar.Root>) {\n  return <Avatar.Root data-slot=\"avatar\" className={cn('relative flex h-10 w-10 shrink-0', className)} {...props} />;\n}\n\n// Base UI Avatar Image\nfunction AvatarImage({ className, ...props }: React.ComponentProps<typeof Avatar.Image>) {\n  return (\n    <Avatar.Image\n      data-slot=\"avatar-image\"\n      className={cn('aspect-square overflow-hidden h-full w-full rounded-full', className)}\n      {...props}\n    />\n  );\n}\n\n// Base UI Avatar Fallback\nfunction AvatarFallback({ className, ...props }: React.ComponentProps<typeof Avatar.Fallback>) {\n  return (\n    <Avatar.Fallback\n      data-slot=\"avatar-fallback\"\n      className={cn(\n        'flex h-full w-full items-center justify-center rounded-full bg-muted text-sm font-medium text-muted-foreground overflow-hidden',\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction AvatarIndicator({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div\n      data-slot=\"avatar-indicator\"\n      className={cn('absolute flex size-6 items-center justify-center', className)}\n      {...props}\n    />\n  );\n}\n\nfunction AvatarStatus({\n  className,\n  variant,\n  ...props\n}: React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof avatarStatusVariants>) {\n  return <div data-slot=\"avatar-status\" className={cn(avatarStatusVariants({ variant }), className)} {...props} />;\n}\n\n// Exports with proper naming to match Base UI pattern\nexport { AvatarRoot as Avatar, AvatarImage, AvatarFallback, AvatarIndicator, AvatarStatus, avatarStatusVariants };\n",
+      "type": "registry:ui",
+      "target": ""
+    },
+    {
+      "path": "registry/default/lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from 'clsx';\nimport { twMerge } from 'tailwind-merge';\n\n/**\n * Merges Tailwind class names, resolving any conflicts.\n *\n * @param inputs - An array of class names to merge.\n * @returns A string of merged and optimized class names.\n */\nexport function cn(...inputs: ClassValue[]): string {\n  return twMerge(clsx(inputs));\n}\n",
+      "type": "registry:lib",
+      "target": ""
+    }
+  ]
+}

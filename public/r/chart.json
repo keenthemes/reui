@@ -3,9 +3,10 @@
   "name": "chart",
   "type": "registry:ui",
   "dependencies": [
-    "recharts",
+    "recharts@2.15.1",
     "clsx",
-    "tailwind-merge"
+    "tailwind-merge",
+    "recharts"
   ],
   "files": [
     {

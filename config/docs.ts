@@ -1,4 +1,3 @@
-import { siteConfig } from './site';
 import { FooterNavItem, MainNavItem, SidebarNavItem } from './types';
 
 export interface DocsConfig {
@@ -17,10 +16,12 @@ export const docsConfig: DocsConfig = {
       title: 'Blocks',
       href: '/blocks',
     },
+    /*
     {
       title: 'Themes',
       href: '/themes',
     },
+    */
     {
       title: 'Docs',
       href: '/docs',
@@ -28,6 +29,10 @@ export const docsConfig: DocsConfig = {
     {
       title: 'Changelog',
       href: '/docs/changelog',
+    },
+    {
+      title: 'Templates',
+      href: '/templates',
     },
   ],
   sidebarNav: [
@@ -48,7 +53,7 @@ export const docsConfig: DocsConfig = {
         {
           title: 'MCP',
           href: '/docs/mcp',
-          new: true,
+          
           items: [],
         },
         */
@@ -73,7 +78,8 @@ export const docsConfig: DocsConfig = {
           items: [],
         },
         {
-          title: 'Changelog - v' + siteConfig.version,
+          title: 'Changelog',
+          changelog: true,
           href: '/docs/changelog',
           items: [],
         },
@@ -81,86 +87,7 @@ export const docsConfig: DocsConfig = {
     },
 
     {
-      title: 'Templates',
-      items: [
-        {
-          title: 'Metronic',
-          href: 'https://keenthemes.com/metronic?utm_source=reui_website&utm_medium=menu&utm_campaign=product_link&utm_content=metronic',
-          external: true,
-          popular: true,
-          items: [],
-        },
-        {
-          title: 'SaaSify',
-          href: 'https://keenthemes.com/products/saasify?utm_source=reui_website&utm_medium=menu&utm_campaign=product_link&utm_content=saasify',
-          new: true,
-          items: [],
-        },
-        {
-          title: 'Storely',
-          href: 'https://keenthemes.com/products/storely?utm_source=reui_website&utm_medium=menu&utm_campaign=product_link&utm_content=storely',
-          new: true,
-          items: [],
-        },
-        {
-          title: 'Shoplit',
-          href: 'https://keenthemes.com/products/shoplit?utm_source=reui_website&utm_medium=menu&utm_campaign=product_link&utm_content=shoplit',
-          external: true,
-          items: [],
-        },
-        {
-          title: 'Supastart',
-          href: 'https://keenthemes.com/products/supastart?utm_source=reui_website&utm_medium=menu&utm_campaign=product_link&utm_content=supastart',
-          external: true,
-          items: [],
-        },
-      ],
-    },
-
-    {
-      title: 'Base UI Components',
-      items: [
-        {
-          title: 'Accordion',
-          href: '/docs/base-accordion',
-        },
-        {
-          title: 'Alert Dialog',
-          href: '/docs/base-alert-dialog',
-        },
-        {
-          title: 'Avatar',
-          href: '/docs/base-avatar',
-        },
-        {
-          title: 'Badge',
-          href: '/docs/base-badge',
-        },
-        {
-          title: 'Breadcrumb',
-          href: '/docs/base-breadcrumb',
-        },
-        {
-          title: 'Button',
-          href: '/docs/base-button',
-        },
-        {
-          title: 'Checkbox',
-          href: '/docs/base-checkbox',
-        },
-        {
-          title: 'Collapsible',
-          href: '/docs/base-collapsible',
-        },
-        {
-          title: 'Input',
-          href: '/docs/base-input',
-        },
-      ],
-    },
-
-    {
-      title: 'Radix UI Components',
+      title: 'UI Components',
       items: [
         {
           title: 'Accordion',
@@ -181,7 +108,7 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Alert',
           href: '/docs/alert',
-          update: true,
+
           highlight: {
             order: 8,
             examples: [
@@ -216,7 +143,7 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Badge',
           href: '/docs/badge',
-          update: true,
+
           highlight: {
             order: 5,
             examples: [
@@ -329,7 +256,6 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Code',
           href: '/docs/code',
-          new: true,
         },
         {
           title: 'Data Grid',
@@ -364,7 +290,7 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Date Picker',
           href: '/docs/date-picker',
-          update: true,
+
           highlight: {
             order: 11,
             examples: ['Default', 'Range', 'Presets'],
@@ -387,16 +313,20 @@ export const docsConfig: DocsConfig = {
         {
           title: 'File Upload',
           href: '/docs/file-upload',
-          new: true,
         },
         {
           title: 'Input',
           href: '/docs/input',
-          update: true,
+
           highlight: {
             order: 14,
             examples: ['Default', 'Disabled', 'Readonly', 'File', 'Size', 'Form'],
           },
+        },
+        {
+          title: 'Kanban',
+          href: '/docs/kanban',
+          new: true,
         },
         {
           title: 'Kbd',
@@ -423,7 +353,7 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Progress',
           href: '/docs/progress',
-          update: true,
+
           items: [],
         },
         {
@@ -443,12 +373,10 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Stepper',
           href: '/docs/stepper',
-          new: true,
         },
         {
           title: 'Scrollspy',
           href: '/docs/scrollspy',
-          new: true,
         },
         {
           title: 'Select',
@@ -572,27 +500,75 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Tree',
           href: '/docs/tree',
+        },
+      ],
+    },
+
+    {
+      title: 'Base UI Components',
+      items: [
+        {
+          title: 'Accordion',
+          href: '/docs/base-accordion',
+          new: true,
+        },
+        {
+          title: 'Alert Dialog',
+          href: '/docs/base-alert-dialog',
+          new: true,
+        },
+        {
+          title: 'Avatar',
+          href: '/docs/base-avatar',
+          new: true,
+        },
+        {
+          title: 'Badge',
+          href: '/docs/base-badge',
+          new: true,
+        },
+        {
+          title: 'Breadcrumb',
+          href: '/docs/base-breadcrumb',
+          new: true,
+        },
+        {
+          title: 'Button',
+          href: '/docs/base-button',
+          new: true,
+        },
+        {
+          title: 'Checkbox',
+          href: '/docs/base-checkbox',
+          new: true,
+        },
+        {
+          title: 'Collapsible',
+          href: '/docs/base-collapsible',
+          new: true,
+        },
+        {
+          title: 'Input',
+          href: '/docs/base-input',
           new: true,
         },
       ],
     },
+
     {
       title: 'Special Effects',
       items: [
         {
           title: 'Marquee',
           href: '/docs/marquee',
-          new: true,
         },
         {
           title: 'GitHub Button',
           href: '/docs/github-button',
-          new: true,
         },
         {
           title: 'Avatar Group',
           href: '/docs/avatar-group',
-          new: true,
         },
       ],
     },
@@ -602,42 +578,34 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Typing Text',
           href: '/docs/typing-text',
-          new: true,
         },
         {
           title: 'Word Rotate',
           href: '/docs/word-rotate',
-          new: true,
         },
         {
           title: 'Video Text',
           href: '/docs/video-text',
-          new: true,
         },
         {
           title: 'SVG Text',
           href: '/docs/svg-text',
-          new: true,
         },
         {
           title: 'Counting Number',
           href: '/docs/counting-number',
-          new: true,
         },
         {
           title: 'Sliding Number',
           href: '/docs/sliding-number',
-          new: true,
         },
         {
           title: 'Shimmering Text',
           href: '/docs/shimmering-text',
-          new: true,
         },
         {
           title: 'Text Reveal',
           href: '/docs/text-reveal',
-          new: true,
         },
       ],
     },
@@ -647,17 +615,14 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Gradient Background',
           href: '/docs/gradient-background',
-          new: true,
         },
         {
           title: 'Grid Background',
           href: '/docs/grid-background',
-          new: true,
         },
         {
           title: 'Hover Background',
           href: '/docs/hover-background',
-          new: true,
         },
       ],
     },

@@ -1,9 +1,9 @@
 import * as React from 'react';
+import { cn } from '@/registry/default/lib/utils';
+import { mergeProps } from '@base-ui-components/react/merge-props';
+import { useRender } from '@base-ui-components/react/use-render';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { ChevronDown, LucideIcon } from 'lucide-react';
-import { useRender } from '@base-ui-components/react/use-render';
-import { mergeProps } from '@base-ui-components/react/merge-props';
-import { cn } from '@/registry/default/lib/utils';
 
 const buttonVariants = cva(
   'cursor-pointer group whitespace-nowrap focus-visible:outline-hidden inline-flex items-center justify-center has-data-[arrow=true]:justify-between whitespace-nowrap text-sm font-medium ring-offset-background transition-[color,box-shadow] disabled:pointer-events-none disabled:opacity-60 [&_svg]:shrink-0',
@@ -401,14 +401,16 @@ function Button({
   };
 
   // Determine render element based on asChild prop
-  const renderElement = asChild && React.isValidElement(children) 
-    ? children as React.ReactElement<Record<string, unknown>, string | React.JSXElementConstructor<unknown>>
-    : render || <button />;
+  const renderElement =
+    asChild && React.isValidElement(children)
+      ? (children as React.ReactElement<Record<string, unknown>, string | React.JSXElementConstructor<unknown>>)
+      : render || <button />;
 
   // When using asChild, children becomes the element props, otherwise use children normally
-  const finalProps = asChild && React.isValidElement(children)
-    ? mergeProps(defaultProps, props)
-    : mergeProps(defaultProps, { ...props, children });
+  const finalProps =
+    asChild && React.isValidElement(children)
+      ? mergeProps(defaultProps, props)
+      : mergeProps(defaultProps, { ...props, children });
 
   const element = useRender({
     render: renderElement,

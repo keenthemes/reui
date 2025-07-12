@@ -12,4 +12,4 @@ export default function BadgeDemo() {
       <Badge variant="info">Info</Badge>
     </div>
   );
-} 
+}

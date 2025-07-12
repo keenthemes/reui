@@ -1,16 +1,16 @@
-import { Button } from '@/registry/default/ui/button';
 import {
   AlertDialog,
   AlertDialogBackdrop,
-  AlertDialogPopup,
-  AlertDialogPortal,
+  AlertDialogClose,
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
+  AlertDialogPopup,
+  AlertDialogPortal,
   AlertDialogTitle,
   AlertDialogTrigger,
-  AlertDialogClose,
 } from '@/registry/default/ui/base-alert-dialog';
+import { Button } from '@/registry/default/ui/button';
 
 export default function Component() {
   return (
@@ -24,8 +24,8 @@ export default function Component() {
           <AlertDialogHeader>
             <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
             <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete your account and remove your
-              data from our servers.
+              This action cannot be undone. This will permanently delete your account and remove your data from our
+              servers.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
@@ -40,4 +40,4 @@ export default function Component() {
       </AlertDialogPortal>
     </AlertDialog>
   );
-} 
+}

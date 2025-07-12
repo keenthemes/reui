@@ -10,6 +10,8 @@ export interface NavItem {
   external?: boolean;
   icon?: keyof typeof Icons;
   label?: string;
+  premium?: boolean;
+  changelog?: boolean;
   popular?: boolean;
   highlight?: NavItemHighlight;
 }

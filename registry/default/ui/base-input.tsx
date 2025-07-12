@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { cn } from '@/registry/default/lib/utils';
-import { cva, type VariantProps } from 'class-variance-authority';
 import { Input as BaseInput } from '@base-ui-components/react/input';
+import { cva, type VariantProps } from 'class-variance-authority';
 
 // Define input size variants
 const inputVariants = cva(

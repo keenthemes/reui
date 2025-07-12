@@ -3,7 +3,7 @@
   "name": "command",
   "type": "registry:ui",
   "dependencies": [
-    "cmdk@1.0.0",
+    "cmdk@1.1.1",
     "clsx",
     "tailwind-merge",
     "class-variance-authority",
