@@ -1,6 +1,6 @@
 {
   "name": "reui",
-  "version": "1.0.17",
+  "version": "1.0.19",
   "private": true,
   "scripts": {
     "dev": "next dev -p 3333",
@@ -31,7 +31,7 @@
     "@hookform/resolvers": "^5.1.1",
     "@ianvs/prettier-plugin-sort-imports": "^4.5.1",
     "@remixicon/react": "^4.6.0",
-    "@tanstack/react-query": "^5.82.0",
+    "@tanstack/react-query": "^5.83.0",
     "@tanstack/react-table": "^8.21.3",
     "@vercel/analytics": "^1.5.0",
     "@vercel/og": "^0.7.2",

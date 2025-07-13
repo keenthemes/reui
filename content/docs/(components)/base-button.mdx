@@ -4,6 +4,8 @@ description: Renders a clickable button or an element styled as a button
 component: true
 ---
 
+<ExamplePreview path="base-button/default" />
+
 ## Installation
 
 <Tabs defaultValue="cli">
@@ -20,21 +22,21 @@ component: true
 <TabsContent value="manual">    
 <Steps>
 
-### Install ReUI
-
-Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
-
-### Install dependencies
+<Step>
+Install the following dependencies:
 
 ```bash
 npm install @base-ui-components/react
 ```
 
-### Add component
+</Step>
 
+<Step>
 Copy and paste the following code into your project’s `components/ui/button.tsx` file.
 
 <ComponentPreview name="base-button" />
+
+</Step>
 
 </Steps>
 
@@ -43,10 +45,6 @@ Copy and paste the following code into your project’s `components/ui/button.ts
 </Tabs>
 
 ## Examples
-
-### Primary
-
-<ExamplePreview path="base-button/primary" />
 
 ### Secondary
 
@@ -134,4 +132,4 @@ This is the root component for creating buttons with multiple variants, appearan
 
 ## Credits
 
-- Used [Base UI](https://base-ui.com/react/components/avatar) `useRender` hook for composition patterns.
+- Built with [Base UI useRender](https://base-ui.com/react/utils/use-render) hook.

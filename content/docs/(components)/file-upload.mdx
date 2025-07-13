@@ -4,6 +4,8 @@ description: A file upload component for React.
 component: true
 ---
 
+<ExamplePreview path="file-upload/default" />
+
 ## Installation
 
 <Tabs defaultValue="cli">
@@ -20,11 +22,16 @@ component: true
 <TabsContent value="manual">    
 <Steps>
 
-### Install ReUI
+<Step>
+Install the following dependencies:
 
-Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+```bash
+npm i radix-ui
+```
 
-### Add hook
+</Step>
+
+<Step>
 
 Copy and paste the following code into your project’s `@/hooks/use-file-upload.tsx` file.
 
@@ -418,6 +425,8 @@ export const formatBytes = (bytes: number, decimals = 2): string => {
 };
 ```
 
+</Step>
+
 </Steps>
 
 </TabsContent>
@@ -425,10 +434,6 @@ export const formatBytes = (bytes: number, decimals = 2): string => {
 </Tabs>
 
 ## Examples
-
-### Default
-
-<ExamplePreview path="file-upload/default" />
 
 ### Avatar Upload
 
@@ -460,4 +465,4 @@ export const formatBytes = (bytes: number, decimals = 2): string => {
 
 ## Credits
 
-- Used [OriginUI File Upload Hook](https://github.com/origin-space/originui/tree/main/docs/use-file-upload.md).
+- Built with [OriginUI File Upload Hook](https://github.com/origin-space/originui/tree/main/docs/use-file-upload.md).

@@ -4,6 +4,8 @@ description: Displays a form input field, input groups, number input spinners, d
 component: true
 ---
 
+<ExamplePreview path="input/default" />
+
 ## Installation
 
 <Tabs defaultValue="cli">
@@ -20,15 +22,21 @@ component: true
 <TabsContent value="manual">    
 <Steps>
 
-### Install ReUI
+<Step>
+Install the following dependencies:
 
-Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+```bash
+npm i radix-ui
+```
 
-### Add component
+</Step>
 
+<Step>
 Copy and paste the following code into your project’s `components/ui/input.tsx` file.
 
 <ComponentPreview name="input" />
+
+</Step>
 
 </Steps>
 
@@ -37,10 +45,6 @@ Copy and paste the following code into your project’s `components/ui/input.tsx
 </Tabs>
 
 ## Examples
-
-### Default
-
-<ExamplePreview path="input/default" />
 
 ### Disabled
 
@@ -105,4 +109,5 @@ This component is a custom implementation that extends the native HTML `<input>`
 
 ## Credits
 
-- Used [React Aria](https://react-spectrum.adobe.com/react-aria/index.html) for the date & time input components.
+- Built with [Radix UI Slot](https://www.radix-ui.com/primitives/docs/utilities/slot).
+- Built with [React Aria](https://react-spectrum.adobe.com/react-aria/index.html).

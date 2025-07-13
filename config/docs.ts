@@ -16,6 +16,10 @@ export const docsConfig: DocsConfig = {
       title: 'Blocks',
       href: '/blocks',
     },
+    {
+      title: 'Templates',
+      href: '/template',
+    },
     /*
     {
       title: 'Themes',
@@ -29,10 +33,6 @@ export const docsConfig: DocsConfig = {
     {
       title: 'Changelog',
       href: '/docs/changelog',
-    },
-    {
-      title: 'Templates',
-      href: '/templates',
     },
   ],
   sidebarNav: [
@@ -213,6 +213,14 @@ export const docsConfig: DocsConfig = {
           },
         },
         {
+          title: 'Carousel',
+          href: '/docs/carousel',
+        },
+        {
+          title: 'Chart',
+          href: '/docs/chart',
+        },
+        {
           title: 'Checkbox',
           href: '/docs/checkbox',
           highlight: {
@@ -252,6 +260,10 @@ export const docsConfig: DocsConfig = {
               'Form',
             ],
           },
+        },
+        {
+          title: 'Context Menu',
+          href: '/docs/context-menu',
         },
         {
           title: 'Code',
@@ -304,6 +316,10 @@ export const docsConfig: DocsConfig = {
           },
         },
         {
+          title: 'Drawer',
+          href: '/docs/drawer',
+        },
+        {
           title: 'Dropdown Menu',
           href: '/docs/dropdown-menu',
           highlight: {
@@ -311,8 +327,16 @@ export const docsConfig: DocsConfig = {
           },
         },
         {
+          title: 'Form',
+          href: '/docs/form',
+        },
+        {
           title: 'File Upload',
           href: '/docs/file-upload',
+        },
+        {
+          title: 'Hover Card',
+          href: '/docs/hover-card',
         },
         {
           title: 'Input',
@@ -337,6 +361,14 @@ export const docsConfig: DocsConfig = {
           },
         },
         {
+          title: 'Label',
+          href: '/docs/label',
+        },
+        {
+          title: 'Navigation Menu',
+          href: '/docs/navigation-menu',
+        },
+        {
           title: 'Pagination',
           href: '/docs/pagination',
           highlight: {
@@ -353,7 +385,6 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Progress',
           href: '/docs/progress',
-
           items: [],
         },
         {
@@ -362,6 +393,10 @@ export const docsConfig: DocsConfig = {
           highlight: {
             examples: ['Default', 'Mono', 'Disabled', 'Form'],
           },
+        },
+        {
+          title: 'Resizable',
+          href: '/docs/resizable',
         },
         {
           title: 'Scroll Area',
@@ -492,6 +527,10 @@ export const docsConfig: DocsConfig = {
           highlight: {
             examples: ['Default', 'Light', 'Side'],
           },
+        },
+        {
+          title: 'Toggle',
+          href: '/docs/toggle',
         },
         {
           title: 'Toggle Group',

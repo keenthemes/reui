@@ -4,6 +4,8 @@ description: A responsive pagination component for navigating through multiple p
 component: true
 ---
 
+<ExamplePreview path="pagination/default" />
+
 ## Installation
 
 <Tabs defaultValue="cli">
@@ -19,17 +21,21 @@ component: true
 
 <TabsContent value="manual">    
 <Steps>
+<Step>
+Install the following dependencies:
 
-### Install ReUI
+```bash
+npm i radix-ui
+```
 
-Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+</Step>
 
-### Add component
-
+<Step>
 Copy and paste the following code into your project’s `components/ui/pagination.tsx` file.
 
 <ComponentPreview name="pagination" />
 
+</Step>
 </Steps>
 
 </TabsContent>
@@ -37,10 +43,6 @@ Copy and paste the following code into your project’s `components/ui/paginatio
 </Tabs>
 
 ## Examples
-
-### Default
-
-<ExamplePreview path="pagination/default" />
 
 ### Icon
 
@@ -95,3 +97,7 @@ This component displays an ellipsis to indicate additional pages.
 | **Prop**                                                                                | **Type** | **Default** |
 | --------------------------------------------------------------------------------------- | -------- | ----------- |
 | `className` <PopoverInfo>Additional class names for styling the ellipsis.</PopoverInfo> | ~string~ | <Na/>       |
+
+## Credits
+
+- Built with [Radix UI Slot](https://www.radix-ui.com/primitives/docs/utilities/slot).

@@ -4,6 +4,8 @@ description: Extends the Dialog component to display content that complements th
 component: true
 ---
 
+<ExamplePreview path="sheet/default" />
+
 ## Installation
 
 <Tabs defaultValue="cli">
@@ -20,21 +22,21 @@ component: true
 <TabsContent value="manual">    
 <Steps>
 
-### Install ReUI
-
-Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
-
-### Install dependencies
+<Step>
+Install the following dependencies:
 
 ```bash
 npm i radix-ui
 ```
 
-### Add component
+</Step>
 
+<Step>
 Copy and paste the following code into your project’s `components/ui/sheet.tsx` file.
 
 <ComponentPreview name="sheet" />
+
+</Step>
 
 </Steps>
 
@@ -43,10 +45,6 @@ Copy and paste the following code into your project’s `components/ui/sheet.tsx
 </Tabs>
 
 ## Examples
-
-### Default
-
-<ExamplePreview path="sheet/default" />
 
 ### Scrollable
 
@@ -60,14 +58,6 @@ Copy and paste the following code into your project’s `components/ui/sheet.tsx
 
 This component is built using [Radix UI Dialog](https://www.radix-ui.com/primitives/docs/components/dialog) primitives. For detailed information, please visit the full API reference.
 
-### Sheet
-
-This component is based on the [Dialog.Root](https://www.radix-ui.com/primitives/docs/components/dialog#root) primitive. For more details, refer to the original documentation.
-
-### SheetTrigger
-
-This component is based on the [Dialog.Trigger](https://www.radix-ui.com/primitives/docs/components/dialog#trigger) primitive. For more details, refer to the original documentation.
-
 ### SheetContent
 
 This component is based on the [Dialog.Content](https://www.radix-ui.com/primitives/docs/components/dialog#content) primitive and includes the following custom props:
@@ -79,50 +69,6 @@ This component is based on the [Dialog.Content](https://www.radix-ui.com/primiti
 | `close` <PopoverInfo>Whether to show the close button.</PopoverInfo>                   | ~boolean~                                                                  | ~true~      |
 | `className` <PopoverInfo>Additional class names for styling the content.</PopoverInfo> | ~string~                                                                   | <Na/>       |
 
-### SheetHeader
-
-This component is a custom implementation that provides a consistent layout for the title and description.
-
-| **Prop**                                                                              | **Type** | **Default** |
-| ------------------------------------------------------------------------------------- | -------- | ----------- |
-| `className` <PopoverInfo>Additional class names for styling the header.</PopoverInfo> | ~string~ | <Na/>       |
-
-### SheetFooter
-
-This component is a custom implementation that provides a responsive layout for action buttons.
-
-| **Prop**                                                                              | **Type** | **Default** |
-| ------------------------------------------------------------------------------------- | -------- | ----------- |
-| `className` <PopoverInfo>Additional class names for styling the footer.</PopoverInfo> | ~string~ | <Na/>       |
-
-### SheetTitle
-
-This component is based on the [Dialog.Title](https://www.radix-ui.com/primitives/docs/components/dialog#title) primitive and includes the following custom props:
-
-| **Prop**                                                                             | **Type** | **Default** |
-| ------------------------------------------------------------------------------------ | -------- | ----------- |
-| `className` <PopoverInfo>Additional class names for styling the title.</PopoverInfo> | ~string~ | <Na/>       |
-
-### SheetDescription
-
-This component is based on the [Dialog.Description](https://www.radix-ui.com/primitives/docs/components/dialog#description) primitive and includes the following custom props:
-
-| **Prop**                                                                                   | **Type** | **Default** |
-| ------------------------------------------------------------------------------------------ | -------- | ----------- |
-| `className` <PopoverInfo>Additional class names for styling the description.</PopoverInfo> | ~string~ | <Na/>       |
-
-### SheetClose
-
-This component is based on the [Dialog.Close](https://www.radix-ui.com/primitives/docs/components/dialog#close) primitive. For full details, visit the official documentation.
-
-### SheetPortal
-
-This component is based on the [Dialog.Portal](https://www.radix-ui.com/primitives/docs/components/dialog#portal) primitive. For full details, visit the official documentation.
-
-### SheetOverlay
-
-This component is based on the [Dialog.Overlay](https://www.radix-ui.com/primitives/docs/components/dialog#overlay) primitive. For full details, visit the official documentation.
-
 ## Credits
 
-- Used [Radix UI](https://www.radix-ui.com/primitives/docs/components/dialog) for the sheet component.
+- Built with [Radix UI Sheet](https://www.radix-ui.com/primitives/docs/components/dialog).

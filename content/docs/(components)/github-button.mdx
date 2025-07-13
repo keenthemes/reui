@@ -4,6 +4,8 @@ description: A github button component with animated stars display effects.
 component: true
 ---
 
+<ExamplePreview path="github-button/default" />
+
 ## Installation
 
 <Tabs defaultValue="cli">
@@ -20,15 +22,20 @@ component: true
 <TabsContent value="manual">    
 <Steps>
 
-### Install ReUI
+<Step>
+Install the following dependencies:
 
-Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+```bash
+npm i radix-ui
+```
+</Step>
 
-### Add component
-
+<Step>
 Copy and paste the following code into your project’s `components/ui/github-button.tsx` file.
 
 <ComponentPreview name="github-button" />
+
+</Step>
 
 </Steps>
 
@@ -37,10 +44,6 @@ Copy and paste the following code into your project’s `components/ui/github-bu
 </Tabs>
 
 ## Examples
-
-### Default
-
-<ExamplePreview path="github-button/default" />
 
 ### Outline
 
@@ -51,6 +54,11 @@ Copy and paste the following code into your project’s `components/ui/github-bu
 <ExamplePreview path="github-button/sizes" />
 
 ## API Reference
+
+This component is built using [Radix UI Slot](https://www.radix-ui.com/primitives/docs/utilities/slot) and [Motion](https://motion.dev/) 
+primitives and includes the following custom props:
+
+### GithubButton
 
 | **Prop**                                                                                       | **Type**                 | **Default**        |
 | ---------------------------------------------------------------------------------------------- | ------------------------ | ------------------ |
@@ -70,9 +78,10 @@ Copy and paste the following code into your project’s `components/ui/github-bu
 | `repoUrl` <PopoverInfo>Repository URL for actual GitHub integration.</PopoverInfo>             | ~string~                 | <Na/>              |
 | `label` <PopoverInfo>Button text label.</PopoverInfo>                                          | ~string~                 | ~'Star'~           |
 | `useInViewTrigger` <PopoverInfo>Use in-view detection to trigger animation.</PopoverInfo>      | ~boolean~                | ~false~            |
-| `inViewOptions` <PopoverInfo>Options for in-view detection trigger.</PopoverInfo>              | ~UseInViewOptions~       | ~`{ once: true }`~ |
+| `inViewOptions` <PopoverInfo>Options for in-view detection trigger.</PopoverInfo>              | ~UseInViewOptions~       | ~\{ once: true }~ |
 | `transition` <PopoverInfo>Spring transition options for motion animations.</PopoverInfo>       | ~SpringOptions~          | <Na/>              |
 
 ## Credits
 
+- Built with [Radix UI Slot](https://www.radix-ui.com/primitives/docs/utilities/slot).
 - Inspired by [Animate UI](https://animate-ui.com/docs/buttons/github-stars).

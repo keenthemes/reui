@@ -5,16 +5,14 @@ import { Button } from '@/registry/default/ui/base-button';
 import { Collapsible, CollapsiblePanel, CollapsibleTrigger } from '@/registry/default/ui/base-collapsible';
 
 export default function Component() {
-  const [isOpen, setIsOpen] = React.useState(true);
+  const [isOpen, setIsOpen] = React.useState(false);
 
   return (
     <div className="w-[500px] text-foreground text-sm rounded-lg border border-border p-4">
-      ReUI is a free toolkit offering complete CRUD (Create, Read, Update, Delete) examples for real-world projects use
-      cases.
+      ReUI is a open-source collection of UI components and animated effects built with React, Typescript, Tailwind CSS, and Motion.
       <Collapsible open={isOpen} onOpenChange={setIsOpen}>
         <CollapsiblePanel>
-          Unlike libraries that address specific parts of CRUD, ReUI delivers end-to-end solutions, making it an
-          essential tool for building the core functionality of any application.
+          Pairs beautifully with shadcn/ui. Save time and build your next project faster.
         </CollapsiblePanel>
 
         <div className="text-end">

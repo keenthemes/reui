@@ -4,6 +4,8 @@ description: Displays a hierarchy of links to the current page or resource in an
 component: true
 ---
 
+<ExamplePreview path="breadcrumb/default" />
+
 ## Installation
 
 <Tabs defaultValue="cli">
@@ -20,21 +22,21 @@ component: true
 <TabsContent value="manual">    
 <Steps>
 
-### Install ReUI
-
-Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
-
-### Install dependencies
+<Step>
+Install the following dependencies:
 
 ```bash
 npm i radix-ui
 ```
 
-### Add component
+</Step>
 
+<Step>
 Copy and paste the following code into your project’s `components/ui/breadcrumb.tsx` file.
 
 <ComponentPreview name="breadcrumb" />
+
+</Step>
 
 </Steps>
 
@@ -43,10 +45,6 @@ Copy and paste the following code into your project’s `components/ui/breadcrum
 </Tabs>
 
 ## Examples
-
-### Default
-
-<ExamplePreview path="breadcrumb/default" />
 
 ### Icon
 
@@ -101,7 +99,7 @@ This component is used to display a link within a breadcrumb item.
 | ----------------------------------------------------------------------------------------------------- | --------- | ----------- |
 | `className` <PopoverInfo>Additional class names for styling the breadcrumb link.</PopoverInfo>        | ~string~  | <Na/>       |
 | `href` <PopoverInfo>The URL that the breadcrumb link points to.</PopoverInfo>                         | ~string~  | ~#~         |
-| `asChild` <PopoverInfo>Renders the link as a child element, using the `Slot` component.</PopoverInfo> | ~boolean~ | `false`     |
+| `asChild` <PopoverInfo>Renders the link as a child element, using the `Slot` component.</PopoverInfo> | ~boolean~ | ~false~     |
 
 ### BreadcrumbPage
 
@@ -126,3 +124,7 @@ This component is used to display an ellipsis in the breadcrumb.
 | **Prop**                                                                                           | **Type** | **Default** |
 | -------------------------------------------------------------------------------------------------- | -------- | ----------- |
 | `className` <PopoverInfo>Additional class names for styling the breadcrumb ellipsis.</PopoverInfo> | ~string~ | <Na/>       |
+
+## Credits
+
+- Built with [Radix UI Slot](https://www.radix-ui.com/primitives/docs/utilities/slot).

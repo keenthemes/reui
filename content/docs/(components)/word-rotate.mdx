@@ -4,6 +4,8 @@ description: A word rotate animation component with realistic typing effects and
 component: true
 ---
 
+<ExamplePreview path="word-rotate/default" />
+
 ## Installation
 
 <Tabs defaultValue="cli">
@@ -20,15 +22,21 @@ component: true
 <TabsContent value="manual">    
 <Steps>
 
-### Install ReUI
+<Step>
+Install the following dependencies:
 
-Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+```bash
+npm i motion
+```
 
-### Add component
+</Step>
 
+<Step>
 Copy and paste the following code into your project's `components/ui/word-rotate.tsx` file.
 
 <ComponentPreview name="word-rotate" />
+
+</Step>
 
 </Steps>
 
@@ -37,10 +45,6 @@ Copy and paste the following code into your project's `components/ui/word-rotate
 </Tabs>
 
 ## Examples
-
-### Default
-
-<ExamplePreview path="word-rotate/default" />
 
 ### Slide
 
@@ -56,6 +60,10 @@ Copy and paste the following code into your project's `components/ui/word-rotate
 
 ## API Reference
 
+This component is built using [Motion](https://motion.dev/) primitives and includes the following custom props:
+
+### WordRotate
+
 | **Prop**                                                                                            | **Type**                                                                                      | **Default** |
 | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | ----------- |
 | `words` <PopoverInfo>Array of words to rotate through in sequence.</PopoverInfo>                    | ~string[]~                                                                                    | <Na/>       |
@@ -68,3 +76,7 @@ Copy and paste the following code into your project's `components/ui/word-rotate
 | `startOnView` <PopoverInfo>Whether to start animation when component enters viewport.</PopoverInfo> | ~boolean~                                                                                     | ~true~      |
 | `once` <PopoverInfo>Whether to animate only once when using startOnView.</PopoverInfo>              | ~boolean~                                                                                     | ~false~     |
 | `inViewMargin` <PopoverInfo>Margin for in-view detection trigger area.</PopoverInfo>                | ~string~                                                                                      | <Na/>       |
+
+## Credits
+
+- Built with [Motion](https://motion.dev/).

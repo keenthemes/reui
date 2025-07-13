@@ -4,6 +4,8 @@ description: A step-by-step process for users to navigate through a series of st
 component: true
 ---
 
+<ExamplePreview path="stepper/default" />
+
 ## Installation
 
 <Tabs defaultValue="cli">
@@ -20,15 +22,21 @@ component: true
 <TabsContent value="manual">    
 <Steps>
 
-### Install ReUI
+<Step>
+Install the following dependencies:
 
-Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+```bash
+npm i radix-ui
+```
 
-### Add component
+</Step>
 
+<Step>
 Copy and paste the following code into your project’s `components/ui/stepper.tsx` file.
 
 <ComponentPreview name="stepper" />
+
+</Step>
 
 </Steps>
 
@@ -37,10 +45,6 @@ Copy and paste the following code into your project’s `components/ui/stepper.t
 </Tabs>
 
 ## Examples
-
-### Default
-
-<ExamplePreview path="stepper/default" />
 
 ### States
 
@@ -53,6 +57,10 @@ Copy and paste the following code into your project’s `components/ui/stepper.t
 ### Controlled
 
 <ExamplePreview path="stepper/controlled" />
+
+### Progress
+
+<ExamplePreview path="stepper/progress" />
 
 ### Title
 

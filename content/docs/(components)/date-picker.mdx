@@ -4,6 +4,8 @@ description: A date input component that combines a calendar popover with an inp
 component: true
 ---
 
+<ExamplePreview path="date-picker/default" />
+
 ## Installation
 
 <Tabs defaultValue="cli">
@@ -20,19 +22,22 @@ component: true
 <TabsContent value="manual">    
 <Steps>
 
-### Install ReUI
-
-Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
-
-### Install dependencies
+<Step>
+Install the following dependencies:
 
 ```bash
 npm i radix-ui react-day-picker date-fns
 ```
 
-### Add required components
+</Step>
 
-Add [Button](/docs/button) and [Popover](/docs/popover) components used by ReUI Date Picker.
+<Step>
+
+Copy and paste the following code into your project’s `components/ui/date-picker.tsx` file.
+
+<ComponentPreview name="date-picker" />
+
+</Step>
 
 </Steps>
 
@@ -41,10 +46,6 @@ Add [Button](/docs/button) and [Popover](/docs/popover) components used by ReUI 
 </Tabs>
 
 ## Examples
-
-### Default
-
-<ExamplePreview path="date-picker/default" />
 
 ### Date & Time
 
@@ -106,5 +107,5 @@ A component for displaying preset date ranges.
 
 ## Credits
 
-- Used [React DayPicker](https://daypicker.dev/) for the date picker component.
-- Used [Radix UI](https://www.radix-ui.com/primitives/docs/components/popover) for the date picker component.
+- Built with [React DayPicker](https://daypicker.dev/).
+- Built with [Radix UI Popover](https://www.radix-ui.com/primitives/docs/components/popover).

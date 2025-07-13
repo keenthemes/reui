@@ -11,14 +11,14 @@ import { ArrowDown, ArrowUp, ChevronDown, ChevronUp } from 'lucide-react';
 export default function CollapsibleDemo() {
   const [isOpen, setIsOpen] = React.useState(false);
 
-  interface IStatItem {
+  interface StatItem {
     label: string;
     value: number;
     change: string;
     changeType: 'increase' | 'decrease'; // Type to define whether it's an increase or decrease
   }
 
-  const stats: IStatItem[] = [
+  const stats: StatItem[] = [
     {
       label: 'Added to Cart',
       value: 3842,

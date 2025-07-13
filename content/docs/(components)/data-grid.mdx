@@ -4,6 +4,8 @@ description: A powerful data grid component built on top of TanStack Table v8 wi
 component: true
 ---
 
+<ExamplePreview path="data-grid/default" />
+
 ## Installation
 
 <Tabs defaultValue="cli">
@@ -20,11 +22,8 @@ component: true
 <TabsContent value="manual">    
 <Steps>
 
-### Install ReUI
-
-Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
-
-### Install dependencies
+<Step>
+Install the following dependencies:
 
 ```bash
 npm i radix-ui @tanstack/react-table
@@ -36,13 +35,9 @@ To enable support for drag-and-drop functionality for columns and rows, install 
 npm i @dnd-kit/core @dnd-kit/sortable @dnd-kit/modifiers @dnd-kit/utilities
 ```
 
-### Add required components
+</Step>
 
-Add [Button](/docs/button), [Checkbox](/docs/checkbox), [Command](/docs/command), [Dropdown Menu](/docs/dropdown-menu),
-[Popover](/docs/popover), [Select](/docs/select), [Separator](/docs/separator) and
-[Skeleton](/docs/skeleton) components used by ReUI Data Grid.
-
-### Add components
+<Step>
 
 Copy and paste the following code into your project’s `components/ui/data-grid.tsx` file.
 
@@ -76,6 +71,8 @@ Copy and paste the following code into your project’s `components/ui/data-grid
 
 <ComponentPreview name="data-grid-table-dnd-rows" />
 
+</Step>
+
 </Steps>
 
 </TabsContent>
@@ -83,10 +80,6 @@ Copy and paste the following code into your project’s `components/ui/data-grid
 </Tabs>
 
 ## Examples
-
-### Default
-
-<ExamplePreview path="data-grid/default" />
 
 ### Cell Border
 
@@ -174,7 +167,7 @@ This section provides a comprehensive overview of the data grid components, deta
 
 ### DataGrid
 
-This component is based on the [DataGrid](https://tanstack.com/table/latest/docs/guide/data) from TanStack Table and includes the following custom props:
+This component is based on the [DataGrid](https://tanstack.com/table/latest/docs/guide/data) from [TanStack Table](https://tanstack.com/table/latest) and includes the following custom props:
 
 | **Prop**                                                                                           | **Type**                                                    | **Default**           |
 | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- | --------------------- |
@@ -294,5 +287,5 @@ This interface is used to define custom metadata for columns in the data grid. I
 
 ## Credits
 
-- Used [TanStack Table](https://tanstack.com/table/latest/docs/guide/tables) for the data grid component.
-- Used [DndKit](https://dndkit.com/) for the data grid component.
+- Built with [TanStack Table](https://tanstack.com/table/latest/docs/guide/tables).
+- Built with [DndKit](https://dndkit.com/).

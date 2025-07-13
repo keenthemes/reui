@@ -4,6 +4,8 @@ description: An animated gradient background component with smooth color transit
 component: true
 ---
 
+<ExamplePreview path="gradient-background/default" />
+
 ## Installation
 
 <Tabs defaultValue="cli">
@@ -20,21 +22,21 @@ component: true
 <TabsContent value="manual">    
 <Steps>
 
-### Install ReUI
-
-Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
-
-### Install dependencies
+<Step>
+Install the following dependencies:
 
 ```bash
-npm install motion
+npm i motion
 ```
 
-### Add component
+</Step>
 
+<Step>
 Copy and paste the following code into your project's `components/ui/gradient-background.tsx` file.
 
 <ComponentPreview name="gradient-background" />
+
+</Step>
 
 </Steps>
 
@@ -44,17 +46,21 @@ Copy and paste the following code into your project's `components/ui/gradient-ba
 
 ## Examples
 
-### Default
-
-<ExamplePreview path="gradient-background/default" />
-
 ### Dark
 
 <ExamplePreview path="gradient-background/dark" />
 
 ## API Reference
 
+This component is built using [Motion](https://motion.dev/) primitives and includes the following custom props:
+
+### GradientBackground
+
 | **Prop**                                                                                            | **Type**     | **Default**                                               |
 | --------------------------------------------------------------------------------------------------- | ------------ | --------------------------------------------------------- |
 | `className` <PopoverInfo>CSS class for the background container.</PopoverInfo>                      | ~string~     | <Na/>                                                     |
 | `transition` <PopoverInfo>Motion transition configuration for the gradient animation.</PopoverInfo> | ~Transition~ | ~\{ duration: 10, ease: 'easeInOut', repeat: Infinity \}~ |
+
+## Credits
+
+- Built with [Motion](https://motion.dev/).

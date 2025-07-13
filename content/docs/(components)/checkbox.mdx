@@ -4,6 +4,8 @@ description: A control that allows the user to toggle between checked and not ch
 component: true
 ---
 
+<ExamplePreview path="checkbox/default" />
+
 ## Installation
 
 <Tabs defaultValue="cli">
@@ -20,21 +22,21 @@ component: true
 <TabsContent value="manual">    
 <Steps>
 
-### Install ReUI
-
-Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
-
-### Install dependencies
+<Step>
+Install the following dependencies:
 
 ```bash
 npm i radix-ui
 ```
 
-### Add component
+</Step>
 
+<Step>
 Copy and paste the following code into your project’s `components/ui/checkbox.tsx` file.
 
 <ComponentPreview name="checkbox" />
+
+</Step>
 
 </Steps>
 
@@ -43,10 +45,6 @@ Copy and paste the following code into your project’s `components/ui/checkbox.
 </Tabs>
 
 ## Examples
-
-### Default
-
-<ExamplePreview path="checkbox/default" />
 
 ### Checked
 
@@ -68,18 +66,6 @@ Copy and paste the following code into your project’s `components/ui/checkbox.
 
 <ExamplePreview path="checkbox/form" />
 
-## API Reference
-
-This component is built using [Radix UI Checkbox](https://www.radix-ui.com/primitives/docs/components/checkbox) primitives. For detailed information about the base checkbox functionality, please visit the Radix UI documentation.
-
-### Checkbox
-
-A customized checkbox component that extends the Radix UI Checkbox primitive with additional styling and features. It supports all the props from Radix UI's Checkbox.Root component.
-
-| **Prop**                                                                                          | **Type** | **Default** |
-| ------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `className` <PopoverInfo>Additional class names for styling the checkbox container.</PopoverInfo> | ~string~ | <Na/>       |
-
 ## Credits
 
-- Used [Radix UI](https://www.radix-ui.com/primitives/docs/components/checkbox) for the checkbox component.
+- Built with [Radix UI Checkbox](https://www.radix-ui.com/primitives/docs/components/checkbox).

@@ -247,7 +247,7 @@ function ComponentPreviewDemo() {
     <DirectionProvider dir={rtl ? 'rtl' : 'ltr'}>
       <div
         className={cn(
-          'flex lg:min-h-[350px] grow justify-center items-center bg-card overflow-x-auto border border-border/90 rounded-lg p-6 lg:p-10',
+          'flex lg:min-h-[350px] grow justify-center items-center bg-card border border-border/90 rounded-lg p-6 lg:p-10',
           theme === 'dark' && 'dark',
           theme === 'light' && 'light',
         )}

@@ -1,42 +1,66 @@
-export const premiumTemplates = [
+import { Icons } from '@/components/icons';
+
+type Template = {
+  title: string;
+  previewUrl: string;
+  description: string;
+  popular?: boolean;
+  stack?: (keyof typeof Icons)[];
+  new?: boolean;
+  thumbnail?: string;
+  price?: string;
+  free?: boolean;
+};
+
+export const templates: Template[] = [
   {
     title: 'Metronic',
-    href: 'https://keenthemes.com/metronic?utm_source=reui_website&utm_medium=menu&utm_campaign=product_link&utm_content=metronic',
+    previewUrl:
+      'https://keenthemes.com/metronic?utm_source=reui_website&utm_medium=menu&utm_campaign=product_link&utm_content=metronic',
     description:
-      'Metronic is a premium admin template used by 120,000 developers that is built with React, Next.js, TypeScript, and Tailwind CSS.',
-    popular: true,
-    items: [],
+      'Metronic is a premium admin template used by 120,000 developers that is built with React, Next.js, TypeScript, Supabase, Prisma ORM and Tailwind CSS.',
+    stack: ['react', 'nextjs', 'tailwind', 'motion', 'reui', 'shadcn', 'radix', 'supabase', 'prisma'],
+    thumbnail: 'metronic-1.png',
+    price: '$49',
   },
   {
     title: 'SaaSify',
-    href: 'https://keenthemes.com/products/saasify?utm_source=reui_website&utm_medium=menu&utm_campaign=product_link&utm_content=saasify',
+    previewUrl:
+      'https://keenthemes.com/products/saasify?utm_source=reui_website&utm_medium=menu&utm_campaign=product_link&utm_content=saasify',
     description:
-      'SaaSify is a premium admin template used by 120,000 developers that is built with React, Next.js, TypeScript, and Tailwind CSS.',
-    new: true,
-    items: [],
+      'SaaSify is a premium landing page template for marketing and product showcase built with React, Next.js, TypeScript, Motion and Tailwind CSS.',
+    price: '$59',
+    stack: ['react', 'nextjs', 'tailwind', 'shadcn', 'reui', 'radix', 'motion'],
+    thumbnail: 'saasify-1.png',
   },
   {
     title: 'Storely',
-    href: 'https://keenthemes.com/products/storely?utm_source=reui_website&utm_medium=menu&utm_campaign=product_link&utm_content=storely',
+    previewUrl:
+      'https://keenthemes.com/products/storely?utm_source=reui_website&utm_medium=menu&utm_campaign=product_link&utm_content=storely',
     description:
-      'Storely is a premium admin template used by 120,000 developers that is built with React, Next.js, TypeScript, and Tailwind CSS.',
-    new: true,
-    items: [],
+      'Storely is a premium ecommerce template built with React, Next.js, TypeScript, Prisma ORM and Tailwind CSS.',
+    price: '$99',
+    stack: ['react', 'nextjs', 'tailwind', 'shadcn', 'reui', 'radix', 'prisma'],
+    thumbnail: 'storely-1.png',
   },
   {
     title: 'Shoplit',
-    href: 'https://keenthemes.com/products/shoplit?utm_source=reui_website&utm_medium=menu&utm_campaign=product_link&utm_content=shoplit',
+    previewUrl:
+      'https://keenthemes.com/products/shoplit?utm_source=reui_website&utm_medium=menu&utm_campaign=product_link&utm_content=shoplit',
     description:
-      'Shoplit is a premium admin template used by 120,000 developers that is built with React, Next.js, TypeScript, and Tailwind CSS.',
-    external: true,
-    items: [],
+      'Shoplit is a premium admin template for eCommerce backend management built with React, Next.js, TypeScript, Prisma ORM and Tailwind CSS.',
+    thumbnail: 'shoplit-1.png',
+    stack: ['react', 'nextjs', 'tailwind', 'shadcn', 'reui', 'radix', 'prisma'],
+    price: '$99',
   },
   {
     title: 'Supastart',
-    href: 'https://keenthemes.com/products/supastart?utm_source=reui_website&utm_medium=menu&utm_campaign=product_link&utm_content=supastart',
+    previewUrl:
+      'https://keenthemes.com/products/supastart?utm_source=reui_website&utm_medium=menu&utm_campaign=product_link&utm_content=supastart',
     description:
-      'Supastart is a premium admin template used by 120,000 developers that is built with React, Next.js, TypeScript, and Tailwind CSS.',
-    external: true,
-    items: [],
+      'Supastart is a premium admin template for eCommerce backend management built with React, Next.js, TypeScript, Supabase and Tailwind CSS.',
+    thumbnail: 'supastart-1.png',
+    stack: ['react', 'nextjs', 'tailwind', 'shadcn', 'reui', 'radix', 'supabase'],
+    price: '$99',
   },
 ];

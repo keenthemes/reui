@@ -4,6 +4,8 @@ description: An easily stylable avatar component built with Base UI components.
 component: true
 ---
 
+<ExamplePreview path="base-avatar/default" />
+
 ## Installation
 
 <Tabs defaultValue="cli">
@@ -20,49 +22,28 @@ component: true
 <TabsContent value="manual">
 <Steps>
 
-### Install ReUI
-
-Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
-
-### Install dependencies
+<Step>
+Install the following dependencies:
 
 ```bash
 npm install @base-ui-components/react
 ```
 
-### Add component
+</Step>
 
+<Step>
 Copy and paste the following code into your project's `components/ui/base-avatar.tsx` file.
 
 <ComponentPreview name="base-avatar" />
 
-### Update imports
-
-Update the import paths to match your project setup.
+</Step>
 
 </Steps>
 </TabsContent>
 
 </Tabs>
 
-## Usage
-
-```tsx
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/base-avatar';
-```
-
-```tsx
-<Avatar>
-  <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-  <AvatarFallback>CN</AvatarFallback>
-</Avatar>
-```
-
 ## Examples
-
-### Default
-
-<ExamplePreview path="base-avatar/default" />
 
 ### Fallback
 
@@ -115,4 +96,4 @@ This is a custom component for displaying a status indicator on the avatar.
 
 ## Credits
 
-- Built with [Base UI](https://base-ui.com/react/components/avatar).
+- Built with [Base UI Avatar](https://base-ui.com/react/components/avatar).

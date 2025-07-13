@@ -4,6 +4,8 @@ description: Number with sliding effect.
 component: true
 ---
 
+<ExamplePreview path="sliding-number/default" />
+
 ## Installation
 
 <Tabs defaultValue="cli">
@@ -20,15 +22,21 @@ component: true
 <TabsContent value="manual">    
 <Steps>
 
-### Install ReUI
+<Step>
+Install the following dependencies:
 
-Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+```bash
+npm i motion
+```
 
-### Add component
+</Step>
 
+<Step>
 Copy and paste the following code into your project's `components/ui/sliding-number.tsx` file.
 
 <ComponentPreview name="sliding-number" />
+
+</Step>
 
 </Steps>
 
@@ -38,13 +46,15 @@ Copy and paste the following code into your project's `components/ui/sliding-num
 
 ## Examples
 
-<ExamplePreview path="sliding-number/default" />
-
 ### Slider
 
 <ExamplePreview path="sliding-number/slider" />
 
 ## API Reference
+
+This component is built using [Motion](https://motion.dev/) primitives and includes the following custom props:
+
+### SlidingNumber
 
 | Prop                                                                                              | Type       | Default |
 | ------------------------------------------------------------------------------------------------- | ---------- | ------- |
@@ -61,3 +71,4 @@ Copy and paste the following code into your project's `components/ui/sliding-num
 ## Credits
 
 - Inspired by [Motion Primitives](https://motion-primitives.com/docs/sliding-number)
+- Built with [Motion](https://motion.dev/).

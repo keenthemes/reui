@@ -4,6 +4,8 @@ description: Counting number with smooth animation.
 component: true
 ---
 
+<ExamplePreview path="counting-number/default" />
+
 ## Installation
 
 <Tabs defaultValue="cli">
@@ -20,15 +22,21 @@ component: true
 <TabsContent value="manual">    
 <Steps>
 
-### Install ReUI
+<Step>
+Install the following dependencies:
 
-Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+```bash
+npm i motion
+```
 
-### Add component
+</Step>
 
+<Step>
 Copy and paste the following code into your project's `components/ui/counting-number.tsx` file.
 
 <ComponentPreview name="counting-number" />
+
+</Step>
 
 </Steps>
 
@@ -37,10 +45,6 @@ Copy and paste the following code into your project's `components/ui/counting-nu
 </Tabs>
 
 ## Examples
-
-### Default
-
-<ExamplePreview path="counting-number/default" />
 
 ### Decimal
 
@@ -51,6 +55,10 @@ Copy and paste the following code into your project's `components/ui/counting-nu
 <ExamplePreview path="counting-number/format" />
 
 ## API Reference
+
+This component is built using [Motion](https://motion.dev/) primitives and includes the following custom props:
+
+### CountingNumber
 
 | **Prop**                                                                                            | **Type**                    | **Default** |
 | --------------------------------------------------------------------------------------------------- | --------------------------- | ----------- |
@@ -68,3 +76,4 @@ Copy and paste the following code into your project's `components/ui/counting-nu
 ## Credits
 
 - Inspired by [Motion](https://motion.dev/)
+- Built with [Motion](https://motion.dev/).

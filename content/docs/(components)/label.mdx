@@ -1,0 +1,62 @@
+---
+title: Label
+description: Renders an accessible label associated with controls.
+component: true
+---
+
+<ExamplePreview path="label/default" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="label" />
+</TabsContent>
+
+<TabsContent value="manual">    
+<Steps>
+
+<Step>
+Install the following dependencies:
+
+```bash
+npm i radix-ui
+```
+
+</Step>
+
+<Step>
+
+Copy and paste the following code into your project’s `components/ui/label.tsx` file.
+
+<ComponentPreview name="label" />
+
+</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## API Reference
+
+This component is built using the [Radix UI Label](https://www.radix-ui.com/primitives/docs/components/label) primitive and includes the following custom props:
+
+### Label
+
+The main container component that provides context and styling for all card elements.
+
+| **Prop**                                                                                      | **Type**                                                  | **Default** |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------- | ----------- |
+| `variant` <PopoverInfo>The visual style variant of the label.</PopoverInfo>                    | ~enum~ <PopoverInfo> "primary" \| "secondary" </PopoverInfo> | ~"primary"~ |
+
+## Credits
+
+- Built with [Radix UI Label](https://www.radix-ui.com/primitives/docs/components/label).

@@ -4,6 +4,8 @@ description: Displays keyboard input or shortcut keys with customizable styles a
 component: true
 ---
 
+<ExamplePreview path="kbd/default" />
+
 ## Installation
 
 <Tabs defaultValue="cli">
@@ -20,15 +22,21 @@ component: true
 <TabsContent value="manual">    
 <Steps>
 
-### Install ReUI
+<Step>
+Install the following dependencies:
 
-Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+```bash
+npm i @reui/ui
+```
 
-### Add component
+</Step>
 
+<Step>
 Copy and paste the following code into your project’s `components/ui/kbd.tsx` file.
 
 <ComponentPreview name="kbd" />
+
+</Step>
 
 </Steps>
 
@@ -37,10 +45,6 @@ Copy and paste the following code into your project’s `components/ui/kbd.tsx` 
 </Tabs>
 
 ## Examples
-
-### Default
-
-<ExamplePreview path="kbd/default" />
 
 ### Outline
 
@@ -63,3 +67,8 @@ This component is a custom implementation that displays keyboard inputs with the
 | `variant` <PopoverInfo>The visual style variant of the keyboard input.</PopoverInfo> | ~enum~ <PopoverInfo> "default" \| "solid" \| "outline" </PopoverInfo> | ~"default"~ |
 | `size` <PopoverInfo>The size of the keyboard input display.</PopoverInfo>            | ~enum~ <PopoverInfo> "md" \| "sm" \| "xs" </PopoverInfo>              | ~"md"~      |
 | `className` <PopoverInfo>Additional class names for styling.</PopoverInfo>           | ~string~                                                              | <Na/>       |
+
+
+## Credits
+
+- Built with [Radix UI Slot](https://www.radix-ui.com/primitives/docs/utilities/slot).

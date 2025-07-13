@@ -4,6 +4,8 @@ description: Renders a clickable button or an element styled as a button
 component: true
 ---
 
+<ExamplePreview path="button/default" />
+
 ## Installation
 
 <Tabs defaultValue="cli">
@@ -20,27 +22,30 @@ component: true
 <TabsContent value="manual">    
 <Steps>
 
-### Install ReUI
+<Step>
+Install the following dependencies:
 
-Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+```bash
+npm i radix-ui
+```
 
-### Add component
+</Step>
+
+<Step>
 
 Copy and paste the following code into your project’s `components/ui/button.tsx` file.
 
 <ComponentPreview name="button" />
 
-</Steps>
+</Step>
+
+</Steps>  
 
 </TabsContent>
 
 </Tabs>
 
 ## Examples
-
-### Primary
-
-<ExamplePreview path="button/primary" />
 
 ### Secondary
 
@@ -128,4 +133,4 @@ This is the root component for creating buttons with multiple variants, appearan
 
 ## Credits
 
-- Used [Radix UI](https://www.radix-ui.com/primitives/docs/components/button) for the button component.
+- Built with [Radix UI Slot](https://www.radix-ui.com/primitives/docs/utilities/slot).

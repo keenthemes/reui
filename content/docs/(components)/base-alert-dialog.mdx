@@ -4,7 +4,7 @@ description: A dialog that requires user response to proceed, built with Base UI
 component: true
 ---
 
-<ComponentPreview name="base-alert-dialog/default" />
+<ExamplePreview path="base-alert-dialog/default" />
 
 ## Installation
 
@@ -22,78 +22,28 @@ component: true
 <TabsContent value="manual">
 <Steps>
 
-### Install ReUI
-
-Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
-
-### Install dependencies
+<Step>
+Install the following dependencies:
 
 ```bash
 npm install @base-ui-components/react
 ```
 
-### Add component
+</Step>
 
+<Step>
 Copy and paste the following code into your project's `components/ui/base-alert-dialog.tsx` file.
 
 <ComponentPreview name="base-alert-dialog" />
 
-### Update imports
-
-Update the import paths to match your project setup.
+</Step>
 
 </Steps>
 </TabsContent>
 
 </Tabs>
 
-## Usage
-
-```tsx
-import {
-  AlertDialog,
-  AlertDialogBackdrop,
-  AlertDialogClose,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogPopup,
-  AlertDialogPortal,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from '@/components/ui/base-alert-dialog';
-```
-
-```tsx
-<AlertDialog>
-  <AlertDialogTrigger asChild>
-    <Button>Open</Button>
-  </AlertDialogTrigger>
-  <AlertDialogPortal>
-    <AlertDialogBackdrop />
-    <AlertDialogPopup>
-      <AlertDialogHeader>
-        <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-        <AlertDialogDescription>This action cannot be undone.</AlertDialogDescription>
-      </AlertDialogHeader>
-      <AlertDialogFooter>
-        <AlertDialogClose asChild>
-          <Button variant="outline">Cancel</Button>
-        </AlertDialogClose>
-        <AlertDialogClose asChild>
-          <Button variant="destructive">Continue</Button>
-        </AlertDialogClose>
-      </AlertDialogFooter>
-    </AlertDialogPopup>
-  </AlertDialogPortal>
-</AlertDialog>
-```
-
 ## Examples
-
-### Default
-
-<ExamplePreview path="base-alert-dialog/default" />
 
 ### Destructive
 
@@ -117,4 +67,4 @@ This component is based on the [Base UI Alert Dialog](https://base-ui.com/react/
 
 ## Credits
 
-- Built with [Base UI](https://base-ui.com/react/components/alert-dialog).
+- Built with [Base UI Alert Dialog](https://base-ui.com/react/components/alert-dialog).

@@ -4,6 +4,8 @@ description: Text with video background mask effect.
 component: true
 ---
 
+<ExamplePreview path="video-text/default" />
+
 ## Installation
 
 <Tabs defaultValue="cli">
@@ -20,15 +22,21 @@ component: true
 <TabsContent value="manual">    
 <Steps>
 
-### Install ReUI
+<Step>
+Install the following dependencies:
 
-Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+```bash
+npm i motion
+```
 
-### Add component
+</Step>
 
+<Step>
 Copy and paste the following code into your project's `components/ui/video-text.tsx` file.
 
 <ComponentPreview name="video-text" />
+
+</Step>
 
 </Steps>
 
@@ -36,13 +44,11 @@ Copy and paste the following code into your project's `components/ui/video-text.
 
 </Tabs>
 
-## Examples
-
-### Default
-
-<ExamplePreview path="video-text/default" />
-
 ## API Reference
+
+This component is built using [Motion](https://motion.dev/) primitives and includes the following custom props:
+
+### VideoText
 
 | **Prop**                                                                                          | **Type**                                                           | **Default** |
 | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ----------- |
@@ -63,3 +69,4 @@ Copy and paste the following code into your project's `components/ui/video-text.
 ## Credits
 
 - Inspired by [Magic UI](https://magicui.design/)
+- Built with [Motion](https://motion.dev/).

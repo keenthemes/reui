@@ -4,6 +4,8 @@ description: A text component with beautiful shimmer animation effects that glid
 component: true
 ---
 
+<ExamplePreview path="shimmering-text/default" />
+
 ## Installation
 
 <Tabs defaultValue="cli">
@@ -20,15 +22,21 @@ component: true
 <TabsContent value="manual">    
 <Steps>
 
-### Install ReUI
+<Step>
+Install the following dependencies:
 
-Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+```bash
+npm i motion
+```
 
-### Add component
+</Step>
 
+<Step>
 Copy and paste the following code into your project's `components/ui/shimmering-text.tsx` file.
 
 <ComponentPreview name="shimmering-text" />
+
+</Step>
 
 </Steps>
 
@@ -38,15 +46,15 @@ Copy and paste the following code into your project's `components/ui/shimmering-
 
 ## Examples
 
-### Default
-
-<ExamplePreview path="shimmering-text/default" />
-
 ### Color
 
 <ExamplePreview path="shimmering-text/color" />
 
 ## API Reference
+
+This component is built using [Motion](https://motion.dev/) primitives and includes the following custom props:
+
+### ShimmeringText
 
 | Prop                                                                                                    | Type      | Default |
 | ------------------------------------------------------------------------------------------------------- | --------- | ------- |
@@ -62,3 +70,7 @@ Copy and paste the following code into your project's `components/ui/shimmering-
 | `spread` <PopoverInfo>Shimmer spread multiplier - affects the width of the shimmer effect</PopoverInfo> | ~number~  | ~2~     |
 | `color` <PopoverInfo>Base text color (overrides default theme colors)</PopoverInfo>                     | ~string~  | -       |
 | `shimmerColor` <PopoverInfo>Shimmer gradient color (overrides default theme colors)</PopoverInfo>       | ~string~  | -       |
+
+## Credits
+
+- Built with [Motion](https://motion.dev/).

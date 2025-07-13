@@ -3,6 +3,8 @@ title: SVG Text
 description: Display text with animated SVG backgrounds. Perfect for creating dynamic text effects with custom SVG graphics and animations.
 ---
 
+<ExamplePreview path="svg-text/default" />
+
 ## Installation
 
 <Tabs defaultValue="cli">
@@ -19,15 +21,21 @@ description: Display text with animated SVG backgrounds. Perfect for creating dy
 <TabsContent value="manual">    
 <Steps>
 
-### Install ReUI
+<Step>
+Install the following dependencies:
 
-Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+```bash
+npm i motion
+```
 
-### Add component
+</Step>
 
+<Step>
 Copy and paste the following code into your project's `components/ui/svg-text.tsx` file.
 
 <ComponentPreview name="svg-text" />
+
+</Step>
 
 </Steps>
 
@@ -35,13 +43,11 @@ Copy and paste the following code into your project's `components/ui/svg-text.ts
 
 </Tabs>
 
-## Examples
-
-### Default
-
-<ExamplePreview path="svg-text/default" />
-
 ## API Reference
+
+This component is built using [Motion](https://motion.dev/) primitives and includes the following custom props:
+
+### SVGText
 
 | **Prop**                                                                                          | **Type**           | **Default** |
 | ------------------------------------------------------------------------------------------------- | ------------------ | ----------- |
@@ -51,3 +57,7 @@ Copy and paste the following code into your project's `components/ui/svg-text.ts
 | `fontSize` <PopoverInfo>Font size for the text mask in CSS units or viewport width.</PopoverInfo> | ~string \| number~ | ~"20vw"~    |
 | `fontWeight` <PopoverInfo>Font weight for the text mask.</PopoverInfo>                            | ~string \| number~ | ~"bold"~    |
 | `as` <PopoverInfo>HTML element type to render for the container.</PopoverInfo>                    | ~ElementType~      | ~"div"~     |
+
+## Credits
+
+- Built with [Motion](https://motion.dev/).

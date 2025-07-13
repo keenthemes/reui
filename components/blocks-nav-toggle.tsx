@@ -25,7 +25,7 @@ export function BlocksNavToggle() {
   }, [isCollapsed]);
 
   return (
-    <div className="-ms-2 hidden lg:block">
+    <div className="-ms-2 hidden lg:block 2xl:hidden">
       <Tooltip delayDuration={1250}>
         <TooltipTrigger asChild>
           <Button variant="ghost" size="icon" className="size-8" onClick={handleToggle}>

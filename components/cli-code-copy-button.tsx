@@ -2,6 +2,8 @@ import { Button } from '@/registry/default/ui/button';
 import { Check } from 'lucide-react';
 import { useConfig } from '@/hooks/use-config';
 import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard';
+import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@/registry/default/ui/tooltip';
+
 
 export function CliCodeCopyButton({ name }: { name: string } & React.ComponentProps<typeof Button>) {
   const { copy, copied } = useCopyToClipboard();
@@ -15,17 +17,26 @@ export function CliCodeCopyButton({ name }: { name: string } & React.ComponentPr
   };
 
   return (
-    <Button
-      size="sm"
-      variant="outline"
-      className="h-7.5 text-muted-foreground w-36 justify-start"
-      title="Copy CLI command"
-      onClick={() => {
-        copy(commands[packageManager]);
-      }}
-    >
-      {copied ? <Check className="text-secondary-foreground" /> : '>_'}
-      <span className="truncate">{commands[packageManager]}</span>
-    </Button>
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>  
+          <Button
+            size="sm"
+            variant="outline"
+            className="h-7.5 text-muted-foreground w-36 justify-start"
+            title="Copy CLI command"
+            onClick={() => {
+              copy(commands[packageManager]);
+            }}
+          >
+            {copied ? <Check className="text-secondary-foreground" /> : '>_'}
+            <span className="truncate">{commands[packageManager]}</span>
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent>
+          {commands[packageManager]}
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 }

@@ -4,7 +4,7 @@ description: A set of collapsible panels with headings, built with Base UI compo
 component: true
 ---
 
-<ComponentPreview name="base-accordion/default" />
+<ExamplePreview path="base-accordion/default" />
 
 ## Installation
 
@@ -22,21 +22,21 @@ component: true
 <TabsContent value="manual">
 <Steps>
 
-### Install ReUI
-
-Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
-
-### Install dependencies
+<Step>
+Install the following dependencies:
 
 ```bash
 npm install @base-ui-components/react
 ```
 
-### Add component
+</Step>
 
+<Step>
 Copy and paste the following code into your project's `components/ui/base-accordion.tsx` file.
 
 <ComponentPreview name="base-accordion" />
+
+</Step>
 
 ### Update imports
 
@@ -48,34 +48,7 @@ Update the import paths to match your project setup.
 
 </Tabs>
 
-## Usage
-
-```tsx
-import {
-  Accordion,
-  AccordionHeader,
-  AccordionItem,
-  AccordionPanel,
-  AccordionTrigger,
-} from '@/components/ui/base-accordion';
-```
-
-```tsx
-<Accordion openMultiple={false}>
-  <AccordionItem value="item-1">
-    <AccordionHeader>
-      <AccordionTrigger>Is it accessible?</AccordionTrigger>
-    </AccordionHeader>
-    <AccordionPanel>Yes. It adheres to the WAI-ARIA design pattern.</AccordionPanel>
-  </AccordionItem>
-</Accordion>
-```
-
 ## Examples
-
-### Default
-
-<ExamplePreview path="base-accordion/default" />
 
 ### Outline
 
@@ -106,4 +79,4 @@ This component is based on the [Base UI Accordion](https://base-ui.com/react/com
 
 ## Credits
 
-- Built with [Base UI](https://base-ui.com/react/components/accordion).
+- Built with [Base UI Accordion](https://base-ui.com/react/components/accordion).

@@ -4,6 +4,8 @@ description: Displays a callout for user attention, such as a success message, w
 component: true
 ---
 
+<ExamplePreview path="alert/default" />
+
 ## Installation
 
 <Tabs defaultValue="cli">
@@ -19,16 +21,21 @@ component: true
 
 <TabsContent value="manual">    
 <Steps>
+<Step>
+Install the following dependencies:
 
-### Install ReUI Dependencies
+```bash
+npm i radix-ui
+```
 
-Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+</Step>
 
-### Add component
-
+<Step>
 Copy and paste the following code into your project’s `components/ui/alert.tsx` file.
 
 <ComponentPreview name="alert" />
+
+</Step>
 
 </Steps>
 
@@ -126,3 +133,7 @@ The AlertToolbar component includes the following props:
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ----------- |
 | `variant` <PopoverInfo>Specifies the alert toolbar's theme.</PopoverInfo>                    | ~enum~ <PopoverInfo> "primary" \| "destructive" \| "success" \| "info" \| "warning" </PopoverInfo> | <Na/>       |
 | `className` <PopoverInfo>Additional class names for styling the alert toolbar.</PopoverInfo> | ~string~                                                                                           | <Na/>       |
+
+## Credits
+
+- Built with [Radix UI Slot](https://www.radix-ui.com/primitives/docs/utilities/slot).

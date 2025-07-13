@@ -4,6 +4,8 @@ description: A responsive grid background with animated moving beams.
 component: true
 ---
 
+<ExamplePreview path="grid-background/default" />
+
 ## Installation
 
 <Tabs defaultValue="cli">
@@ -20,21 +22,21 @@ component: true
 <TabsContent value="manual">    
 <Steps>
 
-### Install ReUI
-
-Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
-
-### Install dependencies
+<Step>
+Install the following dependencies:
 
 ```bash
-npm install motion
+npm i motion
 ```
 
-### Add component
+</Step>
 
+<Step>
 Copy and paste the following code into your project's `components/ui/grid-background.tsx` file.
 
 <ComponentPreview name="grid-background" />
+
+</Step>
 
 </Steps>
 
@@ -44,15 +46,15 @@ Copy and paste the following code into your project's `components/ui/grid-backgr
 
 ## Examples
 
-### Default
-
-<ExamplePreview path="grid-background/default" />
-
 ### Hero
 
 <ExamplePreview path="grid-background/hero" />
 
 ## API Reference
+
+This component is built using [Motion](https://motion.dev/) primitives and includes the following custom props:
+
+### GridBackground
 
 | **Prop**                                                                                    | **Type**                                                                                                                            | **Default**                                                                                                                                                                                         |
 | ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -67,3 +69,7 @@ Copy and paste the following code into your project's `components/ui/grid-backgr
 | `beams.colors` <PopoverInfo>Array of CSS classes for beam colors.</PopoverInfo>             | ~string[]~                                                                                                                          | ~["bg-cyan-400", "bg-purple-400", "bg-fuchsia-400", "bg-violet-400", "bg-blue-400", "bg-indigo-400", "bg-green-400", "bg-yellow-400", "bg-orange-400", "bg-red-400", "bg-pink-400", "bg-rose-400"]~ |
 | `beams.shadow` <PopoverInfo>Shadow and styling CSS classes for beams.</PopoverInfo>         | ~string~                                                                                                                            | ~"shadow-lg shadow-cyan-400/50 rounded-full"~                                                                                                                                                       |
 | `beams.speed` <PopoverInfo>Base animation speed in seconds for beam movement.</PopoverInfo> | ~number~                                                                                                                            | ~4~                                                                                                                                                                                                 |
+
+## Credits
+
+- Built with [Motion](https://motion.dev/).

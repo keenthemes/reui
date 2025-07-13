@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
   Stepper,
   StepperContent,
@@ -5,51 +6,64 @@ import {
   StepperItem,
   StepperNav,
   StepperPanel,
-  StepperSeparator,
-  StepperTitle,
   StepperTrigger,
 } from '@/registry/default/ui/stepper';
-import { Check, LoaderCircleIcon } from 'lucide-react';
+import { Button } from '@/registry/default/ui/button';
+import { ArrowLeft } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
-const steps = [
-  { title: 'Step 1', description: 'Description 1' },
-  { title: 'Step 2', description: 'Description 2' },
-  { title: 'Step 3', description: 'Description 3' },
-  { title: 'Step 4', description: 'Description 4' },
-];
+export default function StepperProgress() {
+  const steps = [1, 2, 3, 4]
+  const [currentStep, setCurrentStep] = useState(1)
 
-export default function Component() {
   return (
-    <Stepper
-      defaultValue={2}
-      indicators={{
-        completed: <Check className="size-4" />,
-        loading: <LoaderCircleIcon className="size-4 animate-spin" />,
-      }}
-      className="space-y-8"
-    >
-      <StepperNav>
-        {steps.map((step, index) => (
-          <StepperItem key={index} step={index + 1}>
-            <div className="flex flex-col items-center gap-2">
-              <StepperTrigger>
-                <StepperIndicator>{index + 1}</StepperIndicator>
+    <div className="w-full flex flex-col">
+     <Stepper value={currentStep} onValueChange={setCurrentStep}>
+        <StepperNav>
+          {steps.map((step) => (
+            <StepperItem key={step} step={step} className="flex-1 first:rounded-s-full last:rounded-e-full overflow-hidden transition-all duration-300">
+              <StepperTrigger
+                className="w-full flex-col items-start gap-2"
+                asChild
+              >
+                <StepperIndicator
+                  className="bg-border h-2 w-full rounded-none"
+                >
+                  <span className="sr-only">{step}</span>
+                </StepperIndicator>
               </StepperTrigger>
-              <StepperTitle>{step.title}</StepperTitle>
-            </div>
+            </StepperItem>
+          ))}
+        </StepperNav>      
 
-            {steps.length > index + 1 && <StepperSeparator className="-mt-5" />}
-          </StepperItem>
-        ))}
-      </StepperNav>
+        <div className="flex items-center justify-between gap-2.5 py-2">
+          <Button mode="link" onClick={() => setCurrentStep((prev) => prev - 1)} className={cn(currentStep === 1 && 'pointer-events-none opacity-0')}>
+            <ArrowLeft /> Back
+          </Button>
+          
+          <div className="text-sm font-medium">
+            <span className="text-foreground">{currentStep}</span> <span className="text-muted-foreground/60">/ {steps.length}</span>
+          </div>
+        </div>
 
-      <StepperPanel className="text-sm">
-        {steps.map((step, index) => (
-          <StepperContent key={index} value={index + 1} className="flex items-center justify-center">
-            Step {step.title} content
-          </StepperContent>
-        ))}
-      </StepperPanel>
-    </Stepper>
+        <StepperPanel className="text-sm py-12">
+          {steps.map((step) => (
+            <StepperContent className="w-full flex items-center justify-center" key={step} value={step}>
+              Step {step} content
+            </StepperContent>
+          ))}
+        </StepperPanel>
+
+        <div className="flex items-center justify-end gap-2.5">
+          <Button
+            variant="outline"
+            onClick={() => setCurrentStep((prev) => prev + 1)}
+            disabled={currentStep === steps.length}
+          >
+            Next
+          </Button>
+        </div>
+      </Stepper>
+    </div>
   );
 }
