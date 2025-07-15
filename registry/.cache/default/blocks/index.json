@@ -1,16 +1,15 @@
 {
   "categories": [
     {
-      "cacheKey": "application.navigation.dropdowns",
-      "primary": "application",
-      "secondary": "navigation",
-      "tertiary": "dropdowns",
-      "title": "Dropdowns",
-      "totalBlocks": 2,
-      "filename": "application.navigation.dropdowns.json"
+      "cacheKey": "cards.statistic-cards",
+      "primary": "cards",
+      "secondary": "statistic-cards",
+      "title": "Statistic Cards",
+      "totalBlocks": 15,
+      "filename": "cards.statistic-cards.json"
     }
   ],
   "totalCategories": 1,
-  "totalBlocks": 2,
-  "generatedAt": "2025-07-12T09:33:39.880Z"
+  "totalBlocks": 15,
+  "generatedAt": "2025-07-15T05:56:27.692Z"
 }

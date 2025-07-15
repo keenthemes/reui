@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { getBlocks, getPrimaryCategory, getSecondaryCategory, getTertiaryCategory } from '@/lib/blocks';
+import { getBlocks, getPrimaryCategory, getSecondaryCategory } from '@/lib/blocks';
 
 export default async function Page({ params }: { params: Promise<{ slug?: string[] }> }) {
   const resolvedParams = await params;
@@ -11,19 +11,19 @@ export default async function Page({ params }: { params: Promise<{ slug?: string
   // Resolve categories based on segments
   const primaryCategory = getPrimaryCategory(pathname);
   const secondaryCategory = getSecondaryCategory(primaryCategory, pathname);
-  const tertiaryCategory = getTertiaryCategory(secondaryCategory, pathname);
 
   // Check if this is a specific block route (4 segments: primary/secondary/tertiary/block)
-  if (primaryCategory && secondaryCategory && tertiaryCategory && slug.length === 4) {
-    const blockSlug = slug[3];
+  if (primaryCategory && secondaryCategory && slug.length === 3) {
+    const blockSlug = slug[2];
 
     // Load blocks for the tertiary category
-    const blocks = await getBlocks(primaryCategory, secondaryCategory, tertiaryCategory);
+    const blocks = await getBlocks(primaryCategory, secondaryCategory);
 
     // Find the specific block
     const block = blocks.find((b) => b.slug === blockSlug);
 
     if (!block) {
+      console.log('block not found 1:', blockSlug);
       notFound();
     }
 

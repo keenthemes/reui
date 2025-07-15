@@ -51,7 +51,7 @@ const buttonVariants = cva(
       },
       mode: {
         default: 'focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
-        icon: 'focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+        icon: 'focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 shrink-0',
         link: 'text-primary h-auto p-0 bg-transparent rounded-none hover:bg-transparent data-[state=open]:bg-transparent',
         input: `
             justify-start font-normal hover:bg-background [&_svg]:transition-colors [&_svg]:hover:text-foreground data-[state=open]:bg-background 

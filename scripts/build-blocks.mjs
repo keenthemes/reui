@@ -33,26 +33,21 @@ async function loadBlocksConfig() {
   }
 }
 
-function getAllTertiaryCategories(config) {
+function getAllSecondaryCategories(config) {
   const categories = [];
 
   for (const primary of config) {
     if (primary.sub) {
       for (const secondary of primary.sub) {
-        if (secondary.sub) {
-          for (const tertiary of secondary.sub) {
-            // Include all tertiary categories regardless of blocks content
-            // blocks is now array of BlockItem objects
-            categories.push({
-              primary: primary.slug,
-              secondary: secondary.slug,
-              tertiary: tertiary.slug,
-              title: tertiary.title,
-              blockItems: tertiary.blocks || [], // blocks is now array of BlockItem objects
-              cacheKey: `${primary.slug}.${secondary.slug}.${tertiary.slug}`,
-            });
-          }
-        }
+        // Include all secondary categories regardless of blocks content
+        // blocks is now array of BlockItem objects
+        categories.push({
+          primary: primary.slug,
+          secondary: secondary.slug,
+          title: secondary.title,
+          blockItems: secondary.blocks || [], // blocks is now array of BlockItem objects
+          cacheKey: `${primary.slug}.${secondary.slug}`,
+        });
       }
     }
   }
@@ -60,9 +55,9 @@ function getAllTertiaryCategories(config) {
   return categories;
 }
 
-async function getBlockFilesInCategory(primary, secondary, tertiary) {
+async function getBlockFilesInCategory(primary, secondary) {
   try {
-    const categoryPath = path.join(sourceBasePath, primary, secondary, tertiary);
+    const categoryPath = path.join(sourceBasePath, primary, secondary);
     console.log(`     Checking directory: ${categoryPath}`);
 
     const entries = await fs.readdir(categoryPath, { withFileTypes: true });
@@ -70,7 +65,7 @@ async function getBlockFilesInCategory(primary, secondary, tertiary) {
       .filter((entry) => entry.isFile() && (entry.name.endsWith('.tsx') || entry.name.endsWith('.ts')))
       .map((entry) => ({
         filename: entry.name,
-        relativePath: path.join(primary, secondary, tertiary, entry.name),
+        relativePath: path.join(primary, secondary, entry.name),
         fullPath: path.join(categoryPath, entry.name),
       }));
 
@@ -79,8 +74,8 @@ async function getBlockFilesInCategory(primary, secondary, tertiary) {
   } catch {
     // Try alternative directory names (handle plural/singular mismatches)
     const alternativePaths = [
-      path.join(sourceBasePath, primary, secondary, tertiary.replace(/s$/, '')), // Remove trailing 's'
-      path.join(sourceBasePath, primary, secondary, tertiary + 's'), // Add trailing 's'
+      path.join(sourceBasePath, primary, secondary.replace(/s$/, '')), // Remove trailing 's'
+      path.join(sourceBasePath, primary, secondary + 's'), // Add trailing 's'
     ];
 
     for (const altPath of alternativePaths) {
@@ -91,7 +86,7 @@ async function getBlockFilesInCategory(primary, secondary, tertiary) {
           .filter((entry) => entry.isFile() && (entry.name.endsWith('.tsx') || entry.name.endsWith('.ts')))
           .map((entry) => ({
             filename: entry.name,
-            relativePath: path.join(primary, secondary, tertiary, entry.name), // Use original tertiary slug, not the directory name
+            relativePath: path.join(primary, secondary, entry.name), // Use original secondary slug, not the directory name
             fullPath: path.join(altPath, entry.name),
           }));
 
@@ -106,7 +101,7 @@ async function getBlockFilesInCategory(primary, secondary, tertiary) {
       }
     }
 
-    console.log(`     ⚠️ Directory not found: ${path.join(sourceBasePath, primary, secondary, tertiary)}`);
+    console.log(`     ⚠️ Directory not found: ${path.join(sourceBasePath, primary, secondary)}`);
     return [];
   }
 }
@@ -154,7 +149,7 @@ async function processCategory(category) {
     console.log(`   📁 Category: ${category.cacheKey} (${category.blockItems?.length || 0} block items)`);
 
     // Get block files from the category-specific directory
-    const blockFiles = await getBlockFilesInCategory(category.primary, category.secondary, category.tertiary);
+    const blockFiles = await getBlockFilesInCategory(category.primary, category.secondary);
 
     const processedBlocks = [];
 
@@ -219,7 +214,6 @@ async function generateCategoryCache(category) {
       category: {
         primary: category.primary,
         secondary: category.secondary,
-        tertiary: category.tertiary,
         title: category.title,
         cacheKey: category.cacheKey,
       },
@@ -249,7 +243,6 @@ async function generateMasterIndex(categoryCaches) {
         cacheKey: cache.category.cacheKey,
         primary: cache.category.primary,
         secondary: cache.category.secondary,
-        tertiary: cache.category.tertiary,
         title: cache.category.title,
         totalBlocks: cache.total,
         filename: `${cache.category.cacheKey}.json`,
@@ -278,14 +271,14 @@ async function generateBlockCaches() {
     // Load blocks configuration
     console.log('📖 Loading blocks configuration...');
     const blocksConfig = await loadBlocksConfig();
-    const tertiaryCategories = getAllTertiaryCategories(blocksConfig);
-    console.log(`   Found ${tertiaryCategories.length} tertiary categories`);
+    const secondaryCategories = getAllSecondaryCategories(blocksConfig);
+    console.log(`   Found ${secondaryCategories.length} secondary categories`);
     console.log('');
 
     // Process each category and its blocks
     console.log('🔄 Processing categories and blocks...');
     const processedCategories = [];
-    for (const category of tertiaryCategories) {
+    for (const category of secondaryCategories) {
       const result = await processCategory(category);
       if (result) {
         processedCategories.push(result);

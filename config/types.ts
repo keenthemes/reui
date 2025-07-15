@@ -41,21 +41,11 @@ export interface BlockPrimaryCategory {
   new?: boolean;
   sub?: BlockSecondaryCategory[];
 }
-
 export interface BlockSecondaryCategory {
   title: string;
   slug: string;
   new?: boolean;
-  published?: boolean;
-  description?: string;
-  keywords?: string[];
-  sub?: BlockTertiaryCategory[];
-}
-
-export interface BlockTertiaryCategory {
-  title: string;
-  slug: string;
-  new?: boolean;
+  default?: boolean;
   published?: boolean;
   description?: string;
   keywords?: string[];

@@ -7,7 +7,7 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from '@/registry/default/ui/breadcrumb';
-import { getBlocks, getPrimaryCategory, getSecondaryCategory, getTertiaryCategory } from '@/lib/blocks';
+import { getBlocks, getPrimaryCategory, getSecondaryCategory } from '@/lib/blocks';
 import { BlockPreview } from '@/components/block-preview';
 import { BlocksNavMobileToggle } from '@/components/blocks-nav-mobile-toggle';
 import { BlocksNavToggle } from '@/components/blocks-nav-toggle';
@@ -23,8 +23,7 @@ export default async function Page({ params }: PageProps) {
 
   const primaryCategory = getPrimaryCategory(pathname);
   const secondaryCategory = getSecondaryCategory(primaryCategory, pathname);
-  const tertiaryCategory = getTertiaryCategory(secondaryCategory, pathname);
-  const blocks = await getBlocks(primaryCategory, secondaryCategory, tertiaryCategory);
+  const blocks = await getBlocks(primaryCategory, secondaryCategory);
 
   return (
     <div className="container-fixed space-y-4 px-0 lg:px-6 transition-all duration-300">
@@ -39,21 +38,9 @@ export default async function Page({ params }: PageProps) {
             {primaryCategory && (
               <>
                 <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbLink asChild>
-                    <Link href={`/blocks/${primaryCategory.slug}`}>{primaryCategory.title}</Link>
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-              </>
-            )}
-            {secondaryCategory && (
-              <>
-                <BreadcrumbSeparator />
                 <BreadcrumbPage>
                   <BreadcrumbLink asChild>
-                    <Link href={`/blocks/${primaryCategory?.slug}/${secondaryCategory.slug}`}>
-                      {secondaryCategory.title}
-                    </Link>
+                    <Link href={`/blocks/${primaryCategory.slug}`}>{primaryCategory.title}</Link>
                   </BreadcrumbLink>
                 </BreadcrumbPage>
               </>
@@ -63,11 +50,11 @@ export default async function Page({ params }: PageProps) {
       </div>
 
       <div className="flex flex-col gap-1.5 mb-7.5">
-        <h1 className="text-2xl font-bold m-0">{tertiaryCategory?.title}</h1>
-        <p className="text-base text-muted-foreground max-w-xl">{tertiaryCategory?.description}</p>
+        <h1 className="text-2xl font-bold m-0">{secondaryCategory?.title}</h1>
+        <p className="text-base text-muted-foreground max-w-xl">{secondaryCategory?.description}</p>
       </div>
 
-      <div className="space-y-8">
+      <div className="space-y-8 lg:space-y-16">
         {blocks && blocks.length > 0 ? (
           blocks.map((block, index) => <BlockPreview key={block.slug || index} block={block} />)
         ) : (

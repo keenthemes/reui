@@ -18,7 +18,7 @@
   --secondary: oklch(96.7% 0.003 264.542); /* --color-zinc-100 */
   --secondary-foreground: oklch(21% 0.006 285.885); /* --color-zinc-900 */
   --muted: oklch(96.7% 0.003 264.542); /* --color-zinc-100 */
-  --muted-foreground: oklch(55.2% 0.016 285.938); /* --color-zinc-500 */
+  --muted-foreground: oklch(55.2% 0.016 285.938); /* --color-zinc-400 */
   --accent: oklch(96.7% 0.003 264.542); /* --color-zinc-100 */
   --accent-foreground: oklch(21% 0.006 285.885); /* --color-zinc-900 */
   --destructive: oklch(57.7% 0.245 27.325); /* --color-red-600 */

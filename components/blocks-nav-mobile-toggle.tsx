@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { Button } from '@/registry/default/ui/button';
 import { Sheet, SheetBody, SheetContent, SheetHeader, SheetTrigger } from '@/registry/default/ui/sheet';
 import { Menu } from 'lucide-react';
-import BlocksNav from './blocks-nav';
+import { BlocksNav } from './blocks-nav';
 
 export function BlocksNavMobileToggle() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
