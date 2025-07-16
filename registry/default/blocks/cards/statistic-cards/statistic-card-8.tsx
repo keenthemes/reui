@@ -48,32 +48,39 @@ const cards = [
 export default function StatisticCard8() {
   return (
     <div className="min-h-screen flex items-center justify-center p-6 lg:p-12">
-      <div className="grow grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl">
-        {cards.map((card, i) => (
-          <Card key={i}>
-            <CardContent className="flex flex-col h-full">
-              <div className="flex items-center justify-between mb-8">
-                <card.icon className={cn('size-6', card.iconColor)} />
+      {/* Container */}
+      <div className="@container grow w-full">  
+        {/* Grid */}
+        <div className="grid grid-cols-1 @3xl:grid-cols-3 gap-6">
+          {/* Cards */}
+          {cards.map((card, i) => (
+            <Card key={i}>
+              <CardContent className="flex flex-col h-full">
+                {/* Title & Badge */}
+                <div className="flex items-center justify-between mb-8">
+                  <card.icon className={cn('size-6', card.iconColor)} />
 
-                <Badge
-                  className={`${card.badge.color} px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1 shadow-none`}
-                >
-                  <card.badge.icon className={`w-3 h-3 ${card.badge.iconColor}`} />
-                  {card.badge.text}
-                </Badge>
-              </div>
-              <div className="flex-1 flex flex-col justify-between grow">
-                <div>
-                  <div className="text-base font-medium text-muted-foreground mb-1">{card.title}</div>
-                  <div className="text-3xl font-bold text-foreground mb-6">{card.value.toLocaleString()}</div>
+                  <Badge className={cn('px-2 py-1 rounded-full', card.badge.color)}>
+                    <card.badge.icon className={`w-3 h-3 ${card.badge.iconColor}`} />
+                    {card.badge.text}
+                  </Badge>
                 </div>
-                <div className="pt-3 border-t border-muted text-xs text-muted-foreground font-medium">
-                  {card.dateRange}
+
+                {/* Value & Date Range */}
+                <div className="flex-1 flex flex-col justify-between grow">
+                  {/* Value */}
+                  <div>
+                    <div className="text-base font-medium text-muted-foreground mb-1">{card.title}</div>
+                    <div className="text-3xl font-bold text-foreground mb-6">{card.value.toLocaleString()}</div>
+                  </div>
+                  <div className="pt-3 border-t border-muted text-xs text-muted-foreground font-medium">
+                    {card.dateRange}
+                  </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
     </div>
   );

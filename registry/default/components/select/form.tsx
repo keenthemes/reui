@@ -20,11 +20,7 @@ import { z } from 'zod';
 
 export default function SelectForm() {
   const FormSchema = z.object({
-    email: z
-      .string({
-        required_error: 'Please select an email.',
-      })
-      .email(),
+    email: z.email('Please enter a valid email address.'),
   });
 
   const form = useForm<z.infer<typeof FormSchema>>({

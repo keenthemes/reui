@@ -1,130 +1,72 @@
-import { Badge } from '@/registry/default/ui/badge';
-import { Button } from '@/registry/default/ui/button';
-import { Card, CardContent, CardHeader, CardToolbar } from '@/registry/default/ui/card';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/registry/default/ui/dropdown-menu';
-import {
-  Banknote,
-  ChartPie,
-  MoreHorizontal,
-  Pin,
-  Settings,
-  Share2,
-  Trash,
-  TrendingDown,
-  TrendingUp,
-  TriangleAlert,
-} from 'lucide-react';
-import { cn } from '@/lib/utils';
+'use client';
 
-const cards = [
-  {
-    icon: Banknote,
-    iconBg: 'bg-green-100 dark:bg-green-950',
-    iconColor: 'text-green-700',
-    title: 'Net Profit',
-    value: '$87,450.00',
-    badge: {
-      color: 'bg-green-100 text-green-700 dark:bg-green-950 dark:text-green-400',
-      icon: TrendingUp,
-      iconColor: 'text-green-600',
-      text: '5.9%',
-    },
-    badgePositive: true,
-    period: 'last month',
-  },
-  {
-    icon: ChartPie,
-    iconBg: 'bg-red-100 dark:bg-red-950',
-    iconColor: 'text-red-700',
-    title: 'Refunds Issued',
-    value: '$2,340.00',
-    badge: {
-      color: 'bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-400',
-      icon: TrendingDown,
-      iconColor: 'text-red-600',
-      text: '-1.7%',
-    },
-    badgePositive: false,
-    period: 'last month',
-  },
-  {
-    icon: Share2,
-    iconBg: 'bg-blue-100 dark:bg-blue-950',
-    iconColor: 'text-blue-700',
-    title: 'Affiliate Revenue',
-    value: '$12,800.00',
-    badge: {
-      color: 'bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-400',
-      icon: TrendingUp,
-      iconColor: 'text-blue-600',
-      text: '+2.3%',
-    },
-    badgePositive: true,
-    period: 'last month',
-  },
-];
+import { Card, CardContent, CardHeader, CardTitle, CardToolbar } from '@/registry/default/ui/card';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/registry/default/ui/select';
+import { Progress } from '@/registry/default/ui/progress';
+import { useEffect, useState } from 'react';
 
-export default function StatisticCard9() {
+export default function StatisticCard6() {
+  const [progress, setProgress] = useState(13);
+  
+  useEffect(() => {
+    const timer = setTimeout(() => setProgress(66), 500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 lg:p-12">
-      <div className="grow grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl">
-        {cards.map((card, i) => (
-          <Card key={i}>
-            <CardHeader className="h-auto py-6 border-b-0 flex items-center justify-between">
-              <card.icon className={cn(`size-8`, card.iconColor)} />
-              <CardToolbar>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="dim" size="sm" mode="icon" className="-me-1.5">
-                      <MoreHorizontal />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" side="bottom">
-                    <DropdownMenuItem>
-                      <Settings />
-                      Settings
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <TriangleAlert /> Add Alert
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <Pin /> Pin to Dashboard
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <Share2 /> Share
-                    </DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem variant="destructive">
-                      <Trash />
-                      Remove
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </CardToolbar>
-            </CardHeader>
-            <CardContent>
-              <div className="text-base font-medium text-muted-foreground mb-1">{card.title}</div>
-              <div className="text-3xl font-bold text-foreground mb-4">{card.value}</div>
-              <div className="flex items-center gap-2">
-                <Badge
-                  className={`${card.badge.color} px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1 shadow-none`}
-                >
-                  <card.badge.icon className={`w-3 h-3 ${card.badge.iconColor}`} />
-                  {card.badgePositive ? '+' : ''}
-                  {card.badge.text}
-                </Badge>
-                <span className="text-xs text-muted-foreground font-medium">{card.period}</span>
+    <div className="min-h-screen flex items-center justify-center p-6 lg:p-8">
+      <Card className="w-full md:w-[450px]">
+        <CardHeader>
+          <CardTitle>Tasks Overview</CardTitle>
+          <CardToolbar>
+            <Select defaultValue="this-month">
+              <SelectTrigger className="w-32">
+                <SelectValue placeholder="Select range" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="this-month">This Month</SelectItem>
+                <SelectItem value="last-month">Last Month</SelectItem>
+                <SelectItem value="this-year">This Year</SelectItem>
+                <SelectItem value="last-year">Last Year</SelectItem>
+              </SelectContent>
+            </Select>
+          </CardToolbar>
+        </CardHeader>
+        <CardContent className="flex flex-col gap-5">
+          {/* Progress bar and done tasks */}
+          <div className="grow mb-6">
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-sm font-medium text-foreground">Tasks Done</span>
+              <span className="text-sm font-semibold text-success">12</span>
+            </div>
+            <Progress value={progress} />
+          </div>
+
+          {/* Task summary */}
+          <div className="space-y-6">
+            {/* Tasks list */}
+            <div className="grid grid-cols-3 gap-2.5">
+              <div className="flex flex-col items-center justify-center bg-muted/60 rounded-lg py-3.5 px-2 gap-1">
+                <span className="text-lg font-bold text-green-500">28</span>
+                <span className="text-xs text-accent-foreground">Backlog</span>
               </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+              <div className="flex flex-col items-center justify-center bg-muted/60 rounded-lg py-3.5 px-2 gap-1">
+                <span className="text-lg font-bold text-yellow-500">14</span>
+                <span className="text-xs text-accent-foreground">In Progress</span>
+              </div>
+              <div className="flex flex-col items-center justify-center bg-muted/60 rounded-lg py-3.5 px-2 gap-1">
+                <span className="text-lg font-bold text-violet-500">8</span>
+                <span className="text-xs text-accent-foreground">In Review</span>
+              </div>
+            </div>  
+
+            {/* AI prediction footer */}
+            <div className="text-xs text-muted-foreground text-center">
+              AI prediction to finish all tasks: <span className="font-semibold text-foreground">1w 4d 2h</span>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }

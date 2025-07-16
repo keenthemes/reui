@@ -8,9 +8,9 @@ Open-source collection of UI components and animated effects built with React, T
 
 Follow [ReUI Documentation](https://reui.io/docs) to get started with ReUI quckly.
 
-## Install Components
+## Installation
 
-Follow [Components Setup](https://reui.io/docs/installation) guide to start using ReUI components in your React projects.
+Follow [Installation](https://reui.io/docs/installation) guide to start using ReUI components in your React projects.
 
 ## Contributing
 

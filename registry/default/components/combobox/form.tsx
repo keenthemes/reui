@@ -31,7 +31,7 @@ const topCities = [
 ];
 
 const FormSchema = z.object({
-  city: z.string({ required_error: 'City is required.' }),
+  city: z.string().refine((value) => topCities.some((city) => city.value === value), { message: 'City is required.' }),
 });
 
 export default function ComboboxForm() {

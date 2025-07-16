@@ -2,57 +2,60 @@
 
 import * as React from 'react';
 import { Badge } from '@/registry/default/ui/badge';
-import { Card, CardContent } from '@/registry/default/ui/card';
-import { ArrowUpRight, Minus, Minus as MinusIcon } from 'lucide-react';
+import { Card, CardContent, CardTitle, CardHeader, CardToolbar } from '@/registry/default/ui/card';
+import { ArrowUpRight, Minus as MinusIcon, ShieldCheck, TriangleAlert } from 'lucide-react';
+import { Button } from '@/registry/default/ui/button';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/registry/default/ui/dropdown-menu';
+import { MoreVertical, Pin, Settings, Share2 } from 'lucide-react';
 
 const bars = [6, 6, 5, 5, 4, 4, 3, 0];
 const maxBars = Math.max(...bars);
 
 const barInsights = [
   {
-    date: '2024-06-01',
+    date: '24 Feb 2025',
     growth: 8.2,
     direction: 'up',
     note: 'Feature launch week. Strong adoption spike.',
   },
   {
-    date: '2024-06-08',
+    date: '08 Mar 2025',
     growth: 7.5,
     direction: 'up',
     note: 'Onboarding improvements led to a 7.5% boost in adoption.',
   },
   {
-    date: '2024-06-15',
+    date: '15 Mar 2025',
     growth: 2.1,
     direction: 'up',
     note: 'Steady growth as more teams enabled the feature.',
   },
   {
-    date: '2024-06-22',
+    date: '22 Apr 2025',
     growth: 0.0,
     direction: 'neutral',
     note: 'Temporary plateau after a minor bug was reported.',
   },
   {
-    date: '2024-06-29',
+    date: '29 May 2025',
     growth: 0.0,
     direction: 'neutral',
     note: 'Seasonal dip, many users on vacation.',
   },
   {
-    date: '2024-07-06',
+    date: '06 Jun 2025',
     growth: 0.0,
     direction: 'neutral',
     note: 'No significant change, awaiting next release.',
   },
   {
-    date: '2024-07-13',
+    date: '13 Jul 2025',
     growth: 1.4,
     direction: 'up',
     note: 'Beta feature feedback positive, slight increase.',
   },
   {
-    date: '2024-07-20',
+    date: '20 Jul 2025',
     growth: 0.0,
     direction: 'neutral',
     note: 'Stable week, engagement holding steady.',
@@ -76,35 +79,55 @@ function GrowthBadge({ direction, growth }: { direction: string; growth: number 
 
 function getBarColor(direction: string, j: number, height: number) {
   if (height === 0) return 'bg-muted';
-  if (direction === 'up') {
-    const barColors = ['bg-indigo-500', 'bg-indigo-400', 'bg-indigo-300', 'bg-indigo-200', 'bg-indigo-100'];
-    return j < height ? barColors[j] : 'bg-muted';
-  }
-  // down or neutral
-  return j < height ? 'bg-muted' : 'bg-muted';
+  
+  // Even color progression from intense to neutral
+  const barColors = ['bg-indigo-600', 'bg-indigo-500', 'bg-indigo-400', 'bg-indigo-300', 'bg-indigo-200', 'bg-indigo-100'];
+  return j < height ? barColors[j] : 'bg-muted';
 }
 
 export default function StatisticCard14() {
-  const [hoveredBar, setHoveredBar] = React.useState<number | null>(null);
   const barRefs = React.useRef<(HTMLDivElement | null)[]>([]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 lg:p-8 bg-muted/40 relative">
-      <Card className="w-full max-w-sm rounded-2xl shadow-sm p-0">
-        <CardContent className="p-6">
-          {/* Heading */}
-          <div className="flex items-start justify-between mb-2">
-            <div>
-              <div className="text-base font-semibold text-foreground">Feature Adoption</div>
-              <div className="text-sm text-muted-foreground">Best adoption report</div>
-            </div>
-            <button className="rounded-full bg-muted w-7 h-7 flex items-center justify-center text-muted-foreground/60">
-              <Minus className="w-4 h-4" />
-            </button>
-          </div>
-
+    <div className="min-h-screen flex items-center justify-center p-6 lg:p-8">
+      <Card className="w-full max-w-sm">
+        <CardHeader className="border-0 min-h-auto pt-5 pb-0">
+          <CardTitle className="flex flex-col items-start gap-0.5">
+            <div className="text-lg font-semibold text-foreground leading-none">Feature Adoption</div>
+            <div className="text-sm font-medium text-muted-foreground">Best adoption report</div>
+          </CardTitle>
+          <CardToolbar>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="dim" size="sm" mode="icon" className="-me-1.5">
+                  <MoreVertical />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" side="bottom">
+                <DropdownMenuItem>
+                  <Settings />
+                  View Details
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <TriangleAlert /> Export Report
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Pin /> Configure Alerts
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <Share2 /> Run Manual Check
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <ShieldCheck /> View History
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </CardToolbar>
+        </CardHeader>
+        <CardContent className="space-y-5">
           {/* Value */}
-          <div className="text-5xl font-bold text-foreground mt-2 mb-6">84%</div>
+          <div className="text-5xl font-bold text-foreground">84%</div>
 
           {/* Bars */}
           <div className="flex items-end gap-2 w-full h-32 mt-2 relative">
@@ -115,40 +138,12 @@ export default function StatisticCard14() {
                   barRefs.current[i] = el;
                 }}
                 className="flex flex-col justify-end flex-1 min-w-0 cursor-pointer transition-all"
-                style={{ height: '100%' }}
-                onMouseEnter={() => setHoveredBar(i)}
-                onMouseMove={() => setHoveredBar(i)}
-                onMouseLeave={() => setHoveredBar(null)}
               >
                 {[...Array(maxBars)].map((_, j) => (
                   <div key={j} className={`h-3 my-0.5 rounded ${getBarColor(barInsights[i].direction, j, height)}`} />
                 ))}
               </div>
             ))}
-            {/* Hover Card (single, fluid) */}
-            {hoveredBar !== null && (
-              <div
-                className="pointer-events-none z-50 absolute"
-                style={{
-                  left: `calc(${(100 / bars.length) * hoveredBar}% + 50% - 90px)`,
-                  top: -90,
-                  width: 180,
-                  transition: 'left 0.12s cubic-bezier(.4,2,.6,1)',
-                }}
-              >
-                <div className="bg-white rounded-xl shadow-lg border px-4 py-3 text-xs min-w-[160px] max-w-xs animate-none">
-                  <div className="font-semibold text-sm mb-1">{barInsights[hoveredBar].date}</div>
-                  <div className="mb-1 flex items-center gap-2">
-                    <GrowthBadge
-                      direction={barInsights[hoveredBar].direction}
-                      growth={barInsights[hoveredBar].growth}
-                    />
-                    <span className="text-muted-foreground">Growth</span>
-                  </div>
-                  <div className="text-muted-foreground">{barInsights[hoveredBar].note}</div>
-                </div>
-              </div>
-            )}
           </div>
         </CardContent>
       </Card>

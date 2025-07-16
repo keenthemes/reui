@@ -12,12 +12,11 @@ export const docsConfig: DocsConfig = {
       title: 'Components',
       href: '/',
     },
-    /*
+
     {
       title: 'UI Blocks',
       href: '/blocks',
     },
-    */
     {
       title: 'Templates',
       href: '/template',

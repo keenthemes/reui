@@ -26,8 +26,8 @@ export default async function Page({ params }: PageProps) {
   const blocks = await getBlocks(primaryCategory, secondaryCategory);
 
   return (
-    <div className="container-fixed space-y-4 px-0 lg:px-6 transition-all duration-300">
-      <div className="flex items-center gap-1.5 min-h-8">
+    <div className="container-fixed space-y-6 px-0 lg:px-6 transition-all duration-300">
+      <div className="flex items-center gap-1.5 min-h-8 mb-2.5">
         <BlocksNavMobileToggle />
         <BlocksNavToggle />
         <Breadcrumb>
@@ -49,7 +49,7 @@ export default async function Page({ params }: PageProps) {
         </Breadcrumb>
       </div>
 
-      <div className="flex flex-col gap-1.5 mb-7.5">
+      <div className="flex flex-col gap-2.5 mb-8.5">
         <h1 className="text-2xl font-bold m-0">{secondaryCategory?.title}</h1>
         <p className="text-base text-muted-foreground max-w-2xl">{secondaryCategory?.description}</p>
       </div>

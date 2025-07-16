@@ -16,7 +16,7 @@ const eventSchema = z.object({
     'copy_color',
   ]),
   // declare type AllowedPropertyValues = string | number | boolean | null
-  properties: z.record(z.union([z.string(), z.number(), z.boolean(), z.null()])).optional(),
+  properties: z.record(z.string(), z.string().or(z.number()).or(z.boolean()).or(z.null())).optional(),
 });
 
 export type Event = z.infer<typeof eventSchema>;
