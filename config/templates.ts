@@ -18,7 +18,7 @@ export const templates: Template[] = [
     previewUrl:
       'https://keenthemes.com/metronic?utm_source=reui_website&utm_medium=menu&utm_campaign=product_link&utm_content=metronic',
     description:
-      'Metronic is a premium admin template used by 120,000 developers that is built with React, Next.js, TypeScript, Supabase, Prisma ORM and Tailwind CSS.',
+      'Metronic is a premium admin template used by 119,500 developers that is built with React, Next.js, TypeScript, Supabase, Prisma ORM and Tailwind CSS.',
     stack: ['react', 'nextjs', 'tailwind', 'motion', 'reui', 'shadcn', 'radix', 'supabase', 'prisma'],
     thumbnail: 'metronic-1.png',
     price: '$49',

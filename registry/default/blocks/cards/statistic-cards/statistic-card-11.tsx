@@ -1,6 +1,6 @@
-import { Card, CardHeader, CardTitle, CardToolbar, CardContent } from "@/registry/default/ui/card";
-import { Button } from "@/registry/default/ui/button";
-import { Progress } from "@/registry/default/ui/progress";
+import { Button } from '@/registry/default/ui/button';
+import { Card, CardContent, CardHeader, CardTitle, CardToolbar } from '@/registry/default/ui/card';
+import { Progress } from '@/registry/default/ui/progress';
 
 export default function StatisticCard11() {
   const used = 1200;
@@ -13,12 +13,16 @@ export default function StatisticCard11() {
         <CardHeader className="flex flex-row items-center justify-between border-0 pb-2 pt-6 px-6">
           <CardTitle className="text-base font-semibold text-foreground">API Call Quota</CardTitle>
           <CardToolbar>
-            <Button variant="outline" size="sm" className="font-medium">View API usage</Button>
+            <Button variant="outline" size="sm" className="font-medium">
+              View API usage
+            </Button>
           </CardToolbar>
         </CardHeader>
         <CardContent className="px-6 pb-6 pt-2">
           <div className="flex items-center justify-between mb-1">
-            <span className="text-sm text-muted-foreground">Used calls: <span className="font-semibold text-foreground">{used}</span></span>
+            <span className="text-sm text-muted-foreground">
+              Used calls: <span className="font-semibold text-foreground">{used}</span>
+            </span>
             <span className="text-base font-semibold text-foreground">${(used * 0.002).toFixed(2)}</span>
           </div>
           <Progress value={percent} className="h-1.5 bg-muted my-2" indicatorClassName="bg-[#7C5CFA]" />

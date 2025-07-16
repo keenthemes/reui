@@ -1,6 +1,5 @@
-import { Italic } from "lucide-react"
-
-import { Toggle } from "@/registry/default/ui/toggle"
+import { Toggle } from '@/registry/default/ui/toggle';
+import { Italic } from 'lucide-react';
 
 export default function Component() {
   return (
@@ -8,5 +7,5 @@ export default function Component() {
       <Italic />
       Italic
     </Toggle>
-  )
+  );
 }

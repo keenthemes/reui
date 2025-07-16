@@ -1,41 +1,37 @@
-import { Card, CardHeader, CardTitle, CardToolbar, CardContent } from "@/registry/default/ui/card";
-
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/registry/default/ui/tooltip";
-import { Info } from "lucide-react";
-import { Separator } from "@/registry/default/ui/separator";
-import { Badge } from "@/registry/default/ui/badge";
-import { Select, SelectValue, SelectTrigger, SelectContent, SelectItem } from "@/registry/default/ui/select";
+import { Badge } from '@/registry/default/ui/badge';
+import { Card, CardContent, CardHeader, CardTitle, CardToolbar } from '@/registry/default/ui/card';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/registry/default/ui/select';
+import { Separator } from '@/registry/default/ui/separator';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/registry/default/ui/tooltip';
+import { Info } from 'lucide-react';
 
 export default function StatisticCard3() {
-
-	const alerts = [	
-		{ name: "Acme Corp", plan: "Enterprise", daysLeft: 3, renewUrl: "#" },
-		{ name: "Beta LLC", plan: "Pro", daysLeft: 5, renewUrl: "#" },
-		{ name: "Gamma Inc", plan: "Pro",daysLeft: 7, renewUrl: "#" },
-	];
+  const alerts = [
+    { name: 'Acme Corp', plan: 'Enterprise', daysLeft: 3, renewUrl: '#' },
+    { name: 'Beta LLC', plan: 'Pro', daysLeft: 5, renewUrl: '#' },
+    { name: 'Gamma Inc', plan: 'Pro', daysLeft: 7, renewUrl: '#' },
+  ];
 
   return (
-		<div className="min-h-screen flex items-center justify-center p-6 lg:p-8">
-			<Card className="w-full md:w-[450px]">
-				<CardHeader className="border-0 py-6">
-					<CardTitle>
-						Subscription Alerts
-					</CardTitle>
-					<CardToolbar>
-						<Select defaultValue="this-month">
-							<SelectTrigger className="w-32">
-								<SelectValue placeholder="Select a plan" />
-							</SelectTrigger>
-							<SelectContent>
-								<SelectItem value="this-month">This Month</SelectItem>
-								<SelectItem value="last-month">Last Month</SelectItem>
-								<SelectItem value="this-year">This Year</SelectItem>
-								<SelectItem value="last-year">Last Year</SelectItem>
-							</SelectContent>
-						</Select>
-					</CardToolbar>
-				</CardHeader>
-				<CardContent>
+    <div className="min-h-screen flex items-center justify-center p-6 lg:p-8">
+      <Card className="w-full md:w-[450px]">
+        <CardHeader className="border-0 py-6">
+          <CardTitle>Subscription Alerts</CardTitle>
+          <CardToolbar>
+            <Select defaultValue="this-month">
+              <SelectTrigger className="w-32">
+                <SelectValue placeholder="Select a plan" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="this-month">This Month</SelectItem>
+                <SelectItem value="last-month">Last Month</SelectItem>
+                <SelectItem value="this-year">This Year</SelectItem>
+                <SelectItem value="last-year">Last Year</SelectItem>
+              </SelectContent>
+            </Select>
+          </CardToolbar>
+        </CardHeader>
+        <CardContent>
           {/* Stats Row */}
           <div className="flex items-center gap-2.5 mb-4">
             <div className="flex flex-col gap-1.5 flex-1">
@@ -80,23 +76,34 @@ export default function StatisticCard3() {
           {/* Expiring Soon List */}
           <div className="flex items-center justify-between mb-2.5">
             <div className="text-xs text-muted-foreground tracking-wide uppercase">Expiring Soon</div>
-            <a href="#" className="text-sm text-primary font-medium hover:underline">View all</a>
+            <a href="#" className="text-sm text-primary font-medium hover:underline">
+              View all
+            </a>
           </div>
           {alerts.map((item) => (
-            <div key={item.name} className="flex items-center justify-between bg-muted/40 rounded-md px-3 py-2.5 mb-2 last:mb-0">
+            <div
+              key={item.name}
+              className="flex items-center justify-between bg-muted/40 rounded-md px-3 py-2.5 mb-2 last:mb-0"
+            >
               <div className="flex items-center gap-2.5">
                 <span className="text-sm font-medium text-foreground">{item.name}</span>
-                <Badge size="sm" variant="outline">{item.plan}</Badge>
+                <Badge size="sm" variant="outline">
+                  {item.plan}
+                </Badge>
               </div>
               <div className="flex items-center gap-2.5">
-                <span className="text-xs text-muted-foreground">in <span className="font-semibold text-foreground">{item.daysLeft}d</span></span>
-								<Separator orientation="vertical" className="h-3 bg-accent-foreground/20" />
-                <a href={item.renewUrl} className="text-xs text-primary font-medium hover:underline">Renew</a>
+                <span className="text-xs text-muted-foreground">
+                  in <span className="font-semibold text-foreground">{item.daysLeft}d</span>
+                </span>
+                <Separator orientation="vertical" className="h-3 bg-accent-foreground/20" />
+                <a href={item.renewUrl} className="text-xs text-primary font-medium hover:underline">
+                  Renew
+                </a>
               </div>
             </div>
           ))}
         </CardContent>
-			</Card>
-		</div>
-	);
+      </Card>
+    </div>
+  );
 }

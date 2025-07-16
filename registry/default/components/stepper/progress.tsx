@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Button } from '@/registry/default/ui/button';
 import {
   Stepper,
   StepperContent,
@@ -8,41 +9,44 @@ import {
   StepperPanel,
   StepperTrigger,
 } from '@/registry/default/ui/stepper';
-import { Button } from '@/registry/default/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export default function StepperProgress() {
-  const steps = [1, 2, 3, 4]
-  const [currentStep, setCurrentStep] = useState(1)
+  const steps = [1, 2, 3, 4];
+  const [currentStep, setCurrentStep] = useState(1);
 
   return (
     <div className="w-full flex flex-col">
-     <Stepper value={currentStep} onValueChange={setCurrentStep}>
+      <Stepper value={currentStep} onValueChange={setCurrentStep}>
         <StepperNav>
           {steps.map((step) => (
-            <StepperItem key={step} step={step} className="flex-1 first:rounded-s-full last:rounded-e-full overflow-hidden transition-all duration-300">
-              <StepperTrigger
-                className="w-full flex-col items-start gap-2"
-                asChild
-              >
-                <StepperIndicator
-                  className="bg-border h-2 w-full rounded-none"
-                >
+            <StepperItem
+              key={step}
+              step={step}
+              className="flex-1 first:rounded-s-full last:rounded-e-full overflow-hidden transition-all duration-300"
+            >
+              <StepperTrigger className="w-full flex-col items-start gap-2" asChild>
+                <StepperIndicator className="bg-border h-2 w-full rounded-none">
                   <span className="sr-only">{step}</span>
                 </StepperIndicator>
               </StepperTrigger>
             </StepperItem>
           ))}
-        </StepperNav>      
+        </StepperNav>
 
         <div className="flex items-center justify-between gap-2.5 py-2">
-          <Button mode="link" onClick={() => setCurrentStep((prev) => prev - 1)} className={cn(currentStep === 1 && 'pointer-events-none opacity-0')}>
+          <Button
+            mode="link"
+            onClick={() => setCurrentStep((prev) => prev - 1)}
+            className={cn(currentStep === 1 && 'pointer-events-none opacity-0')}
+          >
             <ArrowLeft /> Back
           </Button>
-          
+
           <div className="text-sm font-medium">
-            <span className="text-foreground">{currentStep}</span> <span className="text-muted-foreground/60">/ {steps.length}</span>
+            <span className="text-foreground">{currentStep}</span>{' '}
+            <span className="text-muted-foreground/60">/ {steps.length}</span>
           </div>
         </div>
 

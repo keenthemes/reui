@@ -1,14 +1,6 @@
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/registry/default/ui/avatar"
-import { Button } from "@/registry/default/ui/button"
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/registry/default/ui/hover-card"
+import { Avatar, AvatarFallback, AvatarImage } from '@/registry/default/ui/avatar';
+import { Button } from '@/registry/default/ui/button';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/registry/default/ui/hover-card';
 
 export default function Component() {
   return (
@@ -25,12 +17,12 @@ export default function Component() {
           <div className="space-y-1">
             <h4 className="text-sm font-semibold">@reui_io</h4>
             <p className="text-sm">
-							Open-source collection of UI components and animated effects built with React, Typescript, 
-							Tailwind CSS, and Motion. 
+              Open-source collection of UI components and animated effects built with React, Typescript, Tailwind CSS,
+              and Motion.
             </p>
           </div>
         </div>
       </HoverCardContent>
     </HoverCard>
-  )
+  );
 }

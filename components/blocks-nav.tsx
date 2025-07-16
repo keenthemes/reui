@@ -2,11 +2,12 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Badge } from '@/registry/default/ui/badge';
 import { ScrollArea } from '@/registry/default/ui/scroll-area';
-import { BlockSecondaryCategory, BlockPrimaryCategory, BlocksConfig } from '@/config/types';
+import { blocksConfig } from '@/config/blocks';
+import { BlockPrimaryCategory, BlocksConfig, BlockSecondaryCategory } from '@/config/types';
 import { getPrimaryCategory, getSecondaryCategory } from '@/lib/blocks';
 import { cn } from '@/lib/utils';
-import { blocksConfig } from '@/config/blocks';
 
 export function BlocksNav() {
   const pathname = usePathname();
@@ -29,9 +30,9 @@ export function BlocksNav() {
     return (
       <Link
         key={category.slug || index}
-        href={itemPath}
+        href={!category.published ? '#' : itemPath}
         className={cn(
-          'flex items-center gap-2 px-0 py-2.5 text-sm transition-colors',
+          'group flex items-center gap-2 px-0 py-2.5 text-sm transition-colors',
           'font-medium border-l-2 border-transparent',
           isActive && 'font-semibold text-foreground',
         )}
@@ -52,14 +53,30 @@ export function BlocksNav() {
     return (
       <Link
         key={category.slug || index}
-        href={itemPath}
+        href={!category.published ? '#' : itemPath}
         className={cn(
-          'relative flex items-center gap-2 px-3.5 py-1 text-sm transition-colors text-muted-foreground ml-[2px] border-l border-transparent',
+          'group relative flex items-center gap-2 px-3.5 py-1 text-sm transition-colors text-muted-foreground ml-[2px] border-l border-transparent',
           'hover:text-foreground hover:border-muted-foreground/50',
           isActive && 'font-semibold text-foreground border-muted-foreground',
+          !category.published && 'hover:text-muted-foreground hover:border-transparent opacity-90',
         )}
       >
         <span className="truncate">{category.title}</span>
+        {!category.published && (
+          <Badge
+            variant="warning"
+            size="sm"
+            appearance="light"
+            className="group-hover:opacity-100 opacity-0 transition-opacity duration-300 ml-auto"
+          >
+            Soon
+          </Badge>
+        )}
+        {category.new && (
+          <Badge variant="success" size="sm" appearance="light" className="ml-auto">
+            New
+          </Badge>
+        )}
       </Link>
     );
   };

@@ -1,5 +1,5 @@
-import { Checkbox } from "@/registry/default/ui/checkbox"
-import { Label } from "@/registry/default/ui/label"
+import { Checkbox } from '@/registry/default/ui/checkbox';
+import { Label } from '@/registry/default/ui/label';
 
 export default function Component() {
   return (
@@ -9,5 +9,5 @@ export default function Component() {
         <Label htmlFor="terms">Accept terms and conditions</Label>
       </div>
     </div>
-  )
+  );
 }

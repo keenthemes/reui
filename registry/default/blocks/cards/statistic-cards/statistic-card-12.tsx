@@ -1,30 +1,30 @@
-import { Card, CardContent } from "@/registry/default/ui/card";
-import { Badge } from "@/registry/default/ui/badge";
-import { LifeBuoy, CheckCircle2, Smile } from "lucide-react";
+import { Badge } from '@/registry/default/ui/badge';
+import { Card, CardContent } from '@/registry/default/ui/card';
+import { CheckCircle2, LifeBuoy, Smile } from 'lucide-react';
 
 const cards = [
   {
     icon: LifeBuoy,
-    iconBg: "bg-blue-50",
-    iconColor: "text-blue-600",
+    iconBg: 'bg-blue-50',
+    iconColor: 'text-blue-600',
     value: 320,
-    label: "Support Tickets",
+    label: 'Support Tickets',
     info: <span className="text-xs px-2 py-1 rounded bg-muted text-muted-foreground">12 Open, 308 Closed</span>,
   },
   {
     icon: CheckCircle2,
-    iconBg: "bg-green-50",
-    iconColor: "text-green-600",
-    value: "98%",
-    label: "Resolved",
+    iconBg: 'bg-green-50',
+    iconColor: 'text-green-600',
+    value: '98%',
+    label: 'Resolved',
     info: <Badge className="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-medium">+2.1% this month</Badge>,
   },
   {
     icon: Smile,
-    iconBg: "bg-yellow-50",
-    iconColor: "text-yellow-600",
-    value: "4.8",
-    label: "Satisfaction Rate",
+    iconBg: 'bg-yellow-50',
+    iconColor: 'text-yellow-600',
+    value: '4.8',
+    label: 'Satisfaction Rate',
     info: <span className="text-xs px-2 py-1 rounded bg-muted text-muted-foreground">Avg. (out of 5)</span>,
   },
 ];

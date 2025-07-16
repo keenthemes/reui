@@ -1,10 +1,7 @@
-"use client"
+'use client';
 
-import * as React from "react"
-import { Minus, Plus } from "lucide-react"
-import { Bar, BarChart, ResponsiveContainer } from "recharts"
-
-import { Button } from "@/registry/default/ui/button"
+import * as React from 'react';
+import { Button } from '@/registry/default/ui/button';
 import {
   Drawer,
   DrawerClose,
@@ -14,7 +11,9 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@/registry/default/ui/drawer"
+} from '@/registry/default/ui/drawer';
+import { Minus, Plus } from 'lucide-react';
+import { Bar, BarChart, ResponsiveContainer } from 'recharts';
 
 const data = [
   {
@@ -56,13 +55,13 @@ const data = [
   {
     goal: 349,
   },
-]
+];
 
 export default function Component() {
-  const [goal, setGoal] = React.useState(350)
+  const [goal, setGoal] = React.useState(350);
 
   function onClick(adjustment: number) {
-    setGoal(Math.max(200, Math.min(400, goal + adjustment)))
+    setGoal(Math.max(200, Math.min(400, goal + adjustment)));
   }
 
   return (
@@ -89,12 +88,8 @@ export default function Component() {
                 <span className="sr-only">Decrease</span>
               </Button>
               <div className="flex-1 text-center">
-                <div className="text-7xl font-bold tracking-tighter">
-                  {goal}
-                </div>
-                <div className="text-muted-foreground text-[0.70rem] uppercase">
-                  Calories/day
-                </div>
+                <div className="text-7xl font-bold tracking-tighter">{goal}</div>
+                <div className="text-muted-foreground text-[0.70rem] uppercase">Calories/day</div>
               </div>
               <Button
                 variant="outline"
@@ -114,7 +109,7 @@ export default function Component() {
                     dataKey="goal"
                     style={
                       {
-                        fill: "hsl(var(--foreground))",
+                        fill: 'hsl(var(--foreground))',
                         opacity: 0.9,
                       } as React.CSSProperties
                     }
@@ -132,5 +127,5 @@ export default function Component() {
         </div>
       </DrawerContent>
     </Drawer>
-  )
+  );
 }

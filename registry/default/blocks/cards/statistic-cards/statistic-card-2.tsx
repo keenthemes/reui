@@ -1,21 +1,27 @@
-import { Card, CardContent, CardHeader, CardTitle, CardToolbar } from "@/registry/default/ui/card";
-import { Badge } from "@/registry/default/ui/badge";
-import { ArrowDown, ArrowUp, MoreHorizontal, Settings, Trash, Share2, Pin, TriangleAlert } from "lucide-react";
-import { Button } from "@/registry/default/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/registry/default/ui/dropdown-menu";
+import { Badge } from '@/registry/default/ui/badge';
+import { Button } from '@/registry/default/ui/button';
+import { Card, CardContent, CardHeader, CardTitle, CardToolbar } from '@/registry/default/ui/card';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/registry/default/ui/dropdown-menu';
+import { ArrowDown, ArrowUp, MoreHorizontal, Pin, Settings, Share2, Trash, TriangleAlert } from 'lucide-react';
 
 const stats = [
   {
-    title: "Total Sales",
+    title: 'Total Sales',
     value: 892200000,
     delta: 0.2,
     lastMonth: 889100000,
     positive: true,
-    prefix: "$",
-    suffix: "M",
+    prefix: '$',
+    suffix: 'M',
     format: (v: number) => `$${(v / 1_000_000).toFixed(1)}M`,
     lastFormat: (v: number) => `$${(v / 1_000_000).toFixed(1)}M`,
-    bg: "bg-zinc-950",
+    bg: 'bg-zinc-950',
     svg: (
       <svg
         className="absolute right-0 top-0 h-full w-2/3 pointer-events-none"
@@ -23,48 +29,29 @@ const stats = [
         fill="none"
         style={{ zIndex: 0 }}
       >
-        <circle
-          cx="220"
-          cy="100"
-          r="90"
-          fill="#fff"
-          fillOpacity="0.08"
-        />
-        <circle
-          cx="260"
-          cy="60"
-          r="60"
-          fill="#fff"
-          fillOpacity="0.10"
-        />
-        <circle
-          cx="200"
-          cy="160"
-          r="50"
-          fill="#fff"
-          fillOpacity="0.07"
-        />
-        <circle
-          cx="270"
-          cy="150"
-          r="30"
-          fill="#fff"
-          fillOpacity="0.12"
-        />
+        <circle cx="220" cy="100" r="90" fill="#fff" fillOpacity="0.08" />
+        <circle cx="260" cy="60" r="60" fill="#fff" fillOpacity="0.10" />
+        <circle cx="200" cy="160" r="50" fill="#fff" fillOpacity="0.07" />
+        <circle cx="270" cy="150" r="30" fill="#fff" fillOpacity="0.12" />
       </svg>
     ),
   },
   {
-    title: "New Customers",
+    title: 'New Customers',
     value: 12800,
     delta: 3.1,
     lastMonth: 12400,
     positive: true,
-    prefix: "",
-    suffix: "",
-    bg: "bg-fuchsia-600",
+    prefix: '',
+    suffix: '',
+    bg: 'bg-fuchsia-600',
     svg: (
-      <svg className="absolute right-0 top-0 w-48 h-48 pointer-events-none" viewBox="0 0 200 200" fill="none" style={{ zIndex: 0 }}>
+      <svg
+        className="absolute right-0 top-0 w-48 h-48 pointer-events-none"
+        viewBox="0 0 200 200"
+        fill="none"
+        style={{ zIndex: 0 }}
+      >
         <defs>
           <filter id="blur2" x="-20%" y="-20%" width="140%" height="140%">
             <feGaussianBlur stdDeviation="10" />
@@ -78,16 +65,21 @@ const stats = [
     ),
   },
   {
-    title: "Refunds",
+    title: 'Refunds',
     value: 320,
     delta: -1.2,
     lastMonth: 340,
     positive: false,
-    prefix: "",
-    suffix: "",
-    bg: "bg-blue-600",
+    prefix: '',
+    suffix: '',
+    bg: 'bg-blue-600',
     svg: (
-      <svg className="absolute right-0 top-0 w-48 h-48 pointer-events-none" viewBox="0 0 200 200" fill="none" style={{ zIndex: 0 }}>
+      <svg
+        className="absolute right-0 top-0 w-48 h-48 pointer-events-none"
+        viewBox="0 0 200 200"
+        fill="none"
+        style={{ zIndex: 0 }}
+      >
         <defs>
           <filter id="blur3" x="-20%" y="-20%" width="140%" height="140%">
             <feGaussianBlur stdDeviation="12" />
@@ -101,16 +93,21 @@ const stats = [
     ),
   },
   {
-    title: "Churn Rate",
+    title: 'Churn Rate',
     value: 2.3,
     delta: -0.1,
     lastMonth: 2.4,
     positive: false,
-    prefix: "",
-    suffix: "%",
-    bg: "bg-teal-600",
+    prefix: '',
+    suffix: '%',
+    bg: 'bg-teal-600',
     svg: (
-      <svg className="absolute right-0 top-0 w-48 h-48 pointer-events-none" viewBox="0 0 200 200" fill="none" style={{ zIndex: 0 }}>
+      <svg
+        className="absolute right-0 top-0 w-48 h-48 pointer-events-none"
+        viewBox="0 0 200 200"
+        fill="none"
+        style={{ zIndex: 0 }}
+      >
         <defs>
           <filter id="blur4" x="-20%" y="-20%" width="140%" height="140%">
             <feGaussianBlur stdDeviation="16" />
@@ -127,7 +124,7 @@ const stats = [
 ];
 
 function formatNumber(n: number) {
-  if (n >= 1_000_000) return (n / 1_000_000).toFixed(1) + "M";
+  if (n >= 1_000_000) return (n / 1_000_000).toFixed(1) + 'M';
   if (n >= 1_000) return n.toLocaleString();
   return n.toString();
 }
@@ -137,10 +134,7 @@ export default function StatisticCard2() {
     <div className="min-h-screen flex items-center justify-center p-6 lg:p-8">
       <div className="grow grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {stats.map((stat, index) => (
-          <Card
-            key={index}
-            className={`relative overflow-hidden ${stat.bg} text-white`}
-          >
+          <Card key={index} className={`relative overflow-hidden ${stat.bg} text-white`}>
             <CardHeader className="border-0 z-10 relative">
               <CardTitle className="text-white/90 text-sm font-medium">{stat.title}</CardTitle>
               <CardToolbar>
@@ -182,7 +176,7 @@ export default function StatisticCard2() {
                 </Badge>
               </div>
               <div className="text-xs text-white/80 mt-2 border-t border-white/20 pt-2.5">
-                Vs last month: {" "}
+                Vs last month:{' '}
                 <span className="font-medium text-white">
                   {stat.lastFormat
                     ? stat.lastFormat(stat.lastMonth)

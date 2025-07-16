@@ -1,19 +1,18 @@
-import * as React from "react"
-
-import { Card, CardContent } from "@/registry/default/ui/card"
+import * as React from 'react';
+import { Card, CardContent } from '@/registry/default/ui/card';
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/registry/default/ui/carousel"
+} from '@/registry/default/ui/carousel';
 
 export default function Component() {
   return (
     <Carousel
       opts={{
-        align: "start",
+        align: 'start',
       }}
       orientation="vertical"
       className="w-full max-w-xs"
@@ -34,5 +33,5 @@ export default function Component() {
       <CarouselPrevious />
       <CarouselNext />
     </Carousel>
-  )
+  );
 }

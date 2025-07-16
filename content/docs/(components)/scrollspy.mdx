@@ -56,16 +56,16 @@ This component provides a scrollspy navigation system that highlights the curren
 
 ### Scrollspy Props
 
-| **Prop**        | **Type**                                               | **Default**   |
-| --------------- | ------------------------------------------------------ | ------------- |
-| `children` <PopoverInfo>The navigation structure and anchor elements.</PopoverInfo>      | ~ReactNode~                                            | <Na/>         |
-| `targetRef` <PopoverInfo>The scrollable container to observe. Defaults to `document`.</PopoverInfo>     | ~RefObject\<HTMLElement \| HTMLDivElement \| Document>~ | <Na/>         |
-| `onUpdate` <PopoverInfo>Callback fired when the active section changes. Receives the section id.</PopoverInfo>      | ~(id: string) => void~                                 | <Na/>         |
-| `offset` <PopoverInfo>Offset in pixels to account for sticky headers or spacing above sections.</PopoverInfo>        | ~number~                                               | ~0~           |
-| `smooth` <PopoverInfo>If true, smooth scrolls to the section when a nav item is clicked.</PopoverInfo>        | ~boolean~                                              | ~true~        |
-| `className` <PopoverInfo>Additional class names for the root div.</PopoverInfo>     | ~string~                                               | <Na/>         |
-| `dataAttribute` <PopoverInfo>The data attribute prefix used for anchors and sections.</PopoverInfo> | ~string~                                               | ~'scrollspy'~ |
-| `history` <PopoverInfo>If true, updates the URL hash as the user scrolls or clicks nav items.</PopoverInfo>       | ~boolean~                                              | ~true~        |
+| **Prop**                                                                                                       | **Type**                                                | **Default**   |
+| -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- | ------------- |
+| `children` <PopoverInfo>The navigation structure and anchor elements.</PopoverInfo>                            | ~ReactNode~                                             | <Na/>         |
+| `targetRef` <PopoverInfo>The scrollable container to observe. Defaults to `document`.</PopoverInfo>            | ~RefObject\<HTMLElement \| HTMLDivElement \| Document>~ | <Na/>         |
+| `onUpdate` <PopoverInfo>Callback fired when the active section changes. Receives the section id.</PopoverInfo> | ~(id: string) => void~                                  | <Na/>         |
+| `offset` <PopoverInfo>Offset in pixels to account for sticky headers or spacing above sections.</PopoverInfo>  | ~number~                                                | ~0~           |
+| `smooth` <PopoverInfo>If true, smooth scrolls to the section when a nav item is clicked.</PopoverInfo>         | ~boolean~                                               | ~true~        |
+| `className` <PopoverInfo>Additional class names for the root div.</PopoverInfo>                                | ~string~                                                | <Na/>         |
+| `dataAttribute` <PopoverInfo>The data attribute prefix used for anchors and sections.</PopoverInfo>            | ~string~                                                | ~'scrollspy'~ |
+| `history` <PopoverInfo>If true, updates the URL hash as the user scrolls or clicks nav items.</PopoverInfo>    | ~boolean~                                               | ~true~        |
 
 ### Data Attributes
 

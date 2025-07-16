@@ -1,9 +1,8 @@
 import { Button } from '@/registry/default/ui/button';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/registry/default/ui/tooltip';
 import { Check } from 'lucide-react';
 import { useConfig } from '@/hooks/use-config';
 import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard';
-import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@/registry/default/ui/tooltip';
-
 
 export function CliCodeCopyButton({ name }: { name: string } & React.ComponentProps<typeof Button>) {
   const { copy, copied } = useCopyToClipboard();
@@ -19,7 +18,7 @@ export function CliCodeCopyButton({ name }: { name: string } & React.ComponentPr
   return (
     <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger asChild>  
+        <TooltipTrigger asChild>
           <Button
             size="sm"
             variant="outline"
@@ -33,9 +32,7 @@ export function CliCodeCopyButton({ name }: { name: string } & React.ComponentPr
             <span className="truncate">{commands[packageManager]}</span>
           </Button>
         </TooltipTrigger>
-        <TooltipContent>
-          {commands[packageManager]}
-        </TooltipContent>
+        <TooltipContent>{commands[packageManager]}</TooltipContent>
       </Tooltip>
     </TooltipProvider>
   );

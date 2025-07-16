@@ -1,20 +1,24 @@
-import { Card, CardHeader, CardTitle, CardToolbar, CardContent } from "@/registry/default/ui/card";
-import { Badge } from "@/registry/default/ui/badge";
-import { MoreHorizontal, BarChart2 } from "lucide-react";
-import { Button } from "@/registry/default/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/registry/default/ui/dropdown-menu";
+import { Badge } from '@/registry/default/ui/badge';
+import { Button } from '@/registry/default/ui/button';
+import { Card, CardContent, CardHeader, CardTitle, CardToolbar } from '@/registry/default/ui/card';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/registry/default/ui/dropdown-menu';
+import { BarChart2, MoreHorizontal } from 'lucide-react';
 
 export default function StatisticCard10() {
   return (
     <div className="min-h-screen flex items-center justify-center p-6 lg:p-8 bg-muted/40">
-      <Card className="w-full max-w-md rounded-2xl shadow-sm">
-        <CardHeader className="flex flex-row items-start justify-between gap-2 border-0 pb-2 pt-6 px-6">
-          <div className="flex items-center gap-3">
-            <span className="rounded-full bg-emerald-50 p-2.5 flex items-center justify-center">
-              <BarChart2 className="w-6 h-6 text-emerald-500" />
-            </span>
-            <CardTitle className="text-lg font-semibold text-foreground">Total SaaS Revenue</CardTitle>
-          </div>
+      <Card className="w-full max-w-md">
+        <CardHeader className="flex flex-row items-start justify-between gap-2 border-0 py-6 h-auto">
+          <CardTitle className="inline-flex items-center gap-2">
+            <BarChart2 className="size-8 text-emerald-500" />
+            Total SaaS Revenue
+          </CardTitle>
           <CardToolbar>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -32,14 +36,22 @@ export default function StatisticCard10() {
             </DropdownMenu>
           </CardToolbar>
         </CardHeader>
-        <CardContent className="px-6 pb-6 pt-2">
+        <CardContent>
           <div className="flex items-center gap-2 mb-2">
             <span className="text-3xl font-bold text-foreground tracking-tight">$ 1,120,500</span>
             <span className="text-lg text-muted-foreground font-medium">USD</span>
           </div>
           <div className="flex items-center gap-2 mb-4">
-            <Badge className="bg-red-100 text-red-600 px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1 shadow-none">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="inline-block"><path d="M3 5.5L7 9.5L11 5.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            <Badge variant="success" appearance="light">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="inline-block">
+                <path
+                  d="M3 5.5L7 9.5L11 5.5"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
               -12.7%
             </Badge>
             <span className="text-sm text-muted-foreground">decreased from last quarter</span>

@@ -92,19 +92,21 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
   return tree?.items?.length && level < 3 ? (
     <ul className={cn('m-0 list-none text-sm', { 'pl-4': level !== 1 })}>
       {tree.items.map((item, index) => {
-        return item.title && (
-          <li key={index} className={cn('mt-0 pt-2')}>
-            <a
-              href={item.url}
-              className={cn(
-                'inline-block no-underline transition-colors hover:text-primary',
-                item.url === `#${activeItem}` ? 'text-primary' : 'text-muted-foreground',
-              )}
-            >
-              {item.title}
-            </a>
-            {item.items?.length ? <Tree tree={item} level={level + 1} activeItem={activeItem} /> : null}
-          </li>
+        return (
+          item.title && (
+            <li key={index} className={cn('mt-0 pt-2')}>
+              <a
+                href={item.url}
+                className={cn(
+                  'inline-block no-underline transition-colors hover:text-primary',
+                  item.url === `#${activeItem}` ? 'text-primary' : 'text-muted-foreground',
+                )}
+              >
+                {item.title}
+              </a>
+              {item.items?.length ? <Tree tree={item} level={level + 1} activeItem={activeItem} /> : null}
+            </li>
+          )
         );
       })}
     </ul>

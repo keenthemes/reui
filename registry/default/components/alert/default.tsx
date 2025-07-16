@@ -1,8 +1,6 @@
 import { Alert, AlertIcon, AlertTitle, AlertToolbar } from '@/registry/default/ui/alert';
 import { Button } from '@/registry/default/ui/button';
-import {
-  RiNotificationFill,
-} from '@remixicon/react';
+import { RiNotificationFill } from '@remixicon/react';
 
 export default function Component() {
   return (

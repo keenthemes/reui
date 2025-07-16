@@ -1,6 +1,6 @@
-import { Card, CardHeader, CardTitle, CardToolbar, CardContent } from "@/registry/default/ui/card";
-import { Button } from "@/registry/default/ui/button";
-import { MoreHorizontal, ShieldCheck } from "lucide-react";
+import { Button } from '@/registry/default/ui/button';
+import { Card, CardContent, CardHeader, CardTitle, CardToolbar } from '@/registry/default/ui/card';
+import { MoreHorizontal, ShieldCheck } from 'lucide-react';
 
 export default function StatisticCard13() {
   const total = 16;
@@ -14,7 +14,9 @@ export default function StatisticCard13() {
             <CardTitle className="text-sm font-semibold text-foreground">Compliance Checks</CardTitle>
           </div>
           <CardToolbar>
-            <Button variant="ghost" size="icon" className="text-muted-foreground/70"><MoreHorizontal className="w-5 h-5" /></Button>
+            <Button variant="ghost" size="icon" className="text-muted-foreground/70">
+              <MoreHorizontal className="w-5 h-5" />
+            </Button>
           </CardToolbar>
         </CardHeader>
         <CardContent className="px-5 pb-5 pt-1">
@@ -34,4 +36,4 @@ export default function StatisticCard13() {
       </Card>
     </div>
   );
-} 
+}

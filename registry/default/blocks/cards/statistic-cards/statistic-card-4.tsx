@@ -1,16 +1,16 @@
-import { Card, CardHeader, CardTitle, CardToolbar, CardContent } from "@/registry/default/ui/card";
-import { Select, SelectValue, SelectTrigger, SelectContent, SelectItem } from "@/registry/default/ui/select";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/registry/default/ui/tooltip";
-import { Info } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { Badge } from "@/registry/default/ui/badge";
+import { Badge } from '@/registry/default/ui/badge';
+import { Card, CardContent, CardHeader, CardTitle, CardToolbar } from '@/registry/default/ui/card';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/registry/default/ui/select';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/registry/default/ui/tooltip';
+import { Info } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 const leadsData = {
   newLeads: 54,
   returningLeads: 198,
   newPercent: 21.43,
   returningPercent: 78.57,
-  topSource: "LinkedIn",
+  topSource: 'LinkedIn',
   conversionRate: 12.8,
 };
 
@@ -40,7 +40,9 @@ export default function StatisticCard4() {
             <div className="flex-1 flex flex-col items-start gap-1">
               <div className="flex items-center gap-1 mb-1">
                 <span className="text-2xl font-bold text-foreground">{leadsData.newLeads}</span>
-                <Badge size="sm" variant="primary" appearance="light">{leadsData.newPercent}%</Badge>
+                <Badge size="sm" variant="primary" appearance="light">
+                  {leadsData.newPercent}%
+                </Badge>
               </div>
               <span className="text-sm text-muted-foreground font-medium">New leads</span>
               {/* Solid Progress Bar */}
@@ -65,15 +67,13 @@ export default function StatisticCard4() {
                   <div
                     key={i}
                     className={cn(
-                      "h-2.5 w-0.5 rounded-full flex-1",
-                      i < Math.round((leadsData.returningPercent / 100) * 30)
-                        ? "bg-green-500"
-                        : "bg-muted"
+                      'h-2.5 w-0.5 rounded-full flex-1',
+                      i < Math.round((leadsData.returningPercent / 100) * 30) ? 'bg-green-500' : 'bg-muted',
                     )}
                   />
                 ))}
               </div>
-            </div>            
+            </div>
           </div>
 
           {/* Extra Details */}

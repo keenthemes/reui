@@ -55,7 +55,10 @@ export default function ComboboxDemo() {
           >
             {selectedValues.length > 3 ? (
               <span>
-                <Badge className="font-medium text-foreground">{selectedValues.length}</Badge> cities selected
+                <Badge variant="outline" size="sm">
+                  {selectedValues.length}
+                </Badge>{' '}
+                cities selected
               </span>
             ) : (
               <span>Select cities</span>

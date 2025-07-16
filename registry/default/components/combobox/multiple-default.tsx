@@ -58,7 +58,7 @@ export default function ComboboxDemo() {
                 selectedValues.map((val) => {
                   const city = topCities.find((c) => c.value === val);
                   return city ? (
-                    <Badge key={val} appearance="outline">
+                    <Badge key={val} variant="outline">
                       {city.label}
                       <BadgeButton
                         onClick={(e) => {

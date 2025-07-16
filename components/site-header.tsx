@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -12,8 +13,31 @@ import { MainNav } from '@/components/main-nav';
 import { MobileNav } from '@/components/mobile-nav';
 import { ModeSwitcher } from '@/components/mode-switcher';
 
+// Custom hook to fetch GitHub stars
+function useGithubStars(repo = 'keenthemes/reui', fallback = siteConfig.githubStars) {
+  const [stars, setStars] = useState<number>(fallback);
+
+  useEffect(() => {
+    let isMounted = true;
+    fetch(`https://api.github.com/repos/${repo}`)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (isMounted && data && typeof data.stargazers_count === 'number') {
+          setStars(data.stargazers_count);
+        }
+      })
+      .catch(() => {});
+    return () => {
+      isMounted = false;
+    };
+  }, [repo]);
+
+  return stars;
+}
+
 export function SiteHeader() {
   const pathname = usePathname();
+  const githubStars = useGithubStars('keenthemes/reui', siteConfig.githubStars);
 
   const handleSocialClick = (platform: string) => {
     trackEvent({
@@ -64,10 +88,10 @@ export function SiteHeader() {
           <nav className="flex items-center gap-1">
             <GithubButton
               variant="outline"
-              targetStars={siteConfig.githubStars}
+              targetStars={githubStars}
               initialStars={0}
-              fixedWidth={false}
-              label=""
+              separator={true}
+              fixedWidth={true}
               className="h-8 px-2.5"
               repoUrl="https://github.com/keenthemes/reui"
             />

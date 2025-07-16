@@ -24,7 +24,7 @@ export function BlocksCategories() {
                 'relative py-4 text-sm font-medium transition-colors duration-200 whitespace-nowrap',
                 'hover:text-foreground',
                 isActive ? 'text-foreground' : 'text-muted-foreground',
-                !category.published && 'pointer-events-none opacity-50'
+                !category.published && 'pointer-events-none opacity-50',
               )}
             >
               {category.title}

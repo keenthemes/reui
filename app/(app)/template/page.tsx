@@ -1,14 +1,14 @@
 'use client';
 
 import React from 'react';
-import { SiteHero2 } from '@/components/site-hero-2';
+import Link from 'next/link';
+import { Badge } from '@/registry/default/ui/badge';
+import { Button } from '@/registry/default/ui/button';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/registry/default/ui/tooltip';
+import { ChevronRight, ExternalLink } from 'lucide-react';
 import { templates } from '@/config/templates';
 import { Icons } from '@/components/icons';
-import { Badge } from '@/registry/default/ui/badge';
-import Link from 'next/link';
-import { Button } from '@/registry/default/ui/button';
-import { ChevronRight, ExternalLink } from 'lucide-react';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/registry/default/ui/tooltip';
+import { SiteHero2 } from '@/components/site-hero-2';
 
 export default function Page() {
   return (
@@ -26,34 +26,30 @@ export default function Page() {
               <div className="flex items-center gap-3.5">
                 <h2 className="text-2xl font-bold m-0">{template.title}</h2>
                 {template.new && (
-                  <Badge variant="warning" appearance="light">New</Badge>
+                  <Badge variant="warning" appearance="light">
+                    New
+                  </Badge>
                 )}
                 {template.price && (
-                  <Badge variant="info" appearance="light">Premium</Badge>
+                  <Badge variant="info" appearance="light">
+                    Premium
+                  </Badge>
                 )}
                 {template.free && (
-                  <Badge variant="success" appearance="light">Free</Badge>
+                  <Badge variant="success" appearance="light">
+                    Free
+                  </Badge>
                 )}
               </div>
-              <div className="text-base text-muted-foreground">
-                {template.description}
-              </div>
+              <div className="text-base text-muted-foreground">{template.description}</div>
               <div className="flex items-center gap-3.5 mb-7.5">
-                <Button
-                  asChild
-                  variant="mono"
-                  size="lg"
-                >
+                <Button asChild variant="mono" size="lg">
                   <Link href={template.previewUrl} target="_blank" rel="noopener noreferrer">
                     Purchase - {template.price}
                     <ChevronRight className="size-4" />
                   </Link>
                 </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  size="lg"
-                >
+                <Button asChild variant="outline" size="lg">
                   <Link href={template.previewUrl} target="_blank" rel="noopener noreferrer">
                     Live Preview
                     <ExternalLink className="size-4" />
@@ -82,9 +78,9 @@ export default function Page() {
               <Link href={template.previewUrl} target="_blank">
                 <img
                   src={'/templates/' + template.thumbnail}
-                  alt={template.title }
+                  alt={template.title}
                   className="object-cover w-full lg:-mb-[100px]"
-                />    
+                />
               </Link>
             </div>
           </div>

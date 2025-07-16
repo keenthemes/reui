@@ -2,55 +2,6 @@ import { BlocksConfig } from './types';
 
 export const blocksConfig: BlocksConfig = [
   {
-    title: 'Charts',
-    slug: 'charts',
-    published: true,
-    sub: [
-      {
-        title: 'Line Charts',
-        slug: 'line-charts',
-        published: true,
-        new: true,
-        blocks: [],
-      },
-      {
-        title: 'Area Charts',
-        slug: 'area-charts',
-        published: true,
-        new: true,
-        blocks: [],
-      },
-      {
-        title: 'Bar Charts',
-        slug: 'bar-charts',
-        published: true,
-        new: true,
-        blocks: [],
-      },
-      {
-        title: 'Pie Charts',
-        slug: 'pie-charts',
-        published: true,
-        new: true,
-        blocks: [],
-      },
-      {
-        title: 'Doughnut Charts',
-        slug: 'doughnut-charts',
-        published: true,
-        new: true,
-        blocks: [],
-      },
-      {
-        title: 'Radar Charts',
-        slug: 'radar-charts',
-        published: true,
-        new: true,
-        blocks: [],
-      },
-    ],
-  },
-  {
     title: 'Cards',
     slug: 'cards',
     published: true,
@@ -59,6 +10,11 @@ export const blocksConfig: BlocksConfig = [
       {
         title: 'Statistic Cards',
         slug: 'statistic-cards',
+        description: `
+          15 modern statistic cards designed to present key metrics and insights. 
+          Each card features unique layouts, data visualizations, 
+          and styling options. Perfect for dashboards, admin panels, and analytics pages.
+        `,
         published: true,
         default: true,
         new: true,
@@ -143,29 +99,68 @@ export const blocksConfig: BlocksConfig = [
       {
         title: 'List Cards',
         slug: 'list-cards',
-        published: true,
-        new: true,
+        published: false,
         blocks: [],
       },
       {
         title: 'Table Cards',
         slug: 'table-cards',
-        published: true,
-        new: true,
+        published: false,
         blocks: [],
       },
       {
         title: 'Timeline Cards',
         slug: 'timeline-cards',
-        published: true,
-        new: true,
+        published: false,
         blocks: [],
       },
       {
         title: 'Form Cards',
         slug: 'form-cards',
-        published: true,
-        new: true,
+        published: false,
+        blocks: [],
+      },
+    ],
+  },
+  {
+    title: 'Charts',
+    slug: 'charts',
+    published: false,
+    sub: [
+      {
+        title: 'Line Charts',
+        slug: 'line-charts',
+        published: false,
+        blocks: [],
+      },
+      {
+        title: 'Area Charts',
+        slug: 'area-charts',
+        published: false,
+        blocks: [],
+      },
+      {
+        title: 'Bar Charts',
+        slug: 'bar-charts',
+        published: false,
+        blocks: [],
+      },
+      {
+        title: 'Pie Charts',
+        slug: 'pie-charts',
+        published: false,
+        blocks: [],
+      },
+      {
+        title: 'Doughnut Charts',
+        slug: 'doughnut-charts',
+        published: false,
+        blocks: [],
+      },
+      {
+        title: 'Radar Charts',
+        slug: 'radar-charts',
+        published: false,
         blocks: [],
       },
     ],
@@ -173,10 +168,12 @@ export const blocksConfig: BlocksConfig = [
   {
     title: 'Navigation',
     slug: 'navigation',
+    published: false,
     sub: [
       {
         title: 'Dropdowns',
         slug: 'dropdowns',
+        published: false,
         description: 'Dropdowns are a type of navigation menu that allows users to select an option from a list.',
         blocks: [
           {
@@ -192,21 +189,25 @@ export const blocksConfig: BlocksConfig = [
       {
         title: 'Navbars',
         slug: 'navbars',
+        published: false,
         blocks: [],
       },
       {
         title: 'Tabs',
         slug: 'tabs',
+        published: false,
         blocks: [],
       },
       {
         title: 'Breadcrumbs',
         slug: 'breadcrumbs',
+        published: false,
         blocks: [],
       },
       {
         title: 'Vertical Navigation',
         slug: 'vertical-nav',
+        published: false,
         blocks: [],
       },
     ],
@@ -214,30 +215,36 @@ export const blocksConfig: BlocksConfig = [
   {
     title: 'Lists',
     slug: 'lists',
+    published: false,
     sub: [
       {
         title: 'Stacked Lists',
         slug: 'stacked-lists',
+        published: false,
         blocks: [],
       },
       {
         title: 'Tables',
         slug: 'tables',
+        published: false,
         blocks: [],
       },
       {
         title: 'Data Grids',
         slug: 'data-grids',
+        published: false,
         blocks: [],
       },
       {
         title: 'Trees',
         slug: 'trees',
+        published: false,
         blocks: [],
       },
       {
         title: 'Feeds',
         slug: 'feeds',
+        published: false,
         blocks: [],
       },
     ],
@@ -245,6 +252,7 @@ export const blocksConfig: BlocksConfig = [
   {
     title: 'Forms',
     slug: 'forms',
+    published: false,
     sub: [
       {
         title: 'Form Layouts',
@@ -269,35 +277,42 @@ export const blocksConfig: BlocksConfig = [
   {
     title: 'Feedback',
     slug: 'feedback',
+    published: false,
     sub: [
       {
         title: 'Alerts',
         slug: 'alerts',
+        published: false,
         blocks: [],
       },
       {
         title: 'Dialogs',
         slug: 'dialogs',
+        published: false,
         blocks: [],
       },
       {
         title: 'Notifications',
         slug: 'notifications',
+        published: false,
         blocks: [],
       },
       {
         title: 'Empty States',
         slug: 'empty-states',
+        published: false,
         blocks: [],
       },
       {
         title: 'Loading States',
         slug: 'loading-states',
+        published: false,
         blocks: [],
       },
       {
         title: 'Overlay Content',
         slug: 'overlay-content',
+        published: false,
         blocks: [],
       },
     ],
@@ -305,30 +320,36 @@ export const blocksConfig: BlocksConfig = [
   {
     title: 'Marketing',
     slug: 'marketing',
+    published: false,
     sub: [
       {
         title: 'Hero',
         slug: 'hero',
+        published: false,
         blocks: [],
       },
       {
         title: 'Pricing Tables',
         slug: 'pricing-tables',
+        published: false,
         blocks: [],
       },
       {
         title: 'Features',
         slug: 'features',
+        published: false,
         blocks: [],
       },
       {
         title: 'Call to Action',
         slug: 'call-to-action',
+        published: false,
         blocks: [],
       },
       {
         title: 'Testimonials',
         slug: 'testimonials',
+        published: false,
         blocks: [],
       },
     ],

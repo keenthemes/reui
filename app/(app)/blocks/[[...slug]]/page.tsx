@@ -51,7 +51,7 @@ export default async function Page({ params }: PageProps) {
 
       <div className="flex flex-col gap-1.5 mb-7.5">
         <h1 className="text-2xl font-bold m-0">{secondaryCategory?.title}</h1>
-        <p className="text-base text-muted-foreground max-w-xl">{secondaryCategory?.description}</p>
+        <p className="text-base text-muted-foreground max-w-2xl">{secondaryCategory?.description}</p>
       </div>
 
       <div className="space-y-8 lg:space-y-16">
