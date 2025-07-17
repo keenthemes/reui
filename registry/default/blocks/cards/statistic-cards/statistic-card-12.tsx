@@ -6,7 +6,7 @@ import { CheckCircle2, LifeBuoy, Smile } from 'lucide-react';
 const cards = [
   {
     icon: LifeBuoy,
-    iconBg: 'border-blue-200 text-blue-600 shadow-sm shadow-blue-100',
+    iconBg: 'border-blue-200 dark:border-blue-800 text-blue-600 dark:text-blue-400',
     value: 320,
     label: 'Support Tickets',
     info: (
@@ -17,7 +17,7 @@ const cards = [
   },
   {
     icon: CheckCircle2,
-    iconBg: 'border-green-200 text-green-600 shadow-sm shadow-green-100',
+    iconBg: 'border-green-200 dark:border-green-800 text-green-600 dark:text-green-400',
     value: '98%',
     label: 'Resolved',
     info: (
@@ -28,7 +28,7 @@ const cards = [
   },
   {
     icon: Smile,
-    iconBg: 'border-yellow-200 text-yellow-600 shadow-sm shadow-yellow-100',
+    iconBg: 'border-yellow-200 dark:border-yellow-800 text-yellow-600 dark:text-yellow-400',
     value: '4.8',
     label: 'Satisfaction Rate',
     info: (
@@ -41,11 +41,11 @@ const cards = [
 
 export default function StatisticCard12() {
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 lg:p-8 bg-muted/40">
+    <div className="min-h-screen flex items-center justify-center p-6 lg:p-8">
       <div className="@container grow w-full">
         <div className="grow grid grid-cols-1 @3xl:grid-cols-3 gap-5 max-w-5xl">
           {cards.map((card, i) => (
-            <Card key={i} className="border-0 bg-background shadow-sm">
+            <Card key={i}>
               <CardContent className="flex flex-col items-start gap-6">
                 {/* Icon */}
                 <div className={cn(`rounded-xl flex items-center justify-center size-12 border`, card.iconBg)}>

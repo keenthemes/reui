@@ -18,7 +18,7 @@ const balanceData = {
 export default function StatisticCard5() {
   return (
     <div className="min-h-screen flex items-center justify-center p-6 lg:p-8">
-      <Card className="w-full max-w-xl rounded-2xl shadow-xl border-0 bg-zinc-900 dark:bg-zinc-950 text-white">
+      <Card className="w-full max-w-xl rounded-2xl shadow-xl border-0 bg-zinc-900  text-white">
         <CardHeader className="border-0 pb-2 pt-6">
           <CardTitle className="text-lg font-semibold text-zinc-400">Balance</CardTitle>
           <CardToolbar>

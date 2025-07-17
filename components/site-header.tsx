@@ -14,22 +14,26 @@ import { MobileNav } from '@/components/mobile-nav';
 import { ModeSwitcher } from '@/components/mode-switcher';
 
 // Custom hook to fetch GitHub stars
-function useGithubStars(repo = 'keenthemes/reui', fallback = siteConfig.githubStars) {
-  const [stars, setStars] = useState<number>(fallback);
+function useGithubStars(repo = 'keenthemes/reui') {
+  const [stars, setStars] = useState<number>(siteConfig.githubStars);
 
   useEffect(() => {
-    let isMounted = true;
-    fetch(`https://api.github.com/repos/${repo}`)
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data) => {
-        if (isMounted && data && typeof data.stargazers_count === 'number') {
-          setStars(data.stargazers_count);
+    const fetchStars = async () => {
+      try {
+        const response = await fetch(`https://api.github.com/repos/${repo}`);
+        if (response.ok) {
+          const data = await response.json();
+          if (data?.stargazers_count) {
+            console.log('GitHub stars fetched:', data.stargazers_count);
+            setStars(data.stargazers_count);
+          }
         }
-      })
-      .catch(() => {});
-    return () => {
-      isMounted = false;
+      } catch (error) {
+        console.error('Error fetching GitHub stars:', error);
+      }
     };
+
+    fetchStars();
   }, [repo]);
 
   return stars;
@@ -37,7 +41,7 @@ function useGithubStars(repo = 'keenthemes/reui', fallback = siteConfig.githubSt
 
 export function SiteHeader() {
   const pathname = usePathname();
-  const githubStars = useGithubStars('keenthemes/reui', siteConfig.githubStars);
+  const githubStars = useGithubStars('keenthemes/reui');
 
   const handleSocialClick = (platform: string) => {
     trackEvent({
@@ -87,6 +91,7 @@ export function SiteHeader() {
 
           <nav className="flex items-center gap-1">
             <GithubButton
+              key={`github-${githubStars}`}
               variant="outline"
               targetStars={githubStars}
               initialStars={0}

@@ -37,7 +37,7 @@ export default function StatisticCard15() {
         <div className="grid grid-cols-1 @3xl:grid-cols-3 gap-8 w-full">
           {cards.map((card, i) => (
             <Card key={i} className={cn('rounded-2xl overflow-hidden shadow-lg p-0 border-0', card.color)}>
-              <CardContent className="relative flex flex-col justify-end py-6 px-0 pb-0">
+              <CardContent className="relative overflow-hidden flex flex-col justify-end py-6 px-0 pb-0">
                 {/* Icon */}
                 <div className="px-6 mb-3.5">
                   <card.icon className="size-8 text-white/60" />
@@ -53,7 +53,7 @@ export default function StatisticCard15() {
                 {/* Bottom bar */}
                 <Link
                   href="#"
-                  className="group/card w-full bg-black/90 px-6 py-4 flex items-center justify-between rounded-b-2xl mt-6"
+                  className="group/card w-full bg-black/90 dark:bg-zinc-800 px-6 py-4 flex items-center justify-between mt-6"
                 >
                   <span className="text-white text-sm font-medium">{card.cta}</span>
                   <ArrowRight className="group-hover/card:translate-x-1 transition-transform duration-300 w-5 h-5 text-white" />

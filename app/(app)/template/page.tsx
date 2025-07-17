@@ -8,12 +8,12 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@/registry/default/ui/t
 import { ChevronRight, ExternalLink } from 'lucide-react';
 import { templates } from '@/config/templates';
 import { Icons } from '@/components/icons';
-import { SiteHero2 } from '@/components/site-hero-2';
+import { SiteHeroTemplates } from '@/components/site-hero-templates';
 
 export default function Page() {
   return (
     <div className="container">
-      <SiteHero2 />
+      <SiteHeroTemplates />
 
       <div>
         {templates.map((template) => (

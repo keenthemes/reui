@@ -160,6 +160,12 @@ function GithubButton({
   const ref = React.useRef(null);
   const isInView = useInView(ref, inViewOptions);
 
+  // Reset animation state when targetStars changes
+  useEffect(() => {
+    setHasAnimated(false);
+    setCurrentStars(initialStars);
+  }, [targetStars, initialStars]);
+
   // Auto-start animation or use in-view trigger
   useEffect(() => {
     if (useInViewTrigger) {

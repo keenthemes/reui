@@ -1,4 +1,4 @@
-export function SiteHero2() {
+export function SiteHeroTemplates() {
   return (
     <div className="container">
       <div className="flex items-center justify-center py-10 lg:py-2 lg:h-[380px] mb-5">
