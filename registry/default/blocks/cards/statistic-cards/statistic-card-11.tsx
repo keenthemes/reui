@@ -26,7 +26,7 @@ export default function StatisticCard11() {
               </span>
               <span className="text-base font-semibold text-foreground">${(used * 0.002).toFixed(2)}</span>
             </div>
-            
+
             <div>
               <Progress value={percent} className="bg-muted" indicatorClassName="bg-indigo-500" />
             </div>

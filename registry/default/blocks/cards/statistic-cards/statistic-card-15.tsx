@@ -33,7 +33,7 @@ const cards = [
 export default function StatisticCard15() {
   return (
     <div className="min-h-screen flex items-center justify-center p-6 lg:p-8">
-      <div className="@container grow w-full">  
+      <div className="@container grow w-full">
         <div className="grid grid-cols-1 @3xl:grid-cols-3 gap-8 w-full">
           {cards.map((card, i) => (
             <Card key={i} className={cn('rounded-2xl overflow-hidden shadow-lg p-0 border-0', card.color)}>
@@ -49,7 +49,7 @@ export default function StatisticCard15() {
                   <div className="text-white text-lg font-semibold mb-1">{card.title}</div>
                   <div className="text-white/80 text-sm mb-2">{card.desc}</div>
                 </div>
-                
+
                 {/* Bottom bar */}
                 <Link
                   href="#"

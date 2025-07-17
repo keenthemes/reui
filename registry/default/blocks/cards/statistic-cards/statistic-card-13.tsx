@@ -1,8 +1,14 @@
-import { cn } from '@/lib/utils';
 import { Button } from '@/registry/default/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardToolbar } from '@/registry/default/ui/card';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/registry/default/ui/dropdown-menu';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/registry/default/ui/dropdown-menu';
 import { MoreVertical, Pin, Settings, Share2, ShieldCheck, Trash, TriangleAlert } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export default function StatisticCard13() {
   const total = 30;
@@ -52,11 +58,14 @@ export default function StatisticCard13() {
             {[...Array(total)].map((_, i) => (
               <span
                 key={i}
-                className={cn(`inline-block w-3 h-4 rounded-sm border transition-colors`, i < passing ? 'bg-primary border-primary' : 'bg-muted border-muted')}
+                className={cn(
+                  `inline-block w-3 h-4 rounded-sm border transition-colors`,
+                  i < passing ? 'bg-primary border-primary' : 'bg-muted border-muted',
+                )}
               />
             ))}
           </div>
-          
+
           {/* Passing Checks */}
           <div className="flex items-center justify-between text-xs text-muted-foreground mt-1">
             <span>{passing}/16 checks passing</span>

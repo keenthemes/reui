@@ -58,8 +58,8 @@ const cards = [
 
 export default function StatisticCard7() {
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 lg:p-12">    
-      <div className="@container grow w-full">  
+    <div className="min-h-screen flex items-center justify-center p-6 lg:p-12">
+      <div className="@container grow w-full">
         <div className="grid grid-cols-1 @3xl:grid-cols-3 bg-background overflow-hidden rounded-xl border border-border">
           {cards.map((card, i) => (
             <Card

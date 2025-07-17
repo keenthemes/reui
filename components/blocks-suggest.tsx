@@ -8,7 +8,7 @@ export function BlocksSuggestion() {
     <div className="flex flex-col items-center justify-center gap-2.5 py-8 lg:py-12">
       <p className="text-base font-semibold">Didn&apos;t find what you were looking for?</p>
       <Button variant="mono" className="group hidden md:inline-flex" asChild>
-        <Link href={siteConfig.links.suggestions}>
+        <Link href={siteConfig.links.suggestions} target="_blank" rel="noopener noreferrer">
           <Lightbulb className="group-hover:scale-110 transition-transform duration-300 group-hover:text-yellow-600" />
           <span>Suggest block</span>
         </Link>

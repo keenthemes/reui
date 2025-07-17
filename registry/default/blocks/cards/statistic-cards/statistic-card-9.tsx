@@ -1,13 +1,13 @@
 'use client';
 
-import { Card, CardContent, CardHeader, CardTitle, CardToolbar } from '@/registry/default/ui/card';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/registry/default/ui/select';
-import { Progress } from '@/registry/default/ui/progress';
 import { useEffect, useState } from 'react';
+import { Card, CardContent, CardHeader, CardTitle, CardToolbar } from '@/registry/default/ui/card';
+import { Progress } from '@/registry/default/ui/progress';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/registry/default/ui/select';
 
 export default function StatisticCard6() {
   const [progress, setProgress] = useState(13);
-  
+
   useEffect(() => {
     const timer = setTimeout(() => setProgress(66), 500);
     return () => clearTimeout(timer);
@@ -58,7 +58,7 @@ export default function StatisticCard6() {
                 <span className="text-lg font-bold text-violet-500">8</span>
                 <span className="text-xs text-accent-foreground">In Review</span>
               </div>
-            </div>  
+            </div>
 
             {/* AI prediction footer */}
             <div className="text-xs text-muted-foreground text-center">

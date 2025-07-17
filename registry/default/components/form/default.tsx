@@ -19,9 +19,7 @@ import { toast } from 'sonner';
 import { z } from 'zod';
 
 const FormSchema = z.object({
-  email: z.string().check(
-    z.email('Please enter a valid email address.')
-  ),
+  email: z.string().check(z.email('Please enter a valid email address.')),
 });
 
 export default function InputDemo() {

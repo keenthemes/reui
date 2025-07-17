@@ -80,7 +80,8 @@
       ],
       "registryDependencies": [
         "https://reui.io/r/button.json",
-        "https://reui.io/r/card.json"
+        "https://reui.io/r/card.json",
+        "https://reui.io/r/dropdown-menu.json"
       ]
     },
     {
@@ -95,7 +96,9 @@
       ],
       "registryDependencies": [
         "https://reui.io/r/badge.json",
-        "https://reui.io/r/card.json"
+        "https://reui.io/r/button.json",
+        "https://reui.io/r/card.json",
+        "https://reui.io/r/dropdown-menu.json"
       ]
     },
     {
@@ -190,7 +193,12 @@
         }
       ],
       "registryDependencies": [
-        "https://reui.io/r/card.json"
+        "https://reui.io/r/badge.json",
+        "https://reui.io/r/button.json",
+        "https://reui.io/r/card.json",
+        "https://reui.io/r/dropdown-menu.json",
+        "https://reui.io/r/progress.json",
+        "https://reui.io/r/separator.json"
       ]
     },
     {
@@ -234,10 +242,9 @@
         }
       ],
       "registryDependencies": [
-        "https://reui.io/r/badge.json",
-        "https://reui.io/r/button.json",
         "https://reui.io/r/card.json",
-        "https://reui.io/r/dropdown-menu.json"
+        "https://reui.io/r/progress.json",
+        "https://reui.io/r/select.json"
       ]
     },
     {

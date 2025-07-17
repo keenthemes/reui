@@ -2,11 +2,25 @@
 
 import * as React from 'react';
 import { Badge } from '@/registry/default/ui/badge';
-import { Card, CardContent, CardTitle, CardHeader, CardToolbar } from '@/registry/default/ui/card';
-import { ArrowUpRight, Minus as MinusIcon, ShieldCheck, TriangleAlert } from 'lucide-react';
 import { Button } from '@/registry/default/ui/button';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/registry/default/ui/dropdown-menu';
-import { MoreVertical, Pin, Settings, Share2 } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle, CardToolbar } from '@/registry/default/ui/card';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/registry/default/ui/dropdown-menu';
+import {
+  ArrowUpRight,
+  Minus as MinusIcon,
+  MoreVertical,
+  Pin,
+  Settings,
+  Share2,
+  ShieldCheck,
+  TriangleAlert,
+} from 'lucide-react';
 
 const bars = [6, 6, 5, 5, 4, 4, 3, 0];
 const maxBars = Math.max(...bars);
@@ -79,9 +93,16 @@ function GrowthBadge({ direction, growth }: { direction: string; growth: number 
 
 function getBarColor(direction: string, j: number, height: number) {
   if (height === 0) return 'bg-muted';
-  
+
   // Even color progression from intense to neutral
-  const barColors = ['bg-indigo-600', 'bg-indigo-500', 'bg-indigo-400', 'bg-indigo-300', 'bg-indigo-200', 'bg-indigo-100'];
+  const barColors = [
+    'bg-indigo-600',
+    'bg-indigo-500',
+    'bg-indigo-400',
+    'bg-indigo-300',
+    'bg-indigo-200',
+    'bg-indigo-100',
+  ];
   return j < height ? barColors[j] : 'bg-muted';
 }
 
