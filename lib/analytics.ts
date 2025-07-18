@@ -155,3 +155,31 @@ export const trackItemRestore = (module: string, itemType: string, itemId: strin
     },
   });
 };
+
+// Function to track block code copy events
+export const trackBlockCodeCopy = (blockName: string, blockPath?: string) => {
+  trackEvent({
+    name: 'block_code_copy',
+    properties: {
+      block_name: blockName,
+      block_path: blockPath || '',
+      content_type: 'code',
+      category: 'engagement',
+      label: `Block Code Copy - ${blockName}`,
+    },
+  });
+};
+
+// Function to track block CLI command copy events
+export const trackBlockCliCopy = (blockName: string, packageManager: string) => {
+  trackEvent({
+    name: 'block_cli_copy',
+    properties: {
+      block_name: blockName,
+      package_manager: packageManager,
+      content_type: 'cli_command',
+      category: 'engagement',
+      label: `Block CLI Copy - ${blockName}`,
+    },
+  });
+};

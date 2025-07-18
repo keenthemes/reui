@@ -3,6 +3,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/regi
 import { Check } from 'lucide-react';
 import { useConfig } from '@/hooks/use-config';
 import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard';
+import { trackBlockCliCopy } from '@/lib/analytics';
 
 export function CliCodeCopyButton({ name }: { name: string } & React.ComponentProps<typeof Button>) {
   const { copy, copied } = useCopyToClipboard();
@@ -26,6 +27,8 @@ export function CliCodeCopyButton({ name }: { name: string } & React.ComponentPr
             title="Copy CLI command"
             onClick={() => {
               copy(commands[packageManager]);
+              // Track the CLI command copy event
+              trackBlockCliCopy(name, packageManager);
             }}
           >
             {copied ? <Check className="text-secondary-foreground" /> : '>_'}

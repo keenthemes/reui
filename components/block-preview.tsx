@@ -24,7 +24,7 @@ import {
 import { useTheme } from 'next-themes';
 import { ImperativePanelHandle } from 'react-resizable-panels';
 import { BlockItem } from '@/config/types';
-import { trackEvent } from '@/lib/analytics';
+import { trackEvent, trackBlockCodeCopy } from '@/lib/analytics';
 import { toAbsoluteUrl } from '@/lib/helpers';
 import { CliCodeCopyButton } from './cli-code-copy-button';
 import { OpenInV0IconButton } from './open-in-v0-icon-button';
@@ -130,7 +130,7 @@ function PreviewPanelToolbar() {
 }
 
 function PreviewPanelResponsive() {
-  const { responsiveMode, setResponsiveMode, resizablePanelRef } = usePreviewPanel();
+  const { responsiveMode, setResponsiveMode, resizablePanelRef, block } = usePreviewPanel();
 
   const handleResponsiveModeChange = (mode: ResponsiveMode) => {
     setResponsiveMode(mode);
@@ -159,6 +159,8 @@ function PreviewPanelResponsive() {
         category: 'engagement',
         label: `Preview Responsive ${mode.charAt(0).toUpperCase() + mode.slice(1)} Click`,
         mode,
+        block_name: block.name || '',
+        block_path: block.path || '',
       },
     });
   };
@@ -200,7 +202,7 @@ function PreviewPanelResponsive() {
 }
 
 function PreviewPanelToolbarTabs() {
-  const { setView } = usePreviewPanel();
+  const { setView, block } = usePreviewPanel();
 
   const handleTabClick = (value: string) => {
     trackEvent({
@@ -209,6 +211,8 @@ function PreviewPanelToolbarTabs() {
         category: 'navigation',
         label: `Preview ${value.charAt(0).toUpperCase() + value.slice(1)} Tab Click`,
         tab: value,
+        block_name: block.name || '',
+        block_path: block.path || '',
       },
     });
   };
@@ -216,7 +220,7 @@ function PreviewPanelToolbarTabs() {
   return (
     <Tabs
       defaultValue="preview"
-      onValueChange={(value) => {
+      onValueChange={(value: string) => {
         setView(value as 'preview' | 'code');
         handleTabClick(value);
       }}
@@ -236,7 +240,7 @@ function PreviewPanelToolbarTabs() {
 
 function ThemeToggleButton() {
   const { resolvedTheme } = useTheme();
-  const { theme, setTheme } = usePreviewPanel();
+  const { theme, setTheme, block } = usePreviewPanel();
   const [activeTheme, setActiveTheme] = useState<string | undefined>(undefined);
 
   useEffect(() => {
@@ -252,6 +256,8 @@ function ThemeToggleButton() {
         category: 'engagement',
         label: `Preview Theme ${newTheme.charAt(0).toUpperCase() + newTheme.slice(1)} Click`,
         theme: newTheme,
+        block_name: block.name || '',
+        block_path: block.path || '',
       },
     });
   };
@@ -264,7 +270,7 @@ function ThemeToggleButton() {
 }
 
 function RtlToggleButton() {
-  const { rtl, setRtl } = usePreviewPanel();
+  const { rtl, setRtl, block } = usePreviewPanel();
 
   const toggleRtl = () => {
     const newRtl = !rtl;
@@ -275,6 +281,8 @@ function RtlToggleButton() {
         category: 'engagement',
         label: `Preview Direction ${newRtl ? 'RTL' : 'LTR'} Click`,
         direction: newRtl ? 'rtl' : 'ltr',
+        block_name: block.name || '',
+        block_path: block.path || '',
       },
     });
   };
@@ -306,6 +314,8 @@ function PreviewPanelToolbarButtons() {
       properties: {
         category: 'engagement',
         label: 'Preview Reload Click',
+        block_name: block.name || '',
+        block_path: block.path || '',
       },
     });
     reloadPreview();
@@ -446,6 +456,10 @@ function PreviewPanelCode() {
               onClick={() => {
                 if (block?.code) {
                   copy(block.code);
+                  // Track the block code copy event
+                  if (block.name) {
+                    trackBlockCodeCopy(block.name, block.path);
+                  }
                 }
               }}
             >
