@@ -2,15 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "badge-default",
   "type": "registry:component",
-  "dependencies": [
-    "clsx",
-    "tailwind-merge",
-    "class-variance-authority",
-    "radix-ui"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/badge.json"
-  ],
+  "dependencies": ["clsx", "tailwind-merge", "class-variance-authority", "radix-ui"],
+  "registryDependencies": ["https://reui.io/r/badge.json"],
   "files": [
     {
       "path": "registry/default/components/badge/default.tsx",

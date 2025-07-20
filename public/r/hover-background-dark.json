@@ -2,12 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "hover-background-dark",
   "type": "registry:component",
-  "dependencies": [
-    "motion"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/hover-background.json"
-  ],
+  "dependencies": ["motion"],
+  "registryDependencies": ["https://reui.io/r/hover-background.json"],
   "files": [
     {
       "path": "registry/default/components/hover-background/dark.tsx",

@@ -2,12 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "counting-number-default",
   "type": "registry:component",
-  "dependencies": [
-    "motion"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/counting-number.json"
-  ],
+  "dependencies": ["motion"],
+  "registryDependencies": ["https://reui.io/r/counting-number.json"],
   "files": [
     {
       "path": "registry/default/components/counting-number/default.tsx",

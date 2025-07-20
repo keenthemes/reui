@@ -2,13 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "card-default",
   "type": "registry:component",
-  "dependencies": [
-    "clsx",
-    "tailwind-merge",
-    "class-variance-authority",
-    "radix-ui",
-    "lucide-react"
-  ],
+  "dependencies": ["clsx", "tailwind-merge", "class-variance-authority", "radix-ui", "lucide-react"],
   "registryDependencies": [
     "https://reui.io/r/avatar.json",
     "https://reui.io/r/badge.json",

@@ -2,16 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "navigation-menu-default",
   "type": "registry:component",
-  "dependencies": [
-    "clsx",
-    "tailwind-merge",
-    "class-variance-authority",
-    "lucide-react",
-    "radix-ui"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/navigation-menu.json"
-  ],
+  "dependencies": ["clsx", "tailwind-merge", "class-variance-authority", "lucide-react", "radix-ui"],
+  "registryDependencies": ["https://reui.io/r/navigation-menu.json"],
   "files": [
     {
       "path": "registry/default/components/navigation-menu/default.tsx",

@@ -1,0 +1,59 @@
+---
+title: Twinkle Grid
+description: A dynamic background effect powered by Canvas API and styled with Tailwind CSS, creating a subtle twinkling animation across a customizable grid.
+component: true
+---
+
+<ExamplePreview path="twinkle-grid/default" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="twinkle-grid" />
+</TabsContent>
+
+<TabsContent value="manual">    
+<Steps>
+
+<Step>
+Copy and paste the following code into your project's `components/ui/twinkle-grid.tsx` file.
+
+<ComponentPreview name="twinkle-grid" />
+
+</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+### Mask Rounded
+
+<ExamplePreview path="twinkle-grid/mask-rounded" />
+
+## API Reference
+
+This component is built using [Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) and includes the following custom props:
+
+### TwinkleGrid
+
+| **Prop**                                                                       | **Type** | **Default**      |
+| ------------------------------------------------------------------------------ | -------- | ---------------- |
+| `squareSize` <PopoverInfo>Size of each square in the grid.</PopoverInfo>       | ~number~ | ~4~              |
+| `gridGap` <PopoverInfo>Gap between squares in the grid.</PopoverInfo>          | ~number~ | ~6~              |
+| `flickerChance` <PopoverInfo>Probability of a square flickering.</PopoverInfo> | ~number~ | ~0.3~            |
+| `color` <PopoverInfo>Color of the squares.</PopoverInfo>                       | ~string~ | ~"rgb(0, 0, 0)"~ |
+| `width` <PopoverInfo>Width of the canvas.</PopoverInfo>                        | ~number~ | <Na/>            |
+| `height` <PopoverInfo>Height of the canvas.</PopoverInfo>                      | ~number~ | <Na/>            |
+| `className` <PopoverInfo>CSS class for the background container.</PopoverInfo> | ~string~ | <Na/>            |
+| `maxOpacity` <PopoverInfo>Maximum opacity of the squares.</PopoverInfo>        | ~number~ | ~0.2~            |

@@ -2,12 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "grid-background-default",
   "type": "registry:component",
-  "dependencies": [
-    "motion"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/grid-background.json"
-  ],
+  "dependencies": ["motion"],
+  "registryDependencies": ["https://reui.io/r/grid-background.json"],
   "files": [
     {
       "path": "registry/default/components/grid-background/default.tsx",

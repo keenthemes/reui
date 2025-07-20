@@ -2,17 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "collapsible-default",
   "type": "registry:component",
-  "dependencies": [
-    "class-variance-authority",
-    "lucide-react",
-    "radix-ui",
-    "clsx",
-    "tailwind-merge"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/button.json",
-    "https://reui.io/r/collapsible.json"
-  ],
+  "dependencies": ["class-variance-authority", "lucide-react", "radix-ui", "clsx", "tailwind-merge"],
+  "registryDependencies": ["https://reui.io/r/button.json", "https://reui.io/r/collapsible.json"],
   "files": [
     {
       "path": "registry/default/components/collapsible/default.tsx",

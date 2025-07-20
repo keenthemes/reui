@@ -2,13 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "statistic-card-9",
   "type": "registry:block",
-  "dependencies": [
-    "clsx",
-    "tailwind-merge",
-    "class-variance-authority",
-    "radix-ui",
-    "lucide-react"
-  ],
+  "dependencies": ["clsx", "tailwind-merge", "class-variance-authority", "radix-ui", "lucide-react"],
   "registryDependencies": [
     "https://reui.io/r/card.json",
     "https://reui.io/r/progress.json",
