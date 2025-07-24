@@ -94,8 +94,8 @@ export default function AreaChart3() {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-6 lg:p-8">
-      <div className="bg-muted/50 dark:bg-muted shadow-[0_0_5px_0_rgba(0,0,0,0.0.5)] backdrop-blur-xl border border-border/50 rounded-3xl p-2.5 w-full max-w-sm">
-        <Card className="rounded-3xl bg-background border-0 p-5">
+      <div className="bg-muted/50 dark:bg-muted shadow-[0_0_4px_0_rgba(0,0,0,0.0.1)] backdrop-blur-xl border border-border/60 rounded-3xl p-2.5 w-full max-w-sm">
+        <Card className="rounded-3xl bg-background border-border/50 p-5">
           <CardHeader className="min-h-auto flex-nowrap! p-0 border-b border-border pt-1 pb-6 mb-6">
             <CardHeading className="flex items-center gap-2.5 space-y-0">
               <div className="flex items-center justify-center size-10 rounded-full bg-muted/80">
