@@ -238,6 +238,10 @@ export const docsConfig: DocsConfig = {
           },
         },
         {
+          title: 'Command',
+          href: '/docs/command',
+        },
+        {
           title: 'Combobox',
           href: '/docs/combobox',
           highlight: {

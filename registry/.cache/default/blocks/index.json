@@ -7,9 +7,25 @@
       "title": "Statistic Cards",
       "totalBlocks": 15,
       "filename": "cards.statistic-cards.json"
+    },
+    {
+      "cacheKey": "charts.line-charts",
+      "primary": "charts",
+      "secondary": "line-charts",
+      "title": "Line Charts",
+      "totalBlocks": 9,
+      "filename": "charts.line-charts.json"
+    },
+    {
+      "cacheKey": "charts.area-charts",
+      "primary": "charts",
+      "secondary": "area-charts",
+      "title": "Area Charts",
+      "totalBlocks": 5,
+      "filename": "charts.area-charts.json"
     }
   ],
-  "totalCategories": 1,
-  "totalBlocks": 15,
-  "generatedAt": "2025-07-17T19:15:19.059Z"
+  "totalCategories": 3,
+  "totalBlocks": 29,
+  "generatedAt": "2025-07-24T10:08:42.107Z"
 }

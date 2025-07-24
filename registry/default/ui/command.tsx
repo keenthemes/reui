@@ -7,7 +7,7 @@ import { type DialogProps } from '@radix-ui/react-dialog';
 import { Command as CommandPrimitive } from 'cmdk';
 import { Check, LucideIcon, Search } from 'lucide-react';
 
-function Command({ className, ...props }: React.ComponentPropsWithoutRef<typeof CommandPrimitive>) {
+function Command({ className, ...props }: React.ComponentProps<typeof CommandPrimitive>) {
   return (
     <CommandPrimitive
       className={cn(
@@ -34,7 +34,7 @@ const CommandDialog = ({ children, className, ...props }: CommandDialogProps) =>
   );
 };
 
-function CommandInput({ className, ...props }: React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>) {
+function CommandInput({ className, ...props }: React.ComponentProps<typeof CommandPrimitive.Input>) {
   return (
     <div className="flex items-center border-border border-b px-3" cmdk-input-wrapper="" data-slot="command-input">
       <Search className="me-2 h-4 w-4 shrink-0 opacity-50" />
@@ -49,7 +49,7 @@ function CommandInput({ className, ...props }: React.ComponentPropsWithoutRef<ty
   );
 }
 
-function CommandList({ className, ...props }: React.ComponentPropsWithoutRef<typeof CommandPrimitive.List>) {
+function CommandList({ className, ...props }: React.ComponentProps<typeof CommandPrimitive.List>) {
   return (
     <CommandPrimitive.List
       data-slot="command-list"
@@ -59,11 +59,11 @@ function CommandList({ className, ...props }: React.ComponentPropsWithoutRef<typ
   );
 }
 
-function CommandEmpty({ ...props }: React.ComponentPropsWithoutRef<typeof CommandPrimitive.Empty>) {
+function CommandEmpty({ ...props }: React.ComponentProps<typeof CommandPrimitive.Empty>) {
   return <CommandPrimitive.Empty data-slot="command-empty" className="py-6 text-center text-sm" {...props} />;
 }
 
-function CommandGroup({ className, ...props }: React.ComponentPropsWithoutRef<typeof CommandPrimitive.Group>) {
+function CommandGroup({ className, ...props }: React.ComponentProps<typeof CommandPrimitive.Group>) {
   return (
     <CommandPrimitive.Group
       data-slot="command-group"
@@ -76,7 +76,7 @@ function CommandGroup({ className, ...props }: React.ComponentPropsWithoutRef<ty
   );
 }
 
-function CommandSeparator({ className, ...props }: React.ComponentPropsWithoutRef<typeof CommandPrimitive.Separator>) {
+function CommandSeparator({ className, ...props }: React.ComponentProps<typeof CommandPrimitive.Separator>) {
   return (
     <CommandPrimitive.Separator
       data-slot="command-separator"
@@ -86,7 +86,7 @@ function CommandSeparator({ className, ...props }: React.ComponentPropsWithoutRe
   );
 }
 
-function CommandItem({ className, ...props }: React.ComponentPropsWithoutRef<typeof CommandPrimitive.Item>) {
+function CommandItem({ className, ...props }: React.ComponentProps<typeof CommandPrimitive.Item>) {
   return (
     <CommandPrimitive.Item
       data-slot="command-item"
