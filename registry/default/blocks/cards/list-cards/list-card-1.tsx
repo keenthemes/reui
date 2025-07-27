@@ -1,7 +1,7 @@
 import { Badge } from '@/registry/default/ui/badge';
 import { Button } from '@/registry/default/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardToolbar } from '@/registry/default/ui/card';
-import { Phone, Mail, Globe, Users, MapPin } from 'lucide-react';
+import { Globe, Mail, MapPin, Phone, Users } from 'lucide-react';
 
 const customerData = {
   customerName: 'Sarah Mitchell',
@@ -12,22 +12,22 @@ const customerData = {
     city: 'San Francisco',
     state: 'California',
     zipCode: '94102',
-    country: 'United States'
+    country: 'United States',
   },
   socialPlatforms: [
     {
       name: 'LinkedIn',
-      logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg'
+      logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg',
     },
     {
       name: 'Twitter',
-      logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg'
+      logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg',
     },
     {
       name: 'Behance',
-      logo: 'https://cdn.worldvectorlogo.com/logos/behance-1.svg'
-    }
-  ]
+      logo: 'https://cdn.worldvectorlogo.com/logos/behance-1.svg',
+    },
+  ],
 };
 
 export default function ListCard1() {
@@ -89,12 +89,11 @@ export default function ListCard1() {
               <span className="text-sm text-muted-foreground font-medium">Social Platforms</span>
               <div className="flex items-center gap-2">
                 {customerData.socialPlatforms.map((platform, index) => (
-                  <div key={index} className="flex items-center justify-center w-8 h-8 bg-white border rounded overflow-hidden">
-                    <img 
-                      src={platform.logo} 
-                      alt={platform.name}
-                      className="h-5 w-5 object-contain"
-                    />
+                  <div
+                    key={index}
+                    className="flex items-center justify-center w-8 h-8 bg-white border rounded overflow-hidden"
+                  >
+                    <img src={platform.logo} alt={platform.name} className="h-5 w-5 object-contain" />
                   </div>
                 ))}
               </div>

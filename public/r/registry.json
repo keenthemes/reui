@@ -4,6 +4,22 @@
   "homepage": "https://reui.io",
   "items": [
     {
+      "name": "list-card-1",
+      "type": "registry:block",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/blocks/cards/list-cards/list-card-1.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/badge.json",
+        "https://reui.io/r/button.json",
+        "https://reui.io/r/card.json"
+      ]
+    },
+    {
       "name": "statistic-card-1",
       "type": "registry:block",
       "dependencies": [],
@@ -3040,6 +3056,25 @@
         "https://reui.io/r/button.json",
         "https://reui.io/r/command.json",
         "https://reui.io/r/popover.json"
+      ]
+    },
+    {
+      "name": "combobox-multiple-user",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/combobox/multiple-user.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/avatar.json",
+        "https://reui.io/r/badge.json",
+        "https://reui.io/r/button.json",
+        "https://reui.io/r/command.json",
+        "https://reui.io/r/popover.json",
+        "https://reui.io/r/scroll-area.json"
       ]
     },
     {

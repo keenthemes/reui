@@ -1,7 +1,6 @@
 'use client';
 
 import * as React from 'react';
-
 import { cn } from '@/registry/default/lib/utils';
 import {
   Avatar,
@@ -147,11 +146,7 @@ export default function ComboboxDemo() {
                 <CommandEmpty>No users found.</CommandEmpty>
                 <CommandGroup>
                   {users.map((user) => (
-                    <CommandItem
-                      key={user.id}
-                      value={user.name}
-                      onSelect={() => toggleSelection(user.id)}
-                    >
+                    <CommandItem key={user.id} value={user.name} onSelect={() => toggleSelection(user.id)}>
                       <span className="flex items-center gap-2">
                         <Avatar className="size-7">
                           <AvatarImage src={user.avatar} alt={user.name} />
