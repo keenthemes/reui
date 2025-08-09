@@ -17,10 +17,6 @@ export const docsConfig: DocsConfig = {
       title: 'UI Blocks',
       href: '/blocks',
     },
-    {
-      title: 'Templates',
-      href: '/template',
-    },
     /*
     {
       title: 'Themes',
@@ -34,6 +30,10 @@ export const docsConfig: DocsConfig = {
     {
       title: 'Changelog',
       href: '/docs/changelog',
+    },
+    {
+      title: 'Built with ReUI',
+      href: '/built-with-reui',
     },
   ],
   sidebarNav: [
