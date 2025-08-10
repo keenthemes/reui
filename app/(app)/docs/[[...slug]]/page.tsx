@@ -75,6 +75,8 @@ export default async function DocPage({ params }: DocPageProps) {
     notFound();
   }
 
+  console.log("doc", doc)
+
   const examples = await resolveComponent(doc.slugAsParams);
   const code = await resolveCode(doc.slugAsParams);
   const toc = await getTableOfContents(doc.body.raw);
@@ -96,7 +98,6 @@ export default async function DocPage({ params }: DocPageProps) {
         </div>
         {doc.links ? (
           <div className="flex items-center space-x-2 pt-3">
-            {/* Render documentation links */}
             {doc.links && Array.isArray(doc.links) && (
               <>
                 {doc.links.map((link: { label: string; url: string }, index: number) => (

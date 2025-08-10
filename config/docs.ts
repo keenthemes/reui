@@ -668,6 +668,10 @@ export const docsConfig: DocsConfig = {
           title: 'Hover Background',
           href: '/docs/hover-background',
         },
+        {
+          title: 'Twinkle Grid',
+          href: '/docs/twinkle-grid',
+        },
       ],
     },
   ],
