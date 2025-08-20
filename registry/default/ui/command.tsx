@@ -26,7 +26,10 @@ const CommandDialog = ({ children, className, ...props }: CommandDialogProps) =>
     <Dialog {...props}>
       <DialogContent className={cn('overflow-hidden p-0 shadow-lg', className)}>
         <DialogTitle className="hidden" />
-        <Command className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
+        <Command
+          shouldFilter={false}
+          className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5"
+        >
           {children}
         </Command>
       </DialogContent>
@@ -34,7 +37,13 @@ const CommandDialog = ({ children, className, ...props }: CommandDialogProps) =>
   );
 };
 
-function CommandInput({ className, ...props }: React.ComponentProps<typeof CommandPrimitive.Input>) {
+function CommandInput({
+  className,
+  onValueChange,
+  ...props
+}: React.ComponentProps<typeof CommandPrimitive.Input> & {
+  onValueChange?: (value: string) => void;
+}) {
   return (
     <div className="flex items-center border-border border-b px-3" cmdk-input-wrapper="" data-slot="command-input">
       <Search className="me-2 h-4 w-4 shrink-0 opacity-50" />
@@ -44,6 +53,17 @@ function CommandInput({ className, ...props }: React.ComponentProps<typeof Comma
           className,
         )}
         {...props}
+        onValueChange={(value) => {
+          onValueChange?.(value);
+        }}
+        onKeyDown={(e) => {
+          // Prevent space from being handled by cmdk for navigation
+          if (e.key === ' ') {
+            e.stopPropagation();
+          }
+          // Call the original onKeyDown if it exists
+          props.onKeyDown?.(e);
+        }}
       />
     </div>
   );

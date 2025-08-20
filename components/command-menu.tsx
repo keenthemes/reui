@@ -20,6 +20,7 @@ import { trackEvent } from '@/lib/analytics';
 export function CommandMenu({ ...props }: DialogProps) {
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
+  const [inputValue, setInputValue] = React.useState('');
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -70,6 +71,21 @@ export function CommandMenu({ ...props }: DialogProps) {
     command();
   }, []);
 
+  const normalizeInput = (input: string) => {
+    return input.trim().replace(/\s+/g, ' ');
+  };
+
+  const normalizedInput = normalizeInput(inputValue);
+
+  const filteredMainNav = docsConfig.mainNav
+    .filter((navitem) => !navitem.external)
+    .filter((navItem) => navItem.title.toLowerCase().includes(normalizedInput.toLowerCase()));
+
+  const filteredSidebarNav = docsConfig.sidebarNav.map((group) => ({
+    ...group,
+    items: group.items?.filter((navItem) => navItem.title?.toLowerCase().includes(normalizedInput.toLowerCase())),
+  }));
+
   return (
     <>
       <Button
@@ -102,13 +118,12 @@ export function CommandMenu({ ...props }: DialogProps) {
         onOpenChange={setOpen}
         className="[&_[data-dialog-close]]:top-[0.925rem] [&_[data-dialog-close]]:end-[0.925rem]"
       >
-        <CommandInput placeholder="Type a command or search..." />
-        <CommandList className="">
+        <CommandInput placeholder="Type a command or search..." value={inputValue} onValueChange={setInputValue} />
+        <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
-          <CommandGroup heading="Links">
-            {docsConfig.mainNav
-              .filter((navitem) => !navitem.external)
-              .map((navItem) => (
+          {filteredMainNav.length > 0 && (
+            <CommandGroup heading="Links">
+              {filteredMainNav.map((navItem) => (
                 <CommandItem
                   key={navItem.href}
                   value={navItem.title}
@@ -120,23 +135,26 @@ export function CommandMenu({ ...props }: DialogProps) {
                   {navItem.title}
                 </CommandItem>
               ))}
-          </CommandGroup>
-          {docsConfig.sidebarNav.map((group) => (
-            <CommandGroup key={group.title} heading={group.title}>
-              {group?.items?.map((navItem) => (
-                <CommandItem
-                  key={navItem.href}
-                  value={navItem.title}
-                  onSelect={() => {
-                    runCommand(() => router.push(navItem.href as string), navItem.title);
-                  }}
-                >
-                  <Undo2 className="opacity-80 rotate-180 text-muted-foreground" />
-                  {navItem.title}
-                </CommandItem>
-              ))}
             </CommandGroup>
-          ))}
+          )}
+          {filteredSidebarNav.map((group) =>
+            group?.items && group.items.length > 0 ? (
+              <CommandGroup key={group.title} heading={group.title}>
+                {group.items.map((navItem) => (
+                  <CommandItem
+                    key={navItem.href}
+                    value={navItem.title}
+                    onSelect={() => {
+                      runCommand(() => router.push(navItem.href as string), navItem.title);
+                    }}
+                  >
+                    <Undo2 className="opacity-80 rotate-180 text-muted-foreground" />
+                    {navItem.title}
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            ) : null,
+          )}
         </CommandList>
       </CommandDialog>
     </>
