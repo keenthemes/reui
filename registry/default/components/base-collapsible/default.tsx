@@ -5,7 +5,7 @@ import { Button } from '@/registry/default/ui/base-button';
 import { Collapsible, CollapsiblePanel, CollapsibleTrigger } from '@/registry/default/ui/base-collapsible';
 
 export default function Component() {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
   return (
     <div className="w-[500px] text-foreground text-sm rounded-lg border border-border p-4">

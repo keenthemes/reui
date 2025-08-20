@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { ProgressCircle } from '@/registry/default/ui/progress';
 
 export default function Completion() {
-  const [cpuUsage, setCpuUsage] = useState(0);
+  const [cpuUsage, setCpuUsage] = useState<number>(0);
 
   useEffect(() => {
     // CPU usage simulation

@@ -23,7 +23,7 @@ import { z } from 'zod';
 
 export default function DialogDemo() {
   const direction = useDirection();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   const FormSchema = z.object({
     feedback: z.string().min(1, 'Feedback is required').max(200, 'Feedback cannot exceed 200 characters'),

@@ -7,7 +7,7 @@ import { PanelRightOpen } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 export function BlocksNavToggle() {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
   const isMobile = useIsMobile();
 
   const handleToggle = () => {

@@ -8,9 +8,9 @@ import { trackEvent } from '@/lib/analytics';
 import { RecaptchaPopover } from '@/components/recaptcha-popover';
 
 export function SiteSubscribe() {
-  const [email, setEmail] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [showRecaptcha, setShowRecaptcha] = useState(false);
+  const [email, setEmail] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
+  const [showRecaptcha, setShowRecaptcha] = useState<boolean>(false);
 
   const validateEmail = () => {
     if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {

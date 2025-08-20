@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { Progress } from '@/registry/default/ui/progress';
 
 export default function Compponent() {
-  const [downloadProgress, setDownloadProgress] = useState(0);
+  const [downloadProgress, setDownloadProgress] = useState<number>(0);
 
   // Get status message based on progress
   const getStatusMessage = (progress: number) => {

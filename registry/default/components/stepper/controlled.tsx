@@ -14,7 +14,7 @@ import {
 const steps = [1, 2, 3, 4];
 
 export default function Component() {
-  const [currentStep, setCurrentStep] = useState(2);
+  const [currentStep, setCurrentStep] = useState<number>(2);
 
   return (
     <Stepper value={currentStep} onValueChange={setCurrentStep} className="space-y-8">

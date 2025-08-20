@@ -63,8 +63,8 @@ function ComponentPreviewProvider({
 }) {
   const [view, setView] = useState<ComponentPreviewContext['view']>('preview');
   const [theme, setTheme] = useState<themeType>('');
-  const [rtl, setRtl] = useState(false);
-  const [reloadKey, setReloadKey] = useState(0);
+  const [rtl, setRtl] = useState<boolean>(false);
+  const [reloadKey, setReloadKey] = useState<number>(0);
 
   const reload = () => {
     setReloadKey((prev) => prev + 1);
@@ -164,7 +164,7 @@ function ComponentPreviewToolbar() {
       <div className={cn('w-full flex items-center justify-between gap-2')}>
         <Tabs
           defaultValue="preview"
-          onValueChange={(value) => {
+          onValueChange={(value: string) => {
             setView(value as 'preview' | 'code');
             trackViewChange(path, value as 'preview' | 'code');
           }}

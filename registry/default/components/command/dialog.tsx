@@ -14,7 +14,7 @@ import {
 import { Calculator, Calendar, CreditCard, Settings, Smile, User } from 'lucide-react';
 
 export default function Component() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {

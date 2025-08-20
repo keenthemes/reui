@@ -23,7 +23,7 @@ export async function copyToClipboardWithMeta(value: string, event?: Event) {
 }
 
 export function CopyButton({ value, className, variant = 'ghost', event, ...props }: CopyButtonProps) {
-  const [hasCopied, setHasCopied] = React.useState(false);
+  const [hasCopied, setHasCopied] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     setTimeout(() => {

@@ -271,7 +271,7 @@ export default function DataGridDemo() {
     pageSize: 5,
   });
   const [sorting, setSorting] = useState<SortingState>([{ id: 'name', desc: true }]);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedStatuses, setSelectedStatuses] = useState<string[]>([]);
 
   const filteredData = useMemo(() => {
@@ -497,7 +497,7 @@ export default function DataGridDemo() {
                           <Checkbox
                             id={status}
                             checked={selectedStatuses.includes(status)}
-                            onCheckedChange={(checked) => handleStatusChange(checked === true, status)}
+                            onCheckedChange={(checked: boolean) => handleStatusChange(checked === true, status)}
                           />
                           <Label
                             htmlFor={status}

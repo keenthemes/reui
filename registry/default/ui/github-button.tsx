@@ -91,10 +91,10 @@ function GithubButton({
   transition,
   ...props
 }: GithubButtonProps) {
-  const [currentStars, setCurrentStars] = useState(initialStars);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [starProgress, setStarProgress] = useState(filled ? 100 : 0);
-  const [hasAnimated, setHasAnimated] = useState(false);
+  const [currentStars, setCurrentStars] = useState<number>(initialStars);
+  const [isAnimating, setIsAnimating] = useState<boolean>(false);
+  const [starProgress, setStarProgress] = useState<number>(filled ? 100 : 0);
+  const [hasAnimated, setHasAnimated] = useState<boolean>(false);
 
   // Format number with units
   const formatNumber = (num: number) => {

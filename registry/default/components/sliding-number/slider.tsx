@@ -5,8 +5,8 @@ import { Slider, SliderThumb } from '@/registry/default/ui/slider';
 import { SlidingNumber } from '@/registry/default/ui/sliding-number';
 
 export default function SlidingNumberSliderDemo() {
-  const [value, setValue] = useState(100);
-  const [previousValue, setPreviousValue] = useState(100);
+  const [value, setValue] = useState<number>(100);
+  const [previousValue, setPreviousValue] = useState<number>(100);
 
   const handleSliderChange = (newValue: number[]) => {
     const currentValue = newValue[0] * 10; // Convert 0-100 to 0-1000

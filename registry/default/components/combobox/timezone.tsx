@@ -16,7 +16,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/registry/default/ui/p
 import { ScrollArea } from '@/registry/default/ui/scroll-area';
 
 export default function TimezoneSelector() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
   const [value, setValue] = useState<string>('Europe/London');
 
   // Fetch supported timezones

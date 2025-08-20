@@ -85,7 +85,7 @@ const users = [
 ];
 
 export default function ComboboxDemo() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState<boolean>(false);
   const [selectedValues, setSelectedValues] = React.useState<string[]>(['alice-johnson', 'david-wilson']);
 
   const toggleSelection = (value: string) => {

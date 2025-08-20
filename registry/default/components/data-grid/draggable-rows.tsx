@@ -176,7 +176,7 @@ export default function DataGridDemo() {
     [],
   );
 
-  const [data, setData] = useState(demoData);
+  const [data, setData] = useState<IData[]>(demoData);
 
   const dataIds = useMemo<UniqueIdentifier[]>(() => data?.map(({ id }) => id), [data]);
 

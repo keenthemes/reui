@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { ProgressRadial } from '@/registry/default/ui/progress';
 
 export default function ProgressRadialDemo() {
-  const [taskProgress, setTaskProgress] = useState(0);
+  const [taskProgress, setTaskProgress] = useState<number>(0);
 
   useEffect(() => {
     // Task completion simulation

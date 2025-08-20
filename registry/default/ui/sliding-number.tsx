@@ -78,9 +78,9 @@ export function SlidingNumber({
 }: SlidingNumberProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false }); // Always use false, manage once manually
-  const [currentValue, setCurrentValue] = useState(from);
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const [animationKey, setAnimationKey] = useState(0);
+  const [currentValue, setCurrentValue] = useState<number>(from);
+  const [hasAnimated, setHasAnimated] = useState<boolean>(false);
+  const [animationKey, setAnimationKey] = useState<number>(0);
 
   // Reset animation state on component mount (route changes)
   useEffect(() => {

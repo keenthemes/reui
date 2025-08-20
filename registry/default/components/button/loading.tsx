@@ -5,7 +5,7 @@ import { Button } from '@/registry/default/ui/button';
 import { LoaderCircleIcon } from 'lucide-react';
 
 export default function ButtonDemo() {
-  const [isDisabled, setIsDisabled] = useState(false);
+  const [isDisabled, setIsDisabled] = useState<boolean>(false);
 
   useEffect(() => {
     // Automatically toggle button state every 4 seconds

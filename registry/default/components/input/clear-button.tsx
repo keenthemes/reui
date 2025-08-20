@@ -4,7 +4,7 @@ import { Input, InputWrapper } from '@/registry/default/ui/input';
 import { X } from 'lucide-react';
 
 export default function InputDemo() {
-  const [inputValue, setInputValue] = useState('Click to clear');
+  const [inputValue, setInputValue] = useState<string>('Click to clear');
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleClearInput = () => {

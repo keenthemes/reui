@@ -19,8 +19,8 @@ import { trackEvent } from '@/lib/analytics';
 
 export function CommandMenu({ ...props }: DialogProps) {
   const router = useRouter();
-  const [open, setOpen] = React.useState(false);
-  const [inputValue, setInputValue] = React.useState('');
+  const [open, setOpen] = React.useState<boolean>(false);
+  const [inputValue, setInputValue] = React.useState<string>('');
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {

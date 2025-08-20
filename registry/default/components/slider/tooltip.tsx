@@ -1,12 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { SetStateAction, useEffect, useState } from 'react';
 import { Slider, SliderThumb } from '@/registry/default/ui/slider';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/registry/default/ui/tooltip';
 
 export default function SliderDemo() {
   const [value, setValue] = useState<number[]>([100, 450]);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   useEffect(() => {
     setIsOpen(true);
@@ -19,7 +19,7 @@ export default function SliderDemo() {
         min={0}
         max={600}
         step={1}
-        onValueChange={(val) => {
+        onValueChange={(val: SetStateAction<number[]>) => {
           setValue(val);
         }}
       >

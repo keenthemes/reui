@@ -27,7 +27,6 @@ import { BlockItem } from '@/config/types';
 import { trackBlockCodeCopy, trackEvent } from '@/lib/analytics';
 import { toAbsoluteUrl } from '@/lib/helpers';
 import { CliCodeCopyButton } from './cli-code-copy-button';
-import { OpenInV0IconButton } from './open-in-v0-icon-button';
 
 type ThemeType = 'dark' | 'light' | '';
 
@@ -65,10 +64,10 @@ function PreviewPanelProvider({ block, children }: { block: BlockItem; children:
   const resizablePanelRef = useRef<ImperativePanelHandle | null>(null);
 
   const [theme, setTheme] = useState<ThemeType>('');
-  const [rtl, setRtl] = useState(false);
-  const [reloadKey, setReloadKey] = useState(0);
+  const [rtl, setRtl] = useState<boolean>(false);
+  const [reloadKey, setReloadKey] = useState<number>(0);
   const [responsiveMode, setResponsiveMode] = useState<ResponsiveMode>('desktop');
-  const [panelWidth, setPanelWidth] = useState(1024);
+  const [panelWidth, setPanelWidth] = useState<number>(1024);
 
   const reloadPreview = () => {
     setReloadKey((prev) => prev + 1);
@@ -388,7 +387,7 @@ function PreviewPanelView() {
     };
   }, [setPanelWidth]);
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const handleLoad = () => {
     setLoading(false);
