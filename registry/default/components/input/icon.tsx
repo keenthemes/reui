@@ -7,10 +7,10 @@ export default function InputDemo() {
     <div className="space-y-5 w-80">
       <InputWrapper>
         <Euro />
-        <Input type="email" placeholder="Start icon" />
+        <Input type="email" placeholder="Start icon"/>
       </InputWrapper>
       <InputWrapper>
-        <Input type="email" placeholder="End icon" />
+        <Input type="email" placeholder="End icon"/>
         <TicketPercent />
       </InputWrapper>
       <InputWrapper>

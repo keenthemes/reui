@@ -44,7 +44,7 @@ export default function Page() {
               <div className="text-base text-muted-foreground">{template.description}</div>
               <div className="flex items-center gap-3.5 mb-7.5">
                 <Button asChild variant="mono" size="lg">
-                  <Link href={template.previewUrl} target="_blank" rel="noopener noreferrer">
+                  <Link href={template.purchaseUrl || template.previewUrl} target="_blank" rel="noopener noreferrer">
                     Purchase - {template.price}
                     <ChevronRight className="size-4" />
                   </Link>

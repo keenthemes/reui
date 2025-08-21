@@ -3,6 +3,7 @@ import { Icons } from '@/components/icons';
 type Template = {
   title: string;
   previewUrl: string;
+  purchaseUrl?: string;
   description: string;
   popular?: boolean;
   stack?: (keyof typeof Icons)[];
@@ -15,10 +16,11 @@ type Template = {
 export const templates: Template[] = [
   {
     title: 'Metronic',
+    purchaseUrl: 'https://1.envato.market/Vm7VRE',
     previewUrl:
       'https://keenthemes.com/metronic?utm_source=reui_website&utm_medium=menu&utm_campaign=product_link&utm_content=metronic',
     description:
-      'Metronic is a premium admin template used by 119,500 developers that is built with React, Next.js, TypeScript, Supabase, Prisma ORM and Tailwind CSS.',
+      'Metronic is a premium admin template used by 118,000 developers that is built with React, Next.js, TypeScript, Supabase, Prisma ORM and Tailwind CSS.',
     stack: ['react', 'nextjs', 'tailwind', 'motion', 'reui', 'shadcn', 'radix', 'supabase', 'prisma'],
     thumbnail: 'metronic-1.png',
     price: '$49',
