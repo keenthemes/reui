@@ -11,6 +11,7 @@ type Template = {
   thumbnail?: string;
   price?: string;
   free?: boolean;
+  market?: string;
 };
 
 export const templates: Template[] = [
@@ -24,6 +25,7 @@ export const templates: Template[] = [
     stack: ['react', 'nextjs', 'tailwind', 'motion', 'reui', 'shadcn', 'radix', 'supabase', 'prisma'],
     thumbnail: 'metronic-1.png',
     price: '$49',
+    market: 'Themeforest',
   },
   {
     title: 'SaaSify',
@@ -34,6 +36,7 @@ export const templates: Template[] = [
     price: '$59',
     stack: ['react', 'nextjs', 'tailwind', 'shadcn', 'reui', 'radix', 'motion'],
     thumbnail: 'saasify-1.png',
+    market: 'Keenthemes',
   },
   {
     title: 'Storely',
@@ -44,6 +47,7 @@ export const templates: Template[] = [
     price: '$99',
     stack: ['react', 'nextjs', 'tailwind', 'shadcn', 'reui', 'radix', 'prisma'],
     thumbnail: 'storely-1.png',
+    market: 'Keenthemes',
   },
   {
     title: 'Shoplit',
@@ -54,6 +58,7 @@ export const templates: Template[] = [
     thumbnail: 'shoplit-1.png',
     stack: ['react', 'nextjs', 'tailwind', 'shadcn', 'reui', 'radix', 'prisma'],
     price: '$99',
+    market: 'Keenthemes',
   },
   {
     title: 'Supastart',
@@ -64,5 +69,6 @@ export const templates: Template[] = [
     thumbnail: 'supastart-1.png',
     stack: ['react', 'nextjs', 'tailwind', 'shadcn', 'reui', 'radix', 'supabase'],
     price: '$99',
+    market: 'Keenthemes',
   },
 ];
