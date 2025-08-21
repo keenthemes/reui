@@ -2191,6 +2191,81 @@
       ]
     },
     {
+      "name": "base-menu-checkbox",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/base-menu/checkbox.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/base-button.json",
+        "https://reui.io/r/base-menu.json"
+      ]
+    },
+    {
+      "name": "base-menu-default",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/base-menu/default.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/base-button.json",
+        "https://reui.io/r/base-menu.json"
+      ]
+    },
+    {
+      "name": "base-menu-nested",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/base-menu/nested.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/base-badge.json",
+        "https://reui.io/r/base-button.json",
+        "https://reui.io/r/base-menu.json"
+      ]
+    },
+    {
+      "name": "base-menu-radio-group",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/base-menu/radio-group.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/base-button.json",
+        "https://reui.io/r/base-menu.json"
+      ]
+    },
+    {
+      "name": "base-menubar-default",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/base-menubar/default.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/base-menubar.json"
+      ]
+    },
+    {
       "name": "breadcrumb-card",
       "type": "registry:component",
       "dependencies": [],
@@ -4591,6 +4666,20 @@
       ]
     },
     {
+      "name": "menubar-default",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/menubar/default.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/menubar.json"
+      ]
+    },
+    {
       "name": "navigation-menu-default",
       "type": "registry:component",
       "dependencies": [],
@@ -4802,6 +4891,94 @@
       "registryDependencies": [
         "https://reui.io/r/label.json",
         "https://reui.io/r/radio-group.json"
+      ]
+    },
+    {
+      "name": "rating-decimal",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/rating/decimal.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/rating.json"
+      ]
+    },
+    {
+      "name": "rating-default",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/rating/default.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/rating.json"
+      ]
+    },
+    {
+      "name": "rating-editable",
+      "type": "registry:component",
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/rating/editable.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/alert.json",
+        "https://reui.io/r/rating.json"
+      ]
+    },
+    {
+      "name": "rating-show-value",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/rating/show-value.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/rating.json"
+      ]
+    },
+    {
+      "name": "rating-size",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/rating/size.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/rating.json"
+      ]
+    },
+    {
+      "name": "rating-statistics",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/rating/statistics.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/card.json",
+        "https://reui.io/r/rating.json"
       ]
     },
     {
@@ -6956,6 +7133,32 @@
       ]
     },
     {
+      "name": "base-menu",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui-components/react"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/base-menu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "base-menubar",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui-components/react"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/base-menubar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "breadcrumb",
       "type": "registry:ui",
       "dependencies": [
@@ -7562,6 +7765,17 @@
       "files": [
         {
           "path": "registry/default/ui/radio-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "rating",
+      "type": "registry:ui",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/ui/rating.tsx",
           "type": "registry:ui"
         }
       ]

@@ -346,7 +346,7 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Input',
           href: '/docs/input',
-
+          update: true,
           highlight: {
             order: 14,
             examples: ['Default', 'Disabled', 'Readonly', 'File', 'Size', 'Form'],
@@ -402,6 +402,11 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Resizable',
           href: '/docs/resizable',
+        },
+        {
+          title: 'Rating',
+          href: '/docs/rating',
+          new: true,
         },
         {
           title: 'Scroll Area',
@@ -594,6 +599,11 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Input',
           href: '/docs/base-input',
+          new: true,
+        },
+        {
+          title: 'Menu',
+          href: '/docs/base-menu',
           new: true,
         },
       ],
