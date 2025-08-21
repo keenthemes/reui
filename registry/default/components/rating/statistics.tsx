@@ -1,5 +1,13 @@
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardHeading,
+  CardTitle,
+} from '@/registry/default/ui/card';
 import { Rating } from '@/registry/default/ui/rating';
-import { Card, CardTitle, CardHeading, CardDescription, CardContent, CardFooter, CardHeader } from '@/registry/default/ui/card';
 
 export default function RatingStatisticsDemo() {
   return (
@@ -10,7 +18,7 @@ export default function RatingStatisticsDemo() {
           <CardDescription>Based on 1,247 reviews</CardDescription>
         </CardHeading>
       </CardHeader>
-      
+
       <CardContent className="space-y-3">
         {[
           { stars: 5, count: 745, percentage: 59.7 },

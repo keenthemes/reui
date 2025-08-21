@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { cn } from '@/registry/default/lib/utils';
-import { Check, ChevronRight, Circle } from 'lucide-react';
 import { Menu as BaseUIMenu } from '@base-ui-components/react/menu';
+import { Check, ChevronRight, Circle } from 'lucide-react';
 
 // Root - Groups all parts of the menu
 function Menu({ ...props }: React.ComponentProps<typeof BaseUIMenu.Root>) {
@@ -32,16 +32,17 @@ function MenuPositioner({ ...props }: React.ComponentProps<typeof BaseUIMenu.Pos
 
 // Popup - A container for the menu items
 function MenuPopup({ ...props }: React.ComponentProps<typeof BaseUIMenu.Popup>) {
-  return <BaseUIMenu.Popup 
-		data-slot="menu-popup" 
-		{...props} 
-		className={cn(
-			'space-y-0.5 z-50 min-w-[8rem] overflow-hidden rounded-md border border-border bg-popover p-2 text-popover-foreground shadow-md shadow-black/5',
-			'origin-[var(--transform-origin)] transition-[transform,scale,opacity] data-[ending-style]:scale-90 data-[ending-style]:opacity-0 data-[starting-style]:scale-90 data-[starting-style]:opacity-0',
-			props.className
-		)
-	} 
-	/>;
+  return (
+    <BaseUIMenu.Popup
+      data-slot="menu-popup"
+      {...props}
+      className={cn(
+        'space-y-0.5 z-50 min-w-[8rem] overflow-hidden rounded-md border border-border bg-popover p-2 text-popover-foreground shadow-md shadow-black/5',
+        'origin-[var(--transform-origin)] transition-[transform,scale,opacity] data-[ending-style]:scale-90 data-[ending-style]:opacity-0 data-[starting-style]:scale-90 data-[starting-style]:opacity-0',
+        props.className,
+      )}
+    />
+  );
 }
 
 // Arrow - Displays an element positioned against the menu anchor
@@ -65,7 +66,7 @@ function MenuItem({
       {...props}
       className={cn(
         'text-foreground relative flex cursor-default select-none items-center gap-2 rounded-md px-2 py-1.5 text-sm outline-hidden transition-colors data-disabled:pointer-events-none data-disabled:opacity-50',
-				'[&_svg]:pointer-events-none [&_svg:not([role=img]):not([class*=text-])]:opacity-60 [&_svg:not([class*=size-])]:size-4 [&_svg]:shrink-0',
+        '[&_svg]:pointer-events-none [&_svg:not([role=img]):not([class*=text-])]:opacity-60 [&_svg:not([class*=size-])]:size-4 [&_svg]:shrink-0',
         'focus:bg-accent focus:text-foreground',
         'data-[highlighted=true]:bg-accent data-[highlighted=true]:text-accent-foreground',
         inset && 'ps-8',
@@ -82,8 +83,8 @@ function MenuSeparator({ className, ...props }: React.ComponentProps<typeof Base
   return (
     <BaseUIMenu.Separator
       data-slot="menu-separator"
-			{...props}
-      className={cn('-mx-2 my-1.5 h-px bg-muted', className)}      
+      {...props}
+      className={cn('-mx-2 my-1.5 h-px bg-muted', className)}
     />
   );
 }
@@ -104,8 +105,8 @@ function MenuGroupLabel({
   return (
     <BaseUIMenu.GroupLabel
       data-slot="menu-group-label"
-			{...props}
-      className={cn('px-2 py-1.5 text-xs text-muted-foreground font-medium', inset && 'ps-8', className)}      
+      {...props}
+      className={cn('px-2 py-1.5 text-xs text-muted-foreground font-medium', inset && 'ps-8', className)}
     />
   );
 }
@@ -116,19 +117,15 @@ function MenuRadioGroup({ ...props }: React.ComponentProps<typeof BaseUIMenu.Rad
 }
 
 // RadioItem - A menu item that works like a radio button in a given group
-function MenuRadioItem({
-  className,
-  children,
-  ...props
-}: React.ComponentProps<typeof BaseUIMenu.RadioItem>) {
+function MenuRadioItem({ className, children, ...props }: React.ComponentProps<typeof BaseUIMenu.RadioItem>) {
   return (
     <BaseUIMenu.RadioItem
       data-slot="menu-radio-item"
-			{...props}
+      {...props}
       className={cn(
         'relative flex cursor-default select-none items-center rounded-md py-1.5 ps-6 pe-2 text-sm outline-hidden transition-colors focus:bg-accent focus:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50',
-				className,
-      )}      
+        className,
+      )}
     >
       <span className="absolute start-1.5 flex h-3.5 w-3.5 items-center justify-center">
         <BaseUIMenu.RadioItemIndicator>
@@ -155,12 +152,12 @@ function MenuCheckboxItem({
   return (
     <BaseUIMenu.CheckboxItem
       data-slot="menu-checkbox-item"
-			checked={checked}
+      checked={checked}
       {...props}
       className={cn(
         'relative flex gap-2 cursor-default select-none items-center rounded-md py-1.5 ps-8 pe-2 text-sm outline-hidden transition-colors focus:bg-accent focus:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50',
-				className,
-      )}      
+        className,
+      )}
     >
       <span className="absolute start-2 flex h-3.5 w-3.5 items-center text-muted-foreground justify-center">
         <BaseUIMenu.CheckboxItemIndicator>
@@ -194,7 +191,7 @@ function MenuSubmenuTrigger({
   return (
     <BaseUIMenu.SubmenuTrigger
       data-slot="menu-submenu-trigger"
-			{...props}
+      {...props}
       className={cn(
         'flex cursor-default gap-2 select-none items-center rounded-md px-2 py-1.5 text-sm outline-hidden',
         'focus:bg-accent focus:text-foreground',
@@ -202,7 +199,7 @@ function MenuSubmenuTrigger({
         '[&>svg]:pointer-events-none [&_svg:not([role=img]):not([class*=text-])]:opacity-60 [&>svg:not([class*=size-])]:size-4 [&>svg]:shrink-0',
         inset && 'ps-8',
         className,
-      )}      
+      )}
     >
       {children}
       <ChevronRight data-slot="menu-submenu-trigger-indicator" className="ms-auto size-3.5! rtl:rotate-180" />
@@ -215,8 +212,8 @@ function MenuShortcut({ className, ...props }: React.HTMLAttributes<HTMLSpanElem
   return (
     <span
       data-slot="menu-shortcut"
-			{...props}
-      className={cn('ms-auto text-xs tracking-widest opacity-60', className)}      
+      {...props}
+      className={cn('ms-auto text-xs tracking-widest opacity-60', className)}
     />
   );
 }

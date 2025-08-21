@@ -1,5 +1,5 @@
 ---
-title: Rating 
+title: Rating
 description: A customizable star rating component that supports read-only display and interactive input modes.
 component: true
 ---
@@ -73,14 +73,13 @@ Copy and paste the following code into your project's `components/ui/rating.tsx`
 
 The main rating component that displays star ratings and supports interactive input.
 
-| **Prop**                                                                              | **Type**                                                                 | **Default** |
-| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ----------- |
-| `rating` <PopoverInfo>Current rating value (supports decimal values for partial stars)</PopoverInfo> | ~number~                                                                 | ~required~  |
-| `maxRating` <PopoverInfo>Maximum rating value (number of stars to show)</PopoverInfo> | ~number~                                                                 | ~5~         |
-| `size` <PopoverInfo>Size variant of the rating component</PopoverInfo>               | ~enum~ <PopoverInfo> "sm" \| "md" \| "lg" </PopoverInfo>                | ~"md"~      |
-| `showValue` <PopoverInfo>Whether to show the numeric rating value</PopoverInfo>      | ~boolean~                                                                | ~false~     |
-| `editable` <PopoverInfo>Whether the rating is editable (clickable)</PopoverInfo>     | ~boolean~                                                                | ~false~     |
-| `onRatingChange` <PopoverInfo>Callback function called when rating changes</PopoverInfo> | ~function~ <PopoverInfo>(rating: number) => void</PopoverInfo>          | ~undefined~ |
-| `starClassName` <PopoverInfo>Additional class name for the rating value text</PopoverInfo> | ~string~                                                                 | ~undefined~ |
-| `className` <PopoverInfo>Additional class name for the rating container</PopoverInfo> | ~string~                                                                | ~undefined~ |
-
+| **Prop**                                                                                             | **Type**                                                       | **Default** |
+| ---------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- | ----------- |
+| `rating` <PopoverInfo>Current rating value (supports decimal values for partial stars)</PopoverInfo> | ~number~                                                       | ~required~  |
+| `maxRating` <PopoverInfo>Maximum rating value (number of stars to show)</PopoverInfo>                | ~number~                                                       | ~5~         |
+| `size` <PopoverInfo>Size variant of the rating component</PopoverInfo>                               | ~enum~ <PopoverInfo> "sm" \| "md" \| "lg" </PopoverInfo>       | ~"md"~      |
+| `showValue` <PopoverInfo>Whether to show the numeric rating value</PopoverInfo>                      | ~boolean~                                                      | ~false~     |
+| `editable` <PopoverInfo>Whether the rating is editable (clickable)</PopoverInfo>                     | ~boolean~                                                      | ~false~     |
+| `onRatingChange` <PopoverInfo>Callback function called when rating changes</PopoverInfo>             | ~function~ <PopoverInfo>(rating: number) => void</PopoverInfo> | ~undefined~ |
+| `starClassName` <PopoverInfo>Additional class name for the rating value text</PopoverInfo>           | ~string~                                                       | ~undefined~ |
+| `className` <PopoverInfo>Additional class name for the rating container</PopoverInfo>                | ~string~                                                       | ~undefined~ |

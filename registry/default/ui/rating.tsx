@@ -1,9 +1,9 @@
 'use client';
 
 import * as React from 'react';
-import { Star } from 'lucide-react';
 import { cn } from '@/registry/default/lib/utils';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { Star } from 'lucide-react';
 
 const ratingVariants = cva('flex items-center', {
   variants: {
@@ -113,19 +113,13 @@ function Rating({
       stars.push(
         <div
           key={i}
-          className={cn(
-            'relative',
-            editable && 'cursor-pointer'
-          )}
+          className={cn('relative', editable && 'cursor-pointer')}
           onClick={() => handleStarClick(i)}
           onMouseEnter={() => handleStarMouseEnter(i)}
           onMouseLeave={handleStarMouseLeave}
         >
           {/* Background star (empty) */}
-          <Star 
-            data-slot="rating-star-empty"
-            className={cn(starVariants({ size }), 'text-muted-foreground/30')} 
-          />
+          <Star data-slot="rating-star-empty" className={cn(starVariants({ size }), 'text-muted-foreground/30')} />
 
           {/* Filled star */}
           <div
@@ -134,12 +128,12 @@ function Rating({
               width: filled ? '100%' : `${fillPercentage}%`,
             }}
           >
-            <Star 
+            <Star
               data-slot="rating-star-filled"
-              className={cn(starVariants({ size }), 'text-yellow-400 fill-yellow-400')} 
+              className={cn(starVariants({ size }), 'text-yellow-400 fill-yellow-400')}
             />
           </div>
-        </div>
+        </div>,
       );
     }
 

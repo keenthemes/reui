@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { cn } from '@/registry/default/lib/utils';
-import { Check, ChevronRight, Circle } from 'lucide-react';
 import { Menu as BaseUIMenu } from '@base-ui-components/react/menu';
+import { Check, ChevronRight, Circle } from 'lucide-react';
 
 // Root - Groups all parts of the menubar
 function Menubar({ className, ...props }: React.ComponentProps<'div'>) {
@@ -134,11 +134,11 @@ function MenubarRadioGroup({ value, ...props }: React.ComponentProps<'div'> & { 
 }
 
 // RadioItem - A menubar item that works like a radio button in a given group
-function MenubarRadioItem({ 
-  className, 
-  children, 
+function MenubarRadioItem({
+  className,
+  children,
   value,
-  ...props 
+  ...props
 }: React.ComponentProps<typeof BaseUIMenu.Item> & { value?: string }) {
   return (
     <BaseUIMenu.Item

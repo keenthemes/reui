@@ -2,18 +2,18 @@ import { Badge } from '@/registry/default/ui/base-badge';
 import { Button } from '@/registry/default/ui/base-button';
 import {
   Menu,
-  MenuTrigger,
-  MenuPortal,
-  MenuPositioner,
-  MenuPopup,
   MenuArrow,
-  MenuItem,
-  MenuSeparator,
   MenuGroup,
   MenuGroupLabel,
+  MenuItem,
+  MenuPopup,
+  MenuPortal,
+  MenuPositioner,
+  MenuSeparator,
   MenuShortcut,
   MenuSubmenuRoot,
   MenuSubmenuTrigger,
+  MenuTrigger,
 } from '@/registry/default/ui/base-menu';
 import {
   Bug,
@@ -36,12 +36,12 @@ import {
 export default function MenuDemo() {
   return (
     <Menu>
-      <MenuTrigger render={<Button variant="outline">Show Menu</Button>}/>
+      <MenuTrigger render={<Button variant="outline">Show Menu</Button>} />
       <MenuPortal>
         <MenuPositioner sideOffset={4}>
           <MenuPopup className="w-64">
             <MenuArrow />
-            
+
             {/* Account Section */}
             <MenuGroup>
               <MenuGroupLabel>My Account</MenuGroupLabel>
@@ -109,7 +109,7 @@ export default function MenuDemo() {
                   </MenuPositioner>
                 </MenuPortal>
               </MenuSubmenuRoot>
-              
+
               {/* Roles Submenu */}
               <MenuSubmenuRoot>
                 <MenuSubmenuTrigger>
@@ -136,7 +136,7 @@ export default function MenuDemo() {
                   </MenuPositioner>
                 </MenuPortal>
               </MenuSubmenuRoot>
-              
+
               <MenuItem>
                 <Package />
                 <span>Integrations</span>

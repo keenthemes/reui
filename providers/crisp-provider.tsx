@@ -1,6 +1,6 @@
-"use client"
+'use client';
 
-import dynamic from 'next/dynamic'
+import dynamic from 'next/dynamic';
 
 /**
  * Crisp Provider Component
@@ -8,13 +8,10 @@ import dynamic from 'next/dynamic'
  * Client-side wrapper for Crisp chat integration.
  * Handles dynamic import with SSR disabled to prevent hydration issues.
  */
-const CrispWithNoSSR = dynamic(
-  () => import('@/components/crisp-chat'),
-  { ssr: false }
-)
+const CrispWithNoSSR = dynamic(() => import('@/components/crisp-chat'), { ssr: false });
 
 const CrispProvider = () => {
-  return <CrispWithNoSSR />
-}
+  return <CrispWithNoSSR />;
+};
 
-export default CrispProvider
+export default CrispProvider;

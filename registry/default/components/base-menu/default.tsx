@@ -1,34 +1,28 @@
-
 import { Button } from '@/registry/default/ui/base-button';
 import {
   Menu,
-  MenuTrigger,
-  MenuPortal,
-  MenuPositioner,
-  MenuPopup,
   MenuArrow,
-  MenuItem,
-  MenuSeparator,
   MenuGroup,
   MenuGroupLabel,
+  MenuItem,
+  MenuPopup,
+  MenuPortal,
+  MenuPositioner,
+  MenuSeparator,
   MenuShortcut,
+  MenuTrigger,
 } from '@/registry/default/ui/base-menu';
-import {
-  LogOut,
-  Mail,
-  Settings,
-  User,
-} from 'lucide-react';
+import { LogOut, Mail, Settings, User } from 'lucide-react';
 
 export default function MenuDemo() {
   return (
     <Menu>
-      <MenuTrigger render={<Button variant="outline">Show Menu</Button>}/>
+      <MenuTrigger render={<Button variant="outline">Show Menu</Button>} />
       <MenuPortal>
         <MenuPositioner sideOffset={4}>
           <MenuPopup className="w-64">
             <MenuArrow />
-            
+
             {/* Account Section */}
             <MenuGroup>
               <MenuGroupLabel>My Account</MenuGroupLabel>

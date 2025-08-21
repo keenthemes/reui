@@ -150,11 +150,7 @@ function InputWrapper({
   return (
     <div
       data-slot="input-wrapper"
-      className={cn(
-        inputVariants({ variant }), 
-        inputWrapperVariants({ variant }), 
-        className
-      )}
+      className={cn(inputVariants({ variant }), inputWrapperVariants({ variant }), className)}
       {...props}
     />
   );

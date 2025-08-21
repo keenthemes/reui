@@ -1,7 +1,7 @@
-"use client"
+'use client';
 
-import { useEffect } from "react"
-import { Crisp } from "crisp-sdk-web"
+import { useEffect } from 'react';
+import { Crisp } from 'crisp-sdk-web';
 
 /**
  * Crisp Chat Component
@@ -17,18 +17,18 @@ import { Crisp } from "crisp-sdk-web"
 const CrispChat = () => {
   useEffect(() => {
     // Get Crisp Website ID from environment variable or use placeholder
-    const websiteId = process.env.NEXT_PUBLIC_CRISP_WEBSITE_ID || "b665d310-35bb-4799-8e4f-1e249dd5fd54"
+    const websiteId = process.env.NEXT_PUBLIC_CRISP_WEBSITE_ID || 'b665d310-35bb-4799-8e4f-1e249dd5fd54';
 
     // Configure Crisp with the Website ID
-    Crisp.configure(websiteId)
+    Crisp.configure(websiteId);
 
     // Optional: Add any additional Crisp configurations here
     // Example: Crisp.setTokenId("user_token")
     // Example: Crisp.setUserEmail("user@example.com")
-  }, [])
+  }, []);
 
   // Return null as this is a headless component
-  return null
-}
+  return null;
+};
 
-export default CrispChat
+export default CrispChat;
