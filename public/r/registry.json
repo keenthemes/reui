@@ -4099,6 +4099,23 @@
       ]
     },
     {
+      "name": "file-upload-image-upload",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/file-upload/image-upload.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/alert.json",
+        "https://reui.io/r/button.json",
+        "https://reui.io/r/card.json",
+        "https://reui.io/r/progress.json"
+      ]
+    },
+    {
       "name": "file-upload-progress-upload",
       "type": "registry:component",
       "dependencies": [],
@@ -4113,6 +4130,26 @@
         "https://reui.io/r/badge.json",
         "https://reui.io/r/button.json",
         "https://reui.io/r/progress.json"
+      ]
+    },
+    {
+      "name": "file-upload-sortable",
+      "type": "registry:component",
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/file-upload/sortable.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/alert.json",
+        "https://reui.io/r/button.json",
+        "https://reui.io/r/card.json",
+        "https://reui.io/r/progress.json",
+        "https://reui.io/r/sortable.json"
       ]
     },
     {
@@ -5529,6 +5566,57 @@
       ]
     },
     {
+      "name": "sortable-default",
+      "type": "registry:component",
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/sortable/default.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/badge.json",
+        "https://reui.io/r/sortable.json"
+      ]
+    },
+    {
+      "name": "sortable-grid",
+      "type": "registry:component",
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/sortable/grid.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/badge.json",
+        "https://reui.io/r/sortable.json"
+      ]
+    },
+    {
+      "name": "sortable-nested",
+      "type": "registry:component",
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/sortable/nested.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/card.json",
+        "https://reui.io/r/sortable.json"
+      ]
+    },
+    {
       "name": "stepper-controlled",
       "type": "registry:component",
       "dependencies": [],
@@ -6113,6 +6201,39 @@
       "registryDependencies": [
         "https://reui.io/r/badge.json",
         "https://reui.io/r/tabs.json"
+      ]
+    },
+    {
+      "name": "tag-default",
+      "type": "registry:component",
+      "dependencies": [
+        "emblor"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/tag/default.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/label.json"
+      ]
+    },
+    {
+      "name": "tag-external",
+      "type": "registry:component",
+      "dependencies": [
+        "emblor"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/tag/external.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/input.json",
+        "https://reui.io/r/label.json"
       ]
     },
     {
@@ -7916,6 +8037,20 @@
       "files": [
         {
           "path": "registry/default/ui/sonner.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "sortable",
+      "type": "registry:ui",
+      "dependencies": [
+        "@dnd-kit/core",
+        "@dnd-kit/sortable"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/sortable.tsx",
           "type": "registry:ui"
         }
       ]

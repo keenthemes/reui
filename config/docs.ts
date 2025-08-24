@@ -338,6 +338,7 @@ export const docsConfig: DocsConfig = {
         {
           title: 'File Upload',
           href: '/docs/file-upload',
+          update: true,
         },
         {
           title: 'Hover Card',
@@ -368,6 +369,10 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Label',
           href: '/docs/label',
+        },
+        {
+          title: 'Menubar',
+          href: '/docs/menubar',
         },
         {
           title: 'Navigation Menu',
@@ -480,6 +485,11 @@ export const docsConfig: DocsConfig = {
           },
         },
         {
+          title: 'Sortable',
+          href: '/docs/sortable',
+          new: true,
+        },
+        {
           title: 'Switch',
           href: '/docs/switch',
           highlight: {
@@ -523,6 +533,11 @@ export const docsConfig: DocsConfig = {
               'Disabled',
             ],
           },
+        },
+        {
+          title: 'Tag',
+          href: '/docs/tag',
+          new: true,
         },
         {
           title: 'Textarea',
