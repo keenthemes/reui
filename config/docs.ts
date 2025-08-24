@@ -534,11 +534,13 @@ export const docsConfig: DocsConfig = {
             ],
           },
         },
+        /*
         {
           title: 'Tag',
           href: '/docs/tag',
           new: true,
         },
+        */
         {
           title: 'Textarea',
           href: '/docs/textarea',
