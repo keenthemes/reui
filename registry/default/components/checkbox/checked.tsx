@@ -10,7 +10,7 @@ export default function CheckboxDemo() {
 
   return (
     <div className="flex items-center space-x-2">
-      <Checkbox id={id} checked={checked} onCheckedChange={(value) => setChecked(!!value)} />
+      <Checkbox id={id} checked={checked} onCheckedChange={(value: unknown) => setChecked(!!value)} />
       <Label htmlFor={id}>Accept terms and conditions</Label>
     </div>
   );

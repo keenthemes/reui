@@ -46,7 +46,7 @@ function ComponentSourceProvider({
   codeCollapsed = false,
   children,
 }: ComponentSourceProps & { children: ReactNode }) {
-  const [isCodeCollapsed, setIsCodeCollapsed] = useState(codeCollapsed);
+  const [isCodeCollapsed, setIsCodeCollapsed] = useState<boolean>(codeCollapsed);
 
   const toggleCodeCollapsed = () => setIsCodeCollapsed((prev) => !prev);
 

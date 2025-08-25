@@ -232,7 +232,7 @@ export function TextReveal({
 }: TextRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once, margin: '-10%' });
-  const [hasAnimated, setHasAnimated] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState<boolean>(false);
 
   const shouldAnimate = startOnView ? isInView : true;
 

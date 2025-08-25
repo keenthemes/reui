@@ -47,7 +47,7 @@ export function SvgText({
   as: Component = 'div',
 }: SvgTextProps) {
   const textRef = useRef<HTMLDivElement>(null);
-  const [textDimensions, setTextDimensions] = useState({ width: 0, height: 0 });
+  const [textDimensions, setTextDimensions] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
   const content = React.Children.toArray(children).join('');
   const maskId = React.useId();
 

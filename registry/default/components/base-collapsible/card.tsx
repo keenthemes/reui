@@ -9,7 +9,7 @@ import { Card, CardContent, CardHeader, CardHeading, CardToolbar } from '@/regis
 import { ArrowDown, ArrowUp, ChevronDown, ChevronUp } from 'lucide-react';
 
 export default function CollapsibleDemo() {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
   interface IStatItem {
     label: string;

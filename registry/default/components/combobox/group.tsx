@@ -79,8 +79,8 @@ const groupedCountries = [
 ];
 
 export default function ComboboxDemo() {
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState('');
+  const [open, setOpen] = React.useState<boolean>(false);
+  const [value, setValue] = React.useState<string>('');
 
   return (
     <Popover open={open} onOpenChange={setOpen}>

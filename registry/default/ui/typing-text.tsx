@@ -81,11 +81,11 @@ export function TypingText({
 }: TypingTextProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once, margin: inViewMargin as UseInViewOptions['margin'] });
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const [displayText, setDisplayText] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTyping, setIsTyping] = useState(false);
-  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState<boolean>(false);
+  const [displayText, setDisplayText] = useState<string>('');
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [isTyping, setIsTyping] = useState<boolean>(false);
+  const [currentTextIndex, setCurrentTextIndex] = useState<number>(0);
 
   // Determine if we should start animation
   const shouldStart = !startOnView || (isInView && (!once || !hasAnimated));

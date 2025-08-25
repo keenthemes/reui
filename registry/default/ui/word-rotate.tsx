@@ -32,9 +32,9 @@ export function WordRotate({
 }: WordRotateProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once, margin: inViewMargin as UseInViewOptions['margin'] });
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const [currentWord, setCurrentWord] = useState(0);
-  const [show, setShow] = useState(true);
+  const [hasAnimated, setHasAnimated] = useState<boolean>(false);
+  const [currentWord, setCurrentWord] = useState<number>(0);
+  const [show, setShow] = useState<boolean>(true);
 
   // Animation variants
   const variants: Record<string, Variants> = {

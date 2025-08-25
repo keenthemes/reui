@@ -29,7 +29,7 @@ const topCities = [
 ];
 
 export default function ComboboxDemo() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState<boolean>(false);
   const [selectedValues, setSelectedValues] = React.useState<string[]>(['london', 'tokyo']);
 
   const toggleSelection = (value: string) => {

@@ -22,7 +22,7 @@ const steps = [
 ];
 
 export default function Component() {
-  const [currentStep, setCurrentStep] = useState(2);
+  const [currentStep, setCurrentStep] = useState<number>(2);
 
   return (
     <Stepper

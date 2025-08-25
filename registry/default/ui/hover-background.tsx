@@ -28,7 +28,7 @@ function HoverBackground({ className, objectCount = 12, children, colors = {}, .
     glow = 'shadow-cyan-400/50',
   } = colors;
 
-  const [isHovered, setIsHovered] = React.useState(false);
+  const [isHovered, setIsHovered] = React.useState<boolean>(false);
 
   // Mouse position tracking for parallax
   const mouseX = useMotionValue(0);

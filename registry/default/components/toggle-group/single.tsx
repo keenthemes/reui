@@ -1,14 +1,14 @@
-import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
 import { ToggleGroup, ToggleGroupItem } from '@/registry/default/ui/toggle-group';
 
 export default function TabsDemo() {
-  const [value, setValue] = useState('1W');
+  const [value, setValue] = useState<string>('1W');
 
   return (
     <ToggleGroup
       type="single"
       value={value}
-      onValueChange={(newValue) => {
+      onValueChange={(newValue: SetStateAction<string>) => {
         if (newValue) setValue(newValue);
       }}
     >
