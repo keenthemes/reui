@@ -1,5 +1,5 @@
 export const siteConfig = {
-  version: '1.0.22',
+  version: '1.0.23',
   name: 'ReUI',
   url: 'https://reui.io',
   ogImage: 'https://reui.io/og.png',
