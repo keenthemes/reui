@@ -25,6 +25,7 @@ export type FileUploadOptions = {
   initialFiles?: FileMetadata[];
   onFilesChange?: (files: FileWithPreview[]) => void; // Callback when files change
   onFilesAdded?: (addedFiles: FileWithPreview[]) => void; // Callback when new files are added
+  onError?: (errors: string[]) => void;
 };
 
 export type FileUploadState = {
@@ -51,13 +52,14 @@ export type FileUploadActions = {
 
 export const useFileUpload = (options: FileUploadOptions = {}): [FileUploadState, FileUploadActions] => {
   const {
-    maxFiles = Infinity,
-    maxSize = Infinity,
+    maxFiles = Number.POSITIVE_INFINITY,
+    maxSize = Number.POSITIVE_INFINITY,
     accept = '*',
     multiple = false,
     initialFiles = [],
     onFilesChange,
     onFilesAdded,
+    onError,
   } = options;
 
   const [state, setState] = useState<FileUploadState>({
@@ -127,11 +129,15 @@ export const useFileUpload = (options: FileUploadOptions = {}): [FileUploadState
   const clearFiles = useCallback(() => {
     setState((prev) => {
       // Clean up object URLs
-      prev.files.forEach((file) => {
-        if (file.preview && file.file instanceof File && file.file.type.startsWith('image/')) {
+      for (const file of prev.files) {
+        if (
+          file.preview &&
+          file.file instanceof File &&
+          file.file.type.startsWith("image/")
+        ) {
           URL.revokeObjectURL(file.preview);
         }
-      });
+      }
 
       if (inputRef.current) {
         inputRef.current.value = '';
@@ -164,15 +170,20 @@ export const useFileUpload = (options: FileUploadOptions = {}): [FileUploadState
       }
 
       // Check if adding these files would exceed maxFiles (only in multiple mode)
-      if (multiple && maxFiles !== Infinity && state.files.length + newFilesArray.length > maxFiles) {
+      if (
+        multiple &&
+        maxFiles !== Number.POSITIVE_INFINITY &&
+        state.files.length + newFilesArray.length > maxFiles
+      ) {
         errors.push(`You can only upload a maximum of ${maxFiles} files.`);
+        onError?.(errors);
         setState((prev) => ({ ...prev, errors }));
         return;
       }
 
       const validFiles: FileWithPreview[] = [];
 
-      newFilesArray.forEach((file) => {
+      for (const file of newFilesArray) {
         // Only check for duplicates if multiple files are allowed
         if (multiple) {
           const isDuplicate = state.files.some(
@@ -192,7 +203,7 @@ export const useFileUpload = (options: FileUploadOptions = {}): [FileUploadState
               ? `Some files exceed the maximum size of ${formatBytes(maxSize)}.`
               : `File exceeds the maximum size of ${formatBytes(maxSize)}.`,
           );
-          return;
+          continue;
         }
 
         const error = validateFile(file);
@@ -205,7 +216,7 @@ export const useFileUpload = (options: FileUploadOptions = {}): [FileUploadState
             preview: createPreview(file),
           });
         }
-      });
+      }
 
       // Only update state if we have valid files to add
       if (validFiles.length > 0) {
@@ -222,6 +233,7 @@ export const useFileUpload = (options: FileUploadOptions = {}): [FileUploadState
           };
         });
       } else if (errors.length > 0) {
+        onError?.(errors);
         setState((prev) => ({
           ...prev,
           errors,
@@ -383,5 +395,5 @@ export const formatBytes = (bytes: number, decimals = 2): string => {
 
   const i = Math.floor(Math.log(bytes) / Math.log(k));
 
-  return Number.parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + sizes[i];
+  return Number.parseFloat((bytes / k ** i).toFixed(dm)) + sizes[i];
 };
