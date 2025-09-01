@@ -6204,39 +6204,6 @@
       ]
     },
     {
-      "name": "tag-default",
-      "type": "registry:component",
-      "dependencies": [
-        "emblor"
-      ],
-      "files": [
-        {
-          "path": "registry/default/components/tag/default.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "https://reui.io/r/label.json"
-      ]
-    },
-    {
-      "name": "tag-external",
-      "type": "registry:component",
-      "dependencies": [
-        "emblor"
-      ],
-      "files": [
-        {
-          "path": "registry/default/components/tag/external.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "https://reui.io/r/input.json",
-        "https://reui.io/r/label.json"
-      ]
-    },
-    {
       "name": "text-reveal-blur",
       "type": "registry:component",
       "dependencies": [],
@@ -7646,17 +7613,6 @@
       "files": [
         {
           "path": "registry/default/ui/dropdown-menu.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "file-upload",
-      "type": "registry:ui",
-      "dependencies": [],
-      "files": [
-        {
-          "path": "registry/default/ui/file-upload.tsx",
           "type": "registry:ui"
         }
       ]

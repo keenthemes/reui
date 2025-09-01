@@ -2,17 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "tag-external",
   "type": "registry:component",
-  "dependencies": [
-    "emblor",
-    "clsx",
-    "tailwind-merge",
-    "class-variance-authority",
-    "radix-ui"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/input.json",
-    "https://reui.io/r/label.json"
-  ],
+  "dependencies": ["emblor", "clsx", "tailwind-merge", "class-variance-authority", "radix-ui"],
+  "registryDependencies": ["https://reui.io/r/input.json", "https://reui.io/r/label.json"],
   "files": [
     {
       "path": "registry/default/components/tag/external.tsx",
