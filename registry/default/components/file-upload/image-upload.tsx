@@ -301,7 +301,7 @@ export default function ImageUpload({
 
                   <Progress
                     value={imageFile.progress}
-                    className={cn('h-1 transition-all duration-300', '[&>div]:bg-zinc-950')}
+                    className={cn('h-1 transition-all duration-300', '[&>div]:bg-zinc-950 dark:[&>div]:bg-zinc-50')}
                   />
                 </div>
               </CardContent>

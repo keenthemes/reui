@@ -255,7 +255,18 @@ This component provides pagination controls for the data grid. It is built on to
 | --------------------------------------------------------------------------------- | ---------- | ------------------------------- |
 | `sizes` <PopoverInfo>Array of page sizes available for selection.</PopoverInfo>   | ~number[]~ | ~[5, 10, 25, 50, 100]~          |
 | `sizesLabel` <PopoverInfo>Label for the page size selector.</PopoverInfo>         | ~string~   | ~"Show"~                        |
+| `sizesDescription` <PopoverInfo>Description text for the page size selector.</PopoverInfo> | ~string~   | ~"per page"~                        |
+| `sizesInfo` <PopoverInfo>Additional info text for the page size selector.</PopoverInfo> | ~string~   | <Na/>                        |
+| `sizesSkeleton` <PopoverInfo>Skeleton component to display while loading page size selector.</PopoverInfo> | ~ReactNode~   | <Na/>                        |
+| `more` <PopoverInfo>Enables pagination grouping with ellipsis.</PopoverInfo> | ~boolean~   | ~false~                        |
+| `moreLimit` <PopoverInfo>Number of page buttons to show before using ellipsis.</PopoverInfo> | ~number~   | ~5~                        |
 | `info` <PopoverInfo>Template for displaying pagination information.</PopoverInfo> | ~string~   | ~"\{from} - \{to} of \{count}"~ |
+| `infoSkeleton` <PopoverInfo>Skeleton component to display while loading pagination info.</PopoverInfo> | ~ReactNode~   | <Na/>                        |
+| `className` <PopoverInfo>Additional class names for styling the pagination container.</PopoverInfo> | ~string~   | <Na/>                        |
+| `rowsPerPageLabel` <PopoverInfo>Label text for the rows per page selector.</PopoverInfo> | ~string~   | ~"Rows per page"~                        |
+| `previousPageLabel` <PopoverInfo>Screen reader text for the previous page button.</PopoverInfo> | ~string~   | ~"Go to previous page"~                        |
+| `nextPageLabel` <PopoverInfo>Screen reader text for the next page button.</PopoverInfo> | ~string~   | ~"Go to next page"~                        |
+| `ellipsisText` <PopoverInfo>Text displayed in ellipsis buttons for pagination.</PopoverInfo> | ~string~   | ~"..."~                        |
 
 ### DataGridTableDnd
 
