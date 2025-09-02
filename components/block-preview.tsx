@@ -24,10 +24,10 @@ import {
 import { useTheme } from 'next-themes';
 import { ImperativePanelHandle } from 'react-resizable-panels';
 import { BlockItem } from '@/config/types';
-import { trackEvent, trackBlockCodeCopy } from '@/lib/analytics';
+import { trackBlockCodeCopy, trackEvent } from '@/lib/analytics';
 import { toAbsoluteUrl } from '@/lib/helpers';
 import { CliCodeCopyButton } from './cli-code-copy-button';
-import { OpenInV0IconButton } from './open-in-v0-icon-button';
+import { OpenInV0Button } from './open-in-v0-button';
 
 type ThemeType = 'dark' | 'light' | '';
 
@@ -327,8 +327,6 @@ function PreviewPanelToolbarButtons() {
 
       <RtlToggleButton />
 
-      {block.name && <OpenInV0IconButton name={block.name} className="" />}
-
       <Button mode="icon" size="sm" variant="outline" title="Reload Preview" onClick={handleReloadClick}>
         <RefreshCcw />
       </Button>
@@ -338,6 +336,8 @@ function PreviewPanelToolbarButtons() {
           <ArrowUpRight />
         </Link>
       </Button>
+
+      {block.name && <OpenInV0Button name={block.name} className="" />}
     </div>
   );
 }

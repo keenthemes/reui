@@ -23,4 +23,8 @@ to learn how to submit improvements and new features.
 ReUI is licensed under the [MIT License](https://github.com/keenthemes/reui/blob/main/LICENSE.md).
 If you have any questions just reach us via [@reui_io](https://x.com/reui_io) or [hello@reui.io](mailto:hello@reui.io).
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=keenthemes/reui&type=Date)](https://www.star-history.com/#keenthemes/reui&Date)
+
 Happy coding with ReUI!

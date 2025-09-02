@@ -100,6 +100,12 @@ const inputWrapperVariants = cva(
     [&_[data-slot=input]]:disabled:opacity-50    
 
     [&_svg]:text-muted-foreground 
+    [&_svg]:shrink-0
+
+    has-[[aria-invalid=true]]:border-destructive/60 
+    has-[[aria-invalid=true]]:ring-destructive/10 
+    dark:has-[[aria-invalid=true]]:border-destructive 
+    dark:has-[[aria-invalid=true]]:ring-destructive/20    
   `,
   {
     variants: {

@@ -11,7 +11,7 @@ export const blocksConfig: BlocksConfig = [
         title: 'Statistic Cards',
         slug: 'statistic-cards',
         description: `
-          15 modern statistic cards designed to present key metrics and insights. 
+          15 free modern statistic cards designed to present key metrics and insights. 
           Each card features unique layouts, data visualizations, 
           and styling options. Perfect for dashboards, admin panels, and analytics pages.
         `,
@@ -100,7 +100,88 @@ export const blocksConfig: BlocksConfig = [
         title: 'List Cards',
         slug: 'list-cards',
         published: false,
-        blocks: [],
+        description: `
+          15 free modern list cards designed to present key metrics and insights. 
+          Each card features unique layouts, data visualizations, 
+          and styling options. Perfect for dashboards, admin panels, and analytics pages.
+        `,
+        blocks: [
+          {
+            slug: 'list-card-1',
+            previewHeight: 700,
+            published: true,
+          },
+          {
+            slug: 'list-card-2',
+            previewHeight: 700,
+            published: true,
+          },
+          {
+            slug: 'list-card-3',
+            previewHeight: 700,
+            published: true,
+          },
+          {
+            slug: 'list-card-4',
+            previewHeight: 700,
+            published: true,
+          },
+          {
+            slug: 'list-card-5',
+            previewHeight: 700,
+            published: true,
+          },
+          {
+            slug: 'list-card-6',
+            previewHeight: 700,
+            published: true,
+          },
+          {
+            slug: 'list-card-7',
+            previewHeight: 700,
+            published: true,
+          },
+          {
+            slug: 'list-card-8',
+            previewHeight: 700,
+            published: true,
+          },
+          {
+            slug: 'list-card-9',
+            previewHeight: 700,
+            published: true,
+          },
+          {
+            slug: 'list-card-10',
+            previewHeight: 700,
+            published: true,
+          },
+          {
+            slug: 'list-card-11',
+            previewHeight: 700,
+            published: true,
+          },
+          {
+            slug: 'list-card-12',
+            previewHeight: 700,
+            published: true,
+          },
+          {
+            slug: 'list-card-13',
+            previewHeight: 700,
+            published: true,
+          },
+          {
+            slug: 'list-card-14',
+            previewHeight: 700,
+            published: true,
+          },
+          {
+            slug: 'list-card-15',
+            previewHeight: 700,
+            published: true,
+          },
+        ],
       },
       {
         title: 'Table Cards',
@@ -130,14 +211,98 @@ export const blocksConfig: BlocksConfig = [
       {
         title: 'Line Charts',
         slug: 'line-charts',
-        published: false,
-        blocks: [],
+        new: true,
+        published: true,
+        description: `
+          9 free modern line charts designed to present key metrics and insights. 
+          Each chart features unique layouts, data visualizations, 
+          and styling options. Perfect for dashboards, admin panels, and analytics pages.
+        `,
+        blocks: [
+          {
+            slug: 'line-chart-1',
+            published: true,
+            previewHeight: 700,
+          },
+          {
+            slug: 'line-chart-2',
+            published: true,
+            previewHeight: 700,
+          },
+          {
+            slug: 'line-chart-3',
+            published: true,
+            previewHeight: 700,
+          },
+          {
+            slug: 'line-chart-4',
+            published: true,
+            previewHeight: 700,
+          },
+          {
+            slug: 'line-chart-5',
+            published: true,
+            previewHeight: 700,
+          },
+          {
+            slug: 'line-chart-6',
+            published: true,
+            previewHeight: 700,
+          },
+          {
+            slug: 'line-chart-7',
+            published: true,
+            previewHeight: 700,
+          },
+          {
+            slug: 'line-chart-8',
+            published: true,
+            previewHeight: 700,
+          },
+          {
+            slug: 'line-chart-9',
+            published: true,
+            previewHeight: 700,
+          },
+        ],
       },
       {
         title: 'Area Charts',
         slug: 'area-charts',
-        published: false,
-        blocks: [],
+        published: true,
+        description: `
+          5 free modern area charts designed to present key metrics and insights. 
+          Each chart features unique layouts, data visualizations, 
+          and styling options. Perfect for dashboards, admin panels, and analytics pages.
+        `,
+        new: true,
+        blocks: [
+          {
+            slug: 'area-chart-1',
+            published: true,
+            previewHeight: 700,
+          },
+          {
+            slug: 'area-chart-2',
+            published: true,
+            previewHeight: 700,
+          },
+          {
+            slug: 'area-chart-3',
+            published: true,
+            previewHeight: 700,
+          },
+          {
+            slug: 'area-chart-4',
+            published: true,
+            previewHeight: 700,
+          },
+          {
+            slug: 'area-chart-5',
+            published: true,
+            previewHeight: 700,
+          },
+        ],
       },
       {
         title: 'Bar Charts',

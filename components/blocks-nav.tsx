@@ -58,6 +58,7 @@ export function BlocksNav() {
           'group relative flex items-center gap-2 px-3.5 py-1 text-sm transition-colors text-muted-foreground ml-[2px] border-l border-transparent',
           'hover:text-foreground hover:border-muted-foreground/50',
           isActive && 'font-semibold text-foreground border-muted-foreground',
+          category.published ? 'text-foreground' : 'text-muted-foreground',
           !category.published && 'hover:text-muted-foreground hover:border-transparent opacity-90',
         )}
       >

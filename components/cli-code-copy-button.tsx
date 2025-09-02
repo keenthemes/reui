@@ -1,9 +1,9 @@
 import { Button } from '@/registry/default/ui/button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/registry/default/ui/tooltip';
 import { Check } from 'lucide-react';
+import { trackBlockCliCopy } from '@/lib/analytics';
 import { useConfig } from '@/hooks/use-config';
 import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard';
-import { trackBlockCliCopy } from '@/lib/analytics';
 
 export function CliCodeCopyButton({ name }: { name: string } & React.ComponentProps<typeof Button>) {
   const { copy, copied } = useCopyToClipboard();

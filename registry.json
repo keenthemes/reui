@@ -4,6 +4,22 @@
   "homepage": "https://reui.io",
   "items": [
     {
+      "name": "list-card-1",
+      "type": "registry:block",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/blocks/cards/list-cards/list-card-1.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/badge.json",
+        "https://reui.io/r/button.json",
+        "https://reui.io/r/card.json"
+      ]
+    },
+    {
       "name": "statistic-card-1",
       "type": "registry:block",
       "dependencies": [],
@@ -245,6 +261,261 @@
         "https://reui.io/r/card.json",
         "https://reui.io/r/progress.json",
         "https://reui.io/r/select.json"
+      ]
+    },
+    {
+      "name": "area-chart-1",
+      "type": "registry:block",
+      "dependencies": [
+        "recharts@2.15.1"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/charts/area-charts/area-chart-1.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/card.json"
+      ]
+    },
+    {
+      "name": "area-chart-2",
+      "type": "registry:block",
+      "dependencies": [
+        "recharts@2.15.1"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/charts/area-charts/area-chart-2.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/card.json",
+        "https://reui.io/r/chart.json",
+        "https://reui.io/r/select.json"
+      ]
+    },
+    {
+      "name": "area-chart-3",
+      "type": "registry:block",
+      "dependencies": [
+        "recharts@2.15.1"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/charts/area-charts/area-chart-3.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/card.json",
+        "https://reui.io/r/chart.json",
+        "https://reui.io/r/toggle-group.json",
+        "https://reui.io/r/tooltip.json"
+      ]
+    },
+    {
+      "name": "area-chart-4",
+      "type": "registry:block",
+      "dependencies": [
+        "recharts@2.15.1"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/charts/area-charts/area-chart-4.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/card.json",
+        "https://reui.io/r/chart.json",
+        "https://reui.io/r/toggle-group.json"
+      ]
+    },
+    {
+      "name": "area-chart-5",
+      "type": "registry:block",
+      "dependencies": [
+        "recharts@2.15.1"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/charts/area-charts/area-chart-5.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/card.json",
+        "https://reui.io/r/chart.json",
+        "https://reui.io/r/toggle-group.json"
+      ]
+    },
+    {
+      "name": "line-chart-1",
+      "type": "registry:block",
+      "dependencies": [
+        "recharts@2.15.1"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/charts/line-charts/line-chart-1.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/badge.json",
+        "https://reui.io/r/button.json",
+        "https://reui.io/r/card.json",
+        "https://reui.io/r/chart.json",
+        "https://reui.io/r/dropdown-menu.json"
+      ]
+    },
+    {
+      "name": "line-chart-2",
+      "type": "registry:block",
+      "dependencies": [
+        "recharts@2.15.1"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/charts/line-charts/line-chart-2.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/badge.json",
+        "https://reui.io/r/card.json",
+        "https://reui.io/r/chart.json",
+        "https://reui.io/r/select.json"
+      ]
+    },
+    {
+      "name": "line-chart-3",
+      "type": "registry:block",
+      "dependencies": [
+        "recharts@2.15.1"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/charts/line-charts/line-chart-3.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/button.json",
+        "https://reui.io/r/card.json",
+        "https://reui.io/r/chart.json",
+        "https://reui.io/r/toggle-group.json"
+      ]
+    },
+    {
+      "name": "line-chart-4",
+      "type": "registry:block",
+      "dependencies": [
+        "recharts@2.15.1"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/charts/line-charts/line-chart-4.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/button.json",
+        "https://reui.io/r/card.json",
+        "https://reui.io/r/chart.json",
+        "https://reui.io/r/dropdown-menu.json"
+      ]
+    },
+    {
+      "name": "line-chart-5",
+      "type": "registry:block",
+      "dependencies": [
+        "recharts@2.15.1"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/charts/line-charts/line-chart-5.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/badge.json",
+        "https://reui.io/r/card.json",
+        "https://reui.io/r/chart.json",
+        "https://reui.io/r/select.json"
+      ]
+    },
+    {
+      "name": "line-chart-6",
+      "type": "registry:block",
+      "dependencies": [
+        "recharts@2.15.1"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/charts/line-charts/line-chart-6.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/badge.json",
+        "https://reui.io/r/card.json",
+        "https://reui.io/r/chart.json"
+      ]
+    },
+    {
+      "name": "line-chart-7",
+      "type": "registry:block",
+      "dependencies": [
+        "recharts@2.15.1"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/charts/line-charts/line-chart-7.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/button.json",
+        "https://reui.io/r/card.json",
+        "https://reui.io/r/chart.json",
+        "https://reui.io/r/toggle-group.json"
+      ]
+    },
+    {
+      "name": "line-chart-8",
+      "type": "registry:block",
+      "dependencies": [
+        "recharts@2.15.1"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/charts/line-charts/line-chart-8.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/card.json"
+      ]
+    },
+    {
+      "name": "line-chart-9",
+      "type": "registry:block",
+      "dependencies": [
+        "recharts@2.15.1"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/charts/line-charts/line-chart-9.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/card.json",
+        "https://reui.io/r/chart.json"
       ]
     },
     {
@@ -1920,6 +2191,81 @@
       ]
     },
     {
+      "name": "base-menu-checkbox",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/base-menu/checkbox.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/base-button.json",
+        "https://reui.io/r/base-menu.json"
+      ]
+    },
+    {
+      "name": "base-menu-default",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/base-menu/default.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/base-button.json",
+        "https://reui.io/r/base-menu.json"
+      ]
+    },
+    {
+      "name": "base-menu-nested",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/base-menu/nested.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/base-badge.json",
+        "https://reui.io/r/base-button.json",
+        "https://reui.io/r/base-menu.json"
+      ]
+    },
+    {
+      "name": "base-menu-radio-group",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/base-menu/radio-group.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/base-button.json",
+        "https://reui.io/r/base-menu.json"
+      ]
+    },
+    {
+      "name": "base-menubar-default",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/base-menubar/default.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/base-menubar.json"
+      ]
+    },
+    {
       "name": "breadcrumb-card",
       "type": "registry:component",
       "dependencies": [],
@@ -2788,6 +3134,25 @@
       ]
     },
     {
+      "name": "combobox-multiple-user",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/combobox/multiple-user.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/avatar.json",
+        "https://reui.io/r/badge.json",
+        "https://reui.io/r/button.json",
+        "https://reui.io/r/command.json",
+        "https://reui.io/r/popover.json",
+        "https://reui.io/r/scroll-area.json"
+      ]
+    },
+    {
       "name": "combobox-status",
       "type": "registry:component",
       "dependencies": [],
@@ -2836,6 +3201,34 @@
         "https://reui.io/r/command.json",
         "https://reui.io/r/popover.json",
         "https://reui.io/r/scroll-area.json"
+      ]
+    },
+    {
+      "name": "command-default",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/command/default.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/command.json"
+      ]
+    },
+    {
+      "name": "command-dialog",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/command/dialog.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/command.json"
       ]
     },
     {
@@ -3706,6 +4099,23 @@
       ]
     },
     {
+      "name": "file-upload-image-upload",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/file-upload/image-upload.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/alert.json",
+        "https://reui.io/r/button.json",
+        "https://reui.io/r/card.json",
+        "https://reui.io/r/progress.json"
+      ]
+    },
+    {
       "name": "file-upload-progress-upload",
       "type": "registry:component",
       "dependencies": [],
@@ -3720,6 +4130,26 @@
         "https://reui.io/r/badge.json",
         "https://reui.io/r/button.json",
         "https://reui.io/r/progress.json"
+      ]
+    },
+    {
+      "name": "file-upload-sortable",
+      "type": "registry:component",
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/file-upload/sortable.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/alert.json",
+        "https://reui.io/r/button.json",
+        "https://reui.io/r/card.json",
+        "https://reui.io/r/progress.json",
+        "https://reui.io/r/sortable.json"
       ]
     },
     {
@@ -4273,6 +4703,20 @@
       ]
     },
     {
+      "name": "menubar-default",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/menubar/default.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/menubar.json"
+      ]
+    },
+    {
       "name": "navigation-menu-default",
       "type": "registry:component",
       "dependencies": [],
@@ -4484,6 +4928,94 @@
       "registryDependencies": [
         "https://reui.io/r/label.json",
         "https://reui.io/r/radio-group.json"
+      ]
+    },
+    {
+      "name": "rating-decimal",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/rating/decimal.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/rating.json"
+      ]
+    },
+    {
+      "name": "rating-default",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/rating/default.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/rating.json"
+      ]
+    },
+    {
+      "name": "rating-editable",
+      "type": "registry:component",
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/rating/editable.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/alert.json",
+        "https://reui.io/r/rating.json"
+      ]
+    },
+    {
+      "name": "rating-show-value",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/rating/show-value.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/rating.json"
+      ]
+    },
+    {
+      "name": "rating-size",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/rating/size.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/rating.json"
+      ]
+    },
+    {
+      "name": "rating-statistics",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/rating/statistics.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/card.json",
+        "https://reui.io/r/rating.json"
       ]
     },
     {
@@ -5031,6 +5563,57 @@
       "registryDependencies": [
         "https://reui.io/r/alert.json",
         "https://reui.io/r/button.json"
+      ]
+    },
+    {
+      "name": "sortable-default",
+      "type": "registry:component",
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/sortable/default.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/badge.json",
+        "https://reui.io/r/sortable.json"
+      ]
+    },
+    {
+      "name": "sortable-grid",
+      "type": "registry:component",
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/sortable/grid.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/badge.json",
+        "https://reui.io/r/sortable.json"
+      ]
+    },
+    {
+      "name": "sortable-nested",
+      "type": "registry:component",
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/sortable/nested.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/card.json",
+        "https://reui.io/r/sortable.json"
       ]
     },
     {
@@ -6638,6 +7221,32 @@
       ]
     },
     {
+      "name": "base-menu",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui-components/react"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/base-menu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "base-menubar",
+      "type": "registry:ui",
+      "dependencies": [
+        "@base-ui-components/react"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/base-menubar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "breadcrumb",
       "type": "registry:ui",
       "dependencies": [
@@ -7009,17 +7618,6 @@
       ]
     },
     {
-      "name": "file-upload",
-      "type": "registry:ui",
-      "dependencies": [],
-      "files": [
-        {
-          "path": "registry/default/ui/file-upload.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
       "name": "form",
       "type": "registry:ui",
       "dependencies": [
@@ -7249,6 +7847,17 @@
       ]
     },
     {
+      "name": "rating",
+      "type": "registry:ui",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/ui/rating.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "resizable",
       "type": "registry:ui",
       "dependencies": [
@@ -7384,6 +7993,20 @@
       "files": [
         {
           "path": "registry/default/ui/sonner.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "sortable",
+      "type": "registry:ui",
+      "dependencies": [
+        "@dnd-kit/core",
+        "@dnd-kit/sortable"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/sortable.tsx",
           "type": "registry:ui"
         }
       ]

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rating-decimal",
+  "type": "registry:component",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "class-variance-authority",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/rating.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/rating/decimal.tsx",
+      "content": "import { Rating } from '@/registry/default/ui/rating';\n\nexport default function RatingDemo() {\n  return <Rating rating={3.5} />;\n}\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "registry/default/ui/rating.tsx",
+      "content": "'use client';\n\nimport * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport { Star } from 'lucide-react';\n\nconst ratingVariants = cva('flex items-center', {\n  variants: {\n    size: {\n      sm: 'gap-2',\n      md: 'gap-2.5',\n      lg: 'gap-3',\n    },\n  },\n  defaultVariants: {\n    size: 'md',\n  },\n});\n\nconst starVariants = cva('', {\n  variants: {\n    size: {\n      sm: 'w-4 h-4',\n      md: 'w-5 h-5',\n      lg: 'w-6 h-6',\n    },\n  },\n  defaultVariants: {\n    size: 'md',\n  },\n});\n\nconst valueVariants = cva('text-muted-foreground w-5', {\n  variants: {\n    size: {\n      sm: 'text-xs',\n      md: 'text-sm',\n      lg: 'text-base',\n    },\n  },\n  defaultVariants: {\n    size: 'md',\n  },\n});\n\nfunction Rating({\n  rating,\n  maxRating = 5,\n  size,\n  className,\n  starClassName,\n  showValue = false,\n  editable = false,\n  onRatingChange,\n  ...props\n}: React.ComponentProps<'div'> &\n  VariantProps<typeof ratingVariants> & {\n    /**\n     * Current rating value (supports decimal values for partial stars)\n     */\n    rating: number;\n    /**\n     * Maximum rating value (number of stars to show)\n     */\n    maxRating?: number;\n    /**\n     * Whether to show the numeric rating value\n     */\n    showValue?: boolean;\n    /**\n     * Class name for the value span\n     */\n    starClassName?: string;\n    /**\n     * Whether the rating is editable (clickable)\n     */\n    editable?: boolean;\n    /**\n     * Callback function called when rating changes\n     */\n    onRatingChange?: (rating: number) => void;\n  }) {\n  const [hoveredRating, setHoveredRating] = React.useState<number | null>(null);\n  const displayRating = editable && hoveredRating !== null ? hoveredRating : rating;\n\n  const handleStarClick = (starRating: number) => {\n    if (editable && onRatingChange) {\n      onRatingChange(starRating);\n    }\n  };\n\n  const handleStarMouseEnter = (starRating: number) => {\n    if (editable) {\n      setHoveredRating(starRating);\n    }\n  };\n\n  const handleStarMouseLeave = () => {\n    if (editable) {\n      setHoveredRating(null);\n    }\n  };\n\n  const renderStars = () => {\n    const stars = [];\n\n    for (let i = 1; i <= maxRating; i++) {\n      const filled = displayRating >= i;\n      const partiallyFilled = displayRating > i - 1 && displayRating < i;\n      const fillPercentage = partiallyFilled ? (displayRating - (i - 1)) * 100 : 0;\n\n      stars.push(\n        <div\n          key={i}\n          className={cn('relative', editable && 'cursor-pointer')}\n          onClick={() => handleStarClick(i)}\n          onMouseEnter={() => handleStarMouseEnter(i)}\n          onMouseLeave={handleStarMouseLeave}\n        >\n          {/* Background star (empty) */}\n          <Star data-slot=\"rating-star-empty\" className={cn(starVariants({ size }), 'text-muted-foreground/30')} />\n\n          {/* Filled star */}\n          <div\n            className=\"absolute inset-0 overflow-hidden\"\n            style={{\n              width: filled ? '100%' : `${fillPercentage}%`,\n            }}\n          >\n            <Star\n              data-slot=\"rating-star-filled\"\n              className={cn(starVariants({ size }), 'text-yellow-400 fill-yellow-400')}\n            />\n          </div>\n        </div>,\n      );\n    }\n\n    return stars;\n  };\n\n  return (\n    <div data-slot=\"rating\" className={cn(ratingVariants({ size }), className)} {...props}>\n      <div className=\"flex items-center\">{renderStars()}</div>\n      {showValue && (\n        <span data-slot=\"rating-value\" className={cn(valueVariants({ size }), starClassName)}>\n          {displayRating.toFixed(1)}\n        </span>\n      )}\n    </div>\n  );\n}\n\nexport { Rating };\n",
+      "type": "registry:ui",
+      "target": ""
+    },
+    {
+      "path": "registry/default/lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from 'clsx';\nimport { twMerge } from 'tailwind-merge';\n\n/**\n * Merges Tailwind class names, resolving any conflicts.\n *\n * @param inputs - An array of class names to merge.\n * @returns A string of merged and optimized class names.\n */\nexport function cn(...inputs: ClassValue[]): string {\n  return twMerge(clsx(inputs));\n}\n",
+      "type": "registry:lib",
+      "target": ""
+    }
+  ]
+}

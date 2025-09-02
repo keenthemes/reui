@@ -1,8 +1,10 @@
 ---
-title: Kanban
+title: Sortable
 description: A drag-and-drop sortable component designed for seamless item organization across customizable columns.
 component: true
 ---
+
+<ExamplePreview path="sortable/default" />
 
 ## Installation
 
@@ -20,34 +22,86 @@ component: true
 <TabsContent value="manual">    
 <Steps>
 
-### Install ReUI
-
-Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
-
-### Install dependencies
+<Step>
+Install the following dependencies:
 
 ```bash
 npm i @dnd-kit/core @dnd-kit/sortable @dnd-kit/modifiers @dnd-kit/utilities
 ```
 
-### Add component
+</Step>
 
+<Step>
 Copy and paste the following code into your project’s `components/ui/sortable.tsx` file.
 
 <ComponentPreview name="sortable" />
 
+</Step>
+
 </Steps>
 
 </TabsContent>
-
 </Tabs>
 
 ## Examples
 
-### Default
-
-<ExamplePreview path="sortable/default" />
-
 ### Grid
 
 <ExamplePreview path="sortable/grid" />
+
+### Nested
+
+<ExamplePreview path="sortable/nested" />
+
+## API Reference
+
+The Sortable component is a flexible drag-and-drop component for organizing items in lists. Below is the complete API reference:
+
+### Sortable
+
+The root Sortable component includes the following props:
+
+| **Prop**                                                                                                                                                        | **Type**                               | **Default**  |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- | ------------ |
+| `value` <PopoverInfo>Current sortable list state. The array of items to be sorted.</PopoverInfo>                                                                | ~T[]~                                  | <Na/>        |
+| `onValueChange` <PopoverInfo>Callback when list state changes. Called when items are reordered.</PopoverInfo>                                                   | ~(value: T[]) => void~                 | <Na/>        |
+| `getItemValue` <PopoverInfo>Function to get unique item id. Returns a unique identifier for each item.</PopoverInfo>                                            | ~(item: T) => string~                  | <Na/>        |
+| `children` <PopoverInfo>Sortable list content. The list items.</PopoverInfo>                                                                                    | ~React.ReactNode~                      | <Na/>        |
+| `className` <PopoverInfo>Additional class names. Custom classes for the root element.</PopoverInfo>                                                             | ~string~                               | <Na/>        |
+| `onMove` <PopoverInfo>Custom move handler (overrides default reordering). Called when an item is moved. If provided, disables default reordering.</PopoverInfo> | ~(event: SortableMoveEvent) => void~   | <Na/>        |
+| `strategy` <PopoverInfo>Sorting strategy for the list. Determines how items are arranged.</PopoverInfo>                                                         | ~'horizontal' \| 'vertical' \| 'grid'~ | ~'vertical'~ |
+| `onDragStart` <PopoverInfo>Callback when dragging starts. Called when an item begins to be dragged.</PopoverInfo>                                               | ~(event: DragStartEvent) => void~      | <Na/>        |
+| `onDragEnd` <PopoverInfo>Callback when dragging ends. Called when an item is dropped.</PopoverInfo>                                                             | ~(event: DragEndEvent) => void~        | <Na/>        |
+
+---
+
+### SortableItem
+
+A draggable item in the sortable list.
+
+| **Prop**                                                                                                | **Type**    | **Default** |
+| ------------------------------------------------------------------------------------------------------- | ----------- | ----------- |
+| `value` <PopoverInfo>Item id. Unique identifier for the item.</PopoverInfo>                             | ~string~    | <Na/>       |
+| `asChild` <PopoverInfo>Render as child element. Use a custom element as the item.</PopoverInfo>         | ~boolean~   | ~false~     |
+| `className` <PopoverInfo>Additional class names. Custom classes for the item.</PopoverInfo>             | ~string~    | <Na/>       |
+| `children` <PopoverInfo>Item content. The item UI.</PopoverInfo>                                        | ~ReactNode~ | <Na/>       |
+| `disabled` <PopoverInfo>Disable drag for this item. Prevents the item from being dragged.</PopoverInfo> | ~boolean~   | ~false~     |
+
+---
+
+### SortableItemHandle
+
+A drag handle for an item.
+
+| **Prop**                                                                                          | **Type**    | **Default** |
+| ------------------------------------------------------------------------------------------------- | ----------- | ----------- |
+| `asChild` <PopoverInfo>Render as child element. Use a custom element as the handle.</PopoverInfo> | ~boolean~   | ~false~     |
+| `className` <PopoverInfo>Additional class names. Custom classes for the handle.</PopoverInfo>     | ~string~    | <Na/>       |
+| `children` <PopoverInfo>Handle content. The handle UI.</PopoverInfo>                              | ~ReactNode~ | <Na/>       |
+| `cursor` <PopoverInfo>Show grab cursor. Show grab/grabbing cursor on the handle.</PopoverInfo>    | ~boolean~   | ~true~      |
+
+---
+
+## Credits
+
+- Built with [DndKit](https://dndkit.com/).

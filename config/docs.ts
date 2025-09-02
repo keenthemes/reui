@@ -17,10 +17,6 @@ export const docsConfig: DocsConfig = {
       title: 'UI Blocks',
       href: '/blocks',
     },
-    {
-      title: 'Templates',
-      href: '/template',
-    },
     /*
     {
       title: 'Themes',
@@ -34,6 +30,10 @@ export const docsConfig: DocsConfig = {
     {
       title: 'Changelog',
       href: '/docs/changelog',
+    },
+    {
+      title: 'Built with ReUI',
+      href: '/built-with-reui',
     },
   ],
   sidebarNav: [
@@ -238,6 +238,10 @@ export const docsConfig: DocsConfig = {
           },
         },
         {
+          title: 'Command',
+          href: '/docs/command',
+        },
+        {
           title: 'Combobox',
           href: '/docs/combobox',
           highlight: {
@@ -334,6 +338,7 @@ export const docsConfig: DocsConfig = {
         {
           title: 'File Upload',
           href: '/docs/file-upload',
+          update: true,
         },
         {
           title: 'Hover Card',
@@ -342,7 +347,7 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Input',
           href: '/docs/input',
-
+          update: true,
           highlight: {
             order: 14,
             examples: ['Default', 'Disabled', 'Readonly', 'File', 'Size', 'Form'],
@@ -364,6 +369,10 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Label',
           href: '/docs/label',
+        },
+        {
+          title: 'Menubar',
+          href: '/docs/menubar',
         },
         {
           title: 'Navigation Menu',
@@ -398,6 +407,11 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Resizable',
           href: '/docs/resizable',
+        },
+        {
+          title: 'Rating',
+          href: '/docs/rating',
+          new: true,
         },
         {
           title: 'Scroll Area',
@@ -471,6 +485,11 @@ export const docsConfig: DocsConfig = {
           },
         },
         {
+          title: 'Sortable',
+          href: '/docs/sortable',
+          new: true,
+        },
+        {
           title: 'Switch',
           href: '/docs/switch',
           highlight: {
@@ -515,6 +534,13 @@ export const docsConfig: DocsConfig = {
             ],
           },
         },
+        /*
+        {
+          title: 'Tag',
+          href: '/docs/tag',
+          new: true,
+        },
+        */
         {
           title: 'Textarea',
           href: '/docs/textarea',
@@ -590,6 +616,11 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Input',
           href: '/docs/base-input',
+          new: true,
+        },
+        {
+          title: 'Menu',
+          href: '/docs/base-menu',
           new: true,
         },
       ],
