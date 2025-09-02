@@ -27,6 +27,7 @@ jobs:
             cd /var/www/reui/reui
 
             # Pull latest changes
+            rm package-lock.json
             git reset --hard && git pull
 
             # Install dependencies
