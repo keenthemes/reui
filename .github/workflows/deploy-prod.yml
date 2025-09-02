@@ -8,7 +8,7 @@ on:
 env:
   NODE_VERSION: 20.x
   DEPLOY_PORT: 3004
-  APP_NAME: reui
+  APP_NAME: reui-web
   APP_URL: https://reui.io
 
 jobs:
