@@ -1,43 +1,54 @@
-name: ReUI Prod Preview
+name: Deploy Next.js Starter Kit
 
 on:
   push:
     branches: [nonexistent-branch]
   workflow_dispatch:
 
+env:
+  NODE_VERSION: 20.x
+  DEPLOY_PORT: 3004
+  APP_NAME: reui
+  APP_URL: https://reui.io
+
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [20.x]
-
     steps:
-      # Step 1: Check out the code
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      # Step 2: Deploy and Restart Application on Server
-      - name: Deploy and Restart Application
+      - name: Deploy to server
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.SSH_PROD_HOST }}
-          username: ${{ secrets.SSH_PROD_USER }}
-          password: ${{ secrets.SSH_PROD_PSW }}
-          port: 22
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          port: ${{ secrets.SERVER_PORT || 22 }}
           script: |
             cd /var/www/reui/reui
-            git reset --hard
-            git pull
-            rm -rf node_modules
-            rm -rf .next
-            npm ci --force || npm install --force
-            export PORT=3004
-            npm run build || { echo "Build failed, exiting."; exit 1; }
-            pm2 restart "reui-web" --update-env || pm2 start npm --name "reui-web" -- start
 
-      # Step 3: Display Deployment Results
-      - name: Display Deployment Results
+            # Pull latest changes
+            git reset --hard && git pull
+
+            # Install dependencies
+            npm ci -f || npm i -f
+
+            # Debug: Show contents of existing .env.production file
+            echo "=== Current .env.production Contents ==="
+            if [ -f .env.production ]; then
+              cat .env.production
+            else
+              echo ".env.production file does not exist"
+            fi
+            echo "========================================"
+
+            # Build application on server
+            npm run build
+
+            # Restart application
+            export PORT=${{ env.DEPLOY_PORT }}
+            pm2 restart "${{ env.APP_NAME }}" --update-env || pm2 start npm --name "${{ env.APP_NAME }}" -- start
+
+      - name: Deployment status
         run: |
-          echo "Deployed successfully to https://reui.io"
+          echo "✅ Deployment completed successfully"
+          echo "🌐 Environment is available at: ${{ env.APP_URL }}"
