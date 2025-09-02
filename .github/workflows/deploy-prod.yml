@@ -30,7 +30,7 @@ jobs:
             git reset --hard && git pull
 
             # Install dependencies
-            npm ci -f || npm i -f
+            npm i -f
 
             # Debug: Show contents of existing .env.production file
             echo "=== Current .env.production Contents ==="
