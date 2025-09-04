@@ -2,16 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "slider-tooltip",
   "type": "registry:component",
-  "dependencies": [
-    "clsx",
-    "tailwind-merge",
-    "radix-ui",
-    "class-variance-authority"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/slider.json",
-    "https://reui.io/r/tooltip.json"
-  ],
+  "dependencies": ["clsx", "tailwind-merge", "radix-ui", "class-variance-authority"],
+  "registryDependencies": ["https://reui.io/r/slider.json", "https://reui.io/r/tooltip.json"],
   "files": [
     {
       "path": "registry/default/components/slider/tooltip.tsx",

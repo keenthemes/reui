@@ -2,12 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "text-reveal-stagger",
   "type": "registry:component",
-  "dependencies": [
-    "motion"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/text-reveal.json"
-  ],
+  "dependencies": ["motion"],
+  "registryDependencies": ["https://reui.io/r/text-reveal.json"],
   "files": [
     {
       "path": "registry/default/components/text-reveal/stagger.tsx",

@@ -168,11 +168,7 @@ export const useFileUpload = (options: FileUploadOptions = {}): [FileUploadState
     setState((prev) => {
       // Clean up object URLs
       for (const file of prev.files) {
-        if (
-          file.preview &&
-          file.file instanceof File &&
-          file.file.type.startsWith("image/")
-        ) {
+        if (file.preview && file.file instanceof File && file.file.type.startsWith('image/')) {
           URL.revokeObjectURL(file.preview);
         }
       }
@@ -208,11 +204,7 @@ export const useFileUpload = (options: FileUploadOptions = {}): [FileUploadState
       }
 
       // Check if adding these files would exceed maxFiles (only in multiple mode)
-      if (
-        multiple &&
-        maxFiles !== Number.POSITIVE_INFINITY &&
-        state.files.length + newFilesArray.length > maxFiles
-      ) {
+      if (multiple && maxFiles !== Number.POSITIVE_INFINITY && state.files.length + newFilesArray.length > maxFiles) {
         errors.push(`You can only upload a maximum of ${maxFiles} files.`);
         onError?.(errors);
         setState((prev) => ({ ...prev, errors }));

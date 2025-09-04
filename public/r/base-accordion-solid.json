@@ -2,16 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "base-accordion-solid",
   "type": "registry:component",
-  "dependencies": [
-    "clsx",
-    "tailwind-merge",
-    "@base-ui-components/react",
-    "class-variance-authority",
-    "lucide-react"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/base-accordion.json"
-  ],
+  "dependencies": ["clsx", "tailwind-merge", "@base-ui-components/react", "class-variance-authority", "lucide-react"],
+  "registryDependencies": ["https://reui.io/r/base-accordion.json"],
   "files": [
     {
       "path": "registry/default/components/base-accordion/solid.tsx",

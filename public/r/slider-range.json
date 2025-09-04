@@ -2,14 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "slider-range",
   "type": "registry:component",
-  "dependencies": [
-    "clsx",
-    "tailwind-merge",
-    "radix-ui"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/slider.json"
-  ],
+  "dependencies": ["clsx", "tailwind-merge", "radix-ui"],
+  "registryDependencies": ["https://reui.io/r/slider.json"],
   "files": [
     {
       "path": "registry/default/components/slider/range.tsx",

@@ -14,10 +14,7 @@
     "@radix-ui/react-slot",
     "lucide-react"
   ],
-  "registryDependencies": [
-    "https://reui.io/r/badge.json",
-    "https://reui.io/r/sortable.json"
-  ],
+  "registryDependencies": ["https://reui.io/r/badge.json", "https://reui.io/r/sortable.json"],
   "files": [
     {
       "path": "registry/default/components/sortable/default.tsx",

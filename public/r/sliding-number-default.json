@@ -2,12 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "sliding-number-default",
   "type": "registry:component",
-  "dependencies": [
-    "framer-motion"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/sliding-number.json"
-  ],
+  "dependencies": ["framer-motion"],
+  "registryDependencies": ["https://reui.io/r/sliding-number.json"],
   "files": [
     {
       "path": "registry/default/components/sliding-number/default.tsx",

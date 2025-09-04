@@ -10,9 +10,7 @@
     "class-variance-authority",
     "@radix-ui/react-slot"
   ],
-  "registryDependencies": [
-    "https://reui.io/r/label.json"
-  ],
+  "registryDependencies": ["https://reui.io/r/label.json"],
   "files": [
     {
       "path": "registry/default/ui/form.tsx",

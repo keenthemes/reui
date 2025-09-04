@@ -2,18 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "rating-editable",
   "type": "registry:component",
-  "dependencies": [
-    "sonner",
-    "clsx",
-    "tailwind-merge",
-    "class-variance-authority",
-    "lucide-react",
-    "radix-ui"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/alert.json",
-    "https://reui.io/r/rating.json"
-  ],
+  "dependencies": ["sonner", "clsx", "tailwind-merge", "class-variance-authority", "lucide-react", "radix-ui"],
+  "registryDependencies": ["https://reui.io/r/alert.json", "https://reui.io/r/rating.json"],
   "files": [
     {
       "path": "registry/default/components/rating/editable.tsx",

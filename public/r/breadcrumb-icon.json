@@ -2,15 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "breadcrumb-icon",
   "type": "registry:component",
-  "dependencies": [
-    "clsx",
-    "tailwind-merge",
-    "lucide-react",
-    "radix-ui"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/breadcrumb.json"
-  ],
+  "dependencies": ["clsx", "tailwind-merge", "lucide-react", "radix-ui"],
+  "registryDependencies": ["https://reui.io/r/breadcrumb.json"],
   "files": [
     {
       "path": "registry/default/components/breadcrumb/icon.tsx",

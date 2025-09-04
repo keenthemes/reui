@@ -2,16 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "rating-statistics",
   "type": "registry:component",
-  "dependencies": [
-    "clsx",
-    "tailwind-merge",
-    "class-variance-authority",
-    "lucide-react"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/card.json",
-    "https://reui.io/r/rating.json"
-  ],
+  "dependencies": ["clsx", "tailwind-merge", "class-variance-authority", "lucide-react"],
+  "registryDependencies": ["https://reui.io/r/card.json", "https://reui.io/r/rating.json"],
   "files": [
     {
       "path": "registry/default/components/rating/statistics.tsx",

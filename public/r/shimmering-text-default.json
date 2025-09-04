@@ -2,12 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "shimmering-text-default",
   "type": "registry:component",
-  "dependencies": [
-    "motion"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/shimmering-text.json"
-  ],
+  "dependencies": ["motion"],
+  "registryDependencies": ["https://reui.io/r/shimmering-text.json"],
   "files": [
     {
       "path": "registry/default/components/shimmering-text/default.tsx",

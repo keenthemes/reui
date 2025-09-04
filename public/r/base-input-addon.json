@@ -2,16 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "base-input-addon",
   "type": "registry:component",
-  "dependencies": [
-    "clsx",
-    "tailwind-merge",
-    "@base-ui-components/react",
-    "class-variance-authority",
-    "lucide-react"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/base-input.json"
-  ],
+  "dependencies": ["clsx", "tailwind-merge", "@base-ui-components/react", "class-variance-authority", "lucide-react"],
+  "registryDependencies": ["https://reui.io/r/base-input.json"],
   "files": [
     {
       "path": "registry/default/components/base-input/addon.tsx",

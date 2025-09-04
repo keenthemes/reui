@@ -2,16 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "code-default",
   "type": "registry:component",
-  "dependencies": [
-    "clsx",
-    "tailwind-merge",
-    "class-variance-authority",
-    "lucide-react",
-    "radix-ui"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/code.json"
-  ],
+  "dependencies": ["clsx", "tailwind-merge", "class-variance-authority", "lucide-react", "radix-ui"],
+  "registryDependencies": ["https://reui.io/r/code.json"],
   "files": [
     {
       "path": "registry/default/components/code/default.tsx",

@@ -3,14 +3,15 @@
 import * as React from 'react';
 import { cn } from '@/registry/default/lib/utils';
 import { Menu as BaseUIMenu } from '@base-ui-components/react/menu';
-import { Check, ChevronRight, Circle } from 'lucide-react';
+import { Menubar as BaseUIMenubar } from '@base-ui-components/react/menubar';
+import { Check, ChevronRight } from 'lucide-react';
 
 // Root - Groups all parts of the menubar
-function Menubar({ className, ...props }: React.ComponentProps<'div'>) {
+function Menubar({ className, ...props }: React.ComponentProps<typeof BaseUIMenubar>) {
   return (
-    <div
+    <BaseUIMenubar
       data-slot="menubar"
-      className={cn('flex h-10 items-center space-x-1 rounded-md border bg-background p-1', className)}
+      className={cn('flex h-10 items-center gap-1 rounded-md border bg-background p-1', className)}
       {...props}
     />
   );
@@ -27,11 +28,9 @@ function MenubarTrigger({ className, ...props }: React.ComponentProps<typeof Bas
     <BaseUIMenu.Trigger
       data-slot="menubar-trigger"
       className={cn(
-        'flex cursor-pointer select-none items-center rounded-md px-3 py-1.5 text-sm font-medium outline-hidden',
-        'focus:bg-accent focus:text-accent-foreground',
-        'data-[state=open]:bg-accent data-[state=open]:text-accent-foreground',
+        'h-8 rounded px-3 text-sm font-medium text-foreground outline-none select-none',
+        'focus-visible:bg-accent data-[disabled]:opacity-50 data-[popup-open]:bg-accent',
         '[&>svg]:pointer-events-none [&_svg:not([role=img]):not([class*=text-])]:opacity-60 [&_svg:not([class*=size-])]:size-4 [&>svg]:shrink-0',
-        'data-[here=true]:bg-accent',
         className,
       )}
       {...props}
@@ -44,31 +43,24 @@ function MenubarPortal({ ...props }: React.ComponentProps<typeof BaseUIMenu.Port
   return <BaseUIMenu.Portal data-slot="menubar-portal" {...props} />;
 }
 
-// Content - A container for the menubar items
-function MenubarContent({
-  className,
-  align = 'start',
-  alignOffset = -4,
-  sideOffset = 8,
-  ...props
-}: React.ComponentProps<typeof BaseUIMenu.Popup> & {
-  align?: 'start' | 'center' | 'end';
-  alignOffset?: number;
-  sideOffset?: number;
-}) {
+// Positioner - Positions the menubar popup against the trigger
+function MenubarPositioner({ ...props }: React.ComponentProps<typeof BaseUIMenu.Positioner>) {
+  return <BaseUIMenu.Positioner data-slot="menubar-positioner" {...props} />;
+}
+
+// Popup - A container for the menubar items
+function MenubarPopup({ className, ...props }: React.ComponentProps<typeof BaseUIMenu.Popup>) {
   return (
-    <BaseUIMenu.Portal>
-      <BaseUIMenu.Positioner sideOffset={sideOffset} alignOffset={alignOffset}>
-        <BaseUIMenu.Popup
-          data-slot="menubar-content"
-          className={cn(
-            'space-y-0.5 z-50 min-w-[12rem] overflow-hidden rounded-md border border-border bg-popover p-2 text-popover-foreground shadow-md shadow-black/5 transition-shadow data-[state=open]:animate-in data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
-            className,
-          )}
-          {...props}
-        />
-      </BaseUIMenu.Positioner>
-    </BaseUIMenu.Portal>
+    <BaseUIMenu.Popup
+      data-slot="menubar-popup"
+      className={cn(
+        'origin-[var(--transform-origin)] rounded-md bg-popover py-1 text-popover-foreground shadow-lg shadow-black/5 outline outline-border',
+        'data-[ending-style]:opacity-0 data-[ending-style]:transition-opacity data-[instant]:transition-none',
+        'dark:shadow-none dark:outline dark:-outline-offset-1 dark:outline-border',
+        className,
+      )}
+      {...props}
+    />
   );
 }
 
@@ -76,18 +68,23 @@ function MenubarContent({
 function MenubarItem({
   className,
   inset,
+  variant,
   ...props
 }: React.ComponentProps<typeof BaseUIMenu.Item> & {
   inset?: boolean;
+  variant?: 'destructive';
 }) {
   return (
     <BaseUIMenu.Item
       data-slot="menubar-item"
       className={cn(
-        'relative flex cursor-default select-none items-center rounded-md px-2 py-1.5 text-sm outline-hidden data-disabled:pointer-events-none data-disabled:opacity-50',
-        'focus:bg-accent focus:text-accent-foreground',
-        'data-[active=true]:bg-accent data-[active=true]:text-accent-foreground',
+        'flex cursor-default items-center justify-between gap-4 px-4 py-2 text-sm leading-4 outline-none select-none',
+        'data-[highlighted]:relative data-[highlighted]:z-0 data-[highlighted]:text-foreground',
+        'data-[highlighted]:before:absolute data-[highlighted]:before:inset-x-1 data-[highlighted]:before:inset-y-0 data-[highlighted]:before:z-[-1] data-[highlighted]:before:rounded-sm data-[highlighted]:before:bg-accent',
+        '[&_svg]:pointer-events-none [&_svg:not([role=img]):not([class*=text-])]:opacity-60 [&_svg:not([class*=size-])]:size-4 [&_svg]:shrink-0',
         inset && 'ps-8',
+        variant === 'destructive' &&
+          'text-destructive hover:text-destructive focus:text-destructive hover:bg-destructive/5 focus:bg-destructive/5 data-[active=true]:bg-destructive/5',
         className,
       )}
       {...props}
@@ -98,11 +95,7 @@ function MenubarItem({
 // Separator - A separator element accessible to screen readers
 function MenubarSeparator({ className, ...props }: React.ComponentProps<typeof BaseUIMenu.Separator>) {
   return (
-    <BaseUIMenu.Separator
-      data-slot="menubar-separator"
-      className={cn('-mx-2 my-1.5 h-px bg-muted', className)}
-      {...props}
-    />
+    <BaseUIMenu.Separator data-slot="menubar-separator" className={cn('my-1.5 h-px bg-border', className)} {...props} />
   );
 }
 
@@ -111,8 +104,8 @@ function MenubarGroup({ ...props }: React.ComponentProps<typeof BaseUIMenu.Group
   return <BaseUIMenu.Group data-slot="menubar-group" {...props} />;
 }
 
-// Label - An accessible label that is automatically associated with its parent group
-function MenubarLabel({
+// GroupLabel - An accessible label that is automatically associated with its parent group
+function MenubarGroupLabel({
   className,
   inset,
   ...props
@@ -121,41 +114,44 @@ function MenubarLabel({
 }) {
   return (
     <BaseUIMenu.GroupLabel
-      data-slot="menubar-label"
-      className={cn('px-2 py-1.5 text-sm font-semibold', inset && 'ps-8', className)}
+      data-slot="menubar-group-label"
+      className={cn('px-2 py-1.5 text-xs text-muted-foreground font-medium', inset && 'ps-8', className)}
       {...props}
     />
   );
 }
 
 // RadioGroup - Groups related radio items
-function MenubarRadioGroup({ value, ...props }: React.ComponentProps<'div'> & { value?: string }) {
-  return <div data-slot="menubar-radio-group" data-value={value} {...props} />;
+function MenubarRadioGroup({ ...props }: React.ComponentProps<typeof BaseUIMenu.RadioGroup>) {
+  return <BaseUIMenu.RadioGroup data-slot="menubar-radio-group" {...props} />;
 }
 
 // RadioItem - A menubar item that works like a radio button in a given group
-function MenubarRadioItem({
-  className,
-  children,
-  value,
-  ...props
-}: React.ComponentProps<typeof BaseUIMenu.Item> & { value?: string }) {
+function MenubarRadioItem({ className, children, ...props }: React.ComponentProps<typeof BaseUIMenu.RadioItem>) {
   return (
-    <BaseUIMenu.Item
+    <BaseUIMenu.RadioItem
       data-slot="menubar-radio-item"
-      data-value={value}
       className={cn(
-        'relative flex cursor-default select-none items-center rounded-md py-1.5 ps-8 pe-2 text-sm outline-hidden focus:bg-accent focus:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50',
+        'flex cursor-default items-center justify-between gap-4 ps-8 pe-4 py-2 text-sm leading-4 outline-none select-none',
+        'data-[highlighted]:relative data-[highlighted]:z-0 data-[highlighted]:text-foreground',
+        'data-[highlighted]:before:absolute data-[highlighted]:before:inset-x-1 data-[highlighted]:before:inset-y-0 data-[highlighted]:before:z-[-1] data-[highlighted]:before:rounded-sm data-[highlighted]:before:bg-accent',
+        'data-disabled:pointer-events-none data-disabled:opacity-50',
+        '[&_svg]:pointer-events-none [&_svg:not([role=img]):not([class*=text-])]:opacity-60 [&_svg:not([class*=size-])]:size-4 [&_svg]:shrink-0',
         className,
       )}
       {...props}
     >
-      <span className="absolute start-2 flex h-3.5 w-3.5 items-center justify-center">
-        <Circle className="h-2 w-2 fill-current" />
-      </span>
       {children}
-    </BaseUIMenu.Item>
+      <span className="absolute start-2.5 flex h-3.5 w-3.5 items-center justify-center">
+        <BaseUIMenu.RadioItemIndicator className="size-1.5 rounded-full bg-primary" />
+      </span>
+    </BaseUIMenu.RadioItem>
   );
+}
+
+// RadioItemIndicator - Indicates whether the radio item is selected
+function MenubarRadioItemIndicator({ ...props }: React.ComponentProps<typeof BaseUIMenu.RadioItemIndicator>) {
+  return <BaseUIMenu.RadioItemIndicator data-slot="menubar-radio-item-indicator" {...props} />;
 }
 
 // CheckboxItem - A menubar item that toggles a setting on or off
@@ -164,34 +160,43 @@ function MenubarCheckboxItem({
   children,
   checked,
   ...props
-}: React.ComponentProps<typeof BaseUIMenu.Item> & {
-  checked?: boolean;
-}) {
+}: React.ComponentProps<typeof BaseUIMenu.CheckboxItem>) {
   return (
-    <BaseUIMenu.Item
+    <BaseUIMenu.CheckboxItem
       data-slot="menubar-checkbox-item"
-      data-checked={checked}
+      checked={checked}
       className={cn(
-        'relative flex cursor-default select-none items-center rounded-md py-1.5 ps-8 pe-2 text-sm outline-hidden focus:bg-accent focus:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50',
+        'relative flex cursor-default items-center gap-4 ps-8 pe-4 py-2 text-sm leading-4 outline-none select-none',
+        'data-[highlighted]:relative data-[highlighted]:z-0 data-[highlighted]:text-foreground',
+        'data-[highlighted]:before:absolute data-[highlighted]:before:inset-x-1 data-[highlighted]:before:inset-y-0 data-[highlighted]:before:z-[-1] data-[highlighted]:before:rounded-sm data-[highlighted]:before:bg-accent',
+        'data-disabled:pointer-events-none data-disabled:opacity-50',
+        '[&_svg]:pointer-events-none [&_svg:not([role=img]):not([class*=text-])]:opacity-60 [&_svg:not([class*=size-])]:size-4 [&_svg]:shrink-0',
         className,
       )}
       {...props}
     >
-      <span className="absolute start-2 flex h-3.5 w-3.5 items-center justify-center">
-        {checked && <Check className="h-4 w-4 text-primary" />}
+      <span className="absolute start-2.5 flex h-3.5 w-3.5 items-center justify-center">
+        <BaseUIMenu.CheckboxItemIndicator>
+          <Check className="h-4 w-4 text-primary" />
+        </BaseUIMenu.CheckboxItemIndicator>
       </span>
       {children}
-    </BaseUIMenu.Item>
+    </BaseUIMenu.CheckboxItem>
   );
 }
 
-// Sub - Groups all parts of a submenu
-function MenubarSub({ ...props }: React.ComponentProps<typeof BaseUIMenu.SubmenuRoot>) {
-  return <BaseUIMenu.SubmenuRoot data-slot="menubar-sub" {...props} />;
+// CheckboxItemIndicator - Indicates whether the checkbox item is ticked
+function MenubarCheckboxItemIndicator({ ...props }: React.ComponentProps<typeof BaseUIMenu.CheckboxItemIndicator>) {
+  return <BaseUIMenu.CheckboxItemIndicator data-slot="menubar-checkbox-item-indicator" {...props} />;
 }
 
-// SubTrigger - A menubar item that opens a submenu
-function MenubarSubTrigger({
+// SubmenuRoot - Groups all parts of a submenu
+function MenubarSubmenuRoot({ ...props }: React.ComponentProps<typeof BaseUIMenu.SubmenuRoot>) {
+  return <BaseUIMenu.SubmenuRoot data-slot="menubar-submenu-root" {...props} />;
+}
+
+// SubmenuTrigger - A menubar item that opens a submenu
+function MenubarSubmenuTrigger({
   className,
   inset,
   children,
@@ -201,48 +206,31 @@ function MenubarSubTrigger({
 }) {
   return (
     <BaseUIMenu.SubmenuTrigger
-      data-slot="menubar-sub-trigger"
+      data-slot="menubar-submenu-trigger"
       className={cn(
-        'flex cursor-pointer select-none items-center rounded-md px-2 py-1.5 text-sm outline-hidden',
-        'focus:bg-accent focus:text-accent-foreground',
-        'data-[state=open]:bg-accent data-[state=open]:text-accent-foreground',
+        'flex w-full cursor-default items-center justify-between gap-4 px-4 py-2 text-sm leading-4 outline-none select-none',
+        'data-[highlighted]:relative data-[highlighted]:z-0 data-[highlighted]:text-foreground',
+        'data-[highlighted]:before:absolute data-[highlighted]:before:inset-x-1 data-[highlighted]:before:inset-y-0 data-[highlighted]:before:z-[-1] data-[highlighted]:before:rounded-sm data-[highlighted]:before:bg-accent',
+        'data-[popup-open]:relative data-[popup-open]:z-0 data-[popup-open]:before:absolute data-[popup-open]:before:inset-x-1 data-[popup-open]:before:inset-y-0 data-[popup-open]:before:z-[-1] data-[popup-open]:before:rounded-sm data-[popup-open]:before:bg-accent/50',
+        'data-[highlighted]:data-[popup-open]:before:bg-accent',
         '[&>svg]:pointer-events-none [&_svg:not([role=img]):not([class*=text-])]:opacity-60 [&_svg:not([class*=size-])]:size-4 [&>svg]:shrink-0',
-        'data-[here=true]:bg-accent data-[here=true]:text-accent-foreground',
         inset && 'ps-8',
         className,
       )}
       {...props}
     >
       {children}
-      <ChevronRight className="ms-auto size-3.5!" />
+      <ChevronRight data-slot="menubar-submenu-trigger-indicator" className="size-3.5 rtl:rotate-180" />
     </BaseUIMenu.SubmenuTrigger>
   );
 }
 
-// SubContent - A container for submenu items
-function MenubarSubContent({ className, ...props }: React.ComponentProps<typeof BaseUIMenu.Popup>) {
-  return (
-    <BaseUIMenu.Portal>
-      <BaseUIMenu.Positioner sideOffset={-4} alignOffset={-4}>
-        <BaseUIMenu.Popup
-          data-slot="menubar-sub-content"
-          className={cn(
-            'space-y-0.5 z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-2 text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
-            className,
-          )}
-          {...props}
-        />
-      </BaseUIMenu.Positioner>
-    </BaseUIMenu.Portal>
-  );
-}
-
 // Shortcut - A shortcut display component
-function MenubarShortcut({ className, ...props }: React.ComponentProps<'span'>) {
+function MenubarShortcut({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) {
   return (
     <span
       data-slot="menubar-shortcut"
-      className={cn('ml-auto text-xs tracking-widest text-muted-foreground', className)}
+      className={cn('ms-auto text-xs tracking-widest opacity-60', className)}
       {...props}
     />
   );
@@ -253,16 +241,18 @@ export {
   MenubarMenu,
   MenubarTrigger,
   MenubarPortal,
-  MenubarContent,
+  MenubarPositioner,
+  MenubarPopup,
   MenubarItem,
   MenubarSeparator,
   MenubarGroup,
-  MenubarLabel,
+  MenubarGroupLabel,
   MenubarRadioGroup,
   MenubarRadioItem,
+  MenubarRadioItemIndicator,
   MenubarCheckboxItem,
-  MenubarSub,
-  MenubarSubTrigger,
-  MenubarSubContent,
+  MenubarCheckboxItemIndicator,
+  MenubarSubmenuRoot,
+  MenubarSubmenuTrigger,
   MenubarShortcut,
 };

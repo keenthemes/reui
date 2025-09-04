@@ -277,6 +277,7 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Data Grid',
           href: '/docs/data-grid',
+          update: true,
           highlight: {
             order: 1,
             examples: [
@@ -307,7 +308,7 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Date Picker',
           href: '/docs/date-picker',
-
+          update: true,
           highlight: {
             order: 11,
             examples: ['Default', 'Range', 'Presets'],
@@ -584,6 +585,11 @@ export const docsConfig: DocsConfig = {
           new: true,
         },
         {
+          title: 'Autocomplete',
+          href: '/docs/base-autocomplete',
+          new: true,
+        },
+        {
           title: 'Avatar',
           href: '/docs/base-avatar',
           new: true,
@@ -621,6 +627,11 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Menu',
           href: '/docs/base-menu',
+          new: true,
+        },
+        {
+          title: 'Menubar',
+          href: '/docs/base-menubar',
           new: true,
         },
       ],

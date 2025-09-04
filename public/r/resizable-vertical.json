@@ -2,15 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "resizable-vertical",
   "type": "registry:component",
-  "dependencies": [
-    "clsx",
-    "tailwind-merge",
-    "lucide-react",
-    "react-resizable-panels"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/resizable.json"
-  ],
+  "dependencies": ["clsx", "tailwind-merge", "lucide-react", "react-resizable-panels"],
+  "registryDependencies": ["https://reui.io/r/resizable.json"],
   "files": [
     {
       "path": "registry/default/components/resizable/vertical.tsx",

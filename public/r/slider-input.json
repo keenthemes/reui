@@ -2,12 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "slider-input",
   "type": "registry:component",
-  "dependencies": [
-    "clsx",
-    "tailwind-merge",
-    "class-variance-authority",
-    "radix-ui"
-  ],
+  "dependencies": ["clsx", "tailwind-merge", "class-variance-authority", "radix-ui"],
   "registryDependencies": [
     "https://reui.io/r/input.json",
     "https://reui.io/r/label.json",
