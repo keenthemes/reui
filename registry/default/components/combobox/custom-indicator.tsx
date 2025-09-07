@@ -42,8 +42,8 @@ const topCities = [
 ];
 
 export default function ComboboxDemo() {
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState('london');
+  const [open, setOpen] = React.useState<boolean>(false);
+  const [value, setValue] = React.useState<string>('london');
 
   return (
     <Popover open={open} onOpenChange={setOpen}>

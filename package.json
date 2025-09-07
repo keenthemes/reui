@@ -41,6 +41,7 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "contentlayer2": "^0.5.8",
+    "crisp-sdk-web": "^1.0.25",
     "date-fns": "^4.1.0",
     "embla-carousel-autoplay": "8.6.0",
     "embla-carousel-react": "8.6.0",

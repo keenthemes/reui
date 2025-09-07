@@ -17,7 +17,7 @@ export default function DatePickerDemo() {
 
   const [date, setDate] = useState<DateRange | undefined>(defaultDate);
 
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [isPopoverOpen, setIsPopoverOpen] = useState<boolean>(false);
 
   const handleApply = () => {
     if (date) {

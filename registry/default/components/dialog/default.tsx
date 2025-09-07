@@ -22,7 +22,7 @@ import { toast } from 'sonner';
 import { z } from 'zod';
 
 export default function DialogDemo() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
   const direction = useDirection();
 
   const FormSchema = z.object({

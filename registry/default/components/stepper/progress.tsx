@@ -14,7 +14,7 @@ import { cn } from '@/lib/utils';
 
 export default function StepperProgress() {
   const steps = [1, 2, 3, 4];
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState<number>(1);
 
   return (
     <div className="w-full flex flex-col">

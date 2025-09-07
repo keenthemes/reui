@@ -50,12 +50,12 @@ export default function DatePickerDemo() {
     },
   ];
 
-  const [month, setMonth] = useState(today);
+  const [month, setMonth] = useState<Date>(today);
   const defaultPreset = presets[2];
   const [date, setDate] = useState<DateRange | undefined>(defaultPreset.range); // Default: Last 7 days
   const [selectedPreset, setSelectedPreset] = useState<string | null>(defaultPreset.label);
 
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [isPopoverOpen, setIsPopoverOpen] = useState<boolean>(false);
 
   const handleApply = () => {
     if (date) {

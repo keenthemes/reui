@@ -14,7 +14,7 @@ import { useMetaColor } from '@/hooks/use-meta-color';
 import { CommandMenu } from '@/components/command-menu';
 
 export function MobileNav() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState<boolean>(false);
   const { setMetaColor, metaColor } = useMetaColor();
 
   const onOpenChange = React.useCallback(

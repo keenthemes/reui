@@ -39,8 +39,8 @@ export default function ComboboxForm() {
     resolver: zodResolver(FormSchema),
   });
 
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState('');
+  const [open, setOpen] = React.useState<boolean>(false);
+  const [value, setValue] = React.useState<string>('');
 
   function onSubmit() {
     toast.custom((t) => (

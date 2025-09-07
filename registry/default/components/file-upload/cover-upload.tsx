@@ -35,9 +35,9 @@ export default function CoverUpload({
     preview: defaultCoverImage.url,
   });
 
-  const [imageLoading, setImageLoading] = useState(true);
-  const [uploadProgress, setUploadProgress] = useState(0);
-  const [isUploading, setIsUploading] = useState(false);
+  const [imageLoading, setImageLoading] = useState<boolean>(true);
+  const [uploadProgress, setUploadProgress] = useState<number>(0);
+  const [isUploading, setIsUploading] = useState<boolean>(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
 
   const [

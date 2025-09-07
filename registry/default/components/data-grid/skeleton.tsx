@@ -213,7 +213,7 @@ export default function DataGridDemo() {
     pageSize: 5,
   });
   const [sorting, setSorting] = useState<SortingState>([{ id: 'name', desc: true }]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const handleToggleLoading = () => {
     setIsLoading((prev) => !prev);

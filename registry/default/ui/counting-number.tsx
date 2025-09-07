@@ -32,8 +32,8 @@ export function CountingNumber({
 }: CountingNumberProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once, margin: inViewMargin });
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const [display, setDisplay] = useState(from);
+  const [hasAnimated, setHasAnimated] = useState<boolean>(false);
+  const [display, setDisplay] = useState<number>(from);
   const motionValue = useMotionValue(from);
 
   // Should start animation?

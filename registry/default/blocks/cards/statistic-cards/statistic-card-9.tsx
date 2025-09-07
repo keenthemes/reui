@@ -6,7 +6,7 @@ import { Progress } from '@/registry/default/ui/progress';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/registry/default/ui/select';
 
 export default function StatisticCard6() {
-  const [progress, setProgress] = useState(13);
+  const [progress, setProgress] = useState<number>(13);
 
   useEffect(() => {
     const timer = setTimeout(() => setProgress(66), 500);

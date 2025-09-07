@@ -8,7 +8,7 @@ import { Menu } from 'lucide-react';
 import { BlocksNav } from './blocks-nav';
 
 export function BlocksNavMobileToggle() {
-  const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [isSheetOpen, setIsSheetOpen] = useState<boolean>(false);
   const pathname = usePathname();
 
   // Close sheet when route changes

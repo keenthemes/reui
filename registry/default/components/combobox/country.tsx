@@ -241,8 +241,8 @@ const countryFlags = [
 ];
 
 export default function ComboboxDemo() {
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState('');
+  const [open, setOpen] = React.useState<boolean>(false);
+  const [value, setValue] = React.useState<string>('');
 
   const selectedCountry = countryFlags.find((country) => country.code === value);
 

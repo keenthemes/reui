@@ -9,7 +9,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/registry/
 import { ArrowDown, ArrowUp, ChevronDown, ChevronUp } from 'lucide-react';
 
 export default function CollapsibleDemo() {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
   interface StatItem {
     label: string;
