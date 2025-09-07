@@ -11,10 +11,7 @@
     "lucide-react",
     "radix-ui"
   ],
-  "registryDependencies": [
-    "https://reui.io/r/alert.json",
-    "https://reui.io/r/button.json"
-  ],
+  "registryDependencies": ["https://reui.io/r/alert.json", "https://reui.io/r/button.json"],
   "files": [
     {
       "path": "registry/default/components/sonner/variants.tsx",

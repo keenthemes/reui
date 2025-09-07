@@ -2,11 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "base-checkbox-group",
   "type": "registry:ui",
-  "dependencies": [
-    "@base-ui-components/react",
-    "clsx",
-    "tailwind-merge"
-  ],
+  "dependencies": ["@base-ui-components/react", "clsx", "tailwind-merge"],
   "files": [
     {
       "path": "registry/default/ui/base-checkbox-group.tsx",

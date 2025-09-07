@@ -2,12 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "tooltip",
   "type": "registry:ui",
-  "dependencies": [
-    "radix-ui",
-    "clsx",
-    "tailwind-merge",
-    "class-variance-authority"
-  ],
+  "dependencies": ["radix-ui", "clsx", "tailwind-merge", "class-variance-authority"],
   "files": [
     {
       "path": "registry/default/ui/tooltip.tsx",

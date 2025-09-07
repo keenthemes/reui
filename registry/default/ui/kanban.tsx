@@ -479,7 +479,7 @@ function KanbanOverlay({ children, className }: KanbanOverlayProps) {
     } else {
       setDimensions(null);
     }
-  }, [activeId, isColumn]);
+  }, [activeId]);
 
   const style = {
     width: dimensions?.width,

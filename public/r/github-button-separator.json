@@ -2,14 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "github-button-separator",
   "type": "registry:component",
-  "dependencies": [
-    "class-variance-authority",
-    "lucide-react",
-    "motion"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/github-button.json"
-  ],
+  "dependencies": ["class-variance-authority", "lucide-react", "motion"],
+  "registryDependencies": ["https://reui.io/r/github-button.json"],
   "files": [
     {
       "path": "registry/default/components/github-button/separator.tsx",

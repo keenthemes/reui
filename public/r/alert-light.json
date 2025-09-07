@@ -2,16 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "alert-light",
   "type": "registry:component",
-  "dependencies": [
-    "clsx",
-    "tailwind-merge",
-    "class-variance-authority",
-    "lucide-react",
-    "radix-ui"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/alert.json"
-  ],
+  "dependencies": ["clsx", "tailwind-merge", "class-variance-authority", "lucide-react", "radix-ui"],
+  "registryDependencies": ["https://reui.io/r/alert.json"],
   "files": [
     {
       "path": "registry/default/components/alert/light.tsx",

@@ -2,15 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "toggle-group",
   "type": "registry:ui",
-  "dependencies": [
-    "radix-ui",
-    "clsx",
-    "tailwind-merge",
-    "class-variance-authority"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/toggle.json"
-  ],
+  "dependencies": ["radix-ui", "clsx", "tailwind-merge", "class-variance-authority"],
+  "registryDependencies": ["https://reui.io/r/toggle.json"],
   "files": [
     {
       "path": "registry/default/ui/toggle-group.tsx",

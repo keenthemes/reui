@@ -2,17 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "area-chart-1",
   "type": "registry:block",
-  "dependencies": [
-    "recharts@2.15.1",
-    "clsx",
-    "tailwind-merge",
-    "class-variance-authority",
-    "lucide-react",
-    "recharts"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/card.json"
-  ],
+  "dependencies": ["recharts@2.15.1", "clsx", "tailwind-merge", "class-variance-authority", "lucide-react", "recharts"],
+  "registryDependencies": ["https://reui.io/r/card.json"],
   "files": [
     {
       "path": "registry/default/blocks/charts/area-charts/area-chart-1.tsx",

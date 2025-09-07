@@ -11,9 +11,7 @@
     "@radix-ui/react-dialog",
     "cmdk"
   ],
-  "registryDependencies": [
-    "https://reui.io/r/command.json"
-  ],
+  "registryDependencies": ["https://reui.io/r/command.json"],
   "files": [
     {
       "path": "registry/default/components/command/dialog.tsx",

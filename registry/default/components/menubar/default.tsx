@@ -14,7 +14,7 @@ import {
   MenubarTrigger,
 } from '@/registry/default/ui/menubar';
 
-export function MenubarDemo() {
+export default function MenubarDemo() {
   return (
     <Menubar>
       <MenubarMenu>

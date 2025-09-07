@@ -2,13 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "base-collapsible-card",
   "type": "registry:component",
-  "dependencies": [
-    "clsx",
-    "tailwind-merge",
-    "@base-ui-components/react",
-    "class-variance-authority",
-    "lucide-react"
-  ],
+  "dependencies": ["clsx", "tailwind-merge", "@base-ui-components/react", "class-variance-authority", "lucide-react"],
   "registryDependencies": [
     "https://reui.io/r/base-badge.json",
     "https://reui.io/r/base-button.json",

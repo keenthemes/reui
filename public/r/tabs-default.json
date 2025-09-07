@@ -2,15 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "tabs-default",
   "type": "registry:component",
-  "dependencies": [
-    "clsx",
-    "tailwind-merge",
-    "class-variance-authority",
-    "radix-ui"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/tabs.json"
-  ],
+  "dependencies": ["clsx", "tailwind-merge", "class-variance-authority", "radix-ui"],
+  "registryDependencies": ["https://reui.io/r/tabs.json"],
   "files": [
     {
       "path": "registry/default/components/tabs/default.tsx",
