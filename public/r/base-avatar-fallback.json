@@ -2,8 +2,16 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "base-avatar-fallback",
   "type": "registry:component",
-  "dependencies": ["clsx", "tailwind-merge", "@base-ui-components/react", "class-variance-authority", "lucide-react"],
-  "registryDependencies": ["https://reui.io/r/base-avatar.json"],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "@base-ui-components/react",
+    "class-variance-authority",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/base-avatar.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/base-avatar/fallback.tsx",

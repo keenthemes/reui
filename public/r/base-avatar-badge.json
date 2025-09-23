@@ -2,8 +2,17 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "base-avatar-badge",
   "type": "registry:component",
-  "dependencies": ["clsx", "tailwind-merge", "class-variance-authority", "radix-ui", "@base-ui-components/react"],
-  "registryDependencies": ["https://reui.io/r/badge.json", "https://reui.io/r/base-avatar.json"],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "class-variance-authority",
+    "radix-ui",
+    "@base-ui-components/react"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/badge.json",
+    "https://reui.io/r/base-avatar.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/base-avatar/badge.tsx",

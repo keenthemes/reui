@@ -2,7 +2,12 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "rating",
   "type": "registry:ui",
-  "dependencies": ["clsx", "tailwind-merge", "class-variance-authority", "lucide-react"],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "class-variance-authority",
+    "lucide-react"
+  ],
   "files": [
     {
       "path": "registry/default/ui/rating.tsx",

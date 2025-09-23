@@ -1,0 +1,91 @@
+---
+title: Radio Group
+description: A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.
+component: true
+---
+
+<ExamplePreview path="base-radio-group/default" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="radio-group" />
+</TabsContent>
+
+<TabsContent value="manual">    
+<Steps>
+
+<Step>
+Install the following dependencies:
+
+```bash
+npm install @base-ui-components/react
+```
+
+</Step>
+
+<Step>
+Copy and paste the following code into your project's `components/ui/base-radio-group.tsx` file.
+
+<ComponentPreview name="base-radio-group" />
+
+</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+### Checked
+
+<ExamplePreview path="base-radio-group/checked" />
+
+### Disabled
+
+<ExamplePreview path="base-radio-group/disabled" />
+
+### Size
+
+<ExamplePreview path="base-radio-group/size" />
+
+### Form
+
+<ExamplePreview path="base-radio-group/form" />
+
+## API Reference
+
+This component is based on the [Base UI Radio Group](https://base-ui.com/react/components/radio-group) primitive.
+
+### RadioGroup
+
+A customized radio group component that extends the Base UI RadioGroup primitive with additional styling and features. It supports all the props from Base UI's RadioGroup component.
+
+| **Prop**    | **Type**                                                 | **Default** | **Description**                                               |
+| ----------- | -------------------------------------------------------- | ----------- | ------------------------------------------------------------- |
+| `className` | ~string~                                                 | <Na/>       | Additional class names for styling the radio group container. |
+| `size`      | ~enum~ <PopoverInfo> "sm" \| "md" \| "lg" </PopoverInfo> | "md"        | The size of the radio group items.                            |
+
+### RadioGroupItem
+
+A customized radio group item component that extends the Base UI Radio primitive with additional styling and features. It supports all the props from Base UI's Radio.Root component.
+
+| **Prop**    | **Type**                                                 | **Default** | **Description**                                                              |
+| ----------- | -------------------------------------------------------- | ----------- | ---------------------------------------------------------------------------- |
+| `className` | ~string~                                                 | <Na/>       | Additional class names for styling the radio group item.                     |
+| `size`      | ~enum~ <PopoverInfo> "sm" \| "md" \| "lg" </PopoverInfo> | <Na/>       | The size of the radio group item. Inherits from RadioGroup if not specified. |
+| `value`     | ~string~                                                 | <Na/>       | The value of the radio group item.                                           |
+| `disabled`  | ~boolean~                                                | false       | Whether the radio group item is disabled.                                    |
+
+## Credits
+
+- Built with [Base UI Radio Group](https://base-ui.com/react/components/radio-group).

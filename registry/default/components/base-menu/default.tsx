@@ -1,13 +1,10 @@
 import { Button } from '@/registry/default/ui/base-button';
 import {
   Menu,
-  MenuArrow,
+  MenuContent,
   MenuGroup,
   MenuGroupLabel,
   MenuItem,
-  MenuPopup,
-  MenuPortal,
-  MenuPositioner,
   MenuSeparator,
   MenuShortcut,
   MenuTrigger,
@@ -18,44 +15,38 @@ export default function MenuDemo() {
   return (
     <Menu>
       <MenuTrigger render={<Button variant="outline">Show Menu</Button>} />
-      <MenuPortal>
-        <MenuPositioner sideOffset={4}>
-          <MenuPopup className="w-64">
-            <MenuArrow />
+      <MenuContent sideOffset={4} className="w-64">
+        {/* Account Section */}
+        <MenuGroup>
+          <MenuGroupLabel>My Account</MenuGroupLabel>
+          <MenuSeparator />
+          <MenuItem>
+            <User />
+            <span>Profile</span>
+            <MenuShortcut>⇧⌘P</MenuShortcut>
+          </MenuItem>
+          <MenuItem>
+            <Mail />
+            <span>Inbox</span>
+            <MenuShortcut>⌘I</MenuShortcut>
+          </MenuItem>
+          <MenuItem>
+            <Settings />
+            <span>Settings</span>
+            <MenuShortcut>⌘S</MenuShortcut>
+          </MenuItem>
+        </MenuGroup>
 
-            {/* Account Section */}
-            <MenuGroup>
-              <MenuGroupLabel>My Account</MenuGroupLabel>
-              <MenuSeparator />
-              <MenuItem>
-                <User />
-                <span>Profile</span>
-                <MenuShortcut>⇧⌘P</MenuShortcut>
-              </MenuItem>
-              <MenuItem>
-                <Mail />
-                <span>Inbox</span>
-                <MenuShortcut>⌘I</MenuShortcut>
-              </MenuItem>
-              <MenuItem>
-                <Settings />
-                <span>Settings</span>
-                <MenuShortcut>⌘S</MenuShortcut>
-              </MenuItem>
-            </MenuGroup>
-
-            {/* Logout */}
-            <MenuSeparator />
-            <MenuGroup>
-              <MenuItem>
-                <LogOut />
-                <span>Log Out</span>
-                <MenuShortcut>⇧⌘Q</MenuShortcut>
-              </MenuItem>
-            </MenuGroup>
-          </MenuPopup>
-        </MenuPositioner>
-      </MenuPortal>
+        {/* Logout */}
+        <MenuSeparator />
+        <MenuGroup>
+          <MenuItem>
+            <LogOut />
+            <span>Log Out</span>
+            <MenuShortcut>⇧⌘Q</MenuShortcut>
+          </MenuItem>
+        </MenuGroup>
+      </MenuContent>
     </Menu>
   );
 }

@@ -1,78 +1,59 @@
 'use client';
 
-import { useState } from 'react';
-import { Alert, AlertIcon, AlertTitle } from '@/registry/default/ui/alert';
 import { Button } from '@/registry/default/ui/base-button';
-import { Field, FieldDescription, FieldError, FieldLabel } from '@/registry/default/ui/base-field';
-import { Form } from '@/registry/default/ui/base-form';
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/registry/default/ui/base-form';
 import { Input } from '@/registry/default/ui/base-input';
-import { RiCheckboxCircleFill } from '@remixicon/react';
-import { toast } from 'sonner';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-const FormSchema = z.object({
-  email: z.email('Please enter a valid email address.'),
-});
+export default function Component() {
+  const schema = z.object({
+    email: z.string().email('Please enter a valid email address.'),
+  });
 
-export default function InputDemo() {
-  const [errors, setErrors] = useState({});
+  const form = useForm<z.infer<typeof schema>>({
+    resolver: zodResolver(schema),
+    defaultValues: { email: '' },
+    mode: 'onSubmit',
+  });
 
-  async function submitForm(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    const formData = new FormData(event.currentTarget);
-    const result = FormSchema.safeParse(Object.fromEntries(formData as never));
-
-    if (!result.success) {
-      return {
-        errors: result.error.flatten().fieldErrors,
-      };
-    }
-
-    // Show success toast
-    toast.custom((t) => (
-      <Alert variant="mono" icon="primary" onClose={() => toast.dismiss(t)}>
-        <AlertIcon>
-          <RiCheckboxCircleFill />
-        </AlertIcon>
-        <AlertTitle>Your form has been successfully submitted</AlertTitle>
-      </Alert>
-    ));
-
-    return {
-      errors: {},
-    };
+  function onSubmit(data: z.infer<typeof schema>) {
+    console.log('Form submitted:', data);
   }
 
-  const handleReset = (event: React.FormEvent<HTMLFormElement>) => {
-    const form = event.currentTarget;
-    form.reset();
-    setErrors({});
-  };
-
   return (
-    <Form
-      className="w-80 space-y-6"
-      errors={errors}
-      onClearErrors={setErrors}
-      onSubmit={async (event) => {
-        const response = await submitForm(event);
-        setErrors(response.errors);
-      }}
-      onReset={handleReset}
-    >
-      <Field name="email">
-        <FieldLabel>Email address:</FieldLabel>
-        <Input placeholder="Email address" />
-        <FieldDescription>Enter your email to proceed</FieldDescription>
-        <FieldError />
-      </Field>
-      <div className="flex items-center justify-end gap-2.5">
-        <Button type="reset" variant="outline">
-          Reset
-        </Button>
-        <Button type="submit">Submit</Button>
-      </div>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-[300px] space-y-6">
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email address:</FormLabel>
+              <FormControl>
+                <Input placeholder="Enter your email" {...field} />
+              </FormControl>
+              <FormDescription>Enter your email to proceed</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <div className="flex items-center justify-end gap-2.5">
+          <Button type="reset" variant="outline" onClick={() => form.reset()}>
+            Reset
+          </Button>
+          <Button type="submit">Submit</Button>
+        </div>
+      </form>
     </Form>
   );
 }

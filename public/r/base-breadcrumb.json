@@ -2,7 +2,12 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "base-breadcrumb",
   "type": "registry:ui",
-  "dependencies": ["@base-ui-components/react", "clsx", "tailwind-merge", "lucide-react"],
+  "dependencies": [
+    "@base-ui-components/react",
+    "clsx",
+    "tailwind-merge",
+    "lucide-react"
+  ],
   "files": [
     {
       "path": "registry/default/ui/base-breadcrumb.tsx",

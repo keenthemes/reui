@@ -10,7 +10,10 @@
     "react-aria-components",
     "lucide-react"
   ],
-  "registryDependencies": ["https://reui.io/r/base-input.json", "https://reui.io/r/datefield.json"],
+  "registryDependencies": [
+    "https://reui.io/r/base-input.json",
+    "https://reui.io/r/datefield.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/base-input/date-time.tsx",

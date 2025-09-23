@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "base-meter",
+  "type": "registry:ui",
+  "dependencies": [
+    "@base-ui-components/react",
+    "clsx",
+    "tailwind-merge"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/base-meter.tsx",
+      "content": "import * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport { Meter as BaseMeter } from '@base-ui-components/react/meter';\n\nfunction Meter({ className, children, ...props }: React.ComponentProps<typeof BaseMeter.Root>) {\n  return (\n    <BaseMeter.Root data-slot=\"meter\" className={cn('w-full space-y-1.5', className)} {...props}>\n      {children}\n      <BaseMeter.Track\n        data-slot=\"meter-track\"\n        className={cn('bg-primary/20 h-2 w-full overflow-hidden rounded-md', className)}\n        {...props}\n      >\n        <BaseMeter.Indicator data-slot=\"meter-indicator\" className=\"bg-primary\" />\n      </BaseMeter.Track>\n    </BaseMeter.Root>\n  );\n}\n\nfunction MeterLabel({ className, ...props }: React.ComponentProps<typeof BaseMeter.Label>) {\n  return <BaseMeter.Label data-slot=\"meter-label\" className={cn('text-sm font-medium', className)} {...props} />;\n}\n\nfunction MeterValue({ className, ...props }: React.ComponentProps<typeof BaseMeter.Value>) {\n  return <BaseMeter.Value data-slot=\"meter-value\" className={cn('text-sm', className)} {...props} />;\n}\n\nexport { Meter, MeterLabel, MeterValue };\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/default/lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from 'clsx';\nimport { twMerge } from 'tailwind-merge';\n\n/**\n * Merges Tailwind class names, resolving any conflicts.\n *\n * @param inputs - An array of class names to merge.\n * @returns A string of merged and optimized class names.\n */\nexport function cn(...inputs: ClassValue[]): string {\n  return twMerge(clsx(inputs));\n}\n",
+      "type": "registry:lib",
+      "target": ""
+    }
+  ]
+}

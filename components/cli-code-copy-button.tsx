@@ -10,10 +10,10 @@ export function CliCodeCopyButton({ name }: { name: string } & React.ComponentPr
   const [config] = useConfig();
   const packageManager = config.packageManager || 'pnpm';
   const commands = {
-    pnpm: `pnpm dlx shadcn@latest add https://reui.io/r/${name}.json`,
-    npm: `npx shadcn@latest add https://reui.io/r/${name}.json`,
-    yarn: `npx shadcn@latest add https://reui.io/r/${name}.json`,
-    bun: `bunx --bun shadcn@latest add https://reui.io/r/${name}.json`,
+    pnpm: `pnpm dlx shadcn@latest add @reui/${name}`,
+    npm: `npx shadcn@latest add @reui/${name}`,
+    yarn: `npx shadcn@latest add @reui/${name}`,
+    bun: `bunx --bun shadcn@latest add @reui/${name}`,
   };
 
   return (

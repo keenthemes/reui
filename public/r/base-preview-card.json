@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "base-preview-card",
+  "type": "registry:ui",
+  "dependencies": [
+    "@base-ui-components/react",
+    "clsx",
+    "tailwind-merge"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/base-preview-card.tsx",
+      "content": "'use client';\n\nimport * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport { PreviewCard as BasePreviewCard } from '@base-ui-components/react';\n\nfunction PreviewCard({ ...props }: React.ComponentProps<typeof BasePreviewCard.Root>) {\n  return <BasePreviewCard.Root delay={0} closeDelay={0} data-slot=\"preview-card\" {...props} />;\n}\n\nfunction PreviewCardTrigger({ ...props }: React.ComponentProps<typeof BasePreviewCard.Trigger>) {\n  return <BasePreviewCard.Trigger data-slot=\"preview-card-trigger\" {...props} />;\n}\n\nfunction PreviewCardPortal({ ...props }: React.ComponentProps<typeof BasePreviewCard.Portal>) {\n  return <BasePreviewCard.Portal data-slot=\"preview-card-portal\" {...props} />;\n}\n\nfunction PreviewCardPopup({ className, children, ...props }: React.ComponentProps<typeof BasePreviewCard.Popup>) {\n  return (\n    <BasePreviewCard.Popup\n      data-slot=\"preview-card-popup\"\n      className={cn(\n        'bg-popover text-popover-foreground outline-border z-50 w-64 origin-[var(--transform-origin)] rounded-md p-4 shadow-md outline -outline-offset-1 transition-[transform,scale,opacity] data-[ending-style]:scale-95 data-[ending-style]:opacity-0 data-[starting-style]:scale-95 data-[starting-style]:opacity-0',\n        className,\n      )}\n      {...props}\n    >\n      {children}\n    </BasePreviewCard.Popup>\n  );\n}\n\nfunction PreviewCardPositioner({ ...props }: React.ComponentProps<typeof BasePreviewCard.Positioner>) {\n  return <BasePreviewCard.Positioner data-slot=\"preview-card-positioner\" {...props} />;\n}\n\nfunction PreviewCardArrow({ className, ...props }: React.ComponentProps<typeof BasePreviewCard.Arrow>) {\n  return (\n    <BasePreviewCard.Arrow\n      className={cn(\n        'data-[side=bottom]:top-[-8px] data-[side=left]:right-[-13px] data-[side=left]:rotate-90 data-[side=right]:left-[-13px] data-[side=right]:-rotate-90 data-[side=top]:bottom-[-8px] data-[side=top]:rotate-180',\n        className,\n      )}\n      {...props}\n    >\n      <svg width=\"20\" height=\"10\" viewBox=\"0 0 20 10\" fill=\"none\">\n        <path\n          d=\"M9.66437 2.60207L4.80758 6.97318C4.07308 7.63423 3.11989 8 2.13172 8H0V9H20V8H18.5349C17.5468 8 16.5936 7.63423 15.8591 6.97318L11.0023 2.60207C10.622 2.2598 10.0447 2.25979 9.66437 2.60207Z\"\n          className=\"fill-popover\"\n        />\n        <path\n          d=\"M10.3333 3.34539L5.47654 7.71648C4.55842 8.54279 3.36693 9 2.13172 9H0V8H2.13172C3.11989 8 4.07308 7.63423 4.80758 6.97318L9.66437 2.60207C10.0447 2.25979 10.622 2.2598 11.0023 2.60207L15.8591 6.97318C16.5936 7.63423 17.5468 8 18.5349 8H20V9H18.5349C17.2998 9 16.1083 8.54278 15.1901 7.71648L10.3333 3.34539Z\"\n          className=\"fill-border\"\n        />\n      </svg>\n    </BasePreviewCard.Arrow>\n  );\n}\n\nfunction PreviewCardContent({\n  className,\n  children,\n  align = 'center',\n  sideOffset = 8,\n  side = 'bottom',\n  alignOffset = 0,\n  showArrow = true,\n  ...props\n}: React.ComponentProps<typeof BasePreviewCard.Popup> & {\n  align?: BasePreviewCard.Positioner.Props['align'];\n  sideOffset?: BasePreviewCard.Positioner.Props['sideOffset'];\n  side?: BasePreviewCard.Positioner.Props['side'];\n  alignOffset?: BasePreviewCard.Positioner.Props['alignOffset'];\n  showArrow?: boolean;\n}) {\n  return (\n    <PreviewCardPortal>\n      <PreviewCardPositioner sideOffset={sideOffset} align={align} side={side} alignOffset={alignOffset}>\n        <PreviewCardPopup className={className} {...props}>\n          {showArrow && <PreviewCardArrow />}\n          {children}\n        </PreviewCardPopup>\n      </PreviewCardPositioner>\n    </PreviewCardPortal>\n  );\n}\n\nexport { PreviewCard, PreviewCardTrigger, PreviewCardContent };\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/default/lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from 'clsx';\nimport { twMerge } from 'tailwind-merge';\n\n/**\n * Merges Tailwind class names, resolving any conflicts.\n *\n * @param inputs - An array of class names to merge.\n * @returns A string of merged and optimized class names.\n */\nexport function cn(...inputs: ClassValue[]): string {\n  return twMerge(clsx(inputs));\n}\n",
+      "type": "registry:lib",
+      "target": ""
+    }
+  ]
+}

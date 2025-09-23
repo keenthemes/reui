@@ -2,8 +2,17 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "base-button-badge",
   "type": "registry:component",
-  "dependencies": ["clsx", "tailwind-merge", "@base-ui-components/react", "class-variance-authority", "lucide-react"],
-  "registryDependencies": ["https://reui.io/r/base-badge.json", "https://reui.io/r/base-button.json"],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "@base-ui-components/react",
+    "class-variance-authority",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/base-badge.json",
+    "https://reui.io/r/base-button.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/base-button/badge.tsx",

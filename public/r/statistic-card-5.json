@@ -2,8 +2,17 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "statistic-card-5",
   "type": "registry:block",
-  "dependencies": ["class-variance-authority", "lucide-react", "radix-ui", "clsx", "tailwind-merge"],
-  "registryDependencies": ["https://reui.io/r/button.json", "https://reui.io/r/card.json"],
+  "dependencies": [
+    "class-variance-authority",
+    "lucide-react",
+    "radix-ui",
+    "clsx",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/button.json",
+    "https://reui.io/r/card.json"
+  ],
   "files": [
     {
       "path": "registry/default/blocks/cards/statistic-cards/statistic-card-5.tsx",

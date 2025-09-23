@@ -7,12 +7,12 @@ import { Button } from '@/registry/default/ui/button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/registry/default/ui/collapsible';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/registry/default/ui/hover-card';
 import { LoaderCircleIcon, Minus, Plus } from 'lucide-react';
-import { docsConfig } from '@/config/docs';
+import { componentsConfig } from '@/config/components';
 import { getSlug } from '@/lib/helpers';
 import SiteHero from '@/components/site-hero';
 
 export default function Page() {
-  const components = docsConfig.sidebarNav[1];
+  const components = componentsConfig.sidebarNav[1];
 
   const highlightedComponents =
     components.items

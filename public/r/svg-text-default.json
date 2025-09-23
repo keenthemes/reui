@@ -3,7 +3,9 @@
   "name": "svg-text-default",
   "type": "registry:component",
   "dependencies": [],
-  "registryDependencies": ["https://reui.io/r/svg-text.json"],
+  "registryDependencies": [
+    "https://reui.io/r/svg-text.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/svg-text/default.tsx",

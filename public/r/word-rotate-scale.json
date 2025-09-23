@@ -2,8 +2,12 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "word-rotate-scale",
   "type": "registry:component",
-  "dependencies": ["motion"],
-  "registryDependencies": ["https://reui.io/r/word-rotate.json"],
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/word-rotate.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/word-rotate/scale.tsx",

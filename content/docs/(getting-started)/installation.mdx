@@ -264,6 +264,15 @@ npm i lucide
 npm i @remixicon/react
 ```
 
+### Setup Base UI Portals
+
+Base UI uses portals for components that render popups, such as Dialog and Popover.
+To make portalled components always appear on top of the entire page, add the `isolate` Tailwind class to your application layout root:
+
+```tsx
+<div className="isolate"></div>
+```
+
 ### Add Components
 
 Explore the [ReUI Components](/docs/accordion) and add the ones you need into your project.

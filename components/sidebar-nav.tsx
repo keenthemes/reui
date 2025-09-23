@@ -4,18 +4,18 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/registry/default/lib/utils';
 import { Badge } from '@/registry/default/ui/badge';
-import { type DocsConfig } from '@/config/docs';
 import { siteConfig } from '@/config/site';
+import { type SitemapConfig } from '@/config/sitemap';
 import { SidebarNavItem } from '@/config/types';
 
 export interface DocsSidebarNavProps {
-  config: DocsConfig;
+  config: SitemapConfig;
 }
 
 export function DocsSidebarNav({ config }: DocsSidebarNavProps) {
   const pathname = usePathname();
 
-  const items = config.sidebarNav;
+  const items = config.docsNav;
 
   return items.length ? (
     <div className="w-full">

@@ -2,8 +2,14 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "button-disabled",
   "type": "registry:component",
-  "dependencies": ["class-variance-authority", "lucide-react", "radix-ui"],
-  "registryDependencies": ["https://reui.io/r/button.json"],
+  "dependencies": [
+    "class-variance-authority",
+    "lucide-react",
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/button.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/button/disabled.tsx",

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "base-progress-status",
+  "type": "registry:component",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "@base-ui-components/react"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/base-progress.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/base-progress/status.tsx",
+      "content": "'use client';\n\nimport * as React from 'react';\nimport { useEffect, useState } from 'react';\nimport { Progress } from '@/registry/default/ui/base-progress';\n\nexport default function BaseProgressStatus() {\n  const [downloadProgress, setDownloadProgress] = useState(0);\n\n  // Get status message based on progress\n  const getStatusMessage = (progress: number) => {\n    if (progress < 5) return 'Initializing download...';\n    if (progress < 15) return 'Setting up environment...';\n    if (progress < 25) return 'Connecting to server...';\n    if (progress < 35) return 'Verifying permissions...';\n    if (progress < 50) return 'Downloading core files...';\n    if (progress < 65) return 'Downloading assets...';\n    if (progress < 80) return 'Downloading dependencies...';\n    if (progress < 90) return 'Extracting files...';\n    if (progress < 95) return 'Validating integrity...';\n    if (progress < 100) return 'Finalizing installation...';\n    return 'Download complete!';\n  };\n\n  useEffect(() => {\n    // Download simulation\n    const downloadTimer = setInterval(() => {\n      setDownloadProgress((prev) => {\n        if (prev >= 100) {\n          return 0; // Reset for continuous loop\n        }\n        return prev + Math.random() * 3 + 1; // Random increment 1-4\n      });\n    }, 150);\n\n    return () => {\n      clearInterval(downloadTimer);\n    };\n  }, []);\n\n  return (\n    <div className=\"w-full max-w-xs space-y-2\">\n      <div className=\"flex justify-between text-sm\">\n        <span>Workspace Setup</span>\n        <span className=\"text-muted-foreground\">{Math.round(downloadProgress)}%</span>\n      </div>\n      <Progress value={downloadProgress}></Progress>\n      <div className=\"text-xs text-muted-foreground\">{getStatusMessage(downloadProgress)}</div>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "registry/default/ui/base-progress.tsx",
+      "content": "import * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport { Progress as BaseProgress } from '@base-ui-components/react/progress';\n\nfunction Progress({ className, children, ...props }: React.ComponentProps<typeof BaseProgress.Root>) {\n  return (\n    <BaseProgress.Root data-slot=\"progress\" className=\"relative\" {...props}>\n      <BaseProgress.Track\n        data-slot=\"progress-track\"\n        className={cn('bg-secondary block h-1.5 w-full overflow-hidden rounded-full', className)}\n      >\n        <BaseProgress.Indicator\n          data-slot=\"progress-indicator\"\n          className=\"bg-primary block h-full w-full transition-all\"\n        />\n      </BaseProgress.Track>\n      {children}\n    </BaseProgress.Root>\n  );\n}\n\nfunction ProgressValue({ className, ...props }: React.ComponentProps<typeof BaseProgress.Value>) {\n  return (\n    <BaseProgress.Value\n      data-slot=\"progress-value\"\n      className={cn('text-foreground mt-1.5 flex justify-end text-sm font-medium', className)}\n      {...props}\n    />\n  );\n}\n\nexport { Progress, ProgressValue };\n",
+      "type": "registry:ui",
+      "target": ""
+    },
+    {
+      "path": "registry/default/lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from 'clsx';\nimport { twMerge } from 'tailwind-merge';\n\n/**\n * Merges Tailwind class names, resolving any conflicts.\n *\n * @param inputs - An array of class names to merge.\n * @returns A string of merged and optimized class names.\n */\nexport function cn(...inputs: ClassValue[]): string {\n  return twMerge(clsx(inputs));\n}\n",
+      "type": "registry:lib",
+      "target": ""
+    }
+  ]
+}

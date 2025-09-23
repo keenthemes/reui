@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "base-switch-icon",
+  "type": "registry:component",
+  "dependencies": [
+    "@base-ui-components/react",
+    "class-variance-authority",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/base-switch.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/base-switch/icon.tsx",
+      "content": "import { Switch, SwitchThumb } from '@/registry/default/ui/base-switch';\nimport { MoonIcon, SunIcon } from 'lucide-react';\n\nexport default function SwitchDemo() {\n  return (\n    <div className=\"flex items-center\">\n      <Switch size=\"lg\">\n        <SwitchThumb className=\"group/thumb\">\n          <SunIcon className=\"size-3.5 group-data-[checked]/thumb:hidden\" />\n          <MoonIcon className=\"size-3.5 hidden group-data-[checked]/thumb:block\" />\n        </SwitchThumb>\n      </Switch>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "registry/default/ui/base-switch.tsx",
+      "content": "import * as React from 'react';\nimport { Switch as SwitchPrimitive } from '@base-ui-components/react/switch';\nimport { cva, VariantProps } from 'class-variance-authority';\nimport { cn } from '@/lib/utils';\n\n// Define a context for `size` state\nconst SwitchContext = React.createContext<{ size: 'sm' | 'md' | 'lg' }>({\n  size: 'md',\n});\n\nconst useSwitchContext = () => {\n  const context = React.useContext(SwitchContext);\n  if (!context) {\n    throw new Error('SwitchThumb must be used within a Switch component');\n  }\n  return context;\n};\n\n// Define the variants for the Switch using cva.\nconst switchVariants = cva(\n  `\n    peer data-[checked]:bg-primary data-[unchecked]:bg-input focus-visible:border-ring focus-visible:ring-ring/50 dark:data-[unchecked]:bg-input/80 \n    aria-invalid:border-destructive/60 aria-invalid:ring-destructive/10 dark:aria-invalid:border-destructive dark:aria-invalid:ring-destructive/20\n    inline-flex shrink-0 items-center rounded-full border border-transparent shadow-xs transition-all outline-none focus-visible:ring-[3px] \n    disabled:cursor-not-allowed disabled:opacity-50\n  `,\n  {\n    variants: {\n      size: {\n        sm: 'h-4 w-6',\n        md: 'h-5 w-8',\n        lg: 'h-6 w-10',\n      },\n    },\n    defaultVariants: {\n      size: 'md',\n    },\n  },\n);\n\nconst switchThumbVariants = cva(\n  'bg-background dark:data-[unchecked]:bg-foreground dark:data-[checked]:bg-primary-foreground pointer-events-none rounded-full ring-0 transition-transform flex items-center justify-center',\n  {\n    variants: {\n      size: {\n        sm: 'size-3 data-[checked]:translate-x-[calc(100%-2px)] data-[unchecked]:translate-x-0',\n        md: 'size-4 data-[checked]:translate-x-[calc(100%-2px)] data-[unchecked]:translate-x-0',\n        lg: 'size-5 data-[checked]:translate-x-[calc(100%-2px)] data-[unchecked]:translate-x-0',\n      },\n    },\n    defaultVariants: {\n      size: 'md',\n    },\n  },\n);\n\nfunction Switch({\n  className,\n  children,\n  size = 'md',\n  ...props\n}: React.ComponentProps<typeof SwitchPrimitive.Root> & VariantProps<typeof switchVariants>) {\n  const effectiveSize = size ?? 'md';\n  return (\n    <SwitchContext.Provider value={{ size: effectiveSize }}>\n      <SwitchPrimitive.Root\n        data-slot=\"switch\"\n        className={cn(switchVariants({ size: effectiveSize }), className)}\n        {...props}\n      >\n        {children ?? <SwitchThumb />}\n      </SwitchPrimitive.Root>\n    </SwitchContext.Provider>\n  );\n}\n\nfunction SwitchThumb({\n  className,\n  size,\n  ...props\n}: React.ComponentProps<typeof SwitchPrimitive.Thumb> & Partial<VariantProps<typeof switchThumbVariants>>) {\n  const context = useSwitchContext();\n  const effectiveSize = size ?? context.size;\n\n  return (\n    <SwitchPrimitive.Thumb\n      data-slot=\"switch-thumb\"\n      className={cn(switchThumbVariants({ size: effectiveSize }), className)}\n      {...props}\n    />\n  );\n}\n\nexport { Switch, SwitchThumb, switchVariants };\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ]
+}

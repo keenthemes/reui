@@ -1,0 +1,152 @@
+---
+title: Tabs
+description: A set of layered sections of content—known as tab panels—that are displayed one at a time. Built on top of Base UI Tabs component.
+component: true
+---
+
+<ExamplePreview path="base-tabs/default" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="base-tabs" />
+</TabsContent>
+
+<TabsContent value="manual">    
+<Steps>
+
+### Install ReUI
+
+Refer to the [Installation Guide](/docs/installation) for detailed instructions on setting up ReUI dependencies in your project.
+
+### Install dependencies
+
+```bash
+npm i @base-ui-components/react
+```
+
+<Step>
+Copy and paste the following code into your project's `components/ui/base-tabs.tsx` file.
+
+<ComponentPreview name="base-tabs" />
+
+</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+### Default
+
+<ExamplePreview path="base-tabs/default" />
+
+### Button Variant
+
+<ExamplePreview path="base-tabs/button" />
+
+### Line Variant
+
+<ExamplePreview path="base-tabs/line" />
+
+### Pill Shape
+
+<ExamplePreview path="base-tabs/pill" />
+
+### With Icons
+
+<ExamplePreview path="base-tabs/icon" />
+
+### With Badges
+
+<ExamplePreview path="base-tabs/badge" />
+
+### Vertical
+
+<ExamplePreview path="base-tabs/vertical" />
+
+### Sizes
+
+#### Extra Small
+
+<ExamplePreview path="base-tabs/size-xs" />
+
+#### Small
+
+<ExamplePreview path="base-tabs/size-sm" />
+
+#### Medium
+
+<ExamplePreview path="base-tabs/size-md" />
+
+#### Large
+
+<ExamplePreview path="base-tabs/size-lg" />
+
+### Disabled
+
+<ExamplePreview path="base-tabs/disabled" />
+
+## API Reference
+
+This component is built using [Base UI Tabs](https://base-ui.com/react/components/tabs) primitives. For detailed information, please visit the full API reference.
+
+### Tabs
+
+The root component that provides context for all tab parts.
+
+| Prop            | Type                         | Default        | Description                            |
+| --------------- | ---------------------------- | -------------- | -------------------------------------- |
+| `className`     | `string`                     | -              | Additional CSS classes                 |
+| `value`         | `string`                     | -              | The controlled value of the active tab |
+| `defaultValue`  | `string`                     | -              | The uncontrolled default value         |
+| `onValueChange` | `(value: string) => void`    | -              | Callback when active tab changes       |
+| `orientation`   | `'horizontal' \| 'vertical'` | `'horizontal'` | The orientation of the tabs            |
+| `children`      | `ReactNode`                  | -              | The content of the tabs component      |
+
+### TabsList
+
+The container for tab triggers.
+
+| Prop        | Type                              | Default     | Description                         |
+| ----------- | --------------------------------- | ----------- | ----------------------------------- |
+| `className` | `string`                          | -           | Additional CSS classes              |
+| `variant`   | `'default' \| 'button' \| 'line'` | `'default'` | The visual variant of the tabs list |
+| `shape`     | `'default' \| 'pill'`             | `'default'` | The shape of the tabs list          |
+| `size`      | `'xs' \| 'sm' \| 'md' \| 'lg'`    | `'md'`      | The size of the tabs                |
+| `children`  | `ReactNode`                       | -           | The content of the tabs list        |
+
+### TabsTrigger
+
+The clickable element that activates a tab.
+
+| Prop        | Type        | Default | Description                                |
+| ----------- | ----------- | ------- | ------------------------------------------ |
+| `className` | `string`    | -       | Additional CSS classes                     |
+| `value`     | `string`    | -       | The value of the tab this trigger controls |
+| `disabled`  | `boolean`   | `false` | Whether the tab trigger is disabled        |
+| `children`  | `ReactNode` | -       | The content of the tab trigger             |
+
+### TabsContent
+
+The content panel for a tab.
+
+| Prop        | Type        | Default | Description                                  |
+| ----------- | ----------- | ------- | -------------------------------------------- |
+| `className` | `string`    | -       | Additional CSS classes                       |
+| `value`     | `string`    | -       | The value of the tab this content belongs to |
+| `children`  | `ReactNode` | -       | The content of the tab panel                 |
+
+## Credits
+
+- Built with [Base UI Tabs](https://base-ui.com/react/components/tabs).

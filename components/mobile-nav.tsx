@@ -8,8 +8,8 @@ import { cn } from '@/registry/default/lib/utils';
 import { Button } from '@/registry/default/ui/button';
 import { Drawer, DrawerContent, DrawerTrigger } from '@/registry/default/ui/drawer';
 import { Menu } from 'lucide-react';
-import { docsConfig } from '@/config/docs';
 import { siteConfig } from '@/config/site';
+import { sitemapConfig } from '@/config/sitemap';
 import { useMetaColor } from '@/hooks/use-meta-color';
 import { CommandMenu } from '@/components/command-menu';
 
@@ -38,7 +38,7 @@ export function MobileNav() {
           <div className="overflow-auto p-6">
             <div className="flex flex-col space-y-3">
               <CommandMenu />
-              {docsConfig.mainNav?.map(
+              {sitemapConfig.mainNav?.map(
                 (item) =>
                   item.href && (
                     <MobileLink key={item.href} href={item.href} onOpenChange={setOpen}>
@@ -48,7 +48,7 @@ export function MobileNav() {
               )}
             </div>
             <div className="flex flex-col space-y-2">
-              {docsConfig.sidebarNav.map((item, index) => (
+              {sitemapConfig.docsNav.map((item, index) => (
                 <div key={index} className="flex flex-col space-y-3 pt-6">
                   <h4 className="font-medium">{item.title}</h4>
                   {item?.items?.length &&

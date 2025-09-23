@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-toast",
+  "type": "registry:hook",
+  "dependencies": [
+    "@base-ui-components/react"
+  ],
+  "files": [
+    {
+      "path": "registry/default/hooks/use-toast.ts",
+      "content": "'use client';\n\nimport { Toast } from '@base-ui-components/react/toast';\n\nexport const toastManager = Toast.createToastManager();\n\nexport const useToast = Toast.useToastManager;\n",
+      "type": "registry:hook"
+    }
+  ]
+}

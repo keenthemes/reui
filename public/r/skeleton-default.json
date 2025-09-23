@@ -2,8 +2,13 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "skeleton-default",
   "type": "registry:component",
-  "dependencies": ["clsx", "tailwind-merge"],
-  "registryDependencies": ["https://reui.io/r/skeleton.json"],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/skeleton.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/skeleton/default.tsx",

@@ -77,7 +77,7 @@ function FormLabel({ className, ...props }: React.ComponentProps<typeof LabelPri
   return (
     <Label
       data-slot="form-label"
-      className={cn('font-medium text-foreground', className)}
+      className={cn('font-medium text-foreground peer-disabled:cursor-not-allowed peer-disabled:opacity-50', className)}
       htmlFor={formItemId}
       {...props}
     />

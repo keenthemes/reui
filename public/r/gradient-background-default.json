@@ -2,8 +2,12 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "gradient-background-default",
   "type": "registry:component",
-  "dependencies": ["motion"],
-  "registryDependencies": ["https://reui.io/r/gradient-background.json"],
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/gradient-background.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/gradient-background/default.tsx",

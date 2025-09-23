@@ -14,7 +14,7 @@ import {
 } from '@/registry/default/ui/command';
 import { type DialogProps } from '@radix-ui/react-dialog';
 import { File, Search, Undo2 } from 'lucide-react';
-import { docsConfig } from '@/config/docs';
+import { sitemapConfig } from '@/config/sitemap';
 import { trackEvent } from '@/lib/analytics';
 
 export function CommandMenu({ ...props }: DialogProps) {
@@ -106,7 +106,7 @@ export function CommandMenu({ ...props }: DialogProps) {
         <CommandList className="">
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup heading="Links">
-            {docsConfig.mainNav
+            {sitemapConfig.mainNav
               .filter((navitem) => !navitem.external)
               .map((navItem) => (
                 <CommandItem
@@ -121,7 +121,7 @@ export function CommandMenu({ ...props }: DialogProps) {
                 </CommandItem>
               ))}
           </CommandGroup>
-          {docsConfig.sidebarNav.map((group) => (
+          {sitemapConfig.docsNav.map((group) => (
             <CommandGroup key={group.title} heading={group.title}>
               {group?.items?.map((navItem) => (
                 <CommandItem

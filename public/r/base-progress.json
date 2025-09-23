@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "base-progress",
+  "type": "registry:ui",
+  "dependencies": [
+    "@base-ui-components/react",
+    "clsx",
+    "tailwind-merge"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/base-progress.tsx",
+      "content": "import * as React from 'react';\nimport { cn } from '@/registry/default/lib/utils';\nimport { Progress as BaseProgress } from '@base-ui-components/react/progress';\n\nfunction Progress({ className, children, ...props }: React.ComponentProps<typeof BaseProgress.Root>) {\n  return (\n    <BaseProgress.Root data-slot=\"progress\" className=\"relative\" {...props}>\n      <BaseProgress.Track\n        data-slot=\"progress-track\"\n        className={cn('bg-secondary block h-1.5 w-full overflow-hidden rounded-full', className)}\n      >\n        <BaseProgress.Indicator\n          data-slot=\"progress-indicator\"\n          className=\"bg-primary block h-full w-full transition-all\"\n        />\n      </BaseProgress.Track>\n      {children}\n    </BaseProgress.Root>\n  );\n}\n\nfunction ProgressValue({ className, ...props }: React.ComponentProps<typeof BaseProgress.Value>) {\n  return (\n    <BaseProgress.Value\n      data-slot=\"progress-value\"\n      className={cn('text-foreground mt-1.5 flex justify-end text-sm font-medium', className)}\n      {...props}\n    />\n  );\n}\n\nexport { Progress, ProgressValue };\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/default/lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from 'clsx';\nimport { twMerge } from 'tailwind-merge';\n\n/**\n * Merges Tailwind class names, resolving any conflicts.\n *\n * @param inputs - An array of class names to merge.\n * @returns A string of merged and optimized class names.\n */\nexport function cn(...inputs: ClassValue[]): string {\n  return twMerge(clsx(inputs));\n}\n",
+      "type": "registry:lib",
+      "target": ""
+    }
+  ]
+}

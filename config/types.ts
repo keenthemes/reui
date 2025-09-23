@@ -2,6 +2,7 @@ import { Icons } from '@/components/icons';
 
 export interface NavItem {
   title: string;
+  description?: string;
   href?: string;
   soon?: boolean;
   disabled?: boolean;
@@ -23,6 +24,7 @@ export type NavItemHighlight = {
 
 export interface NavItemWithChildren extends NavItem {
   items?: NavItemWithChildren[];
+  children?: NavItemWithChildren[];
 }
 
 export type MainNavItem = NavItem;

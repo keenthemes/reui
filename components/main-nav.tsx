@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/registry/default/lib/utils';
 import { ArrowUpRight } from 'lucide-react';
-import { docsConfig } from '@/config/docs';
+import { sitemapConfig } from '@/config/sitemap';
 import { MainNavItem } from '@/config/types';
 import { trackEvent } from '@/lib/analytics';
 
@@ -27,7 +27,7 @@ export function MainNav() {
   return (
     <div className="itesm-center justify-center mr-4 hidden md:flex">
       <nav className="flex items-center gap-4 text-sm font-medium xl:gap-6">
-        {docsConfig.mainNav.map((item: MainNavItem) => (
+        {sitemapConfig.mainNav.map((item: MainNavItem) => (
           <Link
             key={item.href}
             href={item.href || '#'}

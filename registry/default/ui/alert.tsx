@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { cn } from '@/registry/default/lib/utils';
-import { Button } from '@/registry/default/ui/button';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { X } from 'lucide-react';
 
@@ -203,17 +202,14 @@ function Alert({ className, variant, size, icon, appearance, close = false, onCl
     >
       {children}
       {close && (
-        <Button
-          size="sm"
-          variant="inverse"
-          mode="icon"
+        <button
           onClick={onClose}
           aria-label="Dismiss"
           data-slot="alert-close"
-          className={cn('group shrink-0 size-4')}
+          className={cn('group shrink-0 size-4 cursor-pointer')}
         >
           <X className="opacity-60 group-hover:opacity-100 size-4" />
-        </Button>
+        </button>
       )}
     </div>
   );

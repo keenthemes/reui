@@ -2,8 +2,12 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "typing-text-fast",
   "type": "registry:component",
-  "dependencies": ["motion"],
-  "registryDependencies": ["https://reui.io/r/typing-text.json"],
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/typing-text.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/typing-text/fast.tsx",

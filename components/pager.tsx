@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Doc } from 'contentlayer/generated';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { docsConfig } from '@/config/docs';
+import { sitemapConfig } from '@/config/sitemap';
 import { NavItem, NavItemWithChildren } from '@/config/types';
 
 interface DocsPagerProps {
@@ -44,7 +44,7 @@ export function DocsPager({ doc }: DocsPagerProps) {
 }
 
 export function getPagerForDoc(doc: Doc) {
-  const nav = docsConfig.sidebarNav;
+  const nav = sitemapConfig.docsNav;
   const flattenedLinks = [null, ...flatten(nav), null];
   const activeIndex = flattenedLinks.findIndex((link) => doc.slug === link?.href);
   const prev = activeIndex !== 0 ? flattenedLinks[activeIndex - 1] : null;

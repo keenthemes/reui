@@ -2,7 +2,11 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "github-button",
   "type": "registry:ui",
-  "dependencies": ["motion", "class-variance-authority", "lucide-react"],
+  "dependencies": [
+    "motion",
+    "class-variance-authority",
+    "lucide-react"
+  ],
   "files": [
     {
       "path": "registry/default/ui/github-button.tsx",

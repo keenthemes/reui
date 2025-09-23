@@ -1,0 +1,82 @@
+---
+title: Toggle
+description: A two-state button that can be either on or off.
+component: true
+---
+
+<ExamplePreview path="base-toggle/default" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="base-toggle" />
+</TabsContent>
+
+<TabsContent value="manual">    
+<Steps>
+
+<Step>
+Install the following dependencies:
+
+```bash
+npm i @base-ui-components/react/toggle
+```
+
+</Step>
+
+<Step>
+
+Copy and paste the following code into your project's `components/ui/base-toggle.tsx` file.
+
+<ComponentPreview name="base-toggle" />
+
+</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Examples
+
+### Text
+
+<ExamplePreview path="base-toggle/text" />
+
+### Outline
+
+<ExamplePreview path="base-toggle/outline" />
+
+### Size
+
+<ExamplePreview path="base-toggle/size" />
+
+## API Reference
+
+### Toggle Props
+
+| Prop              | Type                                                                  | Default | Description                                                                                             |
+| :---------------- | :-------------------------------------------------------------------- | :------ | :------------------------------------------------------------------------------------------------------ |
+| `defaultPressed`  | `boolean`                                                             | `false` | Whether the toggle button is currently pressed. This is the uncontrolled counterpart of `pressed`.      |
+| `pressed`         | `boolean`                                                             | -       | Whether the toggle button is currently pressed. This is the controlled counterpart of `defaultPressed`. |
+| `onPressedChange` | `(pressed: boolean, eventDetails: Toggle.ChangeEventDetails) => void` | -       | Callback fired when the pressed state is changed.                                                       |
+| `disabled`        | `boolean`                                                             | `false` | Whether the component should ignore user interaction.                                                   |
+| `className`       | `string \| ((state: Toggle.State) => string)`                         | -       | CSS class applied to the element, or a function that returns a class based on the component's state.    |
+
+### Toggle Data Attributes
+
+| Attribute      | Type | Description                                |
+| :------------- | :--- | :----------------------------------------- |
+| `data-pressed` | -    | Present when the toggle button is pressed. |
+
+## Credits
+
+- Built with [Base UI Toggle](https://base-ui.com/react/components/toggle).

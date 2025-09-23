@@ -2,8 +2,17 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "base-breadcrumb-card",
   "type": "registry:component",
-  "dependencies": ["clsx", "tailwind-merge", "@base-ui-components/react", "lucide-react", "class-variance-authority"],
-  "registryDependencies": ["https://reui.io/r/base-breadcrumb.json", "https://reui.io/r/card.json"],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "@base-ui-components/react",
+    "lucide-react",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/base-breadcrumb.json",
+    "https://reui.io/r/card.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/base-breadcrumb/card.tsx",

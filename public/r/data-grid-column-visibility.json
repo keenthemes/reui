@@ -2,8 +2,16 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "data-grid-column-visibility",
   "type": "registry:ui",
-  "dependencies": ["@tanstack/react-table", "clsx", "tailwind-merge", "lucide-react", "radix-ui"],
-  "registryDependencies": ["https://reui.io/r/dropdown-menu.json"],
+  "dependencies": [
+    "@tanstack/react-table",
+    "clsx",
+    "tailwind-merge",
+    "lucide-react",
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/dropdown-menu.json"
+  ],
   "files": [
     {
       "path": "registry/default/ui/data-grid-column-visibility.tsx",

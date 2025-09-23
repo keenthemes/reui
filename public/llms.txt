@@ -1,0 +1,128 @@
+# ReUI
+
+This is the documentation for the `@reui/components` package. It contains a collection of components and utilities for building user interfaces in React. The library is designed to be composable and styling agnostic.
+
+## Getting Started
+- [Introduction](https://reui.io/docs/index.md): Get started with ReUI - a comprehensive React component library designed for modern web applications.
+- [Installation](https://reui.io/docs/installation.md): Step-by-step guide to install ReUI in your React project with npm, yarn, or pnpm.
+- [Theming](https://reui.io/docs/theming.md): Customize ReUI components with CSS variables, Tailwind CSS, or your preferred styling solution.
+- [Dark mode](https://reui.io/docs/dark-mode.md): Implement automatic dark mode switching with ReUI components using next-themes or custom solutions.
+- [RTL](https://reui.io/docs/rtl.md): Enable right-to-left language support for ReUI components in Arabic, Hebrew, and other RTL languages.
+- [References](https://reui.io/docs/references.md): 3rd-party component libraries and tool used to build ReUI.
+- [Changelog](https://reui.io/docs/changelog.md): Detailed changelog tracking new features, bug fixes, and breaking changes across ReUI versions.
+- [llms.txt](https://reui.io/llms.txt.md): Structured data file for AI assistants and language models to understand ReUI components.
+
+## UI Components
+- [Alert](https://reui.io/docs/alert.md): Display contextual feedback messages with multiple variants including success, warning, error, and info states.
+- [Calendar](https://reui.io/docs/calendar.md): Interactive date picker with month navigation, date selection, and customizable date ranges for scheduling interfaces.
+- [Card](https://reui.io/docs/card.md): Flexible container component for displaying content with headers, footers, and customizable layouts.
+- [Chart](https://reui.io/docs/chart.md): Data visualization component built on Recharts with support for line, bar, pie, and area charts.
+- [Data Grid](https://reui.io/docs/data-grid.md): Advanced managed table component build with TanStack Table with sorting, filtering, pagination, and row selection for complex data management.
+- [Drawer](https://reui.io/docs/drawer.md): Slide-out panel component that appears from the side with overlay and customizable positioning.
+- [File Upload](https://reui.io/docs/file-upload.md): Drag-and-drop file upload component with progress indicators, file validation, and multiple file support.
+- [Kanban](https://reui.io/docs/kanban.md): Project management board with draggable cards, customizable columns, and real-time updates.
+- [Kbd](https://reui.io/docs/kbd.md): Keyboard key indicator component for displaying keyboard shortcuts and key combinations.
+- [Pagination](https://reui.io/docs/pagination.md): Navigate through large datasets with page numbers, previous/next buttons, and customizable page sizes.
+- [Resizable](https://reui.io/docs/resizable.md): Create resizable panels and layouts with drag handles and customizable resize constraints.
+- [Rating](https://reui.io/docs/rating.md): Interactive star rating component for collecting user feedback with half-star support and custom icons.
+- [Stepper](https://reui.io/docs/stepper.md): Multi-step process component with progress indicators, step validation, and customizable navigation.
+- [Scrollspy](https://reui.io/docs/scrollspy.md): Navigation component that highlights menu items based on scroll position for long-form content.
+- [Skeleton](https://reui.io/docs/skeleton.md): Loading placeholder component that mimics content structure while data is being fetched.
+- [Sortable](https://reui.io/docs/sortable.md): Drag-and-drop list component for reordering items with visual feedback and accessibility support.
+- [Sonner](https://reui.io/docs/sonner.md): Toast notification system with multiple positions, types, and customizable animations.
+- [Table](https://reui.io/docs/table.md): Structured data display component with sorting, filtering, and responsive design for tabular information.
+- [Textarea](https://reui.io/docs/textarea.md): Multi-line text input component with auto-resize, character counting, and validation support.
+
+## Radix UI Components
+- [Accordion](https://reui.io/docs/accordion.md): Displays collapsible content sections with smooth animations and keyboard navigation support.
+- [Accordion Menu](https://reui.io/docs/accordion-menu.md): Navigation component with expandable sections, perfect for sidebar menus and hierarchical navigation.
+- [Alert Dialog](https://reui.io/docs/alert-dialog.md): Modal dialog that interrupts user workflow to deliver important messages requiring immediate attention.
+- [Avatar](https://reui.io/docs/avatar.md): User image component with fallback initials, status indicators, and customizable sizing.
+- [Badge](https://reui.io/docs/badge.md): Small status indicator for notifications, counts, and labels with multiple color variants and sizes.
+- [Breadcrumb](https://reui.io/docs/breadcrumb.md): Navigation trail showing current page location with customizable separators and responsive design.
+- [Button](https://reui.io/docs/button.md): Interactive element with multiple variants, sizes, and states for user actions and form submissions.
+- [Carousel](https://reui.io/docs/carousel.md): Image gallery and content slider with touch gestures, autoplay, and customizable navigation controls.
+- [Checkbox](https://reui.io/docs/checkbox.md): Form input for multiple selections with indeterminate state, custom styling, and accessibility features.
+- [Collapsible](https://reui.io/docs/collapsible.md): Content that can be shown or hidden with smooth animations and keyboard accessibility.
+- [Command](https://reui.io/docs/command.md): Command palette interface with search, keyboard navigation, and customizable command execution.
+- [Combobox](https://reui.io/docs/combobox.md): Searchable select input combining text input with dropdown list for enhanced user selection experience.
+- [Context Menu](https://reui.io/docs/context-menu.md): Right-click menu that appears at cursor position with customizable actions and keyboard shortcuts.
+- [Date Picker](https://reui.io/docs/date-picker.md): Calendar interface for date selection with range picking, keyboard navigation, and localization support.
+- [Dialog](https://reui.io/docs/dialog.md): Modal overlay that captures focus and requires user interaction before dismissing or continuing.
+- [Dropdown Menu](https://reui.io/docs/dropdown-menu.md): Action menu that appears below a trigger with keyboard navigation and submenu support.
+- [Form](https://reui.io/docs/form.md): Form container with built-in validation, error handling, and integration with popular form libraries.
+- [Hover Card](https://reui.io/docs/hover-card.md): Contextual information panel that appears on hover with customizable delay and positioning.
+- [Input](https://reui.io/docs/input.md): Text input field with validation states, error messages, and customizable styling options.
+- [Label](https://reui.io/docs/label.md): Form field label with automatic association to inputs and screen reader accessibility.
+- [Menubar](https://reui.io/docs/menubar.md): Application menu bar with nested menus, keyboard shortcuts, and cross-platform behavior.
+- [Navigation Menu](https://reui.io/docs/navigation-menu.md): Website navigation with dropdown menus, keyboard navigation, and responsive mobile behavior.
+- [Popover](https://reui.io/docs/popover.md): Floating content panel anchored to a trigger with customizable positioning and collision detection.
+- [Progress](https://reui.io/docs/progress.md): Visual indicator showing task completion status with customizable appearance and animation.
+- [Radio Group](https://reui.io/docs/radio-group.md): Single-choice selection group with keyboard navigation and proper form association.
+- [Scroll Area](https://reui.io/docs/scroll-area.md): Custom scrollable container with styled scrollbars and smooth scrolling behavior.
+- [Select](https://reui.io/docs/select.md): Dropdown selection component with search, keyboard navigation, and customizable options.
+- [Separator](https://reui.io/docs/separator.md): Visual divider element with screen reader accessibility and customizable orientation.
+- [Sheet](https://reui.io/docs/sheet.md): Slide-out panel component with customizable positioning, animations, and overlay behavior.
+- [Slider](https://reui.io/docs/slider.md): Range input control with customizable steps, marks, and keyboard accessibility.
+- [Sortable](https://reui.io/docs/sortable.md): Drag-and-drop list reordering with visual feedback and keyboard accessibility support.
+- [Switch](https://reui.io/docs/switch.md): Toggle control for on/off states with smooth animations and keyboard accessibility.
+- [Table](https://reui.io/docs/table.md): Data table with sorting, filtering, and responsive design for structured information display.
+- [Tabs](https://reui.io/docs/tabs.md): Tabbed interface for organizing content with keyboard navigation and customizable styling.
+- [Tooltip](https://reui.io/docs/tooltip.md): Contextual hint that appears on hover or focus with customizable positioning and delay.
+- [Toggle](https://reui.io/docs/toggle.md): Two-state button control for toggling features with customizable pressed and unpressed states.
+- [Toggle Group](https://reui.io/docs/toggle-group.md): Group of toggle buttons with shared state management and single or multiple selection modes.
+- [Tree](https://reui.io/docs/tree.md): Hierarchical data display with expandable nodes, keyboard navigation, and customizable icons.
+
+## Base UI Components
+- [Accordion](https://reui.io/docs/base-accordion.md): Collapsible content sections with smooth expand/collapse animations and keyboard navigation support.
+- [Alert Dialog](https://reui.io/docs/base-alert-dialog.md): Modal dialog that interrupts user workflow to deliver critical messages requiring immediate attention.
+- [Autocomplete](https://reui.io/docs/base-autocomplete.md): Smart input field with dynamic suggestions and filtered results based on user typing.
+- [Avatar](https://reui.io/docs/base-avatar.md): User profile image component with fallback initials, status indicators, and flexible sizing options.
+- [Badge](https://reui.io/docs/base-badge.md): Compact status indicator for notifications, counts, and categorical labels with color variants.
+- [Breadcrumb](https://reui.io/docs/base-breadcrumb.md): Navigation trail showing current page location with customizable separators and responsive design.
+- [Button](https://reui.io/docs/base-button.md): Interactive element with multiple variants, sizes, and states for user actions and form submissions.
+- [Checkbox](https://reui.io/docs/base-checkbox.md): Form input for multiple selections with indeterminate state, custom styling, and accessibility features.
+- [Collapsible](https://reui.io/docs/base-collapsible.md): Content that can be shown or hidden with smooth animations and keyboard accessibility.
+- [Combobox](https://reui.io/docs/base-combobox.md): Searchable select input combining text input with dropdown list for enhanced user selection experience.
+- [Context Menu](https://reui.io/docs/base-context-menu.md): Right-click menu that appears at cursor position with customizable actions and keyboard shortcuts.
+- [Dialog](https://reui.io/docs/base-dialog.md): Modal overlay that captures focus and requires user interaction before dismissing or continuing.
+- [Input](https://reui.io/docs/base-input.md): Text input field with validation states, error messages, and customizable styling options.
+- [Menu](https://reui.io/docs/base-menu.md): Action menu that appears below a trigger with keyboard navigation and submenu support.
+- [Menubar](https://reui.io/docs/base-menubar.md): Application menu bar with nested menus, keyboard shortcuts, and cross-platform behavior.
+- [Meter](https://reui.io/docs/base-meter.md): Visual indicator showing task completion status with customizable appearance and animation.
+- [Navigation Menu](https://reui.io/docs/base-navigation-menu.md): Website navigation with dropdown menus, keyboard navigation, and responsive mobile behavior.
+- [Number Field](https://reui.io/docs/base-number-field.md): Numeric input with increment/decrement controls, scrub area, and customizable step values.
+- [Popover](https://reui.io/docs/base-popover.md): Floating content panel anchored to a trigger with customizable positioning and collision detection.
+- [Preview Card](https://reui.io/docs/base-preview-card.md): Contextual information panel that appears on hover with customizable delay and positioning.
+- [Progress](https://reui.io/docs/base-progress.md): Visual indicator showing task completion status with customizable appearance and animation.
+- [Phone Input](https://reui.io/docs/base-phone-input.md): International phone number input with country selection, formatting, and validation support.
+- [Radio Group](https://reui.io/docs/base-radio-group.md): Single-choice selection group with keyboard navigation and proper form association.
+- [Select](https://reui.io/docs/base-select.md): Dropdown selection component with search, keyboard navigation, and customizable options.
+- [Separator](https://reui.io/docs/base-separator.md): Visual divider element with screen reader accessibility and customizable orientation.
+- [Switch](https://reui.io/docs/base-switch.md): Toggle control for on/off states with smooth animations and keyboard accessibility.
+- [Scroll Area](https://reui.io/docs/base-scroll-area.md): Custom scrollable container with styled scrollbars and smooth scrolling behavior.
+- [Slider](https://reui.io/docs/base-slider.md): Range input control with customizable steps, marks, and keyboard accessibility.
+- [Sheet](https://reui.io/docs/base-sheet.md): Slide-out panel component with customizable positioning, animations, and overlay behavior.
+- [Tabs](https://reui.io/docs/base-tabs.md): Tabbed interface for organizing content with keyboard navigation and customizable styling.
+- [Toast](https://reui.io/docs/base-toast.md): Toast notification system with multiple positions, types, and customizable animations.
+- [Toggle](https://reui.io/docs/base-toggle.md): Two-state button control for toggling features with customizable pressed and unpressed states.
+- [Toggle Group](https://reui.io/docs/base-toggle-group.md): Group of toggle buttons with shared state management and single or multiple selection modes.
+- [Toolbar](https://reui.io/docs/base-toolbar.md): Container component that groups a set of buttons and controls for organized tool layouts.
+- [Tooltip](https://reui.io/docs/base-tooltip.md): Contextual hint that appears on hover or focus with customizable positioning and delay.
+
+## Animated Components
+- [Marquee](https://reui.io/docs/marquee.md): Scrolling text and content display with customizable speed, direction, and seamless loop animations.
+- [GitHub Button](https://reui.io/docs/github-button.md): Interactive GitHub repository button with hover animations, star counts, and social integration features.
+- [Avatar Group](https://reui.io/docs/avatar-group.md): Multiple user avatar display with overlap animations, hover effects, and customizable stacking patterns.
+- [Typing Text](https://reui.io/docs/typing-text.md): Typewriter animation effect with customizable typing speed, cursor blinking, and character-by-character reveal.
+- [Word Rotate](https://reui.io/docs/word-rotate.md): Rotating text animation that cycles through multiple words with smooth transitions and customizable timing.
+- [Video Text](https://reui.io/docs/video-text.md): Video-based text effects using mask overlays and dynamic animations for immersive visual experiences.
+- [SVG Text](https://reui.io/docs/svg-text.md): Animated SVG text with path drawing effects, morphing transitions, and vector-based animations.
+- [Counting Number](https://reui.io/docs/counting-number.md): Animated number counter with easing functions, duration control, and smooth incremental transitions.
+- [Sliding Number](https://reui.io/docs/sliding-number.md): Smooth number transitions with vertical sliding animations and customizable slide direction effects.
+- [Shimmering Text](https://reui.io/docs/shimmering-text.md): Shimmer effect animation with customizable gradient colors, animation speed, and shimmer direction.
+- [Text Reveal](https://reui.io/docs/text-reveal.md): Text reveal animations triggered by scroll position with intersection observer and customizable reveal effects.
+- [Gradient Background](https://reui.io/docs/gradient-background.md): Animated gradient backgrounds with color transitions, movement effects, and customizable gradient patterns.
+- [Grid Background](https://reui.io/docs/grid-background.md): Animated grid patterns with customizable spacing, movement effects, and dynamic grid line animations.
+- [Hover Background](https://reui.io/docs/hover-background.md): Interactive backgrounds that respond to mouse movement, hover states, and cursor position with dynamic effects.
+

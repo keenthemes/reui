@@ -2,7 +2,16 @@ import { cn } from '@/registry/default/lib/utils';
 import { Field as BaseField } from '@base-ui-components/react/field';
 
 function Field({ className, ...props }: React.ComponentProps<typeof BaseField.Root>) {
-  return <BaseField.Root data-slot="field" className={cn('space-y-2', className)} {...props} />;
+  return (
+    <BaseField.Root
+      data-slot="field"
+      className={cn(
+        'flex flex-col gap-2 has-[[data-slot=field-error]]:[&_[data-slot=field-description]]:hidden',
+        className,
+      )}
+      {...props}
+    />
+  );
 }
 
 function FieldLabel({ className, ...props }: React.ComponentProps<typeof BaseField.Label>) {
@@ -19,7 +28,7 @@ function FieldError({ className, ...props }: React.ComponentProps<typeof BaseFie
   return (
     <BaseField.Error
       data-slot="field-error"
-      className={cn('-mt-0.5 text-xs font-normal text-destructive', className)}
+      className={cn('text-xs font-normal text-destructive', className)}
       {...props}
     />
   );
@@ -29,7 +38,7 @@ function FieldDescription({ className, ...props }: React.ComponentProps<typeof B
   return (
     <BaseField.Description
       data-slot="field-description"
-      className={cn('text-sm text-muted-foreground', className)}
+      className={cn('text-xs text-muted-foreground', className)}
       {...props}
     />
   );

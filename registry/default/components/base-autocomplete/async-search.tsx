@@ -4,13 +4,11 @@ import * as React from 'react';
 import {
   Autocomplete,
   AutocompleteClear,
+  AutocompleteContent,
   AutocompleteControl,
   AutocompleteInput,
   AutocompleteItem,
   AutocompleteList,
-  AutocompletePopup,
-  AutocompletePortal,
-  AutocompletePositioner,
   AutocompleteStatus,
 } from '@/registry/default/ui/base-autocomplete';
 import { Avatar, AvatarFallback, AvatarImage } from '@/registry/default/ui/base-avatar';
@@ -86,7 +84,7 @@ export default function AsyncSearchExample() {
   const shouldRenderPopup = searchValue !== '';
 
   return (
-    <div className="w-full max-w-md space-y-4">
+    <div className="w-full max-w-xs">
       <Autocomplete
         items={searchResults}
         value={searchValue}
@@ -102,36 +100,32 @@ export default function AsyncSearchExample() {
           </AutocompleteControl>
         </Label>
         {shouldRenderPopup && (
-          <AutocompletePortal>
-            <AutocompletePositioner sideOffset={4} align="start">
-              <AutocompletePopup>
-                <AutocompleteStatus>{status}</AutocompleteStatus>
-                <AutocompleteList>
-                  {(developer: Developer) => (
-                    <AutocompleteItem key={developer.id} value={developer} className="rounded-lg">
-                      <div className="flex items-center gap-2.5">
-                        <Avatar className="size-9">
-                          <AvatarImage src={developer.avatar} alt={developer.name} />
-                          <AvatarFallback>
-                            {developer.name
-                              .split(' ')
-                              .map((n) => n[0])
-                              .join('')}
-                          </AvatarFallback>
-                        </Avatar>
-                        <div className="flex-1 min-w-0">
-                          <div className="font-medium truncate">{developer.name}</div>
-                          <div className="text-sm text-muted-foreground truncate">
-                            {developer.role} • {developer.location}
-                          </div>
-                        </div>
+          <AutocompleteContent>
+            <AutocompleteStatus>{status}</AutocompleteStatus>
+            <AutocompleteList>
+              {(developer: Developer) => (
+                <AutocompleteItem key={developer.id} value={developer} className="rounded-lg">
+                  <div className="flex items-center gap-2.5 truncate">
+                    <Avatar className="size-9">
+                      <AvatarImage src={developer.avatar} alt={developer.name} />
+                      <AvatarFallback>
+                        {developer.name
+                          .split(' ')
+                          .map((n) => n[0])
+                          .join('')}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-medium truncate">{developer.name}</div>
+                      <div className="text-sm text-muted-foreground truncate">
+                        {developer.role} • {developer.location}
                       </div>
-                    </AutocompleteItem>
-                  )}
-                </AutocompleteList>
-              </AutocompletePopup>
-            </AutocompletePositioner>
-          </AutocompletePortal>
+                    </div>
+                  </div>
+                </AutocompleteItem>
+              )}
+            </AutocompleteList>
+          </AutocompleteContent>
         )}
       </Autocomplete>
     </div>

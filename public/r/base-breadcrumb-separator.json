@@ -2,8 +2,15 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "base-breadcrumb-separator",
   "type": "registry:component",
-  "dependencies": ["clsx", "tailwind-merge", "@base-ui-components/react", "lucide-react"],
-  "registryDependencies": ["https://reui.io/r/base-breadcrumb.json"],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "@base-ui-components/react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/base-breadcrumb.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/base-breadcrumb/separator.tsx",

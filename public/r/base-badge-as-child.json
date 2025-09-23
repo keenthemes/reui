@@ -2,8 +2,15 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "base-badge-as-child",
   "type": "registry:component",
-  "dependencies": ["clsx", "tailwind-merge", "@base-ui-components/react", "class-variance-authority"],
-  "registryDependencies": ["https://reui.io/r/base-badge.json"],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "@base-ui-components/react",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/base-badge.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/base-badge/as-child.tsx",

@@ -2,7 +2,14 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "area-chart-5",
   "type": "registry:block",
-  "dependencies": ["recharts@2.15.1", "clsx", "tailwind-merge", "class-variance-authority", "recharts", "radix-ui"],
+  "dependencies": [
+    "recharts@2.15.1",
+    "clsx",
+    "tailwind-merge",
+    "class-variance-authority",
+    "recharts",
+    "radix-ui"
+  ],
   "registryDependencies": [
     "https://reui.io/r/card.json",
     "https://reui.io/r/chart.json",

@@ -10,6 +10,7 @@ import { Check, Copy, LoaderCircleIcon, Moon, RotateCw, Sun } from 'lucide-react
 import { useTheme } from 'next-themes';
 import { trackCodeCopy, trackDirectionChange, trackViewChange } from '@/lib/analytics';
 import { CliCodeCopyButton } from './cli-code-copy-button';
+import { OpenInV0Button } from './open-in-v0-button';
 
 type themeType = 'dark' | 'light' | '';
 
@@ -185,6 +186,8 @@ function ComponentPreviewToolbar() {
           <RtlToggleButton />
           <ReloadButton />
           <PreviewCopyCodeButton />
+
+          {path && <OpenInV0Button name={path.replaceAll('/', '-')} />}
         </div>
       </div>
     </div>

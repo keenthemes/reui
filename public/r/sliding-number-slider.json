@@ -2,8 +2,16 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "sliding-number-slider",
   "type": "registry:component",
-  "dependencies": ["clsx", "tailwind-merge", "radix-ui", "framer-motion"],
-  "registryDependencies": ["https://reui.io/r/slider.json", "https://reui.io/r/sliding-number.json"],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "radix-ui",
+    "framer-motion"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/slider.json",
+    "https://reui.io/r/sliding-number.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/sliding-number/slider.tsx",

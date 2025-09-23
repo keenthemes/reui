@@ -1,43 +1,33 @@
 import {
   AlertDialog,
-  AlertDialogBackdrop,
+  AlertDialogAction,
   AlertDialogClose,
+  AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
-  AlertDialogPopup,
-  AlertDialogPortal,
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/registry/default/ui/base-alert-dialog';
 import { Button } from '@/registry/default/ui/button';
 
-export default function Component() {
+export default function BaseAlertDialogDefault() {
   return (
     <AlertDialog>
-      <AlertDialogTrigger asChild>
-        <Button variant="outline">Show dialog</Button>
-      </AlertDialogTrigger>
-      <AlertDialogPortal>
-        <AlertDialogBackdrop />
-        <AlertDialogPopup>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-            <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete your account and remove your data from our
-              servers.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogClose asChild>
-              <Button variant="outline">Cancel</Button>
-            </AlertDialogClose>
-            <AlertDialogClose asChild>
-              <Button variant="destructive">Continue</Button>
-            </AlertDialogClose>
-          </AlertDialogFooter>
-        </AlertDialogPopup>
-      </AlertDialogPortal>
+      <AlertDialogTrigger render={<Button variant="outline">Show dialog</Button>} />
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogDescription>
+            This action cannot be undone. This will permanently delete your account and remove your data from our
+            servers.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogClose>Cancel</AlertDialogClose>
+          <AlertDialogAction>Continue</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
     </AlertDialog>
   );
 }

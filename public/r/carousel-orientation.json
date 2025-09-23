@@ -10,7 +10,10 @@
     "radix-ui",
     "embla-carousel-react"
   ],
-  "registryDependencies": ["https://reui.io/r/card.json", "https://reui.io/r/carousel.json"],
+  "registryDependencies": [
+    "https://reui.io/r/card.json",
+    "https://reui.io/r/carousel.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/carousel/orientation.tsx",

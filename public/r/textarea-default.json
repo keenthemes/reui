@@ -2,8 +2,14 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "textarea-default",
   "type": "registry:component",
-  "dependencies": ["clsx", "tailwind-merge", "class-variance-authority"],
-  "registryDependencies": ["https://reui.io/r/textarea.json"],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/textarea.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/textarea/default.tsx",

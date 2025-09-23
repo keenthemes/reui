@@ -1,42 +1,32 @@
 import {
   AlertDialog,
-  AlertDialogBackdrop,
+  AlertDialogAction,
   AlertDialogClose,
+  AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
-  AlertDialogPopup,
-  AlertDialogPortal,
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/registry/default/ui/base-alert-dialog';
-import { Button } from '@/registry/default/ui/button';
+import { Button } from '@/registry/default/ui/base-button';
 
-export default function Component() {
+export default function BaseAlertDialogDestructive() {
   return (
     <AlertDialog>
-      <AlertDialogTrigger asChild>
-        <Button variant="destructive">Show dialog</Button>
-      </AlertDialogTrigger>
-      <AlertDialogPortal>
-        <AlertDialogBackdrop />
-        <AlertDialogPopup>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Discard draft?</AlertDialogTitle>
-            <AlertDialogDescription>
-              You can&apos;t undo this action. All unsaved changes will be lost.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogClose asChild>
-              <Button variant="outline">Cancel</Button>
-            </AlertDialogClose>
-            <AlertDialogClose asChild>
-              <Button variant="destructive">Discard</Button>
-            </AlertDialogClose>
-          </AlertDialogFooter>
-        </AlertDialogPopup>
-      </AlertDialogPortal>
+      <AlertDialogTrigger render={<Button variant="destructive">Show dialog</Button>} />
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Discard draft?</AlertDialogTitle>
+          <AlertDialogDescription>
+            You can&apos;t undo this action. All unsaved changes will be lost.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogClose>Cancel</AlertDialogClose>
+          <AlertDialogAction render={<Button variant="destructive">Discard</Button>} />
+        </AlertDialogFooter>
+      </AlertDialogContent>
     </AlertDialog>
   );
 }

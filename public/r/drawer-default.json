@@ -12,7 +12,10 @@
     "vaul",
     "recharts"
   ],
-  "registryDependencies": ["https://reui.io/r/button.json", "https://reui.io/r/drawer.json"],
+  "registryDependencies": [
+    "https://reui.io/r/button.json",
+    "https://reui.io/r/drawer.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/drawer/default.tsx",

@@ -2,43 +2,24 @@
 
 import * as React from 'react';
 import { cn } from '@/registry/default/lib/utils';
-import { AlertDialog } from '@base-ui-components/react/alert-dialog';
+import { buttonVariants } from '@/registry/default/ui/base-button';
+import { AlertDialog as AlertDialogPrimitive } from '@base-ui-components/react/alert-dialog';
+import { X } from 'lucide-react';
 
 // Base UI Alert Dialog Root
-function AlertDialogRoot({ ...props }: React.ComponentProps<typeof AlertDialog.Root>) {
-  return <AlertDialog.Root data-slot="alert-dialog" {...props} />;
+function AlertDialog({ ...props }: React.ComponentProps<typeof AlertDialogPrimitive.Root>) {
+  return <AlertDialogPrimitive.Root data-slot="alert-dialog" {...props} />;
 }
 
-// Base UI Alert Dialog Trigger with asChild support
-function AlertDialogTrigger({
-  asChild = false,
-  children,
-  ...props
-}: React.ComponentProps<typeof AlertDialog.Trigger> & { asChild?: boolean }) {
-  const triggerProps = {
-    'data-slot': 'alert-dialog-trigger' as const,
-    ...props,
-    ...(asChild && {
-      render: children as React.ReactElement<Record<string, unknown>, string | React.JSXElementConstructor<unknown>>,
-    }),
-  };
-
-  return asChild ? (
-    <AlertDialog.Trigger {...triggerProps} />
-  ) : (
-    <AlertDialog.Trigger {...triggerProps}>{children}</AlertDialog.Trigger>
-  );
-}
-
-// Base UI Alert Dialog Portal
-function AlertDialogPortal({ ...props }: React.ComponentProps<typeof AlertDialog.Portal>) {
-  return <AlertDialog.Portal data-slot="alert-dialog-portal" {...props} />;
+// Base UI Alert Dialog Trigger
+function AlertDialogTrigger(props: React.ComponentProps<typeof AlertDialogPrimitive.Trigger>) {
+  return <AlertDialogPrimitive.Trigger data-slot="alert-dialog-trigger" {...props} />;
 }
 
 // Base UI Alert Dialog Backdrop
-function AlertDialogBackdrop({ className, ...props }: React.ComponentProps<typeof AlertDialog.Backdrop>) {
+function AlertDialogBackdrop({ className, ...props }: React.ComponentProps<typeof AlertDialogPrimitive.Backdrop>) {
   return (
-    <AlertDialog.Backdrop
+    <AlertDialogPrimitive.Backdrop
       data-slot="alert-dialog-backdrop"
       className={cn(
         'fixed inset-0 z-50 bg-black/30 [backdrop-filter:blur(4px)] transition-all duration-150 data-[ending-style]:opacity-0 data-[starting-style]:opacity-0',
@@ -49,10 +30,15 @@ function AlertDialogBackdrop({ className, ...props }: React.ComponentProps<typeo
   );
 }
 
+// Base UI Alert Dialog Portal
+function AlertDialogPortal(props: React.ComponentProps<typeof AlertDialogPrimitive.Portal>) {
+  return <AlertDialogPrimitive.Portal data-slot="alert-dialog-portal" {...props} />;
+}
+
 // Base UI Alert Dialog Popup
-function AlertDialogPopup({ className, ...props }: React.ComponentProps<typeof AlertDialog.Popup>) {
+function AlertDialogPopup({ className, ...props }: React.ComponentProps<typeof AlertDialogPrimitive.Popup>) {
   return (
-    <AlertDialog.Popup
+    <AlertDialogPrimitive.Popup
       data-slot="alert-dialog-popup"
       className={cn(
         'fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg shadow-black/5 transition-all duration-150 data-[ending-style]:scale-90 data-[ending-style]:opacity-0 data-[starting-style]:scale-90 data-[starting-style]:opacity-0 sm:rounded-lg',
@@ -60,6 +46,33 @@ function AlertDialogPopup({ className, ...props }: React.ComponentProps<typeof A
       )}
       {...props}
     />
+  );
+}
+
+// Base UI Alert Dialog Content
+function AlertDialogContent({
+  className,
+  children,
+  showDismissButton = false,
+  showBackdrop = true,
+  ...props
+}: React.ComponentProps<typeof AlertDialogPrimitive.Popup> & { showDismissButton?: boolean; showBackdrop?: boolean }) {
+  return (
+    <AlertDialogPortal>
+      {showBackdrop && <AlertDialogBackdrop />}
+      <AlertDialogPopup className={className} {...props}>
+        {children}
+        {showDismissButton && (
+          <AlertDialogPrimitive.Close
+            data-slot="alert-dialog-dismiss"
+            className={cn(buttonVariants({ variant: 'dim', size: 'sm' }), 'absolute top-2.5 end-2.5', className)}
+          >
+            <X />
+            <span className="sr-only">Close</span>
+          </AlertDialogPrimitive.Close>
+        )}
+      </AlertDialogPopup>
+    </AlertDialogPortal>
   );
 }
 
@@ -82,16 +95,23 @@ const AlertDialogFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDiv
 );
 
 // Base UI Alert Dialog Title
-function AlertDialogTitle({ className, ...props }: React.ComponentProps<typeof AlertDialog.Title>) {
+function AlertDialogTitle({ className, ...props }: React.ComponentProps<typeof AlertDialogPrimitive.Title>) {
   return (
-    <AlertDialog.Title data-slot="alert-dialog-title" className={cn('text-lg font-semibold', className)} {...props} />
+    <AlertDialogPrimitive.Title
+      data-slot="alert-dialog-title"
+      className={cn('flex items-center gap-2.5 text-lg font-semibold', className)}
+      {...props}
+    />
   );
 }
 
 // Base UI Alert Dialog Description
-function AlertDialogDescription({ className, ...props }: React.ComponentProps<typeof AlertDialog.Description>) {
+function AlertDialogDescription({
+  className,
+  ...props
+}: React.ComponentProps<typeof AlertDialogPrimitive.Description>) {
   return (
-    <AlertDialog.Description
+    <AlertDialogPrimitive.Description
       data-slot="alert-dialog-description"
       className={cn('text-sm text-muted-foreground', className)}
       {...props}
@@ -99,38 +119,38 @@ function AlertDialogDescription({ className, ...props }: React.ComponentProps<ty
   );
 }
 
-// Base UI Alert Dialog Close (generic) with asChild support
-function AlertDialogClose({
-  asChild = false,
-  className,
-  children,
-  ...props
-}: React.ComponentProps<typeof AlertDialog.Close> & { asChild?: boolean }) {
-  const closeProps = {
-    'data-slot': 'alert-dialog-close' as const,
-    className: cn(className),
-    ...props,
-    ...(asChild && {
-      render: children as React.ReactElement<Record<string, unknown>, string | React.JSXElementConstructor<unknown>>,
-    }),
-  };
+// Base UI Alert Dialog Action (generic) with asChild support
+function AlertDialogAction({ className, ...props }: React.ComponentProps<typeof AlertDialogPrimitive.Close>) {
+  return (
+    <AlertDialogPrimitive.Close
+      data-slot="alert-dialog-action"
+      className={cn(!props.render && buttonVariants(), className)}
+      {...props}
+    />
+  );
+}
 
-  return asChild ? (
-    <AlertDialog.Close {...closeProps} />
-  ) : (
-    <AlertDialog.Close {...closeProps}>{children}</AlertDialog.Close>
+// Base UI Alert Dialog Close (generic close button)
+function AlertDialogClose({ className, ...props }: React.ComponentProps<typeof AlertDialogPrimitive.Close>) {
+  return (
+    <AlertDialogPrimitive.Close
+      data-slot="alert-dialog-close"
+      className={cn(!props.render && buttonVariants({ variant: 'outline' }), className)}
+      {...props}
+    />
   );
 }
 
 // Exports with proper naming to match Base UI pattern
 export {
-  AlertDialogRoot as AlertDialog,
+  AlertDialog,
   AlertDialogTrigger,
   AlertDialogPortal,
   AlertDialogBackdrop,
-  AlertDialogPopup,
+  AlertDialogContent,
   AlertDialogTitle,
   AlertDialogDescription,
+  AlertDialogAction,
   AlertDialogClose,
   AlertDialogHeader,
   AlertDialogFooter,

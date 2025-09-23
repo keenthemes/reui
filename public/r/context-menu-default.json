@@ -2,8 +2,13 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "context-menu-default",
   "type": "registry:component",
-  "dependencies": ["@radix-ui/react-context-menu", "lucide-react"],
-  "registryDependencies": ["https://reui.io/r/context-menu.json"],
+  "dependencies": [
+    "@radix-ui/react-context-menu",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://reui.io/r/context-menu.json"
+  ],
   "files": [
     {
       "path": "registry/default/components/context-menu/default.tsx",

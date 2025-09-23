@@ -2,7 +2,13 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "base-button",
   "type": "registry:ui",
-  "dependencies": ["@base-ui-components/react", "clsx", "tailwind-merge", "class-variance-authority", "lucide-react"],
+  "dependencies": [
+    "@base-ui-components/react",
+    "clsx",
+    "tailwind-merge",
+    "class-variance-authority",
+    "lucide-react"
+  ],
   "files": [
     {
       "path": "registry/default/ui/base-button.tsx",

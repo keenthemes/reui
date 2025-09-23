@@ -6,23 +6,16 @@ export interface DocsConfig {
   footerNav: FooterNavItem[];
 }
 
-export const docsConfig: DocsConfig = {
+export const componentsConfig: DocsConfig = {
   mainNav: [
     {
       title: 'Components',
       href: '/',
     },
-
     {
       title: 'UI Blocks',
       href: '/blocks',
     },
-    /*
-    {
-      title: 'Themes',
-      href: '/themes',
-    },
-    */
     {
       title: 'Docs',
       href: '/docs',
@@ -50,14 +43,6 @@ export const docsConfig: DocsConfig = {
           href: '/docs/installation',
           items: [],
         },
-        /*
-        {
-          title: 'MCP',
-          href: '/docs/mcp',
-          
-          items: [],
-        },
-        */
         {
           title: 'Theming',
           href: '/docs/theming',
@@ -357,7 +342,6 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Kanban',
           href: '/docs/kanban',
-          new: true,
         },
         {
           title: 'Kbd',
@@ -412,7 +396,6 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Rating',
           href: '/docs/rating',
-          new: true,
         },
         {
           title: 'Scroll Area',
@@ -488,7 +471,6 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Sortable',
           href: '/docs/sortable',
-          new: true,
         },
         {
           title: 'Switch',
@@ -539,7 +521,7 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Tag',
           href: '/docs/tag',
-          new: true,
+          
         },
         */
         {
@@ -577,68 +559,144 @@ export const docsConfig: DocsConfig = {
         {
           title: 'Accordion',
           href: '/docs/base-accordion',
-          new: true,
         },
         {
           title: 'Alert Dialog',
           href: '/docs/base-alert-dialog',
-          new: true,
         },
         {
           title: 'Autocomplete',
           href: '/docs/base-autocomplete',
-          new: true,
         },
         {
           title: 'Avatar',
           href: '/docs/base-avatar',
-          new: true,
         },
         {
           title: 'Badge',
           href: '/docs/base-badge',
-          new: true,
         },
         {
           title: 'Breadcrumb',
           href: '/docs/base-breadcrumb',
-          new: true,
         },
         {
           title: 'Button',
           href: '/docs/base-button',
-          new: true,
         },
         {
           title: 'Checkbox',
           href: '/docs/base-checkbox',
-          new: true,
         },
         {
           title: 'Collapsible',
           href: '/docs/base-collapsible',
-          new: true,
+        },
+        {
+          title: 'Combobox',
+          href: '/docs/base-combobox',
+        },
+        {
+          title: 'Context Menu',
+          href: '/docs/base-context-menu',
+        },
+        {
+          title: 'Dialog',
+          href: '/docs/base-dialog',
         },
         {
           title: 'Input',
           href: '/docs/base-input',
-          new: true,
         },
         {
           title: 'Menu',
           href: '/docs/base-menu',
-          new: true,
         },
         {
           title: 'Menubar',
           href: '/docs/base-menubar',
-          new: true,
+        },
+        {
+          title: 'Meter',
+          href: '/docs/base-meter',
+        },
+        {
+          title: 'Navigation Menu',
+          href: '/docs/base-navigation-menu',
+        },
+        {
+          title: 'Number Field',
+          href: '/docs/base-number-field',
+        },
+        {
+          title: 'Popover',
+          href: '/docs/base-popover',
+        },
+        {
+          title: 'Preview Card',
+          href: '/docs/base-preview-card',
+        },
+        {
+          title: 'Progress',
+          href: '/docs/base-progress',
+        },
+        {
+          title: 'Phone Input',
+          href: '/docs/base-phone-input',
+        },
+        {
+          title: 'Radio Group',
+          href: '/docs/base-radio-group',
+        },
+        {
+          title: 'Select',
+          href: '/docs/base-select',
+        },
+        {
+          title: 'Switch',
+          href: '/docs/base-switch',
+        },
+        {
+          title: 'Scroll Area',
+          href: '/docs/base-scroll-area',
+        },
+        {
+          title: 'Slider',
+          href: '/docs/base-slider',
+        },
+        {
+          title: 'Sheet',
+          href: '/docs/base-sheet',
+        },
+        {
+          title: 'Tabs',
+          href: '/docs/base-tabs',
+        },
+        {
+          title: 'Toast',
+          href: '/docs/base-toast',
+        },
+        {
+          title: 'Toggle',
+          href: '/docs/base-toggle',
+        },
+        {
+          title: 'Toggle Group',
+          href: '/docs/base-toggle-group',
+        },
+        {
+          title: 'Toolbar',
+          href: '/docs/base-toolbar',
+        },
+        {
+          title: 'Tooltip',
+          href: '/docs/base-tooltip',
         },
       ],
     },
 
     {
-      title: 'Special Effects',
+      title: 'Animated Components',
       items: [
         {
           title: 'Marquee',
@@ -652,11 +710,6 @@ export const docsConfig: DocsConfig = {
           title: 'Avatar Group',
           href: '/docs/avatar-group',
         },
-      ],
-    },
-    {
-      title: 'Text Animations',
-      items: [
         {
           title: 'Typing Text',
           href: '/docs/typing-text',
@@ -689,11 +742,6 @@ export const docsConfig: DocsConfig = {
           title: 'Text Reveal',
           href: '/docs/text-reveal',
         },
-      ],
-    },
-    {
-      title: 'Background Effects',
-      items: [
         {
           title: 'Gradient Background',
           href: '/docs/gradient-background',

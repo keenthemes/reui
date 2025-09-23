@@ -10,6 +10,7 @@ import { siteConfig } from '@/config/site';
 import { resolveCode, resolveComponent } from '@/lib/docs';
 import { absoluteUrl } from '@/lib/helpers';
 import { getTableOfContents } from '@/lib/toc';
+import { DocsCopyPage } from '@/components/docs-copy-page';
 import { Mdx } from '@/components/mdx-components';
 import { DocsPager } from '@/components/pager';
 import { DashboardTableOfContents } from '@/components/toc';
@@ -82,18 +83,26 @@ export default async function DocPage({ params }: DocPageProps) {
   return (
     <main className="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_250px]">
       <div className="mx-auto w-full min-w-0 max-w-3xl">
-        <div className="mb-2.5 flex items-center space-x-1 text-sm leading-none text-muted-foreground">
-          <div className="text-primary font-medium">{doc.component ? 'Components' : 'Getting Started'}</div>
+        <div className="space-y-2.5">
+          <div className="flex items-center justify-between gap-2.5">
+            <div className="mb-2.5 flex flex-col items-start space-y-1">
+              <div className="text-sm  text-primary font-medium">
+                {doc.component ? 'Components' : 'Getting Started'}
+              </div>
+              <h1 className={cn('text-3xl font-semibold tracking-tight text-foreground')}>{doc.title}</h1>
+            </div>
+            <DocsCopyPage page={doc.body.raw} url={(doc.slug === '/docs' || doc.slug === '/docs/') ? '/docs/index' : doc.slug} />
+          </div>
+          <div className="space-y-2">
+            {doc.description && (
+              <p className="text-base text-secondary-foreground/60">
+                <span dangerouslySetInnerHTML={{ __html: doc.description }} />
+                <Balancer></Balancer>
+              </p>
+            )}
+          </div>
         </div>
-        <div className="space-y-2">
-          <h1 className={cn('scroll-m-20 text-3xl font-semibold tracking-tight')}>{doc.title}</h1>
-          {doc.description && (
-            <p className="text-base text-secondary-foreground/60">
-              <span dangerouslySetInnerHTML={{ __html: doc.description }} />
-              <Balancer></Balancer>
-            </p>
-          )}
-        </div>
+
         {doc.links ? (
           <div className="flex items-center space-x-2 pt-3">
             {/* Render documentation links */}

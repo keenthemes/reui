@@ -2,7 +2,11 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "base-label",
   "type": "registry:ui",
-  "dependencies": ["clsx", "tailwind-merge", "class-variance-authority"],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "class-variance-authority"
+  ],
   "files": [
     {
       "path": "registry/default/ui/base-label.tsx",
