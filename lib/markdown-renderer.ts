@@ -16,7 +16,7 @@ export function convertMdxToMarkdown(content: string): string {
     // Convert <Steps> to numbered list
     .replace(/<Steps>([\s\S]*?)<\/Steps>/g, (match, content) => {
       const steps = content.split(/###/).filter(Boolean);
-      return steps.map((step, index) => `### ${index + 1}. ${step.trim()}`).join('\n\n');
+      return steps.map((step: string, index: number) => `### ${index + 1}. ${step.trim()}`).join('\n\n');
     })
     // Convert <AlertIcon> and <AlertTitle> to simple text
     .replace(/<AlertIcon>[\s\S]*?<\/AlertIcon>/g, '')

@@ -74,7 +74,7 @@ export function SiteSubscribe() {
         },
       });
 
-      const res = await fetch('/subscribe', {
+      const res = await fetch('/api/subscribe', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

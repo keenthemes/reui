@@ -14,7 +14,7 @@
   "files": [
     {
       "path": "registry/default/components/base-toggle-group/single.tsx",
-      "content": "import { useState } from 'react';\nimport { ToggleGroup, ToggleGroupItem } from '@/registry/default/ui/base-toggle-group';\n\nexport default function TabsDemo() {\n  const [value, setValue] = useState('1W');\n\n  return (\n    <ToggleGroup\n      toggleMultiple={false}\n      value={value}\n      onValueChange={(newValue) => {\n        if (newValue) setValue(newValue);\n      }}\n    >\n      <ToggleGroupItem value=\"1D\">1D</ToggleGroupItem>\n      <ToggleGroupItem value=\"1W\">1W</ToggleGroupItem>\n      <ToggleGroupItem value=\"1M\">1M</ToggleGroupItem>\n      <ToggleGroupItem value=\"6M\">6M</ToggleGroupItem>\n      <ToggleGroupItem value=\"1Y\">1Y</ToggleGroupItem>\n    </ToggleGroup>\n  );\n}\n",
+      "content": "import { useState } from 'react';\nimport { ToggleGroup, ToggleGroupItem } from '@/registry/default/ui/base-toggle-group';\n\nexport default function TabsDemo() {\n  const [value, setValue] = useState('1W');\n\n  return (\n    <ToggleGroup\n      toggleMultiple={false}\n      value={[value]}\n      onValueChange={(newValue) => {\n        if (newValue) setValue(newValue[0]);\n      }}\n    >\n      <ToggleGroupItem value=\"1D\">1D</ToggleGroupItem>\n      <ToggleGroupItem value=\"1W\">1W</ToggleGroupItem>\n      <ToggleGroupItem value=\"1M\">1M</ToggleGroupItem>\n      <ToggleGroupItem value=\"6M\">6M</ToggleGroupItem>\n      <ToggleGroupItem value=\"1Y\">1Y</ToggleGroupItem>\n    </ToggleGroup>\n  );\n}\n",
       "type": "registry:component"
     },
     {

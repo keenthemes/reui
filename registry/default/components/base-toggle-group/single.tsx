@@ -7,9 +7,9 @@ export default function TabsDemo() {
   return (
     <ToggleGroup
       toggleMultiple={false}
-      value={value}
+      value={[value]}
       onValueChange={(newValue) => {
-        if (newValue) setValue(newValue);
+        if (newValue) setValue(newValue[0]);
       }}
     >
       <ToggleGroupItem value="1D">1D</ToggleGroupItem>
