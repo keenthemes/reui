@@ -10,14 +10,11 @@ import {
 import { Popover, PopoverAnchor, PopoverContent, PopoverTrigger } from '@/registry/default/ui/popover';
 import { Separator } from '@/registry/default/ui/separator';
 import { IconCheck, IconChevronDown, IconCopy } from '@tabler/icons-react';
-import { toAbsoluteUrl } from '@/lib/helpers';
 import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard';
 
 function getPromptUrl(baseURL: string, url: string) {
   return `${baseURL}?q=${encodeURIComponent(
-    `I’m looking at this ReUI documentation: ${toAbsoluteUrl(url)}.
-Help me understand how to use it. Be ready to explain concepts, give examples, or help debug based on it.
-  `,
+    `I’m looking at this ReUI documentation: https://reui.io${url}. Help me understand how to use it. Be ready to explain concepts, give examples, or help debug based on it.`,
   )}`;
 }
 

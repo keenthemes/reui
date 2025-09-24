@@ -51,6 +51,16 @@ export const sitemapConfig: SitemapConfig = {
           description: 'Step-by-step guide to install ReUI in your React project with npm, yarn, or pnpm.',
         },
         {
+          title: 'Registry',
+          href: '/docs/registry',
+          description: 'Learn how to use the ReUI Registry with shadcn/ui.',
+        },
+        {
+          title: 'MCP',
+          href: '/docs/mcp',
+          description: 'Learn how to use the shadcn MCP(Model Context Protocol) with ReUI',
+        },
+        {
           title: 'Theming',
           href: '/docs/theming',
           description:
