@@ -25,7 +25,7 @@ export function MainNav() {
   };
 
   return (
-    <div className="itesm-center justify-center mr-4 hidden md:flex">
+    <div className="itesm-center justify-center mr-4 hidden lg:flex">
       <nav className="flex items-center gap-4 text-sm font-medium xl:gap-6">
         {sitemapConfig.mainNav.map((item: MainNavItem) => (
           <Link
