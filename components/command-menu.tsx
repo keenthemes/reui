@@ -76,7 +76,7 @@ export function CommandMenu({ ...props }: DialogProps) {
         variant="outline"
         mode="input"
         size="sm"
-        className={cn('h-8 relative py-0 pl-2 sm:pr-12 sm:w-40 lg:w-48')}
+        className={cn('h-8 relative py-0 pl-2 sm:pr-12 sm:w-40 xl:w-48')}
         onClick={() => {
           setOpen(true);
           trackEvent({
