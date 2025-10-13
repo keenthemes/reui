@@ -26,7 +26,7 @@ export function MobileNav() {
   );
 
   return (
-    <div className="flex md:hidden items-center gap-1.5">
+    <div className="flex lg:hidden items-center gap-1.5">
       <Drawer open={open} onOpenChange={onOpenChange}>
         <DrawerTrigger asChild>
           <Button variant="ghost" className="size-8 p-0 -ms-2.5">

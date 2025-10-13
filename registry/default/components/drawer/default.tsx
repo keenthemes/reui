@@ -109,7 +109,7 @@ export default function Component() {
                     dataKey="goal"
                     style={
                       {
-                        fill: 'hsl(var(--foreground))',
+                        fill: 'var(--foreground)',
                         opacity: 0.9,
                       } as React.CSSProperties
                     }

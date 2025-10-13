@@ -64,21 +64,21 @@ export function SiteHeader() {
       >
         <MobileNav />
 
-        <div className="hidden md:flex items-center gap-3.5">
+        <div className="hidden lg:flex items-center gap-3.5">
           <Link href="/" className="mr-10 flex items-center gap-2">
             <Image
               src="/brand/logo-text-light.svg"
               alt={siteConfig.name}
               width={75}
               height={0}
-              className="dark:hidden"
+              className="dark:hidden shrink-0"
             />
             <Image
               src="/brand/logo-text-dark.svg"
               alt={siteConfig.name}
               width={75}
               height={0}
-              className="hidden dark:inline-block"
+              className="hidden dark:inline-block shrink-0"
             />
           </Link>
           <MainNav />

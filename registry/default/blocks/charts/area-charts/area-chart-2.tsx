@@ -221,54 +221,30 @@ export default function AreaChart2() {
                   {/* Diagonal grid lines */}
                   <path
                     d="M0,16 L32,16 M16,0 L16,32"
-                    stroke="hsl(var(--muted-foreground))"
+                    stroke="var(--muted-foreground)"
                     strokeWidth="0.5"
                     strokeOpacity="0.03"
                   />
                   <path
                     d="M0,0 L32,32 M0,32 L32,0"
-                    stroke="hsl(var(--muted-foreground))"
+                    stroke="var(--muted-foreground)"
                     strokeWidth="0.3"
                     strokeOpacity="0.02"
                   />
 
                   {/* Modern geometric elements */}
-                  <circle cx="8" cy="8" r="1.5" fill="hsl(var(--muted-foreground))" fillOpacity="0.04" />
-                  <circle cx="24" cy="24" r="1.5" fill="hsl(var(--muted-foreground))" fillOpacity="0.04" />
+                  <circle cx="8" cy="8" r="1.5" fill="var(--muted-foreground)" fillOpacity="0.04" />
+                  <circle cx="24" cy="24" r="1.5" fill="var(--muted-foreground)" fillOpacity="0.04" />
 
                   {/* Abstract rounded rectangles */}
-                  <rect
-                    x="12"
-                    y="4"
-                    width="8"
-                    height="2"
-                    rx="1"
-                    fill="hsl(var(--muted-foreground))"
-                    fillOpacity="0.02"
-                  />
-                  <rect
-                    x="4"
-                    y="26"
-                    width="8"
-                    height="2"
-                    rx="1"
-                    fill="hsl(var(--muted-foreground))"
-                    fillOpacity="0.02"
-                  />
-                  <rect
-                    x="20"
-                    y="12"
-                    width="2"
-                    height="8"
-                    rx="1"
-                    fill="hsl(var(--muted-foreground))"
-                    fillOpacity="0.02"
-                  />
+                  <rect x="12" y="4" width="8" height="2" rx="1" fill="var(--muted-foreground)" fillOpacity="0.02" />
+                  <rect x="4" y="26" width="8" height="2" rx="1" fill="var(--muted-foreground)" fillOpacity="0.02" />
+                  <rect x="20" y="12" width="2" height="8" rx="1" fill="var(--muted-foreground)" fillOpacity="0.02" />
 
                   {/* Minimal dots */}
-                  <circle cx="6" cy="20" r="0.5" fill="hsl(var(--muted-foreground))" fillOpacity="0.06" />
-                  <circle cx="26" cy="10" r="0.5" fill="hsl(var(--muted-foreground))" fillOpacity="0.06" />
-                  <circle cx="14" cy="28" r="0.5" fill="hsl(var(--muted-foreground))" fillOpacity="0.06" />
+                  <circle cx="6" cy="20" r="0.5" fill="var(--muted-foreground)" fillOpacity="0.06" />
+                  <circle cx="26" cy="10" r="0.5" fill="var(--muted-foreground)" fillOpacity="0.06" />
+                  <circle cx="14" cy="28" r="0.5" fill="var(--muted-foreground)" fillOpacity="0.06" />
                 </pattern>
 
                 <linearGradient id="fillStoreVisits" x1="0" y1="0" x2="0" y2="1">
