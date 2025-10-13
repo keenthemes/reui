@@ -1781,29 +1781,22 @@ export function Filters<T = unknown>({
 
       const defaultOperator = field.type === 'multiselect' ? 'is_any_of' : 'is';
 
-      // If allowMultiple is true, always create a new filter
-      if (allowMultiple) {
+      // Check if there's already a filter for this field
+      const existingFilterIndex = filters.findIndex((f) => f.field === field.key);
+
+      if (existingFilterIndex >= 0) {
+        // Update existing filter
+        const updatedFilters = [...filters];
+        updatedFilters[existingFilterIndex] = {
+          ...updatedFilters[existingFilterIndex],
+          values: values as T[],
+        };
+        onChange(updatedFilters);
+      } else {
+        // Create new filter
         const newFilter = createFilter<T>(field.key, defaultOperator, values as T[]);
         const newFilters = [...filters, newFilter];
         onChange(newFilters);
-      } else {
-        // Check if there's already a filter for this field
-        const existingFilterIndex = filters.findIndex((f) => f.field === field.key);
-
-        if (existingFilterIndex >= 0 && field.type === 'multiselect') {
-          // Update existing multiselect filter
-          const updatedFilters = [...filters];
-          updatedFilters[existingFilterIndex] = {
-            ...updatedFilters[existingFilterIndex],
-            values: values as T[],
-          };
-          onChange(updatedFilters);
-        } else {
-          // Create new filter
-          const newFilter = createFilter<T>(field.key, defaultOperator, values as T[]);
-          const newFilters = [...filters, newFilter];
-          onChange(newFilters);
-        }
       }
 
       if (closePopover) {
@@ -1815,7 +1808,7 @@ export function Filters<T = unknown>({
         setTempSelectedValues(values as unknown[]);
       }
     },
-    [filters, onChange, allowMultiple],
+    [filters, onChange],
   );
 
   const selectableFields = useMemo(() => {
