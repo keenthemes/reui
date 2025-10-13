@@ -3,6 +3,18 @@ title: Changelog
 description: Latest updates and announcements.
 ---
 
+## v1.0.27 - 14 October, 2025.
+
+**UI Components:**
+
+- Added Filters Component - [Preview](/docs/filters).
+- Updated Kbd Component - [Preview](/docs/kbd).
+- Updated Tooltip Component - [Preview](/docs/tooltip).
+- Updated Button Component - [Preview](/docs/button).
+- Updated Input Component - [Preview](/docs/input).
+- Updated Base UI Button Component - [Preview](/docs/base-button).
+- Updated Base UI Input Component - [Preview](/docs/base-input).
+
 ## v1.0.26 - 23 September, 2025.
 
 **UI Components:**

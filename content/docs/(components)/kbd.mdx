@@ -23,15 +23,6 @@ component: true
 <Steps>
 
 <Step>
-Install the following dependencies:
-
-```bash
-npm i @reui/ui
-```
-
-</Step>
-
-<Step>
 Copy and paste the following code into your project’s `components/ui/kbd.tsx` file.
 
 <ComponentPreview name="kbd" />
@@ -46,28 +37,6 @@ Copy and paste the following code into your project’s `components/ui/kbd.tsx` 
 
 ## Examples
 
-### Outline
+### Tooltip
 
-<ExamplePreview path="kbd/outline" />
-
-### Size
-
-<ExamplePreview path="kbd/size" />
-
-## API Reference
-
-This component provides a customizable keyboard input display with various styles and sizes.
-
-### Kbd
-
-This component is a custom implementation that displays keyboard inputs with the following props:
-
-| **Prop**                                                                             | **Type**                                                              | **Default** |
-| ------------------------------------------------------------------------------------ | --------------------------------------------------------------------- | ----------- |
-| `variant` <PopoverInfo>The visual style variant of the keyboard input.</PopoverInfo> | ~enum~ <PopoverInfo> "default" \| "solid" \| "outline" </PopoverInfo> | ~"default"~ |
-| `size` <PopoverInfo>The size of the keyboard input display.</PopoverInfo>            | ~enum~ <PopoverInfo> "md" \| "sm" \| "xs" </PopoverInfo>              | ~"md"~      |
-| `className` <PopoverInfo>Additional class names for styling.</PopoverInfo>           | ~string~                                                              | <Na/>       |
-
-## Credits
-
-- Built with [Radix UI Slot](https://www.radix-ui.com/primitives/docs/utilities/slot).
+<ExamplePreview path="kbd/tooltip" />

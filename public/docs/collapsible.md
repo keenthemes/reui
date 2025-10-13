@@ -6,10 +6,11 @@ component: true
 
 ## Installation
 
-  CLI
-  Manual
+CLI
+Manual
 
-### 1. 
+### 1.
+
 Install the following dependencies:
 
 ```bash
@@ -30,17 +31,17 @@ This component provides a customizable collapsible system with various styles an
 
 This component is based on the [Collapsible.Root](https://www.radix-ui.com/primitives/docs/components/collapsible#root) primitive and includes the following custom props:
 
-| **Prop**                                                                                             | **Type** | **Default** |
-| ---------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `className` Additional class names for styling the collapsible container. | ~string~ |        |
+| **Prop**                                                                  | **Type** | **Default** |
+| ------------------------------------------------------------------------- | -------- | ----------- |
+| `className` Additional class names for styling the collapsible container. | ~string~ |             |
 
 ### CollapsibleContent
 
 This component is based on the [Collapsible.Content](https://www.radix-ui.com/primitives/docs/components/collapsible#content) primitive and includes the following custom props:
 
-| **Prop**                                                                                           | **Type** | **Default** |
-| -------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `className` Additional class names for styling the collapsible content. | ~string~ |        |
+| **Prop**                                                                | **Type** | **Default** |
+| ----------------------------------------------------------------------- | -------- | ----------- |
+| `className` Additional class names for styling the collapsible content. | ~string~ |             |
 
 ## Credits
 

@@ -6,10 +6,11 @@ component: true
 
 ## Installation
 
-  CLI
-  Manual
+CLI
+Manual
 
-### 1. 
+### 1.
+
 Install the following dependencies:
 
 ```bash
@@ -26,11 +27,11 @@ This component is built using [Radix UI Scroll Area](https://www.radix-ui.com/pr
 
 This component is based on the [ScrollArea.Root](https://www.radix-ui.com/primitives/docs/components/scroll-area#root) primitive and includes the following custom props:
 
-| **Prop**                                                                                             | **Type**                      | **Default** |
-| ---------------------------------------------------------------------------------------------------- | ----------------------------- | ----------- |
-| `viewportRef` Reference to the viewport element.                          | ~React.Ref\~ |        |
-| `viewportClassName` Additional class names for styling the viewport.      | ~string~                      |        |
-| `className` Additional class names for styling the scroll area container. | ~string~                      |        |
+| **Prop**                                                                  | **Type**     | **Default** |
+| ------------------------------------------------------------------------- | ------------ | ----------- |
+| `viewportRef` Reference to the viewport element.                          | ~React.Ref\~ |             |
+| `viewportClassName` Additional class names for styling the viewport.      | ~string~     |             |
+| `className` Additional class names for styling the scroll area container. | ~string~     |             |
 
 ## Credits
 

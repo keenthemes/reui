@@ -4,10 +4,10 @@ import { CalendarCheck } from 'lucide-react';
 export default function ButtonDemo() {
   return (
     <div className="flex items-center gap-4">
-      <Button variant="outline" shape="circle">
+      <Button variant="outline" radius="full">
         Circle button
       </Button>
-      <Button variant="outline" shape="circle" mode="icon">
+      <Button variant="outline" radius="full" mode="icon">
         <CalendarCheck />
       </Button>
     </div>

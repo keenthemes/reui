@@ -24,8 +24,8 @@ const inputVariants = cva(
     variants: {
       variant: {
         lg: 'py-1 min-h-10 px-4 text-sm rounded-md [&~[data-slot=combobox-icon]]:end-2.5 [&~[data-slot=combobox-clear]]:end-7',
-        md: 'py-1 min-h-8.5 px-3 text-[0.8125rem] leading-(--text-sm--line-height) rounded-md [&~[data-slot=combobox-icon]]:end-2 [&~[data-slot=combobox-clear]]:end-6',
-        sm: 'py-0.5 min-h-7 px-2.5 text-xs rounded-md [&~[data-slot=combobox-icon]]:end-1.75 [&~[data-slot=combobox-clear]]:end-5.75',
+        md: 'py-1 min-h-9 px-3 text-sm rounded-md [&~[data-slot=combobox-icon]]:end-2 [&~[data-slot=combobox-clear]]:end-6',
+        sm: 'py-0.5 min-h-8 px-2.5 text-xs rounded-md [&~[data-slot=combobox-icon]]:end-1.75 [&~[data-slot=combobox-clear]]:end-5.75',
       },
     },
     defaultVariants: {

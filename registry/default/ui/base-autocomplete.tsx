@@ -19,8 +19,8 @@ const inputVariants = cva(
     variants: {
       variant: {
         lg: 'h-10 px-4 text-sm rounded-md [&~[data-slot=autocomplete-clear]]:end-2.5',
-        md: 'h-8.5 px-3 text-[0.8125rem] leading-(--text-sm--line-height) rounded-md [&~[data-slot=autocomplete-clear]]:end-2',
-        sm: 'h-7 px-2.5 text-xs rounded-md [&~[data-slot=autocomplete-clear]]:end-1.75',
+        md: 'h-9 px-3 text-sm rounded-md [&~[data-slot=autocomplete-clear]]:end-2',
+        sm: 'h-8 px-2.5 text-xs rounded-md [&~[data-slot=autocomplete-clear]]:end-1.75',
       },
     },
     defaultVariants: {

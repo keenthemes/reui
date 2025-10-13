@@ -6,10 +6,11 @@ component: true
 
 ## Installation
 
-  CLI
-  Manual
+CLI
+Manual
 
-### 1. 
+### 1.
+
 Install the following dependencies:
 
 ```bash
@@ -31,18 +32,18 @@ and includes the following custom props:
 
 This component is based on the [AlertDialog.Root](https://www.radix-ui.com/primitives/docs/components/alert-dialog#root) primitive and includes the following custom props:
 
-| **Prop**                                                                                          | **Type**                                                           | **Default** |
-| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ----------- |
-| `variant` Determines the visual style of the alert dialog.             | ~enum~  "info" \| "warning" \| "error"  | ~info~      |
-| `dismissable` Controls whether the alert can be dismissed by the user. | ~boolean~                                                          | ~true~      |
+| **Prop**                                                               | **Type**                              | **Default** |
+| ---------------------------------------------------------------------- | ------------------------------------- | ----------- |
+| `variant` Determines the visual style of the alert dialog.             | ~enum~ "info" \| "warning" \| "error" | ~info~      |
+| `dismissable` Controls whether the alert can be dismissed by the user. | ~boolean~                             | ~true~      |
 
 ### AlertDialogAction
 
 This component is based on the [AlertDialog.Action](https://www.radix-ui.com/primitives/docs/components/alert-dialog#action) primitive and includes the following custom props:
 
-| **Prop**                                                          | **Type**                                                              | **Default** |
-| ----------------------------------------------------------------- | --------------------------------------------------------------------- | ----------- |
-| `variant` Determines the button style. | ~enum~  "default" \| "outline" \| "ghost"  | ~default~   |
+| **Prop**                               | **Type**                                 | **Default** |
+| -------------------------------------- | ---------------------------------------- | ----------- |
+| `variant` Determines the button style. | ~enum~ "default" \| "outline" \| "ghost" | ~default~   |
 
 ## Credits
 

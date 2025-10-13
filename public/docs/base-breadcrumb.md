@@ -6,10 +6,11 @@ component: true
 
 ## Installation
 
-  CLI
-  Manual
+CLI
+Manual
 
-### 1. 
+### 1.
+
 Install the following dependencies:
 
 ```bash
@@ -34,34 +35,34 @@ This component provides a customizable breadcrumb system for displaying a hierar
 
 This component is a flexible container for displaying breadcrumb items.
 
-| **Prop**                                                                                            | **Type**          | **Default**       |
-| --------------------------------------------------------------------------------------------------- | ----------------- | ----------------- |
-| `className` Additional class names for styling the breadcrumb container. | ~string~          |              |
-| `separator` The character or element used as a separator.                | ~React.ReactNode~ | `` |
+| **Prop**                                                                 | **Type**          | **Default** |
+| ------------------------------------------------------------------------ | ----------------- | ----------- |
+| `className` Additional class names for styling the breadcrumb container. | ~string~          |             |
+| `separator` The character or element used as a separator.                | ~React.ReactNode~ | ``          |
 
 ### BreadcrumbList
 
 This component is used to display a list of breadcrumb items.
 
-| **Prop**                                                                                       | **Type** | **Default** |
-| ---------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `className` Additional class names for styling the breadcrumb list. | ~string~ |        |
+| **Prop**                                                            | **Type** | **Default** |
+| ------------------------------------------------------------------- | -------- | ----------- |
+| `className` Additional class names for styling the breadcrumb list. | ~string~ |             |
 
 ### BreadcrumbItem
 
 This component is used to display an individual breadcrumb item.
 
-| **Prop**                                                                                       | **Type** | **Default** |
-| ---------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `className` Additional class names for styling the breadcrumb item. | ~string~ |        |
+| **Prop**                                                            | **Type** | **Default** |
+| ------------------------------------------------------------------- | -------- | ----------- |
+| `className` Additional class names for styling the breadcrumb item. | ~string~ |             |
 
 ### BreadcrumbLink
 
 This component is used to display a link within a breadcrumb item.
 
-| **Prop**                                                                                              | **Type**  | **Default** |
-| ----------------------------------------------------------------------------------------------------- | --------- | ----------- |
-| `className` Additional class names for styling the breadcrumb link.        | ~string~  |        |
+| **Prop**                                                                   | **Type**  | **Default** |
+| -------------------------------------------------------------------------- | --------- | ----------- |
+| `className` Additional class names for styling the breadcrumb link.        | ~string~  |             |
 | `href` The URL that the breadcrumb link points to.                         | ~string~  | ~#~         |
 | `asChild` Renders the link as a child element, using the `Slot` component. | ~boolean~ | `false`     |
 
@@ -69,25 +70,25 @@ This component is used to display a link within a breadcrumb item.
 
 This component is used to display the current page in the breadcrumb.
 
-| **Prop**                                                                                       | **Type** | **Default** |
-| ---------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `className` Additional class names for styling the breadcrumb page. | ~string~ |        |
+| **Prop**                                                            | **Type** | **Default** |
+| ------------------------------------------------------------------- | -------- | ----------- |
+| `className` Additional class names for styling the breadcrumb page. | ~string~ |             |
 
 ### BreadcrumbSeparator
 
 This component is used to display a separator between breadcrumb items.
 
-| **Prop**                                                                                            | **Type** | **Default** |
-| --------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `className` Additional class names for styling the breadcrumb separator. | ~string~ |        |
+| **Prop**                                                                 | **Type** | **Default** |
+| ------------------------------------------------------------------------ | -------- | ----------- |
+| `className` Additional class names for styling the breadcrumb separator. | ~string~ |             |
 
 ### BreadcrumbEllipsis
 
 This component is used to display an ellipsis in the breadcrumb.
 
-| **Prop**                                                                                           | **Type** | **Default** |
-| -------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `className` Additional class names for styling the breadcrumb ellipsis. | ~string~ |        |
+| **Prop**                                                                | **Type** | **Default** |
+| ----------------------------------------------------------------------- | -------- | ----------- |
+| `className` Additional class names for styling the breadcrumb ellipsis. | ~string~ |             |
 
 ## Credits
 

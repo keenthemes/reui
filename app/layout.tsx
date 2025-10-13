@@ -143,7 +143,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
           }}
         />
       </head>
-      <body className={cn('min-h-screen text-base text-foreground bg-background antialiased', inter.className)}>
+      <body
+        className={cn('min-h-screen text-base text-foreground bg-background antialiased font-sans', inter.className)}
+      >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange enableColorScheme>
           <QueryProvider>
             <Suspense>

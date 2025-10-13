@@ -5,6 +5,10 @@ export default function Component() {
   return (
     <div className="flex flex-col items-center justify-center gap-6">
       <div className="flex items-center gap-4">
+        <Button variant="outline" size="xs">
+          <UserPen />
+          XSmall
+        </Button>
         <Button variant="outline" size="sm">
           <UserPen />
           Small
@@ -19,6 +23,9 @@ export default function Component() {
         </Button>
       </div>
       <div className="flex items-center gap-4">
+        <Button variant="outline" size="xs" mode="icon">
+          <UserPen />
+        </Button>
         <Button variant="outline" size="sm" mode="icon">
           <UserPen />
         </Button>

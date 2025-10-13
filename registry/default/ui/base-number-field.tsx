@@ -20,8 +20,8 @@ const inputVariants = cva(
     variants: {
       size: {
         lg: 'h-10 text-base',
-        md: 'h-8.5 text-sm',
-        sm: 'h-7 text-sm',
+        md: 'h-9 text-sm',
+        sm: 'h-8 text-sm',
       },
     },
     defaultVariants: {
@@ -41,8 +41,8 @@ const buttonVariants = cva(
     variants: {
       size: {
         lg: 'size-10 [&_svg:not([class*=size-])]:size-4',
-        md: 'size-8.5 [&_svg:not([class*=size-])]:size-3.5',
-        sm: 'size-7 [&_svg:not([class*=size-])]:size-3',
+        md: 'size-9 [&_svg:not([class*=size-])]:size-3.5',
+        sm: 'size-8 [&_svg:not([class*=size-])]:size-3',
       },
     },
     defaultVariants: {

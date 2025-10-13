@@ -7,14 +7,14 @@ MCP is an open protocol that standardizes how applications provide context to LL
 
 ## Installation
 
-### 1. 
+### 1.
 
 ### 2. Configure MCP
 
-  Windsurf
-  Cursor
-  Claude
-  Cline
+Windsurf
+Cursor
+Claude
+Cline
 
 Add the following code to your `mcp_config.json` file:
 

@@ -68,6 +68,8 @@ Add below code into your entry css file `globals.css`:
 
 /** Colors **/
 :root {
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
   --background: var(--color-white);
   --foreground: var(--color-zinc-950);
   --card: var(--color-white);
@@ -239,6 +241,19 @@ export default function RootLayout({ children }) {
       <body className={cn('text-base antialiased', inter.className)}>{children}</body>
     </html>
   );
+}
+```
+
+### Setup System Fonts
+
+Add the following code to your style entry file `globals.css`:
+
+```css
+@theme {
+  --font-sans:
+    'Geist', 'Geist Fallback', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 }
 ```
 

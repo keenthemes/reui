@@ -6,10 +6,11 @@ component: true
 
 ## Installation
 
-  CLI
-  Manual
+CLI
+Manual
 
-### 1. 
+### 1.
+
 Install the following dependencies:
 
 ```bash
@@ -32,11 +33,11 @@ This component provides a customizable keyboard input display with various style
 
 This component is a custom implementation that displays keyboard inputs with the following props:
 
-| **Prop**                                                                             | **Type**                                                              | **Default** |
-| ------------------------------------------------------------------------------------ | --------------------------------------------------------------------- | ----------- |
-| `variant` The visual style variant of the keyboard input. | ~enum~  "default" \| "solid" \| "outline"  | ~"default"~ |
-| `size` The size of the keyboard input display.            | ~enum~  "md" \| "sm" \| "xs"               | ~"md"~      |
-| `className` Additional class names for styling.           | ~string~                                                              |        |
+| **Prop**                                                  | **Type**                                 | **Default** |
+| --------------------------------------------------------- | ---------------------------------------- | ----------- |
+| `variant` The visual style variant of the keyboard input. | ~enum~ "default" \| "solid" \| "outline" | ~"default"~ |
+| `size` The size of the keyboard input display.            | ~enum~ "md" \| "sm" \| "xs"              | ~"md"~      |
+| `className` Additional class names for styling.           | ~string~                                 |             |
 
 ## Credits
 

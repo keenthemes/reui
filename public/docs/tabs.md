@@ -6,10 +6,10 @@ component: true
 
 ## Installation
 
-  CLI
-  Manual
+CLI
+Manual
 
-### 1. 
+### 1.
 
 ### 2. Install ReUI
 
@@ -59,30 +59,30 @@ This component is based on the [Tabs.Root](https://www.radix-ui.com/primitives/d
 
 This component is based on the [Tabs.List](https://www.radix-ui.com/primitives/docs/components/tabs#list) primitive and includes the following custom props:
 
-| **Prop**                                                                            | **Type**                                                            | **Default** |
-| ----------------------------------------------------------------------------------- | ------------------------------------------------------------------- | ----------- |
-| `variant` The visual style variant of the tabs list.     | ~enum~  "default" \| "button" \| "line"  | ~"default"~ |
-| `size` The size of the tabs list.                        | ~enum~  "lg" \| "md" \| "sm" \| "xs"     | ~"md"~      |
-| `className` Additional class names for styling the list. | ~string~                                                            | ~undefined~ |
+| **Prop**                                                 | **Type**                               | **Default** |
+| -------------------------------------------------------- | -------------------------------------- | ----------- |
+| `variant` The visual style variant of the tabs list.     | ~enum~ "default" \| "button" \| "line" | ~"default"~ |
+| `size` The size of the tabs list.                        | ~enum~ "lg" \| "md" \| "sm" \| "xs"    | ~"md"~      |
+| `className` Additional class names for styling the list. | ~string~                               | ~undefined~ |
 
 ### TabsTrigger
 
 This component is based on the [Tabs.Trigger](https://www.radix-ui.com/primitives/docs/components/tabs#trigger) primitive and inherits the following props from context:
 
-| **Prop**                                                                               | **Type**                                                            | **Default** |
-| -------------------------------------------------------------------------------------- | ------------------------------------------------------------------- | ----------- |
-| `variant` Inherited from TabsList context.                  | ~enum~  "default" \| "button" \| "line"  | ~"default"~ |
-| `size` Inherited from TabsList context.                     | ~enum~  "lg" \| "md" \| "sm" \| "xs"     | ~"md"~      |
-| `className` Additional class names for styling the trigger. | ~string~                                                            | ~undefined~ |
+| **Prop**                                                    | **Type**                               | **Default** |
+| ----------------------------------------------------------- | -------------------------------------- | ----------- |
+| `variant` Inherited from TabsList context.                  | ~enum~ "default" \| "button" \| "line" | ~"default"~ |
+| `size` Inherited from TabsList context.                     | ~enum~ "lg" \| "md" \| "sm" \| "xs"    | ~"md"~      |
+| `className` Additional class names for styling the trigger. | ~string~                               | ~undefined~ |
 
 ### TabsContent
 
 This component is based on the [Tabs.Content](https://www.radix-ui.com/primitives/docs/components/tabs#content) primitive and includes the following custom props:
 
-| **Prop**                                                                               | **Type**                                      | **Default** |
-| -------------------------------------------------------------------------------------- | --------------------------------------------- | ----------- |
-| `variant` The visual style variant of the content.          | ~enum~  "default"  | ~"default"~ |
-| `className` Additional class names for styling the content. | ~string~                                      | ~undefined~ |
+| **Prop**                                                    | **Type**         | **Default** |
+| ----------------------------------------------------------- | ---------------- | ----------- |
+| `variant` The visual style variant of the content.          | ~enum~ "default" | ~"default"~ |
+| `className` Additional class names for styling the content. | ~string~         | ~undefined~ |
 
 ## Credits
 

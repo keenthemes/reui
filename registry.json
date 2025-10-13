@@ -1807,20 +1807,6 @@
       ]
     },
     {
-      "name": "base-button-circle",
-      "type": "registry:component",
-      "dependencies": [],
-      "files": [
-        {
-          "path": "registry/default/components/base-button/circle.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "https://reui.io/r/base-button.json"
-      ]
-    },
-    {
       "name": "base-button-dashed",
       "type": "registry:component",
       "dependencies": [],
@@ -1967,6 +1953,20 @@
       "files": [
         {
           "path": "registry/default/components/base-button/outline.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/base-button.json"
+      ]
+    },
+    {
+      "name": "base-button-radius-full",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/base-button/radius-full.tsx",
           "type": "registry:component"
         }
       ],
@@ -4056,20 +4056,6 @@
       ]
     },
     {
-      "name": "button-circle",
-      "type": "registry:component",
-      "dependencies": [],
-      "files": [
-        {
-          "path": "registry/default/components/button/circle.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "https://reui.io/r/button.json"
-      ]
-    },
-    {
       "name": "button-dashed",
       "type": "registry:component",
       "dependencies": [],
@@ -4216,6 +4202,20 @@
       "files": [
         {
           "path": "registry/default/components/button/outline.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/button.json"
+      ]
+    },
+    {
+      "name": "button-radius-full",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/button/radius-full.tsx",
           "type": "registry:component"
         }
       ],
@@ -4868,22 +4868,6 @@
         "https://reui.io/r/button.json",
         "https://reui.io/r/command.json",
         "https://reui.io/r/popover.json"
-      ]
-    },
-    {
-      "name": "combobox-text",
-      "type": "registry:component",
-      "dependencies": [],
-      "files": [
-        {
-          "path": "registry/default/components/combobox/text.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "https://reui.io/r/button.json",
-        "https://reui.io/r/card.json",
-        "https://reui.io/r/slider.json"
       ]
     },
     {
@@ -5911,6 +5895,213 @@
       ]
     },
     {
+      "name": "filters-add-button",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/filters/add-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/avatar.json",
+        "https://reui.io/r/button.json",
+        "https://reui.io/r/filters.json"
+      ]
+    },
+    {
+      "name": "filters-async",
+      "type": "registry:component",
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/filters/async.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/alert.json",
+        "https://reui.io/r/avatar.json",
+        "https://reui.io/r/badge.json",
+        "https://reui.io/r/button.json",
+        "https://reui.io/r/data-grid.json",
+        "https://reui.io/r/data-grid-column-header.json",
+        "https://reui.io/r/data-grid-pagination.json",
+        "https://reui.io/r/data-grid-table.json",
+        "https://reui.io/r/filters.json",
+        "https://reui.io/r/scroll-area.json",
+        "https://reui.io/r/skeleton.json"
+      ]
+    },
+    {
+      "name": "filters-custom",
+      "type": "registry:component",
+      "dependencies": [
+        "date-fns",
+        "react-day-picker"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/filters/custom.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/button.json",
+        "https://reui.io/r/calendar.json",
+        "https://reui.io/r/command.json",
+        "https://reui.io/r/filters.json",
+        "https://reui.io/r/popover.json",
+        "https://reui.io/r/scroll-area.json",
+        "https://reui.io/r/slider.json"
+      ]
+    },
+    {
+      "name": "filters-data-grid",
+      "type": "registry:component",
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/filters/data-grid.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/avatar.json",
+        "https://reui.io/r/badge.json",
+        "https://reui.io/r/button.json",
+        "https://reui.io/r/data-grid.json",
+        "https://reui.io/r/data-grid-column-header.json",
+        "https://reui.io/r/data-grid-pagination.json",
+        "https://reui.io/r/data-grid-table.json",
+        "https://reui.io/r/filters.json",
+        "https://reui.io/r/scroll-area.json"
+      ]
+    },
+    {
+      "name": "filters-debug",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/filters/debug.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/avatar.json",
+        "https://reui.io/r/button.json",
+        "https://reui.io/r/filters.json"
+      ]
+    },
+    {
+      "name": "filters-default",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/filters/default.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/button.json",
+        "https://reui.io/r/filters.json"
+      ]
+    },
+    {
+      "name": "filters-internationalization",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/filters/internationalization.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/button.json",
+        "https://reui.io/r/dropdown-menu.json",
+        "https://reui.io/r/filters.json"
+      ]
+    },
+    {
+      "name": "filters-nuqs",
+      "type": "registry:component",
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/filters/nuqs.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/avatar.json",
+        "https://reui.io/r/badge.json",
+        "https://reui.io/r/button.json",
+        "https://reui.io/r/data-grid.json",
+        "https://reui.io/r/data-grid-column-header.json",
+        "https://reui.io/r/data-grid-pagination.json",
+        "https://reui.io/r/data-grid-table.json",
+        "https://reui.io/r/filters.json",
+        "https://reui.io/r/scroll-area.json"
+      ]
+    },
+    {
+      "name": "filters-radius-full",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/filters/radius-full.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/avatar.json",
+        "https://reui.io/r/button.json",
+        "https://reui.io/r/filters.json"
+      ]
+    },
+    {
+      "name": "filters-size",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/filters/size.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/button.json",
+        "https://reui.io/r/filters.json"
+      ]
+    },
+    {
+      "name": "filters-solid-style",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/filters/solid-style.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/avatar.json",
+        "https://reui.io/r/button.json",
+        "https://reui.io/r/filters.json"
+      ]
+    },
+    {
       "name": "form-default",
       "type": "registry:component",
       "dependencies": [
@@ -6337,31 +6528,19 @@
       ]
     },
     {
-      "name": "kbd-outline",
+      "name": "kbd-tooltip",
       "type": "registry:component",
       "dependencies": [],
       "files": [
         {
-          "path": "registry/default/components/kbd/outline.tsx",
+          "path": "registry/default/components/kbd/tooltip.tsx",
           "type": "registry:component"
         }
       ],
       "registryDependencies": [
-        "https://reui.io/r/kbd.json"
-      ]
-    },
-    {
-      "name": "kbd-size",
-      "type": "registry:component",
-      "dependencies": [],
-      "files": [
-        {
-          "path": "registry/default/components/kbd/size.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "https://reui.io/r/kbd.json"
+        "https://reui.io/r/button.json",
+        "https://reui.io/r/kbd.json",
+        "https://reui.io/r/tooltip.json"
       ]
     },
     {
@@ -9728,6 +9907,24 @@
       ]
     },
     {
+      "name": "filters",
+      "type": "registry:ui",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/ui/filters.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/command.json",
+        "https://reui.io/r/dropdown-menu.json",
+        "https://reui.io/r/popover.json",
+        "https://reui.io/r/switch.json",
+        "https://reui.io/r/tooltip.json"
+      ]
+    },
+    {
       "name": "form",
       "type": "registry:ui",
       "dependencies": [
@@ -10236,9 +10433,7 @@
     {
       "name": "tooltip",
       "type": "registry:ui",
-      "dependencies": [
-        "radix-ui"
-      ],
+      "dependencies": [],
       "files": [
         {
           "path": "registry/default/ui/tooltip.tsx",

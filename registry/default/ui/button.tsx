@@ -36,18 +36,19 @@ const buttonVariants = cva(
         dashed: '',
       },
       size: {
-        lg: 'h-10 rounded-md px-4 text-sm gap-1.5 [&_svg:not([class*=size-])]:size-4',
-        md: 'h-8.5 rounded-md px-3 gap-1.5 text-[0.8125rem] leading-(--text-sm--line-height) [&_svg:not([class*=size-])]:size-4',
-        sm: 'h-7 rounded-md px-2.5 gap-1.25 text-xs [&_svg:not([class*=size-])]:size-3.5',
-        icon: 'size-8.5 rounded-md [&_svg:not([class*=size-])]:size-4 shrink-0',
+        lg: 'h-10 px-4 text-sm gap-1.5 [&_svg:not([class*=size-])]:size-4',
+        md: 'h-9 px-3 gap-1.5 text-sm [&_svg:not([class*=size-])]:size-4',
+        sm: 'h-8 px-2.5 gap-1.25 text-xs [&_svg:not([class*=size-])]:size-3.5',
+        xs: 'h-7 px-2 gap-1 text-xs [&_svg:not([class*=size-])]:size-3.5',
+        icon: 'size-9 [&_svg:not([class*=size-])]:size-4 shrink-0',
       },
       autoHeight: {
         true: '',
         false: '',
       },
-      shape: {
-        default: '',
-        circle: 'rounded-full',
+      radius: {
+        md: 'rounded-md',
+        full: 'rounded-full',
       },
       mode: {
         default: 'focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
@@ -104,14 +105,19 @@ const buttonVariants = cva(
 
       // Auto height
       {
+        size: 'xs',
+        autoHeight: true,
+        className: 'h-auto min-h-7',
+      },
+      {
         size: 'md',
         autoHeight: true,
-        className: 'h-auto min-h-8.5',
+        className: 'h-auto min-h-9',
       },
       {
         size: 'sm',
         autoHeight: true,
-        className: 'h-auto min-h-7',
+        className: 'h-auto min-h-8',
       },
       {
         size: 'lg',
@@ -302,18 +308,23 @@ const buttonVariants = cva(
 
       // Size
       {
-        size: 'sm',
+        size: 'xs',
         mode: 'icon',
         className: 'w-7 h-7 p-0 [[&_svg:not([class*=size-])]:size-3.5',
       },
       {
+        size: 'sm',
+        mode: 'icon',
+        className: 'w-8 h-8 p-0 [[&_svg:not([class*=size-])]:size-3.5',
+      },
+      {
         size: 'md',
         mode: 'icon',
-        className: 'w-8.5 h-8.5 p-0 [&_svg:not([class*=size-])]:size-4',
+        className: 'w-9 h-9 p-0 [&_svg:not([class*=size-])]:size-4',
       },
       {
         size: 'icon',
-        className: 'w-8.5 h-8.5 p-0 [&_svg:not([class*=size-])]:size-4',
+        className: 'w-9 h-9 p-0 [&_svg:not([class*=size-])]:size-4',
       },
       {
         size: 'lg',
@@ -351,7 +362,7 @@ const buttonVariants = cva(
       variant: 'primary',
       mode: 'default',
       size: 'md',
-      shape: 'default',
+      radius: 'md',
       appearance: 'default',
     },
   },
@@ -361,7 +372,7 @@ function Button({
   className,
   selected,
   variant,
-  shape,
+  radius,
   appearance,
   mode,
   size,
@@ -384,7 +395,7 @@ function Button({
         buttonVariants({
           variant,
           size,
-          shape,
+          radius,
           appearance,
           mode,
           autoHeight,

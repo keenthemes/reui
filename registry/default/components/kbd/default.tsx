@@ -1,19 +1,19 @@
-import { Kbd } from '@/registry/default/ui/kbd';
-import { ArrowDown, ArrowUp, Command } from 'lucide-react';
+import { Kbd, KbdGroup } from '@/registry/default/ui/kbd';
 
-export default function ButtonDemo() {
+export default function KbdDemo() {
   return (
-    <div className="flex items-center gap-4">
-      <Kbd>
-        <ArrowUp />
-      </Kbd>
-      <Kbd>
-        <ArrowDown />
-      </Kbd>
-      <Kbd>space</Kbd>
-      <Kbd>
-        <Command /> +K
-      </Kbd>
+    <div className="flex flex-col items-center gap-4">
+      <KbdGroup>
+        <Kbd>⌘</Kbd>
+        <Kbd>⇧</Kbd>
+        <Kbd>⌥</Kbd>
+        <Kbd>⌃</Kbd>
+      </KbdGroup>
+      <KbdGroup>
+        <Kbd>Ctrl</Kbd>
+        <span>+</span>
+        <Kbd>B</Kbd>
+      </KbdGroup>
     </div>
   );
 }

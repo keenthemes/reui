@@ -17,8 +17,8 @@ const inputVariants = cva(
     variants: {
       variant: {
         lg: 'h-10 px-4 text-sm rounded-md file:pe-4 file:me-4',
-        md: 'h-8.5 px-3 text-[0.8125rem] leading-(--text-sm--line-height) rounded-md file:pe-3 file:me-3',
-        sm: 'h-7 px-2.5 text-xs rounded-md file:pe-2.5 file:me-2.5',
+        md: 'h-9 px-3 text-sm rounded-md file:pe-3 file:me-3',
+        sm: 'h-8 px-2.5 text-xs rounded-md file:pe-2.5 file:me-2.5',
       },
     },
     defaultVariants: {
@@ -32,9 +32,9 @@ const inputAddonVariants = cva(
   {
     variants: {
       variant: {
-        sm: 'rounded-md h-7 min-w-7 text-xs px-2.5 [&_svg:not([class*=size-])]:size-3.5',
-        md: 'rounded-md h-8.5 min-w-8.5 px-3 text-[0.8125rem] leading-(--text-sm--line-height) [&_svg:not([class*=size-])]:size-4.5',
         lg: 'rounded-md h-10 min-w-10 px-4 text-sm [&_svg:not([class*=size-])]:size-4.5',
+        md: 'rounded-md h-9 min-w-9 px-3 text-sm [&_svg:not([class*=size-])]:size-4.5',
+        sm: 'rounded-md h-8 min-w-7 text-xs px-2.5 [&_svg:not([class*=size-])]:size-3.5',
       },
       mode: {
         default: '',
@@ -64,7 +64,10 @@ const inputGroupVariants = cva(
     [&_[data-slot=input]:has(+[data-slot=button])]:rounded-e-none
     [&_[data-slot=input]:has(+[data-slot=input-addon])]:rounded-e-none
     [&_[data-slot=datefield]]:grow
-    [&_[data-slot=datefield]+[data-slot=input-addon]]:rounded-s-none [&_[data-slot=datefield]+[data-slot=input-addon]]:border-s-0
+    [&_[data-slot=datefield]+[data-slot=input-addon]]:rounded-s-none 
+    [&_[data-slot=datefield]+[data-slot=input-addon]]:border-s-0
+    [&_[data-slot=datefield]:has(~[data-slot=input-addon])]:[&_[data-slot=input]]:rounded-e-none
+    [&_[data-slot=datefield]~[data-slot=input-addon]]:rounded-s-none
   `,
   {
     variants: {},

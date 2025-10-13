@@ -1,0 +1,290 @@
+---
+title: Filters
+description: A comprehensive filtering system with multiple filter types, operators, and visual indicators for data organization.
+component: true
+---
+
+<ExamplePreview path="filters/default" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+  <CliCommands name="filters" />
+</TabsContent>
+
+<TabsContent value="manual">    
+<Steps>
+
+<Step>
+Install the following dependencies:
+
+```bash
+npm i motion
+```
+
+</Step>
+
+<Step>
+Copy and paste the following code into your project's `components/ui/filters.tsx` file.
+
+<ComponentPreview name="filters" />
+
+</Step>
+
+</Steps>
+
+</TabsContent>
+</Tabs>
+
+## Examples
+
+### Debug
+
+<ExamplePreview path="filters/debug" />
+
+### Add Button
+
+<ExamplePreview path="filters/add-button" />
+
+### Solid Style
+
+<ExamplePreview path="filters/solid-style" />
+
+### Radius Full
+
+<ExamplePreview path="filters/radius-full" />
+
+### Size
+
+<ExamplePreview path="filters/size" />
+
+### Custom
+
+<ExamplePreview path="filters/custom" />
+
+### Data Grid
+
+<ExamplePreview path="filters/data-grid" />
+
+### Async
+
+<ExamplePreview path="filters/async" />
+
+### Nuqs
+
+<ExamplePreview path="filters/nuqs" />
+
+### Internationalization
+
+<ExamplePreview path="filters/internationalization" />
+
+## API Reference
+
+This section documents the public API surface of the Filters component.
+
+### Filters
+
+The main Filters component provides a comprehensive filtering system with support for multiple field types, operators, and visual indicators.
+
+| **Prop**                                                                                           | **Type**                                                                                                                        | **Default** |
+| -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `filters` <PopoverInfo>Array of active filters to display.</PopoverInfo>                           | ~Array~ <PopoverInfo> Array\<Filter\<T\>> </PopoverInfo>                                                                        | <Na/>       |
+| `fields` <PopoverInfo>Field configuration for available filter options.</PopoverInfo>              | ~FilterFieldsConfig\<T\>~ <PopoverInfo> Union type supporting both flat arrays and grouped field configurations. </PopoverInfo> | <Na/>       |
+| `onChange` <PopoverInfo>Callback function triggered when filters change.</PopoverInfo>             | ~(filters: Filter\<T\>[]) => void~ <PopoverInfo> Function that receives the updated filters array. </PopoverInfo>               | <Na/>       |
+| `className` <PopoverInfo>Additional class names for styling the filters container.</PopoverInfo>   | ~string~                                                                                                                        | <Na/>       |
+| `showAddButton` <PopoverInfo>Whether to show the add filter button.</PopoverInfo>                  | ~boolean~                                                                                                                       | ~true~      |
+| `addButtonText` <PopoverInfo>Custom text for the add filter button.</PopoverInfo>                  | ~string~                                                                                                                        | <Na/>       |
+| `addButtonIcon` <PopoverInfo>Custom icon for the add filter button.</PopoverInfo>                  | ~ReactNode~                                                                                                                     | <Na/>       |
+| `addButtonClassName` <PopoverInfo>Additional class names for the add filter button.</PopoverInfo>  | ~string~                                                                                                                        | <Na/>       |
+| `addButton` <PopoverInfo>Custom add button component.</PopoverInfo>                                | ~ReactNode~                                                                                                                     | <Na/>       |
+| `variant` <PopoverInfo>Visual style variant for the filters.</PopoverInfo>                         | ~enum~ <PopoverInfo> "solid" \| "outline" </PopoverInfo>                                                                        | ~"outline"~ |
+| `size` <PopoverInfo>Size variant for the filters.</PopoverInfo>                                    | ~enum~ <PopoverInfo> "sm" \| "md" \| "lg" </PopoverInfo>                                                                        | ~"md"~      |
+| `radius` <PopoverInfo>Border radius variant for the filters.</PopoverInfo>                         | ~enum~ <PopoverInfo> "md" \| "full" </PopoverInfo>                                                                              | ~"md"~      |
+| `i18n` <PopoverInfo>Internationalization configuration for labels and messages.</PopoverInfo>      | ~Partial\<FilterI18nConfig\>~ <PopoverInfo> Partial configuration object for customizing text and labels. </PopoverInfo>        | <Na/>       |
+| `showSearchInput` <PopoverInfo>Whether to show search input in field selection.</PopoverInfo>      | ~boolean~                                                                                                                       | ~true~      |
+| `cursorPointer` <PopoverInfo>Whether to show pointer cursor on interactive elements.</PopoverInfo> | ~boolean~                                                                                                                       | ~true~      |
+| `trigger` <PopoverInfo>Custom trigger element for the add filter popover.</PopoverInfo>            | ~ReactNode~                                                                                                                     | <Na/>       |
+| `allowMultiple` <PopoverInfo>Whether to allow multiple filters for the same field.</PopoverInfo>   | ~boolean~                                                                                                                       | ~true~      |
+| `popoverContentClassName` <PopoverInfo>Additional class names for popover content.</PopoverInfo>   | ~string~                                                                                                                        | <Na/>       |
+
+### Types
+
+Public types that you’ll commonly use when integrating Filters.
+
+#### Filter
+
+| **Prop**   | **Type**                                        | **Default** |
+| ---------- | ----------------------------------------------- | ----------- |
+| `id`       | ~string~                                        | <Na/>       |
+| `field`    | ~string~                                        | <Na/>       |
+| `operator` | ~string~                                        | <Na/>       |
+| `values`   | ~Array~ <PopoverInfo> Array\<T\> </PopoverInfo> | <Na/>       |
+
+#### FilterFieldConfig
+
+Key configuration for defining fields.
+
+| **Prop**                                                                         | **Type**                                                                                                                                                                                                                   | **Default** |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `key`                                                                            | ~string~                                                                                                                                                                                                                   | <Na/>       |
+| `label`                                                                          | ~string~                                                                                                                                                                                                                   | <Na/>       |
+| `icon`                                                                           | ~ReactNode~                                                                                                                                                                                                                | <Na/>       |
+| `type`                                                                           | ~enum~ <PopoverInfo> "select" \| "multiselect" \| "date" \| "daterange" \| "text" \| "number" \| "numberrange" \| "boolean" \| "email" \| "url" \| "tel" \| "time" \| "datetime" \| "custom" \| "separator" </PopoverInfo> | <Na/>       |
+| `options`                                                                        | ~Array~ <PopoverInfo> Array\<FilterOption\<T\>> </PopoverInfo>                                                                                                                                                             | <Na/>       |
+| `operators`                                                                      | ~Array~ <PopoverInfo> Array\<FilterOperator\> </PopoverInfo>                                                                                                                                                               | <Na/>       |
+| `placeholder`                                                                    | ~string~                                                                                                                                                                                                                   | <Na/>       |
+| `searchable`                                                                     | ~boolean~                                                                                                                                                                                                                  | <Na/>       |
+| `className`                                                                      | ~string~                                                                                                                                                                                                                   | <Na/>       |
+| `popoverContentClassName`                                                        | ~string~                                                                                                                                                                                                                   | <Na/>       |
+| `maxSelections` <PopoverInfo>Maximum selections for multiselect.</PopoverInfo>   | ~number~                                                                                                                                                                                                                   | <Na/>       |
+| `min` <PopoverInfo>Minimum numeric value.</PopoverInfo>                          | ~number~                                                                                                                                                                                                                   | <Na/>       |
+| `max` <PopoverInfo>Maximum numeric value.</PopoverInfo>                          | ~number~                                                                                                                                                                                                                   | <Na/>       |
+| `step` <PopoverInfo>Numeric input step.</PopoverInfo>                            | ~number~                                                                                                                                                                                                                   | <Na/>       |
+| `prefix` <PopoverInfo>Prefix element/text for input.</PopoverInfo>               | ~string \| ReactNode~                                                                                                                                                                                                      | <Na/>       |
+| `suffix` <PopoverInfo>Suffix element/text for input.</PopoverInfo>               | ~string \| ReactNode~                                                                                                                                                                                                      | <Na/>       |
+| `pattern` <PopoverInfo>Validation regex (string form).</PopoverInfo>             | ~string~                                                                                                                                                                                                                   | <Na/>       |
+| `validation` <PopoverInfo>Custom validator function.</PopoverInfo>               | ~(value: unknown) => boolean~                                                                                                                                                                                              | <Na/>       |
+| `allowCustomValues` <PopoverInfo>Allow freeform values in selects.</PopoverInfo> | ~boolean~                                                                                                                                                                                                                  | <Na/>       |
+| `onLabel` <PopoverInfo>Custom label for boolean on state.</PopoverInfo>          | ~string~                                                                                                                                                                                                                   | <Na/>       |
+| `offLabel` <PopoverInfo>Custom label for boolean off state.</PopoverInfo>        | ~string~                                                                                                                                                                                                                   | <Na/>       |
+
+#### FilterFieldsConfig
+
+`FilterFieldConfig<T>[] | FilterFieldGroup<T>[]` <PopoverInfo>Union type supporting both flat arrays and grouped field configurations.</PopoverInfo>
+
+#### FilterFieldGroup
+
+| **Prop** | **Type**                                                            | **Default** |
+| -------- | ------------------------------------------------------------------- | ----------- |
+| `group`  | ~string~                                                            | <Na/>       |
+| `fields` | ~Array~ <PopoverInfo> Array\<FilterFieldConfig\<T\>> </PopoverInfo> | <Na/>       |
+
+#### FilterOption
+
+| **Prop** | **Type**    | **Default** |
+| -------- | ----------- | ----------- |
+| `value`  | ~T~         | <Na/>       |
+| `label`  | ~string~    | <Na/>       |
+| `icon`   | ~ReactNode~ | <Na/>       |
+
+#### FilterOperator
+
+| **Prop**           | **Type**  | **Default** |
+| ------------------ | --------- | ----------- |
+| `value`            | ~string~  | <Na/>       |
+| `label`            | ~string~  | <Na/>       |
+| `supportsMultiple` | ~boolean~ | <Na/>       |
+
+#### FilterI18nConfig (Partial)
+
+You can pass a partial config via the `i18n` prop. Tables below list all keys.
+
+| **Key**             | **Type** | **Default**                         |
+| ------------------- | -------- | ----------------------------------- |
+| `addFilter`         | ~string~ | ~"Add filter"~                      |
+| `searchFields`      | ~string~ | ~"Search fields..."~                |
+| `noFieldsFound`     | ~string~ | ~"No fields found."~                |
+| `noResultsFound`    | ~string~ | ~"No results found."~               |
+| `select`            | ~string~ | ~"Select..."~                       |
+| `true`              | ~string~ | ~"True"~                            |
+| `false`             | ~string~ | ~"False"~                           |
+| `min`               | ~string~ | ~"Min"~                             |
+| `max`               | ~string~ | ~"Max"~                             |
+| `to`                | ~string~ | ~"to"~                              |
+| `typeAndPressEnter` | ~string~ | ~"Type and press Enter to add tag"~ |
+| `selected`          | ~string~ | ~"selected"~                        |
+| `selectedCount`     | ~string~ | ~"selected"~                        |
+| `percent`           | ~string~ | ~"%"~                               |
+| `defaultCurrency`   | ~string~ | ~"$"~                               |
+| `defaultColor`      | ~string~ | ~"#000000"~                         |
+| `addFilterTitle`    | ~string~ | ~"Add filter"~                      |
+
+##### operators
+
+| **Key**         | **Type** | **Default**          |
+| --------------- | -------- | -------------------- |
+| `is`            | ~string~ | ~"is"~               |
+| `isNot`         | ~string~ | ~"is not"~           |
+| `isAnyOf`       | ~string~ | ~"is any of"~        |
+| `isNotAnyOf`    | ~string~ | ~"is not any of"~    |
+| `includesAll`   | ~string~ | ~"includes all"~     |
+| `excludesAll`   | ~string~ | ~"excludes all"~     |
+| `before`        | ~string~ | ~"before"~           |
+| `after`         | ~string~ | ~"after"~            |
+| `between`       | ~string~ | ~"between"~          |
+| `notBetween`    | ~string~ | ~"not between"~      |
+| `contains`      | ~string~ | ~"contains"~         |
+| `notContains`   | ~string~ | ~"does not contain"~ |
+| `startsWith`    | ~string~ | ~"starts with"~      |
+| `endsWith`      | ~string~ | ~"ends with"~        |
+| `isExactly`     | ~string~ | ~"is exactly"~       |
+| `equals`        | ~string~ | ~"equals"~           |
+| `notEquals`     | ~string~ | ~"not equals"~       |
+| `greaterThan`   | ~string~ | ~"greater than"~     |
+| `lessThan`      | ~string~ | ~"less than"~        |
+| `overlaps`      | ~string~ | ~"overlaps"~         |
+| `includes`      | ~string~ | ~"includes"~         |
+| `excludes`      | ~string~ | ~"excludes"~         |
+| `includesAllOf` | ~string~ | ~"includes all of"~  |
+| `includesAnyOf` | ~string~ | ~"includes any of"~  |
+| `empty`         | ~string~ | ~"is empty"~         |
+| `notEmpty`      | ~string~ | ~"is not empty"~     |
+
+##### placeholders
+
+| **Key**       | **Type**                        | **Default**                                       |
+| ------------- | ------------------------------- | ------------------------------------------------- |
+| `enterField`  | ~(fieldType: string) => string~ | ~"Enter &#123;fieldType&#125;..."~                |
+| `selectField` | ~string~                        | ~"Select..."~                                     |
+| `searchField` | ~(fieldName: string) => string~ | ~"Search &#123;fieldName.toLowerCase()&#125;..."~ |
+| `enterKey`    | ~string~                        | ~"Enter key..."~                                  |
+| `enterValue`  | ~string~                        | ~"Enter value..."~                                |
+
+##### helpers
+
+| **Key**          | **Type**                       | **Default**                       |
+| ---------------- | ------------------------------ | --------------------------------- |
+| `formatOperator` | ~(operator: string) => string~ | ~replace underscores with spaces~ |
+
+##### validation
+
+| **Key**        | **Type** | **Default**              |
+| -------------- | -------- | ------------------------ |
+| `invalidEmail` | ~string~ | ~"Invalid email format"~ |
+| `invalidUrl`   | ~string~ | ~"Invalid URL format"~   |
+| `invalidTel`   | ~string~ | ~"Invalid phone format"~ |
+| `invalid`      | ~string~ | ~"Invalid input format"~ |
+
+### Field Types
+
+The Filters component supports various field types, each with specific behaviors and operators:
+
+| **Field Type** | **Operators**                                                                                                                        | **Input Type**     | **Description**                                            |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------ | ---------------------------------------------------------- |
+| `text`         | ~enum~ <PopoverInfo> "contains" \| "not_contains" \| "starts_with" \| "ends_with" \| "is" \| "empty" \| "not_empty" </PopoverInfo>   | ~Text Input~       | Text input with optional pattern validation and search.    |
+| `number`       | ~enum~ <PopoverInfo> "equals" \| "not_equals" \| "greater_than" \| "less_than" \| "between" \| "empty" \| "not_empty" </PopoverInfo> | ~Number Input~     | Number input with min/max/step and optional prefix/suffix. |
+| `date`         | ~enum~ <PopoverInfo> "before" \| "after" \| "is" \| "is_not" \| "empty" \| "not_empty" </PopoverInfo>                                | ~Date Picker~      | Calendar-based date selection.                             |
+| `daterange`    | ~enum~ <PopoverInfo> "between" \| "not_between" \| "empty" \| "not_empty" </PopoverInfo>                                             | ~Date Range~       | Two date pickers with "to" separator.                      |
+| `select`       | ~enum~ <PopoverInfo> "is" \| "is_not" \| "empty" \| "not_empty" </PopoverInfo>                                                       | ~Dropdown~         | Searchable dropdown with predefined options.               |
+| `multiselect`  | ~enum~ <PopoverInfo> "is_any_of" \| "is_not_any_of" \| "includes_all" \| "excludes_all" \| "empty" \| "not_empty" </PopoverInfo>     | ~Multi-Select~     | Multi-select dropdown with search and limits.              |
+| `boolean`      | ~enum~ <PopoverInfo> "is" \| "is_not" \| "empty" \| "not_empty" </PopoverInfo>                                                       | ~Switch~           | Toggle switch with custom on/off labels.                   |
+| `email`        | ~enum~ <PopoverInfo> "contains" \| "not_contains" \| "starts_with" \| "ends_with" \| "is" \| "empty" \| "not_empty" </PopoverInfo>   | ~Email Input~      | Email input with built-in validation.                      |
+| `url`          | ~enum~ <PopoverInfo> "contains" \| "not_contains" \| "starts_with" \| "ends_with" \| "is" \| "empty" \| "not_empty" </PopoverInfo>   | ~URL Input~        | URL input with validation.                                 |
+| `tel`          | ~enum~ <PopoverInfo> "contains" \| "not_contains" \| "starts_with" \| "ends_with" \| "is" \| "empty" \| "not_empty" </PopoverInfo>   | ~Phone Input~      | Phone input with validation.                               |
+| `time`         | ~enum~ <PopoverInfo> "before" \| "after" \| "is" \| "between" \| "empty" \| "not_empty" </PopoverInfo>                               | ~Time Picker~      | Time selection component.                                  |
+| `datetime`     | ~enum~ <PopoverInfo> "before" \| "after" \| "is" \| "between" \| "empty" \| "not_empty" </PopoverInfo>                               | ~DateTime Picker~  | Combined date and time selection.                          |
+| `custom`       | ~Custom~                                                                                                                             | ~Custom Component~ | Provided by `customRenderer`.                              |
+| `separator`    | ~None~                                                                                                                               | ~Visual Separator~ | Non-interactive separator.                                 |
+
+## Credits
+
+- Built with [Radix UI](https://www.radix-ui.com/) primitives for accessibility.
+- Built with [Class Variance Authority](https://cva.style/) for styling variants.
+- Built with [Lucide React](https://lucide.dev/) for icons.

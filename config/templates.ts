@@ -28,6 +28,19 @@ export const templates: Template[] = [
     market: 'Themeforest',
   },
   {
+    title: 'Summit',
+    purchaseUrl:
+      'https://keenthemes.com/products/summit-nextjs?utm_source=reui_website&utm_medium=menu&utm_campaign=product_link&utm_content=summit',
+    previewUrl:
+      'https://summit-nextjs.keenthemes.com?utm_source=reui_website&utm_medium=menu&utm_campaign=product_link&utm_content=summit',
+    description:
+      'Summit is a premium admin template built with React, Next.js, TypeScript and Tailwind CSS using ReUI & shadcn/ui components.',
+    stack: ['react', 'nextjs', 'tailwind', 'reui', 'shadcn', 'radix'],
+    thumbnail: 'summit.png',
+    price: '$99',
+    market: 'Keenthemes',
+  },
+  {
     title: 'SaaSify',
     previewUrl:
       'https://keenthemes.com/products/saasify?utm_source=reui_website&utm_medium=menu&utm_campaign=product_link&utm_content=saasify',

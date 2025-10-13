@@ -117,13 +117,18 @@ const selectTriggerVariants = cva(
   {
     variants: {
       size: {
+        xs: `
+					h-7 px-2 text-xs gap-1 rounded-md
+					[&_[data-slot=select-icon]]:size-3.5 [&_[data-slot=select-icon]]:-me-0.75
+					[&_[data-slot=select-clear]>svg]:size-3 [&_[data-slot=select-clear]]:end-6
+				`,
         sm: `
-					h-7 px-2.5 text-xs gap-1 rounded-md
+					h-8 px-2.5 text-xs gap-1 rounded-md
 					[&_[data-slot=select-icon]]:size-3.5 [&_[data-slot=select-icon]]:-me-0.75
 					[&_[data-slot=select-clear]>svg]:size-3 [&_[data-slot=select-clear]]:end-6
 				`,
         md: `
-					h-8.5 px-3 text-[0.8125rem] leading-(--text-sm--line-height) gap-1 rounded-md
+					h-9 px-3 text-sm gap-1 rounded-md
 					[&_[data-slot=select-icon]]:size-4 [&_[data-slot=select-icon]]:-me-1
 					[&_[data-slot=select-clear]>svg]:size-3.5 [&_[data-slot=select-clear]]:end-7
 				`,

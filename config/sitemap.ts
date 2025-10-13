@@ -314,6 +314,13 @@ export const sitemapConfig: SitemapConfig = {
             'Form container with built-in validation, error handling, and integration with popular form libraries.',
         },
         {
+          title: 'Filters',
+          href: '/docs/filters',
+          new: true,
+          description:
+            'Filters component with multiple filter types, operators, and visual indicators for data filtering.',
+        },
+        {
           title: 'Hover Card',
           href: '/docs/hover-card',
           description: 'Contextual information panel that appears on hover with customizable delay and positioning.',
