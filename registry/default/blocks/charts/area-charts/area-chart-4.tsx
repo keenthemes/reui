@@ -118,7 +118,7 @@ export default function AreaChart4() {
     <div className="min-h-screen flex items-center justify-center p-6 lg:p-8">
       <Card className="w-full lg:max-w-4xl rounded-2xl">
         <CardHeader className="min-h-auto py-6 border-0">
-          <CardTitle className="text-xl font-semibold">Order sOverview</CardTitle>
+          <CardTitle className="text-xl font-semibold">Orders Overview</CardTitle>
           <CardToolbar>
             <ToggleGroup
               type="single"
@@ -227,7 +227,7 @@ export default function AreaChart4() {
                   dataKey="period"
                   axisLine={false}
                   tickLine={false}
-                  tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
+                  tick={{ fontSize: 12, fill: 'var(--muted-foreground)' }}
                   tickMargin={8}
                   interval={0}
                   includeHidden={true}
@@ -237,7 +237,7 @@ export default function AreaChart4() {
                   hide={true}
                   axisLine={false}
                   tickLine={false}
-                  tick={{ fontSize: 11, fill: 'hsl(var(--muted-foreground))' }}
+                  tick={{ fontSize: 11, fill: 'var(--muted-foreground)' }}
                   tickFormatter={(value) => `$${value >= 1000 ? `${(value / 1000).toFixed(0)}K` : value}`}
                   tickMargin={8}
                   domain={[0, 'dataMax']}
