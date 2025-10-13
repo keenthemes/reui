@@ -128,6 +128,7 @@ export default function FiltersDemo() {
       label: 'Score',
       icon: <Star className="size-3.5" />,
       type: 'number',
+      className: 'w-14',
       min: 0,
       max: 100,
       step: 1,

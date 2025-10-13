@@ -6,11 +6,10 @@ component: true
 
 ## Installation
 
-CLI
-Manual
+  CLI
+  Manual
 
-### 1.
-
+### 1. 
 Install the following dependencies:
 
 ```bash
@@ -30,7 +29,3 @@ Copy and paste the following code into your project's `components/ui/base-toolti
 ## API Reference
 
 This component is based on [Base UI Tooltip](https://base-ui.com/react/components/tooltip).
-
-## Credits
-
-- Built with [Base UI Tooltip](https://base-ui.com/react/components/tooltip).

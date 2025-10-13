@@ -6,11 +6,10 @@ component: true
 
 ## Installation
 
-CLI
-Manual
+  CLI
+  Manual
 
-### 1.
-
+### 1. 
 Install the following dependencies:
 
 ```bash
@@ -27,20 +26,16 @@ This component is built using [Base UI Scroll Area](https://base-ui.com/react/co
 
 This component is based on the [Base UI ScrollArea](https://base-ui.com/react/components/scroll-area) primitive and includes the following custom props:
 
-| **Prop**      | **Type**                                    | **Default** | **Description**                                       |
-| ------------- | ------------------------------------------- | ----------- | ----------------------------------------------------- |
-| `className`   | ~string~                                    |             | Additional CSS classes for the scroll area container. |
-| `orientation` | ~enum~ "horizontal" \| "vertical" \| "both" | "vertical"  | The orientation of the scroll area.                   |
+| **Prop**      | **Type**                                                                 | **Default** | **Description**                                       |
+| ------------- | ------------------------------------------------------------------------ | ----------- | ----------------------------------------------------- |
+| `className`   | ~string~                                                                 |        | Additional CSS classes for the scroll area container. |
+| `orientation` | ~enum~  "horizontal" \| "vertical" \| "both"  | "vertical"  | The orientation of the scroll area.                   |
 
 ### ScrollBar
 
 A custom scrollbar component that appears when content overflows.
 
-| **Prop**      | **Type**                          | **Default** | **Description**                           |
-| ------------- | --------------------------------- | ----------- | ----------------------------------------- |
-| `className`   | ~string~                          |             | Additional CSS classes for the scrollbar. |
-| `orientation` | ~enum~ "horizontal" \| "vertical" |             | The orientation of the scrollbar.         |
-
-## Credits
-
-- Built with [Base UI Scroll Area](https://base-ui.com/react/components/scroll-area).
+| **Prop**      | **Type**                                                       | **Default** | **Description**                           |
+| ------------- | -------------------------------------------------------------- | ----------- | ----------------------------------------- |
+| `className`   | ~string~                                                       |        | Additional CSS classes for the scrollbar. |
+| `orientation` | ~enum~  "horizontal" \| "vertical"  |        | The orientation of the scrollbar.         |

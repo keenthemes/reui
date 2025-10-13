@@ -8534,21 +8534,6 @@
       ]
     },
     {
-      "name": "tooltip-light",
-      "type": "registry:component",
-      "dependencies": [],
-      "files": [
-        {
-          "path": "registry/default/components/tooltip/light.tsx",
-          "type": "registry:component"
-        }
-      ],
-      "registryDependencies": [
-        "https://reui.io/r/button.json",
-        "https://reui.io/r/tooltip.json"
-      ]
-    },
-    {
       "name": "tooltip-side",
       "type": "registry:component",
       "dependencies": [],
@@ -9432,7 +9417,7 @@
         }
       ],
       "registryDependencies": [
-        "https://reui.io/r/tooltip.json"
+        "https://reui.io/r/base-tooltip.json"
       ]
     },
     {

@@ -5,11 +5,10 @@ description: A multi-line text input field with support for custom styling and s
 
 ## Installation
 
-CLI
-Manual
+  CLI
+  Manual
 
-### 1.
-
+### 1. 
 Install the following dependencies:
 
 ```bash
@@ -34,7 +33,7 @@ This is a custom component that extends the native HTML textarea element.
 
 ### Textarea
 
-| **Prop**                                                           | **Type**                    | **Default** |
-| ------------------------------------------------------------------ | --------------------------- | ----------- |
-| `variant` Controls the variant of the textarea field.              | ~enum~ "md" \| "sm" \| "xs" | ~"md"~      |
-| `className` Additional class names for styling the textarea field. | ~string~                    |             |
+| **Prop**                                                                                      | **Type**                                                 | **Default** |
+| --------------------------------------------------------------------------------------------- | -------------------------------------------------------- | ----------- |
+| `variant` Controls the variant of the textarea field.              | ~enum~  "md" \| "sm" \| "xs"  | ~"md"~      |
+| `className` Additional class names for styling the textarea field. | ~string~                                                 |        |

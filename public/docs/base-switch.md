@@ -6,11 +6,10 @@ component: true
 
 ## Installation
 
-CLI
-Manual
+  CLI
+  Manual
 
-### 1.
-
+### 1. 
 Install the following dependencies:
 
 ```bash
@@ -33,8 +32,4 @@ Copy and paste the following code into your project's `components/ui/base-switch
 
 ## API Reference
 
-This component is built using [Base UI Switch](https://base-ui.com/react/components/switch) primitives. For detailed information, please visit the full API reference.
-
-## Credits
-
-- Built with [Base UI Switch](https://base-ui.com/react/components/switch).
+This component is built using [Base UI Switch](https://base-ui.com/react/components/switch) primitives.

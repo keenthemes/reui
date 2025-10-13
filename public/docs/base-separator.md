@@ -6,11 +6,10 @@ component: true
 
 ## Installation
 
-CLI
-Manual
+  CLI
+  Manual
 
-### 1.
-
+### 1. 
 Install the following dependencies:
 
 ```bash
@@ -19,6 +18,6 @@ npm install @base-ui-components/react
 
 Copy and paste the following code into your project’s `components/ui/base-separator.tsx` file.
 
-## Credits
+## API Reference
 
-- Built with [Base UI Separator](https://base-ui.com/react/components/separator).
+This component is based on [Base UI Separator](https://base-ui.com/react/components/separator).

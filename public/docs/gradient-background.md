@@ -6,11 +6,10 @@ component: true
 
 ## Installation
 
-CLI
-Manual
+  CLI
+  Manual
 
-### 1.
-
+### 1. 
 Install the following dependencies:
 
 ```bash
@@ -29,9 +28,9 @@ This component is built using [Motion](https://motion.dev/) primitives and inclu
 
 ### GradientBackground
 
-| **Prop**                                                                 | **Type**     | **Default**                                               |
-| ------------------------------------------------------------------------ | ------------ | --------------------------------------------------------- |
-| `className` CSS class for the background container.                      | ~string~     |                                                           |
+| **Prop**                                                                                            | **Type**     | **Default**                                               |
+| --------------------------------------------------------------------------------------------------- | ------------ | --------------------------------------------------------- |
+| `className` CSS class for the background container.                      | ~string~     |                                                      |
 | `transition` Motion transition configuration for the gradient animation. | ~Transition~ | ~\{ duration: 10, ease: 'easeInOut', repeat: Infinity \}~ |
 
 ## Credits

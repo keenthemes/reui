@@ -6,11 +6,10 @@ component: true
 
 ## Installation
 
-CLI
-Manual
+  CLI
+  Manual
 
-### 1.
-
+### 1. 
 Install the following dependencies:
 
 ```bash
@@ -404,7 +403,7 @@ export const formatBytes = (bytes: number, decimals = 2): string => {
   if (bytes === 0) return '0 Bytes';
 
   const k = 1024;
-  const dm = decimals
+  const dm = decimals 
 
 ## Examples
 
@@ -429,4 +428,3 @@ export const formatBytes = (bytes: number, decimals = 2): string => {
 ## Credits
 
 - Built with [OriginUI File Upload Hook](https://github.com/origin-space/originui/tree/main/docs/use-file-upload.md).
-```

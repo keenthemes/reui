@@ -6,10 +6,10 @@ component: true
 
 ## Installation
 
-CLI
-Manual
+  CLI
+  Manual
 
-### 1.
+### 1. 
 
 ### 2. Install ReUI
 
@@ -100,7 +100,3 @@ The content panel for a tab.
 | `className` | `string`    | -       | Additional CSS classes                       |
 | `value`     | `string`    | -       | The value of the tab this content belongs to |
 | `children`  | `ReactNode` | -       | The content of the tab panel                 |
-
-## Credits
-
-- Built with [Base UI Tabs](https://base-ui.com/react/components/tabs).

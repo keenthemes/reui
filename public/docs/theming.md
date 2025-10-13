@@ -21,6 +21,8 @@ Customize component styles using CSS variables for both `light` and `dark` modes
 
 ```css showLineNumbers
 :root {
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
   --background: var(--color-white);
   --foreground: var(--color-zinc-950);
   --card: var(--color-white);

@@ -6,11 +6,10 @@ component: true
 
 ## Installation
 
-CLI
-Manual
+  CLI
+  Manual
 
-### 1.
-
+### 1. 
 Install the following dependencies:
 
 ```bash
@@ -59,7 +58,3 @@ The value display component for showing progress percentage.
 | Prop        | Type     | Default | Description            |
 | ----------- | -------- | ------- | ---------------------- |
 | `className` | `string` | -       | Additional CSS classes |
-
-## Credits
-
-- Built with [Base UI Progress](https://base-ui.com/react/components/progress).

@@ -6,8 +6,8 @@ component: true
 
 ## Installation
 
-CLI
-Manual
+  CLI
+  Manual
 
 ### 1. Install the following dependencies:
 
@@ -28,27 +28,27 @@ primitives and includes the following custom props:
 
 ### AvatarGroup
 
-| **Prop**                                                                     | **Type**                               | **Default** |
-| ---------------------------------------------------------------------------- | -------------------------------------- | ----------- |
-| `children` Child components to be rendered inside the avatar group.          | ~ReactNode~                            |             |
-| `className` Optional CSS class name to apply custom styles.                  | ~string~                               |             |
-| `tooltipClassName` CSS class for tooltip styling applied to all child items. | ~string~                               |             |
-| `animation` Animation type for tooltip transitions.                          | ~enum~ "default" \| "flip" \| "reveal" | ~'default'~ |
+| **Prop**                                                                                                | **Type**                                                            | **Default** |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- | ----------- |
+| `children` Child components to be rendered inside the avatar group.          | ~ReactNode~                                                         |        |
+| `className` Optional CSS class name to apply custom styles.                  | ~string~                                                            |        |
+| `tooltipClassName` CSS class for tooltip styling applied to all child items. | ~string~                                                            |        |
+| `animation` Animation type for tooltip transitions.                          | ~enum~  "default" \| "flip" \| "reveal"  | ~'default'~ |
 
 ### AvatarGroupItem
 
-| **Prop**                                                                   | **Type**    | **Default** |
-| -------------------------------------------------------------------------- | ----------- | ----------- |
-| `children` Child components including avatar and tooltip content.          | ~ReactNode~ |             |
-| `className` Optional CSS class name to apply custom styles.                | ~string~    |             |
-| `tooltipClassName` CSS class for tooltip styling, overrides group setting. | ~string~    |             |
+| **Prop**                                                                                              | **Type**    | **Default** |
+| ----------------------------------------------------------------------------------------------------- | ----------- | ----------- |
+| `children` Child components including avatar and tooltip content.          | ~ReactNode~ |        |
+| `className` Optional CSS class name to apply custom styles.                | ~string~    |        |
+| `tooltipClassName` CSS class for tooltip styling, overrides group setting. | ~string~    |        |
 
 ### AvatarGroupTooltip
 
-| **Prop**                                                    | **Type**    | **Default** |
-| ----------------------------------------------------------- | ----------- | ----------- |
-| `children` Content to be displayed in the tooltip.          | ~ReactNode~ |             |
-| `className` Optional CSS class name to apply custom styles. | ~string~    |             |
+| **Prop**                                                                               | **Type**    | **Default** |
+| -------------------------------------------------------------------------------------- | ----------- | ----------- |
+| `children` Content to be displayed in the tooltip.          | ~ReactNode~ |        |
+| `className` Optional CSS class name to apply custom styles. | ~string~    |        |
 
 ## Credits
 

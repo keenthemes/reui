@@ -6,11 +6,10 @@ component: true
 
 ## Installation
 
-CLI
-Manual
+  CLI
+  Manual
 
-### 1.
-
+### 1. 
 Install the following dependencies:
 
 ```bash
@@ -39,10 +38,6 @@ This component is based on the [Base UI Checkbox](https://base-ui.com/react/comp
 
 A customized checkbox component that extends the Radix UI Checkbox primitive with additional styling and features. It supports all the props from Radix UI's Checkbox.Root component.
 
-| **Prop**                                                               | **Type** | **Default** |
-| ---------------------------------------------------------------------- | -------- | ----------- |
-| `className` Additional class names for styling the checkbox container. | ~string~ |             |
-
-## Credits
-
-- Built with [Base UI Checkbox](https://base-ui.com/react/components/checkbox).
+| **Prop**                                                                                          | **Type** | **Default** |
+| ------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` Additional class names for styling the checkbox container. | ~string~ |        |

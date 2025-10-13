@@ -6,11 +6,10 @@ component: true
 
 ## Installation
 
-CLI
-Manual
+  CLI
+  Manual
 
-### 1.
-
+### 1. 
 Install the following dependencies:
 
 ```bash
@@ -27,8 +26,4 @@ Different sizes of number field components.
 
 ## API Reference
 
-This component is based on [Base UI Number Field](https://base-ui.com/react/components/number-field) primitive and includes the following custom props:
-
-## Credits
-
-- Built with [Base UI Number Field](https://base-ui.com/react/components/number-field).
+This component is based on [Base UI Number Field](https://base-ui.com/react/components/number-field) primitive.

@@ -5,6 +5,8 @@ This is the documentation for the `@reui/components` package. It contains a coll
 ## Getting Started
 - [Introduction](https://reui.io/docs/index.md): Get started with ReUI - a comprehensive React component library designed for modern web applications.
 - [Installation](https://reui.io/docs/installation.md): Step-by-step guide to install ReUI in your React project with npm, yarn, or pnpm.
+- [Registry](https://reui.io/docs/registry.md): Learn how to use the ReUI Registry with shadcn/ui.
+- [MCP](https://reui.io/docs/mcp.md): Learn how to use the shadcn MCP(Model Context Protocol) with ReUI
 - [Theming](https://reui.io/docs/theming.md): Customize ReUI components with CSS variables, Tailwind CSS, or your preferred styling solution.
 - [Dark mode](https://reui.io/docs/dark-mode.md): Implement automatic dark mode switching with ReUI components using next-themes or custom solutions.
 - [RTL](https://reui.io/docs/rtl.md): Enable right-to-left language support for ReUI components in Arabic, Hebrew, and other RTL languages.
@@ -51,6 +53,7 @@ This is the documentation for the `@reui/components` package. It contains a coll
 - [Dialog](https://reui.io/docs/dialog.md): Modal overlay that captures focus and requires user interaction before dismissing or continuing.
 - [Dropdown Menu](https://reui.io/docs/dropdown-menu.md): Action menu that appears below a trigger with keyboard navigation and submenu support.
 - [Form](https://reui.io/docs/form.md): Form container with built-in validation, error handling, and integration with popular form libraries.
+- [Filters](https://reui.io/docs/filters.md): Filters component with multiple filter types, operators, and visual indicators for data filtering.
 - [Hover Card](https://reui.io/docs/hover-card.md): Contextual information panel that appears on hover with customizable delay and positioning.
 - [Input](https://reui.io/docs/input.md): Text input field with validation states, error messages, and customizable styling options.
 - [Label](https://reui.io/docs/label.md): Form field label with automatic association to inputs and screen reader accessibility.

@@ -6,11 +6,10 @@ component: true
 
 ## Installation
 
-CLI
-Manual
+  CLI
+  Manual
 
-### 1.
-
+### 1. 
 Install the following dependencies:
 
 ```bash
@@ -29,6 +28,8 @@ Copy and paste the following code into your project's `components/ui/base-toggle
 
 ## API Reference
 
+This component is based on [Base UI Toggle](https://base-ui.com/react/components/toggle).
+
 ### Toggle Props
 
 | Prop              | Type                                                                  | Default | Description                                                                                             |
@@ -44,7 +45,3 @@ Copy and paste the following code into your project's `components/ui/base-toggle
 | Attribute      | Type | Description                                |
 | :------------- | :--- | :----------------------------------------- |
 | `data-pressed` | -    | Present when the toggle button is pressed. |
-
-## Credits
-
-- Built with [Base UI Toggle](https://base-ui.com/react/components/toggle).

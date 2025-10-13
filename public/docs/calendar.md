@@ -6,11 +6,10 @@ component: true
 
 ## Installation
 
-CLI
-Manual
+  CLI
+  Manual
 
-### 1.
-
+### 1. 
 Install the following dependencies:
 
 ```bash
@@ -31,11 +30,11 @@ This component provides a customizable calendar system built on top of the `reac
 
 This component is based on the [DayPicker](https://daypicker.dev) component and extends its functionality with custom styling and navigation controls.
 
-| **Prop**                                                                    | **Type**  | **Default** |
-| --------------------------------------------------------------------------- | --------- | ----------- |
-| `className` Additional class names for styling the calendar container.      | ~string~  |             |
-| `classNames` Custom class names to override specific parts of the calendar. | ~Record\~ |             |
-| `showOutsideDays` Determines whether to show days from adjacent months.     | ~boolean~ | ~true~      |
+| **Prop**                                                                                               | **Type**                  | **Default** |
+| ------------------------------------------------------------------------------------------------------ | ------------------------- | ----------- |
+| `className` Additional class names for styling the calendar container.      | ~string~                  |        |
+| `classNames` Custom class names to override specific parts of the calendar. | ~Record\~ |        |
+| `showOutsideDays` Determines whether to show days from adjacent months.     | ~boolean~                 | ~true~      |
 
 ## Credits
 

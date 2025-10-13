@@ -86,7 +86,7 @@ export default function Page() {
                           {component.highlight!.examples.map((example) => (
                             <HoverCard key={example} openDelay={300} closeDelay={0}>
                               <HoverCardTrigger asChild>
-                                <Button variant="outline" shape="circle" size="sm" className="cursor-pointer" asChild>
+                                <Button variant="outline" radius="full" size="sm" className="cursor-pointer" asChild>
                                   <Link
                                     href={`/docs/${getSlug(component.title)}#${getSlug(example)}`}
                                     target="_blank"

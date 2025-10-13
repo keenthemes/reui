@@ -6,11 +6,10 @@ component: true
 
 ## Installation
 
-CLI
-Manual
+  CLI
+  Manual
 
-### 1.
-
+### 1. 
 Install the following dependencies:
 
 ```bash
@@ -31,9 +30,9 @@ This component provides a customizable collapsible system with various styles an
 
 This component is based on the [Collapsible.Root](https://www.radix-ui.com/primitives/docs/components/collapsible#root) primitive and includes the following custom props:
 
-| **Prop**                                                                  | **Type** | **Default** |
-| ------------------------------------------------------------------------- | -------- | ----------- |
-| `className` Additional class names for styling the collapsible container. | ~string~ |             |
+| **Prop**                                                                                             | **Type** | **Default** |
+| ---------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` Additional class names for styling the collapsible container. | ~string~ |        |
 
 ### CollapsibleTrigger
 
@@ -43,10 +42,6 @@ This component is based on the [Collapsible.Trigger](https://www.radix-ui.com/pr
 
 This component is based on the [Collapsible.Panel](https://www.radix-ui.com/primitives/docs/components/collapsible#panel) primitive and includes the following custom props:
 
-| **Prop**                                                                | **Type** | **Default** |
-| ----------------------------------------------------------------------- | -------- | ----------- |
-| `className` Additional class names for styling the collapsible content. | ~string~ |             |
-
-## Credits
-
-- Built with [Base UI Collapsible](https://base-ui.com/react/components/collapsible).
+| **Prop**                                                                                           | **Type** | **Default** |
+| -------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `className` Additional class names for styling the collapsible content. | ~string~ |        |

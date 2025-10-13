@@ -6,11 +6,10 @@ component: true
 
 ## Installation
 
-CLI
-Manual
+  CLI
+  Manual
 
-### 1.
-
+### 1. 
 Install the following dependencies:
 
 ```bash
@@ -31,14 +30,14 @@ The Kanban component is a flexible drag-and-drop board for organizing items in c
 
 The root Kanban component includes the following props:
 
-| **Prop**                                                                                                                             | **Type**                              | **Default** |
-| ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------- | ----------- |
-| `value` Current kanban board state. The columns and their items.                                                                     | ~Record\~                             |             |
-| `onValueChange` Callback when board state changes. Called when columns/items are reordered or moved.                                 | ~(value: Record\string T[]>) => void~ |             |
-| `getItemValue` Function to get unique item id. Returns a unique identifier for each item.                                            | ~(item: T) => string~                 |             |
-| `children` Kanban board content. The board layout and columns.                                                                       | ~React.ReactNode~                     |             |
-| `className` Additional class names. Custom classes for the root element.                                                             | ~string~                              |             |
-| `onMove` Custom move handler (overrides default reordering). Called when an item is moved. If provided, disables default reordering. | ~(event: KanbanMoveEvent) => void~    |             |
+| **Prop**                                                                                                                                                        | **Type**                              | **Default** |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- | ----------- |
+| `value` Current kanban board state. The columns and their items.                                                                     | ~Record\~                 |        |
+| `onValueChange` Callback when board state changes. Called when columns/items are reordered or moved.                                 | ~(value: Record\string T[]>) => void~ |        |
+| `getItemValue` Function to get unique item id. Returns a unique identifier for each item.                                            | ~(item: T) => string~                 |        |
+| `children` Kanban board content. The board layout and columns.                                                                       | ~React.ReactNode~                     |        |
+| `className` Additional class names. Custom classes for the root element.                                                             | ~string~                              |        |
+| `onMove` Custom move handler (overrides default reordering). Called when an item is moved. If provided, disables default reordering. | ~(event: KanbanMoveEvent) => void~    |        |
 
 ---
 
@@ -46,11 +45,11 @@ The root Kanban component includes the following props:
 
 A draggable column in the Kanban board.
 
-| **Prop**                                                                         | **Type**    | **Default** |
-| -------------------------------------------------------------------------------- | ----------- | ----------- |
-| `value` Column id. Unique identifier for the column.                             | ~string~    |             |
-| `className` Additional class names. Custom classes for the column.               | ~string~    |             |
-| `children` Column content. The column header and items.                          | ~ReactNode~ |             |
+| **Prop**                                                                                                    | **Type**    | **Default** |
+| ----------------------------------------------------------------------------------------------------------- | ----------- | ----------- |
+| `value` Column id. Unique identifier for the column.                             | ~string~    |        |
+| `className` Additional class names. Custom classes for the column.               | ~string~    |        |
+| `children` Column content. The column header and items.                          | ~ReactNode~ |        |
 | `disabled` Disable drag for this column. Prevents the column from being dragged. | ~boolean~   | ~false~     |
 
 ---
@@ -59,11 +58,11 @@ A draggable column in the Kanban board.
 
 A drag handle for a column.
 
-| **Prop**                                                               | **Type**    | **Default** |
-| ---------------------------------------------------------------------- | ----------- | ----------- |
+| **Prop**                                                                                          | **Type**    | **Default** |
+| ------------------------------------------------------------------------------------------------- | ----------- | ----------- |
 | `asChild` Render as child element. Use a custom element as the handle. | ~boolean~   | ~false~     |
-| `className` Additional class names. Custom classes for the handle.     | ~string~    |             |
-| `children` Handle content. The handle UI.                              | ~ReactNode~ |             |
+| `className` Additional class names. Custom classes for the handle.     | ~string~    |        |
+| `children` Handle content. The handle UI.                              | ~ReactNode~ |        |
 | `cursor` Show grab cursor. Show grab/grabbing cursor on the handle.    | ~boolean~   | ~true~      |
 
 ---
@@ -72,12 +71,12 @@ A drag handle for a column.
 
 A draggable item in a column.
 
-| **Prop**                                                                     | **Type**    | **Default** |
-| ---------------------------------------------------------------------------- | ----------- | ----------- |
-| `value` Item id. Unique identifier for the item.                             | ~string~    |             |
+| **Prop**                                                                                                | **Type**    | **Default** |
+| ------------------------------------------------------------------------------------------------------- | ----------- | ----------- |
+| `value` Item id. Unique identifier for the item.                             | ~string~    |        |
 | `asChild` Render as child element. Use a custom element as the item.         | ~boolean~   | ~false~     |
-| `className` Additional class names. Custom classes for the item.             | ~string~    |             |
-| `children` Item content. The item UI.                                        | ~ReactNode~ |             |
+| `className` Additional class names. Custom classes for the item.             | ~string~    |        |
+| `children` Item content. The item UI.                                        | ~ReactNode~ |        |
 | `disabled` Disable drag for this item. Prevents the item from being dragged. | ~boolean~   | ~false~     |
 
 ---
@@ -86,11 +85,11 @@ A draggable item in a column.
 
 A drag handle for an item.
 
-| **Prop**                                                               | **Type**    | **Default** |
-| ---------------------------------------------------------------------- | ----------- | ----------- |
+| **Prop**                                                                                          | **Type**    | **Default** |
+| ------------------------------------------------------------------------------------------------- | ----------- | ----------- |
 | `asChild` Render as child element. Use a custom element as the handle. | ~boolean~   | ~false~     |
-| `className` Additional class names. Custom classes for the handle.     | ~string~    |             |
-| `children` Handle content. The handle UI.                              | ~ReactNode~ |             |
+| `className` Additional class names. Custom classes for the handle.     | ~string~    |        |
+| `children` Handle content. The handle UI.                              | ~ReactNode~ |        |
 | `cursor` Show grab cursor. Show grab/grabbing cursor on the handle.    | ~boolean~   | ~true~      |
 
 ---
@@ -99,11 +98,11 @@ A drag handle for an item.
 
 A wrapper for the items in a column.
 
-| **Prop**                                                                    | **Type**    | **Default** |
-| --------------------------------------------------------------------------- | ----------- | ----------- |
-| `value` Column id. The column this content belongs to.                      | ~string~    |             |
-| `className` Additional class names. Custom classes for the content wrapper. | ~string~    |             |
-| `children` Items content. The items in the column.                          | ~ReactNode~ |             |
+| **Prop**                                                                                               | **Type**    | **Default** |
+| ------------------------------------------------------------------------------------------------------ | ----------- | ----------- |
+| `value` Column id. The column this content belongs to.                      | ~string~    |        |
+| `className` Additional class names. Custom classes for the content wrapper. | ~string~    |        |
+| `children` Items content. The items in the column.                          | ~ReactNode~ |        |
 
 ---
 
@@ -111,10 +110,10 @@ A wrapper for the items in a column.
 
 A custom overlay for the dragged item or column.
 
-| **Prop**                                                                                                  | **Type**                                                                                        | **Default** |
-| --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------- |
-| `className` Additional class names. Custom classes for the overlay.                                       | ~string~                                                                                        |             |
-| `children` Overlay content or render function. The overlay UI or a function that returns overlay content. | ~ReactNode \| (params: \{ value: UniqueIdentifier; variant: 'column' \| 'item' }) => ReactNode~ |             |
+| **Prop**                                                                                                                             | **Type**                                                                                        | **Default** |
+| ------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------- | ----------- |
+| `className` Additional class names. Custom classes for the overlay.                                       | ~string~                                                                                        |        |
+| `children` Overlay content or render function. The overlay UI or a function that returns overlay content. | ~ReactNode \| (params: \{ value: UniqueIdentifier; variant: 'column' \| 'item' }) => ReactNode~ |        |
 
 ---
 

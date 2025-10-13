@@ -6,11 +6,10 @@ component: true
 
 ## Installation
 
-CLI
-Manual
+  CLI
+  Manual
 
-### 1.
-
+### 1. 
 Install the following dependencies:
 
 ```bash
@@ -33,12 +32,12 @@ This component is built using [Radix UI Dialog](https://www.radix-ui.com/primiti
 
 This component is based on the [Dialog.Content](https://www.radix-ui.com/primitives/docs/components/dialog#content) primitive and includes the following custom props:
 
-| **Prop**                                                    | **Type**                                      | **Default** |
-| ----------------------------------------------------------- | --------------------------------------------- | ----------- |
-| `side` The side from which the sheet appears.               | ~enum~ "top" \| "bottom" \| "left" \| "right" | ~"right"~   |
-| `overlay` Whether to show the overlay background.           | ~boolean~                                     | ~true~      |
-| `close` Whether to show the close button.                   | ~boolean~                                     | ~true~      |
-| `className` Additional class names for styling the content. | ~string~                                      |             |
+| **Prop**                                                                               | **Type**                                                                   | **Default** |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ----------- |
+| `side` The side from which the sheet appears.               | ~enum~  "top" \| "bottom" \| "left" \| "right"  | ~"right"~   |
+| `overlay` Whether to show the overlay background.           | ~boolean~                                                                  | ~true~      |
+| `close` Whether to show the close button.                   | ~boolean~                                                                  | ~true~      |
+| `className` Additional class names for styling the content. | ~string~                                                                   |        |
 
 ## Credits
 

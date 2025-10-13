@@ -6,11 +6,10 @@ component: true
 
 ## Installation
 
-CLI
-Manual
+  CLI
+  Manual
 
-### 1.
-
+### 1. 
 Install the following dependencies:
 
 ```bash
@@ -27,9 +26,9 @@ This component is built using the [Radix UI Label](https://www.radix-ui.com/prim
 
 The main container component that provides context and styling for all card elements.
 
-| **Prop**                                         | **Type**                        | **Default** |
-| ------------------------------------------------ | ------------------------------- | ----------- |
-| `variant` The visual style variant of the label. | ~enum~ "primary" \| "secondary" | ~"primary"~ |
+| **Prop**                                                                    | **Type**                                                     | **Default** |
+| --------------------------------------------------------------------------- | ------------------------------------------------------------ | ----------- |
+| `variant` The visual style variant of the label. | ~enum~  "primary" \| "secondary"  | ~"primary"~ |
 
 ## Credits
 

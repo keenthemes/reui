@@ -6,11 +6,10 @@ component: true
 
 ## Installation
 
-CLI
-Manual
+  CLI
+  Manual
 
-### 1.
-
+### 1. 
 Install the following dependencies:
 
 ```bash
@@ -36,7 +35,3 @@ Copy and paste the following code into your project's `components/ui/base-autoco
 ## API Reference
 
 This component is based on [Base UI Autocomplete](https://base-ui.com/react/components/autocomplete).
-
-## Credits
-
-- Built with [Base UI Autocomplete](https://base-ui.com/react/components/autocomplete).

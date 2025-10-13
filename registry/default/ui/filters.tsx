@@ -377,7 +377,7 @@ const filterFieldValueVariants = cva(
     variants: {
       variant: {
         solid: 'bg-secondary',
-        outline: 'bg-background border border-border hover:bg-secondary',
+        outline: 'bg-background border border-border hover:bg-secondary has-[[data-slot=switch]]:hover:bg-transparent',
       },
       size: {
         lg: 'h-10 px-4 text-sm gap-1.5 [&_svg:not([class*=size-])]:size-4',
@@ -385,7 +385,7 @@ const filterFieldValueVariants = cva(
         sm: 'h-8 px-2.5 gap-1.25 text-xs [&_svg:not([class*=size-])]:size-3.5',
       },
       cursorPointer: {
-        true: 'cursor-pointer',
+        true: 'cursor-pointer has-[[data-slot=switch]]:cursor-default',
         false: '',
       },
     },
@@ -700,6 +700,7 @@ export interface FilterFieldConfig<T = unknown> {
   allowCustomValues?: boolean;
   className?: string;
   popoverContentClassName?: string;
+  selectedOptionsClassName?: string;
   // Grouping options (legacy support)
   groupLabel?: string;
   // Boolean field options
@@ -1041,7 +1042,7 @@ function SelectOptionsPopover<T = unknown>({
           ) : (
             <>
               {selectedOptions.length > 0 && (
-                <div className="flex items-center -space-x-1.5">
+                <div className={cn('-space-x-1.5 flex items-center', field.selectedOptionsClassName)}>
                   {selectedOptions.slice(0, 3).map((option) => (
                     <div key={String(option.value)}>{option.icon}</div>
                   ))}

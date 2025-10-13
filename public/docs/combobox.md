@@ -10,8 +10,6 @@ The Combobox is built using a composition of the [Popover](/docs/popover) and th
 
 ## Examples
 
-### Text
-
 ### Group
 
 ### Disabled Option

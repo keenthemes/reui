@@ -1,96 +1,25 @@
 ---
 title: MCP
-description: Learn how to use the Model Context Protocol with ReUI.
+description: Learn how to use the shadcn/ui MCP(Model Context Protocol) with ReUI.
 ---
 
 MCP is an open protocol that standardizes how applications provide context to LLMs.
 
-## Installation
+## Configure MCP
 
-### 1.
+Run the following command to configure the mcp server:
 
-### 2. Configure MCP
-
-Windsurf
-Cursor
-Claude
-Cline
-
-Add the following code to your `mcp_config.json` file:
-
-```json
-{
-  "mcpServers": {
-    "shadcn": {
-      "command": "npx",
-      "args": ["-y", "shadcn@canary", "registry:mcp"],
-      "env": {
-        "REGISTRY_URL": "https://reui.io/r/registry.json"
-      }
-    }
-  }
-}
+```bash
+pnpm dlx shadcn@latest mcp init
 ```
 
-Add the following code to your `mcp.json` file:
-
-```json
-{
-  "mcpServers": {
-    "shadcn": {
-      "command": "npx",
-      "args": ["-y", "shadcn@canary", "registry:mcp"],
-      "env": {
-        "REGISTRY_URL": "https://reui.io/r/registry.json"
-      }
-    }
-  }
-}
-```
-
-Add the following code to your MCP config file:
-
-```json
-{
-  "mcpServers": {
-    "shadcn": {
-      "command": "npx",
-      "args": ["-y", "shadcn@canary", "registry:mcp"],
-      "env": {
-        "REGISTRY_URL": "https://reui.io/r/registry.json"
-      }
-    }
-  }
-}
-```
-
-Add the following code to your MCP config file:
-
-```json
-{
-  "mcpServers": {
-    "shadcn": {
-      "command": "npx",
-      "args": ["-y", "shadcn@canary", "registry:mcp"],
-      "env": {
-        "REGISTRY_URL": "https://reui.io/r/registry.json"
-      }
-    }
-  }
-}
-```
-
-### 3. Restart IDE
-
-Restart your IDE to apply the changes.
+Select your MCP client as prompted, then enable the MCP server in your client to finish setup.
 
 ## Usage
 
-You can now ask your IDE to use any Magic UI component. Here are some examples:
+You can now ask your IDE to use any ReUI component. Here are some prompt examples:
 
-- "Add address form"
-- "Add accordion menu"
-- "Add alert with close button"
-- "Add button with icon"
-- "Add card with image and title"
-- "Add checkbox with label"
+- Add Statistic Card block from ReUI registry.
+- Add Base UI Autocomplete Component ReUI registry.
+- Add Base UI Phone Input n Component ReUI registry.
+- Build me a User Management CRUD using Data Grid and Forms from ReUI registry.

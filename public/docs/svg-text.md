@@ -5,11 +5,10 @@ description: Display text with animated SVG backgrounds. Perfect for creating dy
 
 ## Installation
 
-CLI
-Manual
+  CLI
+  Manual
 
-### 1.
-
+### 1. 
 Install the following dependencies:
 
 ```bash
@@ -24,11 +23,11 @@ This component is built using [Motion](https://motion.dev/) primitives and inclu
 
 ### SVGText
 
-| **Prop**                                                               | **Type**           | **Default** |
-| ---------------------------------------------------------------------- | ------------------ | ----------- |
-| `svg` SVG content to display inside the text mask.                     | ~ReactNode~        |             |
-| `children` Text content to be masked and displayed.                    | ~ReactNode~        |             |
-| `className` CSS class for the container element.                       | ~string~           |             |
+| **Prop**                                                                                          | **Type**           | **Default** |
+| ------------------------------------------------------------------------------------------------- | ------------------ | ----------- |
+| `svg` SVG content to display inside the text mask.                     | ~ReactNode~        |        |
+| `children` Text content to be masked and displayed.                    | ~ReactNode~        |        |
+| `className` CSS class for the container element.                       | ~string~           |        |
 | `fontSize` Font size for the text mask in CSS units or viewport width. | ~string \| number~ | ~"20vw"~    |
 | `fontWeight` Font weight for the text mask.                            | ~string \| number~ | ~"bold"~    |
 | `as` HTML element type to render for the container.                    | ~ElementType~      | ~"div"~     |

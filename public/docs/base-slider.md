@@ -6,11 +6,10 @@ component: true
 
 ## Installation
 
-CLI
-Manual
+  CLI
+  Manual
 
-### 1.
-
+### 1. 
 Install the following dependencies:
 
 ```bash
@@ -79,7 +78,3 @@ The thumb component that can be dragged to change values.
 | Prop        | Type     | Default | Description            |
 | ----------- | -------- | ------- | ---------------------- |
 | `className` | `string` | -       | Additional CSS classes |
-
-## Credits
-
-- Built with [Base UI Slider](https://base-ui.com/react/components/slider).

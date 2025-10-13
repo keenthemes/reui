@@ -6,11 +6,10 @@ component: true
 
 ## Installation
 
-CLI
-Manual
+  CLI
+  Manual
 
-### 1.
-
+### 1. 
 Install the following dependencies:
 
 ```bash
@@ -33,14 +32,14 @@ This component provides a flexible way to display inline code snippets with opti
 
 ### Code
 
-| **Prop**                                                                   | **Type**                                       | **Default** |
-| -------------------------------------------------------------------------- | ---------------------------------------------- | ----------- |
-| `variant` Specifies the code's theme variant.                              | ~enum~ "default" \| "destructive" \| "outline" | `default`   |
-| `size` Sets the size of the code component.                                | ~enum~ "sm" \| "default" \| "lg"               | `default`   |
-| `showCopyButton` Whether to show a copy button next to the code.           | ~boolean~                                      | `false`     |
-| `copyText` Custom text to copy when the copy button is clicked.            | ~string~                                       |             |
-| `asChild` Renders the code as a child element, using the `Slot` component. | ~boolean~                                      | `false`     |
-| `className` Additional class names for styling the code component.         | ~string~                                       |             |
+| **Prop**                                                                                              | **Type**                                                                    | **Default** |
+| ----------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ----------- |
+| `variant` Specifies the code's theme variant.                              | ~enum~  "default" \| "destructive" \| "outline"  | `default`   |
+| `size` Sets the size of the code component.                                | ~enum~  "sm" \| "default" \| "lg"                | `default`   |
+| `showCopyButton` Whether to show a copy button next to the code.           | ~boolean~                                                                   | `false`     |
+| `copyText` Custom text to copy when the copy button is clicked.            | ~string~                                                                    |        |
+| `asChild` Renders the code as a child element, using the `Slot` component. | ~boolean~                                                                   | `false`     |
+| `className` Additional class names for styling the code component.         | ~string~                                                                    |        |
 
 ## Credits
 

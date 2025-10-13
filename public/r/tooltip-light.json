@@ -2,16 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "tooltip-light",
   "type": "registry:component",
-  "dependencies": [
-    "class-variance-authority",
-    "lucide-react",
-    "radix-ui",
-    "@radix-ui/react-tooltip"
-  ],
-  "registryDependencies": [
-    "https://reui.io/r/button.json",
-    "https://reui.io/r/tooltip.json"
-  ],
+  "dependencies": ["class-variance-authority", "lucide-react", "radix-ui", "@radix-ui/react-tooltip"],
+  "registryDependencies": ["https://reui.io/r/button.json", "https://reui.io/r/tooltip.json"],
   "files": [
     {
       "path": "registry/default/components/tooltip/light.tsx",

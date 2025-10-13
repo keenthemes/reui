@@ -26,8 +26,8 @@ This component is built using [react-day-picker](https://react-day-picker.js.org
 
 This component is based on the [DayPicker](https://react-day-picker.js.org/basics/customization) component from react-day-picker. For all available props, refer to the react-day-picker documentation. The component includes the following custom styling props:
 
-| **Prop**                                                               | **Type** | **Default**        |
-| ---------------------------------------------------------------------- | -------- | ------------------ |
+| **Prop**                                                                                          | **Type** | **Default**        |
+| ------------------------------------------------------------------------------------------------- | -------- | ------------------ |
 | `className` Additional class names for styling the calendar container. | ~string~ | ~undefined~        |
 | `classNames` Custom class names for individual calendar elements.      | ~object~ | ~See calendar.tsx~ |
 
@@ -35,8 +35,8 @@ This component is based on the [DayPicker](https://react-day-picker.js.org/basic
 
 The trigger button that opens the date picker popover.
 
-| **Prop**                                                           | **Type**  | **Default**     |
-| ------------------------------------------------------------------ | --------- | --------------- |
+| **Prop**                                                                                      | **Type**  | **Default**     |
+| --------------------------------------------------------------------------------------------- | --------- | --------------- |
 | `asInput` Style the trigger as an input field.                     | ~boolean~ | ~false~         |
 | `placeholder` Placeholder text when no date is selected.           | ~string~  | ~"Pick a date"~ |
 | `className` Additional class names for styling the trigger button. | ~string~  | ~undefined~     |
@@ -45,20 +45,20 @@ The trigger button that opens the date picker popover.
 
 The popover content that contains the calendar. This component extends Radix UI's Popover.Content.
 
-| **Prop**                                                            | **Type**                            | **Default** |
-| ------------------------------------------------------------------- | ----------------------------------- | ----------- |
-| `className` Additional class names for styling the popover content. | ~string~                            | ~undefined~ |
-| `align` Alignment of the popover relative to the trigger.           | ~enum~ "start" \| "center" \| "end" | ~"center"~  |
+| **Prop**                                                                                       | **Type**                                                         | **Default** |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ----------- |
+| `className` Additional class names for styling the popover content. | ~string~                                                         | ~undefined~ |
+| `align` Alignment of the popover relative to the trigger.           | ~enum~  "start" \| "center" \| "end"  | ~"center"~  |
 
 ### DatePickerPresets
 
 A component for displaying preset date ranges.
 
-| **Prop**                                                              | **Type**                     | **Default** |
-| --------------------------------------------------------------------- | ---------------------------- | ----------- |
-| `presets` Array of preset date ranges.                                | ~Array\~                     |             |
-| `onSelect` Callback function when a preset is selected.               | ~(range: DateRange) => void~ |             |
-| `className` Additional class names for styling the presets container. | ~string~                     | ~undefined~ |
+| **Prop**                                                                                         | **Type**                                        | **Default** |
+| ------------------------------------------------------------------------------------------------ | ----------------------------------------------- | ----------- |
+| `presets` Array of preset date ranges.                                | ~Array\~ |        |
+| `onSelect` Callback function when a preset is selected.               | ~(range: DateRange) => void~                    |        |
+| `className` Additional class names for styling the presets container. | ~string~                                        | ~undefined~ |
 
 ## Credits
 

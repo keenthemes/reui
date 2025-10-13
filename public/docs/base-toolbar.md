@@ -6,11 +6,10 @@ component: true
 
 ## Installation
 
-CLI
-Manual
+  CLI
+  Manual
 
-### 1.
-
+### 1. 
 Install the following dependencies:
 
 ```bash
@@ -19,6 +18,6 @@ npm install @base-ui-components/react/toolbar
 
 Copy and paste the following code into your project's `components/ui/base-toolbar.tsx` file.
 
-## Examples
+## API Reference
 
-### Default
+This component is based on [Base UI Toolbar](https://base-ui.com/react/components/toolbar).

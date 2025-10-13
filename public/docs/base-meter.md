@@ -6,11 +6,10 @@ component: true
 
 ## Installation
 
-CLI
-Manual
+  CLI
+  Manual
 
-### 1.
-
+### 1. 
 Install the following dependencies:
 
 ```bash
@@ -21,8 +20,4 @@ Copy and paste the following code into your project's `components/ui/base-meter.
 
 ## API Reference
 
-This component is based on the [Base UI Meter](https://base-ui.com/react/components/meter) primitive and includes the following custom props:
-
-## Credits
-
-- Built with [Base UI Meter](https://base-ui.com/react/components/meter).
+This component is based on the [Base UI Meter](https://base-ui.com/react/components/meter) primitive.

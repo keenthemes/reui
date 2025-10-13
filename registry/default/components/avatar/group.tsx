@@ -23,7 +23,7 @@ export default function AvatarDemo() {
       <Button
         variant="secondary"
         mode="icon"
-        shape="circle"
+        radius="full"
         className="relative size-10 border-2 border-background hover:z-10"
       >
         +7

@@ -6,10 +6,10 @@ component: true
 
 ## Installation
 
-CLI
-Manual
+  CLI
+  Manual
 
-### 1.
+### 1. 
 
 ### 2. Install ReUI
 

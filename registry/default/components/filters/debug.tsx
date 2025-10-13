@@ -140,7 +140,10 @@ export default function FiltersDemo() {
     },
   ];
 
-  const [filters, setFilters] = useState<Filter[]>([createFilter('assignee', 'is', ['john'])]);
+  const [filters, setFilters] = useState<Filter[]>([
+    createFilter('assignee', 'is', ['john']),
+    createFilter('isActive', 'is', [true]),
+  ]);
 
   const handleFiltersChange = useCallback((filters: Filter[]) => {
     console.log('Filters updated:', filters);

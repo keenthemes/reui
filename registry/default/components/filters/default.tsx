@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useState } from 'react';
+import { cn } from '@/registry/default/lib/utils';
 import { Button } from '@/registry/default/ui/button';
 import { createFilter, Filters, type Filter, type FilterFieldConfig } from '@/registry/default/ui/filters';
 import {
@@ -28,12 +29,13 @@ import {
 // Priority icon component
 const PriorityIcon = ({ priority }: { priority: string }) => {
   const colors = {
-    low: 'text-green-500',
-    medium: 'text-yellow-500',
-    high: 'text-orange-500',
-    urgent: 'text-red-500',
+    low: 'bg-green-500',
+    medium: 'bg-yellow-500',
+    high: 'bg-violet-500',
+    urgent: 'bg-orange-500',
+    critical: 'bg-red-500',
   };
-  return <Star className={colors[priority as keyof typeof colors]} />;
+  return <div className={cn('size-2.25 shrink-0 rounded-full', colors[priority as keyof typeof colors])} />;
 };
 
 export default function FiltersDemo() {
@@ -103,11 +105,13 @@ export default function FiltersDemo() {
           icon: <SlidersHorizontal />,
           type: 'multiselect',
           className: 'w-[180px]',
+          selectedOptionsClassName: '-space-x-1',
           options: [
             { value: 'low', label: 'Low', icon: <PriorityIcon priority="low" /> },
             { value: 'medium', label: 'Medium', icon: <PriorityIcon priority="medium" /> },
             { value: 'high', label: 'High', icon: <PriorityIcon priority="high" /> },
             { value: 'urgent', label: 'Urgent', icon: <PriorityIcon priority="urgent" /> },
+            { value: 'critical', label: 'Critical', icon: <PriorityIcon priority="critical" /> },
           ],
         },
         {
@@ -220,7 +224,9 @@ export default function FiltersDemo() {
     },
   ];
 
-  const [filters, setFilters] = useState<Filter[]>([createFilter('priority', 'is', ['high'])]);
+  const [filters, setFilters] = useState<Filter[]>([
+    createFilter('priority', 'contains', ['low', 'medium', 'critical']),
+  ]);
 
   const handleFiltersChange = useCallback((filters: Filter[]) => {
     console.log('Filters updated:', filters);
@@ -230,13 +236,7 @@ export default function FiltersDemo() {
   return (
     <div className="flex items-start gap-2.5 grow space-y-6 self-start content-start">
       <div className="flex-1">
-        <Filters
-          filters={filters}
-          fields={fields}
-          variant="outline"
-          onChange={handleFiltersChange}
-          // allowDuplicateFilters={true} // Uncomment to allow duplicate filters
-        />
+        <Filters filters={filters} fields={fields} variant="outline" onChange={handleFiltersChange} />
       </div>
 
       {filters.length > 0 && (

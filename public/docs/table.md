@@ -5,11 +5,10 @@ description: A responsive table component with support for headers, footers, and
 
 ## Installation
 
-CLI
-Manual
+  CLI
+  Manual
 
-### 1.
-
+### 1. 
 Install the following dependencies:
 
 ```bash
@@ -28,48 +27,48 @@ This is a custom table component that provides a consistent layout and styling f
 
 ### Table
 
-| **Prop**                                                            | **Type** | **Default** |
-| ------------------------------------------------------------------- | -------- | ----------- |
+| **Prop**                                                                                       | **Type** | **Default** |
+| ---------------------------------------------------------------------------------------------- | -------- | ----------- |
 | `className` Additional class names for styling the table container. | ~string~ | ~undefined~ |
 
 ### TableHeader
 
-| **Prop**                                                         | **Type** | **Default** |
-| ---------------------------------------------------------------- | -------- | ----------- |
+| **Prop**                                                                                    | **Type** | **Default** |
+| ------------------------------------------------------------------------------------------- | -------- | ----------- |
 | `className` Additional class names for styling the table header. | ~string~ | ~undefined~ |
 
 ### TableBody
 
-| **Prop**                                                       | **Type** | **Default** |
-| -------------------------------------------------------------- | -------- | ----------- |
+| **Prop**                                                                                  | **Type** | **Default** |
+| ----------------------------------------------------------------------------------------- | -------- | ----------- |
 | `className` Additional class names for styling the table body. | ~string~ | ~undefined~ |
 
 ### TableFooter
 
-| **Prop**                                                         | **Type** | **Default** |
-| ---------------------------------------------------------------- | -------- | ----------- |
+| **Prop**                                                                                    | **Type** | **Default** |
+| ------------------------------------------------------------------------------------------- | -------- | ----------- |
 | `className` Additional class names for styling the table footer. | ~string~ | ~undefined~ |
 
 ### TableRow
 
-| **Prop**                                                      | **Type** | **Default** |
-| ------------------------------------------------------------- | -------- | ----------- |
+| **Prop**                                                                                 | **Type** | **Default** |
+| ---------------------------------------------------------------------------------------- | -------- | ----------- |
 | `className` Additional class names for styling the table row. | ~string~ | ~undefined~ |
 
 ### TableHead
 
-| **Prop**                                                            | **Type** | **Default** |
-| ------------------------------------------------------------------- | -------- | ----------- |
+| **Prop**                                                                                       | **Type** | **Default** |
+| ---------------------------------------------------------------------------------------------- | -------- | ----------- |
 | `className` Additional class names for styling the table head cell. | ~string~ | ~undefined~ |
 
 ### TableCell
 
-| **Prop**                                                       | **Type** | **Default** |
-| -------------------------------------------------------------- | -------- | ----------- |
+| **Prop**                                                                                  | **Type** | **Default** |
+| ----------------------------------------------------------------------------------------- | -------- | ----------- |
 | `className` Additional class names for styling the table cell. | ~string~ | ~undefined~ |
 
 ### TableCaption
 
-| **Prop**                                                          | **Type** | **Default** |
-| ----------------------------------------------------------------- | -------- | ----------- |
+| **Prop**                                                                                     | **Type** | **Default** |
+| -------------------------------------------------------------------------------------------- | -------- | ----------- |
 | `className` Additional class names for styling the table caption. | ~string~ | ~undefined~ |

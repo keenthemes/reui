@@ -6,11 +6,10 @@ component: true
 
 ## Installation
 
-CLI
-Manual
+  CLI
+  Manual
 
-### 1.
-
+### 1. 
 Install the following dependencies:
 
 ```bash
@@ -29,8 +28,8 @@ This component is built using [Motion](https://motion.dev/) primitives and inclu
 
 ### ShimmeringText
 
-| Prop                                                                         | Type      | Default |
-| ---------------------------------------------------------------------------- | --------- | ------- |
+| Prop                                                                                                    | Type      | Default |
+| ------------------------------------------------------------------------------------------------------- | --------- | ------- |
 | `text` Text to display with shimmer effect                                   | ~string~  | -       |
 | `duration` Animation duration in seconds                                     | ~number~  | ~2~     |
 | `delay` Delay before starting animation                                      | ~number~  | ~0~     |

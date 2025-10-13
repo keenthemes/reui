@@ -6,11 +6,10 @@ component: true
 
 ## Installation
 
-CLI
-Manual
+  CLI
+  Manual
 
-### 1.
-
+### 1. 
 Install the following dependencies:
 
 ```bash
@@ -31,18 +30,18 @@ This component is built using [Motion](https://motion.dev/) primitives and inclu
 
 ### CountingNumber
 
-| **Prop**                                                                 | **Type**                    | **Default** |
-| ------------------------------------------------------------------------ | --------------------------- | ----------- |
+| **Prop**                                                                                            | **Type**                    | **Default** |
+| --------------------------------------------------------------------------------------------------- | --------------------------- | ----------- |
 | `from` Starting number for the counting animation.                       | ~number~                    | ~0~         |
 | `to` Target number to count to.                                          | ~number~                    | ~100~       |
 | `duration` Animation duration in seconds.                                | ~number~                    | ~2~         |
 | `delay` Delay before starting animation in milliseconds.                 | ~number~                    | ~0~         |
-| `className` CSS class for the number element.                            | ~string~                    |             |
+| `className` CSS class for the number element.                            | ~string~                    |        |
 | `startOnView` Whether to start animation when component enters viewport. | ~boolean~                   | ~true~      |
 | `once` Whether to animate only once when using startOnView.              | ~boolean~                   | ~false~     |
-| `inViewMargin` Margin for in-view detection trigger area.                | ~string~                    |             |
-| `onComplete` Callback function when counting animation completes.        | ~() => void~                |             |
-| `format` Custom formatting function for the displayed number.            | ~(value: number) => string~ |             |
+| `inViewMargin` Margin for in-view detection trigger area.                | ~string~                    |        |
+| `onComplete` Callback function when counting animation completes.        | ~() => void~                |        |
+| `format` Custom formatting function for the displayed number.            | ~(value: number) => string~ |        |
 
 ## Credits
 

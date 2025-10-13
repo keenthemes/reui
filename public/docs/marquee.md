@@ -6,11 +6,10 @@ component: true
 
 ## Installation
 
-CLI
-Manual
+  CLI
+  Manual
 
-### 1.
-
+### 1. 
 Copy and paste the following code into your project’s `components/ui/marquee.tsx` file.
 
 Add the following animations to your global CSS file.
@@ -48,16 +47,16 @@ Add the following animations to your global CSS file.
 
 ## API Reference
 
-| **Prop**                                                                            | **Type**                           | **Default** |
-| ----------------------------------------------------------------------------------- | ---------------------------------- | ----------- |
-| `className` Optional CSS class name to apply custom styles.                         | ~string~                           |             |
+| **Prop**                                                                                                       | **Type**                           | **Default** |
+| -------------------------------------------------------------------------------------------------------------- | ---------------------------------- | ----------- |
+| `className` Optional CSS class name to apply custom styles.                         | ~string~                           |        |
 | `reverse` Whether to reverse the animation direction.                               | ~boolean~                          | ~false~     |
 | `pauseOnHover` Whether to pause the animation on hover.                             | ~boolean~                          | ~false~     |
-| `children` Content to be displayed in the marquee.                                  | ~ReactNode~                        |             |
+| `children` Content to be displayed in the marquee.                                  | ~ReactNode~                        |        |
 | `vertical` Whether to animate vertically instead of horizontally.                   | ~boolean~                          | ~false~     |
 | `repeat` Number of times to repeat the content.                                     | ~number~                           | ~4~         |
-| `autoFill` If true, automatically repeats children enough to fill the visible area. | ~boolean~                          |             |
-| `ariaLabel` ARIA label for accessibility.                                           | ~string~                           |             |
+| `autoFill` If true, automatically repeats children enough to fill the visible area. | ~boolean~                          |        |
+| `ariaLabel` ARIA label for accessibility.                                           | ~string~                           |        |
 | `ariaLive` ARIA live region politeness setting.                                     | ~'off' \| 'polite' \| 'assertive'~ | ~'off'~     |
 | `ariaRole` ARIA role attribute.                                                     | ~string~                           | ~'marquee'~ |
 

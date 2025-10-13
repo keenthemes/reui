@@ -16,7 +16,7 @@ Before you can install and use ReUI, make sure your project meets the following 
 
 ## Install Components
 
-### 1.
+### 1. 
 
 ### 2. Initialize a React Project
 
@@ -63,6 +63,8 @@ Add below code into your entry css file `globals.css`:
 
 /** Colors **/
 :root {
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
   --background: var(--color-white);
   --foreground: var(--color-zinc-950);
   --card: var(--color-white);
@@ -229,27 +231,43 @@ import { cn } from '@/utils/cn';
 const inter = Inter({ subsets: ['latin'] });
 
 export default function RootLayout({ children }) {
-  return { children };
+  return (
+    
+      {children}
+    
+  );
+}
+```
+
+### 8. Setup System Fonts
+
+Add the following code to your style entry file `globals.css`:
+
+```css
+@theme {
+  --font-sans:
+    'Geist', 'Geist Fallback', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 }
 ```
 
 > ✅ For a modern and visually appealing design, we recommend using [Inter](https://fonts.google.com/specimen/Inter) as
-
     the default font in your ReUI project.
 
-### 8. Add Lucide Icon Library
+### 9. Add Lucide Icon Library
 
 ```bash
 npm i lucide
 ```
 
-### 9. Add Remix Icon Library(optional)
+### 10. Add Remix Icon Library(optional)
 
 ```bash
 npm i @remixicon/react
 ```
 
-### 10. Setup Base UI Portals
+### 11. Setup Base UI Portals
 
 Base UI uses portals for components that render popups, such as Dialog and Popover.
 To make portalled components always appear on top of the entire page, add the `isolate` Tailwind class to your application layout root:
@@ -258,6 +276,6 @@ To make portalled components always appear on top of the entire page, add the `i
 
 ```
 
-### 11. Add Components
+### 12. Add Components
 
 Explore the [ReUI Components](/docs/accordion) and add the ones you need into your project.

@@ -1,6 +1,6 @@
 {
   "name": "reui",
-  "version": "1.0.26",
+  "version": "1.0.27",
   "private": true,
   "scripts": {
     "dev": "next dev -p 3333",
@@ -17,7 +17,6 @@
     "build:blocks": "node scripts/build-blocks.mjs",
     "build:registry": "node scripts/build-registry.mjs",
     "sync:ui": "node scripts/sync-ui.mjs",
-    "generate:llms": "node scripts/generate-llms.mjs",
     "build:llms": "node scripts/build-llms.mjs",
     "build:md": "node scripts/build-md.mjs",
     "registry": "shadcn registry:build"

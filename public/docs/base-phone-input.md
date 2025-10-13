@@ -6,11 +6,10 @@ component: true
 
 ## Installation
 
-CLI
-Manual
+  CLI
+  Manual
 
-### 1.
-
+### 1. 
 Install the following dependencies:
 
 ```bash
@@ -27,8 +26,4 @@ Copy and paste the following code into your project's `components/ui/base-phone-
 
 ## API Reference
 
-This component is built on top of [react-phone-number-input](https://gitlab.com/catamphetamine/react-phone-number-input) and includes the following custom props:
-
-## Credits
-
-- Built with [Base UI Combobox](https://base-ui.com/react/components/combobox) and [react-phone-number-input](https://gitlab.com/catamphetamine/react-phone-number-input).
+This component is built on top of [react-phone-number-input](https://gitlab.com/catamphetamine/react-phone-number-input).

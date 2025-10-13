@@ -9,7 +9,7 @@ links:
 
 ## Setup
 
-### 1.
+### 1. 
 
 ### 2. Install Radix Direction
 
@@ -27,7 +27,9 @@ This ensures that all components adapt their behavior according to the `dir` pro
 ```tsx
 import { DirectionProvider } from '@radix-ui/react-direction';
 
-export default () => ({
-  /* Your app */
-});
+export default () => (
+
+      {/* Your app */}
+
+);
 ```

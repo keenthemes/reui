@@ -6,10 +6,10 @@ component: true
 
 ## Installation
 
-CLI
-Manual
+  CLI
+  Manual
 
-### 1.
+### 1. 
 
 ### 2. Install ReUI
 
@@ -50,8 +50,3 @@ Copy and paste the following code into your project’s `components/ui/base-inpu
 ### Size
 
 ### Form
-
-## Credits
-
-- Built with [Base UI Input](https://base-ui.com/react/components/input).
-- Built with [React Aria](https://react-spectrum.adobe.com/react-aria/index.html).

@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { cn } from '@/registry/default/lib/utils';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/registry/default/ui/tooltip';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/registry/default/ui/base-tooltip';
 import { Slider as SliderPrimitive } from '@base-ui-components/react/slider';
 
 function Slider({
@@ -12,7 +12,6 @@ function Slider({
   min = 0,
   max = 100,
   showTooltip = false,
-  tooltipVariant = 'dark',
   tooltipContent,
   onValueChange,
   children,
@@ -91,12 +90,11 @@ function Slider({
     return (
       <TooltipProvider key={index}>
         <Tooltip open={showTooltipState}>
-          <TooltipTrigger asChild>{thumb}</TooltipTrigger>
+          <TooltipTrigger render={thumb} />
           <TooltipContent
             className="px-2 py-1 text-xs"
             sideOffset={8}
             side={props.orientation === 'vertical' ? 'right' : 'top'}
-            variant={tooltipVariant}
           >
             <p>{tooltipContent ? tooltipContent(thumbValue) : thumbValue}</p>
           </TooltipContent>
