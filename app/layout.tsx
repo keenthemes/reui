@@ -3,6 +3,7 @@ import { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import { cn } from '@/registry/default/lib/utils';
 import { Toaster as Sooner } from '@/registry/default/ui/sonner';
+import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import { META_THEME_COLORS, siteConfig } from '@/config/site';
 import { QueryProvider } from '@/providers/query-provider';
 import { Analytics } from '@/components/analytics';
@@ -149,7 +150,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange enableColorScheme>
           <QueryProvider>
             <Suspense>
-              <>{children}</>
+              <NuqsAdapter>{children}</NuqsAdapter>
               <Analytics />
               <Sooner />
             </Suspense>

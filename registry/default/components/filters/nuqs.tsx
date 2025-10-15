@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/registry/default/ui/avatar';
 import { Badge } from '@/registry/default/ui/badge';
 import { Button } from '@/registry/default/ui/button';
@@ -21,6 +21,8 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import { Building, Calendar, CheckCircle, DollarSign, FunnelX, Mail, MapPin, User } from 'lucide-react';
+import { parseAsArrayOf, parseAsString, useQueryStates } from 'nuqs';
+import { NuqsAdapter } from 'nuqs/adapters/next/app';
 
 interface IData {
   id: string;
@@ -171,84 +173,37 @@ export default function NuqsDataGridDemo() {
   });
   const [sorting, setSorting] = useState<SortingState>([{ id: 'name', desc: false }]);
 
-  // Manual URL state management with readable URLs
   const [filters, setFilters] = useState<Filter[]>([]);
-  const [isInitialized, setIsInitialized] = useState(false);
+  const urlDebounceRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Helper function to create readable filter string
-  const createReadableFilterString = (filter: Filter): string => {
-    const { field, operator, values } = filter;
-    const valueStr = values.join(',');
-    return `${field}:${operator}:${valueStr}`;
-  };
-
-  // Helper function to parse readable filter string
-  const parseReadableFilterString = (filterStr: string): Filter | null => {
-    const parts = filterStr.split(':');
-    if (parts.length < 3) return null;
-
-    const [field, operator, valueStr] = parts;
-    const values = valueStr.split(',').filter((v) => v.trim() !== '');
-
-    if (values.length === 0) return null;
-
-    return {
-      id: `${Date.now()}-${Math.random().toString(36).substring(2, 11)}`,
-      field,
-      operator,
-      values,
-    };
-  };
-
-  // Read filters from URL on mount
+  // Cleanup debounce timer on unmount
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const filtersParam = urlParams.get('filters');
-
-    if (filtersParam) {
-      try {
-        const filterStrings = filtersParam.split('|');
-        const parsedFilters = filterStrings
-          .map(parseReadableFilterString)
-          .filter((filter): filter is Filter => filter !== null);
-        setFilters(parsedFilters);
-      } catch (error) {
-        console.warn('Failed to parse filters from URL:', error);
-        setFilters([]);
-      }
-    } else {
-      setFilters([]);
-    }
-
-    setIsInitialized(true);
+    return () => {
+      if (urlDebounceRef.current) clearTimeout(urlDebounceRef.current);
+    };
   }, []);
 
-  // Update URL when filters change
-  const updateURL = useCallback((newFilters: Filter[]) => {
-    const url = new URL(window.location.href);
+  // Use nuqs for URL state management with batching
+  const [queryStates, setQueryStates] = useQueryStates(
+    {
+      name: parseAsString,
+      email: parseAsString,
+      company: parseAsArrayOf(parseAsString),
+      role: parseAsArrayOf(parseAsString),
+      status: parseAsArrayOf(parseAsString),
+      availability: parseAsArrayOf(parseAsString),
+      location: parseAsString,
+      joined: parseAsString,
+      balance: parseAsString,
+      balanceMin: parseAsString,
+      balanceMax: parseAsString,
+    },
+    {
+      history: 'push',
+    },
+  );
 
-    // Filter out empty filters before adding to URL
-    const activeFilters = newFilters.filter((filter) => {
-      const { values } = filter;
-
-      if (!values || values.length === 0) return false;
-      if (values.every((value) => typeof value === 'string' && value.trim() === '')) return false;
-      if (values.every((value) => value === null || value === undefined)) return false;
-      if (values.every((value) => Array.isArray(value) && value.length === 0)) return false;
-
-      return true;
-    });
-
-    if (activeFilters.length > 0) {
-      const filterStrings = activeFilters.map(createReadableFilterString);
-      url.searchParams.set('filters', filterStrings.join('|'));
-    } else {
-      url.searchParams.delete('filters');
-    }
-
-    // Update URL without page reload
-    window.history.replaceState({}, '', url.toString());
-  }, []);
+  // Filters are driven directly by component state
 
   // Filter field configurations
   const fields: FilterFieldConfig[] = [
@@ -257,6 +212,7 @@ export default function NuqsDataGridDemo() {
       label: 'Name',
       icon: <User className="size-3.5" />,
       type: 'text',
+      defaultOperator: 'contains',
       className: 'w-40',
       placeholder: 'Search names...',
     },
@@ -321,7 +277,7 @@ export default function NuqsDataGridDemo() {
         {
           value: 'archived',
           label: 'Archived',
-          icon: <div className="size-2 bg-secondary rounded-full"></div>,
+          icon: <div className="size-2 bg-gray-400 rounded-full"></div>,
         },
       ],
     },
@@ -382,28 +338,14 @@ export default function NuqsDataGridDemo() {
     },
   ];
 
-  // Apply filters to data - only apply filters with non-empty values
+  // Apply filters to data based on current filters state
   const filteredData = useMemo(() => {
     let filtered = [...demoData];
-
-    // Filter out empty filters before applying
-    const activeFilters = filters.filter((filter) => {
-      const { values } = filter;
-
-      if (!values || values.length === 0) return false;
-      if (values.every((value) => typeof value === 'string' && value.trim() === '')) return false;
-      if (values.every((value) => value === null || value === undefined)) return false;
-      if (values.every((value) => Array.isArray(value) && value.length === 0)) return false;
-
-      return true;
-    });
-
-    activeFilters.forEach((filter) => {
+    const active = filters.filter((f) => (Array.isArray(f.values) ? f.values.length > 0 : !!f.values));
+    active.forEach((filter) => {
       const { field, operator, values } = filter;
-
       filtered = filtered.filter((item) => {
         const fieldValue = item[field as keyof IData];
-
         switch (operator) {
           case 'is':
             return values.includes(fieldValue);
@@ -448,25 +390,43 @@ export default function NuqsDataGridDemo() {
         }
       });
     });
-
     return filtered;
   }, [filters]);
 
   const handleFiltersChange = useCallback(
     (newFilters: Filter[]) => {
-      console.log('URL state filters updated:', newFilters);
       setFilters(newFilters);
-      updateURL(newFilters);
-      // Reset pagination when filters change
       setPagination((prev) => ({ ...prev, pageIndex: 0 }));
+
+      if (urlDebounceRef.current) clearTimeout(urlDebounceRef.current);
+      urlDebounceRef.current = setTimeout(() => {
+        const next: Record<string, string | string[] | null> = {};
+        Object.keys(queryStates).forEach((k) => {
+          next[k] = null;
+        });
+        newFilters.forEach(({ field, values }) => {
+          if (['company', 'role', 'status', 'availability'].includes(field)) {
+            const clean = (values || []).filter((v) => v && String(v).trim() !== '') as string[];
+            next[field] = clean.length ? clean : null;
+          } else {
+            const first = values && values.length > 0 ? String(values[0]) : '';
+            next[field] = first && first.trim() !== '' ? first : null;
+          }
+        });
+        setQueryStates(next);
+      }, 250);
     },
-    [updateURL],
+    [queryStates, setQueryStates],
   );
 
   const clearFilters = useCallback(() => {
     setFilters([]);
-    updateURL([]);
-  }, [updateURL]);
+    const clearedStates: Record<string, null> = {};
+    Object.keys(queryStates).forEach((key) => {
+      clearedStates[key] = null;
+    });
+    setQueryStates(clearedStates);
+  }, [queryStates, setQueryStates]);
 
   const columns = useMemo<ColumnDef<IData>[]>(
     () => [
@@ -594,44 +554,39 @@ export default function NuqsDataGridDemo() {
   });
 
   return (
-    <div className="w-full self-start">
-      {/* Filters Section */}
-      <div className="flex items-start gap-2.5 mb-5">
-        <div className="flex-1">
-          {isInitialized ? (
+    <NuqsAdapter>
+      <div className="w-full self-start">
+        {/* Filters Section */}
+        <div className="flex items-start gap-2.5 mb-5">
+          <div className="flex-1">
             <Filters filters={filters} fields={fields} onChange={handleFiltersChange} variant="outline" size="sm" />
-          ) : (
-            <div className="flex items-center gap-2 p-3 border rounded-lg bg-muted/50">
-              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary"></div>
-              <span className="text-sm text-muted-foreground">Loading filters...</span>
-            </div>
+          </div>
+          {filters.length > 0 && (
+            <Button variant="outline" size="sm" onClick={clearFilters}>
+              <FunnelX /> Clear
+            </Button>
           )}
         </div>
-        {filters.length > 0 && isInitialized && (
-          <Button variant="outline" size="sm" onClick={clearFilters}>
-            <FunnelX /> Clear
-          </Button>
-        )}
-      </div>
 
-      {/* Data Grid */}
-      <DataGrid
-        table={table}
-        recordCount={filteredData?.length || 0}
-        tableLayout={{
-          columnsMovable: true,
-        }}
-      >
-        <div className="w-full space-y-2.5">
-          <DataGridContainer>
-            <ScrollArea>
-              <DataGridTable />
-              <ScrollBar orientation="horizontal" />
-            </ScrollArea>
-          </DataGridContainer>
-          <DataGridPagination />
-        </div>
-      </DataGrid>
-    </div>
+        {/* Data Grid */}
+        <DataGrid
+          table={table}
+          recordCount={filteredData?.length || 0}
+          tableLayout={{
+            columnsMovable: true,
+          }}
+        >
+          <div className="w-full space-y-2.5">
+            <DataGridContainer>
+              <ScrollArea>
+                <DataGridTable />
+                <ScrollBar orientation="horizontal" />
+              </ScrollArea>
+            </DataGridContainer>
+            <DataGridPagination />
+          </div>
+        </DataGrid>
+      </div>
+    </NuqsAdapter>
   );
 }

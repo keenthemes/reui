@@ -468,9 +468,14 @@ function FilterInput<T = unknown>({
   onChange,
   onBlur,
   onKeyDown,
+  onInputChange,
   className,
   ...props
-}: React.InputHTMLAttributes<HTMLInputElement> & { className?: string; field?: FilterFieldConfig<T> }) {
+}: React.InputHTMLAttributes<HTMLInputElement> & {
+  className?: string;
+  field?: FilterFieldConfig<T>;
+  onInputChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}) {
   const context = useFilterContext();
   const [isValid, setIsValid] = useState(true);
   const [validationMessage, setValidationMessage] = useState('');
@@ -533,6 +538,11 @@ function FilterInput<T = unknown>({
       setValidationMessage('');
     }
 
+    // Call onInputChange if provided (for blur-based filter updates)
+    if (onInputChange) {
+      onInputChange(e as React.ChangeEvent<HTMLInputElement>);
+    }
+
     // Call the original onBlur if provided
     onBlur?.(e);
   };
@@ -543,6 +553,17 @@ function FilterInput<T = unknown>({
     if (!isValid && !['Tab', 'Escape', 'Enter', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
       setIsValid(true);
       setValidationMessage('');
+    }
+
+    // Handle Enter key for immediate filter updates
+    if (e.key === 'Enter' && onInputChange) {
+      // Create a synthetic change event for Enter key
+      const syntheticEvent = {
+        ...e,
+        target: e.target as HTMLInputElement,
+        currentTarget: e.currentTarget as HTMLInputElement,
+      } as React.ChangeEvent<HTMLInputElement>;
+      onInputChange(syntheticEvent);
     }
 
     // Call the original onKeyDown if provided
@@ -706,6 +727,13 @@ export interface FilterFieldConfig<T = unknown> {
   // Boolean field options
   onLabel?: string;
   offLabel?: string;
+  // Input event handlers
+  onInputChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  // Default operator to use when creating a filter for this field
+  defaultOperator?: string;
+  // Controlled values support for this field
+  value?: T[];
+  onValueChange?: (values: T[]) => void;
 }
 
 // Helper functions to handle both flat and grouped field configurations
@@ -863,14 +891,21 @@ const getOperatorsForField = <T = unknown,>(
   if (field.operators) return field.operators;
 
   const operators = createOperatorsFromI18n(i18n);
-  const defaultOps = operators[field.type || 'select'] || operators.select;
 
-  // Dynamic operator selection based on values
-  if (field.type === 'select' && values.length > 1) {
+  // Determine field type for operator selection
+  let fieldType = field.type || 'select';
+
+  // If it's a select field but has multiple values, treat as multiselect
+  if (fieldType === 'select' && values.length > 1) {
+    fieldType = 'multiselect';
+  }
+
+  // If it's a multiselect field or has multiselect operators, use multiselect operators
+  if (fieldType === 'multiselect' || field.type === 'multiselect') {
     return operators.multiselect;
   }
 
-  return defaultOps;
+  return operators[fieldType] || operators.select;
 };
 
 interface FilterOperatorDropdownProps<T = unknown> {
@@ -884,10 +919,22 @@ function FilterOperatorDropdown<T = unknown>({ field, operator, values, onChange
   const context = useFilterContext();
   const operators = getOperatorsForField(field, values, context.i18n);
 
+  // Find the operator label, with fallback to formatted operator name
+  const operatorLabel =
+    operators.find((op) => op.value === operator)?.label || context.i18n.helpers.formatOperator(operator);
+
+  // Debug logging to help identify the issue
+  if (!operators.find((op) => op.value === operator)) {
+    console.warn(
+      `Operator "${operator}" not found in operators for field "${field.key}" (type: ${field.type}). Available operators:`,
+      operators.map((op) => op.value),
+    );
+  }
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className={filterOperatorVariants({ variant: context.variant, size: context.size })}>
-        {operators.find((op) => op.value === operator)?.label || operator}
+        {operatorLabel}
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start" className="w-fit min-w-fit">
         {operators.map((op) => (
@@ -934,8 +981,9 @@ function SelectOptionsPopover<T = unknown>({
   const context = useFilterContext();
 
   const isMultiSelect = field.type === 'multiselect' || values.length > 1;
-  const selectedOptions = field.options?.filter((opt) => values.includes(opt.value)) || [];
-  const unselectedOptions = field.options?.filter((opt) => !values.includes(opt.value)) || [];
+  const effectiveValues = (field.value !== undefined ? (field.value as T[]) : values) || [];
+  const selectedOptions = field.options?.filter((opt) => effectiveValues.includes(opt.value)) || [];
+  const unselectedOptions = field.options?.filter((opt) => !effectiveValues.includes(opt.value)) || [];
 
   const handleClose = () => {
     setOpen(false);
@@ -967,9 +1015,18 @@ function SelectOptionsPopover<T = unknown>({
                     className="group flex gap-2 items-center"
                     onSelect={() => {
                       if (isMultiSelect) {
-                        onChange(values.filter((v) => v !== option.value) as T[]);
+                        const next = effectiveValues.filter((v) => v !== option.value) as T[];
+                        if (field.onValueChange) {
+                          field.onValueChange(next);
+                        } else {
+                          onChange(next);
+                        }
                       } else {
-                        onChange([] as T[]);
+                        if (field.onValueChange) {
+                          field.onValueChange([] as T[]);
+                        } else {
+                          onChange([] as T[]);
+                        }
                       }
                     }}
                   >
@@ -993,14 +1050,22 @@ function SelectOptionsPopover<T = unknown>({
                       value={option.label}
                       onSelect={() => {
                         if (isMultiSelect) {
-                          const newValues = [...values, option.value] as T[];
+                          const newValues = [...effectiveValues, option.value] as T[];
                           if (field.maxSelections && newValues.length > field.maxSelections) {
                             return; // Don't exceed max selections
                           }
-                          onChange(newValues);
+                          if (field.onValueChange) {
+                            field.onValueChange(newValues);
+                          } else {
+                            onChange(newValues);
+                          }
                           // For multiselect, don't close the popover to allow multiple selections
                         } else {
-                          onChange([option.value] as T[]);
+                          if (field.onValueChange) {
+                            field.onValueChange([option.value] as T[]);
+                          } else {
+                            onChange([option.value] as T[]);
+                          }
                           onClose?.();
                         }
                       }}
@@ -1197,6 +1262,7 @@ function FilterValueSelector<T = unknown>({ field, values, onChange, operator }:
             type="time"
             value={startTime}
             onChange={(e) => onChange([e.target.value, endTime] as T[])}
+            onInputChange={field.onInputChange}
             className={field.className}
             field={field}
           />
@@ -1210,6 +1276,7 @@ function FilterValueSelector<T = unknown>({ field, values, onChange, operator }:
             type="time"
             value={endTime}
             onChange={(e) => onChange([startTime, e.target.value] as T[])}
+            onInputChange={field.onInputChange}
             className={field.className}
             field={field}
           />
@@ -1222,6 +1289,7 @@ function FilterValueSelector<T = unknown>({ field, values, onChange, operator }:
         type="time"
         value={(values[0] as string) || ''}
         onChange={(e) => onChange([e.target.value] as T[])}
+        onInputChange={field.onInputChange}
         field={field}
         className={field.className}
       />
@@ -1239,6 +1307,7 @@ function FilterValueSelector<T = unknown>({ field, values, onChange, operator }:
             type="datetime-local"
             value={startDateTime}
             onChange={(e) => onChange([e.target.value, endDateTime] as T[])}
+            onInputChange={field.onInputChange}
             className={cn('w-36', field.className)}
             field={field}
           />
@@ -1252,6 +1321,7 @@ function FilterValueSelector<T = unknown>({ field, values, onChange, operator }:
             type="datetime-local"
             value={endDateTime}
             onChange={(e) => onChange([startDateTime, e.target.value] as T[])}
+            onInputChange={field.onInputChange}
             className={cn('w-36', field.className)}
             field={field}
           />
@@ -1264,6 +1334,7 @@ function FilterValueSelector<T = unknown>({ field, values, onChange, operator }:
         type="datetime-local"
         value={(values[0] as string) || ''}
         onChange={(e) => onChange([e.target.value] as T[])}
+        onInputChange={field.onInputChange}
         className={cn('w-36', field.className)}
         field={field}
       />
@@ -1302,6 +1373,7 @@ function FilterValueSelector<T = unknown>({ field, values, onChange, operator }:
         type={getInputType()}
         value={(values[0] as string) || ''}
         onChange={(e) => onChange([e.target.value] as T[])}
+        onInputChange={field.onInputChange}
         placeholder={field.placeholder || context.i18n.placeholders.enterField(field.type || 'text')}
         pattern={field.pattern || getPattern()}
         className={field.className}
@@ -1326,6 +1398,7 @@ function FilterValueSelector<T = unknown>({ field, values, onChange, operator }:
           type="date"
           value={startDate}
           onChange={(e) => onChange([e.target.value, endDate] as T[])}
+          onInputChange={field.onInputChange}
           className={cn('w-24', field.className)}
           field={field}
         />
@@ -1339,6 +1412,7 @@ function FilterValueSelector<T = unknown>({ field, values, onChange, operator }:
           type="date"
           value={endDate}
           onChange={(e) => onChange([startDate, e.target.value] as T[])}
+          onInputChange={field.onInputChange}
           className={cn('w-24', field.className)}
           field={field}
         />
@@ -1358,6 +1432,7 @@ function FilterValueSelector<T = unknown>({ field, values, onChange, operator }:
             type="number"
             value={minVal}
             onChange={(e) => onChange([e.target.value, maxVal] as T[])}
+            onInputChange={field.onInputChange}
             placeholder={context.i18n.min}
             className={cn('w-16', field.className)}
             min={field.min}
@@ -1376,6 +1451,7 @@ function FilterValueSelector<T = unknown>({ field, values, onChange, operator }:
             type="number"
             value={maxVal}
             onChange={(e) => onChange([minVal, e.target.value] as T[])}
+            onInputChange={field.onInputChange}
             placeholder={context.i18n.max}
             className={cn('w-16', field.className)}
             min={field.min}
@@ -1394,6 +1470,7 @@ function FilterValueSelector<T = unknown>({ field, values, onChange, operator }:
           type={field.type === 'number' ? 'number' : 'text'}
           value={(values[0] as string) || ''}
           onChange={(e) => onChange([e.target.value] as T[])}
+          onInputChange={field.onInputChange}
           placeholder={field.placeholder}
           min={field.type === 'number' ? field.min : undefined}
           max={field.type === 'number' ? field.max : undefined}
@@ -1412,6 +1489,7 @@ function FilterValueSelector<T = unknown>({ field, values, onChange, operator }:
         type="date"
         value={(values[0] as string) || ''}
         onChange={(e) => onChange([e.target.value] as T[])}
+        onInputChange={field.onInputChange}
         field={field}
         className={cn('w-16', field.className)}
       />
@@ -1743,13 +1821,14 @@ export function Filters<T = unknown>({
 
         // For other types, add filter directly
         const defaultOperator =
-          field.type === 'daterange'
+          field.defaultOperator ||
+          (field.type === 'daterange'
             ? 'between'
             : field.type === 'numberrange'
               ? 'between'
               : field.type === 'boolean'
                 ? 'is'
-                : 'is';
+                : 'is');
         let defaultValues: unknown[] = [];
 
         if (['text', 'number', 'date', 'email', 'url', 'tel', 'time', 'datetime'].includes(field.type || '')) {
@@ -1779,7 +1858,7 @@ export function Filters<T = unknown>({
     (field: FilterFieldConfig<T>, values: unknown[], closePopover: boolean = true) => {
       if (!field.key) return;
 
-      const defaultOperator = field.type === 'multiselect' ? 'is_any_of' : 'is';
+      const defaultOperator = field.defaultOperator || (field.type === 'multiselect' ? 'is_any_of' : 'is');
 
       // Check if there's already a filter for this field
       const existingFilterIndex = filters.findIndex((f) => f.field === field.key);

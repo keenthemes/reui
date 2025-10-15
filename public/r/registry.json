@@ -6015,6 +6015,20 @@
       ]
     },
     {
+      "name": "filters-input-change-example",
+      "type": "registry:component",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/default/components/filters/input-change-example.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://reui.io/r/filters.json"
+      ]
+    },
+    {
       "name": "filters-internationalization",
       "type": "registry:component",
       "dependencies": [],
@@ -6034,7 +6048,8 @@
       "name": "filters-nuqs",
       "type": "registry:component",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table",
+        "nuqs"
       ],
       "files": [
         {
