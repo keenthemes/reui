@@ -6,10 +6,11 @@ component: true
 
 ## Installation
 
-  CLI
-  Manual
+CLI
+Manual
 
-### 1. 
+### 1.
+
 Install the following dependencies:
 
 ```bash
@@ -44,18 +45,18 @@ This component is built using [Radix UI Switch](https://www.radix-ui.com/primiti
 
 This component is based on the [Switch.Root](https://www.radix-ui.com/primitives/docs/components/switch#root) primitive and includes the following custom props:
 
-| **Prop**                                                                                  | **Type**                                                                 | **Default** |
-| ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ----------- |
-| `shape` The shape of the switch.                               | ~enum~  "pill" \| "square"                    | ~"pill"~    |
-| `size` The size of the switch.                                 | ~enum~  "xs" \| "sm" \| "md" \| "lg" \| "xl"  | ~"md"~      |
-| `thumbClassName` Additional class names for styling the thumb. | ~string~                                                                 | ~undefined~ |
+| **Prop**                                                       | **Type**                                    | **Default** |
+| -------------------------------------------------------------- | ------------------------------------------- | ----------- |
+| `shape` The shape of the switch.                               | ~enum~ "pill" \| "square"                   | ~"pill"~    |
+| `size` The size of the switch.                                 | ~enum~ "xs" \| "sm" \| "md" \| "lg" \| "xl" | ~"md"~      |
+| `thumbClassName` Additional class names for styling the thumb. | ~string~                                    | ~undefined~ |
 
 ### SwitchWrapper
 
 This is a custom component that provides context for permanent state and layout.
 
-| **Prop**                                                                                                 | **Type**  | **Default** |
-| -------------------------------------------------------------------------------------------------------- | --------- | ----------- |
+| **Prop**                                                                      | **Type**  | **Default** |
+| ----------------------------------------------------------------------------- | --------- | ----------- |
 | `permanent` Whether the switch should maintain its appearance in both states. | ~boolean~ | ~false~     |
 | `className` Additional class names for styling the wrapper.                   | ~string~  | ~undefined~ |
 
@@ -63,10 +64,10 @@ This is a custom component that provides context for permanent state and layout.
 
 This is a custom component that provides visual indicators for the switch states.
 
-| **Prop**                                                                                 | **Type**                                          | **Default** |
-| ---------------------------------------------------------------------------------------- | ------------------------------------------------- | ----------- |
-| `state` The state of the indicator.                           | ~enum~  "on" \| "off"  | ~"off"~     |
-| `className` Additional class names for styling the indicator. | ~string~                                          | ~undefined~ |
+| **Prop**                                                      | **Type**             | **Default** |
+| ------------------------------------------------------------- | -------------------- | ----------- |
+| `state` The state of the indicator.                           | ~enum~ "on" \| "off" | ~"off"~     |
+| `className` Additional class names for styling the indicator. | ~string~             | ~undefined~ |
 
 ## Credits
 

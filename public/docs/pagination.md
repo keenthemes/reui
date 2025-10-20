@@ -6,10 +6,11 @@ component: true
 
 ## Installation
 
-  CLI
-  Manual
+CLI
+Manual
 
-### 1. 
+### 1.
+
 Install the following dependencies:
 
 ```bash
@@ -32,43 +33,43 @@ This component provides a customizable pagination system with support for variou
 
 This component is the root container for pagination elements.
 
-| **Prop**                                                                                            | **Type** | **Default** |
-| --------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `className` Additional class names for styling the navigation container. | ~string~ |        |
+| **Prop**                                                                 | **Type** | **Default** |
+| ------------------------------------------------------------------------ | -------- | ----------- |
+| `className` Additional class names for styling the navigation container. | ~string~ |             |
 
 ### PaginationContent
 
 This component provides the container for pagination items.
 
-| **Prop**                                                                                         | **Type** | **Default** |
-| ------------------------------------------------------------------------------------------------ | -------- | ----------- |
-| `className` Additional class names for styling the content container. | ~string~ |        |
+| **Prop**                                                              | **Type** | **Default** |
+| --------------------------------------------------------------------- | -------- | ----------- |
+| `className` Additional class names for styling the content container. | ~string~ |             |
 
 ### PaginationItem
 
 This component represents an individual item in the pagination.
 
-| **Prop**                                                                                       | **Type** | **Default** |
-| ---------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `className` Additional class names for styling the pagination item. | ~string~ |        |
+| **Prop**                                                            | **Type** | **Default** |
+| ------------------------------------------------------------------- | -------- | ----------- |
+| `className` Additional class names for styling the pagination item. | ~string~ |             |
 
 ### PaginationLink
 
 This component represents a clickable pagination link.
 
-| **Prop**                                                                               | **Type**              | **Default** |
-| -------------------------------------------------------------------------------------- | --------------------- | ----------- |
+| **Prop**                                                    | **Type**              | **Default** |
+| ----------------------------------------------------------- | --------------------- | ----------- |
 | `isActive` Whether the pagination item is currently active. | ~boolean~             | ~false~     |
-| `size` The size of the pagination link.                     | ~ButtonProps["size"]~ |        |
-| `className` Additional class names for styling the link.    | ~string~              |        |
+| `size` The size of the pagination link.                     | ~ButtonProps["size"]~ |             |
+| `className` Additional class names for styling the link.    | ~string~              |             |
 
 ### PaginationEllipsis
 
 This component displays an ellipsis to indicate additional pages.
 
-| **Prop**                                                                                | **Type** | **Default** |
-| --------------------------------------------------------------------------------------- | -------- | ----------- |
-| `className` Additional class names for styling the ellipsis. | ~string~ |        |
+| **Prop**                                                     | **Type** | **Default** |
+| ------------------------------------------------------------ | -------- | ----------- |
+| `className` Additional class names for styling the ellipsis. | ~string~ |             |
 
 ## Credits
 

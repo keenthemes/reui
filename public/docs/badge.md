@@ -6,10 +6,11 @@ component: true
 
 ## Installation
 
-  CLI
-  Manual
+CLI
+Manual
 
-### 1. 
+### 1.
+
 Install the following dependencies:
 
 ```bash
@@ -46,29 +47,29 @@ This component provides a customizable badge system with flexible variants, size
 
 ### Badge
 
-| **Prop**                                                                                               | **Type**                                                                                                                      | **Default** |
-| ------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `variant` Specifies the badge's theme.                                      | ~enum~  "primary" \| "secondary" \| "outline" \|"success" \| "warning" \| "info" \| "destructive"  | `secondary` |
-| `appearance` Determines the badge's visual appearance.                      | ~enum~  "default" \| "outline" \| "light" \| "ghost"                                               | `default`   |
-| `size` Sets the size of the badge.                                          | ~enum~  "lg" \| "md" \| "sm" \| "xs"                                                               | `md`        |
-| `shape` Determines the shape of the badge.                                  | ~enum~  "default" \| "circle"                                                                      | `default`   |
-| `disabled` Specifies whether the badge is disabled.                         | ~boolean~                                                                                                                     | `false`     |
-| `asChild` Renders the badge as a child element, using the `Slot` component. | ~boolean~                                                                                                                     | `false`     |
-| `className` Additional class names for styling the badge.                   | ~string~                                                                                                                      |        |
+| **Prop**                                                                    | **Type**                                                                                         | **Default** |
+| --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ----------- |
+| `variant` Specifies the badge's theme.                                      | ~enum~ "primary" \| "secondary" \| "outline" \|"success" \| "warning" \| "info" \| "destructive" | `secondary` |
+| `appearance` Determines the badge's visual appearance.                      | ~enum~ "default" \| "outline" \| "light" \| "ghost"                                              | `default`   |
+| `size` Sets the size of the badge.                                          | ~enum~ "lg" \| "md" \| "sm" \| "xs"                                                              | `md`        |
+| `shape` Determines the shape of the badge.                                  | ~enum~ "default" \| "circle"                                                                     | `default`   |
+| `disabled` Specifies whether the badge is disabled.                         | ~boolean~                                                                                        | `false`     |
+| `asChild` Renders the badge as a child element, using the `Slot` component. | ~boolean~                                                                                        | `false`     |
+| `className` Additional class names for styling the badge.                   | ~string~                                                                                         |             |
 
 ### BadgeButton
 
-| **Prop**                                                                                                | **Type**                                      | **Default** |
-| ------------------------------------------------------------------------------------------------------- | --------------------------------------------- | ----------- |
-| `variant` Specifies the badge button's theme.                                | ~enum~  "default"  | `default`   |
-| `asChild` Renders the button as a child element, using the `Slot` component. | ~boolean~                                     | `false`     |
-| `className` Additional class names for styling the badge button.             | ~string~                                      |        |
+| **Prop**                                                                     | **Type**         | **Default** |
+| ---------------------------------------------------------------------------- | ---------------- | ----------- |
+| `variant` Specifies the badge button's theme.                                | ~enum~ "default" | `default`   |
+| `asChild` Renders the button as a child element, using the `Slot` component. | ~boolean~        | `false`     |
+| `className` Additional class names for styling the badge button.             | ~string~         |             |
 
 ### BadgeDot
 
-| **Prop**                                                                                 | **Type** | **Default** |
-| ---------------------------------------------------------------------------------------- | -------- | ----------- |
-| `className` Additional class names for styling the badge dot. | ~string~ |        |
+| **Prop**                                                      | **Type** | **Default** |
+| ------------------------------------------------------------- | -------- | ----------- |
+| `className` Additional class names for styling the badge dot. | ~string~ |             |
 
 ## Credits
 

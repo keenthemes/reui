@@ -6,10 +6,11 @@ component: true
 
 ## Installation
 
-  CLI
-  Manual
+CLI
+Manual
 
-### 1. 
+### 1.
+
 Copy and paste the following code into your project’s `components/ui/kbd.tsx` file.
 
 ## Examples

@@ -218,12 +218,12 @@ const filterInputVariants = cva(
     'has-[[data-slot=filters-input]:focus-visible]:outline-none',
     'has-[[data-slot=filters-input]:focus-visible]:ring-[3px]',
     'has-[[data-slot=filters-input]:focus-visible]:z-1',
-    'has-[[data-slot=filters-input]:aria-invalid]:border',
-    'has-[[data-slot=filters-input]:aria-invalid]:border-solid',
-    'has-[[data-slot=filters-input]:aria-invalid]:border-destructive/60',
-    'has-[[data-slot=filters-input]:aria-invalid]:ring-destructive/10',
-    'dark:has-[[data-slot=filters-input]:aria-invalid]:border-destructive',
-    'dark:has-[[data-slot=filters-input]:aria-invalid]:ring-destructive/20',
+    'has-[[data-slot=filters-input]:[aria-invalid=true]]:border',
+    'has-[[data-slot=filters-input]:[aria-invalid=true]]:border-solid',
+    'has-[[data-slot=filters-input]:[aria-invalid=true]]:border-destructive/60',
+    'has-[[data-slot=filters-input]:[aria-invalid=true]]:ring-destructive/10',
+    'dark:has-[[data-slot=filters-input]:[aria-invalid=true]]:border-destructive',
+    'dark:has-[[data-slot=filters-input]:[aria-invalid=true]]:ring-destructive/20',
   ],
   {
     variants: {

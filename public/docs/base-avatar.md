@@ -6,10 +6,11 @@ component: true
 
 ## Installation
 
-  CLI
-  Manual
+CLI
+Manual
 
-### 1. 
+### 1.
+
 Install the following dependencies:
 
 ```bash
@@ -42,15 +43,15 @@ This component is based on the [Base UI Avatar](https://base-ui.com/react/compon
 
 This is a custom component used to display an indicator within the avatar.
 
-| **Prop**                                                                                 | **Type** | **Default** |
-| ---------------------------------------------------------------------------------------- | -------- | ----------- |
-| `className` Additional class names for styling the indicator. | ~string~ |        |
+| **Prop**                                                      | **Type** | **Default** |
+| ------------------------------------------------------------- | -------- | ----------- |
+| `className` Additional class names for styling the indicator. | ~string~ |             |
 
 ### AvatarStatus
 
 This is a custom component for displaying a status indicator on the avatar.
 
-| **Prop**                                                                                        | **Type**                                                                      | **Default** |
-| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------- |
-| `variant` Specifies the status of the avatar.                        | ~enum~  "online" \| "offline" \| "busy" \| "away"  | `online`    |
-| `className` Additional class names for styling the status indicator. | ~string~                                                                      |        |
+| **Prop**                                                             | **Type**                                         | **Default** |
+| -------------------------------------------------------------------- | ------------------------------------------------ | ----------- |
+| `variant` Specifies the status of the avatar.                        | ~enum~ "online" \| "offline" \| "busy" \| "away" | `online`    |
+| `className` Additional class names for styling the status indicator. | ~string~                                         |             |

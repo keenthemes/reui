@@ -16,7 +16,7 @@ Before you can install and use ReUI, make sure your project meets the following 
 
 ## Install Components
 
-### 1. 
+### 1.
 
 ### 2. Initialize a React Project
 
@@ -231,11 +231,7 @@ import { cn } from '@/utils/cn';
 const inter = Inter({ subsets: ['latin'] });
 
 export default function RootLayout({ children }) {
-  return (
-    
-      {children}
-    
-  );
+  return { children };
 }
 ```
 
@@ -253,6 +249,7 @@ Add the following code to your style entry file `globals.css`:
 ```
 
 > ✅ For a modern and visually appealing design, we recommend using [Inter](https://fonts.google.com/specimen/Inter) as
+
     the default font in your ReUI project.
 
 ### 9. Add Lucide Icon Library

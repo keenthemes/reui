@@ -6,10 +6,11 @@ component: true
 
 ## Installation
 
-  CLI
-  Manual
+CLI
+Manual
 
-### 1. 
+### 1.
+
 Install the following dependencies:
 
 ```bash
@@ -28,16 +29,16 @@ This component provides a scrollspy navigation system that highlights the curren
 
 ### Scrollspy Props
 
-| **Prop**                                                                                                       | **Type**                                                | **Default**   |
-| -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- | ------------- |
-| `children` The navigation structure and anchor elements.                            | ~ReactNode~                                             |          |
-| `targetRef` The scrollable container to observe. Defaults to `document`.            | ~RefObject\~ |          |
-| `onUpdate` Callback fired when the active section changes. Receives the section id. | ~(id: string) => void~                                  |          |
-| `offset` Offset in pixels to account for sticky headers or spacing above sections.  | ~number~                                                | ~0~           |
-| `smooth` If true, smooth scrolls to the section when a nav item is clicked.         | ~boolean~                                               | ~true~        |
-| `className` Additional class names for the root div.                                | ~string~                                                |          |
-| `dataAttribute` The data attribute prefix used for anchors and sections.            | ~string~                                                | ~'scrollspy'~ |
-| `history` If true, updates the URL hash as the user scrolls or clicks nav items.    | ~boolean~                                               | ~true~        |
+| **Prop**                                                                            | **Type**               | **Default**   |
+| ----------------------------------------------------------------------------------- | ---------------------- | ------------- |
+| `children` The navigation structure and anchor elements.                            | ~ReactNode~            |               |
+| `targetRef` The scrollable container to observe. Defaults to `document`.            | ~RefObject\~           |               |
+| `onUpdate` Callback fired when the active section changes. Receives the section id. | ~(id: string) => void~ |               |
+| `offset` Offset in pixels to account for sticky headers or spacing above sections.  | ~number~               | ~0~           |
+| `smooth` If true, smooth scrolls to the section when a nav item is clicked.         | ~boolean~              | ~true~        |
+| `className` Additional class names for the root div.                                | ~string~               |               |
+| `dataAttribute` The data attribute prefix used for anchors and sections.            | ~string~               | ~'scrollspy'~ |
+| `history` If true, updates the URL hash as the user scrolls or clicks nav items.    | ~boolean~              | ~true~        |
 
 ### Data Attributes
 

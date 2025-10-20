@@ -6,10 +6,11 @@ component: true
 
 ## Installation
 
-  CLI
-  Manual
+CLI
+Manual
 
-### 1. 
+### 1.
+
 Install the following dependencies:
 
 ```bash
@@ -52,10 +53,10 @@ This component extends the native HTML `` element with additional styling and si
 
 This component is a custom implementation that extends the native HTML `` element with the following custom props:
 
-| **Prop**                                                                                   | **Type**                                                 | **Default** |
-| ------------------------------------------------------------------------------------------ | -------------------------------------------------------- | ----------- |
-| `variant` Controls the variant of the input field.              | ~enum~  "md" \| "sm" \| "xs"  | ~"md"~      |
-| `className` Additional class names for styling the input field. | ~string~                                                 |        |
+| **Prop**                                                        | **Type**                    | **Default** |
+| --------------------------------------------------------------- | --------------------------- | ----------- |
+| `variant` Controls the variant of the input field.              | ~enum~ "md" \| "sm" \| "xs" | ~"md"~      |
+| `className` Additional class names for styling the input field. | ~string~                    |             |
 
 ## Credits
 
