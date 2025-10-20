@@ -18,7 +18,7 @@ export default function ButtonDemo() {
         </Button>
         <Button variant="outline" size="lg">
           <UserPen />
-          Xsmall
+          Large
         </Button>
       </div>
       <div className="flex items-center gap-4">
