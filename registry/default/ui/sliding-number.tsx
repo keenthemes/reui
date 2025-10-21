@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { motion, MotionValue, useInView, useSpring, useTransform } from 'framer-motion';
 
 function Digit({
@@ -76,52 +76,65 @@ export function SlidingNumber({
   onComplete,
   digitHeight = 40,
 }: SlidingNumberProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: false }); // Always use false, manage once manually
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: false });
   const [currentValue, setCurrentValue] = useState(from);
   const [hasAnimated, setHasAnimated] = useState(false);
   const [animationKey, setAnimationKey] = useState(0);
+  const animationFrameRef = useRef<number | null>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Reset animation state on component mount (route changes)
+  // Stable callback reference
+  const onCompleteRef = useRef(onComplete);
   useEffect(() => {
-    setCurrentValue(from);
-    setHasAnimated(false);
-    setAnimationKey((prev) => prev + 1);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Empty dependency array - runs on every mount
+    onCompleteRef.current = onComplete;
+  }, [onComplete]);
 
   // Reset animation state when from/to values change
   useEffect(() => {
     setCurrentValue(from);
     setHasAnimated(false);
     setAnimationKey((prev) => prev + 1);
+
+    // Cancel any ongoing animations
+    if (animationFrameRef.current) {
+      cancelAnimationFrame(animationFrameRef.current);
+      animationFrameRef.current = null;
+    }
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
   }, [from, to]);
 
-  // Manage animation triggering manually
-  useEffect(() => {
-    if (!startOnView || !isInView) return;
+  // Determine if animation should start
+  const shouldStart = useMemo(() => {
+    if (!startOnView) return true;
+    if (!isInView) return false;
+    if (once && hasAnimated) return false;
+    return true;
+  }, [startOnView, isInView, once, hasAnimated]);
 
-    // If once=true and already animated on this mount, don't animate again
-    if (once && hasAnimated) return;
-
-    // Trigger animation
-    const timer = setTimeout(() => {
-      setAnimationKey((prev) => prev + 1);
-    }, 50);
-
-    return () => clearTimeout(timer);
-  }, [isInView, startOnView, once, hasAnimated]);
-
-  const shouldStart = !startOnView || (isInView && (!once || !hasAnimated));
-
+  // Main animation effect
   useEffect(() => {
     if (!shouldStart) return;
+
+    // Cancel any existing animation
+    if (animationFrameRef.current) {
+      cancelAnimationFrame(animationFrameRef.current);
+      animationFrameRef.current = null;
+    }
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+
     setHasAnimated(true);
 
-    const timer = setTimeout(() => {
+    timeoutRef.current = setTimeout(() => {
       const startTime = Date.now();
-      const startValue = currentValue;
-      const difference = to - startValue;
+      const startValue = from;
+      const difference = to - from;
 
       const animate = () => {
         const elapsed = Date.now() - startTime;
@@ -132,18 +145,28 @@ export function SlidingNumber({
         setCurrentValue(newValue);
 
         if (progress < 1) {
-          requestAnimationFrame(animate);
+          animationFrameRef.current = requestAnimationFrame(animate);
         } else {
           setCurrentValue(to);
-          onComplete?.();
+          animationFrameRef.current = null;
+          onCompleteRef.current?.();
         }
       };
 
-      requestAnimationFrame(animate);
+      animationFrameRef.current = requestAnimationFrame(animate);
     }, delay * 1000);
 
-    return () => clearTimeout(timer);
-  }, [shouldStart, currentValue, to, duration, delay, onComplete]);
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
+      }
+    };
+  }, [shouldStart, from, to, duration, delay]);
 
   // Round the current value to avoid showing decimals during animation
   const roundedValue = Math.round(currentValue);
@@ -153,11 +176,14 @@ export function SlidingNumber({
   const maxDigits = Math.max(Math.abs(from).toString().length, Math.abs(to).toString().length);
 
   // Create array of place values (1, 10, 100, 1000, etc.)
-  const places = Array.from({ length: maxDigits }, (_, i) => Math.pow(10, maxDigits - i - 1));
+  const places = useMemo(
+    () => Array.from({ length: maxDigits }, (_, i) => Math.pow(10, maxDigits - i - 1)),
+    [maxDigits],
+  );
 
   return (
     <div ref={ref} className={`flex items-center ${className}`}>
-      {roundedValue < 0 && '-'}
+      {roundedValue < 0 && <span className="mr-[0.5ch]">-</span>}
       {places.map((place) => (
         <Digit
           key={`${place}-${animationKey}`}
