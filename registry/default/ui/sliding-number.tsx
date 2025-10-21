@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { motion, MotionValue, useInView, useSpring, useTransform } from 'framer-motion';
 
 function Digit({
@@ -82,11 +82,11 @@ export function SlidingNumber({
   const [hasAnimated, setHasAnimated] = useState(false);
   const [animationKey, setAnimationKey] = useState(0);
   const animationFrameRef = useRef<number | null>(null);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Stable callback reference
   const onCompleteRef = useRef(onComplete);
-  useEffect(() => {
+  useLayoutEffect(() => {
     onCompleteRef.current = onComplete;
   }, [onComplete]);
 
