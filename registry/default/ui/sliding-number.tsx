@@ -133,9 +133,11 @@ export function SlidingNumber({
 
     timeoutRef.current = setTimeout(() => {
       const startTime = Date.now();
-      // Always animate from 'from' prop to 'to' prop (not from currentValue)
+      // Always animate from 'from' prop to 'to' prop (not from currentValue).
       // This prevents infinite loop: using currentValue in dependencies would
-      // cause the effect to re-trigger on every animation frame update
+      // cause the effect to re-trigger on every animation frame update.
+      // Note: If props change mid-animation, it will restart from the new 'from' value.
+      // This is intentional - the animation should reflect the updated target values.
       const difference = to - from;
 
       const animate = () => {
