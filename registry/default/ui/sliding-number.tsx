@@ -133,14 +133,13 @@ export function SlidingNumber({
 
     timeoutRef.current = setTimeout(() => {
       const startTime = Date.now();
-      const startValue = from;
       const difference = to - from;
 
       const animate = () => {
         const elapsed = Date.now() - startTime;
         const progress = Math.min(elapsed / (duration * 1000), 1);
         const easeOutCubic = 1 - Math.pow(1 - progress, 3);
-        const newValue = startValue + difference * easeOutCubic;
+        const newValue = from + difference * easeOutCubic;
 
         setCurrentValue(newValue);
 
@@ -183,7 +182,7 @@ export function SlidingNumber({
 
   return (
     <div ref={ref} className={`flex items-center ${className}`}>
-      {roundedValue < 0 && <span className="mr-[0.5ch]">-</span>}
+      {roundedValue < 0 && '-'}
       {places.map((place) => (
         <Digit
           key={`${place}-${animationKey}`}
