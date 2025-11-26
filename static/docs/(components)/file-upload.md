@@ -422,5 +422,5 @@ export const formatBytes = (bytes: number, decimals = 2): string => {
 
 ## Credits
 
-- Built with [OriginUI File Upload Hook](https://github.com/origin-space/originui/tree/main/docs/use-file-upload.md).
+- Built with [OriginUI File Upload Hook](https://github.com/cosscom/coss/blob/main/apps/origin/docs/use-file-upload.md).
 ```
