@@ -129,7 +129,7 @@ function Input({
   variant,
   ...props
 }: React.ComponentProps<typeof BaseInput> & VariantProps<typeof inputVariants>) {
-  return <input data-slot="input" type={type} className={cn(inputVariants({ variant }), className)} {...props} />;
+  return <BaseInput data-slot="input" type={type} className={cn(inputVariants({ variant }), className)} {...props} />;
 }
 
 function InputAddon({
