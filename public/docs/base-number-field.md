@@ -1,5 +1,5 @@
 ---
-title: Phone Input
+title: Number Input
 description: A number input component with increment/decrement controls and validation. Built on top of Base UI Number Field component.
 component: true
 ---
