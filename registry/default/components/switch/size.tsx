@@ -37,8 +37,8 @@ export default function SwitchDemo() {
           <Label htmlFor="compact-size-lg">Large</Label>
         </div>
         <div className="flex items-center space-x-2">
-          <Switch id="compact-size-lg" size="xl" shape="square" />
-          <Label htmlFor="compact-size-lg">XLarge</Label>
+          <Switch id="compact-size-xl" size="xl" shape="square" />
+          <Label htmlFor="compact-size-xl">XLarge</Label>
         </div>
       </div>
     </div>
