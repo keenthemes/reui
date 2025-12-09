@@ -13,7 +13,7 @@ export function OpenInV0IconButton({ name, className }: { name: string } & React
       asChild
     >
       <a
-        href={`https://v0.dev/chat/api/open?url=${process.env.NEXT_PUBLIC_BASE_URL}/r/${name}.json`}
+        href={`https://v0.dev/chat/api/open?url=https://reui.io/r/${name}.json`}
         target="_blank"
         rel="noreferrer"
       >
