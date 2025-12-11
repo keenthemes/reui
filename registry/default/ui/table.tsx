@@ -47,7 +47,7 @@ function TableHead({ className, ...props }: React.ThHTMLAttributes<HTMLTableCell
     <th
       data-slot="table-head"
       className={cn(
-        'h-12 px-4 text-left rtl:text-right align-middle font-normal text-muted-foreground [&:has([role=checkbox])]:pe-0',
+        'h-12 px-4 text-start align-middle font-normal text-muted-foreground [&:has([role=checkbox])]:pe-0',
         className,
       )}
       {...props}
