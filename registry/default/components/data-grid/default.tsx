@@ -250,8 +250,8 @@ export default function DataGridDemo() {
         cell: (info) => <span className="font-semibold">${(info.getValue() as number).toFixed(2)}</span>,
         size: 120,
         meta: {
-          headerClassName: 'text-right rtl:text-left',
-          cellClassName: 'text-right rtl:text-left',
+          headerClassName: 'text-end',
+          cellClassName: 'text-end',
         },
       },
     ],
