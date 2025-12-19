@@ -12,7 +12,7 @@ Refer to the [Installation Guide](/docs/installation) for detailed instructions 
 ### 3. Install dependencies
 
 ```bash
-npm i @base-ui-components/react
+npm i @base-ui/react
 ```
 
 Copy and paste the following code into your project's `components/ui/base-tabs.tsx` file.

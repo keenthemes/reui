@@ -8,7 +8,7 @@ Manual
 Install the following dependencies:
 
 ```bash
-npm i @base-ui-components/react/toggle
+npm i @base-ui/react/toggle
 ```
 
 Copy and paste the following code into your project's `components/ui/base-toggle.tsx` file.

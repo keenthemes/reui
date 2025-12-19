@@ -8,7 +8,7 @@ Manual
 Install the following dependencies:
 
 ```bash
-npm i @base-ui-components/react/toggle-group
+npm i @@base-ui/react/toggle-group
 ```
 
 Copy and paste the following code into your project's `components/ui/base-toggle-group.tsx` file.
