@@ -38,7 +38,7 @@ npm i radix-ui
 Follow [Base UI Installation Guide](https://base-ui.com/react/overview/quick-start) to install Base UI package.
 
 ```bash
-npm i @base-ui-components/react
+npm i @base-ui/react
 ```
 
 ### 5. Install Motion
