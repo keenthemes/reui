@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
+import Image from "next/image"
 
 import { normalizeSlug } from "@/lib/utils"
 import {
@@ -35,7 +36,7 @@ export function PatternsCategoryCard({
       className="group/thumbnail bg-muted/50 dark:bg-background border-border/60 flex flex-col rounded-xl border p-0.5 shadow-sm shadow-black/5"
     >
       <div className="bg-background border-border/60 relative overflow-hidden rounded-xl border">
-        <img
+        <Image
           src={`/screenshots/patterns/${slug}-light.png`}
           alt={slug}
           width={600}
@@ -45,7 +46,7 @@ export function PatternsCategoryCard({
             e.currentTarget.src = "/screenshots/patterns/default-light.png"
           }}
         />
-        <img
+        <Image
           src={`/screenshots/patterns/${slug}-dark.png`}
           alt={slug}
           width={600}
