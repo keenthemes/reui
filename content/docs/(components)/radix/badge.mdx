@@ -1,0 +1,221 @@
+---
+title: Badge
+description: Badges are used to highlight items, notify users, or display statuses.
+component: true
+base: radix
+---
+
+<ComponentPreview styleName="radix-nova" name="p-badge-1" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add @reui/r-badge
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>
+Import the following variables into your CSS file
+
+```css
+@theme inline {
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-invert: var(--invert);
+  --color-invert-foreground: var(--invert-foreground);
+}
+
+:root {
+  --destructive-foreground: var(--color-red-800);
+  --success: var(--color-emerald-500);
+  --success-foreground: var(--color-emerald-900);
+  --info: var(--color-violet-500);
+  --info-foreground: var(--color-violet-900);
+  --warning: var(--color-yellow-500);
+  --warning-foreground: var(--color-yellow-900);
+  --invert: var(--color-zinc-900);
+  --invert-foreground: var(--color-zinc-50);
+}
+
+.dark {
+  --destructive-foreground: var(--color-red-600);
+  --success: var(--color-emerald-500);
+  --success-foreground: var(--color-emerald-600);
+  --info: var(--color-violet-500);
+  --info-foreground: var(--color-violet-600);
+  --warning: var(--color-yellow-500);
+  --warning-foreground: var(--color-yellow-600);
+  --invert: var(--color-zinc-700);
+  --invert-foreground: var(--color-zinc-50);
+}
+```
+
+</Step>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install radix-ui
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  styleName="radix-nova"
+  name="badge"
+  title="components/reui/badge.tsx"
+/>
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Badge } from "@/components/reui/r-badge"
+```
+
+```tsx
+<Badge>Badge</Badge>
+```
+
+## Examples
+
+### Secondary
+
+<ComponentPreview styleName="radix-nova" name="p-badge-2" />
+
+### Destructive
+
+<ComponentPreview styleName="radix-nova" name="p-badge-3" />
+
+### Success
+
+<ComponentPreview styleName="radix-nova" name="p-badge-4" />
+
+### Info
+
+<ComponentPreview styleName="radix-nova" name="p-badge-5" />
+
+### Warning
+
+<ComponentPreview styleName="radix-nova" name="p-badge-6" />
+
+### Outline
+
+<ComponentPreview styleName="radix-nova" name="p-badge-7" />
+
+### Primary Outline
+
+<ComponentPreview styleName="radix-nova" name="p-badge-8" />
+
+### Destructive Outline
+
+<ComponentPreview styleName="radix-nova" name="p-badge-9" />
+
+### Info Outline
+
+<ComponentPreview styleName="radix-nova" name="p-badge-10" />
+
+### Success Outline
+
+<ComponentPreview styleName="radix-nova" name="p-badge-11" />
+
+### Warning Outline
+
+<ComponentPreview styleName="radix-nova" name="p-badge-12" />
+
+### Primary Light
+
+<ComponentPreview styleName="radix-nova" name="p-badge-13" />
+
+### Destructive Light
+
+<ComponentPreview styleName="radix-nova" name="p-badge-14" />
+
+### Success Light
+
+<ComponentPreview styleName="radix-nova" name="p-badge-15" />
+
+### Info Light
+
+<ComponentPreview styleName="radix-nova" name="p-badge-16" />
+
+### Warning Light
+
+<ComponentPreview styleName="radix-nova" name="p-badge-17" />
+
+### Invert Light
+
+<ComponentPreview styleName="radix-nova" name="p-badge-17-1" />
+
+### Size
+
+<ComponentPreview styleName="radix-nova" name="p-badge-18" />
+
+### Full Radius
+
+<ComponentPreview styleName="radix-nova" name="p-badge-19" />
+
+### With Icon
+
+<ComponentPreview styleName="radix-nova" name="p-badge-20" />
+
+### With Icon Button
+
+<ComponentPreview styleName="radix-nova" name="p-badge-21" />
+
+### With Dot
+
+<ComponentPreview styleName="radix-nova" name="p-badge-22" />
+
+### With Link
+
+<ComponentPreview styleName="radix-nova" name="p-badge-23" />
+
+## API Reference
+
+This component follows the same API design as the [Badge Component](https://ui.shadcn.com/docs/components/badge) from shadcn/ui.
+The key difference is that it uses extended color tokens such as `--success`, `--info`, `--warning` and `--invert`
+for badge variants instead of utility classes.
+
+This approach enables consistent, reusable state variants across the project without relying on custom Tailwind color utilities.
+
+```tsx
+<Badge variant="success-light" size="sm">
+  Success
+</Badge>
+```
+
+### Props
+
+| Prop                | Type                                                                                                                         |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `variant`           | `"default" \| "secondary" \| "destructive" \| "outline" \| "info" \| "success" \| "warning" \| "invert"`                     |
+| `variant` (Outline) | `"primary-outline" \| "warning-outline" \| "success-outline" \| "info-outline" \| "destructive-outline" \| "invert-outline"` |
+| `variant` (Light)   | `"primary-light" \| "warning-light" \| "success-light" \| "info-light" \| "destructive-light" \| "invert-light"`             |
+| `size`              | `"default" \| "xs" \| "sm" \| "lg" \| "xl"`                                                                                  |

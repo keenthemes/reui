@@ -1,0 +1,196 @@
+---
+title: Kanban
+description: A drag-and-drop kanban component designed for seamless item organization across customizable columns.
+component: true
+base: base
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-kanban-1"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add @reui/kanban
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash switch
+npm install @dnd-kit/core @dnd-kit/sortable @base-ui/react
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  styleName="base-nova"
+  name="kanban"
+  title="components/reui/kanban.tsx"
+/>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  Kanban,
+  KanbanBoard,
+  KanbanColumn,
+  KanbanColumnContent,
+  KanbanColumnHandle,
+  KanbanItem,
+  KanbanItemHandle,
+  KanbanOverlay,
+} from "@/components/reui/kanban"
+```
+
+```tsx
+<Kanban
+  value={columns}
+  onValueChange={setColumns}
+  getItemValue={(item) => item.id}
+>
+  <KanbanBoard>
+    {Object.entries(columns).map(([id, items]) => (
+      <KanbanColumn key={id} value={id}>
+        <KanbanColumnHandle>
+          <h3>{id}</h3>
+        </KanbanColumnHandle>
+        <KanbanColumnContent value={id}>
+          {items.map((item) => (
+            <KanbanItem key={item.id} value={item.id}>
+              <KanbanItemHandle>{item.content}</KanbanItemHandle>
+            </KanbanItem>
+          ))}
+        </KanbanColumnContent>
+      </KanbanColumn>
+    ))}
+  </KanbanBoard>
+  <KanbanOverlay>
+    <div className="bg-muted size-full rounded-md" />
+  </KanbanOverlay>
+</Kanban>
+```
+
+## Examples
+
+### Overlay
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-kanban-2"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+## API Reference
+
+### Kanban
+
+The root component that provides the kanban context and manages the items state.
+
+| Prop            | Type                                   | Default | Description                                                                |
+| :-------------- | :------------------------------------- | :------ | :------------------------------------------------------------------------- |
+| `value`         | `Record<string, T[]>`                  | -       | `Required`. The current state of columns and their items.                  |
+| `onValueChange` | `(value: Record<string, T[]>) => void` | -       | `Required`. Callback fired when items are moved within or between columns. |
+| `getItemValue`  | `(item: T) => string`                  | -       | `Required`. Function to get a unique identifier for an item.               |
+| `onItemClick`   | `(item: T) => void`                    | -       | Callback fired when an item is clicked.                                    |
+| `className`     | `string`                               | -       | Additional CSS classes for the container.                                  |
+
+---
+
+### KanbanBoard
+
+The horizontal container for kanban columns.
+
+| Prop        | Type     | Default | Description                           |
+| :---------- | :------- | :------ | :------------------------------------ |
+| `className` | `string` | -       | Additional CSS classes for the board. |
+
+---
+
+### KanbanColumn
+
+An individual column within the kanban board.
+
+| Prop        | Type     | Default | Description                                       |
+| :---------- | :------- | :------ | :------------------------------------------------ |
+| `value`     | `string` | -       | `Required`. The unique identifier for the column. |
+| `className` | `string` | -       | Additional CSS classes for the column.            |
+
+---
+
+### KanbanColumnHandle
+
+The drag handle for a column (if columns are sortable).
+
+| Prop        | Type     | Default | Description                            |
+| :---------- | :------- | :------ | :------------------------------------- |
+| `className` | `string` | -       | Additional CSS classes for the handle. |
+
+---
+
+### KanbanColumnContent
+
+The scrollable area within a column that holds the items.
+
+| Prop        | Type     | Default | Description                                                       |
+| :---------- | :------- | :------ | :---------------------------------------------------------------- |
+| `value`     | `string` | -       | `Required`. The identifier of the column this content belongs to. |
+| `className` | `string` | -       | Additional CSS classes for the content area.                      |
+
+---
+
+### KanbanItem
+
+An individual draggable item within a column.
+
+| Prop        | Type      | Default | Description                                     |
+| :---------- | :-------- | :------ | :---------------------------------------------- |
+| `value`     | `string`  | -       | `Required`. The unique identifier for the item. |
+| `disabled`  | `boolean` | `false` | Whether the item is draggable.                  |
+| `className` | `string`  | -       | Additional CSS classes for the item.            |
+
+---
+
+### KanbanItemHandle
+
+The drag handle for an individual item.
+
+| Prop        | Type     | Default | Description                            |
+| :---------- | :------- | :------ | :------------------------------------- |
+| `className` | `string` | -       | Additional CSS classes for the handle. |
+
+---
+
+### KanbanOverlay
+
+The ghost element displayed during a drag operation.
+
+| Prop        | Type     | Default | Description                             |
+| :---------- | :------- | :------ | :-------------------------------------- |
+| `className` | `string` | -       | Additional CSS classes for the overlay. |

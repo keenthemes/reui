@@ -1,0 +1,9788 @@
+[
+  {
+    "name": "p-accordion-1",
+    "title": "A basic single-expand accordion",
+    "categories": [
+      "accordion"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-accordion-10",
+    "title": "Accordion with rotating arrow indicator",
+    "categories": [
+      "accordion"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-accordion-11",
+    "title": "Accordion pattern for onboarding or setup steps with icons, badges, and QR codes",
+    "categories": [
+      "accordion"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-accordion-2",
+    "title": "Accordion with plus/minus indicators",
+    "categories": [
+      "accordion"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-accordion-3",
+    "title": "Accordion with borders and rounded corners",
+    "categories": [
+      "accordion"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-accordion-4",
+    "title": "Accordion embedded within a Card",
+    "categories": [
+      "accordion"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-accordion-5",
+    "title": "Accordion with disabled items and highlighted state",
+    "categories": [
+      "accordion"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-accordion-6",
+    "title": "Advanced accordion with custom icons and badges",
+    "categories": [
+      "accordion"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-accordion-7",
+    "title": "Accordion items integrated within Frame and FramePanel",
+    "categories": [
+      "accordion"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-accordion-8",
+    "title": "Nested accordion example with bordered items",
+    "categories": [
+      "accordion"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-accordion-9",
+    "title": "User list accordion with avatars and role indicators",
+    "categories": [
+      "accordion"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-alert-1",
+    "title": "Basic alert",
+    "categories": [
+      "alert"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-alert-10",
+    "title": "Alert with icon and action buttons",
+    "categories": [
+      "alert"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-alert-11",
+    "title": "Alert with description and action buttons",
+    "categories": [
+      "alert"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-alert-12",
+    "title": "Alert integrated within a Frame with reset borders",
+    "categories": [
+      "alert"
+    ],
+    "meta": {
+      "order": 12
+    }
+  },
+  {
+    "name": "p-alert-13",
+    "title": "Stacked alerts within a Frame",
+    "categories": [
+      "alert"
+    ],
+    "meta": {
+      "order": 13
+    }
+  },
+  {
+    "name": "p-alert-14",
+    "title": "Alert with actions integrated within a Frame",
+    "categories": [
+      "alert"
+    ],
+    "meta": {
+      "order": 14
+    }
+  },
+  {
+    "name": "p-alert-15",
+    "title": "Inverted alert variant",
+    "categories": [
+      "alert"
+    ],
+    "meta": {
+      "order": 15
+    }
+  },
+  {
+    "name": "p-alert-16",
+    "title": "Urgent billing notice",
+    "categories": [
+      "alert"
+    ],
+    "meta": {
+      "order": 16
+    }
+  },
+  {
+    "name": "p-alert-17",
+    "title": "Service status summary stacked within a frame",
+    "categories": [
+      "alert"
+    ],
+    "meta": {
+      "order": 17
+    }
+  },
+  {
+    "name": "p-alert-18",
+    "title": "Feature discovery alert",
+    "categories": [
+      "alert"
+    ],
+    "meta": {
+      "order": 18
+    }
+  },
+  {
+    "name": "p-alert-19",
+    "title": "User message notification alert",
+    "categories": [
+      "alert"
+    ],
+    "meta": {
+      "order": 19
+    }
+  },
+  {
+    "name": "p-alert-2",
+    "title": "Alert with icon",
+    "categories": [
+      "alert"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-alert-20",
+    "title": "User message notification alert",
+    "categories": [
+      "alert"
+    ],
+    "meta": {
+      "order": 20
+    }
+  },
+  {
+    "name": "p-alert-3",
+    "title": "Alert with icon and action buttons",
+    "categories": [
+      "alert"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-alert-4",
+    "title": "Destructive alert with icon and action buttons",
+    "categories": [
+      "alert"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-alert-5",
+    "title": "Info alert with icon and action buttons",
+    "categories": [
+      "alert"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-alert-6",
+    "title": "Success alert",
+    "categories": [
+      "alert"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-alert-7",
+    "title": "Warning alert",
+    "categories": [
+      "alert"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-alert-8",
+    "title": "Error alert",
+    "categories": [
+      "alert"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-alert-9",
+    "title": "Invert alert",
+    "categories": [
+      "alert"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-alert-dialog-1",
+    "title": "Basic alert dialog with title, description, and action buttons",
+    "categories": [
+      "alert-dialog"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-alert-dialog-10",
+    "title": "Confirmation for successful e-ticket registration",
+    "categories": [
+      "alert-dialog"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-alert-dialog-11",
+    "title": "System update notification requiring application restart",
+    "categories": [
+      "alert-dialog"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-alert-dialog-12",
+    "title": "Billing warning for expired subscriptions or failed payments",
+    "categories": [
+      "alert-dialog"
+    ],
+    "meta": {
+      "order": 12
+    }
+  },
+  {
+    "name": "p-alert-dialog-13",
+    "title": "Logout confirmation dialog",
+    "categories": [
+      "alert-dialog"
+    ],
+    "meta": {
+      "order": 13
+    }
+  },
+  {
+    "name": "p-alert-dialog-14",
+    "title": "Advanced security audit confirmation",
+    "categories": [
+      "alert-dialog"
+    ],
+    "meta": {
+      "order": 14
+    }
+  },
+  {
+    "name": "p-alert-dialog-2",
+    "title": "Small size alert dialog for quick confirmations",
+    "categories": [
+      "alert-dialog"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-alert-dialog-3",
+    "title": "Alert dialog with icon",
+    "categories": [
+      "alert-dialog"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-alert-dialog-4",
+    "title": "Small size alert dialog with media (icon)",
+    "categories": [
+      "alert-dialog"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-alert-dialog-5",
+    "title": "Destructive alert dialog for irreversible actions like deletion",
+    "categories": [
+      "alert-dialog"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-alert-dialog-6",
+    "title": "Alert dialog nested within a standard Dialog component",
+    "categories": [
+      "alert-dialog"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-alert-dialog-7",
+    "title": "Task success confirmation",
+    "categories": [
+      "alert-dialog"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-alert-dialog-8",
+    "title": "Account deactivation confirmation",
+    "categories": [
+      "alert-dialog"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-alert-dialog-9",
+    "title": "Warning for unsaved changes when navigating away",
+    "categories": [
+      "alert-dialog"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-aspect-ratio-1",
+    "title": "16:9 widescreen aspect ratio",
+    "categories": [
+      "aspect-ratio"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-aspect-ratio-2",
+    "title": "4:3 standard aspect ratio",
+    "categories": [
+      "aspect-ratio"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-aspect-ratio-3",
+    "title": "1:1 square aspect ratio",
+    "categories": [
+      "aspect-ratio"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-aspect-ratio-4",
+    "title": "21:9 ultrawide aspect ratio",
+    "categories": [
+      "aspect-ratio"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-aspect-ratio-5",
+    "title": "9:16 portrait aspect ratio",
+    "categories": [
+      "aspect-ratio"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-aspect-ratio-6",
+    "title": "3:2 classic photography aspect ratio",
+    "categories": [
+      "aspect-ratio"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-aspect-ratio-7",
+    "title": "4:5 social media portrait aspect ratio",
+    "categories": [
+      "aspect-ratio"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-aspect-ratio-8",
+    "title": "16:10 computer monitor aspect ratio",
+    "categories": [
+      "aspect-ratio"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-autocomplete-1",
+    "title": "Basic autocomplete control",
+    "categories": [
+      "autocomplete"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-autocomplete-10",
+    "title": "Small autocomplete",
+    "categories": [
+      "autocomplete"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-autocomplete-11",
+    "title": "Large autocomplete",
+    "categories": [
+      "autocomplete"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-autocomplete-12",
+    "title": "Form integration",
+    "categories": [
+      "autocomplete"
+    ],
+    "meta": {
+      "order": 12
+    }
+  },
+  {
+    "name": "p-autocomplete-2",
+    "title": "Disabled state",
+    "categories": [
+      "autocomplete"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-autocomplete-3",
+    "title": "Auto highlight option as you type",
+    "categories": [
+      "autocomplete"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-autocomplete-4",
+    "title": "Control with label",
+    "categories": [
+      "autocomplete"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-autocomplete-5",
+    "title": "With clear button",
+    "categories": [
+      "autocomplete"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-autocomplete-6",
+    "title": "With trigger button",
+    "categories": [
+      "autocomplete"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-autocomplete-7",
+    "title": "With clear and trigger buttons",
+    "categories": [
+      "autocomplete"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-autocomplete-8",
+    "title": "With groups and labels",
+    "categories": [
+      "autocomplete"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-autocomplete-9",
+    "title": "With search results",
+    "categories": [
+      "autocomplete"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-avatar-1",
+    "title": "Basic avatar",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-avatar-10",
+    "title": "Basic avatar group",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-avatar-11",
+    "title": "Avatar group with numerical count",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-avatar-12",
+    "title": "Avatar group with an icon count",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 12
+    }
+  },
+  {
+    "name": "p-avatar-13",
+    "title": "Avatar with a distinct border ring",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 13
+    }
+  },
+  {
+    "name": "p-avatar-14",
+    "title": "Avatar with light background color fallback",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 14
+    }
+  },
+  {
+    "name": "p-avatar-15",
+    "title": "Avatar with a solid background color fallback",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 15
+    }
+  },
+  {
+    "name": "p-avatar-16",
+    "title": "Avatar with user details and badge",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 16
+    }
+  },
+  {
+    "name": "p-avatar-17",
+    "title": "Avatar with grayscale image filter",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 17
+    }
+  },
+  {
+    "name": "p-avatar-18",
+    "title": "Avatar group with online status on one",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 18
+    }
+  },
+  {
+    "name": "p-avatar-19",
+    "title": "Avatar inside small outline button",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 19
+    }
+  },
+  {
+    "name": "p-avatar-2",
+    "title": "Avatar with fallback",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-avatar-20",
+    "title": "Avatar social proof with text label",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 20
+    }
+  },
+  {
+    "name": "p-avatar-21",
+    "title": "Compact social proof with initials",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 21
+    }
+  },
+  {
+    "name": "p-avatar-22",
+    "title": "Avatar group with hover tooltips and lift effect",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 22
+    }
+  },
+  {
+    "name": "p-avatar-23",
+    "title": "Avatar group with hover effect",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 23
+    }
+  },
+  {
+    "name": "p-avatar-24",
+    "title": "Avatar group with hover effect and tooltips",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 24
+    }
+  },
+  {
+    "name": "p-avatar-25",
+    "title": "Avatar group with numerical count",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 25
+    }
+  },
+  {
+    "name": "p-avatar-26",
+    "title": "Pilled small outline button with avatar",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 26
+    }
+  },
+  {
+    "name": "p-avatar-27",
+    "title": "Pilled small button with avatar",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 27
+    }
+  },
+  {
+    "name": "p-avatar-28",
+    "title": "Avatar inside an empty state example",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 28
+    }
+  },
+  {
+    "name": "p-avatar-29",
+    "title": "Avatar group with icon count and button",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 29
+    }
+  },
+  {
+    "name": "p-avatar-3",
+    "title": "Avatars with different sizes",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-avatar-30",
+    "title": "Avatar with loading state demonstration",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 30
+    }
+  },
+  {
+    "name": "p-avatar-31",
+    "title": "Avatar with custom badge",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 31
+    }
+  },
+  {
+    "name": "p-avatar-32",
+    "title": "Avatar with ring animation",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 32
+    }
+  },
+  {
+    "name": "p-avatar-33",
+    "title": "Avatar with gradient animated ring",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 33
+    }
+  },
+  {
+    "name": "p-avatar-34",
+    "title": "Avatar with multiple badges",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 34
+    }
+  },
+  {
+    "name": "p-avatar-35",
+    "title": "Compact avatar dropdown menu",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 35
+    }
+  },
+  {
+    "name": "p-avatar-4",
+    "title": "Avatars with different border radiuses",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-avatar-5",
+    "title": "Avatars with custom sizes",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-avatar-6",
+    "title": "Avatar with an online status badge",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-avatar-7",
+    "title": "Avatar with badge icon",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-avatar-8",
+    "title": "Avatar with different badge positions",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-avatar-9",
+    "title": "Avatar with different badge positions",
+    "categories": [
+      "avatar"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-badge-1",
+    "title": "Default badge",
+    "categories": [
+      "badge"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-badge-10",
+    "title": "Info outline badge",
+    "categories": [
+      "badge"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-badge-11",
+    "title": "Success outline badge",
+    "categories": [
+      "badge"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-badge-12",
+    "title": "Warning outline badge",
+    "categories": [
+      "badge"
+    ],
+    "meta": {
+      "order": 12
+    }
+  },
+  {
+    "name": "p-badge-13",
+    "title": "Primary light badge",
+    "categories": [
+      "badge"
+    ],
+    "meta": {
+      "order": 13
+    }
+  },
+  {
+    "name": "p-badge-14",
+    "title": "Destructive light badge",
+    "categories": [
+      "badge"
+    ],
+    "meta": {
+      "order": 14
+    }
+  },
+  {
+    "name": "p-badge-15",
+    "title": "Success light badge",
+    "categories": [
+      "badge"
+    ],
+    "meta": {
+      "order": 15
+    }
+  },
+  {
+    "name": "p-badge-16",
+    "title": "Info light badge",
+    "categories": [
+      "badge"
+    ],
+    "meta": {
+      "order": 16
+    }
+  },
+  {
+    "name": "p-badge-17",
+    "title": "Warning light badge",
+    "categories": [
+      "badge"
+    ],
+    "meta": {
+      "order": 17
+    }
+  },
+  {
+    "name": "p-badge-18",
+    "title": "Badge size variations",
+    "categories": [
+      "badge"
+    ],
+    "meta": {
+      "order": 18
+    }
+  },
+  {
+    "name": "p-badge-19",
+    "title": "Badge with full radius",
+    "categories": [
+      "badge"
+    ],
+    "meta": {
+      "order": 19
+    }
+  },
+  {
+    "name": "p-badge-2",
+    "title": "Secondary badge",
+    "categories": [
+      "badge"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-badge-20",
+    "title": "Badge with an icon",
+    "categories": [
+      "badge"
+    ],
+    "meta": {
+      "order": 20
+    }
+  },
+  {
+    "name": "p-badge-21",
+    "title": "Badge with a dismiss button",
+    "categories": [
+      "badge"
+    ],
+    "meta": {
+      "order": 21
+    }
+  },
+  {
+    "name": "p-badge-22",
+    "title": "Badge with a status dot",
+    "categories": [
+      "badge"
+    ],
+    "meta": {
+      "order": 22
+    }
+  },
+  {
+    "name": "p-badge-23",
+    "title": "Badge rendered as a link",
+    "categories": [
+      "badge"
+    ],
+    "meta": {
+      "order": 23
+    }
+  },
+  {
+    "name": "p-badge-24",
+    "title": "Badge with avatar",
+    "categories": [
+      "badge"
+    ],
+    "meta": {
+      "order": 24
+    }
+  },
+  {
+    "name": "p-badge-25",
+    "title": "Badge with flag image",
+    "categories": [
+      "badge"
+    ],
+    "meta": {
+      "order": 25
+    }
+  },
+  {
+    "name": "p-badge-3",
+    "title": "Destructive badge",
+    "categories": [
+      "badge"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-badge-4",
+    "title": "Success badge",
+    "categories": [
+      "badge"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-badge-5",
+    "title": "Info badge",
+    "categories": [
+      "badge"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-badge-6",
+    "title": "Warning badge",
+    "categories": [
+      "badge"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-badge-7",
+    "title": "Outline badge",
+    "categories": [
+      "badge"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-badge-8",
+    "title": "Primary outline badge",
+    "categories": [
+      "badge"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-badge-9",
+    "title": "Destructive outline badge",
+    "categories": [
+      "badge"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-breadcrumb-1",
+    "title": "Basic breadcrumb",
+    "categories": [
+      "breadcrumb"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-breadcrumb-10",
+    "title": "Pill-style breadcrumb inside frame",
+    "categories": [
+      "breadcrumb"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-breadcrumb-11",
+    "title": "Breadcrumb items containing badge with count",
+    "categories": [
+      "breadcrumb"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-breadcrumb-12",
+    "title": "Breadcrumb starting with home icon item",
+    "categories": [
+      "breadcrumb"
+    ],
+    "meta": {
+      "order": 12
+    }
+  },
+  {
+    "name": "p-breadcrumb-13",
+    "title": "Breadcrumb with a custom separator",
+    "categories": [
+      "breadcrumb"
+    ],
+    "meta": {
+      "order": 13
+    }
+  },
+  {
+    "name": "p-breadcrumb-14",
+    "title": "Button-style breadcrumb",
+    "categories": [
+      "breadcrumb"
+    ],
+    "meta": {
+      "order": 14
+    }
+  },
+  {
+    "name": "p-breadcrumb-15",
+    "title": "Breadcrumb with project, user and document info",
+    "categories": [
+      "breadcrumb"
+    ],
+    "meta": {
+      "order": 15
+    }
+  },
+  {
+    "name": "p-breadcrumb-2",
+    "title": "Breadcrumb with dropdown menu",
+    "categories": [
+      "breadcrumb"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-breadcrumb-3",
+    "title": "Breadcrumb with Next.js link",
+    "categories": [
+      "breadcrumb"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-breadcrumb-4",
+    "title": "Breadcrumb with a custom slash separator",
+    "categories": [
+      "breadcrumb"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-breadcrumb-5",
+    "title": "Breadcrumb with icons for each item",
+    "categories": [
+      "breadcrumb"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-breadcrumb-6",
+    "title": "Breadcrumb with ellipsis for long paths",
+    "categories": [
+      "breadcrumb"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-breadcrumb-7",
+    "title": "Breadcrumb items with avatars",
+    "categories": [
+      "breadcrumb"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-breadcrumb-8",
+    "title": "Breadcrumb with double chevron separators",
+    "categories": [
+      "breadcrumb"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-breadcrumb-9",
+    "title": "Breadcrumb inside card",
+    "categories": [
+      "breadcrumb"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-button-1",
+    "title": "Default button",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-button-10",
+    "title": "Disabled button",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-button-11",
+    "title": "Icon button",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-button-12",
+    "title": "Button with an icon on the right",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 12
+    }
+  },
+  {
+    "name": "p-button-13",
+    "title": "Button in a loading state",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 13
+    }
+  },
+  {
+    "name": "p-button-14",
+    "title": "Button with an icon on the left",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 14
+    }
+  },
+  {
+    "name": "p-button-15",
+    "title": "Button with an invalid state highlight",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 15
+    }
+  },
+  {
+    "name": "p-button-16",
+    "title": "Secondary button with an icon on the left",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 16
+    }
+  },
+  {
+    "name": "p-button-17",
+    "title": "Secondary button with an icon on the right",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 17
+    }
+  },
+  {
+    "name": "p-button-18",
+    "title": "Outline button with an icon on the left",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 18
+    }
+  },
+  {
+    "name": "p-button-19",
+    "title": "Outline button with an icon on the right",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 19
+    }
+  },
+  {
+    "name": "p-button-2",
+    "title": "Secondary button",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-button-20",
+    "title": "Ghost button with an icon on the left",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 20
+    }
+  },
+  {
+    "name": "p-button-21",
+    "title": "Ghost button with an icon on the right",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 21
+    }
+  },
+  {
+    "name": "p-button-22",
+    "title": "Destructive button with an icon on the left",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 22
+    }
+  },
+  {
+    "name": "p-button-23",
+    "title": "Destructive button with an icon on the right",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 23
+    }
+  },
+  {
+    "name": "p-button-24",
+    "title": "Extra small icon button",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 24
+    }
+  },
+  {
+    "name": "p-button-25",
+    "title": "Small icon button",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 25
+    }
+  },
+  {
+    "name": "p-button-26",
+    "title": "Large (lg) icon-only button",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 26
+    }
+  },
+  {
+    "name": "p-button-27",
+    "title": "Button rendered as a Next.js Link",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 27
+    }
+  },
+  {
+    "name": "p-button-28",
+    "title": "Link button with an icon on the left",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 28
+    }
+  },
+  {
+    "name": "p-button-29",
+    "title": "Link button with an icon on the right",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 29
+    }
+  },
+  {
+    "name": "p-button-3",
+    "title": "Outline button",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-button-30",
+    "title": "Large button with an icon on the left",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 30
+    }
+  },
+  {
+    "name": "p-button-31",
+    "title": "Large button with an icon on the right",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 31
+    }
+  },
+  {
+    "name": "p-button-32",
+    "title": "Outline button with an invalid state",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 32
+    }
+  },
+  {
+    "name": "p-button-33",
+    "title": "Ghost button with an invalid state",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 33
+    }
+  },
+  {
+    "name": "p-button-34",
+    "title": "Button with an icon on the left",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 34
+    }
+  },
+  {
+    "name": "p-button-35",
+    "title": "Ghost button with more/less toggle",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 35
+    }
+  },
+  {
+    "name": "p-button-36",
+    "title": "Social login buttons with Remix Icons",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 36
+    }
+  },
+  {
+    "name": "p-button-37",
+    "title": "Outline like button with count",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 37
+    }
+  },
+  {
+    "name": "p-button-38",
+    "title": "Star button with count",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 38
+    }
+  },
+  {
+    "name": "p-button-39",
+    "title": "Button with an unread badge",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 39
+    }
+  },
+  {
+    "name": "p-button-4",
+    "title": "Ghost button",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-button-40",
+    "title": "Button with icon, label, and shortcut keys",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 40
+    }
+  },
+  {
+    "name": "p-button-41",
+    "title": "Copy button with feedback",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 41
+    }
+  },
+  {
+    "name": "p-button-42",
+    "title": "Icon-only copy button with feedback",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 42
+    }
+  },
+  {
+    "name": "p-button-43",
+    "title": "Animated hamburger / close toggle button",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 43
+    }
+  },
+  {
+    "name": "p-button-44",
+    "title": "Async action button with loading and success states",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 44
+    }
+  },
+  {
+    "name": "p-button-45",
+    "title": "Outline button with inline count badge",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 45
+    }
+  },
+  {
+    "name": "p-button-46",
+    "title": "Button with status dot badge",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 46
+    }
+  },
+  {
+    "name": "p-button-47",
+    "title": "Ghost button with a status badge",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 47
+    }
+  },
+  {
+    "name": "p-button-48",
+    "title": "Icon button with notification badge",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 48
+    }
+  },
+  {
+    "name": "p-button-49",
+    "title": "Go back link button",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 49
+    }
+  },
+  {
+    "name": "p-button-5",
+    "title": "Destructive button",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-button-50",
+    "title": "Go back link button with animation",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 50
+    }
+  },
+  {
+    "name": "p-button-51",
+    "title": "Expanding button from icon to label",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 51
+    }
+  },
+  {
+    "name": "p-button-52",
+    "title": "Multi-line button with icon, title & description",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 52
+    }
+  },
+  {
+    "name": "p-button-53",
+    "title": "Sliding Icon Button (Hover reveal)",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 53
+    }
+  },
+  {
+    "name": "p-button-54",
+    "title": "Shortcut Tooltip Button (Kbd hints)",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 54
+    }
+  },
+  {
+    "name": "p-button-55",
+    "title": "Button with avatar",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 55
+    }
+  },
+  {
+    "name": "p-button-56",
+    "title": "Outline button with avatar",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 56
+    }
+  },
+  {
+    "name": "p-button-57",
+    "title": "Small button with avatar",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 57
+    }
+  },
+  {
+    "name": "p-button-58",
+    "title": "Small outline button with avatar",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 58
+    }
+  },
+  {
+    "name": "p-button-59",
+    "title": "Social login buttons with Remix icons",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 59
+    }
+  },
+  {
+    "name": "p-button-6",
+    "title": "Link button variant",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-button-60",
+    "title": "Social icon-only buttons with Remix icons",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 60
+    }
+  },
+  {
+    "name": "p-button-61",
+    "title": "Theme toggle button with animated moon and sun icons",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 61
+    }
+  },
+  {
+    "name": "p-button-7",
+    "title": "Extra small button",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-button-8",
+    "title": "Small button",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-button-9",
+    "title": "Large button",
+    "categories": [
+      "button"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-button-group-1",
+    "title": "Basic button group with two buttons",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-button-group-10",
+    "title": "Button group used for standard pagination",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-button-group-11",
+    "title": "Pagination split into page numbers and navigation arrows",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-button-group-12",
+    "title": "Button group for editor text alignment controls",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 12
+    }
+  },
+  {
+    "name": "p-button-group-13",
+    "title": "Vertical button group orientation",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 13
+    }
+  },
+  {
+    "name": "p-button-group-14",
+    "title": "Nested vertical button group for complex tool palettes",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 14
+    }
+  },
+  {
+    "name": "p-button-group-15",
+    "title": "Star button group with count and dropdown",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 15
+    }
+  },
+  {
+    "name": "p-button-group-16",
+    "title": "Search input with filter menu and clear button",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 16
+    }
+  },
+  {
+    "name": "p-button-group-17",
+    "title": "Button group with comprehensive action menu",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 17
+    }
+  },
+  {
+    "name": "p-button-group-18",
+    "title": "Advanced git toolbar with branch selection and split commit button",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 18
+    }
+  },
+  {
+    "name": "p-button-group-19",
+    "title": "Button group with dropdown menu and input group",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 19
+    }
+  },
+  {
+    "name": "p-button-group-2",
+    "title": "Button group with button followed by input",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-button-group-20",
+    "title": "Button group with input group and button",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 20
+    }
+  },
+  {
+    "name": "p-button-group-21",
+    "title": "Button group with dropdown menu and input group",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 21
+    }
+  },
+  {
+    "name": "p-button-group-22",
+    "title": "Basic button group with disabled button",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 22
+    }
+  },
+  {
+    "name": "p-button-group-23",
+    "title": "Button group buttons with separators",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 23
+    }
+  },
+  {
+    "name": "p-button-group-24",
+    "title": "View switcher for dashboard layouts",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 24
+    }
+  },
+  {
+    "name": "p-button-group-25",
+    "title": "Rating scale using numerical buttons",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 25
+    }
+  },
+  {
+    "name": "p-button-group-26",
+    "title": "Button group with user selection select",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 26
+    }
+  },
+  {
+    "name": "p-button-group-27",
+    "title": "Button group with select status addon",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 27
+    }
+  },
+  {
+    "name": "p-button-group-28",
+    "title": "Volume controller with plus/minus actions",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 28
+    }
+  },
+  {
+    "name": "p-button-group-29",
+    "title": "Button group with follower count",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 29
+    }
+  },
+  {
+    "name": "p-button-group-3",
+    "title": "Button group with buttons and badge",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-button-group-30",
+    "title": "Active state button group with count",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 30
+    }
+  },
+  {
+    "name": "p-button-group-31",
+    "title": "Horizontal button group with primary and secondary labels",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 31
+    }
+  },
+  {
+    "name": "p-button-group-32",
+    "title": "Button group with dropdown menu and view toggle",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 32
+    }
+  },
+  {
+    "name": "p-button-group-33",
+    "title": "Button group with select controls",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 33
+    }
+  },
+  {
+    "name": "p-button-group-34",
+    "title": "Segmented control with dropdown inside button group",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 34
+    }
+  },
+  {
+    "name": "p-button-group-35",
+    "title": "Pagination button group",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 35
+    }
+  },
+  {
+    "name": "p-button-group-36",
+    "title": "View switcher button group",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 36
+    }
+  },
+  {
+    "name": "p-button-group-37",
+    "title": "Zoom controls button group",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 37
+    }
+  },
+  {
+    "name": "p-button-group-38",
+    "title": "Media player controls button group",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 38
+    }
+  },
+  {
+    "name": "p-button-group-39",
+    "title": "Split button with dropdown trigger",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 39
+    }
+  },
+  {
+    "name": "p-button-group-4",
+    "title": "Button group with dropdown menu",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-button-group-40",
+    "title": "Vertical button group",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 40
+    }
+  },
+  {
+    "name": "p-button-group-5",
+    "title": "Team activity and collaboration group",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-button-group-6",
+    "title": "Button group using icons for visual actions",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-button-group-7",
+    "title": "Dropdown menu with status indicator",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-button-group-8",
+    "title": "Button group styled as a like button with a counter",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-button-group-9",
+    "title": "Nested button groups for complex action sets",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-calendar-1",
+    "title": "Basic calendar",
+    "categories": [
+      "calendar"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-calendar-10",
+    "title": "Display week numbers",
+    "categories": [
+      "calendar"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-calendar-11",
+    "title": "Current month button",
+    "categories": [
+      "calendar"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-calendar-12",
+    "title": "Today button",
+    "categories": [
+      "calendar"
+    ],
+    "meta": {
+      "order": 12
+    }
+  },
+  {
+    "name": "p-calendar-13",
+    "title": "Custom navigation with year view",
+    "categories": [
+      "calendar"
+    ],
+    "meta": {
+      "order": 13
+    }
+  },
+  {
+    "name": "p-calendar-14",
+    "title": "Preset time selection",
+    "categories": [
+      "calendar"
+    ],
+    "meta": {
+      "order": 14
+    }
+  },
+  {
+    "name": "p-calendar-15",
+    "title": "Calendar with presets",
+    "categories": [
+      "calendar"
+    ],
+    "meta": {
+      "order": 15
+    }
+  },
+  {
+    "name": "p-calendar-16",
+    "title": "Range calendar with presets",
+    "categories": [
+      "calendar"
+    ],
+    "meta": {
+      "order": 16
+    }
+  },
+  {
+    "name": "p-calendar-17",
+    "title": "Calendar with pricing",
+    "categories": [
+      "calendar"
+    ],
+    "meta": {
+      "order": 17
+    }
+  },
+  {
+    "name": "p-calendar-18",
+    "title": "Calendar with presets",
+    "categories": [
+      "calendar"
+    ],
+    "meta": {
+      "order": 18
+    }
+  },
+  {
+    "name": "p-calendar-19",
+    "title": "Appointment calendar",
+    "categories": [
+      "calendar"
+    ],
+    "meta": {
+      "order": 19
+    }
+  },
+  {
+    "name": "p-calendar-2",
+    "title": "Range calendar",
+    "categories": [
+      "calendar"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-calendar-20",
+    "title": "Display 2 months",
+    "categories": [
+      "calendar"
+    ],
+    "meta": {
+      "order": 20
+    }
+  },
+  {
+    "name": "p-calendar-21",
+    "title": "Display 2 months with range picker",
+    "categories": [
+      "calendar"
+    ],
+    "meta": {
+      "order": 21
+    }
+  },
+  {
+    "name": "p-calendar-22",
+    "title": "Calendar with event list",
+    "categories": [
+      "calendar"
+    ],
+    "meta": {
+      "order": 22
+    }
+  },
+  {
+    "name": "p-calendar-23",
+    "title": "Localize calendar",
+    "categories": [
+      "calendar"
+    ],
+    "meta": {
+      "order": 23
+    }
+  },
+  {
+    "name": "p-calendar-24",
+    "title": "Calendar with date picker",
+    "categories": [
+      "calendar"
+    ],
+    "meta": {
+      "order": 24
+    }
+  },
+  {
+    "name": "p-calendar-25",
+    "title": "Calendar with date range picker",
+    "categories": [
+      "calendar"
+    ],
+    "meta": {
+      "order": 25
+    }
+  },
+  {
+    "name": "p-calendar-26",
+    "title": "Calendar with date picker and year view",
+    "categories": [
+      "calendar"
+    ],
+    "meta": {
+      "order": 26
+    }
+  },
+  {
+    "name": "p-calendar-27",
+    "title": "Calendar with date and appointment picker",
+    "categories": [
+      "calendar"
+    ],
+    "meta": {
+      "order": 27
+    }
+  },
+  {
+    "name": "p-calendar-28",
+    "title": "Calendar with date picker and presets",
+    "categories": [
+      "calendar"
+    ],
+    "meta": {
+      "order": 28
+    }
+  },
+  {
+    "name": "p-calendar-29",
+    "title": "Range calendar with date picker and presets",
+    "categories": [
+      "calendar"
+    ],
+    "meta": {
+      "order": 29
+    }
+  },
+  {
+    "name": "p-calendar-3",
+    "title": "Disabled dates",
+    "categories": [
+      "calendar"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-calendar-30",
+    "title": "Calendar with date and time range picker",
+    "categories": [
+      "calendar"
+    ],
+    "meta": {
+      "order": 30
+    }
+  },
+  {
+    "name": "p-calendar-4",
+    "title": "Multiple day selection",
+    "categories": [
+      "calendar"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-calendar-5",
+    "title": "Custom select day style",
+    "categories": [
+      "calendar"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-calendar-6",
+    "title": "Custom select range style",
+    "categories": [
+      "calendar"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-calendar-7",
+    "title": "Right navigation",
+    "categories": [
+      "calendar"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-calendar-8",
+    "title": "Month and year selection",
+    "categories": [
+      "calendar"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-calendar-9",
+    "title": "Year select with navigation",
+    "categories": [
+      "calendar"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-card-1",
+    "title": "Basic card",
+    "categories": [
+      "card"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-card-10",
+    "title": "Full card with image and shadow fade effect",
+    "categories": [
+      "card"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-card-11",
+    "title": "Card with stacked depth effect",
+    "categories": [
+      "card"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-card-12",
+    "title": "Advanced clean login form card",
+    "categories": [
+      "card"
+    ],
+    "meta": {
+      "order": 12
+    }
+  },
+  {
+    "name": "p-card-13",
+    "title": "Expandable billing usage card",
+    "categories": [
+      "card"
+    ],
+    "meta": {
+      "order": 13
+    }
+  },
+  {
+    "name": "p-card-14",
+    "title": "Deployment status summary card",
+    "categories": [
+      "card"
+    ],
+    "meta": {
+      "order": 14
+    }
+  },
+  {
+    "name": "p-card-2",
+    "title": "Card header with border",
+    "categories": [
+      "card"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-card-3",
+    "title": "Card with border separation",
+    "categories": [
+      "card"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-card-4",
+    "title": "Card with header and footer",
+    "categories": [
+      "card"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-card-5",
+    "title": "Card with link",
+    "categories": [
+      "card"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-card-6",
+    "title": "Card with dropdown menu",
+    "categories": [
+      "card"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-card-7",
+    "title": "Card with image",
+    "categories": [
+      "card"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-card-8",
+    "title": "Card with image scale hover effect",
+    "categories": [
+      "card"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-card-9",
+    "title": "Card with full image",
+    "categories": [
+      "card"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-carousel-1",
+    "title": "Basic carousel with single item",
+    "categories": [
+      "carousel"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-carousel-10",
+    "title": "Carousel with overlay thumbnail navigation",
+    "categories": [
+      "carousel"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-carousel-11",
+    "title": "Carousel with dots navigation and content overlays",
+    "categories": [
+      "carousel"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-carousel-2",
+    "title": "Vertical carousel orientation",
+    "categories": [
+      "carousel"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-carousel-3",
+    "title": "Carousel with multiple items visible",
+    "categories": [
+      "carousel"
+    ],
+    "meta": {
+      "order": 3,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-carousel-4",
+    "title": "Carousel with responsive basis",
+    "categories": [
+      "carousel"
+    ],
+    "meta": {
+      "order": 4,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-carousel-5",
+    "title": "Carousel with autoplay plugin",
+    "categories": [
+      "carousel"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-carousel-6",
+    "title": "Carousel with centered slide alignment",
+    "categories": [
+      "carousel"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-carousel-7",
+    "title": "Carousel with custom spacing",
+    "categories": [
+      "carousel"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-carousel-8",
+    "title": "Carousel with images and overlays",
+    "categories": [
+      "carousel"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-carousel-9",
+    "title": "Carousel with thumbnail navigation",
+    "categories": [
+      "carousel"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-chart-1",
+    "title": "Basic bar chart",
+    "categories": [
+      "chart"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-chart-10",
+    "title": "Duotone gradient bar chart",
+    "categories": [
+      "chart"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-chart-11",
+    "title": "Animated monochrome bar chart",
+    "categories": [
+      "chart"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-chart-12",
+    "title": "Vertical bar chart",
+    "categories": [
+      "chart"
+    ],
+    "meta": {
+      "order": 12
+    }
+  },
+  {
+    "name": "p-chart-13",
+    "title": "Gradient area chart with stripe overlay",
+    "categories": [
+      "chart"
+    ],
+    "meta": {
+      "order": 13
+    }
+  },
+  {
+    "name": "p-chart-14",
+    "title": "Stacked area chart with dashed strokes",
+    "categories": [
+      "chart"
+    ],
+    "meta": {
+      "order": 14
+    }
+  },
+  {
+    "name": "p-chart-15",
+    "title": "Step area chart with dotted pattern fill",
+    "categories": [
+      "chart"
+    ],
+    "meta": {
+      "order": 15
+    }
+  },
+  {
+    "name": "p-chart-16",
+    "title": "Area chart with glowing dot markers",
+    "categories": [
+      "chart"
+    ],
+    "meta": {
+      "order": 16
+    }
+  },
+  {
+    "name": "p-chart-17",
+    "title": "Forecast line chart with stripe pattern zone",
+    "categories": [
+      "chart"
+    ],
+    "meta": {
+      "order": 17
+    }
+  },
+  {
+    "name": "p-chart-18",
+    "title": "Stacked area chart with crosshatch pattern fill",
+    "categories": [
+      "chart"
+    ],
+    "meta": {
+      "order": 18
+    }
+  },
+  {
+    "name": "p-chart-19",
+    "title": "Donut chart with center total",
+    "categories": [
+      "chart"
+    ],
+    "meta": {
+      "order": 19
+    }
+  },
+  {
+    "name": "p-chart-2",
+    "title": "Multi-dataset bar chart",
+    "categories": [
+      "chart"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-chart-20",
+    "title": "Donut chart with center stats",
+    "categories": [
+      "chart"
+    ],
+    "meta": {
+      "order": 20
+    }
+  },
+  {
+    "name": "p-chart-21",
+    "title": "Bug priority pie with stripe patterns",
+    "categories": [
+      "chart"
+    ],
+    "meta": {
+      "order": 21
+    }
+  },
+  {
+    "name": "p-chart-22",
+    "title": "Active segment donut with center label",
+    "categories": [
+      "chart"
+    ],
+    "meta": {
+      "order": 22
+    }
+  },
+  {
+    "name": "p-chart-23",
+    "title": "Radar chart with gradient fill",
+    "categories": [
+      "chart"
+    ],
+    "meta": {
+      "order": 23
+    }
+  },
+  {
+    "name": "p-chart-24",
+    "title": "Filled radar with glowing stroke",
+    "categories": [
+      "chart"
+    ],
+    "meta": {
+      "order": 24
+    }
+  },
+  {
+    "name": "p-chart-25",
+    "title": "Lighthouse scores radial with labels",
+    "categories": [
+      "chart"
+    ],
+    "meta": {
+      "order": 25
+    }
+  },
+  {
+    "name": "p-chart-3",
+    "title": "Diagonal stripe bar chart",
+    "categories": [
+      "chart"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-chart-4",
+    "title": "Dotted pattern bar chart",
+    "categories": [
+      "chart"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-chart-5",
+    "title": "Striped and solid bar chart",
+    "categories": [
+      "chart"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-chart-6",
+    "title": "3D gradient bar chart",
+    "categories": [
+      "chart"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-chart-7",
+    "title": "Gradient bar chart",
+    "categories": [
+      "chart"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-chart-8",
+    "title": "3D isometric bar chart",
+    "categories": [
+      "chart"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-chart-9",
+    "title": "Dotted and solid bar chart",
+    "categories": [
+      "chart"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-checkbox-1",
+    "title": "Basic checkbox with label",
+    "categories": [
+      "checkbox"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-checkbox-10",
+    "title": "Checkbox group in a frame",
+    "categories": [
+      "checkbox"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-checkbox-11",
+    "title": "Card checkbox group with icons",
+    "categories": [
+      "checkbox"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-checkbox-12",
+    "title": "Card checkbox group with icons",
+    "categories": [
+      "checkbox"
+    ],
+    "meta": {
+      "order": 12
+    }
+  },
+  {
+    "name": "p-checkbox-13",
+    "title": "Custom positioned checkbox",
+    "categories": [
+      "checkbox"
+    ],
+    "meta": {
+      "order": 13
+    }
+  },
+  {
+    "name": "p-checkbox-14",
+    "title": "Custom positioned checkbox",
+    "categories": [
+      "checkbox"
+    ],
+    "meta": {
+      "order": 14
+    }
+  },
+  {
+    "name": "p-checkbox-15",
+    "title": "Avatar based card checkbox",
+    "categories": [
+      "checkbox"
+    ],
+    "meta": {
+      "order": 15
+    }
+  },
+  {
+    "name": "p-checkbox-16",
+    "title": "Nested checkbox group",
+    "categories": [
+      "checkbox"
+    ],
+    "meta": {
+      "order": 16
+    }
+  },
+  {
+    "name": "p-checkbox-17",
+    "title": "Payment method card checkbox",
+    "categories": [
+      "checkbox"
+    ],
+    "meta": {
+      "order": 17
+    }
+  },
+  {
+    "name": "p-checkbox-18",
+    "title": "Checkbox with label and tooltip info",
+    "categories": [
+      "checkbox"
+    ],
+    "meta": {
+      "order": 18
+    }
+  },
+  {
+    "name": "p-checkbox-19",
+    "title": "Checkbox group with badge",
+    "categories": [
+      "checkbox"
+    ],
+    "meta": {
+      "order": 19
+    }
+  },
+  {
+    "name": "p-checkbox-2",
+    "title": "Disabled checkbox",
+    "categories": [
+      "checkbox"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-checkbox-20",
+    "title": "Checkbox with label and tooltip info",
+    "categories": [
+      "checkbox"
+    ],
+    "meta": {
+      "order": 20
+    }
+  },
+  {
+    "name": "p-checkbox-21",
+    "title": "Inline horizontal checkbox group",
+    "categories": [
+      "checkbox"
+    ],
+    "meta": {
+      "order": 21
+    }
+  },
+  {
+    "name": "p-checkbox-22",
+    "title": "Checkbox with feature badge",
+    "categories": [
+      "checkbox"
+    ],
+    "meta": {
+      "order": 22
+    }
+  },
+  {
+    "name": "p-checkbox-3",
+    "title": "Invalid checkbox",
+    "categories": [
+      "checkbox"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-checkbox-4",
+    "title": "Indeterminate checkbox",
+    "categories": [
+      "checkbox"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-checkbox-5",
+    "title": "Checkbox with label and description",
+    "categories": [
+      "checkbox"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-checkbox-6",
+    "title": "Colored checkbox",
+    "categories": [
+      "checkbox"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-checkbox-7",
+    "title": "Circle checkbox",
+    "categories": [
+      "checkbox"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-checkbox-8",
+    "title": "Checkbox group",
+    "categories": [
+      "checkbox"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-checkbox-9",
+    "title": "Card checkbox with group",
+    "categories": [
+      "checkbox"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-collapsible-1",
+    "title": "Basic collapsible",
+    "categories": [
+      "collapsible"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-collapsible-10",
+    "title": "Tree view with file actions",
+    "categories": [
+      "collapsible"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-collapsible-2",
+    "title": "Collapsible with checkbox settings",
+    "categories": [
+      "collapsible"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-collapsible-3",
+    "title": "Collapsible animated card",
+    "categories": [
+      "collapsible"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-collapsible-4",
+    "title": "Collapsible card with bottom trigger",
+    "categories": [
+      "collapsible"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-collapsible-5",
+    "title": "Collapsible form fields",
+    "categories": [
+      "collapsible"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-collapsible-6",
+    "title": "Collapsible frame",
+    "categories": [
+      "collapsible"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-collapsible-7",
+    "title": "Nested collapsible list with actions",
+    "categories": [
+      "collapsible"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-collapsible-8",
+    "title": "Collapsible User profile",
+    "categories": [
+      "collapsible"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-collapsible-9",
+    "title": "Multi-level collapsible menu",
+    "categories": [
+      "collapsible"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-combobox-1",
+    "title": "A basic combobox with a list of options",
+    "categories": [
+      "combobox"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-combobox-10",
+    "title": "A combobox rendered inside a popup",
+    "categories": [
+      "combobox"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-combobox-11",
+    "title": "A combobox used within a form",
+    "categories": [
+      "combobox"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-combobox-12",
+    "title": "A multi-select combobox",
+    "categories": [
+      "combobox"
+    ],
+    "meta": {
+      "order": 12
+    }
+  },
+  {
+    "name": "p-combobox-13",
+    "title": "A disabled multi-select combobox",
+    "categories": [
+      "combobox"
+    ],
+    "meta": {
+      "order": 13
+    }
+  },
+  {
+    "name": "p-combobox-14",
+    "title": "A multi-select combobox in an invalid state",
+    "categories": [
+      "combobox"
+    ],
+    "meta": {
+      "order": 14
+    }
+  },
+  {
+    "name": "p-combobox-15",
+    "title": "A multi-select with chips that cannot be removed",
+    "categories": [
+      "combobox"
+    ],
+    "meta": {
+      "order": 15
+    }
+  },
+  {
+    "name": "p-combobox-16",
+    "title": "A combobox with custom item rendering",
+    "categories": [
+      "combobox"
+    ],
+    "meta": {
+      "order": 16
+    }
+  },
+  {
+    "name": "p-combobox-17",
+    "title": "A combobox used within a dialog",
+    "categories": [
+      "combobox"
+    ],
+    "meta": {
+      "order": 17
+    }
+  },
+  {
+    "name": "p-combobox-18",
+    "title": "A combobox with a custom trigger icon",
+    "categories": [
+      "combobox"
+    ],
+    "meta": {
+      "order": 18
+    }
+  },
+  {
+    "name": "p-combobox-19",
+    "title": "A multi-select combobox with user tags",
+    "categories": [
+      "combobox"
+    ],
+    "meta": {
+      "order": 19
+    }
+  },
+  {
+    "name": "p-combobox-2",
+    "title": "A disabled combobox",
+    "categories": [
+      "combobox"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-combobox-20",
+    "title": "Invisible combobox with member tags",
+    "categories": [
+      "combobox"
+    ],
+    "meta": {
+      "order": 20
+    }
+  },
+  {
+    "name": "p-combobox-3",
+    "title": "A combobox in an invalid state",
+    "categories": [
+      "combobox"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-combobox-4",
+    "title": "A combobox with a clear button",
+    "categories": [
+      "combobox"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-combobox-5",
+    "title": "A combobox with auto-highlight enabled",
+    "categories": [
+      "combobox"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-combobox-6",
+    "title": "A combobox with grouped options",
+    "categories": [
+      "combobox"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-combobox-7",
+    "title": "A combobox with grouped options and separators",
+    "categories": [
+      "combobox"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-combobox-8",
+    "title": "A combobox with a large list of options",
+    "categories": [
+      "combobox"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-combobox-9",
+    "title": "A combobox with an icon addon",
+    "categories": [
+      "combobox"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-command-1",
+    "title": "Basic command",
+    "categories": [
+      "command"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-command-2",
+    "title": "Command with shortcuts",
+    "categories": [
+      "command"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-command-3",
+    "title": "Command with groups",
+    "categories": [
+      "command"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-command-4",
+    "title": "Command with many groups",
+    "categories": [
+      "command"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-command-5",
+    "title": "File search command palette",
+    "categories": [
+      "command"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-command-6",
+    "title": "User search command with avatars",
+    "categories": [
+      "command"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-command-7",
+    "title": "Action palette with keyboard shortcuts",
+    "categories": [
+      "command"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-command-8",
+    "title": "Command with recent and favorites sections",
+    "categories": [
+      "command"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-context-menu-1",
+    "title": "Basic context menu.",
+    "categories": [
+      "context-menu"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-context-menu-10",
+    "title": "Context menu used inside a dialog component.",
+    "categories": [
+      "context-menu"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-context-menu-2",
+    "title": "Context menu with icons for common actions.",
+    "categories": [
+      "context-menu"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-context-menu-3",
+    "title": "Context menu with keyboard shortcuts.",
+    "categories": [
+      "context-menu"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-context-menu-4",
+    "title": "Context menu with nested submenus.",
+    "categories": [
+      "context-menu"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-context-menu-5",
+    "title": "Context menu labels and separators.",
+    "categories": [
+      "context-menu"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-context-menu-6",
+    "title": "Context menu with checkbox items.",
+    "categories": [
+      "context-menu"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-context-menu-7",
+    "title": "Context menu with radio items.",
+    "categories": [
+      "context-menu"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-context-menu-8",
+    "title": "Context menu with destructive actions.",
+    "categories": [
+      "context-menu"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-context-menu-9",
+    "title": "Context menu with different alignment sides.",
+    "categories": [
+      "context-menu"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-data-grid-1",
+    "title": "Data grid with pagination",
+    "categories": [
+      "data-grid"
+    ],
+    "meta": {
+      "order": 1,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-10",
+    "title": "Data grid with column icons",
+    "categories": [
+      "data-grid"
+    ],
+    "meta": {
+      "order": 10,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-11",
+    "title": "Data grid with sortable columns",
+    "categories": [
+      "data-grid"
+    ],
+    "meta": {
+      "order": 11,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-12",
+    "title": "Data grid with movable columns",
+    "categories": [
+      "data-grid"
+    ],
+    "meta": {
+      "order": 12,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-13",
+    "title": "Data grid with draggable columns",
+    "categories": [
+      "data-grid"
+    ],
+    "meta": {
+      "order": 13,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-14",
+    "title": "Data grid with draggable rows",
+    "categories": [
+      "data-grid"
+    ],
+    "meta": {
+      "order": 14,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-15",
+    "title": "Data grid with column resizing",
+    "categories": [
+      "data-grid"
+    ],
+    "meta": {
+      "order": 15,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-16",
+    "title": "Data grid with pinnable columns",
+    "categories": [
+      "data-grid"
+    ],
+    "meta": {
+      "order": 16,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-17",
+    "title": "Data grid with sticky header",
+    "categories": [
+      "data-grid"
+    ],
+    "meta": {
+      "order": 17,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-18",
+    "title": "Data grid with column controls",
+    "categories": [
+      "data-grid"
+    ],
+    "meta": {
+      "order": 18,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-19",
+    "title": "Data grid with card container",
+    "categories": [
+      "data-grid"
+    ],
+    "meta": {
+      "order": 19,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-2",
+    "title": "Data grid with cell border",
+    "categories": [
+      "data-grid"
+    ],
+    "meta": {
+      "order": 2,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-20",
+    "title": "Data grid with column visibility controls",
+    "categories": [
+      "data-grid"
+    ],
+    "meta": {
+      "order": 20,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-21",
+    "title": "Data grid with loading skeleton",
+    "categories": [
+      "data-grid"
+    ],
+    "meta": {
+      "order": 21,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-22",
+    "title": "Data grid with CRUD features",
+    "categories": [
+      "data-grid"
+    ],
+    "meta": {
+      "order": 22,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-3",
+    "title": "Data grid with dense layout",
+    "categories": [
+      "data-grid"
+    ],
+    "meta": {
+      "order": 3,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-4",
+    "title": "Data grid without table borders",
+    "categories": [
+      "data-grid"
+    ],
+    "meta": {
+      "order": 4,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-5",
+    "title": "Data grid with striped rows",
+    "categories": [
+      "data-grid"
+    ],
+    "meta": {
+      "order": 5,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-6",
+    "title": "Data grid with auto width table layout",
+    "categories": [
+      "data-grid"
+    ],
+    "meta": {
+      "order": 6,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-7",
+    "title": "Data grid with row selection",
+    "categories": [
+      "data-grid"
+    ],
+    "meta": {
+      "order": 7,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-8",
+    "title": "Data grid with expandable rows",
+    "categories": [
+      "data-grid"
+    ],
+    "meta": {
+      "order": 8,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-9",
+    "title": "Data grid with sub table",
+    "categories": [
+      "data-grid"
+    ],
+    "meta": {
+      "order": 9,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-date-selector-1",
+    "title": "Basic date selector",
+    "categories": [
+      "date-selector"
+    ],
+    "meta": {
+      "order": 1,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-date-selector-2",
+    "title": "Date selector with popover",
+    "categories": [
+      "date-selector"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-date-selector-3",
+    "title": "Date selector with dialog",
+    "categories": [
+      "date-selector"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-date-selector-4",
+    "title": "Date selector with dropdown menu",
+    "categories": [
+      "date-selector"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-dialog-1",
+    "title": "Basic dialog",
+    "categories": [
+      "dialog"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-dialog-10",
+    "title": "Dialog with full width button",
+    "categories": [
+      "dialog"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-dialog-2",
+    "title": "Dialog with scrollable content",
+    "categories": [
+      "dialog"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-dialog-3",
+    "title": "Dialog with scrollable content and sticky footer.",
+    "categories": [
+      "dialog"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-dialog-4",
+    "title": "Dialog without a close button.",
+    "categories": [
+      "dialog"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-dialog-5",
+    "title": "Dialog with custom close button",
+    "categories": [
+      "dialog"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-dialog-6",
+    "title": "Full-screen fluid dialog with sticky header and footer",
+    "categories": [
+      "dialog"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-dialog-7",
+    "title": "Confirmation dialog with destructive action",
+    "categories": [
+      "dialog"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-dialog-8",
+    "title": "Cookie consent dialog",
+    "categories": [
+      "dialog"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-dialog-9",
+    "title": "Dialog with keyboard shortcuts list",
+    "categories": [
+      "dialog"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-drawer-1",
+    "title": "A basic drawer with scrollable content",
+    "categories": [
+      "drawer"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-drawer-2",
+    "title": "A drawer that opens from the right side",
+    "categories": [
+      "drawer"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-drawer-3",
+    "title": "A drawer that opens from the left side",
+    "categories": [
+      "drawer"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-drawer-4",
+    "title": "A drawer that opens from the top side",
+    "categories": [
+      "drawer"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-drawer-5",
+    "title": "Drawers opening from different sides",
+    "categories": [
+      "drawer"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-dropdown-menu-1",
+    "title": "Basic dropdown menu",
+    "categories": [
+      "dropdown-menu"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-dropdown-menu-10",
+    "title": "Workspace switcher dropdown menu",
+    "categories": [
+      "dropdown-menu"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-dropdown-menu-11",
+    "title": "Notifications dropdown menu",
+    "categories": [
+      "dropdown-menu"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-dropdown-menu-12",
+    "title": "Actions dropdown menu",
+    "categories": [
+      "dropdown-menu"
+    ],
+    "meta": {
+      "order": 12
+    }
+  },
+  {
+    "name": "p-dropdown-menu-13",
+    "title": "Share and export dropdown menu",
+    "categories": [
+      "dropdown-menu"
+    ],
+    "meta": {
+      "order": 13
+    }
+  },
+  {
+    "name": "p-dropdown-menu-14",
+    "title": "User profile dropdown menu with theme toggle and status selector",
+    "categories": [
+      "dropdown-menu"
+    ],
+    "meta": {
+      "order": 14
+    }
+  },
+  {
+    "name": "p-dropdown-menu-2",
+    "title": "Dropdown menus opening positions",
+    "categories": [
+      "dropdown-menu"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-dropdown-menu-3",
+    "title": "Dropdown menu with icons",
+    "categories": [
+      "dropdown-menu"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-dropdown-menu-4",
+    "title": "Dropdown menu with keyboard shortcuts",
+    "categories": [
+      "dropdown-menu"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-dropdown-menu-5",
+    "title": "Dropdown menu with nested submenus",
+    "categories": [
+      "dropdown-menu"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-dropdown-menu-6",
+    "title": "Dropdown menu with checkboxes",
+    "categories": [
+      "dropdown-menu"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-dropdown-menu-7",
+    "title": "Dropdown menu with radio groups",
+    "categories": [
+      "dropdown-menu"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-dropdown-menu-8",
+    "title": "Advance dropdown menu",
+    "categories": [
+      "dropdown-menu"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-dropdown-menu-9",
+    "title": "User profile dropdown menu",
+    "categories": [
+      "dropdown-menu"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-empty-1",
+    "title": "Basic empty state",
+    "categories": [
+      "empty"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-empty-10",
+    "title": "No data analytics empty state",
+    "categories": [
+      "empty"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-empty-11",
+    "title": "Bookmarks empty state",
+    "categories": [
+      "empty"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-empty-12",
+    "title": "Tasks empty state",
+    "categories": [
+      "empty"
+    ],
+    "meta": {
+      "order": 12
+    }
+  },
+  {
+    "name": "p-empty-13",
+    "title": "No automations empty state with toggle illustration",
+    "categories": [
+      "empty"
+    ],
+    "meta": {
+      "order": 13
+    }
+  },
+  {
+    "name": "p-empty-14",
+    "title": "Comments empty state with isometric board illustration",
+    "categories": [
+      "empty"
+    ],
+    "meta": {
+      "order": 14
+    }
+  },
+  {
+    "name": "p-empty-15",
+    "title": "No products empty state with stacked cards and blur effect",
+    "categories": [
+      "empty"
+    ],
+    "meta": {
+      "order": 15
+    }
+  },
+  {
+    "name": "p-empty-16",
+    "title": "Search empty state with stacked file cards illustration",
+    "categories": [
+      "empty"
+    ],
+    "meta": {
+      "order": 16
+    }
+  },
+  {
+    "name": "p-empty-17",
+    "title": "No messages empty state with chat bubbles illustration",
+    "categories": [
+      "empty"
+    ],
+    "meta": {
+      "order": 17
+    }
+  },
+  {
+    "name": "p-empty-18",
+    "title": "No payments empty state with credit card illustration",
+    "categories": [
+      "empty"
+    ],
+    "meta": {
+      "order": 18
+    }
+  },
+  {
+    "name": "p-empty-19",
+    "title": "No integrations empty state with connected nodes illustration",
+    "categories": [
+      "empty"
+    ],
+    "meta": {
+      "order": 19
+    }
+  },
+  {
+    "name": "p-empty-2",
+    "title": "Search empty state",
+    "categories": [
+      "empty"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-empty-20",
+    "title": "No events empty state with calendar illustration",
+    "categories": [
+      "empty"
+    ],
+    "meta": {
+      "order": 20
+    }
+  },
+  {
+    "name": "p-empty-3",
+    "title": "Empty state with search input",
+    "categories": [
+      "empty"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-empty-4",
+    "title": "Empty state with add button",
+    "categories": [
+      "empty"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-empty-5",
+    "title": "Document empty state",
+    "categories": [
+      "empty"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-empty-6",
+    "title": "Dashed upload empty state",
+    "categories": [
+      "empty"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-empty-7",
+    "title": "Inbox empty state",
+    "categories": [
+      "empty"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-empty-8",
+    "title": "Team members empty state",
+    "categories": [
+      "empty"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-empty-9",
+    "title": "No notifications empty state",
+    "categories": [
+      "empty"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-field-1",
+    "title": "Fields with input groups",
+    "categories": [
+      "field"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-field-10",
+    "title": "Notification preferences form",
+    "categories": [
+      "field"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-field-11",
+    "title": "Form with validation errors",
+    "categories": [
+      "field"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-field-2",
+    "title": "Field with input and textarea",
+    "categories": [
+      "field"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-field-3",
+    "title": "Field with select control",
+    "categories": [
+      "field"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-field-4",
+    "title": "Field with radio groups and checkboxes",
+    "categories": [
+      "field"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-field-5",
+    "title": "Filed with slider and switch",
+    "categories": [
+      "field"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-field-6",
+    "title": "Field with OTP input",
+    "categories": [
+      "field"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-field-7",
+    "title": "Settings form with validation",
+    "categories": [
+      "field"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-field-8",
+    "title": "Permission settings with checkboxes",
+    "categories": [
+      "field"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-field-9",
+    "title": "Responsive field layout",
+    "categories": [
+      "field"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-file-upload-1",
+    "title": "Basic file upload",
+    "categories": [
+      "file-upload"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-file-upload-10",
+    "title": "Cover image upload.",
+    "categories": [
+      "file-upload"
+    ],
+    "meta": {
+      "order": 10,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-file-upload-2",
+    "title": "Avatar upload",
+    "categories": [
+      "file-upload"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-file-upload-3",
+    "title": "Basic drag and drop file upload",
+    "categories": [
+      "file-upload"
+    ],
+    "meta": {
+      "order": 3,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-file-upload-4",
+    "title": "Gallery file upload",
+    "categories": [
+      "file-upload"
+    ],
+    "meta": {
+      "order": 4,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-file-upload-5",
+    "title": "Progress file upload",
+    "categories": [
+      "file-upload"
+    ],
+    "meta": {
+      "order": 5,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-file-upload-6",
+    "title": "Table file upload",
+    "categories": [
+      "file-upload"
+    ],
+    "meta": {
+      "order": 6,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-file-upload-7",
+    "title": "Image upload",
+    "categories": [
+      "file-upload"
+    ],
+    "meta": {
+      "order": 7,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-file-upload-8",
+    "title": "Image upload with sorting.",
+    "categories": [
+      "file-upload"
+    ],
+    "meta": {
+      "order": 8,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-file-upload-9",
+    "title": "Card file upload.",
+    "categories": [
+      "file-upload"
+    ],
+    "meta": {
+      "order": 9,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-filters-1",
+    "title": "Filters with various field types",
+    "categories": [
+      "filters"
+    ],
+    "meta": {
+      "order": 1,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-filters-2",
+    "title": "Filters with input validation",
+    "categories": [
+      "filters"
+    ],
+    "meta": {
+      "order": 2,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-filters-3",
+    "title": "Filters with custom trigger button",
+    "categories": [
+      "filters"
+    ],
+    "meta": {
+      "order": 3,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-filters-4",
+    "title": "Filters with small size controls",
+    "categories": [
+      "filters"
+    ],
+    "meta": {
+      "order": 4,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-filters-5",
+    "title": "Filters with large size controls",
+    "categories": [
+      "filters"
+    ],
+    "meta": {
+      "order": 5,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-filters-6",
+    "title": "Filters with custom controls",
+    "categories": [
+      "filters"
+    ],
+    "meta": {
+      "order": 6,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-filters-7",
+    "title": "Filters with data grid",
+    "categories": [
+      "filters"
+    ],
+    "meta": {
+      "order": 7,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-filters-8",
+    "title": "Filters with data grid and async mode",
+    "categories": [
+      "filters"
+    ],
+    "meta": {
+      "order": 8,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-filters-9",
+    "title": "Filters with i18n support",
+    "categories": [
+      "filters"
+    ],
+    "meta": {
+      "order": 9,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-frame-1",
+    "title": "Basic frame",
+    "categories": [
+      "frame"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-frame-10",
+    "title": "Frame with small spacing",
+    "categories": [
+      "frame"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-frame-11",
+    "title": "Frame with default spacing",
+    "categories": [
+      "frame"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-frame-12",
+    "title": "Frame with large spacing",
+    "categories": [
+      "frame"
+    ],
+    "meta": {
+      "order": 12
+    }
+  },
+  {
+    "name": "p-frame-13",
+    "title": "Frame with small border radius",
+    "categories": [
+      "frame"
+    ],
+    "meta": {
+      "order": 13
+    }
+  },
+  {
+    "name": "p-frame-14",
+    "title": "Frame with medium border radius",
+    "categories": [
+      "frame"
+    ],
+    "meta": {
+      "order": 14
+    }
+  },
+  {
+    "name": "p-frame-15",
+    "title": "Frame with large border radius",
+    "categories": [
+      "frame"
+    ],
+    "meta": {
+      "order": 15
+    }
+  },
+  {
+    "name": "p-frame-16",
+    "title": "Frame with default border radius",
+    "categories": [
+      "frame"
+    ],
+    "meta": {
+      "order": 16
+    }
+  },
+  {
+    "name": "p-frame-17",
+    "title": "Frame with extra large border radius",
+    "categories": [
+      "frame"
+    ],
+    "meta": {
+      "order": 17
+    }
+  },
+  {
+    "name": "p-frame-2",
+    "title": "Frame with separated panels",
+    "categories": [
+      "frame"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-frame-3",
+    "title": "Frame with stacked panels",
+    "categories": [
+      "frame"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-frame-4",
+    "title": "Frame with stacked panels and dense style",
+    "categories": [
+      "frame"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-frame-5",
+    "title": "Frame with collapsible panels",
+    "categories": [
+      "frame"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-frame-6",
+    "title": "Frame with ghost(no outer border) variant",
+    "categories": [
+      "frame"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-frame-7",
+    "title": "Frame with dense layout",
+    "categories": [
+      "frame"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-frame-8",
+    "title": "Frame with stacked panels",
+    "categories": [
+      "frame"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-frame-9",
+    "title": "Frame with extra small spacing",
+    "categories": [
+      "frame"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-hover-card-1",
+    "title": "Basic hover card.",
+    "categories": [
+      "hover-card"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-hover-card-2",
+    "title": "Hover card with positions.",
+    "categories": [
+      "hover-card"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-hover-card-3",
+    "title": "Hover card with profile information.",
+    "categories": [
+      "hover-card"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-hover-card-4",
+    "title": "Hover card with icon",
+    "categories": [
+      "hover-card"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-hover-card-5",
+    "title": "Hover card with an image and text content.",
+    "categories": [
+      "hover-card"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-hover-card-6",
+    "title": "Hover card inside a dialog.",
+    "categories": [
+      "hover-card"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-hover-card-7",
+    "title": "Timestamp hover card with active relative time",
+    "categories": [
+      "hover-card"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-hover-card-8",
+    "title": "Hover card with paginated release notes",
+    "categories": [
+      "hover-card"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-input-1",
+    "title": "Basic input",
+    "categories": [
+      "input"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-input-10",
+    "title": "Input with number type",
+    "categories": [
+      "input"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-input-11",
+    "title": "Input with date type",
+    "categories": [
+      "input"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-input-12",
+    "title": "Input with file type",
+    "categories": [
+      "input"
+    ],
+    "meta": {
+      "order": 12
+    }
+  },
+  {
+    "name": "p-input-13",
+    "title": "Input with required indicator",
+    "categories": [
+      "input"
+    ],
+    "meta": {
+      "order": 13
+    }
+  },
+  {
+    "name": "p-input-14",
+    "title": "Input with time type",
+    "categories": [
+      "input"
+    ],
+    "meta": {
+      "order": 14
+    }
+  },
+  {
+    "name": "p-input-15",
+    "title": "Complex input form with multiple fields",
+    "categories": [
+      "input"
+    ],
+    "meta": {
+      "order": 15
+    }
+  },
+  {
+    "name": "p-input-16",
+    "title": "Input label with tooltip",
+    "categories": [
+      "input"
+    ],
+    "meta": {
+      "order": 16
+    }
+  },
+  {
+    "name": "p-input-17",
+    "title": "Input label with badge",
+    "categories": [
+      "input"
+    ],
+    "meta": {
+      "order": 17
+    }
+  },
+  {
+    "name": "p-input-18",
+    "title": "Input label with optional badge",
+    "categories": [
+      "input"
+    ],
+    "meta": {
+      "order": 18
+    }
+  },
+  {
+    "name": "p-input-19",
+    "title": "Input label with link and visibility toggle",
+    "categories": [
+      "input"
+    ],
+    "meta": {
+      "order": 19
+    }
+  },
+  {
+    "name": "p-input-2",
+    "title": "Input with label",
+    "categories": [
+      "input"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-input-20",
+    "title": "Input with horizontal orientation",
+    "categories": [
+      "input"
+    ],
+    "meta": {
+      "order": 20
+    }
+  },
+  {
+    "name": "p-input-21",
+    "title": "Input with multiple error messages",
+    "categories": [
+      "input"
+    ],
+    "meta": {
+      "order": 21
+    }
+  },
+  {
+    "name": "p-input-22",
+    "title": "Basic password strength with dynamic hint and icons",
+    "categories": [
+      "input"
+    ],
+    "meta": {
+      "order": 22
+    }
+  },
+  {
+    "name": "p-input-23",
+    "title": "Advanced password strength indicator with progress",
+    "categories": [
+      "input"
+    ],
+    "meta": {
+      "order": 23
+    }
+  },
+  {
+    "name": "p-input-24",
+    "title": "Input with pulsed background animation",
+    "categories": [
+      "input"
+    ],
+    "meta": {
+      "order": 24
+    }
+  },
+  {
+    "name": "p-input-25",
+    "title": "Input with custom focus ring",
+    "categories": [
+      "input"
+    ],
+    "meta": {
+      "order": 25
+    }
+  },
+  {
+    "name": "p-input-26",
+    "title": "Input with subtle background",
+    "categories": [
+      "input"
+    ],
+    "meta": {
+      "order": 26
+    }
+  },
+  {
+    "name": "p-input-27",
+    "title": "Input with bottom border only",
+    "categories": [
+      "input"
+    ],
+    "meta": {
+      "order": 27
+    }
+  },
+  {
+    "name": "p-input-28",
+    "title": "Color input",
+    "categories": [
+      "input"
+    ],
+    "meta": {
+      "order": 28
+    }
+  },
+  {
+    "name": "p-input-29",
+    "title": "Range input with value indicator",
+    "categories": [
+      "input"
+    ],
+    "meta": {
+      "order": 29
+    }
+  },
+  {
+    "name": "p-input-3",
+    "title": "Input with description",
+    "categories": [
+      "input"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-input-30",
+    "title": "Pill-shaped input",
+    "categories": [
+      "input"
+    ],
+    "meta": {
+      "order": 30
+    }
+  },
+  {
+    "name": "p-input-31",
+    "title": "Minimal input without borders or background",
+    "categories": [
+      "input"
+    ],
+    "meta": {
+      "order": 31
+    }
+  },
+  {
+    "name": "p-input-4",
+    "title": "Disabled input",
+    "categories": [
+      "input"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-input-5",
+    "title": "Input with error message",
+    "categories": [
+      "input"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-input-6",
+    "title": "Input with character counter",
+    "categories": [
+      "input"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-input-7",
+    "title": "Input with password type",
+    "categories": [
+      "input"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-input-8",
+    "title": "Input with phone type",
+    "categories": [
+      "input"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-input-9",
+    "title": "Input with URL type",
+    "categories": [
+      "input"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-input-group-1",
+    "title": "Basic input group",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-input-group-10",
+    "title": "Input group with action button addon",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-input-group-11",
+    "title": "Input group with icon button action",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-input-group-12",
+    "title": "Input group with dropdown menu selection",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 12
+    }
+  },
+  {
+    "name": "p-input-group-13",
+    "title": "Input group with keyboard shortcut (Kbd)",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 13
+    }
+  },
+  {
+    "name": "p-input-group-14",
+    "title": "Input group with tooltip action",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 14
+    }
+  },
+  {
+    "name": "p-input-group-15",
+    "title": "Input group with loading spinner",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 15
+    }
+  },
+  {
+    "name": "p-input-group-16",
+    "title": "Input group with block-start addon",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 16
+    }
+  },
+  {
+    "name": "p-input-group-17",
+    "title": "Textarea input group with dynamic character limit",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 17
+    }
+  },
+  {
+    "name": "p-input-group-18",
+    "title": "AI Chat textarea with rich toolbar actions",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 18
+    }
+  },
+  {
+    "name": "p-input-group-19",
+    "title": "AI Chat interface with file and context attachments",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 19
+    }
+  },
+  {
+    "name": "p-input-group-2",
+    "title": "Input group in disabled state",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-input-group-20",
+    "title": "Input group demonstrating label usage",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 20
+    }
+  },
+  {
+    "name": "p-input-group-21",
+    "title": "Input group with multiple icons/buttons at the end",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 21
+    }
+  },
+  {
+    "name": "p-input-group-22",
+    "title": "Input group with popover trigger addon",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 22
+    }
+  },
+  {
+    "name": "p-input-group-23",
+    "title": "Input group with Sparkles icon and complex Kbd shortcut",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 23
+    }
+  },
+  {
+    "name": "p-input-group-24",
+    "title": "Input group with success indicator circle",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 24
+    }
+  },
+  {
+    "name": "p-input-group-25",
+    "title": "Input group with search results count",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 25
+    }
+  },
+  {
+    "name": "p-input-group-26",
+    "title": "Textarea input group with action buttons",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 26
+    }
+  },
+  {
+    "name": "p-input-group-27",
+    "title": "Input group wrapped in a button group with text prefixes/suffixes",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 27
+    }
+  },
+  {
+    "name": "p-input-group-28",
+    "title": "Input group with a menu button (three dots) at the end",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 28
+    }
+  },
+  {
+    "name": "p-input-group-29",
+    "title": "Pill-shaped input group with a category dropdown at the end",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 29
+    }
+  },
+  {
+    "name": "p-input-group-3",
+    "title": "Input group in invalid state",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-input-group-30",
+    "title": "Input group with inline addons (no separating borders)",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 30
+    }
+  },
+  {
+    "name": "p-input-group-31",
+    "title": "Input group with inline start and block-end addon",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 31
+    }
+  },
+  {
+    "name": "p-input-group-32",
+    "title": "Member row with avatar, email and role selection",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 32
+    }
+  },
+  {
+    "name": "p-input-group-33",
+    "title": "Project save interface with status and action buttons",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 33,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-input-group-34",
+    "title": "Pill-shaped AI prompt bar with voice and audio icons",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 34,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-input-group-35",
+    "title": "Password input with visibility toggle",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 35
+    }
+  },
+  {
+    "name": "p-input-group-4",
+    "title": "Input group with prefix icon",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-input-group-5",
+    "title": "Input group with suffix icon",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-input-group-6",
+    "title": "Input group with both prefix and suffix icons",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-input-group-7",
+    "title": "Input group with prefix text addon",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-input-group-8",
+    "title": "Input group with suffix text addon",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-input-group-9",
+    "title": "Input group with both prefix and suffix text addons",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-input-otp-1",
+    "title": "Basic OTP input.",
+    "categories": [
+      "input-otp"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-input-otp-2",
+    "title": "OTP input with numeric digits.",
+    "categories": [
+      "input-otp"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-input-otp-3",
+    "title": "OTP input with multiple separators.",
+    "categories": [
+      "input-otp"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-input-otp-4",
+    "title": "OTP input with letters and numbers.",
+    "categories": [
+      "input-otp"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-input-otp-5",
+    "title": "OTP input for PIN codes.",
+    "categories": [
+      "input-otp"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-input-otp-6",
+    "title": "OTP input verification code.",
+    "categories": [
+      "input-otp"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-item-1",
+    "title": "Basic item with title and description",
+    "categories": [
+      "item"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-item-10",
+    "title": "Item with header and footer sections",
+    "categories": [
+      "item"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-item-11",
+    "title": "Integration items with connect actions",
+    "categories": [
+      "item"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-item-12",
+    "title": "Activity feed items with avatars and actions",
+    "categories": [
+      "item"
+    ],
+    "meta": {
+      "order": 12
+    }
+  },
+  {
+    "name": "p-item-2",
+    "title": "Items with icon media and action buttons",
+    "categories": [
+      "item"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-item-3",
+    "title": "User item with avatar, info, and follow button",
+    "categories": [
+      "item"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-item-4",
+    "title": "Clickable navigation items with icons and chevron",
+    "categories": [
+      "item"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-item-5",
+    "title": "Item group with status badges",
+    "categories": [
+      "item"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-item-6",
+    "title": "File items with icon media, size, and actions",
+    "categories": [
+      "item"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-item-7",
+    "title": "Items with keyboard shortcuts",
+    "categories": [
+      "item"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-item-8",
+    "title": "Small-size items with badges",
+    "categories": [
+      "item"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-item-9",
+    "title": "Team members with roles and multiple actions",
+    "categories": [
+      "item"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-kanban-1",
+    "title": "Kanban board with placeholder overlay",
+    "categories": [
+      "kanban"
+    ],
+    "meta": {
+      "order": 1,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-kanban-2",
+    "title": "Kanban board with dynamic overlay",
+    "categories": [
+      "kanban"
+    ],
+    "meta": {
+      "order": 2,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-kanban-3",
+    "title": "Kanban board with frame columns",
+    "categories": [
+      "kanban"
+    ],
+    "meta": {
+      "order": 3,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-kanban-4",
+    "title": "Minimal kanban with stacked frame",
+    "categories": [
+      "kanban"
+    ],
+    "meta": {
+      "order": 4,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-kanban-5",
+    "title": "Feature roadmap kanban with progress",
+    "categories": [
+      "kanban"
+    ],
+    "meta": {
+      "order": 5,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-kbd-1",
+    "title": "Basic keyboard keys.",
+    "categories": [
+      "kbd"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-kbd-2",
+    "title": "Keyboard keys grouped together.",
+    "categories": [
+      "kbd"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-kbd-3",
+    "title": "Keyboard keys combined with icons.",
+    "categories": [
+      "kbd"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-kbd-4",
+    "title": "Keyboard key within an input.",
+    "categories": [
+      "kbd"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-kbd-5",
+    "title": "Keyboard shortcut in a tooltip.",
+    "categories": [
+      "kbd"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-kbd-6",
+    "title": "Keyboard shortcuts reference list",
+    "categories": [
+      "kbd"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-label-1",
+    "title": "Basic label.",
+    "categories": [
+      "label"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-label-10",
+    "title": "Label with helper description text",
+    "categories": [
+      "label"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-label-11",
+    "title": "Label with error state",
+    "categories": [
+      "label"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-label-12",
+    "title": "Label with inline edit toggle",
+    "categories": [
+      "label"
+    ],
+    "meta": {
+      "order": 12
+    }
+  },
+  {
+    "name": "p-label-13",
+    "title": "Label with status indicator dot",
+    "categories": [
+      "label"
+    ],
+    "meta": {
+      "order": 13
+    }
+  },
+  {
+    "name": "p-label-2",
+    "title": "Label paired with a checkbox.",
+    "categories": [
+      "label"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-label-3",
+    "title": "Label for a textarea field.",
+    "categories": [
+      "label"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-label-4",
+    "title": "Label in a disabled state.",
+    "categories": [
+      "label"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-label-5",
+    "title": "Label with required indicator",
+    "categories": [
+      "label"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-label-6",
+    "title": "Label with optional indicator",
+    "categories": [
+      "label"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-label-7",
+    "title": "Label with tooltip info icon",
+    "categories": [
+      "label"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-label-8",
+    "title": "Label with badge indicator",
+    "categories": [
+      "label"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-label-9",
+    "title": "Label with character counter",
+    "categories": [
+      "label"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-menubar-1",
+    "title": "Basic menubar.",
+    "categories": [
+      "menubar"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-menubar-2",
+    "title": "Menubar with dropdown submenus.",
+    "categories": [
+      "menubar"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-menubar-3",
+    "title": "Menubar with checkbox & radio items.",
+    "categories": [
+      "menubar"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-menubar-4",
+    "title": "Menubar with icons.",
+    "categories": [
+      "menubar"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-menubar-5",
+    "title": "Menubar for formatting and media.",
+    "categories": [
+      "menubar"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-native-select-1",
+    "title": "Basic native select.",
+    "categories": [
+      "native-select"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-native-select-2",
+    "title": "Native select with options grouped.",
+    "categories": [
+      "native-select"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-native-select-3",
+    "title": "Small native select.",
+    "categories": [
+      "native-select"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-native-select-4",
+    "title": "Native select embedded within a field.",
+    "categories": [
+      "native-select"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-native-select-5",
+    "title": "Disabled native select.",
+    "categories": [
+      "native-select"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-native-select-6",
+    "title": "Invalid native select.",
+    "categories": [
+      "native-select"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-navigation-menu-1",
+    "title": "Basic navigation menu.",
+    "categories": [
+      "navigation-menu"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-navigation-menu-2",
+    "title": "Navigation menu with grid layout.",
+    "categories": [
+      "navigation-menu"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-navigation-menu-3",
+    "title": "Navigation menu with icons.",
+    "categories": [
+      "navigation-menu"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-navigation-menu-4",
+    "title": "Navigation menu with grid layout and learn more button.",
+    "categories": [
+      "navigation-menu"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-number-field-1",
+    "title": "Basic number field",
+    "categories": [
+      "number-field"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-number-field-2",
+    "title": "Basic number field",
+    "categories": [
+      "number-field"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-number-field-3",
+    "title": "Basic number field",
+    "categories": [
+      "number-field"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-number-field-4",
+    "title": "Number filed with buttons on right",
+    "categories": [
+      "number-field"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-number-field-5",
+    "title": "Number field with spinner buttons",
+    "categories": [
+      "number-field"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-number-field-6",
+    "title": "Number field in form",
+    "categories": [
+      "number-field"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-pagination-1",
+    "title": "Basic pagination.",
+    "categories": [
+      "pagination"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-pagination-10",
+    "title": "Pagination with ellipsis indicator",
+    "categories": [
+      "pagination"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-pagination-11",
+    "title": "Pagination with outline style buttons",
+    "categories": [
+      "pagination"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-pagination-12",
+    "title": "Rows per page select with range info and first/prev/next/last icons",
+    "categories": [
+      "pagination"
+    ],
+    "meta": {
+      "order": 12
+    }
+  },
+  {
+    "name": "p-pagination-13",
+    "title": "Pagination with page select dropdown and first/last navigation",
+    "categories": [
+      "pagination"
+    ],
+    "meta": {
+      "order": 13
+    }
+  },
+  {
+    "name": "p-pagination-14",
+    "title": "Numbered pagination with go-to-page input",
+    "categories": [
+      "pagination"
+    ],
+    "meta": {
+      "order": 14
+    }
+  },
+  {
+    "name": "p-pagination-15",
+    "title": "Pagination with page info, numbered pages, ellipsis, and per-page select",
+    "categories": [
+      "pagination"
+    ],
+    "meta": {
+      "order": 15,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-pagination-2",
+    "title": "Pagination without labels.",
+    "categories": [
+      "pagination"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-pagination-3",
+    "title": "Pagination with hover effect.",
+    "categories": [
+      "pagination"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-pagination-4",
+    "title": "Pagination with circle buttons.",
+    "categories": [
+      "pagination"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-pagination-5",
+    "title": "Pagination with go-to-page input",
+    "categories": [
+      "pagination"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-pagination-6",
+    "title": "Numbered pagination in card",
+    "categories": [
+      "pagination"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-pagination-7",
+    "title": "Pagination with arrows buttons",
+    "categories": [
+      "pagination"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-pagination-8",
+    "title": "Pagination with page info on center",
+    "categories": [
+      "pagination"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-pagination-9",
+    "title": "Pagination with page info on left",
+    "categories": [
+      "pagination"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-phone-input-1",
+    "title": "Basic phone input",
+    "categories": [
+      "phone-input"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-phone-input-2",
+    "title": "Small phone input",
+    "categories": [
+      "phone-input"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-phone-input-3",
+    "title": "Large phone input",
+    "categories": [
+      "phone-input"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-phone-input-4",
+    "title": "Disabled phone input",
+    "categories": [
+      "phone-input"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-phone-input-5",
+    "title": "Phone input with preset value",
+    "categories": [
+      "phone-input"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-phone-input-6",
+    "title": "Phone input with error state",
+    "categories": [
+      "phone-input"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-phone-input-7",
+    "title": "Phone input with specific default country",
+    "categories": [
+      "phone-input"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-phone-input-8",
+    "title": "Read-only phone input",
+    "categories": [
+      "phone-input"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-popover-1",
+    "title": "Basic popover.",
+    "categories": [
+      "popover"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-popover-10",
+    "title": "Popover with controls",
+    "categories": [
+      "popover"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-popover-11",
+    "title": "Popover with navigation",
+    "categories": [
+      "popover"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-popover-2",
+    "title": "Popovers opening from different sides.",
+    "categories": [
+      "popover"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-popover-3",
+    "title": "Popover with form.",
+    "categories": [
+      "popover"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-popover-4",
+    "title": "Popover alignment positions.",
+    "categories": [
+      "popover"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-popover-5",
+    "title": "Popover within a dialog.",
+    "categories": [
+      "popover"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-popover-6",
+    "title": "Popover with user profile details.",
+    "categories": [
+      "popover"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-popover-7",
+    "title": "Popover with custom content",
+    "categories": [
+      "popover"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-popover-8",
+    "title": "Popover with media preview.",
+    "categories": [
+      "popover"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-popover-9",
+    "title": "Relative time popover with timezone details",
+    "categories": [
+      "popover"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-progress-1",
+    "title": "Basic progress.",
+    "categories": [
+      "progress"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-progress-2",
+    "title": "Small progress.",
+    "categories": [
+      "progress"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-progress-3",
+    "title": "Large progress.",
+    "categories": [
+      "progress"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-progress-4",
+    "title": "Progress bar with status messages.",
+    "categories": [
+      "progress"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-progress-5",
+    "title": "File upload list with progress & status.",
+    "categories": [
+      "progress"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-progress-6",
+    "title": "Progress bar with slider.",
+    "categories": [
+      "progress"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-progress-7",
+    "title": "Multi-step progress indicator",
+    "categories": [
+      "progress"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-progress-8",
+    "title": "Progress bar with custom colors.",
+    "categories": [
+      "progress"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-radio-group-1",
+    "title": "Basic radio group",
+    "categories": [
+      "radio-group"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-radio-group-10",
+    "title": "Radio group in frame",
+    "categories": [
+      "radio-group"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-radio-group-11",
+    "title": "Radio group with grid layout",
+    "categories": [
+      "radio-group"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-radio-group-12",
+    "title": "Avatar based card radio group",
+    "categories": [
+      "radio-group"
+    ],
+    "meta": {
+      "order": 12
+    }
+  },
+  {
+    "name": "p-radio-group-13",
+    "title": "Payment method radio cards",
+    "categories": [
+      "radio-group"
+    ],
+    "meta": {
+      "order": 13
+    }
+  },
+  {
+    "name": "p-radio-group-14",
+    "title": "Radio group with tooltip info",
+    "categories": [
+      "radio-group"
+    ],
+    "meta": {
+      "order": 14
+    }
+  },
+  {
+    "name": "p-radio-group-15",
+    "title": "Radio group with badges",
+    "categories": [
+      "radio-group"
+    ],
+    "meta": {
+      "order": 15
+    }
+  },
+  {
+    "name": "p-radio-group-16",
+    "title": "Inline horizontal radio group",
+    "categories": [
+      "radio-group"
+    ],
+    "meta": {
+      "order": 16
+    }
+  },
+  {
+    "name": "p-radio-group-17",
+    "title": "Pricing plan radio cards",
+    "categories": [
+      "radio-group"
+    ],
+    "meta": {
+      "order": 17
+    }
+  },
+  {
+    "name": "p-radio-group-2",
+    "title": "Disabled radio group",
+    "categories": [
+      "radio-group"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-radio-group-3",
+    "title": "Radio with description",
+    "categories": [
+      "radio-group"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-radio-group-4",
+    "title": "Invalid radio group",
+    "categories": [
+      "radio-group"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-radio-group-5",
+    "title": "Colored radio group",
+    "categories": [
+      "radio-group"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-radio-group-6",
+    "title": "Radio group with legend and description",
+    "categories": [
+      "radio-group"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-radio-group-7",
+    "title": "Card radio group with descriptions",
+    "categories": [
+      "radio-group"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-radio-group-8",
+    "title": "Radio group in card with separators",
+    "categories": [
+      "radio-group"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-radio-group-9",
+    "title": "Radio group in card with icons",
+    "categories": [
+      "radio-group"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-rating-1",
+    "title": "Basic rating.",
+    "categories": [
+      "rating"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-rating-2",
+    "title": "Rating with decimal value.",
+    "categories": [
+      "rating"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-rating-3",
+    "title": "Rating with show value.",
+    "categories": [
+      "rating"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-rating-4",
+    "title": "Rating with editable.",
+    "categories": [
+      "rating"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-rating-5",
+    "title": "Rating with size.",
+    "categories": [
+      "rating"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-rating-6",
+    "title": "Rating with review summary",
+    "categories": [
+      "rating"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-rating-7",
+    "title": "Interactive half-star rating",
+    "categories": [
+      "rating"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-rating-8",
+    "title": "Emoji reaction rating",
+    "categories": [
+      "rating"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-rating-9",
+    "title": "Rating with review text input",
+    "categories": [
+      "rating"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-resizable-1",
+    "title": "Horizontal resizable layout",
+    "categories": [
+      "resizable"
+    ],
+    "meta": {
+      "order": 1,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-resizable-10",
+    "title": "State-tracked resizable layout.",
+    "categories": [
+      "resizable"
+    ],
+    "meta": {
+      "order": 10,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-resizable-2",
+    "title": "Vertical resizable layout.",
+    "categories": [
+      "resizable"
+    ],
+    "meta": {
+      "order": 2,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-resizable-3",
+    "title": "Nested mixed-direction resizable layout.",
+    "categories": [
+      "resizable"
+    ],
+    "meta": {
+      "order": 3,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-resizable-4",
+    "title": "Nested resizable",
+    "categories": [
+      "resizable"
+    ],
+    "meta": {
+      "order": 4,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-resizable-5",
+    "title": "Handle with animated pill indicator",
+    "categories": [
+      "resizable"
+    ],
+    "meta": {
+      "order": 5,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-resizable-6",
+    "title": "Handle pill with spring scale on drag",
+    "categories": [
+      "resizable"
+    ],
+    "meta": {
+      "order": 6,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-resizable-7",
+    "title": "Handle with large capsule expansion on drag",
+    "categories": [
+      "resizable"
+    ],
+    "meta": {
+      "order": 7,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-resizable-8",
+    "title": "Nested layout with animated pill handles",
+    "categories": [
+      "resizable"
+    ],
+    "meta": {
+      "order": 8,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-resizable-9",
+    "title": "Three-panel layout with animated pill handles",
+    "categories": [
+      "resizable"
+    ],
+    "meta": {
+      "order": 9,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-scroll-area-1",
+    "title": "Basic scroll area",
+    "categories": [
+      "scroll-area"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-scroll-area-2",
+    "title": "Scroll area with horizontal scrollbar",
+    "categories": [
+      "scroll-area"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-scroll-area-3",
+    "title": "Scroll area with both scrollbars",
+    "categories": [
+      "scroll-area"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-scroll-area-4",
+    "title": "Scroll area with fade effect",
+    "categories": [
+      "scroll-area"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-scroll-area-5",
+    "title": "Scroll area with scrollbar gutter",
+    "categories": [
+      "scroll-area"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-scrollspy-1",
+    "title": "Basic scrollspy",
+    "categories": [
+      "scrollspy"
+    ],
+    "meta": {
+      "order": 1,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-scrollspy-2",
+    "title": "Basic scroll area",
+    "categories": [
+      "scrollspy"
+    ],
+    "meta": {
+      "order": 2,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-select-1",
+    "title": "A basic select component with a list of options",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-select-10",
+    "title": "Select component in a disabled state",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-select-11",
+    "title": "Select component inside a Dialog",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-select-12",
+    "title": "Select component with multiple selection",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 12
+    }
+  },
+  {
+    "name": "p-select-13",
+    "title": "Select component inline with Input",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 13
+    }
+  },
+  {
+    "name": "p-select-14",
+    "title": "Select component with Button side by side",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 14
+    }
+  },
+  {
+    "name": "p-select-15",
+    "title": "Select component with item alignment enabled",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 15
+    }
+  },
+  {
+    "name": "p-select-16",
+    "title": "Select with custom access level descriptions",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 16
+    }
+  },
+  {
+    "name": "p-select-17",
+    "title": "Select with colored bullets for status",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 17
+    }
+  },
+  {
+    "name": "p-select-18",
+    "title": "Select with user avatars",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 18
+    }
+  },
+  {
+    "name": "p-select-19",
+    "title": "Select with status badges",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 19
+    }
+  },
+  {
+    "name": "p-select-2",
+    "title": "Select with icons and placeholder state",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-select-20",
+    "title": "Select with indicator on the left side",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 20
+    }
+  },
+  {
+    "name": "p-select-21",
+    "title": "Select with clear button",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 21
+    }
+  },
+  {
+    "name": "p-select-22",
+    "title": "Select with custom chevrons up down icon",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 22
+    }
+  },
+  {
+    "name": "p-select-23",
+    "title": "Multi-select with overlapping dots",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 23
+    }
+  },
+  {
+    "name": "p-select-24",
+    "title": "Select with grouped options and separators",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 24
+    }
+  },
+  {
+    "name": "p-select-25",
+    "title": "Country picker select with flag emojis",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 25
+    }
+  },
+  {
+    "name": "p-select-26",
+    "title": "Status filter select with colored dots",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 26
+    }
+  },
+  {
+    "name": "p-select-27",
+    "title": "Select with description text per option",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 27
+    }
+  },
+  {
+    "name": "p-select-28",
+    "title": "Timezone select with UTC offsets",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 28
+    }
+  },
+  {
+    "name": "p-select-29",
+    "title": "Select with avatar items for team member assignment",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 29
+    }
+  },
+  {
+    "name": "p-select-3",
+    "title": "Select component with grouped options and labels",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-select-30",
+    "title": "Priority select with colored badges",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 30
+    }
+  },
+  {
+    "name": "p-select-31",
+    "title": "Font family select with preview",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 31
+    }
+  },
+  {
+    "name": "p-select-32",
+    "title": "Select with icon-labeled categories",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 32
+    }
+  },
+  {
+    "name": "p-select-33",
+    "title": "Size variant select with small trigger",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 33
+    }
+  },
+  {
+    "name": "p-select-4",
+    "title": "Select component with a large list of options",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-select-5",
+    "title": "Select component with small trigger size",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-select-6",
+    "title": "Select component with a subscription plan style",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-select-7",
+    "title": "Select component with item alignment disabled",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-select-8",
+    "title": "Select component within a Field with label and description",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-select-9",
+    "title": "Select component in an invalid state",
+    "categories": [
+      "select"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-separator-1",
+    "title": "Horizontal separator for content sections.",
+    "categories": [
+      "separator"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-separator-2",
+    "title": "Vertical separator for inline elements.",
+    "categories": [
+      "separator"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-separator-3",
+    "title": "Vertical separator groups related menu items.",
+    "categories": [
+      "separator"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-separator-4",
+    "title": "Horizontal separator between items in a list.",
+    "categories": [
+      "separator"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-separator-5",
+    "title": "Separator with centered text label",
+    "categories": [
+      "separator"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-separator-6",
+    "title": "Order summary with separators",
+    "categories": [
+      "separator"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-sheet-1",
+    "title": "Sheet containing a form for editing profile information.",
+    "categories": [
+      "sheet"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-sheet-2",
+    "title": "Sheet containing a form for editing profile information.",
+    "categories": [
+      "sheet"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-sheet-3",
+    "title": "Sheets that open from any side.",
+    "categories": [
+      "sheet"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-sheet-4",
+    "title": "Sheet with scrollable content",
+    "categories": [
+      "sheet"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-skeleton-1",
+    "title": "Skeleton loader for avatars and user info.",
+    "categories": [
+      "skeleton"
+    ],
+    "meta": {
+      "order": 1,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-skeleton-10",
+    "title": "Skeleton loader for chat messages",
+    "categories": [
+      "skeleton"
+    ],
+    "meta": {
+      "order": 10,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-skeleton-2",
+    "title": "Skeleton loader for a card component.",
+    "categories": [
+      "skeleton"
+    ],
+    "meta": {
+      "order": 2,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-skeleton-3",
+    "title": "Skeleton loader for text and paragraphs.",
+    "categories": [
+      "skeleton"
+    ],
+    "meta": {
+      "order": 3,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-skeleton-4",
+    "title": "Skeleton loader for a form.",
+    "categories": [
+      "skeleton"
+    ],
+    "meta": {
+      "order": 4,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-skeleton-5",
+    "title": "Skeleton loader for a data table.",
+    "categories": [
+      "skeleton"
+    ],
+    "meta": {
+      "order": 5,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-skeleton-6",
+    "title": "Skeleton loader for a dashboard stats row",
+    "categories": [
+      "skeleton"
+    ],
+    "meta": {
+      "order": 6,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-skeleton-7",
+    "title": "Skeleton loader for a list with actions",
+    "categories": [
+      "skeleton"
+    ],
+    "meta": {
+      "order": 7,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-skeleton-8",
+    "title": "Skeleton loader for a card grid",
+    "categories": [
+      "skeleton"
+    ],
+    "meta": {
+      "order": 8,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-skeleton-9",
+    "title": "Skeleton loader for a full profile page",
+    "categories": [
+      "skeleton"
+    ],
+    "meta": {
+      "order": 9,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-slider-1",
+    "title": "Basic slider.",
+    "categories": [
+      "slider"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-slider-10",
+    "title": "Slider with tick marks",
+    "categories": [
+      "slider"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-slider-11",
+    "title": "Slider with dynamic tooltip indicator",
+    "categories": [
+      "slider"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-slider-12",
+    "title": "Rating slider with emoji feedback",
+    "categories": [
+      "slider"
+    ],
+    "meta": {
+      "order": 12
+    }
+  },
+  {
+    "name": "p-slider-2",
+    "title": "Disabled slider",
+    "categories": [
+      "slider"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-slider-3",
+    "title": "Slider with multiple discrete values",
+    "categories": [
+      "slider"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-slider-4",
+    "title": "Vertical slider with range selection",
+    "categories": [
+      "slider"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-slider-5",
+    "title": "Slider with controlled value tracking",
+    "categories": [
+      "slider"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-slider-6",
+    "title": "Slider with range selection",
+    "categories": [
+      "slider"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-slider-7",
+    "title": "Slider synced with number input",
+    "categories": [
+      "slider"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-slider-8",
+    "title": "Color temperature slider",
+    "categories": [
+      "slider"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-slider-9",
+    "title": "Slider with reference labels",
+    "categories": [
+      "slider"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-sonner-1",
+    "title": "Basic toast notification.",
+    "categories": [
+      "sonner"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-sonner-10",
+    "title": "Toast with upload progress simulation",
+    "categories": [
+      "sonner"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-sonner-11",
+    "title": "Toast with status alert markup",
+    "categories": [
+      "sonner"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-sonner-12",
+    "title": "Custom accent border toast",
+    "categories": [
+      "sonner"
+    ],
+    "meta": {
+      "order": 12
+    }
+  },
+  {
+    "name": "p-sonner-13",
+    "title": "Custom invert success toast",
+    "categories": [
+      "sonner"
+    ],
+    "meta": {
+      "order": 13
+    }
+  },
+  {
+    "name": "p-sonner-14",
+    "title": "Custom invert error toast with details",
+    "categories": [
+      "sonner"
+    ],
+    "meta": {
+      "order": 14
+    }
+  },
+  {
+    "name": "p-sonner-15",
+    "title": "Custom invert info toast with avatar",
+    "categories": [
+      "sonner"
+    ],
+    "meta": {
+      "order": 15
+    }
+  },
+  {
+    "name": "p-sonner-16",
+    "title": "Custom invert warning toast with countdown",
+    "categories": [
+      "sonner"
+    ],
+    "meta": {
+      "order": 16
+    }
+  },
+  {
+    "name": "p-sonner-17",
+    "title": "Multi-action invert toast with avatar group",
+    "categories": [
+      "sonner"
+    ],
+    "meta": {
+      "order": 17
+    }
+  },
+  {
+    "name": "p-sonner-18",
+    "title": "Toast with close button on top-right",
+    "categories": [
+      "sonner"
+    ],
+    "meta": {
+      "order": 18
+    }
+  },
+  {
+    "name": "p-sonner-19",
+    "title": "Toast with custom icon",
+    "categories": [
+      "sonner"
+    ],
+    "meta": {
+      "order": 19
+    }
+  },
+  {
+    "name": "p-sonner-2",
+    "title": "Toast notification with description.",
+    "categories": [
+      "sonner"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-sonner-20",
+    "title": "Custom integration toast",
+    "categories": [
+      "sonner"
+    ],
+    "meta": {
+      "order": 20
+    }
+  },
+  {
+    "name": "p-sonner-21",
+    "title": "Updatable toast with ID",
+    "categories": [
+      "sonner"
+    ],
+    "meta": {
+      "order": 21
+    }
+  },
+  {
+    "name": "p-sonner-3",
+    "title": "Toast positions",
+    "categories": [
+      "sonner"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-sonner-4",
+    "title": "Toast variants with colored icons",
+    "categories": [
+      "sonner"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-sonner-5",
+    "title": "Toast duration options",
+    "categories": [
+      "sonner"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-sonner-6",
+    "title": "Toast with action button",
+    "categories": [
+      "sonner"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-sonner-7",
+    "title": "Promise toast with loading state",
+    "categories": [
+      "sonner"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-sonner-8",
+    "title": "Toast with custom close and cancel buttons",
+    "categories": [
+      "sonner"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-sonner-9",
+    "title": "Toast with custom rich content",
+    "categories": [
+      "sonner"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-sortable-1",
+    "title": "Sortable list of items with drag-and-drop",
+    "categories": [
+      "sortable"
+    ],
+    "meta": {
+      "order": 1,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-sortable-2",
+    "title": "Sortable list of items with grid layout",
+    "categories": [
+      "sortable"
+    ],
+    "meta": {
+      "order": 2,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-sortable-3",
+    "title": "Sortable list of items with nested layout",
+    "categories": [
+      "sortable"
+    ],
+    "meta": {
+      "order": 3,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-sortable-4",
+    "title": "Sortable playlist with frame",
+    "categories": [
+      "sortable"
+    ],
+    "meta": {
+      "order": 4,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-sortable-5",
+    "title": "Sortable settings priority with frame",
+    "categories": [
+      "sortable"
+    ],
+    "meta": {
+      "order": 5,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-sortable-6",
+    "title": "Sortable sidebar navigation with frame",
+    "categories": [
+      "sortable"
+    ],
+    "meta": {
+      "order": 6,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-sortable-7",
+    "title": "Sortable image gallery grid with frame",
+    "categories": [
+      "sortable"
+    ],
+    "meta": {
+      "order": 7,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-spinner-1",
+    "title": "Basic spinner.",
+    "categories": [
+      "spinner"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-spinner-10",
+    "title": "Animated loading dots",
+    "categories": [
+      "spinner"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-spinner-11",
+    "title": "Spinner overlay on card",
+    "categories": [
+      "spinner"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-spinner-12",
+    "title": "Spinner color variants",
+    "categories": [
+      "spinner"
+    ],
+    "meta": {
+      "order": 12
+    }
+  },
+  {
+    "name": "p-spinner-2",
+    "title": "Spinners in buttons.",
+    "categories": [
+      "spinner"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-spinner-3",
+    "title": "Spinners in badges.",
+    "categories": [
+      "spinner"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-spinner-4",
+    "title": "Spinner in input group.",
+    "categories": [
+      "spinner"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-spinner-5",
+    "title": "Spinner in empty state.",
+    "categories": [
+      "spinner"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-spinner-6",
+    "title": "Button loading states",
+    "categories": [
+      "spinner"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-spinner-7",
+    "title": "Overlay loading spinner",
+    "categories": [
+      "spinner"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-spinner-8",
+    "title": "Full page loading state",
+    "categories": [
+      "spinner"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-spinner-9",
+    "title": "Inline loading text with spinner",
+    "categories": [
+      "spinner"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-stepper-1",
+    "title": "Basic stepper",
+    "categories": [
+      "stepper"
+    ],
+    "meta": {
+      "order": 1,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-stepper-10",
+    "title": "Stepper with content for each step",
+    "categories": [
+      "stepper"
+    ],
+    "meta": {
+      "order": 10,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-stepper-11",
+    "title": "Stepper with progress bar and titles",
+    "categories": [
+      "stepper"
+    ],
+    "meta": {
+      "order": 11,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-stepper-12",
+    "title": "Stepper with segmented progress bar",
+    "categories": [
+      "stepper"
+    ],
+    "meta": {
+      "order": 12,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-stepper-13",
+    "title": "Stepper with vertical orientation and descriptions",
+    "categories": [
+      "stepper"
+    ],
+    "meta": {
+      "order": 13,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-stepper-14",
+    "title": "Stepper with vertical orientation",
+    "categories": [
+      "stepper"
+    ],
+    "meta": {
+      "order": 14,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-stepper-15",
+    "title": "Stepper with vertical orientation and titles",
+    "categories": [
+      "stepper"
+    ],
+    "meta": {
+      "order": 15,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-stepper-2",
+    "title": "Stepper with completed state",
+    "categories": [
+      "stepper"
+    ],
+    "meta": {
+      "order": 2,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-stepper-3",
+    "title": "Stepper with loading state",
+    "categories": [
+      "stepper"
+    ],
+    "meta": {
+      "order": 3,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-stepper-4",
+    "title": "Controlled stepper",
+    "categories": [
+      "stepper"
+    ],
+    "meta": {
+      "order": 4,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-stepper-5",
+    "title": "Stepper with title and indicator",
+    "categories": [
+      "stepper"
+    ],
+    "meta": {
+      "order": 5,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-stepper-6",
+    "title": "Stepper with progress bar indicator",
+    "categories": [
+      "stepper"
+    ],
+    "meta": {
+      "order": 6,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-stepper-7",
+    "title": "Stepper with icons and badges",
+    "categories": [
+      "stepper"
+    ],
+    "meta": {
+      "order": 7,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-stepper-8",
+    "title": "Stepper with descriptions",
+    "categories": [
+      "stepper"
+    ],
+    "meta": {
+      "order": 8,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-stepper-9",
+    "title": "Stepper with inline titles",
+    "categories": [
+      "stepper"
+    ],
+    "meta": {
+      "order": 9,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-switch-1",
+    "title": "Basic switch.",
+    "categories": [
+      "switch"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-switch-10",
+    "title": "Switch with badges",
+    "categories": [
+      "switch"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-switch-11",
+    "title": "Colored switches",
+    "categories": [
+      "switch"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-switch-12",
+    "title": "Destructive switch with confirmation text",
+    "categories": [
+      "switch"
+    ],
+    "meta": {
+      "order": 12
+    }
+  },
+  {
+    "name": "p-switch-13",
+    "title": "Compact settings table with switches",
+    "categories": [
+      "switch"
+    ],
+    "meta": {
+      "order": 13
+    }
+  },
+  {
+    "name": "p-switch-14",
+    "title": "Switch with descriptions in card grid",
+    "categories": [
+      "switch"
+    ],
+    "meta": {
+      "order": 14
+    }
+  },
+  {
+    "name": "p-switch-2",
+    "title": "Switch with description.",
+    "categories": [
+      "switch"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-switch-3",
+    "title": "Disabled switch.",
+    "categories": [
+      "switch"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-switch-4",
+    "title": "Switch in different sizes.",
+    "categories": [
+      "switch"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-switch-5",
+    "title": "Switch group",
+    "categories": [
+      "switch"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-switch-6",
+    "title": "Switch list in card with separators",
+    "categories": [
+      "switch"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-switch-7",
+    "title": "Switch list in card with icons",
+    "categories": [
+      "switch"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-switch-8",
+    "title": "Switch in frame",
+    "categories": [
+      "switch"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-switch-9",
+    "title": "Switch with tooltip info",
+    "categories": [
+      "switch"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-table-1",
+    "title": "Basic table.",
+    "categories": [
+      "table"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-table-10",
+    "title": "Subscriptions table with plan badges and billing info",
+    "categories": [
+      "table"
+    ],
+    "meta": {
+      "order": 10,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-table-11",
+    "title": "Product inventory table with stock badges and prices",
+    "categories": [
+      "table"
+    ],
+    "meta": {
+      "order": 11,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-table-12",
+    "title": "API keys table with permission badges and actions",
+    "categories": [
+      "table"
+    ],
+    "meta": {
+      "order": 12,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-table-13",
+    "title": "File manager table with owners and sharing badges",
+    "categories": [
+      "table"
+    ],
+    "meta": {
+      "order": 13,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-table-14",
+    "title": "Issues table with priority, assignee, and labels",
+    "categories": [
+      "table"
+    ],
+    "meta": {
+      "order": 14,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-table-15",
+    "title": "Leaderboard table with rank, score, and level badges",
+    "categories": [
+      "table"
+    ],
+    "meta": {
+      "order": 15,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-table-16",
+    "title": "Vertical table with employee profile details",
+    "categories": [
+      "table"
+    ],
+    "meta": {
+      "order": 16,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-table-17",
+    "title": "Vertical table with server configuration details",
+    "categories": [
+      "table"
+    ],
+    "meta": {
+      "order": 17,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-table-2",
+    "title": "Table with footer.",
+    "categories": [
+      "table"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-table-3",
+    "title": "Table in card with status badges.",
+    "categories": [
+      "table"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-table-4",
+    "title": "Table card with actions column.",
+    "categories": [
+      "table"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-table-5",
+    "title": "Table with interactive elements.",
+    "categories": [
+      "table"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-table-6",
+    "title": "Team members table with avatars, roles, and status",
+    "categories": [
+      "table"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-table-7",
+    "title": "Orders table with customer info and payment status",
+    "categories": [
+      "table"
+    ],
+    "meta": {
+      "order": 7,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-table-8",
+    "title": "Projects table with team avatars and status",
+    "categories": [
+      "table"
+    ],
+    "meta": {
+      "order": 8,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-table-9",
+    "title": "Activity log table with user avatars and timestamps",
+    "categories": [
+      "table"
+    ],
+    "meta": {
+      "order": 9,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-tabs-1",
+    "title": "Basic tabs.",
+    "categories": [
+      "tabs"
+    ],
+    "meta": {
+      "order": 1,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-tabs-2",
+    "title": "Tabs with line variant.",
+    "categories": [
+      "tabs"
+    ],
+    "meta": {
+      "order": 2,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-tabs-3",
+    "title": "Tabs with vertical orientation.",
+    "categories": [
+      "tabs"
+    ],
+    "meta": {
+      "order": 3,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-tabs-4",
+    "title": "Tabs with vertical orientation and line variant.",
+    "categories": [
+      "tabs"
+    ],
+    "meta": {
+      "order": 4,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-tabs-5",
+    "title": "Tabs with icons.",
+    "categories": [
+      "tabs"
+    ],
+    "meta": {
+      "order": 5,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-tabs-6",
+    "title": "Tabs with icons",
+    "categories": [
+      "tabs"
+    ],
+    "meta": {
+      "order": 6,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-tabs-7",
+    "title": "Tabs with badge counts",
+    "categories": [
+      "tabs"
+    ],
+    "meta": {
+      "order": 7,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-tabs-8",
+    "title": "Tabs with icons and line variant",
+    "categories": [
+      "tabs"
+    ],
+    "meta": {
+      "order": 8,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-tabs-9",
+    "title": "Segmented control tabs",
+    "categories": [
+      "tabs"
+    ],
+    "meta": {
+      "order": 9,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-textarea-1",
+    "title": "Basic textarea.",
+    "categories": [
+      "textarea"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-textarea-2",
+    "title": "Invalid textarea.",
+    "categories": [
+      "textarea"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-textarea-3",
+    "title": "Textarea with label.",
+    "categories": [
+      "textarea"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-textarea-4",
+    "title": "Textarea with description.",
+    "categories": [
+      "textarea"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-textarea-5",
+    "title": "Disabled textarea.",
+    "categories": [
+      "textarea"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-textarea-6",
+    "title": "Auto-resize textarea with character count",
+    "categories": [
+      "textarea"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-timeline-1",
+    "title": "Basic timeline.",
+    "categories": [
+      "timeline"
+    ],
+    "meta": {
+      "order": 1,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-timeline-10",
+    "title": "Deployment log timeline",
+    "categories": [
+      "timeline"
+    ],
+    "meta": {
+      "order": 10,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-timeline-11",
+    "title": "Activity feed timeline with user avatars",
+    "categories": [
+      "timeline"
+    ],
+    "meta": {
+      "order": 11,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-timeline-12",
+    "title": "Compact horizontal milestone timeline",
+    "categories": [
+      "timeline"
+    ],
+    "meta": {
+      "order": 12,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-timeline-2",
+    "title": "Timeline with roadmap.",
+    "categories": [
+      "timeline"
+    ],
+    "meta": {
+      "order": 2,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-timeline-3",
+    "title": "Timeline with order status.",
+    "categories": [
+      "timeline"
+    ],
+    "meta": {
+      "order": 3,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-timeline-4",
+    "title": "Timeline with git activity.",
+    "categories": [
+      "timeline"
+    ],
+    "meta": {
+      "order": 4,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-timeline-5",
+    "title": "Timeline with milestones.",
+    "categories": [
+      "timeline"
+    ],
+    "meta": {
+      "order": 5,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-timeline-6",
+    "title": "Timeline with pipeline steps.",
+    "categories": [
+      "timeline"
+    ],
+    "meta": {
+      "order": 6,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-timeline-7",
+    "title": "Timeline with roadmap items.",
+    "categories": [
+      "timeline"
+    ],
+    "meta": {
+      "order": 7,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-timeline-8",
+    "title": "Vertical timeline",
+    "categories": [
+      "timeline"
+    ],
+    "meta": {
+      "order": 8,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-timeline-9",
+    "title": "Horizontal timeline with leading labels",
+    "categories": [
+      "timeline"
+    ],
+    "meta": {
+      "order": 9,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-toggle-1",
+    "title": "Basic toggle.",
+    "categories": [
+      "toggle"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-toggle-10",
+    "title": "Toggle with text label that changes",
+    "categories": [
+      "toggle"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-toggle-11",
+    "title": "Social media reaction toggles",
+    "categories": [
+      "toggle"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-toggle-12",
+    "title": "Toggle with tooltip",
+    "categories": [
+      "toggle"
+    ],
+    "meta": {
+      "order": 12
+    }
+  },
+  {
+    "name": "p-toggle-13",
+    "title": "Disabled toggle states",
+    "categories": [
+      "toggle"
+    ],
+    "meta": {
+      "order": 13
+    }
+  },
+  {
+    "name": "p-toggle-14",
+    "title": "Toggle as mute/unmute button",
+    "categories": [
+      "toggle"
+    ],
+    "meta": {
+      "order": 14
+    }
+  },
+  {
+    "name": "p-toggle-2",
+    "title": "Toggle buttons with outline variant.",
+    "categories": [
+      "toggle"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-toggle-3",
+    "title": "Toggle buttons in different sizes.",
+    "categories": [
+      "toggle"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-toggle-4",
+    "title": "Toggle with button and icon.",
+    "categories": [
+      "toggle"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-toggle-5",
+    "title": "Disabled toggle.",
+    "categories": [
+      "toggle"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-toggle-6",
+    "title": "Toggle with icon.",
+    "categories": [
+      "toggle"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-toggle-7",
+    "title": "Toggle with notification count badge",
+    "categories": [
+      "toggle"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-toggle-8",
+    "title": "Toggle size variants showcase",
+    "categories": [
+      "toggle"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-toggle-9",
+    "title": "Toggle with icon swap on press",
+    "categories": [
+      "toggle"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-toggle-group-1",
+    "title": "Basic toggle group.",
+    "categories": [
+      "toggle-group"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-toggle-group-10",
+    "title": "Toggle group for color theme",
+    "categories": [
+      "toggle-group"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-toggle-group-11",
+    "title": "Toggle group for font size",
+    "categories": [
+      "toggle-group"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-toggle-group-12",
+    "title": "Toggle group for time range filter",
+    "categories": [
+      "toggle-group"
+    ],
+    "meta": {
+      "order": 12
+    }
+  },
+  {
+    "name": "p-toggle-group-13",
+    "title": "Toggle group for notification channels",
+    "categories": [
+      "toggle-group"
+    ],
+    "meta": {
+      "order": 13
+    }
+  },
+  {
+    "name": "p-toggle-group-14",
+    "title": "Toggle group for layout columns",
+    "categories": [
+      "toggle-group"
+    ],
+    "meta": {
+      "order": 14
+    }
+  },
+  {
+    "name": "p-toggle-group-15",
+    "title": "Toggle group for sort direction",
+    "categories": [
+      "toggle-group"
+    ],
+    "meta": {
+      "order": 15
+    }
+  },
+  {
+    "name": "p-toggle-group-16",
+    "title": "Toggle group for pricing tier",
+    "categories": [
+      "toggle-group"
+    ],
+    "meta": {
+      "order": 16
+    }
+  },
+  {
+    "name": "p-toggle-group-2",
+    "title": "Toggle group with outline variant.",
+    "categories": [
+      "toggle-group"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-toggle-group-3",
+    "title": "Toggle groups in different sizes.",
+    "categories": [
+      "toggle-group"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-toggle-group-4",
+    "title": "Toggle group with custom spacing.",
+    "categories": [
+      "toggle-group"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-toggle-group-5",
+    "title": "Toggle group with filter control.",
+    "categories": [
+      "toggle-group"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-toggle-group-6",
+    "title": "Toggle group with vertical orientation.",
+    "categories": [
+      "toggle-group"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-toggle-group-7",
+    "title": "Toggle group for text alignment",
+    "categories": [
+      "toggle-group"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-toggle-group-8",
+    "title": "Toggle group for view mode switching",
+    "categories": [
+      "toggle-group"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-toggle-group-9",
+    "title": "Vertical toggle group for settings",
+    "categories": [
+      "toggle-group"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-tooltip-1",
+    "title": "Basic tooltip.",
+    "categories": [
+      "tooltip"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-tooltip-10",
+    "title": "Tooltip with feature badge and upgrade link",
+    "categories": [
+      "tooltip"
+    ],
+    "meta": {
+      "order": 10
+    }
+  },
+  {
+    "name": "p-tooltip-11",
+    "title": "Tooltip with avatar and role badge",
+    "categories": [
+      "tooltip"
+    ],
+    "meta": {
+      "order": 11
+    }
+  },
+  {
+    "name": "p-tooltip-12",
+    "title": "Tooltip on disabled button with wrapper",
+    "categories": [
+      "tooltip"
+    ],
+    "meta": {
+      "order": 12
+    }
+  },
+  {
+    "name": "p-tooltip-13",
+    "title": "Tooltip with online status indicator",
+    "categories": [
+      "tooltip"
+    ],
+    "meta": {
+      "order": 13
+    }
+  },
+  {
+    "name": "p-tooltip-14",
+    "title": "Tooltip with file info and badges",
+    "categories": [
+      "tooltip"
+    ],
+    "meta": {
+      "order": 14
+    }
+  },
+  {
+    "name": "p-tooltip-15",
+    "title": "Tooltip with label badges",
+    "categories": [
+      "tooltip"
+    ],
+    "meta": {
+      "order": 15
+    }
+  },
+  {
+    "name": "p-tooltip-16",
+    "title": "Tooltip with action button inside",
+    "categories": [
+      "tooltip"
+    ],
+    "meta": {
+      "order": 16
+    }
+  },
+  {
+    "name": "p-tooltip-2",
+    "title": "Tooltips opening from different sides.",
+    "categories": [
+      "tooltip"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-tooltip-3",
+    "title": "Tooltip with icon trigger.",
+    "categories": [
+      "tooltip"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-tooltip-4",
+    "title": "Tooltip with keyboard shortcut.",
+    "categories": [
+      "tooltip"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-tooltip-5",
+    "title": "Tooltip on notification bell with badge count",
+    "categories": [
+      "tooltip"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-tooltip-6",
+    "title": "Tooltip with status badge",
+    "categories": [
+      "tooltip"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-tooltip-7",
+    "title": "Tooltip with icon and description",
+    "categories": [
+      "tooltip"
+    ],
+    "meta": {
+      "order": 7
+    }
+  },
+  {
+    "name": "p-tooltip-8",
+    "title": "Toolbar with tooltip actions",
+    "categories": [
+      "tooltip"
+    ],
+    "meta": {
+      "order": 8
+    }
+  },
+  {
+    "name": "p-tooltip-9",
+    "title": "Tooltip with warning badge",
+    "categories": [
+      "tooltip"
+    ],
+    "meta": {
+      "order": 9
+    }
+  },
+  {
+    "name": "p-tree-1",
+    "title": "Basic tree.",
+    "categories": [
+      "tree"
+    ],
+    "meta": {
+      "order": 1
+    }
+  },
+  {
+    "name": "p-tree-2",
+    "title": "Tree with indented lines.",
+    "categories": [
+      "tree"
+    ],
+    "meta": {
+      "order": 2
+    }
+  },
+  {
+    "name": "p-tree-3",
+    "title": "Tree with custom indent.",
+    "categories": [
+      "tree"
+    ],
+    "meta": {
+      "order": 3
+    }
+  },
+  {
+    "name": "p-tree-4",
+    "title": "Tree with custom indent.",
+    "categories": [
+      "tree"
+    ],
+    "meta": {
+      "order": 4
+    }
+  },
+  {
+    "name": "p-tree-5",
+    "title": "File explorer tree with type icons",
+    "categories": [
+      "tree"
+    ],
+    "meta": {
+      "order": 5
+    }
+  },
+  {
+    "name": "p-tree-6",
+    "title": "Organization chart tree with avatars",
+    "categories": [
+      "tree"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
+    "name": "p-tree-7",
+    "title": "Permissions tree with checkboxes",
+    "categories": [
+      "tree"
+    ],
+    "meta": {
+      "order": 7
+    }
+  }
+]

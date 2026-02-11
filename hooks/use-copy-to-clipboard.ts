@@ -1,35 +1,37 @@
-'use client';
+"use client"
 
-import * as React from 'react';
+import * as React from "react"
 
 export function useCopyToClipboard({
   timeout = 2000,
   onCopy,
 }: {
-  timeout?: number;
-  onCopy?: () => void;
+  timeout?: number
+  onCopy?: () => void
 } = {}) {
-  const [copied, setCopied] = React.useState(false);
+  const [isCopied, setIsCopied] = React.useState(false)
 
-  const copy = (value: string) => {
-    if (typeof window === 'undefined' || !navigator.clipboard.writeText) {
-      return;
+  const copyToClipboard = (value: string) => {
+    if (typeof window === "undefined" || !navigator.clipboard.writeText) {
+      return
     }
 
-    if (!value) return;
+    if (!value) return
 
     navigator.clipboard.writeText(value).then(() => {
-      setCopied(true);
+      setIsCopied(true)
 
       if (onCopy) {
-        onCopy();
+        onCopy()
       }
 
-      setTimeout(() => {
-        setCopied(false);
-      }, timeout);
-    }, console.error);
-  };
+      if (timeout !== 0) {
+        setTimeout(() => {
+          setIsCopied(false)
+        }, timeout)
+      }
+    }, console.error)
+  }
 
-  return { copied, copy };
+  return { isCopied, copyToClipboard }
 }

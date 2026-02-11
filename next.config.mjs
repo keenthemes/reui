@@ -1,45 +1,126 @@
-import { createContentlayerPlugin } from 'next-contentlayer2';
+import { createMDX } from "fumadocs-mdx/next"
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  compress: true,
+  devIndicators: false,
+  skipTrailingSlashRedirect: true,
+  skipProxyUrlNormalize: true,
+  typescript: {
+    ignoreBuildErrors: true
+  },
+  outputFileTracingIncludes: {
+    "/*": [
+      "./registry/**/*",
+      "./registry-reui/**/*",
+      "./public/r/styles/**/*",
+    ],
+  },
   experimental: {
-    turbo: {
-      rules: {
-        '*.mdx': ['contentlayer/process-mdx'],
-      },
+    // Enable file system cache for development
+    turbopackFileSystemCacheForDev: true,
+    optimizePackageImports: [
+      "lucide-react",
+      "@tabler/icons-react",
+      "@base-ui/react",
+      "radix-ui",
+      "motion",
+      "jotai",
+    ],
+  },
+  logging: {
+    fetches: {
+      fullUrl: true,
     },
   },
-  // Server configuration
-  serverExternalPackages: ['@prisma/client'],
-  reactStrictMode: true,
-  // Enable image optimization
   images: {
-    formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: '**',
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "avatar.vercel.sh",
+      },
+      {
+        protocol: "https",
+        hostname: "picsum.photos",
       },
     ],
   },
-  webpack: (config) => {
-    config.cache = {
-      type: 'filesystem',
-      compression: 'brotli',
-      // Increase cache size
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 1 week
-    };
-    return config;
-  },
-  compiler: {
-    removeConsole: process.env.NODE_ENV === 'production',
-    reactRemoveProperties: true,
-  },
-  output: 'standalone',
-  poweredByHeader: false,
-};
+  async headers() {
+    const securityHeaders = [
+      {
+        key: "X-Content-Type-Options",
+        value: "nosniff",
+      },
+      {
+        key: "Referrer-Policy",
+        value: "strict-origin-when-cross-origin",
+      },
+      {
+        key: "X-DNS-Prefetch-Control",
+        value: "on",
+      },
+    ]
 
-const withContentlayer = createContentlayerPlugin({});
+    return [
+      {
+        // All pages: allow same-origin iframes (needed for pattern previews)
+        source: "/(.*)",
+        headers: [
+          ...securityHeaders,
+          {
+            key: "X-Frame-Options",
+            value: "SAMEORIGIN",
+          },
+        ],
+      },
+      {
+        // API routes: block iframes entirely
+        source: "/api/:path*",
+        headers: [
+          {
+            key: "X-Frame-Options",
+            value: "DENY",
+          },
+        ],
+      },
+    ]
+  },
+  redirects() {
+    return [
+      {
+        source: "/components",
+        destination: "/docs/components",
+        permanent: true,
+      },
+      {
+        source: "/view/styles/:style/:name",
+        destination: "/view/:name",
+        permanent: true,
+      },
+      {
+        source: "/docs/:path*.mdx",
+        destination: "/docs/:path*.md",
+        permanent: true,
+      },
+    ]
+  },
+  rewrites() {
+    return [
+      {
+        source: "/docs/:path*.md",
+        destination: "/llm/:path*",
+      },
+    ]
+  },
+}
 
-export default withContentlayer(nextConfig);
+const withMDX = createMDX({})
+
+export default withMDX(nextConfig)

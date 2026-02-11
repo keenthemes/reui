@@ -1,0 +1,131 @@
+---
+title: Date Selector
+description: A universal date selector component with multiple period types, filter modes, and flexible display options.
+component: true
+base: base
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-date-selector-1"
+  align="start"
+  className="**:[.preview]:h-auto!"
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add @reui/date-selector
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash switch
+npm install date-fns @base-ui/react date-fns react-day-picker
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  styleName="base-nova"
+  name="date-selector"
+  title="components/reui/date-selector.tsx"
+/>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  DateSelector,
+  type DateSelectorValue,
+} from "@/components/reui/date-selector"
+```
+
+```tsx
+const [value, setValue] = useState<DateSelectorValue | undefined>()
+
+return <DateSelector value={value} onChange={setValue} label="Due date" />
+```
+
+## Examples
+
+### With Popover
+
+<ComponentPreview styleName="base-nova" name="p-date-selector-2" />
+
+### With Dialog
+
+<ComponentPreview styleName="base-nova" name="p-date-selector-3" />
+
+### With i18n Support
+
+<ComponentPreview styleName="base-nova" name="p-date-selector-4" />
+
+## API Reference
+
+### DateSelector
+
+The main component for selecting dates and time periods.
+
+| Prop                | Type                                 | Default                    | Description                                                              |
+| :------------------ | :----------------------------------- | :------------------------- | :----------------------------------------------------------------------- |
+| `value`             | `DateSelectorValue`                  | -                          | The current value of the selector.                                       |
+| `onChange`          | `(value: DateSelectorValue) => void` | -                          | Callback fired when the value changes.                                   |
+| `allowRange`        | `boolean`                            | `true`                     | Whether to allow selecting date ranges (using "between" operator).       |
+| `periodTypes`       | `DateSelectorPeriodType[]`           | -                          | List of available period types (day, month, etc.).                       |
+| `defaultPeriodType` | `DateSelectorPeriodType`             | `"day"`                    | The initial period type.                                                 |
+| `defaultFilterType` | `DateSelectorFilterType`             | `"is"`                     | The initial filter operator.                                             |
+| `presetMode`        | `DateSelectorFilterType`             | -                          | If set, locks the selector to this specific filter mode.                 |
+| `showInput`         | `boolean`                            | `true`                     | Whether to show the text input field above the selector.                 |
+| `showTwoMonths`     | `boolean`                            | `true`                     | Whether to show two months in the calendar view (desktop only).          |
+| `label`             | `string`                             | -                          | Optional label to display above the filter toggle.                       |
+| `yearRange`         | `number`                             | `10`                       | The number of years to show in the year/month/quarter list.              |
+| `baseYear`          | `number`                             | `new Date().getFullYear()` | The reference year for the year selection list.                          |
+| `minYear`           | `number`                             | `2015`                     | The minimum selectable year.                                             |
+| `maxYear`           | `number`                             | `2026`                     | The maximum selectable year.                                             |
+| `i18n`              | `Partial<DateSelectorI18nConfig>`    | -                          | Custom labels and operators for internationalization.                    |
+| `inputHint`         | `string`                             | -                          | Optional hint text to display in the input field when empty and focused. |
+| `dayDateFormat`     | `string`                             | `"MM/dd/yyyy"`             | The format used to display single days.                                  |
+| `className`         | `string`                             | -                          | Additional CSS classes for the container.                                |
+
+---
+
+### Interfaces
+
+#### DateSelectorValue
+
+The structure of the value returned by the `onChange` callback.
+
+| Property     | Type                              | Description                                                                |
+| :----------- | :-------------------------------- | :------------------------------------------------------------------------- |
+| `period`     | `DateSelectorPeriodType`          | The selected period type (`day`, `month`, `quarter`, `half-year`, `year`). |
+| `operator`   | `DateSelectorFilterType`          | The selected operator (`is`, `before`, `after`, `between`).                |
+| `startDate`  | `Date`                            | The selected start date (for `day` period).                                |
+| `endDate`    | `Date`                            | The selected end date (for `day` period range).                            |
+| `year`       | `number`                          | The selected year.                                                         |
+| `month`      | `number`                          | The selected month (0-11).                                                 |
+| `quarter`    | `number`                          | The selected quarter (0-3).                                                |
+| `halfYear`   | `number`                          | The selected half-year (0-1).                                              |
+| `rangeStart` | `{ year: number; value: number }` | The start of a period range.                                               |
+| `rangeEnd`   | `{ year: number; value: number }` | The end of a period range.                                                 |

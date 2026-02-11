@@ -1,0 +1,32 @@
+---
+title: Registry
+description: Learn how to use the ReUI Registry with shadcn/ui.
+---
+
+The ReUI Registry gives you instant access to production-ready components. Add it once, then pull in flexible, composable blocks on demand.
+
+## Setup ReUI Registry
+
+Add the ReUI registry namespace to your `components.json`. Learn more about registry config from [shadcn registry docs](https://ui.shadcn.com/docs/registry).
+
+```json
+{
+  "registries": {
+    "@reui": "https://reui.io/r/{style}/{name}.json"
+  }
+}
+```
+
+## Usage
+
+Install blocks via the shadcn CLI using the `@reui/{name}` syntax.
+
+```bash
+npx dlx shadcn@latest add @reui/p-accordion-1
+```
+
+Install components via the shadcn CLI using the `@reui/{name}` syntax.
+
+```bash
+npx dlx shadcn@latest add @reui/filters
+```

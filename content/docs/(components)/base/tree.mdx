@@ -1,0 +1,143 @@
+---
+title: Tree
+description: A customizable tree component for React.
+component: true
+base: base
+links:
+  api: https://headless-tree.lukasbach.com/
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-tree-1"
+  className="**:[.preview]:h-auto"
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add @reui/tree
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash switch
+npm install @headless-tree/core @headless-tree/react @base-ui/react
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  styleName="base-nova"
+  name="tree"
+  title="components/reui/tree.tsx"
+/>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Tree, TreeItem, TreeItemLabel } from "@/components/reui/tree"
+```
+
+```tsx
+<Tree tree={tree}>
+  {tree.getItems().map((item) => (
+    <TreeItem key={item.getId()} item={item}>
+      <TreeItemLabel />
+    </TreeItem>
+  ))}
+</Tree>
+```
+
+## Examples
+
+### With line
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-tree-2"
+  className="**:[.preview]:h-auto"
+/>
+
+### With Icon
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-tree-3"
+  className="**:[.preview]:h-auto"
+/>
+
+### With Plus and Minus Icons
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-tree-4"
+  className="**:[.preview]:h-auto"
+/>
+
+## API Reference
+
+### Tree
+
+The root component that provides context for the tree structure.
+
+| Prop             | Type                        | Default     | Description                                                 |
+| :--------------- | :-------------------------- | :---------- | :---------------------------------------------------------- |
+| `tree`           | `any`                       | -           | **Required**. The tree instance from `@headless-tree/core`. |
+| `indent`         | `number`                    | `20`        | Pixel value for each level of indentation.                  |
+| `toggleIconType` | `"chevron" \| "plus-minus"` | `"chevron"` | The type of icon used for expanding/collapsing folders.     |
+| `className`      | `string`                    | -           | Additional CSS classes for the tree container.              |
+
+---
+
+### TreeItem
+
+A component representing a single item (node) in the tree.
+
+| Prop        | Type              | Default | Description                                                        |
+| :---------- | :---------------- | :------ | :----------------------------------------------------------------- |
+| `item`      | `ItemInstance<T>` | -       | **Required**. The instance of the current tree item.               |
+| `indent`    | `number`          | -       | Custom indentation for this specific item (overrides Tree indent). |
+| `className` | `string`          | -       | Additional CSS classes for the item container.                     |
+
+---
+
+### TreeItemLabel
+
+The component that displays the label and toggle icon for a tree item.
+
+| Prop        | Type              | Default | Description                                            |
+| :---------- | :---------------- | :------ | :----------------------------------------------------- |
+| `item`      | `ItemInstance<T>` | -       | Optional item instance (uses context if not provided). |
+| `className` | `string`          | -       | Additional CSS classes for the label.                  |
+
+---
+
+### TreeDragLine
+
+The visual indicator shown during drag-and-drop operations.
+
+| Prop        | Type     | Default | Description                               |
+| :---------- | :------- | :------ | :---------------------------------------- |
+| `className` | `string` | -       | Additional CSS classes for the drag line. |

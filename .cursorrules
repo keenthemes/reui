@@ -1,0 +1,686 @@
+# ReUI v2 - Cursor Rules
+
+## Agent Response Rules
+
+- Be concise. Skip unnecessary explanations
+- No filler phrases ("I'll help you", "Let me", "Sure", etc.)
+- Show code, not descriptions of code
+- One-line answers when possible
+- No repeating back what user asked
+- Skip "Here's what I did" summaries unless complex
+- Use bullet points over paragraphs
+- Don't explain obvious changes
+
+## Project Overview
+
+ReUI is a React UI component library built on shadcn/ui patterns, providing accessible, customizable components styled with Tailwind CSS v4. The project powers the **shadcn create** customizer experience.
+
+### Key Architecture
+
+- **Multi-Base Support**: Components available in `base` (Base UI) and `radix` (Radix UI) variants
+- **Multi-Style Support**: 5 visual styles - `vega`, `nova`, `maia`, `lyra`, `mira`
+- **Style Name Format**: `{base}-{style}` (e.g., `radix-nova`, `base-vega`)
+- **Registry System**: Serves components via API for `npx shadcn add @reui/component`
+
+### Core Systems
+
+1. **Customizer** (`app/(create)/`): Interactive design system configuration
+2. **Pattern Registry** (`registry-reui/`): 600+ pattern components
+3. **Core Registry** (`registry/`): Base shadcn components, styles, icons
+4. **API Layer** (`app/api/`, `app/r/`): Registry serving for CLI integration
+
+## Tech Stack
+
+- **Framework**: Next.js 15+ with App Router and Turbopack
+- **Language**: TypeScript (strict mode)
+- **React**: React 19 with RSC (React Server Components)
+- **Styling**: Tailwind CSS v4 with CSS variables
+- **UI Primitives**: @base-ui/react, radix-ui
+- **State Management**:
+  - `nuqs` - URL query state (shareable/deep-linkable)
+  - `jotai` with `atomWithStorage` - localStorage persistence
+  - React Context - runtime overrides
+- **Style Transformation**: `shadcn/utils` for cn-* → Tailwind conversion
+- **Variants**: class-variance-authority (CVA)
+- **Icons**: lucide-react, @hugeicons/react, @tabler/icons-react, phosphor-icons, remixicon
+- **Forms**: react-hook-form with @hookform/resolvers, zod validation
+- **Animation**: motion (Framer Motion)
+
+## Directory Structure
+
+```
+oss/
+├── app/
+│   ├── (create)/                    # Customizer interface
+│   │   ├── components/              # Pickers, providers, UI
+│   │   │   ├── design-system-provider.tsx  # State providers
+│   │   │   ├── icon-placeholder.tsx        # Multi-library icon component
+│   │   │   ├── *-picker.tsx               # Config pickers (11 total)
+│   │   │   └── picker.tsx                 # Base picker primitives
+│   │   ├── patterns/                # Pattern browsing
+│   │   │   ├── components/          # Grid, cards, sidebar, search
+│   │   │   ├── [category]/          # Category pages
+│   │   │   └── page.tsx             # Main patterns page
+│   │   ├── preview/                 # Iframe preview pages
+│   │   │   └── [base]/patterns/     # Base-specific previews
+│   │   ├── hooks/                   # use-iframe-sync, use-locks
+│   │   └── lib/                     # search-params, fonts, utils
+│   ├── (app)/                       # Main app routes
+│   │   ├── (root)/                  # Homepage
+│   │   ├── docs/                    # Documentation
+│   │   └── icons/                   # Icon library browser
+│   ├── api/
+│   │   └── registry/[name]/         # Internal registry API
+│   └── r/[...path]/                 # Public CLI API (ISR)
+├── registry/                        # Core shadcn components
+│   ├── bases/                       # Components per base
+│   │   ├── base/                    # Base UI components
+│   │   │   ├── ui/                  # Primitives
+│   │   │   ├── examples/            # Component examples
+│   │   │   └── blocks/              # Block components
+│   │   └── radix/                   # Radix UI components
+│   ├── styles/                      # Style CSS files
+│   │   └── style-{style}.css        # vega, nova, maia, lyra, mira
+│   ├── icons/                       # Icon library wrappers
+│   │   ├── icon-lucide.tsx
+│   │   ├── icon-hugeicons.tsx
+│   │   ├── icon-tabler.tsx
+│   │   ├── icon-phosphor.tsx
+│   │   └── icon-remixicon.tsx
+│   ├── config.ts                    # Bases, styles, themes, fonts config
+│   ├── themes.ts                    # Theme definitions with CSS vars
+│   └── bases.ts                     # Base definitions
+├── registry-reui/                   # ReUI pattern registry
+│   ├── bases/
+│   │   ├── base/                    # Base UI patterns
+│   │   │   ├── patterns/            # Pattern components by category
+│   │   │   │   ├── alert/           # p-alert-1.tsx, p-alert-2.tsx...
+│   │   │   │   ├── button/
+│   │   │   │   └── .../             # 40+ categories
+│   │   │   ├── reui/                # ReUI-specific components
+│   │   │   │   ├── data-grid/       # Complex data grid
+│   │   │   │   ├── kanban/
+│   │   │   │   └── .../
+│   │   │   └── _registry.ts         # Generated registry metadata
+│   │   ├── radix/                   # Radix UI patterns (same structure)
+│   │   └── __generated/             # Style-transformed variants
+│   │       ├── base-vega/
+│   │       ├── radix-nova/
+│   │       └── .../                 # 10 combinations (2 bases × 5 styles)
+│   ├── styles/                      # ReUI-specific style CSS
+│   ├── patterns.json                # Pattern manifest for search/browse
+│   └── registry.json                # Categories and stats
+├── lib/
+│   ├── registry.ts                  # Client-safe registry operations
+│   ├── registry-server.ts           # Server-side transformations
+│   ├── icons.ts                     # Icon transformation utilities
+│   └── highlight-code.ts            # Syntax highlighting
+├── hooks/
+│   └── use-config.ts                # Jotai config atom
+├── components/                      # App-specific components
+├── content/                         # MDX documentation
+└── public/
+    └── r/styles/{styleName}/        # Pre-built registry JSON files
+```
+
+## Shadcn Create Customizer Architecture
+
+### State Management Layers
+
+The customizer uses three state layers with clear priority:
+
+```
+Priority: Context (overrides) > URL Params > localStorage Config
+```
+
+1. **URL Params** (`nuqs`): Shareable, deep-linkable state
+   - Managed via `useDesignSystemSearchParams()` from `app/(create)/lib/search-params.ts`
+   - Keys: `base`, `style`, `theme`, `baseColor`, `font`, `iconLibrary`, `menuAccent`, `menuColor`, `radius`, `item`, `template`, `size`, `custom`
+
+2. **localStorage** (`Jotai atomWithStorage`): Persistent user preferences
+   - Managed via `useConfig()` from `hooks/use-config.ts`
+   - Synced from URL on deep link visits
+
+3. **Context** (`DesignSystemContext`): Runtime overrides for iframe sync
+   - Provided by `DesignSystemProvider`
+   - Receives updates via postMessage from parent
+
+### Provider Architecture
+
+**`DesignSystemSyncProvider`** (Host Page - `app/(create)/patterns/layout.tsx`):
+```tsx
+// One-way sync: URL → localStorage on mount (for deep links)
+// Renders children immediately to avoid hydration issues
+export function DesignSystemSyncProvider({ children }) {
+  // Syncs URL params to localStorage if present
+  // Does NOT provide context - just syncs state
+}
+```
+
+**`DesignSystemProvider`** (Iframe - `app/(create)/preview/*/layout.tsx`):
+```tsx
+// Applies design system styles and provides context
+// Priority: overrides (postMessage) > params (URL) > config (localStorage)
+export function DesignSystemProvider({ children }) {
+  // Applies CSS classes (style-*, base-color-*)
+  // Injects CSS variables
+  // Loads fonts
+  // Provides DesignSystemContext
+}
+```
+
+### Picker Components Pattern
+
+All picker components follow this pattern for hydration safety:
+
+```tsx
+export function SomePicker({ ... }) {
+  // 1. Hydration safety
+  const [mounted, setMounted] = React.useState(false)
+  React.useEffect(() => setMounted(true), [])
+
+  // 2. Read from multiple sources (for context support)
+  const context = React.useContext(DesignSystemContext)
+  const [params, setParams] = useDesignSystemSearchParams()
+  const [config, setConfig] = useConfig()
+
+  // 3. Priority resolution
+  const value = context?.value ?? params.value ?? config.value
+
+  // 4. Update handler (updates both URL and localStorage)
+  const handleChange = (newValue) => {
+    setParams({ value: newValue })
+    setConfig((prev) => ({ ...prev, value: newValue }))
+  }
+
+  // 5. Render with hydration guard
+  return (
+    <Picker>
+      <PickerTrigger>
+        {mounted ? displayValue : "..."}
+      </PickerTrigger>
+      ...
+    </Picker>
+  )
+}
+```
+
+### Iframe Sync Mechanism
+
+**URL-based sync** (structural changes):
+- When `base`, `category`, or search query changes
+- Updates iframe `src` → causes reload
+
+**PostMessage sync** (design system changes):
+- When style, theme, font, etc. changes
+- Sends `design-system-params` message to iframe
+- Iframe receives via `useIframeMessageListener`
+- Stored in local state as overrides (no URL update in iframe)
+
+```tsx
+// Host sends (patterns-iframe-view.tsx)
+iframeRef.current.contentWindow.postMessage({
+  type: "design-system-params",
+  params: { style, theme, font, ... }
+}, "*")
+
+// Iframe receives (design-system-provider.tsx)
+useIframeMessageListener("design-system-params", setOverrides)
+```
+
+## Pattern System
+
+### Pattern File Format
+
+Patterns are located in `registry-reui/bases/{base}/patterns/{category}/`:
+
+```tsx
+// Description: Alert with icon and action button
+// Order: 5
+// GridSize: 1
+
+import { Alert, AlertDescription, AlertTitle } from "@/registry/bases/base/ui/alert"
+import { Button } from "@/registry/bases/base/ui/button"
+
+export default function Pattern() {
+  return (
+    <Alert>
+      <AlertTitle>Heads up!</AlertTitle>
+      <AlertDescription>
+        You can add components to your app using the CLI.
+      </AlertDescription>
+      <Button size="sm">Take action</Button>
+    </Alert>
+  )
+}
+```
+
+**Metadata Comments**:
+- `// Description:` - Pattern description (max 5-6 words, no "A" article, e.g., "Input fields with validation")
+- `// Order:` - Sort order within category
+- `// GridSize:` - `1` for full-width, `2` for half-width (default)
+
+### Pattern Listing and Search
+
+**Manifest Files** (generated by `pnpm registry:generate`):
+- `registry-reui/bases/patterns.json` - Full pattern manifest
+- `registry-reui/bases/registry.json` - Categories and stats
+
+**Search Implementation** (`lib/registry.ts`):
+```tsx
+// Multi-term search with plural handling
+searchPatterns("button loading") // Matches "button" AND "loading"
+searchPatterns("buttons")        // Matches "button" (plural → singular)
+
+// Category filtering
+filterPatterns({ category: "alert", query: "icon" })
+
+// Pagination
+getPaginatedPatterns({ category, query, page, perPage: 48 })
+```
+
+**Indexing**:
+- Lazy-loaded on first access via `ensurePatternIndexes()`
+- Category index: `Map<category, PatternData[]>`
+- Search text: name + title + categories
+- Sorted by primary category, then by `meta.order`
+
+### Pattern Rendering
+
+**Component Hierarchy**:
+```
+PatternsGrid
+  └─ PatternCard
+      └─ PatternCardContainer (intersection observer)
+          └─ PatternRenderer (React.lazy)
+              └─ Suspense boundary
+```
+
+**Lazy Loading** (`lib/registry.ts`):
+```tsx
+// Components are lazy-loaded on demand
+const component = getComponent(base, patternName)
+// Returns React.lazy(() => import(`@/registry-reui/bases/${base}/${path}`))
+```
+
+**Performance Optimizations**:
+- Intersection observer with 800px rootMargin
+- `content-visibility: auto` for off-screen patterns
+- `contain-intrinsic-size: 0 400px` to prevent layout shift
+- Component caching in `componentCache` Map
+
+### Source Code Generation
+
+**Transformation Pipeline**:
+1. Read raw pattern file
+2. **Style transformation**: `cn-*` classes → Tailwind via `shadcn/utils`
+3. **Import path transformation**: Registry paths → user project paths
+4. **Icon transformation**: Replace `IconPlaceholder` with actual icons
+5. **Export transformation**: `export default` → `export` for non-pages
+6. **Code highlighting**: Syntax highlighting for display
+
+## Multi-Style Registry
+
+### Bases and Styles
+
+**Bases** (component libraries):
+- `base` - Base UI (@base-ui/react)
+- `radix` - Radix UI (radix-ui)
+
+**Styles** (visual variants):
+- `vega` - Default style
+- `nova` - Alternative style
+- `maia` - Alternative style
+- `lyra` - Alternative style
+- `mira` - Alternative style
+
+**Combinations**: 10 total (2 bases × 5 styles)
+
+### Style Name Convention
+
+```
+{base}-{style}
+```
+
+Examples:
+- `radix-nova` (default)
+- `base-vega`
+- `radix-maia`
+
+### Generation Pipeline
+
+```
+Source: registry-reui/bases/{base}/patterns/
+  ↓
+Style CSS: registry/styles/style-{style}.css
+  ↓
+Transform: createStyleMap() from shadcn/utils
+  ↓
+Output: registry-reui/bases/__generated/{base}-{style}/
+  ↓
+Build: public/r/styles/{styleName}/{name}.json
+```
+
+**Build Commands**:
+```bash
+pnpm registry:generate   # Generate _registry.ts and patterns.json
+pnpm registry:build      # Build style variants and JSON files
+```
+
+### Style Transformation
+
+Style CSS files define class mappings:
+
+```css
+/* registry/styles/style-vega.css */
+.cn-button { @apply rounded-lg px-4 py-2 font-medium; }
+.cn-input { @apply rounded-md border px-3 py-2; }
+```
+
+The build process:
+1. Parses CSS to create a style map
+2. Replaces `cn-*` classes with expanded Tailwind classes
+3. Generates style-specific variants of all patterns
+
+## Icon Transformation
+
+### IconPlaceholder Component
+
+Used in patterns to support multiple icon libraries:
+
+```tsx
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
+
+<IconPlaceholder
+  lucide="HomeIcon"
+  hugeicons="Home01Icon"
+  tabler="IconHome"
+  phosphor="HouseIcon"
+  remixicon="RiHomeLine"
+  className="size-4"
+/>
+```
+
+**Runtime Behavior**:
+- Reads `iconLibrary` from context/params/config
+- Renders the appropriate icon component
+- Falls back to lucide if not specified
+
+### Code Transformation
+
+When generating source code for users (`lib/icons.ts`):
+
+```tsx
+// Input (pattern source)
+<IconPlaceholder lucide="HomeIcon" hugeicons="Home01Icon" />
+
+// Output (for lucide library)
+import { HomeIcon } from "lucide-react"
+<HomeIcon />
+
+// Output (for hugeicons library)
+import { Home01Icon } from "@hugeicons/react"
+<Home01Icon />
+```
+
+**Transformation Steps**:
+1. Find all `<IconPlaceholder>` elements
+2. Extract the prop for the target library
+3. Replace with actual icon usage
+4. Remove `IconPlaceholder` import
+5. Add appropriate icon library import
+
+### Icon Library Detection
+
+Default icon library per style:
+
+| Style | Default Library |
+|-------|-----------------|
+| vega  | lucide          |
+| nova  | hugeicons       |
+| maia  | hugeicons       |
+| lyra  | hugeicons       |
+| mira  | hugeicons       |
+
+Override via URL param: `?iconLibrary=tabler`
+
+## Registry API
+
+### Internal API (`/api/registry/[name]`)
+
+Used by the customizer UI for code display:
+
+```
+GET /api/registry/{name}?styleName={styleName}&iconLibrary={iconLibrary}
+```
+
+**Response**:
+```json
+{
+  "name": "p-alert-1",
+  "rawCode": "import { Alert }...",
+  "highlightedCode": "<pre>...</pre>"
+}
+```
+
+### Public CLI API (`/r/[...path]`)
+
+Compatible with `npx shadcn add @reui/component`:
+
+```
+GET /r/{name}.json              → default style (radix-nova)
+GET /r/{styleName}/{name}.json  → specific style
+```
+
+**Response** (shadcn registry schema):
+```json
+{
+  "name": "alert",
+  "type": "registry:ui",
+  "title": "Alert",
+  "description": "Displays a callout for user attention",
+  "dependencies": ["lucide-react"],
+  "files": [{
+    "path": "ui/alert.tsx",
+    "type": "registry:ui",
+    "content": "...",
+    "target": "components/ui/alert.tsx"
+  }]
+}
+```
+
+**Caching**:
+- Default style pre-generated at build time
+- Other styles: ISR with 24-hour cache
+- On-demand generation for non-default styles
+
+### CLI Usage
+
+Users configure in `components.json`:
+
+```json
+{
+  "registries": {
+    "@reui": "https://reui.io/r"
+  }
+}
+```
+
+Then install:
+
+```bash
+npx shadcn@latest add @reui/alert
+npx shadcn@latest add @reui/p-statistic-card-1
+```
+
+## Hydration Safety Pattern
+
+**All components reading from localStorage MUST use this pattern**:
+
+```tsx
+export function Component() {
+  // 1. Track mount state
+  const [mounted, setMounted] = React.useState(false)
+  
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // 2. Read config (may differ server vs client)
+  const [config] = useConfig()
+  const value = config.someValue
+
+  // 3. Render with guard
+  return (
+    <div>
+      {mounted ? value : "..."}
+    </div>
+  )
+}
+```
+
+**Why**: `atomWithStorage` reads from localStorage on client, but returns default on server. Without the guard, server renders default, client renders localStorage value → hydration mismatch.
+
+**Affected Components**:
+- All picker components in `app/(create)/components/`
+- `IconPlaceholder`
+- Any component using `useConfig()`
+
+## Code Style & Conventions
+
+### General
+
+- TypeScript for all files
+- No semicolons (configured in Prettier)
+- Double quotes for strings
+- 2-space indentation
+- Named exports for components (no default exports except patterns)
+- `data-slot` attribute for component identification
+
+### Component Structure
+
+```tsx
+"use client" // Only if needed
+
+import { ComponentPrimitive } from "@base-ui/react/component"
+import { cn } from "@/lib/utils"
+
+export function Component({ className, ...props }) {
+  return (
+    <ComponentPrimitive
+      data-slot="component"
+      className={cn("base-classes", className)}
+      {...props}
+    />
+  )
+}
+```
+
+### Pattern Structure
+
+```tsx
+// Description: Concise description (≤40 chars)
+// Order: 1
+
+import { Component } from "@/registry/bases/base/ui/component"
+
+export default function Pattern() {
+  return (
+    <Component>
+      Pattern content
+    </Component>
+  )
+}
+```
+
+### Tailwind CSS v4 Patterns
+
+- CSS variables for theming: `bg-primary`, `text-foreground`
+- Data attributes: `data-open:`, `data-closed:`
+- Deep styling: `**:data-[slot=...]`
+- Named groups: `group/name`
+- Parent-based styling: `in-data-[slot=...]`
+
+## Commands
+
+```bash
+# Development
+pnpm dev                 # Start dev server (port 4000)
+pnpm build               # Production build
+pnpm lint                # Run ESLint
+pnpm typecheck           # TypeScript check
+pnpm format:write        # Format with Prettier
+
+# Registry
+pnpm registry:generate   # Generate pattern registry metadata
+pnpm registry:build      # Build registry JSON files
+pnpm registry:icons      # Scan and update icon mappings
+```
+
+## Key Files Reference
+
+### State Management
+- `hooks/use-config.ts` - Jotai config atom with localStorage
+- `app/(create)/lib/search-params.ts` - nuqs URL param definitions
+
+### Providers
+- `app/(create)/components/design-system-provider.tsx` - Context and style application
+
+### Registry
+- `lib/registry.ts` - Client-safe operations, search, lazy loading
+- `lib/registry-server.ts` - Server transformations, code generation
+- `registry/config.ts` - Bases, styles, themes, fonts, icons config
+
+### Icons
+- `lib/icons.ts` - Icon transformation for code generation
+- `registry/icons/` - Icon library wrapper components
+- `app/(create)/components/icon-placeholder.tsx` - Runtime icon switcher
+
+### Patterns
+- `registry-reui/bases/{base}/patterns/` - Pattern source files
+- `registry-reui/bases/patterns.json` - Generated manifest
+- `app/(create)/patterns/components/` - Pattern UI components
+
+### API
+- `app/api/registry/[name]/route.ts` - Internal registry API
+- `app/r/[...path]/route.ts` - Public CLI API
+
+## Path Aliases
+
+- `@/` → project root
+- `@/lib` → `/lib`
+- `@/hooks` → `/hooks`
+- `@/components` → `/components`
+- `@/registry` → `/registry`
+- `@/registry-reui` → `/registry-reui`
+
+## Quick Checklists
+
+### Adding a New Pattern
+
+1. Create `registry-reui/bases/{base}/patterns/{category}/p-{name}.tsx`
+2. Add metadata comments (Description, Order, GridSize if needed)
+3. Use `export default function Pattern()`
+4. Run `pnpm registry:generate`
+5. Run `pnpm registry:build`
+
+### Adding a New Pattern Category
+
+1. Create directory `registry-reui/bases/base/patterns/{category}/`
+2. Create directory `registry-reui/bases/radix/patterns/{category}/`
+3. Add at least one pattern to each
+4. Run `pnpm registry:generate`
+
+### Modifying Picker Components
+
+1. Ensure hydration safety pattern is used
+2. Read from context/params/config with proper priority
+3. Update both URL and localStorage on change
+4. Test in both host page and iframe contexts
+
+### Debugging State Issues
+
+1. Check URL params: `useDesignSystemSearchParams()`
+2. Check localStorage: `useConfig()`
+3. Check context: `React.useContext(DesignSystemContext)`
+4. Verify provider hierarchy: SyncProvider (host) vs Provider (iframe)

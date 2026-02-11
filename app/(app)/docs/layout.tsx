@@ -1,22 +1,22 @@
-import { ToastProvider } from '@/registry/default/ui/base-toast';
-import { ScrollArea } from '@/registry/default/ui/scroll-area';
-import { sitemapConfig } from '@/config/sitemap';
-import { DocsSidebarNavAccordion } from '@/components/sidebar-nav-accordion';
+import { source } from "@/lib/source"
+import { SidebarProvider } from "@/components/ui/sidebar"
+import { DocsSidebar } from "@/components/docs-sidebar"
+import { SiteFooter } from "@/components/site-footer"
 
-interface DocsLayoutProps {
-  children: React.ReactNode;
-}
-
-export default function DocsLayout({ children }: DocsLayoutProps) {
+export default function DocsLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <div className="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-4 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
-      <aside className="border-border dark:border-border fixed top-[66px] z-30 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 border-r md:sticky md:block">
-        <ScrollArea className="h-[calc(100vh-3.5rem)] overflow-auto py-6 mr-0.5 pr-5 lg:py-6">
-          <DocsSidebarNavAccordion config={sitemapConfig} />
-        </ScrollArea>
-      </aside>
-
-      <ToastProvider>{children}</ToastProvider>
-    </div>
-  );
+    <>
+      <div className="container-wrapper flex flex-1 flex-col px-2">
+        <SidebarProvider className="3xl:fixed:container 3xl:fixed:px-3 min-h-min flex-1 items-start px-0 [--sidebar-width:220px] [--top-spacing:0] lg:grid lg:grid-cols-[var(--sidebar-width)_minmax(0,1fr)] lg:[--sidebar-width:240px] lg:[--top-spacing:calc(var(--spacing)*4)]">
+          <DocsSidebar tree={source.getPageTree()} />
+          <div className="h-full w-full">{children}</div>
+        </SidebarProvider>
+      </div>
+      <SiteFooter />
+    </>
+  )
 }

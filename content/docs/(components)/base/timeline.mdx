@@ -1,0 +1,227 @@
+---
+title: Timeline
+description: A visual representation of events in chronological order.
+component: true
+base: base
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-timeline-1"
+  className="**:[.preview]:h-auto"
+/>
+
+## Examples
+
+### With Left-Aligned Dates
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-timeline-2"
+  className="**:[.preview]:h-auto"
+/>
+
+### With Custom Indicators
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-timeline-3"
+  className="**:[.preview]:h-auto"
+/>
+
+### With Icons
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-timeline-4"
+  className="**:[.preview]:h-auto"
+/>
+
+### Alternating Layout
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-timeline-5"
+  className="**:[.preview]:h-auto"
+/>
+
+### Horizontal Orientation
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-timeline-6"
+  className="**:[.preview]:h-auto"
+/>
+
+### Horizontal with Top Indicators
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-timeline-7"
+  className="**:[.preview]:h-auto"
+/>
+
+### Customized Timeline
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-timeline-8"
+  className="**:[.preview]:h-auto"
+/>
+
+### Compact Roadmap
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-timeline-9"
+  className="**:[.preview]:h-auto"
+/>
+
+### Activity Feed
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-timeline-10"
+  className="**:[.preview]:h-auto"
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add @reui/timeline
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash switch
+npm install @base-ui/react
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  styleName="base-nova"
+  name="timeline"
+  title="components/reui/timeline.tsx"
+/>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  Timeline,
+  TimelineContent,
+  TimelineDate,
+  TimelineHeader,
+  TimelineIndicator,
+  TimelineItem,
+  TimelineSeparator,
+  TimelineTitle,
+} from "@/components/reui/timeline"
+```
+
+```tsx
+<Timeline>
+  <TimelineItem step={1}>
+    <TimelineHeader>
+      <TimelineDate>March 2024</TimelineDate>
+      <TimelineTitle>Project Initialized</TimelineTitle>
+    </TimelineHeader>
+    <TimelineIndicator />
+    <TimelineSeparator />
+    <TimelineContent>
+      Successfully set up the project repository and initial architecture.
+    </TimelineContent>
+  </TimelineItem>
+</Timeline>
+```
+
+## API Reference
+
+### Timeline
+
+The root component for the timeline.
+
+| Prop            | Type                         | Default      | Description                                  |
+| :-------------- | :--------------------------- | :----------- | :------------------------------------------- |
+| `defaultValue`  | `number`                     | `1`          | The initial active step.                     |
+| `value`         | `number`                     | -            | The current active step (controlled).        |
+| `onValueChange` | `(value: number) => void`    | -            | Callback fired when the active step changes. |
+| `orientation`   | `"horizontal" \| "vertical"` | `"vertical"` | The layout orientation of the timeline.      |
+
+### TimelineItem
+
+A single item in the timeline.
+
+| Prop   | Type     | Default | Description                                  |
+| :----- | :------- | :------ | :------------------------------------------- |
+| `step` | `number` | -       | **Required**. The step number for this item. |
+
+### TimelineDate
+
+The date or time label for a timeline item.
+
+| Prop        | Type     | Default | Description                                |
+| :---------- | :------- | :------ | :----------------------------------------- |
+| `className` | `string` | -       | Additional CSS classes for the date label. |
+
+### TimelineTitle
+
+The title for a timeline item.
+
+| Prop        | Type     | Default | Description                           |
+| :---------- | :------- | :------ | :------------------------------------ |
+| `className` | `string` | -       | Additional CSS classes for the title. |
+
+### TimelineIndicator
+
+The visual indicator (usually a dot) for a timeline item.
+
+| Prop        | Type     | Default | Description                               |
+| :---------- | :------- | :------ | :---------------------------------------- |
+| `className` | `string` | -       | Additional CSS classes for the indicator. |
+
+### TimelineSeparator
+
+The line connecting timeline indicators.
+
+| Prop        | Type     | Default | Description                                    |
+| :---------- | :------- | :------ | :--------------------------------------------- |
+| `className` | `string` | -       | Additional CSS classes for the separator line. |
+
+### TimelineHeader
+
+A container for the date and title.
+
+| Prop        | Type     | Default | Description                                      |
+| :---------- | :------- | :------ | :----------------------------------------------- |
+| `className` | `string` | -       | Additional CSS classes for the header container. |
+
+### TimelineContent
+
+The main descriptive content for a timeline item.
+
+| Prop        | Type     | Default | Description                                       |
+| :---------- | :------- | :------ | :------------------------------------------------ |
+| `className` | `string` | -       | Additional CSS classes for the content container. |

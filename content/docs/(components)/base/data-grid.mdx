@@ -1,0 +1,480 @@
+---
+title: Data Grid
+description: A powerful data grid component built on top of TanStack Table v8 with features like sorting, filtering, pagination, and drag & drop support.
+component: true
+base: base
+links:
+  api: https://tanstack.com/table/latest
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-data-grid-1"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add @reui/data-grid
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @base-ui/react @tanstack/react-table
+```
+
+To enable support for drag-and-drop functionality for columns and rows, install the following packages:
+
+```bash
+npm install @dnd-kit/core @dnd-kit/modifiers @dnd-kit/sortable @dnd-kit/utilities
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  styleName="base-nova"
+  name="data-grid"
+  title="components/reui/data-grid/data-grid.tsx"
+/>
+
+<ComponentSource
+  styleName="base-nova"
+  name="data-grid-table"
+  title="@components/reui/data-grid/data-grid-table.tsx"
+/>
+
+<ComponentSource
+  styleName="base-nova"
+  name="data-grid-pagination"
+  title="components/reui/data-grid/data-grid-pagination.tsx"
+/>
+
+<ComponentSource
+  styleName="base-nova"
+  name="data-grid-column-header"
+  title="components/reui/data-grid/data-grid-column-header.tsx"
+/>
+
+<ComponentSource
+  styleName="base-nova"
+  name="data-grid-column-filter"
+  title="components/reui/data-grid/data-grid-column-filter.tsx"
+/>
+
+<ComponentSource
+  styleName="base-nova"
+  name="data-grid-column-visibility"
+  title="components/reui/data-grid/data-grid-column-visibility.tsx"
+/>
+
+<ComponentSource
+  styleName="base-nova"
+  name="data-grid-table-dnd"
+  title="components/reui/data-grid/data-grid-table-dnd.tsx"
+/>
+
+<ComponentSource
+  styleName="base-nova"
+  name="data-grid-table-dnd-rows"
+  title="components/reui/data-grid/data-grid-table-dnd-rows.tsx"
+/>
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  DataGrid,
+  DataGridContainer,
+  DataGridPagination,
+  DataGridTable,
+} from "@/components/reui/data-grid"
+```
+
+```tsx
+const table = useReactTable({
+  data,
+  columns,
+  getCoreRowModel: getCoreRowModel(),
+})
+
+return (
+  <DataGrid table={table} recordCount={data.length}>
+    <DataGridContainer>
+      <DataGridTable />
+    </DataGridContainer>
+    <DataGridPagination />
+  </DataGrid>
+)
+```
+
+## Examples
+
+### Cell Border
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-data-grid-2"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Dense Table
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-data-grid-3"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Light Table
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-data-grid-4"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Striped Table
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-data-grid-5"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Auto Width
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-data-grid-6"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Row Selection
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-data-grid-7"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Expandable Row
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-data-grid-8"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Sub Data Grid
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-data-grid-9"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Column Icons
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-data-grid-10"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Sortable Columns
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-data-grid-11"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Movable Columns
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-data-grid-12"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Draggable Columns
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-data-grid-13"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Draggable Rows
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-data-grid-14"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Resizable Columns
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-data-grid-15"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Pinnable Columns
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-data-grid-16"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Sticky Header
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-data-grid-17"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Column Controls
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-data-grid-18"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Card Container
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-data-grid-19"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Column Visibility
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-data-grid-20"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Loading Skeleton
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-data-grid-21"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### CRUD
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-data-grid-22"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+## API Reference
+
+### DataGrid
+
+The root component that provides the table context.
+
+| Prop              | Type                      | Default               | Description                                           |
+| :---------------- | :------------------------ | :-------------------- | :---------------------------------------------------- |
+| `table`           | `Table<TData>`            | -                     | `Required`. The TanStack Table instance.              |
+| `recordCount`     | `number`                  | -                     | `Required`. Total number of records.                  |
+| `isLoading`       | `boolean`                 | `false`               | Whether the table is in a loading state.              |
+| `loadingMode`     | `"skeleton" \| "spinner"` | `"skeleton"`          | The visual style of the loading state.                |
+| `loadingMessage`  | `ReactNode \| string`     | `"Loading..."`        | Message to display when `loadingMode` is `"spinner"`. |
+| `emptyMessage`    | `ReactNode \| string`     | `"No data available"` | Message to display when the table is empty.           |
+| `onRowClick`      | `(row: TData) => void`    | -                     | Callback function triggered when a row is clicked.    |
+| `tableLayout`     | `DataGridTableLayout`     | -                     | Configuration for table layout and features.          |
+| `tableClassNames` | `DataGridTableClassNames` | -                     | Custom CSS classes for various table parts.           |
+| `className`       | `string`                  | -                     | Additional CSS classes for the root grid component.   |
+
+---
+
+### DataGridTableLayout
+
+Configuration object for the table's behavior and appearance.
+
+| Property            | Type                | Default   | Description                                                 |
+| :------------------ | :------------------ | :-------- | :---------------------------------------------------------- |
+| `dense`             | `boolean`           | `false`   | Whether to use dense padding for cells.                     |
+| `cellBorder`        | `boolean`           | `false`   | Whether to show vertical borders between cells.             |
+| `rowBorder`         | `boolean`           | `true`    | Whether to show horizontal borders between rows.            |
+| `rowRounded`        | `boolean`           | `false`   | Whether to add rounded corners to rows.                     |
+| `stripped`          | `boolean`           | `false`   | Whether to use zebra-striping for rows.                     |
+| `headerBackground`  | `boolean`           | `true`    | Whether to show a background color for the header.          |
+| `headerBorder`      | `boolean`           | `true`    | Whether to show a border below the header.                  |
+| `headerSticky`      | `boolean`           | `false`   | Whether the header should be sticky during scroll.          |
+| `width`             | `"auto" \| "fixed"` | `"fixed"` | The table layout algorithm (`table-auto` vs `table-fixed`). |
+| `columnsVisibility` | `boolean`           | `false`   | Enables column visibility toggling.                         |
+| `columnsResizable`  | `boolean`           | `false`   | Enables column resizing.                                    |
+| `columnsPinnable`   | `boolean`           | `false`   | Enables column pinning.                                     |
+| `columnsMovable`    | `boolean`           | `false`   | Enables moving columns via menu.                            |
+| `columnsDraggable`  | `boolean`           | `false`   | Enables drag-and-drop for columns.                          |
+| `rowsDraggable`     | `boolean`           | `false`   | Enables drag-and-drop for rows.                             |
+
+---
+
+### DataGridTableClassNames
+
+Custom CSS classes for different parts of the table.
+
+| Property       | Type     | Default | Description                                        |
+| :------------- | :------- | :------ | :------------------------------------------------- |
+| `base`         | `string` | -       | CSS classes for the `<table>` element.             |
+| `header`       | `string` | -       | CSS classes for the `<thead>` element.             |
+| `headerRow`    | `string` | -       | CSS classes for header rows.                       |
+| `headerSticky` | `string` | -       | CSS classes for sticky header state.               |
+| `body`         | `string` | -       | CSS classes for the `<tbody>` element.             |
+| `bodyRow`      | `string` | -       | CSS classes for body rows.                         |
+| `footer`       | `string` | -       | CSS classes for the `<tfoot>` element.             |
+| `edgeCell`     | `string` | -       | CSS classes for the first and last cells in a row. |
+
+---
+
+### DataGridContainer
+
+A scrollable container for the table.
+
+| Prop        | Type      | Default | Description                                    |
+| :---------- | :-------- | :------ | :--------------------------------------------- |
+| `border`    | `boolean` | `true`  | Whether to show a border around the container. |
+| `className` | `string`  | -       | Additional CSS classes for the container.      |
+
+---
+
+### DataGridTable
+
+The component that renders the actual HTML table. It automatically handles data rendering, loading states (skeletons/spinners), and empty states based on the parent `DataGrid` configuration.
+
+---
+
+### DataGridPagination
+
+The component for table pagination controls.
+
+| Prop                | Type       | Default                      | Description                                           |
+| :------------------ | :--------- | :--------------------------- | :---------------------------------------------------- |
+| `sizes`             | `number[]` | `[5, 10, 25, 50, 100]`       | Array of available page sizes.                        |
+| `sizesLabel`        | `string`   | `"Show"`                     | Label for the page size selector.                     |
+| `sizesDescription`  | `string`   | `"per page"`                 | Description following the page size selector.         |
+| `rowsPerPageLabel`  | `string`   | `"Rows per page"`            | Accessible label for the rows per page selector.      |
+| `info`              | `string`   | `"{from} - {to} of {count}"` | Template for displaying record info.                  |
+| `more`              | `boolean`  | `false`                      | Whether to show ellipsis for more pages.              |
+| `moreLimit`         | `number`   | `5`                          | The number of page buttons to show before truncating. |
+| `previousPageLabel` | `string`   | `"Go to previous page"`      | Accessible label for the previous page button.        |
+| `nextPageLabel`     | `string`   | `"Go to next page"`          | Accessible label for the next page button.            |
+| `ellipsisText`      | `string`   | `"..."`                      | Text to display for the ellipsis button.              |
+| `className`         | `string`   | -                            | Additional CSS classes for the pagination container.  |
+
+---
+
+### DataGridColumnHeader
+
+A flexible column header component with built-in support for sorting, pinning, and moving columns.
+
+| Prop         | Type                    | Default | Description                                                |
+| :----------- | :---------------------- | :------ | :--------------------------------------------------------- |
+| `column`     | `Column<TData, TValue>` | -       | `Required`. The TanStack Column instance.                  |
+| `title`      | `string`                | -       | The title to display in the header.                        |
+| `icon`       | `ReactNode`             | -       | Optional icon to display next to the title.                |
+| `filter`     | `ReactNode`             | -       | Optional filter component to display in the header menu.   |
+| `visibility` | `boolean`               | `false` | Whether to include column visibility controls in the menu. |
+
+---
+
+### DataGridColumnFilter
+
+A popover-based multi-select filter for columns.
+
+| Prop      | Type                                                            | Default | Description                                       |
+| :-------- | :-------------------------------------------------------------- | :------ | :------------------------------------------------ |
+| `column`  | `Column<TData, TValue>`                                         | -       | The TanStack Column instance to filter.           |
+| `title`   | `string`                                                        | -       | The title for the filter trigger and placeholder. |
+| `options` | `Array<{ label: string, value: string, icon?: ComponentType }>` | -       | `Required`. The list of options to filter by.     |
+
+---
+
+### DataGridColumnVisibility
+
+A dropdown component to toggle column visibility.
+
+| Prop      | Type           | Default | Description                                              |
+| :-------- | :------------- | :------ | :------------------------------------------------------- |
+| `table`   | `Table<TData>` | -       | `Required`. The TanStack Table instance.                 |
+| `trigger` | `ReactElement` | -       | `Required`. The trigger element for the visibility menu. |
+
+---
+
+### DataGridTableDnd
+
+Used for enabling column drag-and-drop reordering.
+
+| Prop            | Type                            | Default | Description                                                       |
+| :-------------- | :------------------------------ | :------ | :---------------------------------------------------------------- |
+| `handleDragEnd` | `(event: DragEndEvent) => void` | -       | `Required`. Callback triggered when a column drag operation ends. |
+
+---
+
+### DataGridTableDndRows
+
+Used for enabling row drag-and-drop reordering.
+
+| Prop            | Type                            | Default | Description                                                        |
+| :-------------- | :------------------------------ | :------ | :----------------------------------------------------------------- |
+| `dataIds`       | `UniqueIdentifier[]`            | -       | `Required`. Array of unique identifiers for the current page data. |
+| `handleDragEnd` | `(event: DragEndEvent) => void` | -       | `Required`. Callback triggered when a row drag operation ends.     |

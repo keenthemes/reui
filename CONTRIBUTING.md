@@ -75,13 +75,13 @@ feat(components): add new prop to the avatar component
    git push origin feature-branch
    ```
 4. Open a pull request:
-   - Go to the [reui GitHub repository](https://github.com/keenthemes/reui.git).
+   - Go to the [ReUI GitHub repository](https://github.com/keenthemes/reui.git).
    - Click on 'New Pull Request'.
    - Select your branch and submit the PR.
 
 ## Code Review
 
-Code is reviewed under strict terms to make sure it matches reui code standards and design guidelines.
+Code is reviewed under strict terms to make sure it matches ReUI code standards and design guidelines.
 
 ---
 

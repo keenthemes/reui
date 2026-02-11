@@ -1,0 +1,89 @@
+---
+title: Number Field
+description: A numeric input element with increment and decrement buttons, and a scrub area.
+component: true
+base: radix
+links:
+  api: https://base-ui.com/react/components/number-field#api-reference
+---
+
+<ComponentPreview styleName="base-nova" name="p-number-field-1" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash component
+npx shadcn@latest add @reui/number-field
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  styleName="base-nova"
+  name="number-field"
+  title="components/reui/number-field.tsx"
+/>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  NumberField,
+  NumberFieldDecrement,
+  NumberFieldGroup,
+  NumberFieldIncrement,
+  NumberFieldInput,
+  NumberFieldScrubArea,
+} from "@/components/ui/number-field"
+```
+
+```tsx
+<NumberField defaultValue={0}>
+  <NumberFieldScrubArea label="Quantity" />
+  <NumberFieldGroup>
+    <NumberFieldDecrement />
+    <NumberFieldInput />
+    <NumberFieldIncrement />
+  </NumberFieldGroup>
+</NumberField>
+```
+
+## Examples
+
+### Size
+
+<ComponentPreview styleName="base-nova" name="p-number-field-2" />
+
+### With Action Buttons
+
+<ComponentPreview styleName="base-nova" name="p-number-field-3" />
+
+### With Extended Message
+
+<ComponentPreview styleName="base-nova" name="p-number-field-4" />

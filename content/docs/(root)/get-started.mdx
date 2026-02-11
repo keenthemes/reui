@@ -1,0 +1,52 @@
+---
+title: Get Started
+description: A quick guide to adding ReUI components to your application.
+---
+
+This guide walks you through the essential steps to seamlessly integrate ReUI into your shadcn project.
+
+## Prerequisites
+
+ReUI is built on the latest **React 19** and [Tailwind CSS v4](https://tailwindcss.com). Ensure your project is set up with these technologies before proceeding.
+We recommend following the [Official shadcn/ui Installation Guide](https://ui.shadcn.com/docs/installation) to prepare your environment.
+
+## Setup ReUI Registry
+
+Add the ReUI registry namespace to your `components.json`. Learn more about registry config from [shadcn registry docs](https://ui.shadcn.com/docs/registry).
+
+```json
+{
+  "registries": {
+    "@reui": "https://reui.io/r/{style}/{name}.json"
+  }
+}
+```
+
+## Components & Patterns
+
+You can integrate ReUI components & patterns using the [**shadcn CLI**](https://ui.shadcn.com/docs/cli) for automation or by manual installation for full control.
+Both methods support our entire collection of [Components](/docs/) and [Patterns](/patterns).
+
+## Styling
+
+ReUI extends the official shadcn/ui theming system with additional semantic tokens that enable precise, context-aware UI states:
+
+- `--destructive-foreground`: Used for high-contrast destructive actions and error states.
+- `--info` & `--info-foreground`: Semantic colors for informational alerts and badges.
+- `--success` & `--success-foreground`: Semantic colors for success indicators and positive states.
+- `--warning` & `--warning-foreground`: Semantic colors for cautionary callouts and warnings.
+- `--invert` & `--invert-foreground`: Semantic colors for inverse states.
+
+This setup our custom color tokens, see the [Styling Guide](/docs/styling).
+
+## Base UI and Radix UI Support
+
+We understand that different projects have different needs. ReUI is built to be primitive-agnostic, offering both [Base UI](https://base-ui.com) and [Radix UI](https://www.radix-ui.com)
+versions for each entry in our registry. This allows you to maintain consistency while choosing the library that best fits your technical requirements.
+
+## AI-Enhanced Workflow
+
+ReUI is designed from the ground up to be **AI-friendly**, making it easier for language models to understand and modify your UI.
+
+- **llms.txt**: Access our [llms.txt](/llms.txt) file for a structured map of our documentation and architecture optimized for AI agents.
+- **Copy Markdown**: Every page includes a **Copy Markdown** feature, allowing you to instantly feed documentation or code into your AI-driven development workflows.

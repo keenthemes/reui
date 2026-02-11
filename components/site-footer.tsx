@@ -1,59 +1,40 @@
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { Separator } from '@/registry/default/ui/separator';
-import { trackEvent } from '@/lib/analytics';
-import { cn } from '@/lib/utils';
+import Link from "next/link"
+
+import { cn } from "@/lib/utils"
+import { Separator } from "@/components/ui/separator"
 
 export function SiteFooter() {
-  const pathname = usePathname();
-
-  const handleLinkClick = (linkName: string) => {
-    trackEvent({
-      name: `site_footer_${linkName}_link_click`,
-      properties: {
-        category: 'navigation',
-        label: `Footer ${linkName} Click`,
-        destination: linkName === 'keenthemes' ? 'https://keenthemes.com' : '/privacy-policy',
-      },
-    });
-  };
-
   return (
-    <footer className="border-t border-border py-5 md:py-0">
-      <div
-        className={cn(
-          'flex flex-col items-center justify-between gap-4 md:h-16 py-4 md:flex-row',
-          pathname.includes('blocks') ? 'container-fluid' : 'container',
-        )}
-      >
-        <div className="text-balance text-center text-sm leading-loose text-muted-foreground md:text-left">
-          &copy;
-          {new Date().getFullYear()} ReUI. All rights reserved.
-        </div>
+    <footer className="group-has-[.section-soft]/body:bg-surface/40 3xl:fixed:bg-transparent group-has-[.docs-nav]/body:pb-20 group-has-[[data-variant=sidebar][data-state=expanded]]/body:ml-[16rem] group-has-[.docs-nav]/body:sm:pb-0 dark:bg-transparent">
+      <div className={cn("container-wrapper")}>
+        <div className="container flex flex-col items-center justify-between gap-2 py-4 group-has-[.docs-nav]/body:max-w-none group-has-[.docs-nav]/body:px-0 md:h-16 md:flex-row md:gap-4">
+          <div className="text-muted-foreground order-2 text-center text-sm leading-loose text-balance md:order-1 md:flex-none md:text-left">
+            &copy;
+            {new Date().getFullYear()} ReUI. All rights reserved.
+          </div>
 
-        <div className="flex items-center gap-2.5 text-balance text-sm leading-loose">
-          <div className="inline-flex gap-1 items-center">
-            <span className="text-muted-foreground">A project by</span>{' '}
+          <div className="order-1 flex items-center gap-2.5 text-sm leading-loose text-balance md:order-2">
+            <div className="inline-flex items-center gap-1">
+              <span className="text-muted-foreground">A project by</span>{" "}
+              <Link
+                className="text-foreground font-medium hover:underline hover:underline-offset-2"
+                href="https://keenthemes.com"
+                target="_blank"
+              >
+                Keenthemes
+              </Link>
+            </div>
+            <Separator orientation="vertical" className="h-4!" />
             <Link
-              className="font-medium text-foreground hover:underline hover:underline-offset-2"
-              href="https://keenthemes.com"
+              className="text-foreground font-medium hover:underline hover:underline-offset-2"
+              href="https://keenthemes.studio"
               target="_blank"
-              onClick={() => handleLinkClick('keenthemes')}
             >
-              Keenthemes
+              Hire Us
             </Link>
           </div>
-          <Separator orientation="vertical" className="h-4" />
-          <Link
-            className="font-medium text-foreground hover:underline hover:underline-offset-2"
-            href="https://keenthemes.studio"
-            target="_blank"
-            onClick={() => handleLinkClick('hireus')}
-          >
-            Hire Us
-          </Link>
         </div>
       </div>
     </footer>
-  );
+  )
 }

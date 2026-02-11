@@ -1,6 +1,6 @@
-## Overview ReUI v1
+## Overview
 
-Open-source collection of UI components and animated effects built with React, Typescript, Tailwind CSS, and Motion. Pairs beautifully with shadcn/ui.
+Free & open-source library of 1,000+ components and patterns to 10x your productivity in shadcn projects.
 
 **Live Demo** → [https://reui.io](https://reui.io)
 

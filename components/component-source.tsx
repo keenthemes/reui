@@ -1,168 +1,212 @@
-'use client';
+import fs from "node:fs/promises"
+import path from "node:path"
+import * as React from "react"
 
-import React, { ReactNode, useState } from 'react';
-import { useCopyToClipboard } from '@/registry/default/hooks/use-copy-to-clipboard';
-import { cn } from '@/registry/default/lib/utils';
-import { Button } from '@/registry/default/ui/button';
-import { Check, Copy } from 'lucide-react';
-import { trackCodeCopy } from '@/lib/analytics';
+import { transformStyleClassNames } from "@/lib/code-utils"
+import { highlightCode } from "@/lib/highlight-code"
+import { transformIcons } from "@/lib/icons"
+import {
+  getIconLibraryForStyle,
+  getRegistryItemForApi,
+} from "@/lib/registry-server"
+import { cn } from "@/lib/utils"
+import { CodeCollapsibleWrapper } from "@/components/code-collapsible-wrapper"
+import { CopyButton } from "@/components/copy-button"
+import { getIconForLanguageExtension } from "@/components/icons"
+import { IconLibraryName } from "@/registry/config"
 
-type ComponentSourceContext = {
-  name: string;
-  highlightedCode: string;
-  code: string;
-  codeHeight?: number;
-  collapsedHeight?: number;
-  codeCollapsed: boolean;
-  toggleCodeCollapsed: () => void;
-  children: ReactNode;
-};
+import { ComponentSourceClient } from "./component-source-client"
 
-export interface ComponentSourceProps {
-  name: string;
-  code: string;
-  highlightedCode: string;
-  codeHeight?: number;
-  collapsedHeight?: number;
-  codeCollapsed?: boolean;
-}
+// Default styleName - matches the API default
+const DEFAULT_STYLE_NAME = "radix-nova"
 
-const ComponentSourceContext = React.createContext<ComponentSourceContext | null>(null);
-
-export function useComponentSource() {
-  const context = React.useContext(ComponentSourceContext);
-  if (!context) {
-    throw new Error('useComponentSource must be used within a ComponentSourceProvider.');
-  }
-  return context;
-}
-
-function ComponentSourceProvider({
+export async function ComponentSource({
   name,
-  code,
-  highlightedCode,
-  codeHeight = 300,
-  collapsedHeight = 100, // Default collapsed height
-  codeCollapsed = false,
-  children,
-}: ComponentSourceProps & { children: ReactNode }) {
-  const [isCodeCollapsed, setIsCodeCollapsed] = useState(codeCollapsed);
-
-  const toggleCodeCollapsed = () => setIsCodeCollapsed((prev) => !prev);
-
-  return (
-    <ComponentSourceContext.Provider
-      value={{
-        name,
-        code,
-        highlightedCode,
-        codeHeight,
-        collapsedHeight,
-        codeCollapsed: isCodeCollapsed,
-        toggleCodeCollapsed,
-        children,
-      }}
-    >
-      <div
-        className="group/block-view-wrapper flex min-w-0 flex-col items-stretch gap-4"
-        style={
-          {
-            '--height': `${codeHeight}px`,
-            '--collapsed-height': `${collapsedHeight}px`,
-            overflow: isCodeCollapsed ? 'hidden' : 'visible',
-          } as React.CSSProperties
-        }
-      >
-        {children}
-      </div>
-    </ComponentSourceContext.Provider>
-  );
-}
-
-function PreviewCopyCodeButton() {
-  const { code, name } = useComponentSource();
-  const { copy, copied } = useCopyToClipboard();
-  const btnClass = 'h-6 w-6 rounded-md p-0 text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50 absolute top-4 end-4';
-  const btnIconClass = 'h-3.5 w-3.5';
-
-  return (
-    <Button
-      mode="icon"
-      size="sm"
-      variant="ghost"
-      className={btnClass}
-      onClick={() => {
-        copy(code);
-        trackCodeCopy(name);
-      }}
-    >
-      {copied ? <Check className={btnIconClass} /> : <Copy className={btnIconClass} />}
-    </Button>
-  );
-}
-
-function PreviewCollapseToggleButton() {
-  const { codeCollapsed, toggleCodeCollapsed } = useComponentSource();
-
-  return (
-    <div className="absolute bottom-0 start-0 end-0 flex items-center justify-center z-10 h-16 w-full select-none bg-gradient-to-b from-transparent to-neutral-800 dark:to-bg-neutral-900">
-      <Button
-        size="sm"
-        variant="outline"
-        className="border-border/10 bg-zinc-900 hover:bg-zinc-800 text-zinc-50  hover:text-zinc-50"
-        onClick={toggleCodeCollapsed}
-      >
-        {codeCollapsed ? 'Show more' : 'Show less'}
-      </Button>
-    </div>
-  );
-}
-
-function ComponentSourceCode() {
-  const { highlightedCode, codeCollapsed } = useComponentSource();
-
-  return (
-    <div>
-      <div className={cn('relative overflow-hidden rounded-xl bg-neutral-950 dark:bg-neutral-900 text-white')}>
-        <div
-          data-rehype-pretty-code-fragment
-          dangerouslySetInnerHTML={{ __html: highlightedCode || '' }}
-          className={cn(
-            'relative [tab-size:2] flex-1 overflow-hidden after:absolute after:inset-y-0 after:left-0 after:w-10 after:bg-neutral-950 dark:after:bg-neutral-900 [&_.line:before]:sticky [&_.line:before]:left-2 [&_.line:before]:z-10 [&_.line:before]:translate-y-[-1px] [&_.line:before]:pr-1 [&_pre]:max-h-(--height) [&_pre]:overflow-auto [&_pre]:!bg-transparent [&_pre]:pt-4 [&_pre]:font-mono [&_pre]:text-sm [&_pre]:leading-relaxed',
-            codeCollapsed ? '[&_pre]:max-h-[var(--collapsed-height)]' : '[&_pre]:max-h-[var(--height)]',
-          )}
-        />
-        <PreviewCopyCodeButton />
-        <PreviewCollapseToggleButton />
-      </div>
-    </div>
-  );
-}
-
-export function ComponentSource({
-  name,
-  code,
-  highlightedCode,
-  codeHeight = 800,
-  collapsedHeight = 300,
-  codeCollapsed = true,
-}: ComponentSourceProps) {
-  if (!code) {
-    return null;
-  }
-
-  return (
-    <div className="pt-3.5 mb-14">
-      <ComponentSourceProvider
+  src,
+  title,
+  language,
+  collapsible = true,
+  className,
+  styleName = DEFAULT_STYLE_NAME,
+  iconLibrary = "lucide",
+  maxLines,
+  code: initialCode,
+  async = false,
+  eventName,
+}: React.ComponentProps<"div"> & {
+  name?: string
+  src?: string
+  title?: string
+  language?: string
+  collapsible?: boolean
+  styleName?: string
+  iconLibrary?: IconLibraryName
+  maxLines?: number
+  code?: string
+  async?: boolean
+  eventName?: "copy_pattern_code" | "copy_component_code"
+}) {
+  if (async) {
+    return (
+      <ComponentSourceClient
         name={name}
+        src={src}
+        title={title}
+        language={language}
+        collapsible={collapsible}
+        className={className}
+        styleName={styleName}
+        iconLibrary={iconLibrary}
+        maxLines={maxLines}
+        code={initialCode}
+        eventName={eventName}
+      />
+    )
+  }
+
+  let code = initialCode
+
+  if (code) {
+    // Transform classNames for display
+    code = transformStyleClassNames(code, styleName)
+
+    // Transform icons for display if code is provided via prop (e.g. from rehype)
+    const effectiveIconLibrary =
+      iconLibrary || getIconLibraryForStyle(styleName)
+    code = transformIcons(code, effectiveIconLibrary)
+  }
+
+  if (!code && name) {
+    // Use the new API-based registry function that handles all transformations
+    const item = await getRegistryItemForApi(name, styleName)
+    code = item?.files?.[0]?.content
+
+    if (code) {
+      // Transform icons for display
+      const effectiveIconLibrary =
+        iconLibrary || getIconLibraryForStyle(styleName)
+      code = transformIcons(code, effectiveIconLibrary)
+    }
+  }
+
+  if (!code && src) {
+    const projectRoot = process.cwd()
+    let absolutePath: string
+    if (src.startsWith("registry/")) {
+      absolutePath = path.join(projectRoot, "registry", src.slice(9))
+    } else if (src.startsWith("registry-reui/")) {
+      absolutePath = path.join(projectRoot, "registry-reui", src.slice(14))
+    } else {
+      absolutePath = path.join(projectRoot, src)
+    }
+
+    try {
+      code = await fs.readFile(absolutePath, "utf-8")
+
+      // Transform classNames for display
+      code = transformStyleClassNames(code, styleName)
+
+      // Transform icons for file-based source
+      const effectiveIconLibrary =
+        iconLibrary || getIconLibraryForStyle(styleName)
+      code = transformIcons(code, effectiveIconLibrary)
+    } catch (error) {
+      console.error(`Error reading file: ${absolutePath}`, error)
+    }
+  }
+
+  if (!code) {
+    return null
+  }
+
+  // Clean up any remaining artifacts
+  code = code.replaceAll("/* eslint-disable react/no-children-prop */\n", "")
+
+  if (maxLines) {
+    code = code.split("\n").slice(0, maxLines).join("\n")
+  }
+
+  const lang = language ?? title?.split(".").pop() ?? "tsx"
+  const highlightedCode = await highlightCode(code, lang)
+
+  const effectiveEventName =
+    eventName ||
+    (name?.startsWith("p-") ? "copy_pattern_code" : "copy_component_code")
+
+  if (!collapsible) {
+    return (
+      <div className={cn("relative", className)}>
+        <ComponentCode
+          code={code}
+          highlightedCode={highlightedCode}
+          language={lang}
+          title={title}
+          eventName={effectiveEventName}
+          name={name}
+          styleName={styleName}
+          iconLibrary={iconLibrary}
+        />
+      </div>
+    )
+  }
+
+  return (
+    <CodeCollapsibleWrapper className={className}>
+      <ComponentCode
         code={code}
         highlightedCode={highlightedCode}
-        codeHeight={codeHeight}
-        collapsedHeight={collapsedHeight}
-        codeCollapsed={codeCollapsed}
-      >
-        <ComponentSourceCode />
-      </ComponentSourceProvider>
-    </div>
-  );
+        language={lang}
+        title={title}
+        eventName={effectiveEventName}
+        name={name}
+        styleName={styleName}
+        iconLibrary={iconLibrary}
+      />
+    </CodeCollapsibleWrapper>
+  )
+}
+
+function ComponentCode({
+  code,
+  highlightedCode,
+  language,
+  title,
+  eventName,
+  name,
+  styleName,
+  iconLibrary,
+}: {
+  code: string
+  highlightedCode: string
+  language: string
+  title: string | undefined
+  eventName?: string
+  name?: string
+  styleName?: string
+  iconLibrary?: string
+}) {
+  return (
+    <figure data-rehype-pretty-code-figure="" className="[&>pre]:max-h-96">
+      {title && (
+        <figcaption
+          data-rehype-pretty-code-title=""
+          className="text-code-foreground [&_svg]:text-code-foreground flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70"
+          data-language={language}
+        >
+          {getIconForLanguageExtension(language)}
+          {title}
+        </figcaption>
+      )}
+      <CopyButton
+        value={code}
+        event={eventName as any}
+        properties={{
+          name,
+          style: styleName,
+          iconLibrary: iconLibrary,
+        }}
+      />
+      <div dangerouslySetInnerHTML={{ __html: highlightedCode }} />
+    </figure>
+  )
 }

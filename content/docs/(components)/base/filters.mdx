@@ -1,0 +1,229 @@
+---
+title: Filters
+description: A comprehensive filtering system with multiple filter types, operators, and visual indicators for data organization.
+component: true
+base: base
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-filters-1"
+  align="start"
+  className="**:[.preview]:h-auto"
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add @reui/filters
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash switch
+npm install @base-ui/react
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  styleName="base-nova"
+  name="filters"
+  title="components/reui/filters.tsx"
+/>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  createFilter,
+  Filters,
+  type Filter,
+  type FilterFieldConfig,
+} from "@/components/reui/filters"
+```
+
+```tsx
+const [filters, setFilters] = useState<Filter[]>([
+  createFilter("priority", "is_any_of", ["low", "medium"]),
+])
+
+const fields: FilterFieldConfig[] = [
+  {
+    key: "priority",
+    label: "Priority",
+    type: "multiselect",
+    options: [
+      { value: "low", label: "Low" },
+      { value: "medium", label: "Medium" },
+      { value: "high", label: "High" },
+    ],
+  },
+]
+
+return <Filters filters={filters} fields={fields} onChange={setFilters} />
+```
+
+## Examples
+
+### Validation
+
+<ComponentPreview styleName="base-nova" name="p-filters-2" align="start" />
+
+### Trigger Button
+
+<ComponentPreview styleName="base-nova" name="p-filters-3" align="start" />
+
+### Small Size
+
+<ComponentPreview styleName="base-nova" name="p-filters-4" align="start" />
+
+### Large Size
+
+<ComponentPreview styleName="base-nova" name="p-filters-5" align="start" />
+
+### Custom Controls
+
+<ComponentPreview styleName="base-nova" name="p-filters-6" align="start" />
+
+### Data Grid
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-filters-7"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Nuqs
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-filters-8"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### With i18n Support
+
+<ComponentPreview styleName="base-nova" name="p-filters-9" align="start" />
+
+## API Reference
+
+### Filters
+
+The main component for displaying and managing a collection of active filters.
+
+| Prop                 | Type                             | Default     | Description                                                             |
+| :------------------- | :------------------------------- | :---------- | :---------------------------------------------------------------------- |
+| `filters`            | `Filter<T>[]`                    | -           | `Required`. The array of active filters.                                |
+| `fields`             | `FilterFieldsConfig<T>`          | -           | `Required`. The configuration for available filter fields.              |
+| `onChange`           | `(filters: Filter<T>[]) => void` | -           | `Required`. Callback fired when filters are added, updated, or removed. |
+| `size`               | `"sm" \| "default" \| "lg"`      | `"default"` | The size of the filter items and controls.                              |
+| `trigger`            | `ReactNode`                      | -           | Custom element to trigger the "Add Filter" menu.                        |
+| `showSearchInput`    | `boolean`                        | `true`      | Whether to show the search input in the "Add Filter" menu.              |
+| `allowMultiple`      | `boolean`                        | `true`      | Whether to allow multiple filters for the same field.                   |
+| `enableShortcut`     | `boolean`                        | `false`     | Whether to enable the keyboard shortcut to open the filter menu.        |
+| `shortcutKey`        | `string`                         | `"f"`       | The key used for the shortcut (e.g., "f").                              |
+| `shortcutLabel`      | `string`                         | `"F"`       | The label to display in the shortcut indicator.                         |
+| `i18n`               | `Partial<FilterI18nConfig>`      | -           | Custom labels and operators for internationalization.                   |
+| `className`          | `string`                         | -           | Additional CSS classes for the container.                               |
+| `menuPopupClassName` | `string`                         | -           | Additional CSS classes for the filter dropdown menu.                    |
+
+---
+
+### FilterFieldConfig
+
+Configuration for an individual filterable field.
+
+| Property              | Type                                                             | Description                                               |
+| :-------------------- | :--------------------------------------------------------------- | :-------------------------------------------------------- |
+| `key`                 | `string`                                                         | `Required`. Unique identifier for the field.              |
+| `label`               | `string`                                                         | `Required`. Human-readable label for the field.           |
+| `type`                | `"text" \| "select" \| "multiselect" \| "custom" \| "separator"` | The type of filter input to use.                          |
+| `icon`                | `ReactNode`                                                      | Optional icon to display next to the field label.         |
+| `options`             | `FilterOption<T>[]`                                              | List of options for `select` and `multiselect` fields.    |
+| `operators`           | `FilterOperator[]`                                               | Custom operators for this specific field.                 |
+| `defaultOperator`     | `string`                                                         | The operator to select by default when adding this field. |
+| `placeholder`         | `string`                                                         | Placeholder text for text inputs.                         |
+| `searchable`          | `boolean`                                                        | Whether the options list should be searchable.            |
+| `maxSelections`       | `number`                                                         | Maximum number of items allowed in `multiselect`.         |
+| `prefix`              | `ReactNode \| string`                                            | Prefix element for the input field.                       |
+| `suffix`              | `ReactNode \| string`                                            | Suffix element for the input field.                       |
+| `pattern`             | `string`                                                         | Regex pattern for text input validation.                  |
+| `validation`          | `(value) => boolean \| object`                                   | Custom validation function.                               |
+| `customRenderer`      | `(props) => ReactNode`                                           | Custom renderer for the filter value selector.            |
+| `customValueRenderer` | `(values, options) => ReactNode`                                 | Custom renderer for the active filter value display.      |
+| `fields`              | `FilterFieldConfig<T>[]`                                         | Nested fields if this is a group configuration.           |
+| `group`               | `string`                                                         | Group label if this is a group configuration.             |
+| `className`           | `string`                                                         | Additional CSS classes for the field components.          |
+
+---
+
+### FilterOption
+
+Structure for options in `select` and `multiselect` fields.
+
+| Property    | Type        | Description                                      |
+| :---------- | :---------- | :----------------------------------------------- |
+| `value`     | `T`         | `Required`. The internal value of the option.    |
+| `label`     | `string`    | `Required`. Human-readable label for the option. |
+| `icon`      | `ReactNode` | Optional icon to display next to the option.     |
+| `className` | `string`    | Additional CSS classes for the option item.      |
+
+---
+
+### Filter
+
+The structure of an active filter object.
+
+| Property   | Type     | Description                                      |
+| :--------- | :------- | :----------------------------------------------- |
+| `id`       | `string` | Unique identifier for the filter instance.       |
+| `field`    | `string` | The `key` of the associated field configuration. |
+| `operator` | `string` | The selected operator (e.g., "is", "contains").  |
+| `values`   | `T[]`    | The current value(s) of the filter.              |
+
+---
+
+### FilterI18nConfig
+
+Configuration for internationalization and custom labels.
+
+| Property       | Type     | Description                                |
+| :------------- | :------- | :----------------------------------------- |
+| `addFilter`    | `string` | Label for the "Add Filter" button.         |
+| `searchFields` | `string` | Placeholder for the field search input.    |
+| `operators`    | `object` | Map of operator keys to localized strings. |
+| `validation`   | `object` | Map of validation error messages.          |
+| `placeholders` | `object` | Map of dynamic placeholder templates.      |
+
+---
+
+### Helpers
+
+| Function            | Signature                                             | Description                                   |
+| :------------------ | :---------------------------------------------------- | :-------------------------------------------- |
+| `createFilter`      | `(field, operator?, values?) => Filter`               | Creates a new filter object with a unique ID. |
+| `createFilterGroup` | `(id, label, fields, initialFilters?) => FilterGroup` | Creates a filter group configuration.         |

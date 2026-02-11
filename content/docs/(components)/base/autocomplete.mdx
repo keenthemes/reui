@@ -1,0 +1,171 @@
+---
+title: Autocomplete
+description: An input that suggests options as you type.
+component: true
+base: base
+links:
+  api: https://base-ui.com/react/components/autocomplete
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-autocomplete-1"
+  className="[&_.preview>*]:w-full [&_.preview>*]:max-w-xs"
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add @reui/autocomplete
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  styleName="base-nova"
+  name="autocomplete"
+  title="components/reui/autocomplete.tsx"
+/>
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  Autocomplete,
+  AutocompleteContent,
+  AutocompleteEmpty,
+  AutocompleteInput,
+  AutocompleteItem,
+  AutocompleteList,
+} from "@/components/reui/autocomplete"
+```
+
+```tsx
+const items = [
+  { value: "apple", label: "Apple" },
+  { value: "banana", label: "Banana" },
+  { value: "orange", label: "Orange" },
+  { value: "grape", label: "Grape" },
+]
+
+<Autocomplete items={items}>
+  <AutocompleteInput placeholder="Search..." />
+  <AutocompleteContent>
+    <AutocompleteEmpty>No results found.</AutocompleteEmpty>
+    <AutocompleteList>
+      {(item) => <AutocompleteItem key={item.value} value={item}>{item.label}</AutocompleteItem>}
+    </AutocompleteList>
+  </AutocompleteContent>
+</Autocomplete>
+```
+
+## Examples
+
+### Disabled
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-autocomplete-2"
+  className="[&_.preview>*]:w-full [&_.preview>*]:max-w-xs"
+/>
+
+### Auto Highlight
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-autocomplete-3"
+  className="[&_.preview>*]:w-full [&_.preview>*]:max-w-xs"
+/>
+
+### With Label
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-autocomplete-4"
+  className="[&_.preview>*]:w-full [&_.preview>*]:max-w-xs"
+/>
+
+### With Clear Button
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-autocomplete-5"
+  className="[&_.preview>*]:w-full [&_.preview>*]:max-w-xs"
+/>
+
+### With Trigger Button
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-autocomplete-6"
+  className="[&_.preview>*]:w-full [&_.preview>*]:max-w-xs"
+/>
+
+### With Trigger and Clear Buttons
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-autocomplete-7"
+  className="[&_.preview>*]:w-full [&_.preview>*]:max-w-xs"
+/>
+
+### With Groups
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-autocomplete-8"
+  className="[&_.preview>*]:w-full [&_.preview>*]:max-w-xs"
+/>
+
+### Async Search
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-autocomplete-9"
+  className="[&_.preview>*]:w-full [&_.preview>*]:max-w-xs"
+/>
+
+### Size
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-autocomplete-10"
+  className="[&_.preview>*]:w-full [&_.preview>*]:max-w-xs"
+/>
+
+### Form
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-autocomplete-11"
+  className="[&_.preview>*]:w-full [&_.preview>*]:max-w-xs"
+/>

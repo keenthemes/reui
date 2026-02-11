@@ -1,0 +1,137 @@
+---
+title: Sortable
+description: A drag-and-drop sortable component designed for seamless item reordering with vertical, grid, and nested layouts.
+component: true
+base: radix
+---
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="p-sortable-1"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add @reui/r-sortable
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @dnd-kit/core @dnd-kit/sortable radix-ui
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  styleName="radix-nova"
+  name="sortable"
+  title="components/reui/sortable.tsx"
+/>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  Sortable,
+  SortableItem,
+  SortableItemHandle,
+} from "@/components/reui/r-sortable"
+```
+
+```tsx
+<Sortable
+  value={items}
+  onValueChange={setItems}
+  getItemValue={(item) => item.id}
+>
+  {items.map((item) => (
+    <SortableItem key={item.id} value={item.id}>
+      <SortableItemHandle>
+        <GripVertical />
+      </SortableItemHandle>
+      {item.content}
+    </SortableItem>
+  ))}
+</Sortable>
+```
+
+## Examples
+
+### Grid
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="p-sortable-2"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Nested
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="p-sortable-3"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+## API Reference
+
+### Sortable
+
+The root component that manages the sortable state and drag-and-drop context.
+
+| Prop            | Type                               | Default      | Description                                                 |
+| :-------------- | :--------------------------------- | :----------- | :---------------------------------------------------------- |
+| `value`         | `T[]`                              | -            | **Required**. The array of items to sort.                   |
+| `onValueChange` | `(value: T[]) => void`             | -            | **Required**. Callback fired when items are reordered.      |
+| `getItemValue`  | `(item: T) => string`              | -            | **Required**. Function to extract a unique ID from an item. |
+| `layout`        | `"vertical" \| "grid" \| "nested"` | `"vertical"` | The visual layout of the sortable list.                     |
+| `className`     | `string`                           | -            | Additional CSS classes for the container.                   |
+
+---
+
+### SortableItem
+
+An individual draggable item within the sortable list.
+
+| Prop        | Type      | Default | Description                                       |
+| :---------- | :-------- | :------ | :------------------------------------------------ |
+| `value`     | `string`  | -       | **Required**. The unique identifier for the item. |
+| `disabled`  | `boolean` | `false` | Whether the item is draggable.                    |
+| `className` | `string`  | -       | Additional CSS classes for the item.              |
+
+---
+
+### SortableItemHandle
+
+The drag handle for an individual sortable item.
+
+| Prop        | Type     | Default | Description                            |
+| :---------- | :------- | :------ | :------------------------------------- |
+| `className` | `string` | -       | Additional CSS classes for the handle. |

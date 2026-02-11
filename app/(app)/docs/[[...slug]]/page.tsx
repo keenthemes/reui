@@ -1,45 +1,43 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import { notFound } from 'next/navigation';
-import { cn } from '@/registry/default/lib/utils';
-import { Badge } from '@/registry/default/ui/badge';
-import { allDocs } from 'contentlayer/generated';
-import { ExternalLink } from 'lucide-react';
-import Balancer from 'react-wrap-balancer';
-import { siteConfig } from '@/config/site';
-import { resolveCode, resolveComponent } from '@/lib/docs';
-import { absoluteUrl } from '@/lib/helpers';
-import { getTableOfContents } from '@/lib/toc';
-import { DocsCopyPage } from '@/components/docs-copy-page';
-import { Mdx } from '@/components/mdx-components';
-import { DocsPager } from '@/components/pager';
-import { DashboardTableOfContents } from '@/components/toc';
+import Link from "next/link"
+import { notFound } from "next/navigation"
+import { getMDXComponents } from "@/mdx-components"
+import {
+  IconArrowLeft,
+  IconArrowRight,
+  IconArrowUpRight,
+} from "@tabler/icons-react"
+import fm from "front-matter"
+import { findNeighbour } from "fumadocs-core/page-tree"
+import { createRelativeLink } from "fumadocs-ui/mdx"
+import z from "zod"
 
-interface DocPageProps {
-  params: Promise<{
-    slug: string[];
-  }>;
+import { source } from "@/lib/source"
+import { absoluteUrl } from "@/lib/utils"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { DocsBaseSwitcher } from "@/components/docs-base-switcher"
+import { DocsCopyPage } from "@/components/docs-copy-page"
+import { DocsTableOfContents } from "@/components/docs-toc"
+
+export const revalidate = false
+export const dynamic = "force-static"
+export const dynamicParams = false
+
+export function generateStaticParams() {
+  return source.generateParams()
 }
 
-async function getDocFromParams({ params }: DocPageProps) {
-  const slug = (await params).slug?.join('/') || '';
+export async function generateMetadata(props: {
+  params: Promise<{ slug: string[] }>
+}) {
+  const params = await props.params
+  const page = source.getPage(params.slug)
 
-  // Normalize the slug to remove any folder wrapped in parentheses
-  const doc = allDocs.find((doc) => doc.slugAsParams.replace(/\(.*?\)\//g, '') === slug);
-
-  if (!doc) {
-    return null;
+  if (!page) {
+    notFound()
   }
 
-  return doc;
-}
-
-export async function generateMetadata({ params }: DocPageProps): Promise<Metadata> {
-  const doc = await getDocFromParams({ params });
-
-  if (!doc) {
-    return {};
-  }
+  const doc = page.data
 
   return {
     title: doc.title,
@@ -47,98 +45,184 @@ export async function generateMetadata({ params }: DocPageProps): Promise<Metada
     openGraph: {
       title: doc.title,
       description: doc.description,
-      type: 'article',
-      url: absoluteUrl(doc.slug),
+      type: "article",
+      url: absoluteUrl(page.url),
       images: [
         {
-          url: siteConfig.ogImage,
-          width: 1200,
-          height: 630,
-          alt: siteConfig.name,
+          url: `/og?title=${encodeURIComponent(
+            doc.title
+          )}&description=${encodeURIComponent(doc.description || "")}`,
         },
       ],
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title: doc.title,
       description: doc.description,
-      images: ['https://reui.io/brand/logo-default.png'],
-      creator: '@reui_io',
+      images: [
+        {
+          url: `/og?title=${encodeURIComponent(
+            doc.title
+          )}&description=${encodeURIComponent(doc.description || "")}`,
+        },
+      ],
+      creator: "@shadcn",
     },
-  };
+  }
 }
 
-export default async function DocPage({ params }: DocPageProps) {
-  const doc = await getDocFromParams({ params });
-
-  if (!doc) {
-    console.log('doc not found', params);
-    notFound();
+export default async function Page(props: {
+  params: Promise<{ slug: string[] }>
+}) {
+  const params = await props.params
+  const page = source.getPage(params.slug)
+  if (!page) {
+    notFound()
   }
 
-  const examples = await resolveComponent(doc.slugAsParams);
-  const code = await resolveCode(doc.slugAsParams);
-  const toc = await getTableOfContents(doc.body.raw);
+  const doc = page.data
+  const MDX = doc.body
+  const neighbours = findNeighbour(source.getPageTree(), page.url)
+
+  const raw = await page.data.getText("raw")
+  const { attributes } = fm(raw)
+  const { links, base, component } = z
+    .object({
+      links: z
+        .object({
+          doc: z.string().optional(),
+          api: z.string().optional(),
+        })
+        .optional(),
+      base: z.enum(["base", "radix"]).optional(),
+      component: z.boolean().optional(),
+    })
+    .parse(attributes)
+
+  // Extract component name from slug for the base switcher
+  // URL structure: /docs/base/{component} or /docs/radix/{component}
+  const isComponentDoc = component === true && base !== undefined
+  const componentName =
+    isComponentDoc && params.slug?.length >= 2 ? params.slug[1] : undefined
 
   return (
-    <main className="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_250px]">
-      <div className="mx-auto w-full min-w-0 max-w-3xl">
-        <div className="space-y-2.5">
-          <div className="flex items-center justify-between gap-2.5">
-            <div className="mb-2.5 flex flex-col items-start space-y-1">
-              <div className="text-sm  text-primary font-medium">
-                {doc.component ? 'Components' : 'Getting Started'}
+    <div className="flex items-stretch text-[1.05rem] sm:text-[15px] xl:w-full">
+      <div className="flex min-w-0 flex-1 flex-col">
+        <div className="h-(--top-spacing) shrink-0" />
+        <div className="mx-auto flex w-full max-w-2xl min-w-0 flex-1 flex-col gap-8 px-4 py-6 text-neutral-800 md:px-0 lg:py-8 dark:text-neutral-300">
+          <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2">
+              <div className="flex items-start justify-between">
+                <h1 className="scroll-m-20 text-4xl font-semibold tracking-tight sm:text-3xl xl:text-4xl">
+                  {doc.title}
+                </h1>
+                <div className="docs-nav bg-background/80 border-border/50 fixed inset-x-0 bottom-0 isolate z-50 flex items-center gap-2 border-t px-6 py-4 backdrop-blur-sm sm:static sm:z-0 sm:border-t-0 sm:bg-transparent sm:px-0 sm:pt-1.5 sm:backdrop-blur-none">
+                  <DocsCopyPage page={raw} url={absoluteUrl(page.url)} />
+
+                  {neighbours.previous && (
+                    <Button
+                      variant="secondary"
+                      size="icon"
+                      className="extend-touch-target ml-auto hidden size-8 shadow-none md:size-7"
+                      asChild
+                    >
+                      <Link href={neighbours.previous.url}>
+                        <IconArrowLeft />
+                        <span className="sr-only">Previous</span>
+                      </Link>
+                    </Button>
+                  )}
+                  {neighbours.next && (
+                    <Button
+                      variant="secondary"
+                      size="icon"
+                      className="extend-touch-target hidden size-8 shadow-none md:size-7"
+                      asChild
+                    >
+                      <Link href={neighbours.next.url}>
+                        <span className="sr-only">Next</span>
+                        <IconArrowRight />
+                      </Link>
+                    </Button>
+                  )}
+                </div>
               </div>
-              <h1 className={cn('text-3xl font-semibold tracking-tight text-foreground')}>{doc.title}</h1>
+              {doc.description && (
+                <p className="text-muted-foreground text-[1.05rem] sm:text-base">
+                  {doc.description}
+                </p>
+              )}
             </div>
-            <DocsCopyPage
-              page={doc.body.raw}
-              url={doc.slug === '/docs' || doc.slug === '/docs/' ? '/docs/index' : doc.slug}
+            {isComponentDoc && base && componentName && (
+              <DocsBaseSwitcher
+                base={base}
+                component={componentName}
+                className="mt-4"
+              />
+            )}
+            {links ? (
+              <div className="flex items-center gap-2 pt-4">
+                {links?.doc && (
+                  <Badge asChild variant="secondary" className="rounded-full">
+                    <a href={links.doc} target="_blank" rel="noreferrer">
+                      Docs <IconArrowUpRight />
+                    </a>
+                  </Badge>
+                )}
+                {links?.api && (
+                  <Badge asChild variant="secondary" className="rounded-full">
+                    <a href={links.api} target="_blank" rel="noreferrer">
+                      API Reference <IconArrowUpRight />
+                    </a>
+                  </Badge>
+                )}
+              </div>
+            ) : null}
+          </div>
+          <div className="w-full flex-1 *:data-[slot=alert]:first:mt-0">
+            <MDX
+              components={getMDXComponents({
+                a: createRelativeLink(source, page),
+              })}
             />
           </div>
-          <div className="space-y-2">
-            {doc.description && (
-              <p className="text-base text-secondary-foreground/60">
-                <span dangerouslySetInnerHTML={{ __html: doc.description }} />
-                <Balancer></Balancer>
-              </p>
-            )}
-          </div>
         </div>
-
-        {doc.links ? (
-          <div className="flex items-center space-x-2 pt-3">
-            {/* Render documentation links */}
-            {doc.links && Array.isArray(doc.links) && (
-              <>
-                {doc.links.map((link: { label: string; url: string }, index: number) => (
-                  <Link key={`doc-link-${index}`} href={link.url} target="_blank" rel="noreferrer">
-                    <Badge
-                      variant="secondary"
-                      appearance="outline"
-                      className="inline-flex items-centger py-1 px-1.5 gap-1 hover:text-primary"
-                    >
-                      {link.label}
-                      <ExternalLink className="h-3 w-3 opacity-50" />
-                    </Badge>
-                  </Link>
-                ))}
-              </>
-            )}
+        <div className="mx-auto hidden h-16 w-full max-w-2xl items-center gap-2 px-4 sm:flex md:px-0">
+          {neighbours.previous && (
+            <Button
+              variant="secondary"
+              size="sm"
+              asChild
+              className="shadow-none"
+            >
+              <Link href={neighbours.previous.url}>
+                <IconArrowLeft /> {neighbours.previous.name}
+              </Link>
+            </Button>
+          )}
+          {neighbours.next && (
+            <Button
+              variant="secondary"
+              size="sm"
+              className="ml-auto shadow-none"
+              asChild
+            >
+              <Link href={neighbours.next.url}>
+                {neighbours.next.name} <IconArrowRight />
+              </Link>
+            </Button>
+          )}
+        </div>
+      </div>
+      <div className="sticky top-[calc(var(--header-height)+1px)] z-30 ml-auto hidden h-[calc(100svh-var(--footer-height)+2rem)] w-72 flex-col gap-4 overflow-hidden overscroll-none pb-8 xl:flex">
+        <div className="h-(--top-spacing) shrink-0" />
+        {doc.toc?.length ? (
+          <div className="no-scrollbar overflow-y-auto px-8">
+            <DocsTableOfContents toc={doc.toc} />
+            <div className="h-12" />
           </div>
         ) : null}
-        <div className="pb-12 pt-8">
-          <Mdx code={doc.body.code} componentExamples={examples} componentCode={code} />
-        </div>
-        <DocsPager doc={doc} />
       </div>
-      <div className="hidden text-sm xl:block">
-        <div className="sticky top-[100px] h-[calc(100vh-3.5rem)]">
-          <div className="no-scrollbar h-full overflow-auto pb-20">
-            {doc.toc && <DashboardTableOfContents toc={toc} />}
-          </div>
-        </div>
-      </div>
-    </main>
-  );
+    </div>
+  )
 }

@@ -1,28 +1,21 @@
-// eslint.config.mjs
-import { FlatCompat } from '@eslint/eslintrc';
+import { dirname } from "path"
+import { fileURLToPath } from "url"
+import { FlatCompat } from "@eslint/eslintrc"
 
-// Create a FlatCompat instance to support legacy "extends" syntax.
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+
 const compat = new FlatCompat({
-  baseDirectory: import.meta.dirname,
-});
+  baseDirectory: __dirname,
+})
 
 const eslintConfig = [
   ...compat.config({
-    extends: ['next/core-web-vitals', 'next/typescript', 'prettier'],
-    // Plugins in legacy format must be an array of plugin names.
-    plugins: ['react-hooks'],
+    extends: ["next/core-web-vitals", "next/typescript"],
     rules: {
-      // Disable react-in-jsx-scope (not needed in React 17+)
-      'react/react-in-jsx-scope': 'off',
-      // React Hooks rules
-      'react-hooks/rules-of-hooks': 'error',
-      'react-hooks/exhaustive-deps': 'warn',
-      '@next/next/no-img-element': 'off',
+      "@next/next/no-duplicate-head": "off",
     },
   }),
-  {
-    ignores: ['.next/**', '.contentlayer/**', 'node_modules/**'],
-  },
-];
+]
 
-export default eslintConfig;
+export default eslintConfig

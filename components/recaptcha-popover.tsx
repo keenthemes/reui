@@ -1,16 +1,25 @@
-import { Alert, AlertIcon, AlertTitle } from '@/registry/default/ui/alert';
-import { Button } from '@/registry/default/ui/button';
-import * as Popover from '@radix-ui/react-popover';
-import { RiErrorWarningFill } from '@remixicon/react';
-import { toast } from 'sonner';
-import { useRecaptchaV2 } from '@/hooks/use-recaptcha-v2';
+"use client"
+
+import React from "react"
+import { Info } from "lucide-react"
+import { toast } from "sonner"
+
+import { useRecaptchaV2 } from "@/hooks/use-recaptcha-v2"
+import { Alert, AlertTitle } from "@/components/ui/alert"
+import { Button } from "@/components/ui/button"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 
 interface RecaptchaPopoverProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  onVerify: (token: string) => void;
-  trigger: React.ReactNode;
-  verifyButtonText?: string;
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  onVerify: (token: string) => void
+  trigger: React.ReactNode
+  verifyButtonText?: string
+  isLoading?: boolean
 }
 
 export function RecaptchaPopover({
@@ -18,87 +27,91 @@ export function RecaptchaPopover({
   onOpenChange,
   onVerify,
   trigger,
-  verifyButtonText = 'Verify & Submit',
+  verifyButtonText = "Verify & Submit",
+  isLoading = false,
 }: RecaptchaPopoverProps) {
-  const { containerRef, getToken, resetCaptcha, initializeRecaptcha } = useRecaptchaV2(
-    process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '',
-  );
+  const { containerRef, getToken, resetCaptcha } = useRecaptchaV2(
+    process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""
+  )
 
   const handleOpenChange = (newOpen: boolean) => {
-    onOpenChange(newOpen);
-    if (newOpen) {
-      resetCaptcha();
-      // Small delay to ensure the popover content is rendered
-      setTimeout(() => {
-        initializeRecaptcha();
-      }, 100);
+    if (isLoading) return // Prevent closing while loading
+    onOpenChange(newOpen)
+    if (!newOpen) {
+      resetCaptcha()
     }
-  };
+  }
 
   const handleVerify = () => {
+    if (isLoading) return
     try {
-      const token = getToken();
+      const token = getToken()
       if (!token) {
         toast.custom(
           () => (
-            <Alert variant="mono" icon="destructive">
-              <AlertIcon>
-                <RiErrorWarningFill />
-              </AlertIcon>
-              <AlertTitle>Please complete the reCAPTCHA verification.</AlertTitle>
+            <Alert variant="destructive">
+              <Info className="size-4" />
+              <AlertTitle>
+                Please complete the reCAPTCHA verification.
+              </AlertTitle>
             </Alert>
           ),
           {
-            position: 'top-center',
-          },
-        );
-        return;
+            position: "top-center",
+          }
+        )
+        return
       }
-      onVerify(token);
+      onVerify(token)
     } catch (error) {
-      console.error('Error getting reCAPTCHA token:', error);
+      console.error("Error getting reCAPTCHA token:", error)
       toast.custom(
         () => (
-          <Alert variant="mono" icon="destructive">
-            <AlertIcon>
-              <RiErrorWarningFill />
-            </AlertIcon>
+          <Alert variant="destructive">
+            <Info className="size-4" />
             <AlertTitle>Please complete the reCAPTCHA verification.</AlertTitle>
           </Alert>
         ),
         {
-          position: 'top-center',
-        },
-      );
-      return;
+          position: "top-center",
+        }
+      )
+      return
     }
-  };
+  }
 
   return (
-    <Popover.Root open={open} onOpenChange={handleOpenChange}>
-      <Popover.Trigger asChild>{trigger}</Popover.Trigger>
-
-      <Popover.Portal>
-        <Popover.Content
-          className="bg-white p-4 rounded-lg shadow-lg z-50"
-          sideOffset={5}
-          align="end"
-          onInteractOutside={(e) => {
-            // Prevent closing when interacting with reCAPTCHA iframe
-            if ((e.target as HTMLElement).tagName === 'IFRAME') {
-              e.preventDefault();
-            }
-          }}
-        >
-          <div className="flex flex-col gap-4">
-            <div ref={containerRef} className="min-h-[78px]" />
-            <Button type="button" variant="mono" onClick={handleVerify} className="w-full">
-              {verifyButtonText}
-            </Button>
-          </div>
-          <Popover.Arrow className="fill-white" />
-        </Popover.Content>
-      </Popover.Portal>
-    </Popover.Root>
-  );
+    <Popover open={open} onOpenChange={handleOpenChange}>
+      <PopoverTrigger asChild>{trigger}</PopoverTrigger>
+      <PopoverContent
+        className="w-auto p-4"
+        align="end"
+        sideOffset={8}
+        onInteractOutside={(e) => {
+          if (isLoading) {
+            e.preventDefault()
+            return
+          }
+          // Prevent closing when interacting with reCAPTCHA iframe (challenges)
+          const target = e.target as HTMLElement
+          if (target.closest('iframe[src*="google.com/recaptcha"]')) {
+            e.preventDefault()
+          }
+        }}
+      >
+        <div className="flex flex-col gap-4">
+          <div ref={containerRef} className="min-h-[78px] min-w-[302px]" />
+          <Button
+            type="button"
+            variant="default"
+            onClick={handleVerify}
+            className="w-full"
+            disabled={isLoading}
+          >
+            {isLoading ? "Subscribing..." : verifyButtonText}
+          </Button>
+        </div>
+      </PopoverContent>
+    </Popover>
+  )
 }

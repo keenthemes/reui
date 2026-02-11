@@ -1,0 +1,112 @@
+---
+title: Scrollspy
+description: Dynamically highlights navigation to indicate current visible section in viewport during page scroll
+component: true
+base: base
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-scrollspy-1"
+  className="[&_.preview>[data-orientation=vertical]]:sm:max-w-[80%] **:[.preview]:min-h-[580px]"
+  align="start"
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add @reui/scrollspy
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  styleName="base-nova"
+  name="scrollspy"
+  title="components/reui/scrollspy.tsx"
+/>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Scrollspy } from "@/components/reui/scrollspy"
+```
+
+```tsx
+<Scrollspy targetRef={containerRef}>
+  <a href="#section-1" data-scrollspy-anchor="section-1">Section 1</a>
+  <a href="#section-2" data-scrollspy-anchor="section-2">Section 2</a>
+</Scrollspy>
+
+<div ref={containerRef}>
+  <div id="section-1">Content 1</div>
+  <div id="section-2">Content 2</div>
+</div>
+```
+
+## Examples
+
+### Horizontal
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-scrollspy-2"
+  className="[&_.preview>[data-orientation=vertical]]:sm:max-w-[80%] **:[.preview]:min-h-[530px]"
+  align="start"
+/>
+
+## API Reference
+
+### Scrollspy
+
+The main component that wraps the navigation links and manages the scroll spying logic.
+
+| Prop            | Type                                 | Default       | Description                                                        |
+| :-------------- | :----------------------------------- | :------------ | :----------------------------------------------------------------- |
+| `targetRef`     | `RefObject<HTMLElement \| Document>` | `window`      | The scrollable container to monitor.                               |
+| `onUpdate`      | `(id: string) => void`               | -             | Callback fired when the active section changes.                    |
+| `offset`        | `number`                             | `0`           | Global pixel offset from the top when calculating active sections. |
+| `smooth`        | `boolean`                            | `true`        | Whether to use smooth scrolling when clicking on anchors.          |
+| `history`       | `boolean`                            | `true`        | Whether to update the URL hash when the active section changes.    |
+| `dataAttribute` | `string`                             | `"scrollspy"` | The prefix for data attributes (e.g., `data-scrollspy-anchor`).    |
+| `className`     | `string`                             | -             | Additional CSS classes for the wrapper.                            |
+
+---
+
+### Data Attributes
+
+Navigation links within `Scrollspy` should use these attributes to connect to sections:
+
+| Attribute               | Description                                                     |
+| :---------------------- | :-------------------------------------------------------------- |
+| `data-scrollspy-anchor` | **Required**. The ID of the target section (without the `#`).   |
+| `data-scrollspy-offset` | Optional. Overrides the global `offset` for this specific link. |
+
+The component adds `data-active="true"` to the link element when its corresponding section is active.

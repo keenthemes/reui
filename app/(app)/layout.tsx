@@ -1,25 +1,12 @@
-'use client';
+import { Suspense } from "react"
 
-import { usePathname } from 'next/navigation';
-import { SiteFooter } from '@/components/site-footer';
-import { SiteHeader } from '@/components/site-header';
-import { SiteSubscribe } from '@/components/site-subscribe';
+import { SiteHeader } from "@/components/site-header"
 
-interface AppLayoutProps {
-  children: React.ReactNode;
-}
-
-export default function AppLayout({ children }: AppLayoutProps) {
-  const pathname = usePathname();
-
+export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div vaul-drawer-wrapper="true" className="relative flex min-h-screen flex-col bg-background isolate">
-      <div className="border-border/40 dark:border-border">
-        <SiteHeader />
-        <main className="flex-1">{children}</main>
-        {pathname && !pathname.startsWith('/docs') && !pathname.startsWith('/blocks') && <SiteSubscribe />}
-        <SiteFooter />
-      </div>
+    <div className="bg-background overscroll-behavior has-[.bordered-sidebar]:[&_header]:border-border/80 has-[.bordered-sidebar]:bg-muted/60 dark:has-[.bordered-sidebar]:bg-background relative flex min-h-svh flex-col overscroll-none">
+      <SiteHeader />
+      <main className="flex flex-1 flex-col">{children}</main>
     </div>
-  );
+  )
 }

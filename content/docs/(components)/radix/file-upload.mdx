@@ -1,0 +1,202 @@
+---
+title: File Upload
+description: Enables users to upload files to a server or application.
+component: true
+base: radix
+---
+
+<ComponentPreview styleName="radix-nova" name="p-file-upload-1" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add @reui/file-upload
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  styleName="radix-nova"
+  name="use-file-upload"
+  title="hooks/use-file-upload.ts"
+/>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { useFileUpload } from "@/hooks/use-file-upload"
+```
+
+```tsx
+const [{ files }, { openFileDialog, getInputProps }] = useFileUpload({
+  accept: "image/*",
+  multiple: false,
+})
+
+return (
+  <div>
+    <Button onClick={openFileDialog}>Upload Image</Button>
+    <input {...getInputProps()} className="sr-only" />
+    {files.map((file) => (
+      <div key={file.id}>{file.file.name}</div>
+    ))}
+  </div>
+)
+```
+
+## Examples
+
+### Avatar Upload
+
+<ComponentPreview styleName="radix-nova" name="p-file-upload-2" />
+
+### Compact Upload
+
+<ComponentPreview styleName="radix-nova" name="p-file-upload-3" />
+
+### Gallery Upload
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="p-file-upload-4"
+  className="[&_.preview]:h-auto [&_.preview>*]:w-full"
+/>
+
+### Progress Upload
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="p-file-upload-5"
+  className="[&_.preview]:h-auto [&_.preview>*]:w-full"
+/>
+
+### Table Upload
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="p-file-upload-6"
+  className="[&_.preview]:h-auto [&_.preview>*]:w-full"
+/>
+
+### Image Upload
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="p-file-upload-7"
+  className="[&_.preview]:h-auto [&_.preview>*]:w-full"
+/>
+
+### Sortable Upload
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="p-file-upload-8"
+  className="[&_.preview]:h-auto [&_.preview>*]:w-full"
+/>
+
+## API Reference
+
+### useFileUpload
+
+A custom hook for managing file upload state and interactions.
+
+```tsx
+const [state, actions] = useFileUpload(options)
+```
+
+#### Options
+
+| Prop            | Type                                 | Default    | Description                                                     |
+| :-------------- | :----------------------------------- | :--------- | :-------------------------------------------------------------- |
+| `maxFiles`      | `number`                             | `Infinity` | Maximum number of files allowed (only when `multiple` is true). |
+| `maxSize`       | `number`                             | `Infinity` | Maximum size for each file in bytes.                            |
+| `accept`        | `string`                             | `"*"`      | Accepted file types (e.g., `"image/*"`, `".pdf,.docx"`).        |
+| `multiple`      | `boolean`                            | `false`    | Whether to allow multiple file selection.                       |
+| `initialFiles`  | `FileMetadata[]`                     | `[]`       | Initial set of files to populate the state.                     |
+| `onFilesChange` | `(files: FileWithPreview[]) => void` | -          | Callback fired whenever the files list changes.                 |
+| `onFilesAdded`  | `(files: FileWithPreview[]) => void` | -          | Callback fired when new valid files are added.                  |
+| `onError`       | `(errors: string[]) => void`         | -          | Callback fired when validation errors occur.                    |
+
+#### State
+
+| Property     | Type                | Description                                                     |
+| :----------- | :------------------ | :-------------------------------------------------------------- |
+| `files`      | `FileWithPreview[]` | The list of currently selected/uploaded files.                  |
+| `isDragging` | `boolean`           | Whether a file is currently being dragged over the target area. |
+| `errors`     | `string[]`          | Any current validation error messages.                          |
+
+#### Actions
+
+| Method            | Type                                  | Description                                                 |
+| :---------------- | :------------------------------------ | :---------------------------------------------------------- |
+| `addFiles`        | `(files: FileList \| File[]) => void` | Manually add files to the state.                            |
+| `removeFile`      | `(id: string) => void`                | Remove a file by its unique ID.                             |
+| `clearFiles`      | `() => void`                          | Remove all files from the state.                            |
+| `clearErrors`     | `() => void`                          | Clear all current error messages.                           |
+| `openFileDialog`  | `() => void`                          | Programmatically open the browser's file selection dialog.  |
+| `getInputProps`   | `(props?) => InputProps`              | Returns props for a hidden `<input type="file" />` element. |
+| `handleDragEnter` | `(e) => void`                         | Event handler for the `onDragEnter` event.                  |
+| `handleDragLeave` | `(e) => void`                         | Event handler for the `onDragLeave` event.                  |
+| `handleDragOver`  | `(e) => void`                         | Event handler for the `onDragOver` event.                   |
+| `handleDrop`      | `(e) => void`                         | Event handler for the `onDrop` event.                       |
+
+---
+
+### Types
+
+#### FileMetadata
+
+```tsx
+type FileMetadata = {
+  name: string
+  size: number
+  type: string
+  url: string
+  id: string
+}
+```
+
+#### FileWithPreview
+
+```tsx
+type FileWithPreview = {
+  file: File | FileMetadata
+  id: string
+  preview?: string
+}
+```
+
+#### formatBytes
+
+A utility function to format a byte count into a human-readable string (e.g., `1.5 MB`).
+
+```tsx
+function formatBytes(bytes: number, decimals?: number): string
+```

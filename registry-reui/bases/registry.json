@@ -1,0 +1,413 @@
+{
+  "categories": [
+    {
+      "name": "accordion",
+      "label": "Accordion",
+      "description": "A vertically stacked set of interactive headings.",
+      "count": 11
+    },
+    {
+      "name": "alert",
+      "label": "Alert",
+      "description": "Displays a callout for user attention.",
+      "count": 20
+    },
+    {
+      "name": "alert-dialog",
+      "label": "Alert Dialog",
+      "description": "A modal dialog that interrupts the user with important content.",
+      "count": 14
+    },
+    {
+      "name": "aspect-ratio",
+      "label": "Aspect Ratio",
+      "description": "",
+      "count": 8
+    },
+    {
+      "name": "autocomplete",
+      "label": "Autocomplete",
+      "description": "An input field with suggestions.",
+      "count": 12
+    },
+    {
+      "name": "avatar",
+      "label": "Avatar",
+      "description": "An image element with a fallback for representing the user.",
+      "count": 35
+    },
+    {
+      "name": "badge",
+      "label": "Badge",
+      "description": "Displays a badge or a component that looks like a badge.",
+      "count": 25
+    },
+    {
+      "name": "breadcrumb",
+      "label": "Breadcrumb",
+      "description": "Displays the path to the current resource using a hierarchy of links.",
+      "count": 15
+    },
+    {
+      "name": "button",
+      "label": "Button",
+      "description": "Displays a button or a component that looks like a button.",
+      "count": 61
+    },
+    {
+      "name": "button-group",
+      "label": "Button Group",
+      "description": "A set of buttons grouped together.",
+      "count": 40
+    },
+    {
+      "name": "calendar",
+      "label": "Calendar",
+      "description": "A date field component that allows users to enter and edit date.",
+      "count": 30
+    },
+    {
+      "name": "card",
+      "label": "Card",
+      "description": "Displays a card with header, content, and footer.",
+      "count": 14
+    },
+    {
+      "name": "carousel",
+      "label": "Carousel",
+      "description": "A carousel with motion and swipe gestures.",
+      "count": 11
+    },
+    {
+      "name": "chart",
+      "label": "Chart",
+      "description": "Beautiful charts built using Recharts.",
+      "count": 25
+    },
+    {
+      "name": "checkbox",
+      "label": "Checkbox",
+      "description": "A control that allows the user to toggle between checked and not checked.",
+      "count": 22
+    },
+    {
+      "name": "collapsible",
+      "label": "Collapsible",
+      "description": "An interactive component which expands/collapses a panel.",
+      "count": 10
+    },
+    {
+      "name": "combobox",
+      "label": "Combobox",
+      "description": "Autocomplete input and command palette with a list of suggestions.",
+      "count": 20
+    },
+    {
+      "name": "command",
+      "label": "Command",
+      "description": "Fast, composable, unstyled command menu.",
+      "count": 8
+    },
+    {
+      "name": "context-menu",
+      "label": "Context Menu",
+      "description": "Displays a menu to the user — such as right click menu.",
+      "count": 10
+    },
+    {
+      "name": "data-grid",
+      "label": "Data Grid",
+      "description": "A powerful data grid component for displaying tabular data.",
+      "count": 22
+    },
+    {
+      "name": "date-selector",
+      "label": "Date Selector",
+      "description": "",
+      "count": 4
+    },
+    {
+      "name": "dialog",
+      "label": "Dialog",
+      "description": "A window overlaid on either the primary window.",
+      "count": 10
+    },
+    {
+      "name": "drawer",
+      "label": "Drawer",
+      "description": "A drawer component for React.",
+      "count": 5
+    },
+    {
+      "name": "dropdown-menu",
+      "label": "Dropdown Menu",
+      "description": "Displays a menu to the user — such as a set of actions.",
+      "count": 14
+    },
+    {
+      "name": "empty",
+      "label": "Empty",
+      "description": "",
+      "count": 20
+    },
+    {
+      "name": "field",
+      "label": "Field",
+      "description": "",
+      "count": 11
+    },
+    {
+      "name": "file-upload",
+      "label": "File Upload",
+      "description": "A component for uploading files.",
+      "count": 10
+    },
+    {
+      "name": "filters",
+      "label": "Filters",
+      "description": "",
+      "count": 9
+    },
+    {
+      "name": "frame",
+      "label": "Frame",
+      "description": "",
+      "count": 17
+    },
+    {
+      "name": "hover-card",
+      "label": "Hover Card",
+      "description": "",
+      "count": 8
+    },
+    {
+      "name": "input",
+      "label": "Input",
+      "description": "Displays a form input field.",
+      "count": 31
+    },
+    {
+      "name": "input-group",
+      "label": "Input Group",
+      "description": "A group of input fields.",
+      "count": 35
+    },
+    {
+      "name": "input-otp",
+      "label": "Input Otp",
+      "description": "A one-time password input component.",
+      "count": 6
+    },
+    {
+      "name": "item",
+      "label": "Item",
+      "description": "",
+      "count": 12
+    },
+    {
+      "name": "kanban",
+      "label": "Kanban",
+      "description": "",
+      "count": 5
+    },
+    {
+      "name": "kbd",
+      "label": "Kbd",
+      "description": "",
+      "count": 6
+    },
+    {
+      "name": "label",
+      "label": "Label",
+      "description": "",
+      "count": 13
+    },
+    {
+      "name": "menubar",
+      "label": "Menubar",
+      "description": "",
+      "count": 5
+    },
+    {
+      "name": "native-select",
+      "label": "Native Select",
+      "description": "",
+      "count": 6
+    },
+    {
+      "name": "navigation-menu",
+      "label": "Navigation Menu",
+      "description": "",
+      "count": 4
+    },
+    {
+      "name": "number-field",
+      "label": "Number Field",
+      "description": "",
+      "count": 6
+    },
+    {
+      "name": "pagination",
+      "label": "Pagination",
+      "description": "Navigation for paginated content.",
+      "count": 15
+    },
+    {
+      "name": "phone-input",
+      "label": "Phone Input",
+      "description": "An international phone number input.",
+      "count": 8
+    },
+    {
+      "name": "popover",
+      "label": "Popover",
+      "description": "Displays rich content in a portal, triggered by a button.",
+      "count": 11
+    },
+    {
+      "name": "progress",
+      "label": "Progress",
+      "description": "Displays an indicator showing the completion progress of a task.",
+      "count": 8
+    },
+    {
+      "name": "radio-group",
+      "label": "Radio Group",
+      "description": "A set of checkable buttons where only one can be checked.",
+      "count": 17
+    },
+    {
+      "name": "rating",
+      "label": "Rating",
+      "description": "A rating component for displaying star ratings.",
+      "count": 9
+    },
+    {
+      "name": "resizable",
+      "label": "Resizable",
+      "description": "",
+      "count": 10
+    },
+    {
+      "name": "scroll-area",
+      "label": "Scroll Area",
+      "description": "Augments native scroll functionality for custom styling.",
+      "count": 5
+    },
+    {
+      "name": "scrollspy",
+      "label": "Scrollspy",
+      "description": "",
+      "count": 2
+    },
+    {
+      "name": "select",
+      "label": "Select",
+      "description": "Displays a list of options for the user to pick from.",
+      "count": 33
+    },
+    {
+      "name": "separator",
+      "label": "Separator",
+      "description": "Visually or semantically separates content.",
+      "count": 6
+    },
+    {
+      "name": "sheet",
+      "label": "Sheet",
+      "description": "Extends the Dialog component to display content that complements the main content.",
+      "count": 4
+    },
+    {
+      "name": "skeleton",
+      "label": "Skeleton",
+      "description": "Use to show a placeholder while content is loading.",
+      "count": 10
+    },
+    {
+      "name": "slider",
+      "label": "Slider",
+      "description": "An input where the user selects a value from within a given range.",
+      "count": 12
+    },
+    {
+      "name": "sonner",
+      "label": "Sonner",
+      "description": "An opinionated toast component for React.",
+      "count": 21
+    },
+    {
+      "name": "sortable",
+      "label": "Sortable",
+      "description": "",
+      "count": 7
+    },
+    {
+      "name": "spinner",
+      "label": "Spinner",
+      "description": "",
+      "count": 12
+    },
+    {
+      "name": "stepper",
+      "label": "Stepper",
+      "description": "A component for step-by-step wizards.",
+      "count": 15
+    },
+    {
+      "name": "switch",
+      "label": "Switch",
+      "description": "A control that allows the user to toggle between checked and not checked.",
+      "count": 14
+    },
+    {
+      "name": "table",
+      "label": "Table",
+      "description": "A responsive table component.",
+      "count": 17
+    },
+    {
+      "name": "tabs",
+      "label": "Tabs",
+      "description": "A set of layered sections of content.",
+      "count": 9
+    },
+    {
+      "name": "textarea",
+      "label": "Textarea",
+      "description": "Displays a form textarea.",
+      "count": 6
+    },
+    {
+      "name": "timeline",
+      "label": "Timeline",
+      "description": "A timeline component for displaying events.",
+      "count": 12
+    },
+    {
+      "name": "toggle",
+      "label": "Toggle",
+      "description": "A two-state button that can be either on or off.",
+      "count": 14
+    },
+    {
+      "name": "toggle-group",
+      "label": "Toggle Group",
+      "description": "A set of two-state buttons that can be toggled on or off.",
+      "count": 16
+    },
+    {
+      "name": "tooltip",
+      "label": "Tooltip",
+      "description": "A popup that displays information related to an element.",
+      "count": 16
+    },
+    {
+      "name": "tree",
+      "label": "Tree",
+      "description": "A hierarchical list of items.",
+      "count": 7
+    }
+  ],
+  "totalPatterns": 966
+}

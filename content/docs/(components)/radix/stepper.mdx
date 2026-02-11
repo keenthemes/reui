@@ -1,0 +1,239 @@
+---
+title: Stepper
+description: A step-by-step process for users to navigate through a series of steps.
+component: true
+base: radix
+---
+
+<ComponentPreview styleName="radix-nova" name="p-stepper-1" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add @reui/stepper
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  styleName="radix-nova"
+  name="stepper"
+  title="components/reui/stepper.tsx"
+/>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  Stepper,
+  StepperContent,
+  StepperIndicator,
+  StepperItem,
+  StepperNav,
+  StepperPanel,
+  StepperSeparator,
+  StepperTrigger,
+} from "@/components/reui/stepper"
+```
+
+```tsx
+<Stepper defaultValue={1}>
+  <StepperNav>
+    <StepperItem step={1}>
+      <StepperTrigger>
+        <StepperIndicator>1</StepperIndicator>
+      </StepperTrigger>
+      <StepperSeparator />
+    </StepperItem>
+    <StepperItem step={2}>
+      <StepperTrigger>
+        <StepperIndicator>2</StepperIndicator>
+      </StepperTrigger>
+    </StepperItem>
+  </StepperNav>
+  <StepperPanel>
+    <StepperContent value={1}>Content 1</StepperContent>
+    <StepperContent value={2}>Content 2</StepperContent>
+  </StepperPanel>
+</Stepper>
+```
+
+## Examples
+
+### States
+
+<ComponentPreview styleName="radix-nova" name="p-stepper-2" />
+
+### Indicators
+
+<ComponentPreview styleName="radix-nova" name="p-stepper-3" />
+
+### Controlled
+
+<ComponentPreview styleName="radix-nova" name="p-stepper-4" />
+
+### Progress
+
+<ComponentPreview styleName="radix-nova" name="p-stepper-5" />
+
+### Title
+
+<ComponentPreview styleName="radix-nova" name="p-stepper-6" />
+
+### Title & Bar
+
+<ComponentPreview styleName="radix-nova" name="p-stepper-7" />
+
+### Title & Status
+
+<ComponentPreview styleName="radix-nova" name="p-stepper-8" />
+
+### Title & Description
+
+<ComponentPreview styleName="radix-nova" name="p-stepper-9" />
+
+### Inline Title
+
+<ComponentPreview styleName="radix-nova" name="p-stepper-10" />
+
+### Inline Title & Description
+
+<ComponentPreview styleName="radix-nova" name="p-stepper-11" />
+
+### Vertical
+
+<ComponentPreview styleName="radix-nova" name="p-stepper-12" />
+
+### Vertical Title
+
+<ComponentPreview styleName="radix-nova" name="p-stepper-13" />
+
+### Vertical Title & Description
+
+<ComponentPreview styleName="radix-nova" name="p-stepper-14" />
+
+## API Reference
+
+### Stepper
+
+The root component that manages the active step and configuration.
+
+| Prop            | Type                         | Default        | Description                                         |
+| :-------------- | :--------------------------- | :------------- | :-------------------------------------------------- |
+| `defaultValue`  | `number`                     | `1`            | The step index to start with (uncontrolled).        |
+| `value`         | `number`                     | -              | The current active step index (controlled).         |
+| `onValueChange` | `(value: number) => void`    | -              | Callback fired when the active step changes.        |
+| `orientation`   | `"horizontal" \| "vertical"` | `"horizontal"` | The layout direction of the stepper.                |
+| `indicators`    | `StepIndicators`             | -              | Custom icons or elements for different step states. |
+
+---
+
+### StepperNav
+
+A container for the stepper items, usually displayed as a progress bar or navigation trail.
+
+---
+
+### StepperItem
+
+Represents a single step in the process.
+
+| Prop        | Type      | Default | Description                                  |
+| :---------- | :-------- | :------ | :------------------------------------------- |
+| `step`      | `number`  | -       | **Required**. The unique index of this step. |
+| `completed` | `boolean` | `false` | Manually mark the step as completed.         |
+| `disabled`  | `boolean` | `false` | Disable interactions for this step.          |
+| `loading`   | `boolean` | `false` | Show the loading indicator for this step.    |
+
+---
+
+### StepperTrigger
+
+The interactive element used to navigate between steps.
+
+| Prop      | Type      | Default | Description                                    |
+| :-------- | :-------- | :------ | :--------------------------------------------- |
+| `asChild` | `boolean` | `false` | Whether to merge props onto the child element. |
+
+---
+
+### StepperIndicator
+
+Displays the status of the step (e.g., number, checkmark, or custom icon).
+
+---
+
+### StepperSeparator
+
+A visual line between steps.
+
+---
+
+### StepperTitle
+
+The label for the step.
+
+---
+
+### StepperDescription
+
+Additional supporting text for the step.
+
+---
+
+### StepperPanel
+
+A container for step content panels.
+
+---
+
+### StepperContent
+
+The actual content associated with a specific step.
+
+| Prop         | Type      | Default | Description                                             |
+| :----------- | :-------- | :------ | :------------------------------------------------------ |
+| `value`      | `number`  | -       | **Required**. The step index this content belongs to.   |
+| `forceMount` | `boolean` | `false` | Whether to keep the content in the DOM when not active. |
+
+---
+
+### Types
+
+#### StepIndicators
+
+```tsx
+type StepIndicators = {
+  active?: React.ReactNode
+  completed?: React.ReactNode
+  inactive?: React.ReactNode
+  loading?: React.ReactNode
+}
+```

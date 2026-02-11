@@ -1,0 +1,94 @@
+---
+title: Rating
+description: A customizable star rating component that supports read-only display and interactive input modes.
+component: true
+base: radix
+---
+
+<ComponentPreview styleName="radix-nova" name="p-rating-1" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add @reui/rating
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  styleName="radix-nova"
+  name="rating"
+  title="components/reui/rating.tsx"
+/>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Rating } from "@/components/reui/rating"
+```
+
+```tsx
+<Rating rating={4.5} showValue editable />
+```
+
+## Examples
+
+### Decimal
+
+<ComponentPreview styleName="radix-nova" name="p-rating-2" />
+
+### Show Value
+
+<ComponentPreview styleName="radix-nova" name="p-rating-3" />
+
+### Editable
+
+<ComponentPreview styleName="radix-nova" name="p-rating-4" />
+
+### Size
+
+<ComponentPreview styleName="radix-nova" name="p-rating-5" />
+
+## API Reference
+
+### Rating
+
+The main component for displaying and editing star ratings.
+
+| Prop             | Type                        | Default | Description                                                                        |
+| :--------------- | :-------------------------- | :------ | :--------------------------------------------------------------------------------- |
+| `rating`         | `number`                    | -       | **Required**. The current rating value. Supports decimal values for partial stars. |
+| `maxRating`      | `number`                    | `5`     | Total number of stars to display.                                                  |
+| `size`           | `"sm" \| "default" \| "lg"` | `"md"`  | The size of the stars and spacing.                                                 |
+| `showValue`      | `boolean`                   | `false` | Whether to show the numeric rating value next to the stars.                        |
+| `editable`       | `boolean`                   | `false` | Whether the rating can be changed by clicking on stars.                            |
+| `onRatingChange` | `(rating: number) => void`  | -       | Callback fired when a star is clicked (if `editable` is true).                     |
+| `starClassName`  | `string`                    | -       | Additional CSS classes for the numeric value container.                            |
+| `className`      | `string`                    | -       | Additional CSS classes for the root container.                                     |

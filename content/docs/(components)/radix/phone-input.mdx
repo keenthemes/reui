@@ -1,0 +1,105 @@
+---
+title: Phone Input
+description: A phone number input component with country selection and validation.
+component: true
+base: radix
+links:
+  api: https://gitlab.com/catamphetamine/react-phone-number-input
+---
+
+We used the [react-phone-number-input](https://gitlab.com/catamphetamine/react-phone-number-input) library to create this component.
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-phone-input-1"
+  className="[&_.preview>*]:w-full [&_.preview>*]:max-w-xs"
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add @reui/phone-input
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @base-ui/react react-phone-number-input
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  styleName="base-nova"
+  name="phone-input"
+  title="components/reui/phone-input.tsx"
+/>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { PhoneInput } from "@/components/reui/phone-input"
+```
+
+```tsx
+<PhoneInput
+  placeholder="Enter phone number"
+  defaultCountry="US"
+  value={value}
+  onChange={setValue}
+/>
+```
+
+## Examples
+
+### Size
+
+<ComponentPreview
+  styleName="base-nova"
+  name="p-phone-input-2"
+  className="[&_.preview>*]:w-full [&_.preview>*]:max-w-xs"
+/>
+
+## API Reference
+
+### PhoneInput
+
+The main component for entering phone numbers with country selection.
+
+| Prop             | Type                        | Default     | Description                                                |
+| :--------------- | :-------------------------- | :---------- | :--------------------------------------------------------- |
+| `value`          | `string`                    | -           | The current phone number value in E.164 format.            |
+| `onChange`       | `(value: string) => void`   | -           | Callback fired when the value changes.                     |
+| `variant`        | `"sm" \| "default" \| "lg"` | `"default"` | The vertical size of the input and country selector.       |
+| `popupClassName` | `string`                    | -           | Additional CSS classes for the country selection dropdown. |
+| `defaultCountry` | `Country`                   | -           | The default country selected if no value is provided.      |
+| `placeholder`    | `string`                    | -           | Placeholder text for the phone number input.               |
+| `className`      | `string`                    | -           | Additional CSS classes for the root container.             |
+| `disabled`       | `boolean`                   | `false`     | Whether the input and country selector are disabled.       |
+
+---
+
+### External Props
+
+This component also accepts all props from the [react-phone-number-input](https://gitlab.com/catamphetamine/react-phone-number-input#props) library.

@@ -1,62 +1,83 @@
-'use client';
+"use client"
 
-import * as React from 'react';
-import { cn } from '@/registry/default/lib/utils';
-import { Button } from '@/registry/default/ui/button';
-import { VariantProps } from 'class-variance-authority';
-import { Check, Copy } from 'lucide-react';
-import { Event, trackEvent } from '@/lib/events';
+import * as React from "react"
+import { CheckIcon, Copy } from "lucide-react"
 
-interface CopyButtonProps {
-  value: string;
-  src?: string;
-  className?: string;
-  event?: Event['name'];
-  variant?: VariantProps<typeof Button>['variant'];
-}
+import { Event, trackEvent } from "@/lib/events"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
-export async function copyToClipboardWithMeta(value: string, event?: Event) {
-  navigator.clipboard.writeText(value);
+export function copyToClipboardWithMeta(value: string, event?: Event) {
+  navigator.clipboard.writeText(value)
   if (event) {
-    trackEvent(event);
+    trackEvent(event)
   }
 }
 
-export function CopyButton({ value, className, variant = 'ghost', event, ...props }: CopyButtonProps) {
-  const [hasCopied, setHasCopied] = React.useState(false);
+export function CopyButton({
+  value,
+  className,
+  variant = "ghost",
+  event,
+  properties,
+  ...props
+}: React.ComponentProps<typeof Button> & {
+  value: string
+  src?: string
+  event?: Event["name"]
+  properties?: Record<string, any>
+}) {
+  const [hasCopied, setHasCopied] = React.useState(false)
 
   React.useEffect(() => {
-    setTimeout(() => {
-      setHasCopied(false);
-    }, 2000);
-  }, [hasCopied]);
+    if (hasCopied) {
+      const timer = setTimeout(() => {
+        setHasCopied(false)
+      }, 2000)
+      return () => clearTimeout(timer)
+    }
+  }, [hasCopied])
 
   return (
-    <Button
-      mode="icon"
-      variant={variant}
-      className={cn(
-        'relative z-10 h-6 w-6 text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50 [&_svg]:h-3.5 [&_svg]:w-3.5',
-        className,
-      )}
-      onClick={() => {
-        copyToClipboardWithMeta(
-          value,
-          event
-            ? {
-                name: event,
-                properties: {
-                  code: value,
-                },
-              }
-            : undefined,
-        );
-        setHasCopied(true);
-      }}
-      {...props}
-    >
-      <span className="sr-only">Copy</span>
-      {hasCopied ? <Check className="size-4 text-white" /> : <Copy className="size-4" />}
-    </Button>
-  );
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          data-slot="copy-button"
+          size="icon"
+          variant={variant}
+          className={cn(
+            "bg-code absolute top-3 right-2 z-10 size-7 hover:opacity-100 focus-visible:opacity-100",
+            className
+          )}
+          onClick={() => {
+            copyToClipboardWithMeta(
+              value,
+              event
+                ? {
+                    name: event,
+                    properties: {
+                      code: value,
+                      ...properties,
+                    },
+                  }
+                : undefined
+            )
+            setHasCopied(true)
+          }}
+          {...props}
+        >
+          <span className="sr-only">Copy</span>
+          {hasCopied ? <CheckIcon /> : <Copy />}
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>
+        {hasCopied ? "Copied" : "Copy to Clipboard"}
+      </TooltipContent>
+    </Tooltip>
+  )
 }

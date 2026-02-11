@@ -1,0 +1,194 @@
+---
+title: Frame
+description: Displays related content in a structured frame.
+component: true
+base: radix
+---
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="p-frame-1"
+  description="A frame with a header, content, and footer"
+/>
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add @reui/frame
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  styleName="radix-nova"
+  name="frame"
+  title="components/reui/frame.tsx"
+/>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  Frame,
+  FrameDescription,
+  FrameFooter,
+  FrameHeader,
+  FramePanel,
+  FrameTitle,
+} from "@/components/reui/frame"
+```
+
+```tsx
+<Frame>
+  <FramePanel>
+    <FrameHeader>
+      <FrameTitle>Frame Title</FrameTitle>
+      <FrameDescription>Frame Description</FrameDescription>
+    </FrameHeader>
+    <div className="p-5">Frame Content</div>
+    <FrameFooter>Frame Footer</FrameFooter>
+  </FramePanel>
+</Frame>
+```
+
+### Customizing Radius
+
+You can customize the border radius of the frame and its panels using the `--frame-radius` CSS variable.
+
+```tsx
+<Frame className="[--frame-radius:var(--radius-lg)]">
+  <FramePanel>...</FramePanel>
+</Frame>
+```
+
+## Examples
+
+### With Separated Panels
+
+<ComponentPreview styleName="radix-nova" name="p-frame-2" />
+
+### With Stacked Panels
+
+<ComponentPreview styleName="radix-nova" name="p-frame-3" />
+
+### With Dense Panels
+
+<ComponentPreview styleName="radix-nova" name="p-frame-4" />
+
+### Without Outer Border
+
+<ComponentPreview styleName="radix-nova" name="p-frame-6" />
+
+### Custom Spacing
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="p-frame-7"
+  className="**:[.preview]:h-auto"
+/>
+
+### Custom Radius
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="p-frame-8"
+  className="**:[.preview]:h-auto"
+/>
+
+## API Reference
+
+### Frame
+
+The root container for one or more frame panels.
+
+| Prop        | Type                        | Default     | Description                                                                               |
+| :---------- | :-------------------------- | :---------- | :---------------------------------------------------------------------------------------- |
+| `variant`   | `"default" \| "ghost"`      | `"default"` | The visual style of the frame container.                                                  |
+| `spacing`   | `"sm" \| "default" \| "lg"` | `"default"` | The internal padding of the frame and margin between panels.                              |
+| `stacked`   | `boolean`                   | `false`     | If true, removes margins between panels and connects them vertically with shared borders. |
+| `dense`     | `boolean`                   | `false`     | If true, removes padding on the panel.                                                    |
+| `className` | `string`                    | -           | Additional CSS classes for the container.                                                 |
+
+---
+
+### CSS Variables
+
+| Variable         | Default            | Description                                        |
+| :--------------- | :----------------- | :------------------------------------------------- |
+| `--frame-radius` | `var(--radius-xl)` | The border radius of the frame and its components. |
+
+---
+
+### FramePanel
+
+A card-like container within the frame that holds header, content, and footer.
+
+| Prop        | Type     | Default | Description                           |
+| :---------- | :------- | :------ | :------------------------------------ |
+| `className` | `string` | -       | Additional CSS classes for the panel. |
+
+---
+
+### FrameHeader
+
+A container for the title and description, with default padding.
+
+| Prop        | Type     | Default | Description                            |
+| :---------- | :------- | :------ | :------------------------------------- |
+| `className` | `string` | -       | Additional CSS classes for the header. |
+
+---
+
+### FrameTitle
+
+Heading for the frame panel.
+
+| Prop        | Type     | Default | Description                           |
+| :---------- | :------- | :------ | :------------------------------------ |
+| `className` | `string` | -       | Additional CSS classes for the title. |
+
+---
+
+### FrameDescription
+
+Supporting text for the frame panel.
+
+| Prop        | Type     | Default | Description                                 |
+| :---------- | :------- | :------ | :------------------------------------------ |
+| `className` | `string` | -       | Additional CSS classes for the description. |
+
+---
+
+### FrameFooter
+
+A container for actions or additional information at the bottom of the panel.
+
+| Prop        | Type     | Default | Description                            |
+| :---------- | :------- | :------ | :------------------------------------- |
+| `className` | `string` | -       | Additional CSS classes for the footer. |

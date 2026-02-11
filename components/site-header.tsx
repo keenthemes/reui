@@ -1,120 +1,68 @@
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { Button } from '@/registry/default/ui/button';
-import { GithubButton } from '@/registry/default/ui/github-button';
-import { siteConfig } from '@/config/site';
-import { trackEvent } from '@/lib/analytics';
-import { cn } from '@/lib/utils';
-import { CommandMenu } from '@/components/command-menu';
-import { Icons } from '@/components/icons';
-import { MainNav } from '@/components/main-nav';
-import { MobileNav } from '@/components/mobile-nav';
-import { ModeSwitcher } from '@/components/mode-switcher';
+import Image from "next/image"
+import Link from "next/link"
 
-// Custom hook to fetch GitHub stars
-function useGithubStars(repo = 'keenthemes/reui') {
-  const [stars, setStars] = useState<number>(siteConfig.githubStars);
-
-  useEffect(() => {
-    const fetchStars = async () => {
-      try {
-        const response = await fetch(`https://api.github.com/repos/${repo}`);
-        if (response.ok) {
-          const data = await response.json();
-          if (data?.stargazers_count) {
-            console.log('GitHub stars fetched:', data.stargazers_count);
-            setStars(data.stargazers_count);
-          }
-        }
-      } catch (error) {
-        console.error('Error fetching GitHub stars:', error);
-      }
-    };
-
-    fetchStars();
-  }, [repo]);
-
-  return stars;
-}
+import { siteConfig } from "@/lib/config"
+import { getCategories } from "@/lib/registry"
+import { source } from "@/lib/source"
+import { Separator } from "@/components/ui/separator"
+import { CommandMenu } from "@/components/command-menu"
+import { GitHubLink } from "@/components/github-link"
+import { MainNav } from "@/components/main-nav"
+import { MobileNav } from "@/components/mobile-nav"
+import { ModeSwitcher } from "@/components/mode-switcher"
+import { XLink } from "@/components/x-link"
 
 export function SiteHeader() {
-  const pathname = usePathname();
-  const githubStars = useGithubStars('keenthemes/reui');
-
-  const handleSocialClick = (platform: string) => {
-    trackEvent({
-      name: `site_header_${platform}_link_click`,
-      properties: {
-        platform,
-        category: 'engagement',
-        label: `Header ${platform} Click`,
-      },
-    });
-  };
+  const pageTree = source.getPageTree()
+  const patternCategories = getCategories()
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur-sm supports-backdrop-filter:bg-background/60 dark:border-border">
-      <div
-        className={cn(
-          'flex h-16 items-center justify-between gap-4',
-          pathname.includes('blocks') ? 'container-fluid' : 'container',
-        )}
-      >
-        <MobileNav />
-
-        <div className="hidden lg:flex items-center gap-3.5">
-          <Link href="/" className="mr-10 flex items-center gap-2">
+    <header className="bg-background sticky top-0 z-50 w-full overscroll-none border-b border-transparent">
+      <div className="container-wrapper">
+        <div className="flex h-[calc(var(--header-height)-1px)] items-center gap-3.5 **:data-[slot=separator]:h-4!">
+          <Link href="/" className="flex items-center gap-2">
             <Image
               src="/brand/logo-text-light.svg"
               alt={siteConfig.name}
               width={75}
               height={0}
-              className="dark:hidden shrink-0"
+              className="shrink-0 dark:hidden"
             />
             <Image
               src="/brand/logo-text-dark.svg"
               alt={siteConfig.name}
               width={75}
               height={0}
-              className="hidden dark:inline-block shrink-0"
+              className="hidden shrink-0 dark:inline-block"
             />
+            <span className="sr-only">{siteConfig.name}</span>
           </Link>
-          <MainNav />
-        </div>
+          <MobileNav
+            tree={pageTree}
+            items={siteConfig.navItems}
+            className="flex lg:hidden"
+          />
+          <div className="ml-auto flex items-center gap-1 md:flex-1 md:justify-end">
+            <div className="mr-2 hidden w-full flex-1 md:flex md:w-auto md:flex-none">
+              <CommandMenu
+                tree={pageTree}
+                navItems={siteConfig.navItems}
+                patternCategories={patternCategories}
+              />
+            </div>
 
-        <div className="flex items-center gap-3 justify-end">
-          <div className="hidden md:block">
-            <CommandMenu />
+            <MainNav items={siteConfig.navItems} className="hidden lg:flex" />
+
+            <Separator orientation="vertical" className="hidden lg:flex" />
+
+            <div className="flex items-center gap-0">
+              <GitHubLink />
+              <XLink />
+              <ModeSwitcher />
+            </div>
           </div>
-
-          <nav className="flex items-center gap-1">
-            <GithubButton
-              key={`github-${githubStars}`}
-              variant="outline"
-              targetStars={githubStars}
-              initialStars={0}
-              separator={true}
-              fixedWidth={true}
-              className="h-8 px-2.5"
-              repoUrl="https://github.com/keenthemes/reui"
-            />
-            <Button variant="ghost" mode="icon" size="sm" className="ms-1.5 size-8 text-foreground ">
-              <Link
-                href={siteConfig.links.twitter}
-                target="_blank"
-                rel="noreferrer"
-                onClick={() => handleSocialClick('twitter')}
-              >
-                <Icons.twitter />
-                <span className="sr-only">X</span>
-              </Link>
-            </Button>
-            <ModeSwitcher />
-          </nav>
         </div>
       </div>
     </header>
-  );
+  )
 }
