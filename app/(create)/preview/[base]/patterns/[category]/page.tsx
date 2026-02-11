@@ -13,7 +13,7 @@ import { normalizeSlug } from "@/lib/utils"
 import { BASES } from "@/registry/config"
 import { PatternsGrid } from "@/app/(create)/patterns/components/patterns-grid"
 
-export const revalidate = 86400 // 24 hours - content only changes on deploy
+export const revalidate = false // Cache forever until next build/deploy
 export const dynamicParams = true
 
 export default async function PatternsPreviewPage({

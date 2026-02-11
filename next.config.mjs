@@ -121,10 +121,23 @@ const nextConfig = {
         destination: "/patterns/sonner",
         permanent: true,
       },
-      // Catch-all: /docs/:path → /patterns/:path
+      // Old component doc URLs → /patterns/:path
+      // Only matches known pattern categories, NOT real docs pages like /docs/get-started
       {
-        source: "/docs/:path",
+        source: "/docs/:path(accordion|alert|alert-dialog|aspect-ratio|autocomplete|avatar|badge|breadcrumb|button|button-group|calendar|card|carousel|chart|checkbox|collapsible|combobox|command|context-menu|data-grid|date-selector|dialog|drawer|dropdown-menu|empty|field|file-upload|filters|frame|hover-card|input|input-group|input-otp|item|kanban|kbd|label|menubar|native-select|navigation-menu|number-field|pagination|phone-input|popover|progress|radio-group|rating|resizable|scroll-area|scrollspy|select|separator|sheet|skeleton|slider|sonner|sortable|spinner|stepper|switch|table|tabs|textarea|timeline|toggle|toggle-group|tooltip|tree)",
         destination: "/patterns/:path",
+        permanent: true,
+      },
+      // Default style fallback: /r/styles/default/* → /r/styles/radix-nova/*
+      {
+        source: "/r/styles/default/:path*",
+        destination: "/r/styles/radix-nova/:path*",
+        permanent: true,
+      },
+      // Backward-compat: old /r/:style/:name.json → new /r/styles/:style/:name.json
+      {
+        source: "/r/:style/:name.json",
+        destination: "/r/styles/:style/:name.json",
         permanent: true,
       },
     ]

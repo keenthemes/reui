@@ -2,7 +2,6 @@
 
 import * as React from "react"
 
-import { transformStyleClassNames } from "@/lib/code-utils"
 import { highlightCode } from "@/lib/highlight-code"
 import { getIconLibraryFromStyle, transformIcons } from "@/lib/icons"
 import { cn } from "@/lib/utils"
@@ -15,6 +14,10 @@ import { IconLibraryName } from "@/registry/config"
 
 // Default styleName - matches the API default
 const DEFAULT_STYLE_NAME = "radix-nova"
+
+// Module-level cache: prevents duplicate /r/ fetches across renders and re-mounts.
+// Keyed by "styleName:name", stores raw code from the registry response.
+const clientCodeCache = new Map<string, string>()
 
 export interface ComponentSourceClientProps {
   name?: string
@@ -67,23 +70,36 @@ export function ComponentSourceClient({
 
       // Fetch from the /r/ API endpoint
       if (name) {
-        try {
-          // Use the style-specific endpoint
-          const url = `/r/${styleName}/${name}.json`
-          const res = await fetch(url, {
-            signal: abortControllerRef.current.signal,
-          })
+        // Guard: skip fetch if styleName contains "undefined" (config not yet loaded)
+        if (styleName.includes("undefined")) {
+          return
+        }
 
-          if (res.ok) {
-            const data = await res.json()
-            currentCode = data.files?.[0]?.content
+        const cacheKey = `${styleName}:${name}`
+
+        // Check module-level cache first to avoid duplicate network requests
+        if (clientCodeCache.has(cacheKey)) {
+          currentCode = clientCodeCache.get(cacheKey)
+        } else {
+          try {
+            const url = `/r/styles/${styleName}/${name}.json`
+            const res = await fetch(url, {
+              signal: abortControllerRef.current.signal,
+            })
+
+            if (res.ok) {
+              const data = await res.json()
+              currentCode = data.files?.[0]?.content
+              if (currentCode) {
+                clientCodeCache.set(cacheKey, currentCode)
+              }
+            }
+          } catch (error) {
+            if (error instanceof Error && error.name === "AbortError") {
+              return
+            }
+            console.error("Error fetching registry item:", error)
           }
-        } catch (error) {
-          // Check if this is an abort error
-          if (error instanceof Error && error.name === "AbortError") {
-            return
-          }
-          console.error("Error fetching registry item:", error)
         }
       }
 
@@ -104,10 +120,7 @@ export function ComponentSourceClient({
           ""
         )
 
-        // Transform classNames for display
-        currentCode = transformStyleClassNames(currentCode, styleName)
-
-        // Transform icons for display
+        // Transform icons for display (style classes already baked into static JSON)
         const effectiveIconLibrary =
           _iconLibrary || getIconLibraryFromStyle(styleName)
         currentCode = transformIcons(currentCode, effectiveIconLibrary)

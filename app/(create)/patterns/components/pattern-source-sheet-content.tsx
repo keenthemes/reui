@@ -26,11 +26,13 @@ export function PatternSourceSheetContent({
   const [config] = useConfig()
   const [params] = useDesignSystemSearchParams()
 
+  const styleName = `${config.base || "base"}-${config.style || "vega"}`
+
   const v0Url = React.useMemo(() => {
-    const registryUrl = `https://reui.io/r/${config.base}-${config.style}/${name}.json`
+    const registryUrl = `https://reui.io/r/styles/${styleName}/${name}.json`
     const paramsString = serializeDesignSystemSearchParams("", params)
     return `https://v0.dev/chat/api/open?url=${encodeURIComponent(registryUrl + paramsString)}`
-  }, [config.base, config.style, name, params])
+  }, [styleName, name, params])
 
   return (
     <SheetContent
@@ -63,7 +65,7 @@ export function PatternSourceSheetContent({
             <ComponentSourceClient
               className="*:data-rehype-pretty-code-figure:no-scrollbar no-scrollbar h-full overflow-auto *:data-rehype-pretty-code-figure:mt-0 *:data-rehype-pretty-code-figure:max-h-full *:data-rehype-pretty-code-figure:overflow-y-auto"
               collapsible={false}
-              styleName={config.base + "-" + config.style}
+              styleName={styleName}
               iconLibrary={config.iconLibrary}
               name={name}
               eventName="copy_pattern_code"

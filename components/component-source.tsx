@@ -4,11 +4,7 @@ import * as React from "react"
 
 import { transformStyleClassNames } from "@/lib/code-utils"
 import { highlightCode } from "@/lib/highlight-code"
-import { transformIcons } from "@/lib/icons"
-import {
-  getIconLibraryForStyle,
-  getRegistryItemForApi,
-} from "@/lib/registry-server"
+import { getIconLibraryFromStyle, transformIcons } from "@/lib/icons"
 import { cn } from "@/lib/utils"
 import { CodeCollapsibleWrapper } from "@/components/code-collapsible-wrapper"
 import { CopyButton } from "@/components/copy-button"
@@ -67,24 +63,37 @@ export async function ComponentSource({
   let code = initialCode
 
   if (code) {
-    // Transform classNames for display
+    // Transform classNames for display (code prop comes raw, not from static JSON)
     code = transformStyleClassNames(code, styleName)
 
     // Transform icons for display if code is provided via prop (e.g. from rehype)
     const effectiveIconLibrary =
-      iconLibrary || getIconLibraryForStyle(styleName)
+      iconLibrary || getIconLibraryFromStyle(styleName)
     code = transformIcons(code, effectiveIconLibrary)
   }
 
   if (!code && name) {
-    // Use the new API-based registry function that handles all transformations
-    const item = await getRegistryItemForApi(name, styleName)
-    code = item?.files?.[0]?.content
+    // Read from pre-built static JSON (style classes already transformed at build time)
+    try {
+      const jsonPath = path.join(
+        process.cwd(),
+        "public",
+        "r",
+        "styles",
+        styleName,
+        `${name}.json`
+      )
+      const jsonContent = await fs.readFile(jsonPath, "utf-8")
+      const item = JSON.parse(jsonContent)
+      code = item?.files?.[0]?.content
+    } catch (error) {
+      console.error(`Error reading static registry: ${name}`, error)
+    }
 
     if (code) {
-      // Transform icons for display
+      // Transform icons for display (not baked into static JSON)
       const effectiveIconLibrary =
-        iconLibrary || getIconLibraryForStyle(styleName)
+        iconLibrary || getIconLibraryFromStyle(styleName)
       code = transformIcons(code, effectiveIconLibrary)
     }
   }
@@ -108,7 +117,7 @@ export async function ComponentSource({
 
       // Transform icons for file-based source
       const effectiveIconLibrary =
-        iconLibrary || getIconLibraryForStyle(styleName)
+        iconLibrary || getIconLibraryFromStyle(styleName)
       code = transformIcons(code, effectiveIconLibrary)
     } catch (error) {
       console.error(`Error reading file: ${absolutePath}`, error)

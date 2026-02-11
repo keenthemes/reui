@@ -589,20 +589,21 @@ export async function getRegistryItem(
     try {
       if (typeof window !== "undefined") {
         try {
-          const url = `/api/registry/${encodeURIComponent(name)}?styleName=${styleName}${iconLibrary ? `&iconLibrary=${iconLibrary}` : ""}`
+          // Use static /r/styles/ files (CDN-served, zero function invocations)
+          const url = `/r/styles/${styleName}/${encodeURIComponent(name)}.json`
           const res = await fetch(url)
           if (res.ok) {
             const data = await res.json()
+            const rawCode = data.files?.[0]?.content
             const item: RegistryItem = {
-              name: data.name,
-              title: data.title || data.name,
+              name: data.name || name,
+              title: data.title || data.name || name,
               type: "registry:ui",
               files: [
                 {
                   path: "",
                   type: "registry:ui",
-                  content: data.rawCode,
-                  highlightedContent: data.highlightedCode,
+                  content: rawCode,
                 },
               ],
             }

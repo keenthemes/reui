@@ -50,7 +50,7 @@ export default function Hero() {
             href="/docs/changelog"
             className="group/new flex flex-col items-center justify-center gap-2.5 md:flex-row"
           >
-            <Badge className="rounded-[16px] border border-blue-50 bg-blue-50 px-2 py-1 text-blue-600 dark:bg-blue-950 dark:text-blue-50 dark:border-blue-950">
+            <Badge className="rounded-[16px] border border-blue-50 bg-blue-50 px-2 py-1 text-blue-600 dark:border-blue-950 dark:bg-blue-950 dark:text-blue-50">
               2.0 Release
             </Badge>
             <span className="inline-flex max-w-[200px] items-center gap-1.5 text-center md:max-w-none">
