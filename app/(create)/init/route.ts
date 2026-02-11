@@ -1,5 +1,4 @@
 import { NextResponse, type NextRequest } from "next/server"
-import { track } from "@vercel/analytics/server"
 import { registryItemSchema } from "shadcn/schema"
 
 import { buildRegistryBase, designSystemConfigSchema } from "@/registry/config"
@@ -41,9 +40,12 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    track("create_app", result.data)
-
-    return NextResponse.json(parseResult.data)
+    return NextResponse.json(parseResult.data, {
+      headers: {
+        "Cache-Control":
+          "public, s-maxage=86400, stale-while-revalidate=604800",
+      },
+    })
   } catch (error) {
     return NextResponse.json(
       {

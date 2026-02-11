@@ -33,6 +33,7 @@ const nextConfig = {
     },
   },
   images: {
+    minimumCacheTTL: 2592000, // 30 days - reduce image re-optimizations
     remotePatterns: [
       {
         protocol: "https",
@@ -109,16 +110,25 @@ const nextConfig = {
         destination: "/docs/:path*.md",
         permanent: true,
       },
-    ]
-  },
-  rewrites() {
-    return [
+      // Special case redirects (intentional renames, listed before catch-all)
       {
-        source: "/docs/:path*.md",
-        destination: "/llm/:path*",
+        source: "/docs/form",
+        destination: "/patterns/field",
+        permanent: true,
+      },
+      {
+        source: "/docs/toast",
+        destination: "/patterns/sonner",
+        permanent: true,
+      },
+      // Catch-all: /docs/:path → /patterns/:path
+      {
+        source: "/docs/:path",
+        destination: "/patterns/:path",
+        permanent: true,
       },
     ]
-  },
+  }
 }
 
 const withMDX = createMDX({})

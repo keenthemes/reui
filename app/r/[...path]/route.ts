@@ -1,5 +1,4 @@
 import { NextResponse, type NextRequest } from "next/server"
-import { track } from "@vercel/analytics/server"
 
 import {
   getAllRegistryItemNames,
@@ -81,18 +80,6 @@ export async function GET(_request: NextRequest, { params }: RouteParams) {
       )
     }
 
-    // Track registry access in production
-    if (process.env.NODE_ENV === "production") {
-      try {
-        await track("registry_access", {
-          name: itemName,
-          style: styleName,
-        })
-      } catch (error) {
-        console.error("Failed to track registry access:", error)
-      }
-    }
-
     // Transform local registryDependencies to full URLs so shadcn CLI can resolve them
     if (registryItem.registryDependencies) {
       const baseUrl =
@@ -116,11 +103,7 @@ export async function GET(_request: NextRequest, { params }: RouteParams) {
       )
     }
 
-    return NextResponse.json(registryItem, {
-      headers: {
-        "Cache-Control": "public, s-maxage=31536000, immutable",
-      },
-    })
+    return NextResponse.json(registryItem)
   } catch (error) {
     console.error("Error generating registry item:", error)
     return NextResponse.json(

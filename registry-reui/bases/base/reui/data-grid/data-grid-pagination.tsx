@@ -1,6 +1,6 @@
 "use client"
 
-import { ReactNode } from "react"
+import React, { ReactNode } from "react"
 import { useDataGrid } from "@/registry-reui/bases/base/reui/data-grid/data-grid"
 
 import { cn } from "@/registry/bases/base/lib/utils"
@@ -32,7 +32,7 @@ interface DataGridPaginationProps {
   ellipsisText?: string
 }
 
-function DataGridPagination(props: DataGridPaginationProps) {
+function DataGridPagination(props: DataGridPaginationProps): React.JSX.Element {
   const { table, recordCount, isLoading } = useDataGrid()
 
   const defaultProps: Partial<DataGridPaginationProps> = {

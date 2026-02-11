@@ -15,7 +15,7 @@ import type {
 
 export type PatternGridMode = 1 | 2
 
-type Config = {
+export type Config = {
   // App preferences (not synced with URL)
   packageManager: "npm" | "yarn" | "pnpm" | "bun"
   installationType: "cli" | "manual"

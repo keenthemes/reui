@@ -29,8 +29,8 @@ function PatternsIframeViewSkeleton() {
   )
 }
 
-// Enable ISR - revalidate every hour
-export const revalidate = 3600
+// Enable ISR - revalidate every 24 hours (content only changes on deploy)
+export const revalidate = 86400
 
 // Generate static params for all valid component categories
 export async function generateStaticParams() {

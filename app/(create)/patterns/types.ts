@@ -1,7 +1,7 @@
 import { type CategoryInfo } from "@/lib/registry"
-import { type PatternGridMode } from "@/hooks/use-config"
 
-export type { PatternGridMode, CategoryInfo }
+export type PatternGridMode = 1 | 2
+export type { CategoryInfo }
 export type GridSize = 1 | 2
 
 export interface Pattern {

@@ -23,8 +23,8 @@ function PatternsIframeViewSkeleton() {
   )
 }
 
-// Enable ISR - revalidate every hour for fresh data while keeping pages cached
-export const revalidate = 3600
+// Enable ISR - revalidate every 24 hours (content only changes on deploy)
+export const revalidate = 86400
 
 const title = "Browse Patterns"
 const description =

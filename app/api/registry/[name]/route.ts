@@ -6,6 +6,8 @@ import { transformIcons } from "@/lib/icons"
 import { getRegistryItem } from "@/lib/registry"
 import { IconLibraryName } from "@/registry/config"
 
+export const revalidate = 86400 // ISR: cache each unique URL for 24 hours
+
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ name: string }> }
@@ -46,7 +48,7 @@ export async function GET(
       .trim()
 
     // Highlight the code
-    let highlightedCode = await highlightCode(processedCode, "tsx")
+    let highlightedCode = await highlightCode(processedCode)
 
     // Clean up registry paths in highlighted code
     highlightedCode = highlightedCode
@@ -54,19 +56,11 @@ export async function GET(
       .replaceAll("@/registry/shadcn/radix/", "@/components/ui/")
       .replaceAll("@/registry/default/reui/", "@/components/reui/")
 
-    return NextResponse.json(
-      {
-        name,
-        rawCode: processedCode,
-        highlightedCode,
-      },
-      {
-        headers: {
-          "Cache-Control":
-            "public, s-maxage=86400, stale-while-revalidate=604800",
-        },
-      }
-    )
+    return NextResponse.json({
+      name,
+      rawCode: processedCode,
+      highlightedCode,
+    })
   } catch (error) {
     console.error("Error fetching registry item:", error)
     return NextResponse.json(

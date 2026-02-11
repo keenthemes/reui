@@ -1,5 +1,5 @@
 {
   "root": true,
   "title": "Overview",
-  "pages": ["index","get-started","styling","mcp","registry","roadmap","changelog","[llms.txt](/llms.txt)"]  
+  "pages": ["index","get-started","styling","mcp","registry","roadmap","changelog","[llms.txt](/llms.txt)", "[v1 Docs](https://v1.reui.io)"]  
 }
