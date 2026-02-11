@@ -27,7 +27,7 @@ export function PatternSourceSheetContent({
   const [params] = useDesignSystemSearchParams()
 
   const v0Url = React.useMemo(() => {
-    const registryUrl = `https://reui-v2.vercel.app/r/${name}.json`
+    const registryUrl = `https://reui.io/r/${config.base}-${config.style}/${name}.json`
     const paramsString = serializeDesignSystemSearchParams("", params)
     return `https://v0.dev/chat/api/open?url=${encodeURIComponent(registryUrl + paramsString)}`
   }, [config.base, config.style, name, params])

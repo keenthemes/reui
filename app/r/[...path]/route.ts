@@ -83,10 +83,7 @@ export async function GET(_request: NextRequest, { params }: RouteParams) {
     // Transform local registryDependencies to full URLs so shadcn CLI can resolve them
     if (registryItem.registryDependencies) {
       const baseUrl =
-        process.env.NEXT_PUBLIC_APP_URL ||
-        (process.env.VERCEL_URL
-          ? `https://${process.env.VERCEL_URL}`
-          : "http://localhost:4000")
+        process.env.NEXT_PUBLIC_APP_URL || "http://localhost:4000"
       const localNames = getAllRegistryItemNames()
 
       registryItem.registryDependencies = registryItem.registryDependencies.map(
