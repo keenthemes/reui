@@ -1,6 +1,6 @@
 "use client"
 
-import { Suspense, useEffect } from "react"
+import { Suspense, useEffect, useMemo } from "react"
 import { useQueryStates } from "nuqs"
 
 import { parseAsSearchStringClient } from "@/lib/nuqs"
@@ -83,9 +83,31 @@ function PatternsGridContent({
     return () => window.removeEventListener("message", handleMessage)
   }, [config, setConfig, isIframe])
 
+  // Client-side search filtering for iframe mode (pages are static, filtering
+  // happens here instead of on the server). This keeps pages CDN-served while
+  // still supporting ?search= in the iframe URL.
+  const filteredPatterns = useMemo(() => {
+    if (!searchQuery || !isIframe) return patterns
+    const terms = searchQuery.toLowerCase().split(/\s+/).filter(Boolean)
+    if (terms.length === 0) return patterns
+    return patterns.filter((p) => {
+      const text =
+        p.searchText ||
+        [p.name, ...(p.categories || [])].join(" ").toLowerCase()
+      return terms.every((term) => {
+        if (text.includes(term)) return true
+        // If term is plural (ends with s), try singular
+        if (term.length > 3 && term.endsWith("s")) {
+          return text.includes(term.slice(0, -1))
+        }
+        return false
+      })
+    })
+  }, [patterns, searchQuery, isIframe])
+
   // Iframe rendering path
   if (isIframe && base) {
-    if (patterns.length === 0) {
+    if (filteredPatterns.length === 0) {
       return (
         <div className="container py-4">
           <PatternsEmptyState
@@ -108,7 +130,7 @@ function PatternsGridContent({
             gridColumns === 2 && "grid-cols-1 md:grid-cols-2"
           )}
         >
-          {patterns.map((pattern) => (
+          {filteredPatterns.map((pattern) => (
             <PatternCard
               key={pattern.name}
               name={pattern.name}
