@@ -48,8 +48,11 @@ export function transformStyleClassNames(
 
   // Step 1: Transform style-* tokens inside ALL string literals.
   // Matches double-quoted, single-quoted, and backtick strings containing "style-".
+  // IMPORTANT: \n is included in the negated character classes to prevent the regex
+  // from matching across line boundaries (which would collapse multi-line code blocks
+  // into a single line when .split(/\s+/).join(" ") runs on the captured content).
   code = code.replace(
-    /"([^"]*style-[^"]*)"|'([^']*style-[^']*)'|`([^`]*style-[^`]*)`/g,
+    /"([^"\n]*style-[^"\n]*)"|'([^'\n]*style-[^'\n]*)'|`([^`\n]*style-[^`\n]*)`/g,
     (match, dq, sq, bt) => {
       const content = dq ?? sq ?? bt
       const quote = dq !== undefined ? '"' : sq !== undefined ? "'" : "`"

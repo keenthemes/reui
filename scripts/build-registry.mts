@@ -432,6 +432,101 @@ async function main() {
     "utf-8"
   )
 
+  // ---------------------------------------------------------------------------
+  // Verification pass — read back every generated JSON and check integrity
+  // ---------------------------------------------------------------------------
+  console.log()
+  console.log("Verifying generated files...")
+
+  let verified = 0
+  let verifyErrors = 0
+  const MAX_LINE_LENGTH = 2000 // SVG paths can be long, but code lines shouldn't exceed this
+  const corruptedFiles: string[] = []
+
+  for (const styleName of styleNames) {
+    const styleDir = path.join(outputRoot, styleName)
+    const entries = await fs.readdir(styleDir)
+
+    for (const entry of entries) {
+      if (!entry.endsWith(".json")) continue
+      const filePath = path.join(styleDir, entry)
+
+      try {
+        const raw = await fs.readFile(filePath, "utf-8")
+
+        // 1. Verify valid JSON
+        const data = JSON.parse(raw)
+
+        // 2. Verify required fields
+        if (!data.name || !data.type || !Array.isArray(data.files)) {
+          verifyErrors++
+          corruptedFiles.push(`${styleName}/${entry}`)
+          console.error(`  INVALID SCHEMA: ${styleName}/${entry} — missing name, type, or files`)
+          continue
+        }
+
+        // 3. Verify each file entry has content
+        for (const file of data.files) {
+          if (!file.content || typeof file.content !== "string") {
+            verifyErrors++
+            corruptedFiles.push(`${styleName}/${entry}`)
+            console.error(`  EMPTY CONTENT: ${styleName}/${entry} — file "${file.path}" has no content`)
+            break
+          }
+
+          // 4. Check for collapsed code (lines shouldn't be excessively long)
+          const lines = file.content.split("\n")
+          for (let i = 0; i < lines.length; i++) {
+            const line = lines[i]
+            // Skip SVG path data lines (legitimately long)
+            if (line.trimStart().startsWith("d=") || line.trimStart().startsWith("d =")) continue
+            if (line.length > MAX_LINE_LENGTH) {
+              verifyErrors++
+              corruptedFiles.push(`${styleName}/${entry}`)
+              console.error(
+                `  COLLAPSED CODE: ${styleName}/${entry} — line ${i + 1} is ${line.length} chars (file "${file.path}")`
+              )
+              break
+            }
+          }
+
+          // 5. Check for unresolved style-* tokens (should all be transformed)
+          if (/\bstyle-(?:vega|nova|maia|lyra|mira):/.test(file.content)) {
+            verifyErrors++
+            corruptedFiles.push(`${styleName}/${entry}`)
+            console.error(
+              `  UNTRANSFORMED STYLE: ${styleName}/${entry} — still contains style-*: tokens`
+            )
+          }
+
+          // 6. Check for unresolved internal import paths
+          if (/@\/registry-reui\//.test(file.content) || /@\/registry\/bases\//.test(file.content)) {
+            verifyErrors++
+            corruptedFiles.push(`${styleName}/${entry}`)
+            console.error(
+              `  UNTRANSFORMED IMPORT: ${styleName}/${entry} — still contains registry import paths`
+            )
+          }
+        }
+
+        verified++
+      } catch (error) {
+        verifyErrors++
+        corruptedFiles.push(`${styleName}/${entry}`)
+        console.error(`  INVALID JSON: ${styleName}/${entry} —`, error)
+      }
+    }
+  }
+
+  console.log(`  Verified: ${verified} files`)
+  if (verifyErrors > 0) {
+    console.error(`  Verification FAILED: ${verifyErrors} issues in ${[...new Set(corruptedFiles)].length} files`)
+    console.error(`  Affected: ${[...new Set(corruptedFiles)].join(", ")}`)
+    process.exit(1)
+  } else {
+    console.log("  All files passed verification")
+  }
+
   const elapsed = ((Date.now() - startTime) / 1000).toFixed(1)
   const sizeMB = (totalBytes / 1024 / 1024).toFixed(1)
 
@@ -440,7 +535,7 @@ async function main() {
   console.log(`  Total files: ${totalFiles}`)
   console.log(`  Total size: ${sizeMB} MB`)
   if (errors > 0) {
-    console.log(`  Errors: ${errors}`)
+    console.log(`  Build errors: ${errors}`)
     process.exit(1)
   }
 }
