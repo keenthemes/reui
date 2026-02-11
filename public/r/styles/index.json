@@ -1,0 +1,46 @@
+[
+  {
+    "name": "default",
+    "label": "Default"
+  },
+  {
+    "name": "radix-vega",
+    "label": "Radix Vega"
+  },
+  {
+    "name": "radix-nova",
+    "label": "Radix Nova"
+  },
+  {
+    "name": "radix-maia",
+    "label": "Radix Maia"
+  },
+  {
+    "name": "radix-lyra",
+    "label": "Radix Lyra"
+  },
+  {
+    "name": "radix-mira",
+    "label": "Radix Mira"
+  },
+  {
+    "name": "base-vega",
+    "label": "Base Vega"
+  },
+  {
+    "name": "base-nova",
+    "label": "Base Nova"
+  },
+  {
+    "name": "base-maia",
+    "label": "Base Maia"
+  },
+  {
+    "name": "base-lyra",
+    "label": "Base Lyra"
+  },
+  {
+    "name": "base-mira",
+    "label": "Base Mira"
+  }
+]
