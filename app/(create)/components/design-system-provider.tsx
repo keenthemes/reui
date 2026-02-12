@@ -261,7 +261,7 @@ export function DesignSystemProvider({
   // remove the loading overlay as soon as the iframe renders styled content.
   React.useEffect(() => {
     if (isReady && isInIframe()) {
-      window.parent.postMessage({ type: "iframe-ready" }, "*")
+      window.parent.postMessage({ type: "iframe-ready" }, window.location.origin)
     }
   }, [isReady])
 

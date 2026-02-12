@@ -71,6 +71,9 @@ function PatternsGridContent({
     if (!isIframe) return
 
     const handleMessage = (event: MessageEvent) => {
+      // Validate origin to prevent cross-origin message injection
+      if (event.origin !== window.location.origin) return
+
       if (event.data?.type === "grid-columns" && event.data?.columns) {
         setConfig({
           ...config,

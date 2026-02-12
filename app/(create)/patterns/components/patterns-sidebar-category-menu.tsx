@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation"
 
 import { getCategoryNames } from "@/lib/registry"
 import { cn, formatLabel, normalizeSlug } from "@/lib/utils"
-import { usePatternsState } from "@/hooks/use-config"
 import { SidebarGroup, SidebarGroupContent } from "@/components/ui/sidebar"
 import {
   serializeDesignSystemSearchParams,
@@ -30,7 +29,6 @@ export const PatternsSidebarCategoryMenu = React.memo(
     const { totalCount, categoryCounts } = usePatterns()
     const pathname = usePathname()
     const [params] = useDesignSystemSearchParams()
-    const [patternsState, setPatternsState] = usePatternsState()
 
     // Get category names once (from small __stats__.ts file)
     const categoryNames = React.useMemo(() => getCategoryNames(), [])
@@ -46,20 +44,6 @@ export const PatternsSidebarCategoryMenu = React.memo(
 
     // Use pathname from Next.js hook (SSR-safe)
     const currentPathname = pathname || ""
-
-    // Save active category to state when it changes
-    React.useEffect(() => {
-      const categoryMatch = currentPathname.match(/^\/patterns\/([^/?]+)/)
-      if (categoryMatch) {
-        const category = categoryMatch[1]
-        if (patternsState.activeCategory !== category) {
-          setPatternsState((prev) => ({ ...prev, activeCategory: category }))
-        }
-      } else if (patternsState.activeCategory) {
-        setPatternsState((prev) => ({ ...prev, activeCategory: undefined }))
-      }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [currentPathname, patternsState.activeCategory])
 
     // Build href with preserved design system params
     const buildHref = React.useCallback(

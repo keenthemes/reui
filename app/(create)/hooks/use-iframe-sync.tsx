@@ -49,6 +49,9 @@ export function useIframeMessageListener<
     }
 
     const handleMessage = (event: MessageEvent) => {
+      // Validate origin to prevent cross-origin message injection
+      if (event.origin !== window.location.origin) return
+
       if (event.data.type === messageType) {
         onMessage(event.data.data)
       }
@@ -78,6 +81,6 @@ export function sendToIframe<
       type: messageType,
       data,
     },
-    "*"
+    window.location.origin
   )
 }

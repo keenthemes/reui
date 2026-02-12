@@ -45,7 +45,7 @@ export function PatternCard({
           name,
           base,
         },
-        "*"
+        window.location.origin
       )
     }
   }

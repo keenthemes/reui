@@ -211,7 +211,7 @@ export function RandomizeScript() {
                     window.parent.postMessage({
                       type: '${RANDOMIZE_FORWARD_TYPE}',
                       key: e.key
-                    }, '*');
+                    }, window.location.origin);
                   }
                 }
               });
