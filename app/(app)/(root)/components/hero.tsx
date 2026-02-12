@@ -73,7 +73,7 @@ export default function Hero() {
 
           <div className="mb-3 flex flex-wrap items-center justify-center gap-2 md:gap-3.5">
             <Button asChild className="gap-1.5 rounded-lg px-5 text-nowrap">
-              <Link href="/docs/installation">
+              <Link href="/docs/get-started">
                 Get Started
                 <ChevronRight />
               </Link>
