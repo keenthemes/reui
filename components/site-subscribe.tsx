@@ -4,7 +4,6 @@ import { useState } from "react"
 import { AlertCircle, CheckCircle2 } from "lucide-react"
 import { toast } from "sonner"
 
-import { trackEvent } from "@/lib/events"
 import { Alert, AlertTitle } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -36,11 +35,19 @@ export function SiteSubscribe() {
     return true
   }
 
+  const isDev = process.env.NODE_ENV === "development"
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     if (!validateEmail()) {
       setShowRecaptcha(false)
+      return
+    }
+
+    // In development, skip reCAPTCHA and submit directly
+    if (isDev) {
+      await submitToApi("")
       return
     }
 
@@ -63,24 +70,23 @@ export function SiteSubscribe() {
       return
     }
 
+    await submitToApi(token)
+  }
+
+  const submitToApi = async (token: string) => {
     setLoading(true)
 
     try {
-      trackEvent({
-        name: "site_newsletter_subscribe_submit",
-        properties: {
-          category: "conversion",
-          label: "Newsletter Subscribe Submit",
-          email,
-        },
-      })
+      const headers: Record<string, string> = {
+        "Content-Type": "application/json",
+      }
+      if (token) {
+        headers["x-recaptcha-token"] = token
+      }
 
       const res = await fetch("/api/subscribe", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-recaptcha-token": token,
-        },
+        headers,
         body: JSON.stringify({ email }),
       })
 
@@ -92,7 +98,7 @@ export function SiteSubscribe() {
             <Alert>
               <CheckCircle2 className="size-4 text-green-500" />
               <AlertTitle>
-                Thank you for your subscription. Expect amazing stuff soon!
+                Thank you for your subscription!
               </AlertTitle>
             </Alert>
           ),
@@ -100,14 +106,6 @@ export function SiteSubscribe() {
             position: "top-center",
           }
         )
-        trackEvent({
-          name: "site_newsletter_subscribe_success",
-          properties: {
-            category: "conversion",
-            label: "Newsletter Subscribe Success",
-            email,
-          },
-        })
         setEmail("")
         setShowRecaptcha(false)
       } else {
