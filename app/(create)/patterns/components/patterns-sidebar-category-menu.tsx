@@ -59,6 +59,7 @@ export const PatternsSidebarCategoryMenu = React.memo(
               {!filter && (
                 <Link
                   href={buildHref("/patterns")}
+                  prefetch={false}
                   onClick={onSelect}
                   className={cn(
                     "border-border flex items-center justify-between gap-2 rounded-md border px-2 py-1 text-xs transition-colors",
@@ -90,6 +91,7 @@ export const PatternsSidebarCategoryMenu = React.memo(
                   <Link
                     key={category}
                     href={buildHref(basePath)}
+                    prefetch={false}
                     onClick={onSelect}
                     className={cn(
                       "border-border flex items-center justify-between gap-2 rounded-md border px-2 py-1 text-xs transition-colors",
@@ -129,6 +131,7 @@ export const PatternsSidebarCategoryMenu = React.memo(
           {!filter && (
             <Link
               href={buildHref("/patterns")}
+              prefetch={false}
               onClick={onSelect}
               className={cn(
                 "flex items-center justify-between rounded-md px-3 py-2 text-sm transition-colors",
@@ -160,6 +163,7 @@ export const PatternsSidebarCategoryMenu = React.memo(
               <Link
                 key={category}
                 href={buildHref(basePath)}
+                prefetch={false}
                 onClick={onSelect}
                 className={cn(
                   "flex items-center justify-between rounded-md px-3 py-2 text-sm transition-colors",

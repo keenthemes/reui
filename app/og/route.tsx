@@ -1,5 +1,8 @@
 import { ImageResponse } from "next/og"
 
+// Force Node.js runtime to avoid edge function execution billing
+export const runtime = "nodejs"
+
 async function loadAssets(): Promise<
   { name: string; data: Buffer; weight: 400 | 600; style: "normal" }[]
 > {
@@ -107,7 +110,15 @@ export async function GET(request: Request) {
 
   response.headers.set(
     "Cache-Control",
-    "public, s-maxage=86400, stale-while-revalidate=604800"
+    "public, max-age=86400, s-maxage=31536000, stale-while-revalidate=31536000"
+  )
+  response.headers.set(
+    "CDN-Cache-Control",
+    "public, max-age=31536000"
+  )
+  response.headers.set(
+    "Vercel-CDN-Cache-Control",
+    "public, max-age=31536000"
   )
 
   return response

@@ -71,6 +71,24 @@ const nextConfig = {
 
     return [
       {
+        // Registry JSON files: aggressive CDN caching to reduce edge requests
+        source: "/r/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=86400, s-maxage=31536000, stale-while-revalidate=31536000",
+          },
+          {
+            key: "CDN-Cache-Control",
+            value: "public, max-age=31536000, stale-while-revalidate=31536000",
+          },
+          {
+            key: "Vercel-CDN-Cache-Control",
+            value: "public, max-age=31536000, stale-while-revalidate=31536000",
+          },
+        ],
+      },
+      {
         // All pages: allow same-origin + approved external sites to embed in iframes
         source: "/(.*)",
         headers: [
