@@ -152,6 +152,21 @@ const nextConfig = {
         destination: "/r/styles/radix-nova/:path*",
         permanent: true,
       },
+      {
+        source: "/r/default/:path*",
+        destination: "/r/styles/radix-nova/:path*",
+        permanent: true,
+      },
+      {
+        source: "/r/new-york/:path*",
+        destination: "/r/styles/radix-nova/:path*",
+        permanent: true,
+      },
+      {
+        source: "/r/new-york-v4/:path*",
+        destination: "/r/styles/radix-nova/:path*",
+        permanent: true,
+      },
       // Backward-compat: old /r/:style/:name.json → new /r/styles/:style/:name.json
       {
         source: "/r/:style/:name.json",
