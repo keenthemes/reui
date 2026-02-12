@@ -71,13 +71,13 @@ const nextConfig = {
 
     return [
       {
-        // All pages: allow same-origin iframes (needed for pattern previews)
+        // All pages: allow same-origin + approved external sites to embed in iframes
         source: "/(.*)",
         headers: [
           ...securityHeaders,
           {
-            key: "X-Frame-Options",
-            value: "SAMEORIGIN",
+            key: "Content-Security-Policy",
+            value: "frame-ancestors 'self' https://shoogle.dev https://*.shoogle.dev",
           },
         ],
       },
@@ -86,8 +86,8 @@ const nextConfig = {
         source: "/api/:path*",
         headers: [
           {
-            key: "X-Frame-Options",
-            value: "DENY",
+            key: "Content-Security-Policy",
+            value: "frame-ancestors 'none'",
           },
         ],
       },
