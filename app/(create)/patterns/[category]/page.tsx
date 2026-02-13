@@ -1,20 +1,17 @@
 import { Suspense } from "react"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
-import { SearchParams } from "nuqs/server"
 
-import { searchParamsCache } from "@/lib/nuqs-server"
 import {
-  filterPatterns,
   getCategoryDescription,
   getCategoryNames,
-  getPatternsByCategory,
+  getPatternCountByCategory,
   isValidCategory,
 } from "@/lib/registry"
 import { formatLabel, normalizeSlug } from "@/lib/utils"
 import { Spinner } from "@/components/ui/spinner"
 
-import { PatternsIframeView } from "../components/patterns-iframe-view"
+import { CategoryPageContent } from "./category-page-content"
 
 function PatternsIframeViewSkeleton() {
   return (
@@ -29,7 +26,8 @@ function PatternsIframeViewSkeleton() {
   )
 }
 
-// Cache forever until next build/deploy (content only changes on deploy)
+// Fully static — search filtering happens client-side in the iframe
+export const dynamic = "force-static"
 export const revalidate = false
 
 // Generate static params for all valid component categories
@@ -99,34 +97,22 @@ export async function generateMetadata({
 
 export default async function CategoryPatternsPage({
   params,
-  searchParams,
 }: {
   params: Promise<{ category: string }>
-  searchParams: Promise<SearchParams>
 }) {
   const { category } = await params
-  const parsed = await searchParamsCache.parse(searchParams)
-  const searchQuery = parsed.search
-
   const normalized = normalizeSlug(category)
 
   if (!isValidCategory(normalized)) {
     return notFound()
   }
 
-  // Calculate count for header
-  let patterns = getPatternsByCategory(normalized)
-  if (searchQuery) {
-    patterns = filterPatterns(patterns, [normalized], searchQuery)
-  }
+  // Pass total count for the category (search filtering is client-side in the iframe)
+  const count = getPatternCountByCategory(normalized)
 
   return (
     <Suspense fallback={<PatternsIframeViewSkeleton />}>
-      <PatternsIframeView
-        category={normalized}
-        searchQuery={searchQuery}
-        count={patterns.length}
-      />
+      <CategoryPageContent category={normalized} count={count} />
     </Suspense>
   )
 }

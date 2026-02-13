@@ -28,7 +28,7 @@ export function PatternsSidebarScript() {
                     window.parent.postMessage({
                       type: '${PATTERNS_SIDEBAR_FORWARD_TYPE}',
                       key: e.key
-                    }, '*');
+                    }, window.location.origin);
                   }
                 }
               });

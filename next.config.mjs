@@ -71,13 +71,31 @@ const nextConfig = {
 
     return [
       {
-        // All pages: allow same-origin iframes (needed for pattern previews)
+        // Registry JSON files: aggressive CDN caching to reduce edge requests
+        source: "/r/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=86400, s-maxage=31536000, stale-while-revalidate=31536000",
+          },
+          {
+            key: "CDN-Cache-Control",
+            value: "public, max-age=31536000, stale-while-revalidate=31536000",
+          },
+          {
+            key: "Vercel-CDN-Cache-Control",
+            value: "public, max-age=31536000, stale-while-revalidate=31536000",
+          },
+        ],
+      },
+      {
+        // All pages: allow same-origin + approved external sites to embed in iframes
         source: "/(.*)",
         headers: [
           ...securityHeaders,
           {
-            key: "X-Frame-Options",
-            value: "SAMEORIGIN",
+            key: "Content-Security-Policy",
+            value: "frame-ancestors 'self' https://shoogle.dev https://*.shoogle.dev",
           },
         ],
       },
@@ -86,8 +104,8 @@ const nextConfig = {
         source: "/api/:path*",
         headers: [
           {
-            key: "X-Frame-Options",
-            value: "DENY",
+            key: "Content-Security-Policy",
+            value: "frame-ancestors 'none'",
           },
         ],
       },
@@ -131,6 +149,21 @@ const nextConfig = {
       // Default style fallback: /r/styles/default/* → /r/styles/radix-nova/*
       {
         source: "/r/styles/default/:path*",
+        destination: "/r/styles/radix-nova/:path*",
+        permanent: true,
+      },
+      {
+        source: "/r/default/:path*",
+        destination: "/r/styles/radix-nova/:path*",
+        permanent: true,
+      },
+      {
+        source: "/r/new-york/:path*",
+        destination: "/r/styles/radix-nova/:path*",
+        permanent: true,
+      },
+      {
+        source: "/r/new-york-v4/:path*",
         destination: "/r/styles/radix-nova/:path*",
         permanent: true,
       },

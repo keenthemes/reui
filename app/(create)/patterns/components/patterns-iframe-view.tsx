@@ -163,6 +163,9 @@ export function PatternsIframeView({
   // Stable message event listener (vercel-react-best-practices: client-event-listeners)
   React.useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
+      // Validate origin to prevent cross-origin message injection
+      if (event.origin !== window.location.origin) return
+
       if (event.data?.type === "iframe-ready") {
         setIframeReady(true)
         setIsLoading(false)

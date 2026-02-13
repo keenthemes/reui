@@ -1,14 +1,12 @@
 import { Suspense } from "react"
 import type { Metadata } from "next"
-import type { SearchParams } from "nuqs/server"
 
-import { searchParamsCache } from "@/lib/nuqs-server"
-import { getCategories, searchPatterns } from "@/lib/registry"
+import { getCategories } from "@/lib/registry"
 import { Spinner } from "@/components/ui/spinner"
 import { GridSkeleton } from "@/components/grid-skeleton"
 
 import { PatternsCategoryGrid } from "./components/patterns-category-grid"
-import { PatternsIframeView } from "./components/patterns-iframe-view"
+import { PatternsPageContent } from "./components/patterns-page-content"
 
 function PatternsIframeViewSkeleton() {
   return (
@@ -23,7 +21,8 @@ function PatternsIframeViewSkeleton() {
   )
 }
 
-// Cache forever until next build/deploy (content only changes on deploy)
+// Fully static — view switching (category grid vs iframe) happens client-side
+export const dynamic = "force-static"
 export const revalidate = false
 
 const title = "Browse Patterns"
@@ -53,34 +52,21 @@ export const metadata: Metadata = {
   },
 }
 
-export default async function PatternsPage({
-  searchParams,
-}: {
-  searchParams: Promise<SearchParams>
-}) {
-  const parsed = await searchParamsCache.parse(searchParams)
-  const searchQuery = parsed.search
-
-  // Check if any filters are applied
-  const hasFilters = searchQuery.trim() !== ""
-
-  // If filters are applied, show filtered patterns in iframe
-  if (hasFilters) {
-    const patterns = searchPatterns(searchQuery)
-
-    return (
-      <Suspense fallback={<PatternsIframeViewSkeleton />}>
-        <PatternsIframeView searchQuery={searchQuery} count={patterns.length} />
-      </Suspense>
-    )
-  }
-
-  // Otherwise, show category grid - use getCategories() which has all info pre-computed
+export default function PatternsPage() {
   const categories = getCategories()
 
   return (
-    <Suspense fallback={<GridSkeleton count={categories.length} />}>
-      <PatternsCategoryGrid categories={categories} />
+    <Suspense
+      fallback={
+        <GridSkeleton count={categories.length} />
+      }
+    >
+      <PatternsPageContent
+        categories={categories}
+        categoryGridFallback={
+          <PatternsCategoryGrid categories={categories} />
+        }
+      />
     </Suspense>
   )
 }

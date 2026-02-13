@@ -28,7 +28,7 @@ export function CustomizerSidebarScript() {
                     window.parent.postMessage({
                       type: '${CUSTOMIZER_FORWARD_TYPE}',
                       key: e.key
-                    }, '*');
+                    }, window.location.origin);
                   }
                 }
               });

@@ -94,7 +94,7 @@ export function DarkModeScript() {
                     window.parent.postMessage({
                       type: '${DARK_MODE_FORWARD_TYPE}',
                       key: e.key
-                    }, '*');
+                    }, window.location.origin);
                   }
                 }
               });

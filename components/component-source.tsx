@@ -109,18 +109,24 @@ export async function ComponentSource({
       absolutePath = path.join(projectRoot, src)
     }
 
-    try {
-      code = await fs.readFile(absolutePath, "utf-8")
+    // Resolve and verify the path stays within the project directory
+    const resolvedPath = path.resolve(absolutePath)
+    if (!resolvedPath.startsWith(projectRoot + path.sep) && resolvedPath !== projectRoot) {
+      console.error(`Path traversal blocked: ${src}`)
+    } else {
+      try {
+        code = await fs.readFile(resolvedPath, "utf-8")
 
-      // Transform classNames for display
-      code = transformStyleClassNames(code, styleName)
+        // Transform classNames for display
+        code = transformStyleClassNames(code, styleName)
 
-      // Transform icons for file-based source
-      const effectiveIconLibrary =
-        iconLibrary || getIconLibraryFromStyle(styleName)
-      code = transformIcons(code, effectiveIconLibrary)
-    } catch (error) {
-      console.error(`Error reading file: ${absolutePath}`, error)
+        // Transform icons for file-based source
+        const effectiveIconLibrary =
+          iconLibrary || getIconLibraryFromStyle(styleName)
+        code = transformIcons(code, effectiveIconLibrary)
+      } catch (error) {
+        console.error("Error reading source file", error)
+      }
     }
   }
 
