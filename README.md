@@ -10,7 +10,7 @@ Follow [ReUI Documentation](https://reui.io/docs) to get started with ReUI quckl
 
 ## Installation
 
-Follow [Installation](https://reui.io/docs/installation) guide to start using ReUI components in your React projects.
+Follow [Installation](https://reui.io/docs/get-started) guide to start using ReUI components in your React projects.
 
 ## Contributing
 
