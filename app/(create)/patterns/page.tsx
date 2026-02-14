@@ -70,16 +70,10 @@ export default function PatternsPage() {
   const categories = getCategories()
 
   return (
-    <Suspense
-      fallback={
-        <GridSkeleton count={categories.length} />
-      }
-    >
+    <Suspense fallback={<GridSkeleton count={categories.length} />}>
       <PatternsPageContent
         categories={categories}
-        categoryGridFallback={
-          <PatternsCategoryGrid categories={categories} />
-        }
+        categoryGridFallback={<PatternsCategoryGrid categories={categories} />}
       />
     </Suspense>
   )
