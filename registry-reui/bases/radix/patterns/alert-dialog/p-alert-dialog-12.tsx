@@ -43,7 +43,7 @@ export default function Pattern() {
           </Badge>
         </div>
 
-        <div className="bg-muted/60 flex flex-col items-center justify-center gap-5 rounded-b-2xl p-6">
+        <div className="bg-muted/60 flex flex-col items-center justify-center gap-5 style-vega:rounded-b-2xl style-nova:rounded-b-2xl style-lyra:rounded-b-none style-maia:rounded-b-2xl style-mira:rounded-b-2xl p-6">
           <AlertDialogDescription className="text-muted-foreground text-center">
             Your current plan will expire in 2 days. Update your payment method
             now to ensure uninterrupted access to your Pro features.

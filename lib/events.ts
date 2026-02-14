@@ -6,7 +6,7 @@ const eventSchema = z.object({
     "copy_command",
     "copy_pattern_code",
     "copy_component_code",
-    "copy_pattern_path",
+    "copy_pattern_cli",
     "registry_access",
   ]),
   // declare type AllowedPropertyValues = string | number | boolean | null

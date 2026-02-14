@@ -41,7 +41,7 @@ export default function Pattern() {
           <Badge variant="success-light">Release v28.1.0 (2026-01-12)</Badge>
         </div>
 
-        <div className="bg-muted/60 flex flex-col items-center justify-center gap-5 rounded-b-2xl p-6">
+        <div className="bg-muted/60 flex flex-col items-center justify-center gap-5 style-vega:rounded-b-2xl style-nova:rounded-b-2xl style-lyra:rounded-b-none style-maia:rounded-b-2xl style-mira:rounded-b-2xl p-6">
           <AlertDialogDescription className="text-muted-foreground text-center">
             A new version of the application is ready. Restarting now will apply
             the latest security patches and features.

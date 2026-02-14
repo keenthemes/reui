@@ -44,11 +44,25 @@ export const metadata: Metadata = {
     title: `${title} - ReUI`,
     description,
     type: "website",
+    images: [
+      {
+        url: `/og?title=${encodeURIComponent(
+          title
+        )}&description=${encodeURIComponent(description)}`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${title} - ReUI`,
     description,
+    images: [
+      {
+        url: `/og?title=${encodeURIComponent(
+          title
+        )}&description=${encodeURIComponent(description)}`,
+      },
+    ],
   },
 }
 

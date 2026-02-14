@@ -86,11 +86,25 @@ export async function generateMetadata({
       title: `${title} - ReUI`,
       description: seoDescription,
       type: "website",
+      images: [
+        {
+          url: `/og?title=${encodeURIComponent(
+            title
+          )}&description=${encodeURIComponent(seoDescription)}`,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: `${title} - ReUI`,
       description: seoDescription,
+      images: [
+        {
+          url: `/og?title=${encodeURIComponent(
+            title
+          )}&description=${encodeURIComponent(seoDescription)}`,
+        },
+      ],
     },
   }
 }

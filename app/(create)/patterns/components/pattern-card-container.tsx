@@ -14,7 +14,6 @@ interface PatternCardContainerProps {
   footer: React.ReactNode
   className?: string
   isFullWidth?: boolean
-  onClick?: () => void
 }
 
 export function PatternRenderer({
@@ -78,8 +77,7 @@ export function PatternCardContainer({
   children,
   footer,
   className,
-  isFullWidth,
-  onClick,
+  isFullWidth
 }: PatternCardContainerProps) {
   const containerRef = React.useRef<HTMLDivElement>(null)
 
@@ -112,7 +110,6 @@ export function PatternCardContainer({
         className={cn(
           "bg-background flex min-h-50 min-w-0 flex-1 flex-col flex-wrap items-center justify-center overflow-x-auto p-6 **:data-[slot=preview]:w-full sm:**:data-[slot=preview]:max-w-[80%] lg:px-8 lg:py-12"
         )}
-        onClick={onClick}
       >
         {hasBeenVisible ? (
           <React.Suspense
