@@ -112,14 +112,8 @@ export async function GET(request: Request) {
     "Cache-Control",
     "public, max-age=86400, s-maxage=31536000, stale-while-revalidate=31536000"
   )
-  response.headers.set(
-    "CDN-Cache-Control",
-    "public, max-age=31536000"
-  )
-  response.headers.set(
-    "Vercel-CDN-Cache-Control",
-    "public, max-age=31536000"
-  )
+  response.headers.set("CDN-Cache-Control", "public, max-age=31536000")
+  response.headers.set("Vercel-CDN-Cache-Control", "public, max-age=31536000")
 
   return response
 }

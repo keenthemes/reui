@@ -29,14 +29,21 @@ import {
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 const FormSchema = z.object({
-  feature: z.string().min(1, "Please select an item."),
+  feature: z
+    .string()
+    .min(1, "Please select an item.")
+    .refine(
+      (val) => items.some((item) => item.value === val),
+      "Please select a valid item."
+    ),
 })
 
 export default function Pattern() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: { feature: "" },
-    mode: "onChange",
+    mode: "onSubmit",
+    reValidateMode: "onSubmit",
   })
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
@@ -70,7 +77,7 @@ export default function Pattern() {
                 name="feature"
                 control={form.control}
                 render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid}>
+                  <Field data-invalid={fieldState.invalid || undefined}>
                     <FieldLabel htmlFor="autocomplete-feature">
                       Select Feature
                     </FieldLabel>
@@ -80,16 +87,11 @@ export default function Pattern() {
                       onValueChange={(value) => {
                         field.onChange(value)
                       }}
-                      itemToStringValue={(item: unknown) =>
-                        (item as Item).value
-                      }
                     >
                       <AutocompleteInput
                         id="autocomplete-feature"
                         placeholder="e.g. feature"
                         aria-invalid={!!form.formState.errors.feature}
-                        value={field.value}
-                        onChange={(e) => field.onChange(e.target.value)}
                       />
                       <AutocompleteContent>
                         <AutocompleteEmpty>No items found.</AutocompleteEmpty>

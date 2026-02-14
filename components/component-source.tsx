@@ -111,7 +111,10 @@ export async function ComponentSource({
 
     // Resolve and verify the path stays within the project directory
     const resolvedPath = path.resolve(absolutePath)
-    if (!resolvedPath.startsWith(projectRoot + path.sep) && resolvedPath !== projectRoot) {
+    if (
+      !resolvedPath.startsWith(projectRoot + path.sep) &&
+      resolvedPath !== projectRoot
+    ) {
       console.error(`Path traversal blocked: ${src}`)
     } else {
       try {

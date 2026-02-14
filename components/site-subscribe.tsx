@@ -97,9 +97,7 @@ export function SiteSubscribe() {
           () => (
             <Alert>
               <CheckCircle2 className="size-4 text-green-500" />
-              <AlertTitle>
-                Thank you for your subscription!
-              </AlertTitle>
+              <AlertTitle>Thank you for your subscription!</AlertTitle>
             </Alert>
           ),
           {
