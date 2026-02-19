@@ -77,7 +77,7 @@ export function PatternCardContainer({
   children,
   footer,
   className,
-  isFullWidth
+  isFullWidth,
 }: PatternCardContainerProps) {
   const containerRef = React.useRef<HTMLDivElement>(null)
 
