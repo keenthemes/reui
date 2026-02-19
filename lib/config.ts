@@ -17,6 +17,10 @@ export const siteConfig = {
       label: "Patterns",
     },
     {
+      href: "/built-with-reui",
+      label: "Built with ReUI",
+    },
+    {
       href: "#",
       label: "Pro",
       soon: true,

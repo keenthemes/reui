@@ -1,8 +1,8 @@
 import Link from "next/link"
 import { ArrowRightIcon, ChevronRight } from "lucide-react"
-
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { getPatternsTotalCount } from "@/lib/registry"
 import {
   Tooltip,
   TooltipContent,
@@ -11,6 +11,8 @@ import {
 import { Icons } from "@/components/icons"
 
 export default function Hero() {
+  const totalCount = getPatternsTotalCount()
+
   const brands = [
     {
       title: "shadcn/ui",
@@ -62,7 +64,7 @@ export default function Hero() {
           </Link>
 
           <h1 className="text-center text-3xl font-bold lg:text-5xl">
-            Shadcn UI Extensions
+            Shadcn UI Patterns
           </h1>
 
           <div className="text-l max-w-lg text-center">
@@ -83,7 +85,7 @@ export default function Hero() {
               variant="outline"
               className="gap-1.5 rounded-lg px-5 text-nowrap"
             >
-              <Link href="/patterns">Explore Extensions</Link>
+              <Link href="/patterns">Explore {totalCount}+ Patterns</Link>
             </Button>
           </div>
 
