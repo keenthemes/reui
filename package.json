@@ -14,7 +14,7 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
     "registry:generate": "tsx --tsconfig ./tsconfig.scripts.json ./scripts/generate-registry.mts",
     "registry:build": "tsx --tsconfig ./tsconfig.scripts.json ./scripts/build-registry.mts",
-    "registry:sync": "tsx --tsconfig ./tsconfig.scripts.json ./scripts/sync-registry.mts",
+    "registry:sync": "tsx --tsconfig ./tsconfig.scripts.json ./scripts/sync-registry.mts && tsx --tsconfig ./tsconfig.scripts.json ./scripts/build-icons.mts",
     "icons:build": "tsx --tsconfig ./tsconfig.scripts.json ./scripts/build-icons.ts",
     "icons:scan": "tsx --tsconfig ./tsconfig.scripts.json ./scripts/scan-icons.ts",
     "postinstall": "fumadocs-mdx"
