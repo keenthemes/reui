@@ -172,7 +172,7 @@
       "name": "frame",
       "label": "Frame",
       "description": "",
-      "count": 17
+      "count": 18
     },
     {
       "name": "hover-card",
@@ -409,5 +409,5 @@
       "count": 7
     }
   ],
-  "totalPatterns": 966
+  "totalPatterns": 967
 }

@@ -61,4 +61,37 @@ export const templates: Template[] = [
     thumbnail: "saasify-1.png",
     market: "Keenthemes",
   },
+  {
+    title: 'Storely',
+    previewUrl:
+      'https://keenthemes.com/products/storely?utm_source=reui_website&utm_medium=menu&utm_campaign=product_link&utm_content=storely',
+    description:
+      'Storely is a premium ecommerce template built with React, Next.js, TypeScript, Prisma ORM and Tailwind CSS.',
+    price: '$99',
+    stack: ['react', 'nextjs', 'tailwind', 'shadcn', 'reui', 'radix', 'prisma'],
+    thumbnail: 'storely-1.png',
+    market: 'Keenthemes',
+  },
+  {
+    title: 'Shoplit',
+    previewUrl:
+      'https://keenthemes.com/products/shoplit?utm_source=reui_website&utm_medium=menu&utm_campaign=product_link&utm_content=shoplit',
+    description:
+      'Shoplit is a premium admin template for eCommerce backend management built with React, Next.js, TypeScript, Prisma ORM and Tailwind CSS.',
+    thumbnail: 'shoplit-1.png',
+    stack: ['react', 'nextjs', 'tailwind', 'shadcn', 'reui', 'radix', 'prisma'],
+    price: '$99',
+    market: 'Keenthemes',
+  },
+  {
+    title: 'Supastart',
+    previewUrl:
+      'https://keenthemes.com/products/supastart?utm_source=reui_website&utm_medium=menu&utm_campaign=product_link&utm_content=supastart',
+    description:
+      'Supastart is a premium admin template for eCommerce backend management built with React, Next.js, TypeScript, Supabase and Tailwind CSS.',
+    thumbnail: 'supastart-1.png',
+    stack: ['react', 'nextjs', 'tailwind', 'shadcn', 'reui', 'radix', 'supabase'],
+    price: '$99',
+    market: 'Keenthemes',
+  },
 ]

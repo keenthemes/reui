@@ -1,4 +1,4 @@
-// Description: Frame with ghost(no outer border) variant
+// Description: Frame with ghost variant
 // Order: 6
 
 import {

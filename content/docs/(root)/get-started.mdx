@@ -8,14 +8,19 @@ This guide walks you through the essential steps to seamlessly integrate ReUI in
 ## Prerequisites
 
 ReUI is built on the latest **React 19** and [Tailwind CSS v4](https://tailwindcss.com). Ensure your project is set up with these technologies before proceeding.
-We recommend following the [Official shadcn/ui Installation Guide](https://ui.shadcn.com/docs/installation) to prepare your environment.
+We recommend following the [Official shadcn/ui Installation Guide](https://ui.shadcn.com/docs/installation) 
+and [shadcn/create](https://ui.shadcn.com/create) setup to prepare your environment.
 
 ## Setup ReUI Registry
 
-Add the ReUI registry namespace to your `components.json`. Learn more about registry config from [shadcn registry docs](https://ui.shadcn.com/docs/registry).
+Add the ReUI registry namespace to your `components.json` and set your component library and style. 
+Learn more about registry config from [shadcn registry docs](https://ui.shadcn.com/docs/registry).
 
 ```json
 {
+  ...
+  "style": "base-nova",
+  ...
   "registries": {
     "@reui": "https://reui.io/r/{style}/{name}.json"
   }

@@ -426,6 +426,21 @@ export const reui: Registry["items"] = [
     ]
   },
   {
+    "name": "logos",
+    "type": "registry:ui",
+    "title": "Logos",
+    "description": "",
+    "registryDependencies": [],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "reui/logos.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/logos.tsx"
+      }
+    ]
+  },
+  {
     "name": "number-field",
     "type": "registry:ui",
     "title": "Number Field",

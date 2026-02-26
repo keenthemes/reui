@@ -8,6 +8,7 @@ const frameVariants = cva(
     variants: {
       variant: {
         default: "border border-border/50 bg-clip-padding",
+        inverse: "border border-border/60 bg-background bg-clip-padding [&_[data-slot=frame-panel]]:bg-muted/40 [&_[data-slot=frame-panel]]:border-border/60",
         ghost: "",
       },
       spacing: {
@@ -21,10 +22,8 @@ const frameVariants = cva(
         true: [
           "gap-0 *:has-[+[data-slot=frame-panel]]:rounded-b-none",
           "*:has-[+[data-slot=frame-panel]]:before:hidden",
-          "dark:*:has-[+[data-slot=frame-panel]]:before:block",
           "*:[[data-slot=frame-panel]+[data-slot=frame-panel]]:rounded-t-none",
           "*:[[data-slot=frame-panel]+[data-slot=frame-panel]]:border-t-0",
-          "dark:*:[[data-slot=frame-panel]+[data-slot=frame-panel]]:before:hidden",
         ],
         false: [
           "data-[spacing=sm]:*:[[data-slot=frame-panel]+[data-slot=frame-panel]]:mt-0.5",
@@ -71,7 +70,7 @@ function FramePanel({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       className={cn(
-        "bg-background relative rounded-(--frame-radius) border bg-clip-padding shadow-xs before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(--frame-radius)-1px)] before:shadow-black/5 dark:bg-clip-border dark:before:shadow-white/5",
+        "bg-background grow relative rounded-(--frame-radius) border bg-clip-padding shadow-xs before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(--frame-radius)-1px)] before:shadow-black/5 dark:bg-clip-border dark:before:shadow-white/5",
         className
       )}
       data-slot="frame-panel"

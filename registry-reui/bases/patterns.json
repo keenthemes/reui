@@ -5092,6 +5092,16 @@
     }
   },
   {
+    "name": "p-frame-18",
+    "title": "Frame with inverse variant",
+    "categories": [
+      "frame"
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
     "name": "p-frame-2",
     "title": "Frame with separated panels",
     "categories": [
@@ -5133,7 +5143,7 @@
   },
   {
     "name": "p-frame-6",
-    "title": "Frame with ghost(no outer border) variant",
+    "title": "Frame with ghost variant",
     "categories": [
       "frame"
     ],

@@ -12483,6 +12483,29 @@ export const patterns: Registry["items"] = [
     }
   },
   {
+    "name": "p-frame-18",
+    "type": "registry:block",
+    "title": "Frame with inverse variant",
+    "categories": [
+      "frame"
+    ],
+    "description": "Frame with inverse variant",
+    "registryDependencies": [
+      "frame"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "patterns/frame/p-frame-18.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-frame-18.tsx"
+      }
+    ],
+    "meta": {
+      "order": 6
+    }
+  },
+  {
     "name": "p-frame-2",
     "type": "registry:block",
     "title": "Frame with separated panels",
@@ -12578,11 +12601,11 @@ export const patterns: Registry["items"] = [
   {
     "name": "p-frame-6",
     "type": "registry:block",
-    "title": "Frame with ghost(no outer border) variant",
+    "title": "Frame with ghost variant",
     "categories": [
       "frame"
     ],
-    "description": "Frame with ghost(no outer border) variant",
+    "description": "Frame with ghost variant",
     "registryDependencies": [
       "frame"
     ],
