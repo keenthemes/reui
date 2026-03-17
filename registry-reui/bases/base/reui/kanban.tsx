@@ -25,7 +25,8 @@ import {
   KeyboardSensor,
   MeasuringStrategy,
   Modifiers,
-  PointerSensor,
+  MouseSensor,
+  TouchSensor,
   UniqueIdentifier,
   useSensor,
   useSensors,
@@ -144,9 +145,15 @@ function Kanban<T>({
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null)
 
   const sensors = useSensors(
-    useSensor(PointerSensor, {
+    useSensor(MouseSensor, {
       activationConstraint: {
         distance: 10,
+      },
+    }),
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        delay: 250,
+        tolerance: 5,
       },
     }),
     useSensor(KeyboardSensor, {
@@ -423,6 +430,19 @@ function KanbanColumn({
 }: KanbanColumnProps) {
   const isOverlay = useContext(IsOverlayContext)
 
+  const {
+    setNodeRef,
+    transform,
+    transition,
+    attributes,
+    listeners,
+    isDragging: isSortableDragging,
+  } = useSortable({
+    id: value,
+    disabled: disabled || isOverlay,
+    animateLayoutChanges,
+  })
+
   if (isOverlay) {
     const defaultProps = {
       "data-slot": "kanban-column",
@@ -449,19 +469,6 @@ function KanbanColumn({
       </ColumnContext.Provider>
     )
   }
-
-  const {
-    setNodeRef,
-    transform,
-    transition,
-    attributes,
-    listeners,
-    isDragging: isSortableDragging,
-  } = useSortable({
-    id: value,
-    disabled,
-    animateLayoutChanges,
-  })
 
   const { activeId, isColumn } = useContext(KanbanContext)
   const isColumnDragging = activeId ? isColumn(activeId) : false
@@ -548,6 +555,19 @@ function KanbanItem({
 }: KanbanItemProps) {
   const isOverlay = useContext(IsOverlayContext)
 
+  const {
+    setNodeRef,
+    transform,
+    transition,
+    attributes,
+    listeners,
+    isDragging: isSortableDragging,
+  } = useSortable({
+    id: value,
+    disabled: disabled || isOverlay,
+    animateLayoutChanges,
+  })
+
   if (isOverlay) {
     const defaultProps = {
       "data-slot": "kanban-item",
@@ -569,19 +589,6 @@ function KanbanItem({
       </ItemContext.Provider>
     )
   }
-
-  const {
-    setNodeRef,
-    transform,
-    transition,
-    attributes,
-    listeners,
-    isDragging: isSortableDragging,
-  } = useSortable({
-    id: value,
-    disabled,
-    animateLayoutChanges,
-  })
 
   const { activeId, isColumn } = useContext(KanbanContext)
   const isItemDragging = activeId ? !isColumn(activeId) : false

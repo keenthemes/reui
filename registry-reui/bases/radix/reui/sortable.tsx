@@ -208,7 +208,7 @@ function Sortable<T>({
       if (isValidElement(child) && (child.props as any).value === activeId) {
         result = cloneElement(child as ReactElement<any>, {
           ...(child.props as any),
-          className: cn((child.props as any).className, "z-50 shadow-lg"),
+          className: cn((child.props as any).className, "z-50"),
         })
       }
     })
