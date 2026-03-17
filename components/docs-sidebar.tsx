@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
-import { PAGES_NEW } from "@/lib/docs"
+import { getDocsPageUpdateHint } from "@/lib/docs"
 import { showMcpDocs } from "@/lib/flags"
 import { getCurrentBase, getPagesFromFolder } from "@/lib/page-tree"
 import type { source } from "@/lib/source"
@@ -17,9 +17,39 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 const EXCLUDED_SECTIONS = ["test"]
 const EXCLUDED_PAGES = ["test"]
+
+function DocsUpdateIndicator({ path }: { path: string }) {
+  const hint = getDocsPageUpdateHint(path)
+
+  if (!hint) {
+    return null
+  }
+
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <span className="inline-flex shrink-0 cursor-help">
+          <span className="sr-only">{hint}</span>
+          <span
+            aria-hidden="true"
+            className="flex size-2 rounded-full bg-blue-500"
+          />
+        </span>
+      </TooltipTrigger>
+      <TooltipContent side="right" sideOffset={8}>
+        {hint}
+      </TooltipContent>
+    </Tooltip>
+  )
+}
 
 export function DocsSidebar({
   tree,
@@ -68,14 +98,11 @@ export function DocsSidebar({
                             className="data-[active=true]:bg-accent data-[active=true]:border-accent 3xl:fixed:w-full 3xl:fixed:max-w-48 relative h-[30px] w-fit overflow-visible border border-transparent text-[0.8rem] font-medium after:absolute after:inset-x-0 after:-inset-y-1 after:z-0 after:rounded-md"
                           >
                             <Link href={page.url} prefetch={false}>
-                              <span className="absolute inset-0 flex w-(--sidebar-width) bg-transparent" />
-                              {page.name}
-                              {PAGES_NEW?.includes(page.url as never) && (
-                                <span
-                                  className="flex size-2 rounded-full bg-blue-500"
-                                  title="New"
-                                />
-                              )}
+                              <span className="pointer-events-none absolute inset-0 flex w-(--sidebar-width) bg-transparent" />
+                              <span className="relative z-10 inline-flex items-center gap-2">
+                                <span>{page.name}</span>
+                                <DocsUpdateIndicator path={page.url} />
+                              </span>
                             </Link>
                           </SidebarMenuButton>
                         </SidebarMenuItem>

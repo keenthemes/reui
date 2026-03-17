@@ -65,7 +65,9 @@ export default function Pattern() {
 
           {/* Content */}
           <div className="absolute right-0 bottom-0 left-0 space-y-2 p-6">
-            <h3 className="text-2xl font-bold text-white">Author Profile</h3>
+            <h3 className="text-2xl font-semibold text-white">
+              Author Profile
+            </h3>
             <p className="text-white">
               Profile card showcasing the author’s avatar, name, and estimated
               reading time for each post.

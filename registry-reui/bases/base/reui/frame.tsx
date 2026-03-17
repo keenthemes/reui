@@ -2,21 +2,40 @@ import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/registry/bases/base/lib/utils"
 
+/**
+ * CSS variable architecture for FramePanel theming:
+ *
+ * The Frame parent sets --frame-panel-bg and --frame-panel-border-color.
+ * FramePanel consumes them directly via bg-(--frame-panel-bg) and
+ * border-(--frame-panel-border-color). This means:
+ *
+ *   - variant="inverse" overrides those vars on Frame → all panels pick it up
+ *   - <FramePanel className="bg-blue-50"> adds a direct utility on the element
+ *     which wins over bg-(--frame-panel-bg) by Tailwind source order — no
+ *     :not() or !important needed
+ */
 const frameVariants = cva(
-  "relative flex flex-col bg-muted/50 gap-0.75 p-0.75 rounded-(--frame-radius) style-vega:[--frame-radius:var(--radius-lg)] style-nova:[--frame-radius:var(--radius-lg)] style-lyra:[--frame-radius:var(--radius-none)] style-maia:[--frame-radius:var(--radius-2xl)] style-mira:[--frame-radius:var(--radius-md)]",
+  [
+    "relative flex flex-col bg-muted/50 gap-0.75 p-0.75 rounded-(--frame-radius)",
+    "style-vega:[--frame-radius:var(--radius-xl)] style-nova:[--frame-radius:var(--radius-xl)]",
+    "style-lyra:[--frame-radius:var(--radius-none)] style-maia:[--frame-radius:var(--radius-2xl)] style-mira:[--frame-radius:var(--radius-lg)]",
+    // Default panel token values — overridden per-variant below
+    "[--frame-panel-bg:var(--color-background)] [--frame-panel-border-color:var(--color-border)] [--frame-border-color:var(--color-border)]",
+  ],
   {
     variants: {
       variant: {
-        default: "border border-border/50 bg-clip-padding",
-        inverse: "border border-border/60 bg-background bg-clip-padding [&_[data-slot=frame-panel]]:bg-muted/40 [&_[data-slot=frame-panel]]:border-border/60",
+        default: "border border-[var(--frame-border-color)] bg-clip-padding",
+        inverse:
+          "[--frame-panel-bg:color-mix(in_oklch,var(--color-muted)_40%,transparent)] border border-[var(--frame-border-color)] bg-background bg-clip-padding",
         ghost: "",
       },
       spacing: {
-        xs: "[&_[data-slot=frame-panel]]:p-2 [&_[data-slot=frame-panel-header]]:px-2 [&_[data-slot=frame-panel-header]]:py-1 [&_[data-slot=frame-panel-footer]]:px-2 [&_[data-slot=frame-panel-footer]]:py-1",
-        sm: "[&_[data-slot=frame-panel]]:p-3 [&_[data-slot=frame-panel-header]]:px-3 [&_[data-slot=frame-panel-header]]:py-2 [&_[data-slot=frame-panel-footer]]:px-3 [&_[data-slot=frame-panel-footer]]:py-2",
+        xs: "[--frame-panel-p:--spacing(2)] [--frame-panel-header-px:--spacing(2)] [--frame-panel-header-py:--spacing(1)] [--frame-panel-footer-px:--spacing(2)] [--frame-panel-footer-py:--spacing(1)]",
+        sm: "[--frame-panel-p:--spacing(3)] [--frame-panel-header-px:--spacing(3)] [--frame-panel-header-py:--spacing(2)] [--frame-panel-footer-px:--spacing(3)] [--frame-panel-footer-py:--spacing(2)]",
         default:
-          "[&_[data-slot=frame-panel]]:p-4 [&_[data-slot=frame-panel-header]]:px-4 [&_[data-slot=frame-panel-header]]:py-3 [&_[data-slot=frame-panel-footer]]:px-4 [&_[data-slot=frame-panel-footer]]:py-3",
-        lg: "[&_[data-slot=frame-panel]]:p-5 [&_[data-slot=frame-panel-header]]:px-5 [&_[data-slot=frame-panel-header]]:py-4 [&_[data-slot=frame-panel-footer]]:px-5 [&_[data-slot=frame-panel-footer]]:py-4",
+          "[--frame-panel-p:--spacing(4)] [--frame-panel-header-px:--spacing(4)] [--frame-panel-header-py:--spacing(3)] [--frame-panel-footer-px:--spacing(4)] [--frame-panel-footer-py:--spacing(3)]",
+        lg: "[--frame-panel-p:--spacing(5)] [--frame-panel-header-px:--spacing(5)] [--frame-panel-header-py:--spacing(4)] [--frame-panel-footer-px:--spacing(5)] [--frame-panel-footer-py:--spacing(4)]",
       },
       stacked: {
         true: [
@@ -24,6 +43,8 @@ const frameVariants = cva(
           "*:has-[+[data-slot=frame-panel]]:before:hidden",
           "*:[[data-slot=frame-panel]+[data-slot=frame-panel]]:rounded-t-none",
           "*:[[data-slot=frame-panel]+[data-slot=frame-panel]]:border-t-0",
+          // No FrameHeader present: first panel sits flush against the outer frame border
+          "[&:not(:has([data-slot=frame-panel-header]))_[data-slot=frame-panel]:is(:first-child)]:border-t-0",
         ],
         false: [
           "data-[spacing=sm]:*:[[data-slot=frame-panel]+[data-slot=frame-panel]]:mt-0.5",
@@ -32,7 +53,8 @@ const frameVariants = cva(
         ],
       },
       dense: {
-        true: "p-0 border-border [&_[data-slot=frame-panel]]:-mx-px [&_[data-slot=frame-panel]]:before:hidden [&_[data-slot=frame-panel]:last-child]:-mb-px",
+        // Positional rules must stay as parent selectors — cannot be expressed via CSS vars
+        true: "p-0 gap-0 border-[var(--frame-border-color)] [&_[data-slot=frame-panel]]:-mx-px [&_[data-slot=frame-panel]]:before:hidden [&_[data-slot=frame-panel]:last-child]:-mb-px",
         false: "",
       },
     },
@@ -66,11 +88,21 @@ function Frame({
   )
 }
 
-function FramePanel({ className, ...props }: React.ComponentProps<"div">) {
+function FramePanel({
+  className,
+  fit,
+  ...props
+}: React.ComponentProps<"div"> & { fit?: boolean }) {
   return (
     <div
       className={cn(
-        "bg-background grow relative rounded-(--frame-radius) border bg-clip-padding shadow-xs before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(--frame-radius)-1px)] before:shadow-black/5 dark:bg-clip-border dark:before:shadow-white/5",
+        // bg-(--frame-panel-bg) and border-(--frame-panel-border-color) consume the
+        // CSS vars set by the Frame parent. Any explicit bg-* or border-* class passed
+        // via className overrides these by Tailwind source order — no ! needed.
+        "relative grow overflow-hidden rounded-(--frame-radius) border border-(--frame-panel-border-color) bg-(--frame-panel-bg) bg-clip-padding shadow-xs",
+        "before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(--frame-radius)-1px)] before:shadow-black/5",
+        "dark:bg-clip-border dark:before:shadow-white/5",
+        "p-(--frame-panel-p)",
         className
       )}
       data-slot="frame-panel"
@@ -82,7 +114,10 @@ function FramePanel({ className, ...props }: React.ComponentProps<"div">) {
 function FrameHeader({ className, ...props }: React.ComponentProps<"header">) {
   return (
     <header
-      className={cn("flex flex-col", className)}
+      className={cn(
+        "flex flex-col px-(--frame-panel-header-px) py-(--frame-panel-header-py)",
+        className
+      )}
       data-slot="frame-panel-header"
       {...props}
     />
@@ -115,7 +150,10 @@ function FrameDescription({
 function FrameFooter({ className, ...props }: React.ComponentProps<"footer">) {
   return (
     <footer
-      className={cn("flex flex-col gap-1", className)}
+      className={cn(
+        "flex flex-col gap-1 px-(--frame-panel-footer-px) py-(--frame-panel-footer-py)",
+        className
+      )}
       data-slot="frame-panel-footer"
       {...props}
     />

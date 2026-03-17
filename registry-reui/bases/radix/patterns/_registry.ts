@@ -5603,6 +5603,229 @@ export const patterns: Registry["items"] = [
     }
   },
   {
+    "name": "p-button-group-41",
+    "type": "registry:block",
+    "title": "Model selector with tier badges",
+    "categories": [
+      "button-group"
+    ],
+    "description": "Model selector with tier badges",
+    "registryDependencies": [
+      "badge",
+      "button",
+      "button-group",
+      "tooltip"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "patterns/button-group/p-button-group-41.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-button-group-41.tsx"
+      }
+    ],
+    "meta": {
+      "order": 41
+    }
+  },
+  {
+    "name": "p-button-group-42",
+    "type": "registry:block",
+    "title": "Segmented order type selector",
+    "categories": [
+      "button-group"
+    ],
+    "description": "Segmented order type selector",
+    "registryDependencies": [
+      "button",
+      "button-group",
+      "tooltip"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "patterns/button-group/p-button-group-42.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-button-group-42.tsx"
+      }
+    ],
+    "meta": {
+      "order": 42
+    }
+  },
+  {
+    "name": "p-button-group-43",
+    "type": "registry:block",
+    "title": "Buy sell hold toggle group",
+    "categories": [
+      "button-group"
+    ],
+    "description": "Buy sell hold toggle group",
+    "registryDependencies": [
+      "button",
+      "button-group"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "patterns/button-group/p-button-group-43.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-button-group-43.tsx"
+      }
+    ],
+    "meta": {
+      "order": 43
+    }
+  },
+  {
+    "name": "p-button-group-44",
+    "type": "registry:block",
+    "title": "Pipeline stage mover with dropdown",
+    "categories": [
+      "button-group"
+    ],
+    "description": "Pipeline stage mover with dropdown",
+    "registryDependencies": [
+      "button",
+      "button-group",
+      "dropdown-menu"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "patterns/button-group/p-button-group-44.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-button-group-44.tsx"
+      }
+    ],
+    "meta": {
+      "order": 44
+    }
+  },
+  {
+    "name": "p-button-group-45",
+    "type": "registry:block",
+    "title": "Environment switcher with indicator",
+    "categories": [
+      "button-group"
+    ],
+    "description": "Environment switcher with indicator",
+    "registryDependencies": [
+      "button",
+      "button-group",
+      "tooltip"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "patterns/button-group/p-button-group-45.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-button-group-45.tsx"
+      }
+    ],
+    "meta": {
+      "order": 45
+    }
+  },
+  {
+    "name": "p-button-group-46",
+    "type": "registry:block",
+    "title": "Compact time interval selector",
+    "categories": [
+      "button-group"
+    ],
+    "description": "Compact time interval selector",
+    "registryDependencies": [
+      "button",
+      "button-group"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "patterns/button-group/p-button-group-46.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-button-group-46.tsx"
+      }
+    ],
+    "meta": {
+      "order": 46
+    }
+  },
+  {
+    "name": "p-button-group-47",
+    "type": "registry:block",
+    "title": "Review actions split button",
+    "categories": [
+      "button-group"
+    ],
+    "description": "Review actions split button",
+    "registryDependencies": [
+      "button",
+      "button-group",
+      "dropdown-menu"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "patterns/button-group/p-button-group-47.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-button-group-47.tsx"
+      }
+    ],
+    "meta": {
+      "order": 47
+    }
+  },
+  {
+    "name": "p-button-group-48",
+    "type": "registry:block",
+    "title": "Toolbar filter with export and view toggle",
+    "categories": [
+      "button-group"
+    ],
+    "description": "Toolbar filter with export and view toggle",
+    "registryDependencies": [
+      "button",
+      "button-group",
+      "dropdown-menu"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "patterns/button-group/p-button-group-48.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-button-group-48.tsx"
+      }
+    ],
+    "meta": {
+      "order": 48
+    }
+  },
+  {
+    "name": "p-button-group-49",
+    "type": "registry:block",
+    "title": "Vertical nav links with icons",
+    "categories": [
+      "button-group"
+    ],
+    "description": "Vertical nav links with icons",
+    "registryDependencies": [
+      "button",
+      "button-group"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "patterns/button-group/p-button-group-49.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-button-group-49.tsx"
+      }
+    ],
+    "meta": {
+      "order": 49
+    }
+  },
+  {
     "name": "p-button-group-5",
     "type": "registry:block",
     "title": "Team activity and collaboration group",
@@ -5626,6 +5849,207 @@ export const patterns: Registry["items"] = [
     ],
     "meta": {
       "order": 5
+    }
+  },
+  {
+    "name": "p-button-group-50",
+    "type": "registry:block",
+    "title": "Toolbar filter sort and more",
+    "categories": [
+      "button-group"
+    ],
+    "description": "Toolbar filter sort and more",
+    "registryDependencies": [
+      "button",
+      "button-group",
+      "dropdown-menu"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "patterns/button-group/p-button-group-50.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-button-group-50.tsx"
+      }
+    ],
+    "meta": {
+      "order": 50
+    }
+  },
+  {
+    "name": "p-button-group-51",
+    "type": "registry:block",
+    "title": "New button with create dropdown",
+    "categories": [
+      "button-group"
+    ],
+    "description": "New button with create dropdown",
+    "registryDependencies": [
+      "button",
+      "button-group",
+      "dropdown-menu"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "patterns/button-group/p-button-group-51.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-button-group-51.tsx"
+      }
+    ],
+    "meta": {
+      "order": 51
+    }
+  },
+  {
+    "name": "p-button-group-52",
+    "type": "registry:block",
+    "title": "Refresh share and export dropdown",
+    "categories": [
+      "button-group"
+    ],
+    "description": "Refresh share and export dropdown",
+    "registryDependencies": [
+      "button",
+      "button-group",
+      "dropdown-menu"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "patterns/button-group/p-button-group-52.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-button-group-52.tsx"
+      }
+    ],
+    "meta": {
+      "order": 52
+    }
+  },
+  {
+    "name": "p-button-group-53",
+    "type": "registry:block",
+    "title": "Publish controls with split button and overflow",
+    "categories": [
+      "button-group"
+    ],
+    "description": "Publish controls with split button and overflow",
+    "registryDependencies": [
+      "avatar",
+      "button",
+      "button-group",
+      "dropdown-menu",
+      "separator"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "patterns/button-group/p-button-group-53.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-button-group-53.tsx"
+      }
+    ],
+    "meta": {
+      "order": 53
+    }
+  },
+  {
+    "name": "p-button-group-54",
+    "type": "registry:block",
+    "title": "API service environment and version selectors",
+    "categories": [
+      "button-group"
+    ],
+    "description": "API service environment and version selectors",
+    "registryDependencies": [
+      "button",
+      "button-group",
+      "dropdown-menu"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "patterns/button-group/p-button-group-54.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-button-group-54.tsx"
+      }
+    ],
+    "meta": {
+      "order": 54
+    }
+  },
+  {
+    "name": "p-button-group-55",
+    "type": "registry:block",
+    "title": "Payout release controls with amount context",
+    "categories": [
+      "button-group"
+    ],
+    "description": "Payout release controls with amount context",
+    "registryDependencies": [
+      "button",
+      "button-group",
+      "dropdown-menu"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "patterns/button-group/p-button-group-55.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-button-group-55.tsx"
+      }
+    ],
+    "meta": {
+      "order": 55
+    }
+  },
+  {
+    "name": "p-button-group-56",
+    "type": "registry:block",
+    "title": "Attachment button group with download action",
+    "categories": [
+      "button-group"
+    ],
+    "description": "Attachment button group with download action",
+    "registryDependencies": [
+      "button",
+      "button-group"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "patterns/button-group/p-button-group-56.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-button-group-56.tsx"
+      }
+    ],
+    "meta": {
+      "order": 56
+    }
+  },
+  {
+    "name": "p-button-group-57",
+    "type": "registry:block",
+    "title": "Agent mode selector with credit cap dropdown",
+    "categories": [
+      "button-group"
+    ],
+    "description": "Agent mode selector with credit cap dropdown",
+    "registryDependencies": [
+      "button",
+      "button-group",
+      "dropdown-menu"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "patterns/button-group/p-button-group-57.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-button-group-57.tsx"
+      }
+    ],
+    "meta": {
+      "order": 57
     }
   },
   {
@@ -6679,6 +7103,106 @@ export const patterns: Registry["items"] = [
     ],
     "meta": {
       "order": 14
+    }
+  },
+  {
+    "name": "p-card-15",
+    "type": "registry:block",
+    "title": "Stat card with trend and overflow menu",
+    "categories": [
+      "card"
+    ],
+    "description": "Stat card with trend and overflow menu",
+    "registryDependencies": [
+      "badge",
+      "button",
+      "card",
+      "dropdown-menu",
+      "separator"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "patterns/card/p-card-15.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-card-15.tsx"
+      }
+    ],
+    "meta": {
+      "order": 15
+    }
+  },
+  {
+    "name": "p-card-16",
+    "type": "registry:block",
+    "title": "Card with header badge and actions",
+    "categories": [
+      "card"
+    ],
+    "description": "Card with header badge and actions",
+    "registryDependencies": [
+      "avatar",
+      "badge",
+      "button",
+      "card",
+      "dropdown-menu"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "patterns/card/p-card-16.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-card-16.tsx"
+      }
+    ],
+    "meta": {
+      "order": 16
+    }
+  },
+  {
+    "name": "p-card-17",
+    "type": "registry:block",
+    "title": "Card with icon, title and link",
+    "categories": [
+      "card"
+    ],
+    "description": "Card with icon, title and link",
+    "registryDependencies": [
+      "card"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "patterns/card/p-card-17.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-card-17.tsx"
+      }
+    ],
+    "meta": {
+      "order": 17
+    }
+  },
+  {
+    "name": "p-card-18",
+    "type": "registry:block",
+    "title": "Card with header label and link",
+    "categories": [
+      "card"
+    ],
+    "description": "Card with header label and link",
+    "registryDependencies": [
+      "card"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "patterns/card/p-card-18.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-card-18.tsx"
+      }
+    ],
+    "meta": {
+      "order": 18
     }
   },
   {
@@ -9538,7 +10062,9 @@ export const patterns: Registry["items"] = [
     "description": "Data grid with pagination",
     "registryDependencies": [
       "data-grid",
-      "scroll-area"
+      "data-grid-pagination",
+      "data-grid-scroll-area",
+      "data-grid-table"
     ],
     "dependencies": [
       "@tanstack/react-table"
@@ -9566,7 +10092,10 @@ export const patterns: Registry["items"] = [
     "registryDependencies": [
       "avatar",
       "data-grid",
-      "scroll-area"
+      "data-grid-column-header",
+      "data-grid-pagination",
+      "data-grid-scroll-area",
+      "data-grid-table"
     ],
     "dependencies": [
       "@tanstack/react-table"
@@ -9594,7 +10123,10 @@ export const patterns: Registry["items"] = [
     "registryDependencies": [
       "avatar",
       "data-grid",
-      "scroll-area"
+      "data-grid-column-header",
+      "data-grid-pagination",
+      "data-grid-scroll-area",
+      "data-grid-table"
     ],
     "dependencies": [
       "@tanstack/react-table"
@@ -9623,7 +10155,10 @@ export const patterns: Registry["items"] = [
       "avatar",
       "badge",
       "data-grid",
-      "scroll-area"
+      "data-grid-column-header",
+      "data-grid-pagination",
+      "data-grid-scroll-area",
+      "data-grid-table"
     ],
     "dependencies": [
       "@tanstack/react-table"
@@ -9652,7 +10187,9 @@ export const patterns: Registry["items"] = [
       "avatar",
       "badge",
       "data-grid",
-      "scroll-area"
+      "data-grid-pagination",
+      "data-grid-scroll-area",
+      "data-grid-table-dnd"
     ],
     "dependencies": [
       "@dnd-kit/core",
@@ -9682,7 +10219,9 @@ export const patterns: Registry["items"] = [
     "registryDependencies": [
       "avatar",
       "data-grid",
-      "scroll-area"
+      "data-grid-pagination",
+      "data-grid-scroll-area",
+      "data-grid-table-dnd-rows"
     ],
     "dependencies": [
       "@dnd-kit/core",
@@ -9713,7 +10252,10 @@ export const patterns: Registry["items"] = [
       "avatar",
       "badge",
       "data-grid",
-      "scroll-area"
+      "data-grid-column-header",
+      "data-grid-pagination",
+      "data-grid-scroll-area",
+      "data-grid-table"
     ],
     "dependencies": [
       "@tanstack/react-table"
@@ -9742,7 +10284,10 @@ export const patterns: Registry["items"] = [
       "avatar",
       "badge",
       "data-grid",
-      "scroll-area"
+      "data-grid-column-header",
+      "data-grid-pagination",
+      "data-grid-scroll-area",
+      "data-grid-table"
     ],
     "dependencies": [
       "@tanstack/react-table"
@@ -9771,7 +10316,9 @@ export const patterns: Registry["items"] = [
       "avatar",
       "badge",
       "data-grid",
-      "scroll-area"
+      "data-grid-pagination",
+      "data-grid-scroll-area",
+      "data-grid-table"
     ],
     "dependencies": [
       "@tanstack/react-table"
@@ -9800,7 +10347,10 @@ export const patterns: Registry["items"] = [
       "avatar",
       "badge",
       "data-grid",
-      "scroll-area"
+      "data-grid-column-header",
+      "data-grid-pagination",
+      "data-grid-scroll-area",
+      "data-grid-table"
     ],
     "dependencies": [
       "@tanstack/react-table"
@@ -9831,7 +10381,10 @@ export const patterns: Registry["items"] = [
       "button",
       "card",
       "data-grid",
-      "scroll-area"
+      "data-grid-column-header",
+      "data-grid-pagination",
+      "data-grid-scroll-area",
+      "data-grid-table"
     ],
     "dependencies": [
       "@tanstack/react-table"
@@ -9859,7 +10412,9 @@ export const patterns: Registry["items"] = [
     "registryDependencies": [
       "avatar",
       "data-grid",
-      "scroll-area"
+      "data-grid-pagination",
+      "data-grid-scroll-area",
+      "data-grid-table"
     ],
     "dependencies": [
       "@tanstack/react-table"
@@ -9890,7 +10445,11 @@ export const patterns: Registry["items"] = [
       "button",
       "card",
       "data-grid",
-      "scroll-area"
+      "data-grid-column-header",
+      "data-grid-column-visibility",
+      "data-grid-pagination",
+      "data-grid-scroll-area",
+      "data-grid-table"
     ],
     "dependencies": [
       "@tanstack/react-table"
@@ -9921,7 +10480,10 @@ export const patterns: Registry["items"] = [
       "button",
       "card",
       "data-grid",
-      "scroll-area",
+      "data-grid-column-header",
+      "data-grid-pagination",
+      "data-grid-scroll-area",
+      "data-grid-table",
       "skeleton"
     ],
     "dependencies": [
@@ -9954,11 +10516,14 @@ export const patterns: Registry["items"] = [
       "card",
       "checkbox",
       "data-grid",
+      "data-grid-column-header",
+      "data-grid-pagination",
+      "data-grid-scroll-area",
+      "data-grid-table",
       "dropdown-menu",
       "input-group",
       "label",
       "popover",
-      "scroll-area",
       "use-copy-to-clipboard"
     ],
     "dependencies": [
@@ -9978,6 +10543,255 @@ export const patterns: Registry["items"] = [
     }
   },
   {
+    "name": "p-data-grid-23",
+    "type": "registry:block",
+    "title": "Data grid with CRUD in frame container",
+    "categories": [
+      "data-grid"
+    ],
+    "description": "Data grid with CRUD in frame container",
+    "registryDependencies": [
+      "avatar",
+      "badge",
+      "button",
+      "checkbox",
+      "data-grid",
+      "data-grid-column-header",
+      "data-grid-pagination",
+      "data-grid-scroll-area",
+      "data-grid-table",
+      "dropdown-menu",
+      "frame",
+      "input-group",
+      "label",
+      "popover",
+      "use-copy-to-clipboard"
+    ],
+    "dependencies": [
+      "@tanstack/react-table",
+      "sonner"
+    ],
+    "files": [
+      {
+        "path": "patterns/data-grid/p-data-grid-23.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-data-grid-23.tsx"
+      }
+    ],
+    "meta": {
+      "order": 23,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-24",
+    "type": "registry:block",
+    "title": "Data grid with column totals footer",
+    "categories": [
+      "data-grid"
+    ],
+    "description": "Data grid with column totals footer",
+    "registryDependencies": [
+      "avatar",
+      "badge",
+      "button",
+      "card",
+      "data-grid",
+      "data-grid-column-header",
+      "data-grid-pagination",
+      "data-grid-scroll-area",
+      "data-grid-table",
+      "dropdown-menu",
+      "use-copy-to-clipboard"
+    ],
+    "dependencies": [
+      "@tanstack/react-table",
+      "sonner"
+    ],
+    "files": [
+      {
+        "path": "patterns/data-grid/p-data-grid-24.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-data-grid-24.tsx"
+      }
+    ],
+    "meta": {
+      "order": 24,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-25",
+    "type": "registry:block",
+    "title": "Data grid with summary stats footer",
+    "categories": [
+      "data-grid"
+    ],
+    "description": "Data grid with summary stats footer",
+    "registryDependencies": [
+      "avatar",
+      "badge",
+      "button",
+      "card",
+      "data-grid",
+      "data-grid-column-header",
+      "data-grid-pagination",
+      "data-grid-scroll-area",
+      "data-grid-table"
+    ],
+    "dependencies": [
+      "@tanstack/react-table"
+    ],
+    "files": [
+      {
+        "path": "patterns/data-grid/p-data-grid-25.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-data-grid-25.tsx"
+      }
+    ],
+    "meta": {
+      "order": 25,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-26",
+    "type": "registry:block",
+    "title": "Data grid with per-column aggregate footer",
+    "categories": [
+      "data-grid"
+    ],
+    "description": "Data grid with per-column aggregate footer",
+    "registryDependencies": [
+      "avatar",
+      "badge",
+      "button",
+      "card",
+      "data-grid",
+      "data-grid-column-header",
+      "data-grid-pagination",
+      "data-grid-scroll-area",
+      "data-grid-table"
+    ],
+    "dependencies": [
+      "@tanstack/react-table"
+    ],
+    "files": [
+      {
+        "path": "patterns/data-grid/p-data-grid-26.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-data-grid-26.tsx"
+      }
+    ],
+    "meta": {
+      "order": 26,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-27",
+    "type": "registry:block",
+    "title": "Data grid with local infinite scroll",
+    "categories": [
+      "data-grid"
+    ],
+    "description": "Data grid with local infinite scroll",
+    "registryDependencies": [
+      "avatar",
+      "badge",
+      "button",
+      "card",
+      "data-grid",
+      "data-grid-column-header",
+      "data-grid-scroll-area",
+      "data-grid-table-virtual"
+    ],
+    "dependencies": [
+      "@tanstack/react-table"
+    ],
+    "files": [
+      {
+        "path": "patterns/data-grid/p-data-grid-27.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-data-grid-27.tsx"
+      }
+    ],
+    "meta": {
+      "order": 27,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-28",
+    "type": "registry:block",
+    "title": "Data grid with remote infinite scroll",
+    "categories": [
+      "data-grid"
+    ],
+    "description": "Data grid with remote infinite scroll",
+    "registryDependencies": [
+      "avatar",
+      "badge",
+      "button",
+      "card",
+      "data-grid",
+      "data-grid-column-header",
+      "data-grid-scroll-area",
+      "data-grid-table-virtual"
+    ],
+    "dependencies": [
+      "@tanstack/react-table"
+    ],
+    "files": [
+      {
+        "path": "patterns/data-grid/p-data-grid-28.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-data-grid-28.tsx"
+      }
+    ],
+    "meta": {
+      "order": 28,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-29",
+    "type": "registry:block",
+    "title": "Data grid with row pinning support",
+    "categories": [
+      "data-grid"
+    ],
+    "description": "Data grid with row pinning support",
+    "registryDependencies": [
+      "avatar",
+      "badge",
+      "button",
+      "card",
+      "data-grid",
+      "data-grid-column-header",
+      "data-grid-pagination",
+      "data-grid-scroll-area",
+      "data-grid-table",
+      "dropdown-menu",
+      "use-copy-to-clipboard"
+    ],
+    "dependencies": [
+      "@tanstack/react-table",
+      "sonner"
+    ],
+    "files": [
+      {
+        "path": "patterns/data-grid/p-data-grid-29.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-data-grid-29.tsx"
+      }
+    ],
+    "meta": {
+      "order": 29,
+      "gridSize": 1
+    }
+  },
+  {
     "name": "p-data-grid-3",
     "type": "registry:block",
     "title": "Data grid with dense layout",
@@ -9988,7 +10802,9 @@ export const patterns: Registry["items"] = [
     "registryDependencies": [
       "avatar",
       "data-grid",
-      "scroll-area"
+      "data-grid-pagination",
+      "data-grid-scroll-area",
+      "data-grid-table"
     ],
     "dependencies": [
       "@tanstack/react-table"
@@ -10017,7 +10833,9 @@ export const patterns: Registry["items"] = [
       "avatar",
       "badge",
       "data-grid",
-      "scroll-area"
+      "data-grid-pagination",
+      "data-grid-scroll-area",
+      "data-grid-table"
     ],
     "dependencies": [
       "@tanstack/react-table"
@@ -10045,7 +10863,9 @@ export const patterns: Registry["items"] = [
     "registryDependencies": [
       "avatar",
       "data-grid",
-      "scroll-area"
+      "data-grid-pagination",
+      "data-grid-scroll-area",
+      "data-grid-table"
     ],
     "dependencies": [
       "@tanstack/react-table"
@@ -10073,7 +10893,9 @@ export const patterns: Registry["items"] = [
     "registryDependencies": [
       "avatar",
       "data-grid",
-      "scroll-area"
+      "data-grid-pagination",
+      "data-grid-scroll-area",
+      "data-grid-table"
     ],
     "dependencies": [
       "@tanstack/react-table"
@@ -10101,7 +10923,9 @@ export const patterns: Registry["items"] = [
     "registryDependencies": [
       "avatar",
       "data-grid",
-      "scroll-area"
+      "data-grid-pagination",
+      "data-grid-scroll-area",
+      "data-grid-table"
     ],
     "dependencies": [
       "@tanstack/react-table"
@@ -10131,7 +10955,9 @@ export const patterns: Registry["items"] = [
       "badge",
       "button",
       "data-grid",
-      "scroll-area"
+      "data-grid-pagination",
+      "data-grid-scroll-area",
+      "data-grid-table"
     ],
     "dependencies": [
       "@tanstack/react-table"
@@ -10161,7 +10987,10 @@ export const patterns: Registry["items"] = [
       "badge",
       "button",
       "data-grid",
-      "scroll-area"
+      "data-grid-column-header",
+      "data-grid-pagination",
+      "data-grid-scroll-area",
+      "data-grid-table"
     ],
     "dependencies": [
       "@tanstack/react-table",
@@ -10798,6 +11627,124 @@ export const patterns: Registry["items"] = [
     ],
     "meta": {
       "order": 14
+    }
+  },
+  {
+    "name": "p-dropdown-menu-15",
+    "type": "registry:block",
+    "title": "User and create menu",
+    "categories": [
+      "dropdown-menu"
+    ],
+    "description": "User and create menu",
+    "registryDependencies": [
+      "avatar",
+      "button",
+      "dropdown-menu",
+      "separator"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "patterns/dropdown-menu/p-dropdown-menu-15.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-dropdown-menu-15.tsx"
+      }
+    ],
+    "meta": {
+      "order": 15
+    }
+  },
+  {
+    "name": "p-dropdown-menu-16",
+    "type": "registry:block",
+    "title": "Quick action menu",
+    "categories": [
+      "dropdown-menu"
+    ],
+    "description": "Quick action menu",
+    "registryDependencies": [
+      "button",
+      "dropdown-menu"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "patterns/dropdown-menu/p-dropdown-menu-16.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-dropdown-menu-16.tsx"
+      }
+    ],
+    "meta": {
+      "order": 16
+    }
+  },
+  {
+    "name": "p-dropdown-menu-17",
+    "type": "registry:block",
+    "title": "Notifications dropdown with items",
+    "categories": [
+      "dropdown-menu"
+    ],
+    "description": "Notifications dropdown with items",
+    "registryDependencies": [
+      "button",
+      "dropdown-menu"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "patterns/dropdown-menu/p-dropdown-menu-17.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-dropdown-menu-17.tsx"
+      }
+    ],
+    "meta": {
+      "order": 17
+    }
+  },
+  {
+    "name": "p-dropdown-menu-18",
+    "type": "registry:block",
+    "title": "AI model selector with provider icons",
+    "categories": [
+      "dropdown-menu"
+    ],
+    "description": "AI model selector with provider icons",
+    "registryDependencies": [
+      "button",
+      "dropdown-menu"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "patterns/dropdown-menu/p-dropdown-menu-18.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-dropdown-menu-18.tsx"
+      },
+      {
+        "path": "../../../components/ui/svgs/claudeAiIcon.tsx",
+        "type": "registry:ui",
+        "target": "components/ui/svgs/claudeAiIcon.tsx"
+      },
+      {
+        "path": "../../../components/ui/svgs/gemini.tsx",
+        "type": "registry:ui",
+        "target": "components/ui/svgs/gemini.tsx"
+      },
+      {
+        "path": "../../../components/ui/svgs/openai.tsx",
+        "type": "registry:ui",
+        "target": "components/ui/svgs/openai.tsx"
+      },
+      {
+        "path": "../../../components/ui/svgs/openaiDark.tsx",
+        "type": "registry:ui",
+        "target": "components/ui/svgs/openaiDark.tsx"
+      }
+    ],
+    "meta": {
+      "order": 18
     }
   },
   {
@@ -12196,6 +13143,9 @@ export const patterns: Registry["items"] = [
       "badge",
       "button",
       "data-grid",
+      "data-grid-column-header",
+      "data-grid-pagination",
+      "data-grid-table",
       "filters",
       "scroll-area",
       "skeleton"
@@ -12229,6 +13179,9 @@ export const patterns: Registry["items"] = [
       "badge",
       "button",
       "data-grid",
+      "data-grid-column-header",
+      "data-grid-pagination",
+      "data-grid-table",
       "filters",
       "scroll-area",
       "skeleton"
@@ -14355,6 +15308,111 @@ export const patterns: Registry["items"] = [
     }
   },
   {
+    "name": "p-input-group-36",
+    "type": "registry:block",
+    "title": "API request input with method selector and send action",
+    "categories": [
+      "input-group"
+    ],
+    "description": "API request input with method selector and send action",
+    "registryDependencies": [
+      "dropdown-menu",
+      "field",
+      "input-group"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "patterns/input-group/p-input-group-36.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-input-group-36.tsx"
+      }
+    ],
+    "meta": {
+      "order": 36
+    }
+  },
+  {
+    "name": "p-input-group-37",
+    "type": "registry:block",
+    "title": "Order search input with status filter",
+    "categories": [
+      "input-group"
+    ],
+    "description": "Order search input with status filter",
+    "registryDependencies": [
+      "checkbox",
+      "field",
+      "input-group",
+      "label",
+      "popover"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "patterns/input-group/p-input-group-37.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-input-group-37.tsx"
+      }
+    ],
+    "meta": {
+      "order": 37
+    }
+  },
+  {
+    "name": "p-input-group-38",
+    "type": "registry:block",
+    "title": "Company search input with region selector",
+    "categories": [
+      "input-group"
+    ],
+    "description": "Company search input with region selector",
+    "registryDependencies": [
+      "dropdown-menu",
+      "field",
+      "input-group"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "patterns/input-group/p-input-group-38.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-input-group-38.tsx"
+      }
+    ],
+    "meta": {
+      "order": 38
+    }
+  },
+  {
+    "name": "p-input-group-39",
+    "type": "registry:block",
+    "title": "Contact search input with filter and actions menu",
+    "categories": [
+      "input-group"
+    ],
+    "description": "Contact search input with filter and actions menu",
+    "registryDependencies": [
+      "checkbox",
+      "dropdown-menu",
+      "field",
+      "input-group",
+      "label",
+      "popover"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "patterns/input-group/p-input-group-39.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-input-group-39.tsx"
+      }
+    ],
+    "meta": {
+      "order": 39
+    }
+  },
+  {
     "name": "p-input-group-4",
     "type": "registry:block",
     "title": "Input group with prefix icon",
@@ -14376,6 +15434,31 @@ export const patterns: Registry["items"] = [
     ],
     "meta": {
       "order": 4
+    }
+  },
+  {
+    "name": "p-input-group-40",
+    "type": "registry:block",
+    "title": "Share link input with visibility selector and copy action",
+    "categories": [
+      "input-group"
+    ],
+    "description": "Share link input with visibility selector and copy action",
+    "registryDependencies": [
+      "dropdown-menu",
+      "field",
+      "input-group"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "patterns/input-group/p-input-group-40.tsx",
+        "type": "registry:block",
+        "target": "components/patterns/p-input-group-40.tsx"
+      }
+    ],
+    "meta": {
+      "order": 40
     }
   },
   {

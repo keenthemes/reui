@@ -26,7 +26,12 @@ export function CodeCollapsibleWrapper({
       {...props}
     >
       <CollapsibleTrigger asChild>
-        <div className={cn("absolute top-2 right-9 z-10 flex items-center")}>
+        <div
+          className={cn(
+            "absolute top-2 z-10 flex items-center",
+            isOpened ? "right-9" : "right-2"
+          )}
+        >
           <Button
             variant="ghost"
             size="sm"
@@ -34,7 +39,9 @@ export function CodeCollapsibleWrapper({
           >
             {isOpened ? "Collapse" : "Expand"}
           </Button>
-          <Separator orientation="vertical" className="mx-1.5 h-4!" />
+          {isOpened && (
+            <Separator orientation="vertical" className="mx-1.5 h-4!" />
+          )}
         </div>
       </CollapsibleTrigger>
       <CollapsibleContent

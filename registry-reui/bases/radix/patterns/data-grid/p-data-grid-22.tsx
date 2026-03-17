@@ -10,6 +10,7 @@ import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 import { DataGrid } from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
 import { DataGridColumnHeader } from "@/registry-reui/bases/radix/reui/data-grid/data-grid-column-header"
 import { DataGridPagination } from "@/registry-reui/bases/radix/reui/data-grid/data-grid-pagination"
+import { DataGridScrollArea } from "@/registry-reui/bases/radix/reui/data-grid/data-grid-scroll-area"
 import {
   DataGridTable,
   DataGridTableRowSelect,
@@ -61,7 +62,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/registry/bases/radix/ui/popover"
-import { ScrollArea, ScrollBar } from "@/registry/bases/radix/ui/scroll-area"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 interface IData {
@@ -554,8 +554,8 @@ export default function Pattern() {
         columnsVisibility: true,
       }}
     >
-      <Card className="w-full gap-3 py-3.5">
-        <CardHeader className="justify-between px-3.5">
+      <Card className="w-full gap-3 py-0">
+        <CardHeader className="flex items-center justify-between px-3.5 py-2">
           <div className="flex items-center gap-2.5">
             <InputGroup className="w-48">
               <InputGroupAddon align="inline-start">
@@ -656,12 +656,11 @@ export default function Pattern() {
           </CardAction>
         </CardHeader>
         <CardContent className="border-y px-0">
-          <ScrollArea>
+          <DataGridScrollArea>
             <DataGridTable />
-            <ScrollBar orientation="horizontal" />
-          </ScrollArea>
+          </DataGridScrollArea>
         </CardContent>
-        <CardFooter className="border-none px-3.5 py-0">
+        <CardFooter className="border-none bg-transparent! px-3.5 py-2">
           <DataGridPagination />
         </CardFooter>
       </Card>

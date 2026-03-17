@@ -268,29 +268,72 @@ export function DesignSystemProvider({
     }
   }, [isReady])
 
-  // Handle menu color inversion by adding/removing dark class to elements with cn-menu-target.
+  // Handle menu color inversion and translucency by updating cn-menu-target elements.
   React.useEffect(() => {
     if (!menuColor) {
       return
     }
 
+    const isInvertedMenu =
+      menuColor === "inverted" || menuColor === "inverted-translucent"
+    const isTranslucentMenu =
+      menuColor === "default-translucent" ||
+      menuColor === "inverted-translucent"
+    let frameId = 0
+
     const updateMenuElements = () => {
-      const menuElements = document.querySelectorAll(".cn-menu-target")
-      menuElements.forEach((element) => {
-        if (menuColor === "inverted") {
-          element.classList.add("dark")
-        } else {
-          element.classList.remove("dark")
+      const allElements = document.querySelectorAll<HTMLElement>(
+        ".cn-menu-target, [data-menu-translucent]"
+      )
+
+      if (allElements.length === 0) return
+
+      // Disable transitions while toggling classes.
+      allElements.forEach((element) => {
+        element.style.transition = "none"
+      })
+
+      allElements.forEach((element) => {
+        if (element.classList.contains("cn-menu-target")) {
+          if (isInvertedMenu) {
+            element.classList.add("dark")
+          } else {
+            element.classList.remove("dark")
+          }
         }
+
+        // Toggle translucent class: use class when active, data-attr when inactive
+        // so the element stays queryable for future toggles.
+        if (isTranslucentMenu) {
+          element.classList.add("cn-menu-translucent")
+          element.removeAttribute("data-menu-translucent")
+        } else if (element.classList.contains("cn-menu-translucent")) {
+          element.classList.remove("cn-menu-translucent")
+          element.setAttribute("data-menu-translucent", "")
+        }
+      })
+
+      // Force reflow, then re-enable transitions.
+      void document.body.offsetHeight
+      allElements.forEach((element) => {
+        element.style.transition = ""
+      })
+    }
+
+    const scheduleMenuUpdate = () => {
+      if (frameId) return
+      frameId = window.requestAnimationFrame(() => {
+        frameId = 0
+        updateMenuElements()
       })
     }
 
     // Update existing menu elements.
-    updateMenuElements()
+    scheduleMenuUpdate()
 
     // Watch for new menu elements being added to the DOM.
     const observer = new MutationObserver(() => {
-      updateMenuElements()
+      scheduleMenuUpdate()
     })
 
     observer.observe(document.body, {
@@ -300,6 +343,9 @@ export function DesignSystemProvider({
 
     return () => {
       observer.disconnect()
+      if (frameId) {
+        window.cancelAnimationFrame(frameId)
+      }
     }
   }, [menuColor])
 

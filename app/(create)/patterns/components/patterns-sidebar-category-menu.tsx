@@ -4,9 +4,15 @@ import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
+import { PATTERNS_MENU_UPDATES } from "@/config/update"
 import { getCategoryNames } from "@/lib/registry"
 import { cn, formatLabel, normalizeSlug } from "@/lib/utils"
 import { SidebarGroup, SidebarGroupContent } from "@/components/ui/sidebar"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 import {
   serializeDesignSystemSearchParams,
   useDesignSystemSearchParams,
@@ -18,6 +24,55 @@ interface PatternsSidebarCategoryMenuProps {
   onSelect?: () => void
   filter?: string
   view?: "list" | "compact"
+}
+
+function getPatternsCategoryKey(value: string) {
+  const [path = ""] = value.split(/[?#]/)
+  const normalized = path.replace(/^\/+|\/+$/g, "")
+
+  if (!normalized) {
+    return ""
+  }
+
+  const segments = normalized.split("/")
+  const lastSegment = segments.at(-1) ?? normalized
+  return normalizeSlug(lastSegment)
+}
+
+const patternsMenuUpdates = new Map(
+  Object.entries(PATTERNS_MENU_UPDATES).map(([componentName, hint]) => [
+    getPatternsCategoryKey(componentName),
+    hint,
+  ])
+)
+
+function getPatternsMenuUpdateHint(categoryOrPath: string) {
+  return patternsMenuUpdates.get(getPatternsCategoryKey(categoryOrPath))
+}
+
+function PatternsUpdateIndicator({ category }: { category: string }) {
+  const hint = getPatternsMenuUpdateHint(category)
+
+  if (!hint) {
+    return null
+  }
+
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <span className="inline-flex shrink-0 cursor-help">
+          <span className="sr-only">{hint}</span>
+          <span
+            aria-hidden="true"
+            className="size-2 rounded-full bg-blue-500"
+          />
+        </span>
+      </TooltipTrigger>
+      <TooltipContent side="right" sideOffset={8}>
+        {hint}
+      </TooltipContent>
+    </Tooltip>
+  )
 }
 
 export const PatternsSidebarCategoryMenu = React.memo(
@@ -101,15 +156,18 @@ export const PatternsSidebarCategoryMenu = React.memo(
                     )}
                   >
                     <span>{formatLabel(category)}</span>
-                    <span
-                      className={cn(
-                        "text-xs",
-                        isActive
-                          ? "text-primary-foreground/70"
-                          : "text-muted-foreground/80"
-                      )}
-                    >
-                      {count}
+                    <span className="flex shrink-0 items-center gap-2">
+                      <PatternsUpdateIndicator category={category} />
+                      <span
+                        className={cn(
+                          "text-xs",
+                          isActive
+                            ? "text-primary-foreground/70"
+                            : "text-muted-foreground/80"
+                        )}
+                      >
+                        {count}
+                      </span>
                     </span>
                   </Link>
                 )
@@ -173,15 +231,18 @@ export const PatternsSidebarCategoryMenu = React.memo(
                 )}
               >
                 <span>{formatLabel(category)}</span>
-                <span
-                  className={cn(
-                    "text-xs",
-                    isActive
-                      ? "text-primary-foreground/70"
-                      : "text-muted-foreground/80"
-                  )}
-                >
-                  {count}
+                <span className="flex shrink-0 items-center gap-2">
+                  <PatternsUpdateIndicator category={category} />
+                  <span
+                    className={cn(
+                      "text-xs",
+                      isActive
+                        ? "text-primary-foreground/70"
+                        : "text-muted-foreground/80"
+                    )}
+                  >
+                    {count}
+                  </span>
                 </span>
               </Link>
             )

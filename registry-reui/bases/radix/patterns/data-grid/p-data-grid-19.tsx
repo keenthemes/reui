@@ -9,6 +9,7 @@ import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 import { DataGrid } from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
 import { DataGridColumnHeader } from "@/registry-reui/bases/radix/reui/data-grid/data-grid-column-header"
 import { DataGridPagination } from "@/registry-reui/bases/radix/reui/data-grid/data-grid-pagination"
+import { DataGridScrollArea } from "@/registry-reui/bases/radix/reui/data-grid/data-grid-scroll-area"
 import { DataGridTable } from "@/registry-reui/bases/radix/reui/data-grid/data-grid-table"
 import {
   ColumnDef,
@@ -34,7 +35,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/registry/bases/radix/ui/card"
-import { ScrollArea, ScrollBar } from "@/registry/bases/radix/ui/scroll-area"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 interface IData {
@@ -400,10 +400,9 @@ export default function Pattern() {
           </CardAction>
         </CardHeader>
         <div className="w-full border-y">
-          <ScrollArea>
+          <DataGridScrollArea>
             <DataGridTable />
-            <ScrollBar orientation="horizontal" />
-          </ScrollArea>
+          </DataGridScrollArea>
         </div>
         <CardFooter className="border-none bg-transparent! px-3.5 py-0">
           <DataGridPagination />

@@ -18,7 +18,7 @@ export default function Pattern() {
         <FrameDescription>Description for the section</FrameDescription>
       </FrameHeader>
       <FramePanel>
-        <h2 className="text-sm font-semibold">Section title</h2>
+        <h2 className="text-sm font-semibold">Section title 2</h2>
         <p className="text-muted-foreground text-sm">Section description</p>
       </FramePanel>
       <FrameFooter>

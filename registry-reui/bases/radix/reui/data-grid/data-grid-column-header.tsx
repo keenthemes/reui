@@ -332,7 +332,7 @@ function DataGridColumnHeaderInner<TData, TValue>({
             />
             <span>Columns</span>
           </DropdownMenuSubTrigger>
-          <DropdownMenuSubContent side="right">
+          <DropdownMenuSubContent>
             {table
               .getAllColumns()
               .filter(

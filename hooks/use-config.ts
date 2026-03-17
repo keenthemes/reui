@@ -47,7 +47,7 @@ export const DEFAULT_CONFIG: Config = {
 
   // Design system defaults (matching DEFAULT_CONFIG from registry/config.ts)
   base: "base",
-  style: "vega",
+  style: "nova",
   theme: "neutral",
   baseColor: "neutral",
   font: "inter",

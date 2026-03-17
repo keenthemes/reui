@@ -2360,6 +2360,96 @@
     }
   },
   {
+    "name": "p-button-group-41",
+    "title": "Model selector with tier badges",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 41
+    }
+  },
+  {
+    "name": "p-button-group-42",
+    "title": "Segmented order type selector",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 42
+    }
+  },
+  {
+    "name": "p-button-group-43",
+    "title": "Buy sell hold toggle group",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 43
+    }
+  },
+  {
+    "name": "p-button-group-44",
+    "title": "Pipeline stage mover with dropdown",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 44
+    }
+  },
+  {
+    "name": "p-button-group-45",
+    "title": "Environment switcher with indicator",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 45
+    }
+  },
+  {
+    "name": "p-button-group-46",
+    "title": "Compact time interval selector",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 46
+    }
+  },
+  {
+    "name": "p-button-group-47",
+    "title": "Review actions split button",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 47
+    }
+  },
+  {
+    "name": "p-button-group-48",
+    "title": "Toolbar filter with export and view toggle",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 48
+    }
+  },
+  {
+    "name": "p-button-group-49",
+    "title": "Vertical nav links with icons",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 49
+    }
+  },
+  {
     "name": "p-button-group-5",
     "title": "Team activity and collaboration group",
     "categories": [
@@ -2367,6 +2457,86 @@
     ],
     "meta": {
       "order": 5
+    }
+  },
+  {
+    "name": "p-button-group-50",
+    "title": "Toolbar filter sort and more",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 50
+    }
+  },
+  {
+    "name": "p-button-group-51",
+    "title": "New button with create dropdown",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 51
+    }
+  },
+  {
+    "name": "p-button-group-52",
+    "title": "Refresh share and export dropdown",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 52
+    }
+  },
+  {
+    "name": "p-button-group-53",
+    "title": "Publish controls with split button and overflow",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 53
+    }
+  },
+  {
+    "name": "p-button-group-54",
+    "title": "API service environment and version selectors",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 54
+    }
+  },
+  {
+    "name": "p-button-group-55",
+    "title": "Payout release controls with amount context",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 55
+    }
+  },
+  {
+    "name": "p-button-group-56",
+    "title": "Attachment button group with download action",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 56
+    }
+  },
+  {
+    "name": "p-button-group-57",
+    "title": "Agent mode selector with credit cap dropdown",
+    "categories": [
+      "button-group"
+    ],
+    "meta": {
+      "order": 57
     }
   },
   {
@@ -2767,6 +2937,46 @@
     ],
     "meta": {
       "order": 14
+    }
+  },
+  {
+    "name": "p-card-15",
+    "title": "Stat card with trend and overflow menu",
+    "categories": [
+      "card"
+    ],
+    "meta": {
+      "order": 15
+    }
+  },
+  {
+    "name": "p-card-16",
+    "title": "Card with header badge and actions",
+    "categories": [
+      "card"
+    ],
+    "meta": {
+      "order": 16
+    }
+  },
+  {
+    "name": "p-card-17",
+    "title": "Card with icon, title and link",
+    "categories": [
+      "card"
+    ],
+    "meta": {
+      "order": 17
+    }
+  },
+  {
+    "name": "p-card-18",
+    "title": "Card with header label and link",
+    "categories": [
+      "card"
+    ],
+    "meta": {
+      "order": 18
     }
   },
   {
@@ -4077,6 +4287,83 @@
     }
   },
   {
+    "name": "p-data-grid-23",
+    "title": "Data grid with CRUD in frame container",
+    "categories": [
+      "data-grid"
+    ],
+    "meta": {
+      "order": 23,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-24",
+    "title": "Data grid with column totals footer",
+    "categories": [
+      "data-grid"
+    ],
+    "meta": {
+      "order": 24,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-25",
+    "title": "Data grid with summary stats footer",
+    "categories": [
+      "data-grid"
+    ],
+    "meta": {
+      "order": 25,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-26",
+    "title": "Data grid with per-column aggregate footer",
+    "categories": [
+      "data-grid"
+    ],
+    "meta": {
+      "order": 26,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-27",
+    "title": "Data grid with local infinite scroll",
+    "categories": [
+      "data-grid"
+    ],
+    "meta": {
+      "order": 27,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-28",
+    "title": "Data grid with remote infinite scroll",
+    "categories": [
+      "data-grid"
+    ],
+    "meta": {
+      "order": 28,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "p-data-grid-29",
+    "title": "Data grid with row pinning support",
+    "categories": [
+      "data-grid"
+    ],
+    "meta": {
+      "order": 29,
+      "gridSize": 1
+    }
+  },
+  {
     "name": "p-data-grid-3",
     "title": "Data grid with dense layout",
     "categories": [
@@ -4402,6 +4689,46 @@
     ],
     "meta": {
       "order": 14
+    }
+  },
+  {
+    "name": "p-dropdown-menu-15",
+    "title": "User and create menu",
+    "categories": [
+      "dropdown-menu"
+    ],
+    "meta": {
+      "order": 15
+    }
+  },
+  {
+    "name": "p-dropdown-menu-16",
+    "title": "Quick action menu",
+    "categories": [
+      "dropdown-menu"
+    ],
+    "meta": {
+      "order": 16
+    }
+  },
+  {
+    "name": "p-dropdown-menu-17",
+    "title": "Notifications dropdown with items",
+    "categories": [
+      "dropdown-menu"
+    ],
+    "meta": {
+      "order": 17
+    }
+  },
+  {
+    "name": "p-dropdown-menu-18",
+    "title": "AI model selector with provider icons",
+    "categories": [
+      "dropdown-menu"
+    ],
+    "meta": {
+      "order": 18
     }
   },
   {
@@ -5089,16 +5416,6 @@
     ],
     "meta": {
       "order": 17
-    }
-  },
-  {
-    "name": "p-frame-18",
-    "title": "Frame with inverse variant",
-    "categories": [
-      "frame"
-    ],
-    "meta": {
-      "order": 6
     }
   },
   {
@@ -5864,6 +6181,46 @@
     }
   },
   {
+    "name": "p-input-group-36",
+    "title": "API request input with method selector and send action",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 36
+    }
+  },
+  {
+    "name": "p-input-group-37",
+    "title": "Order search input with status filter",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 37
+    }
+  },
+  {
+    "name": "p-input-group-38",
+    "title": "Company search input with region selector",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 38
+    }
+  },
+  {
+    "name": "p-input-group-39",
+    "title": "Contact search input with filter and actions menu",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 39
+    }
+  },
+  {
     "name": "p-input-group-4",
     "title": "Input group with prefix icon",
     "categories": [
@@ -5871,6 +6228,16 @@
     ],
     "meta": {
       "order": 4
+    }
+  },
+  {
+    "name": "p-input-group-40",
+    "title": "Share link input with visibility selector and copy action",
+    "categories": [
+      "input-group"
+    ],
+    "meta": {
+      "order": 40
     }
   },
   {

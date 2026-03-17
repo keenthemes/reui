@@ -11,6 +11,7 @@ import {
   DataGridContainer,
 } from "@/registry-reui/bases/base/reui/data-grid/data-grid"
 import { DataGridPagination } from "@/registry-reui/bases/base/reui/data-grid/data-grid-pagination"
+import { DataGridScrollArea } from "@/registry-reui/bases/base/reui/data-grid/data-grid-scroll-area"
 import {
   DataGridTableDndRowHandle,
   DataGridTableDndRows,
@@ -29,7 +30,6 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/registry/bases/base/ui/avatar"
-import { ScrollArea, ScrollBar } from "@/registry/bases/base/ui/scroll-area"
 
 interface IData {
   id: string
@@ -145,7 +145,7 @@ export default function Pattern() {
       {
         id: "drag",
         cell: () => <DataGridTableDndRowHandle />,
-        size: 35,
+        size: 30,
       },
       {
         accessorKey: "name",
@@ -259,13 +259,12 @@ export default function Pattern() {
     >
       <div className="w-full space-y-2.5">
         <DataGridContainer>
-          <ScrollArea>
+          <DataGridScrollArea>
             <DataGridTableDndRows
               handleDragEnd={handleDragEnd}
               dataIds={dataIds}
             />
-            <ScrollBar orientation="horizontal" />
-          </ScrollArea>
+          </DataGridScrollArea>
         </DataGridContainer>
         <DataGridPagination />
       </div>

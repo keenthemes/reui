@@ -12,6 +12,7 @@ import {
   DataGridContainer,
 } from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
 import { DataGridPagination } from "@/registry-reui/bases/radix/reui/data-grid/data-grid-pagination"
+import { DataGridScrollArea } from "@/registry-reui/bases/radix/reui/data-grid/data-grid-scroll-area"
 import { DataGridTable } from "@/registry-reui/bases/radix/reui/data-grid/data-grid-table"
 import {
   ColumnDef,
@@ -30,7 +31,6 @@ import {
   AvatarImage,
 } from "@/registry/bases/radix/ui/avatar"
 import { Button } from "@/registry/bases/radix/ui/button"
-import { ScrollArea, ScrollBar } from "@/registry/bases/radix/ui/scroll-area"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 interface IData {
@@ -302,7 +302,7 @@ export default function Pattern() {
             </Button>
           ) : null
         },
-        size: 12,
+        size: 25,
         meta: {
           expandedContent: (row) => (
             <div className="text-muted-foreground ms-12 py-3 text-sm">
@@ -422,10 +422,9 @@ export default function Pattern() {
     >
       <div className="w-full space-y-2.5">
         <DataGridContainer border={false}>
-          <ScrollArea>
+          <DataGridScrollArea>
             <DataGridTable />
-            <ScrollBar orientation="horizontal" />
-          </ScrollArea>
+          </DataGridScrollArea>
         </DataGridContainer>
         <DataGridPagination />
       </div>

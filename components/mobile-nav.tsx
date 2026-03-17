@@ -5,7 +5,7 @@ import Link, { LinkProps } from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { Menu } from "lucide-react"
 
-import { PAGES_NEW } from "@/lib/docs"
+import { getDocsPageUpdateHint } from "@/lib/docs"
 import { showMcpDocs } from "@/lib/flags"
 import { source } from "@/lib/source"
 import { cn, isActive } from "@/lib/utils"
@@ -96,7 +96,7 @@ export function MobileNav({
                         }
                       >
                         <AccordionItem value="docs" className="border-none">
-                          <AccordionTrigger className="text-foreground/70 [&[data-state=open]]:text-primary py-0 text-sm font-medium hover:no-underline">
+                          <AccordionTrigger className="text-foreground/70 data-[state=open]:text-primary py-0 text-sm font-medium hover:no-underline">
                             {item.label}
                           </AccordionTrigger>
                           <AccordionContent className="pt-4 pb-0">
@@ -137,6 +137,13 @@ export function MobileNav({
                                               return null
                                             }
 
+                                            const docsUpdateHint =
+                                              child.type === "page"
+                                                ? getDocsPageUpdateHint(
+                                                    child.url
+                                                  )
+                                                : undefined
+
                                             return (
                                               child.type === "page" && (
                                                 <MobileLink
@@ -149,13 +156,17 @@ export function MobileNav({
                                                   className="flex items-center gap-2 text-sm font-normal"
                                                 >
                                                   {child.name}
-                                                  {PAGES_NEW?.includes(
-                                                    child.url as never
-                                                  ) && (
-                                                    <span
-                                                      className="flex size-1.5 rounded-full bg-blue-500"
-                                                      title="New"
-                                                    />
+                                                  {docsUpdateHint && (
+                                                    <>
+                                                      <span className="sr-only">
+                                                        {docsUpdateHint}
+                                                      </span>
+                                                      <span
+                                                        aria-hidden="true"
+                                                        className="flex size-1.5 rounded-full bg-blue-500"
+                                                        title={docsUpdateHint}
+                                                      />
+                                                    </>
                                                   )}
                                                 </MobileLink>
                                               )

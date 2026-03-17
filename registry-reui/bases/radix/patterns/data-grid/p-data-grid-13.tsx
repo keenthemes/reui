@@ -12,6 +12,7 @@ import {
   DataGridContainer,
 } from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
 import { DataGridPagination } from "@/registry-reui/bases/radix/reui/data-grid/data-grid-pagination"
+import { DataGridScrollArea } from "@/registry-reui/bases/radix/reui/data-grid/data-grid-scroll-area"
 import { DataGridTableDnd } from "@/registry-reui/bases/radix/reui/data-grid/data-grid-table-dnd"
 import { DragEndEvent } from "@dnd-kit/core"
 import { arrayMove } from "@dnd-kit/sortable"
@@ -31,7 +32,6 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/registry/bases/radix/ui/avatar"
-import { ScrollArea, ScrollBar } from "@/registry/bases/radix/ui/scroll-area"
 
 interface IData {
   id: string
@@ -356,10 +356,9 @@ export default function Pattern() {
     >
       <div className="w-full space-y-2.5">
         <DataGridContainer>
-          <ScrollArea>
+          <DataGridScrollArea>
             <DataGridTableDnd handleDragEnd={handleDragEnd} />
-            <ScrollBar orientation="horizontal" />
-          </ScrollArea>
+          </DataGridScrollArea>
         </DataGridContainer>
         <DataGridPagination />
       </div>

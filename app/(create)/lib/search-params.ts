@@ -75,3 +75,11 @@ export const useDesignSystemSearchParams = (options: Options = {}) =>
 export type DesignSystemSearchParams = inferParserType<
   typeof designSystemSearchParams
 >
+
+export function isTranslucentMenuColor(
+  menuColor?: MenuColorValue | null
+): menuColor is "default-translucent" | "inverted-translucent" {
+  return (
+    menuColor === "default-translucent" || menuColor === "inverted-translucent"
+  )
+}

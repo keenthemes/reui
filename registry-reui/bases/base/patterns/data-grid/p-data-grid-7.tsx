@@ -10,6 +10,7 @@ import {
   DataGridContainer,
 } from "@/registry-reui/bases/base/reui/data-grid/data-grid"
 import { DataGridPagination } from "@/registry-reui/bases/base/reui/data-grid/data-grid-pagination"
+import { DataGridScrollArea } from "@/registry-reui/bases/base/reui/data-grid/data-grid-scroll-area"
 import {
   DataGridTable,
   DataGridTableRowSelect,
@@ -34,7 +35,6 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/registry/bases/base/ui/avatar"
-import { ScrollArea, ScrollBar } from "@/registry/bases/base/ui/scroll-area"
 
 interface IData {
   id: string
@@ -262,7 +262,7 @@ export default function Pattern() {
         header: () => <DataGridTableRowSelectAll />,
         cell: ({ row }) => <DataGridTableRowSelect row={row} />,
         enableSorting: false,
-        size: 35,
+        size: 20,
         meta: {
           headerClassName: "",
           cellClassName: "",
@@ -377,10 +377,9 @@ export default function Pattern() {
     <DataGrid table={table} recordCount={demoData?.length || 0}>
       <div className="w-full space-y-2.5">
         <DataGridContainer>
-          <ScrollArea>
+          <DataGridScrollArea>
             <DataGridTable />
-            <ScrollBar orientation="horizontal" />
-          </ScrollArea>
+          </DataGridScrollArea>
         </DataGridContainer>
         <DataGridPagination />
       </div>

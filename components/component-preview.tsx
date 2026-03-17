@@ -58,6 +58,7 @@ export function ComponentPreview({
           collapsible={false}
           styleName={styleName}
           code={code}
+          showCopyButton
         />
       }
       sourcePreview={
@@ -67,6 +68,7 @@ export function ComponentPreview({
           styleName={styleName}
           maxLines={3}
           code={code}
+          showCopyButton={false}
         />
       }
       chromeLessOnMobile={chromeLessOnMobile}

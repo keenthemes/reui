@@ -1,8 +1,9 @@
 import Link from "next/link"
 import { ArrowRightIcon, ChevronRight } from "lucide-react"
+
+import { getPatternsTotalCount } from "@/lib/registry"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { getPatternsTotalCount } from "@/lib/registry"
 import {
   Tooltip,
   TooltipContent,

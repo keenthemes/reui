@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import { useCallback, useEffect, useRef } from "react"
 import { useTheme } from "next-themes"
 
 import { useConfig } from "@/hooks/use-config"
@@ -11,99 +11,42 @@ import {
   Picker,
   PickerContent,
   PickerGroup,
+  PickerLabel,
   PickerRadioGroup,
   PickerRadioItem,
+  PickerSeparator,
   PickerTrigger,
 } from "@/app/(create)/components/picker"
-import { useDesignSystemSearchParams } from "@/app/(create)/lib/search-params"
+import {
+  isTranslucentMenuColor,
+  useDesignSystemSearchParams,
+} from "@/app/(create)/lib/search-params"
 
-const MENU_OPTIONS = [
-  {
-    value: "default" as const,
-    label: "Default",
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="128"
-        height="128"
-        viewBox="0 0 24 24"
-        fill="none"
-        role="img"
-        stroke="currentColor"
-        className="text-foreground"
-      >
-        <path
-          d="M2 11.5C2 7.02166 2 4.78249 3.39124 3.39124C4.78249 2 7.02166 2 11.5 2C15.9783 2 18.2175 2 19.6088 3.39124C21 4.78249 21 7.02166 21 11.5C21 15.9783 21 18.2175 19.6088 19.6088C18.2175 21 15.9783 21 11.5 21C7.02166 21 4.78249 21 3.39124 19.6088C2 18.2175 2 15.9783 2 11.5Z"
-          stroke="currentColor"
-          strokeWidth="2"
-        />
-        <path
-          d="M8.5 11.5L14.5001 11.5"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M9.5 15H13.5"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M7.5 8H15.5"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    ),
-  },
-  {
-    value: "inverted" as const,
-    label: "Inverted",
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="128"
-        height="128"
-        viewBox="0 0 24 24"
-        fill="none"
-        role="img"
-        className="fill-foreground text-foreground"
-      >
-        <path
-          d="M2 11.5C2 7.02166 2 4.78249 3.39124 3.39124C4.78249 2 7.02166 2 11.5 2C15.9783 2 18.2175 2 19.6088 3.39124C21 4.78249 21 7.02166 21 11.5C21 15.9783 21 18.2175 19.6088 19.6088C18.2175 21 15.9783 21 11.5 21C7.02166 21 4.78249 21 3.39124 19.6088C2 18.2175 2 15.9783 2 11.5Z"
-          stroke="currentColor"
-          strokeWidth="2"
-        />
-        <path
-          d="M8.5 11.5L14.5001 11.5"
-          stroke="var(--background)"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M9.5 15H13.5"
-          stroke="var(--background)"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M7.5 8H15.5"
-          stroke="var(--background)"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    ),
-  },
-] as const
+// ── Types ──
+
+type ColorChoice = "default" | "inverted"
+type SurfaceChoice = "solid" | "translucent"
+
+// ── Helpers ──
+
+function getMenuColorValue(
+  color: ColorChoice,
+  translucent: boolean
+): MenuColorValue {
+  if (color === "default") {
+    return translucent ? "default-translucent" : "default"
+  }
+  return translucent ? "inverted-translucent" : "inverted"
+}
+
+const MENU_OPTIONS: { value: MenuColorValue; label: string }[] = [
+  { value: "default", label: "Default / Solid" },
+  { value: "default-translucent", label: "Default / Translucent" },
+  { value: "inverted", label: "Inverted / Solid" },
+  { value: "inverted-translucent", label: "Inverted / Translucent" },
+]
+
+// ── Component ──
 
 export function MenuColorPicker({
   isMobile,
@@ -117,29 +60,73 @@ export function MenuColorPicker({
   const [params, setParams] = useDesignSystemSearchParams()
   const [config, setConfig] = useConfig()
   const menuColorValue = params.menuColor ?? config.menuColor
-  const currentMenu = MENU_OPTIONS.find((menu) => menu.value === menuColorValue)
+  const isDark = mounted && resolvedTheme === "dark"
 
-  const handleValueChange = React.useCallback(
-    (value: string) => {
-      const newMenuColor = value as MenuColorValue
-      setParams({ menuColor: newMenuColor })
-      setConfig((prev) => ({ ...prev, menuColor: newMenuColor }))
+  const lastSolidMenuAccentRef = useRef(params.menuAccent)
+
+  const colorChoice: ColorChoice =
+    menuColorValue === "inverted" || menuColorValue === "inverted-translucent"
+      ? "inverted"
+      : "default"
+
+  const surfaceChoice: SurfaceChoice =
+    menuColorValue === "default-translucent" ||
+    menuColorValue === "inverted-translucent"
+      ? "translucent"
+      : "solid"
+
+  const currentMenu = MENU_OPTIONS.find((m) => m.value === menuColorValue)
+
+  useEffect(() => {
+    if (surfaceChoice === "solid") {
+      lastSolidMenuAccentRef.current = params.menuAccent
+    }
+  }, [params.menuAccent, surfaceChoice])
+
+  const setColor = useCallback(
+    (color: ColorChoice) => {
+      const nextMenuColor = getMenuColorValue(
+        color,
+        surfaceChoice === "translucent"
+      )
+      setParams({
+        menuColor: nextMenuColor,
+        ...(isTranslucentMenuColor(nextMenuColor) && { menuAccent: "subtle" }),
+      })
+      setConfig((prev) => ({ ...prev, menuColor: nextMenuColor }))
     },
-    [setParams, setConfig]
+    [surfaceChoice, setParams, setConfig]
+  )
+
+  const setSurface = useCallback(
+    (choice: SurfaceChoice) => {
+      const isTranslucent = choice === "translucent"
+      const nextMenuColor = getMenuColorValue(colorChoice, isTranslucent)
+      const nextMenuAccent = isTranslucent
+        ? "subtle"
+        : lastSolidMenuAccentRef.current
+      setParams({
+        menuColor: nextMenuColor,
+        menuAccent: nextMenuAccent,
+      })
+      setConfig((prev) => ({
+        ...prev,
+        menuColor: nextMenuColor,
+        menuAccent: nextMenuAccent ?? prev.menuAccent,
+      }))
+    },
+    [colorChoice, setParams, setConfig]
   )
 
   return (
     <div className="group/picker relative">
       <Picker>
-        <PickerTrigger disabled={mounted && resolvedTheme === "dark"}>
+        <PickerTrigger disabled={isDark && colorChoice === "inverted"}>
           <div className="flex flex-col justify-start text-left">
-            <div className="text-muted-foreground text-xs">Menu Color</div>
+            <div className="text-muted-foreground text-xs">Menu</div>
             <div className="text-foreground text-sm font-medium">
               {mounted ? currentMenu?.label : "..."}
             </div>
-          </div>
-          <div className="text-foreground pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base select-none">
-            {mounted && currentMenu?.icon}
           </div>
         </PickerTrigger>
         <PickerContent
@@ -147,19 +134,39 @@ export function MenuColorPicker({
           side={isMobile ? "top" : "right"}
           align={isMobile ? "center" : "start"}
         >
-          <PickerRadioGroup
-            value={currentMenu?.value}
-            onValueChange={handleValueChange}
-          >
-            <PickerGroup>
-              {MENU_OPTIONS.map((menu) => (
-                <PickerRadioItem key={menu.value} value={menu.value}>
-                  {menu.icon}
-                  {menu.label}
-                </PickerRadioItem>
-              ))}
-            </PickerGroup>
-          </PickerRadioGroup>
+          <PickerGroup>
+            <PickerLabel>Color</PickerLabel>
+            <PickerRadioGroup
+              value={colorChoice}
+              onValueChange={(value) => setColor(value as ColorChoice)}
+            >
+              <PickerRadioItem value="default" closeOnClick={isMobile}>
+                Default
+              </PickerRadioItem>
+              <PickerRadioItem
+                value="inverted"
+                closeOnClick={isMobile}
+                disabled={isDark}
+              >
+                Inverted
+              </PickerRadioItem>
+            </PickerRadioGroup>
+          </PickerGroup>
+          <PickerSeparator />
+          <PickerGroup>
+            <PickerLabel>Appearance</PickerLabel>
+            <PickerRadioGroup
+              value={surfaceChoice}
+              onValueChange={(value) => setSurface(value as SurfaceChoice)}
+            >
+              <PickerRadioItem value="solid" closeOnClick={isMobile}>
+                Solid
+              </PickerRadioItem>
+              <PickerRadioItem value="translucent" closeOnClick={isMobile}>
+                Translucent
+              </PickerRadioItem>
+            </PickerRadioGroup>
+          </PickerGroup>
         </PickerContent>
       </Picker>
       <LockButton

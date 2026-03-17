@@ -16,6 +16,9 @@ import { ComponentSourceClient } from "./component-source-client"
 // Default styleName - matches the API default
 const DEFAULT_STYLE_NAME = "radix-nova"
 
+const COLLAPSIBLE_COPY_BUTTON_CLASS_NAME =
+  "pointer-events-none invisible opacity-0 transition-opacity group-data-[state=open]/collapsible:pointer-events-auto group-data-[state=open]/collapsible:visible group-data-[state=open]/collapsible:opacity-100"
+
 export async function ComponentSource({
   name,
   src,
@@ -29,6 +32,7 @@ export async function ComponentSource({
   code: initialCode,
   async = false,
   eventName,
+  showCopyButton = true,
 }: React.ComponentProps<"div"> & {
   name?: string
   src?: string
@@ -41,6 +45,7 @@ export async function ComponentSource({
   code?: string
   async?: boolean
   eventName?: "copy_pattern_code" | "copy_component_code"
+  showCopyButton?: boolean
 }) {
   if (async) {
     return (
@@ -56,6 +61,7 @@ export async function ComponentSource({
         maxLines={maxLines}
         code={initialCode}
         eventName={eventName}
+        showCopyButton={showCopyButton}
       />
     )
   }
@@ -163,6 +169,7 @@ export async function ComponentSource({
           name={name}
           styleName={styleName}
           iconLibrary={iconLibrary}
+          showCopyButton={showCopyButton}
         />
       </div>
     )
@@ -179,6 +186,8 @@ export async function ComponentSource({
         name={name}
         styleName={styleName}
         iconLibrary={iconLibrary}
+        showCopyButton={showCopyButton}
+        copyButtonClassName={COLLAPSIBLE_COPY_BUTTON_CLASS_NAME}
       />
     </CodeCollapsibleWrapper>
   )
@@ -193,6 +202,8 @@ function ComponentCode({
   name,
   styleName,
   iconLibrary,
+  showCopyButton,
+  copyButtonClassName,
 }: {
   code: string
   highlightedCode: string
@@ -202,6 +213,8 @@ function ComponentCode({
   name?: string
   styleName?: string
   iconLibrary?: string
+  showCopyButton?: boolean
+  copyButtonClassName?: string
 }) {
   return (
     <figure data-rehype-pretty-code-figure="" className="[&>pre]:max-h-96">
@@ -215,15 +228,18 @@ function ComponentCode({
           {title}
         </figcaption>
       )}
-      <CopyButton
-        value={code}
-        event={eventName as any}
-        properties={{
-          name,
-          style: styleName,
-          iconLibrary: iconLibrary,
-        }}
-      />
+      {showCopyButton && (
+        <CopyButton
+          value={code}
+          event={eventName as any}
+          className={copyButtonClassName}
+          properties={{
+            name,
+            style: styleName,
+            iconLibrary: iconLibrary,
+          }}
+        />
+      )}
       <div dangerouslySetInnerHTML={{ __html: highlightedCode }} />
     </figure>
   )

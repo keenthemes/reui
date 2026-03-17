@@ -58,7 +58,7 @@
       "name": "button-group",
       "label": "Button Group",
       "description": "A set of buttons grouped together.",
-      "count": 40
+      "count": 57
     },
     {
       "name": "calendar",
@@ -70,7 +70,7 @@
       "name": "card",
       "label": "Card",
       "description": "Displays a card with header, content, and footer.",
-      "count": 14
+      "count": 18
     },
     {
       "name": "carousel",
@@ -118,7 +118,7 @@
       "name": "data-grid",
       "label": "Data Grid",
       "description": "A powerful data grid component for displaying tabular data.",
-      "count": 22
+      "count": 29
     },
     {
       "name": "date-selector",
@@ -142,7 +142,7 @@
       "name": "dropdown-menu",
       "label": "Dropdown Menu",
       "description": "Displays a menu to the user — such as a set of actions.",
-      "count": 14
+      "count": 18
     },
     {
       "name": "empty",
@@ -172,7 +172,7 @@
       "name": "frame",
       "label": "Frame",
       "description": "",
-      "count": 18
+      "count": 17
     },
     {
       "name": "hover-card",
@@ -190,7 +190,7 @@
       "name": "input-group",
       "label": "Input Group",
       "description": "A group of input fields.",
-      "count": 35
+      "count": 40
     },
     {
       "name": "input-otp",
@@ -409,5 +409,5 @@
       "count": 7
     }
   ],
-  "totalPatterns": 967
+  "totalPatterns": 1003
 }

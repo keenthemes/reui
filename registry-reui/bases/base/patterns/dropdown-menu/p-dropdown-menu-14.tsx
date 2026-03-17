@@ -132,11 +132,7 @@ export default function Pattern() {
                 />
                 Your Companies
               </span>
-              <Badge
-                variant="secondary"
-                size="sm"
-                className="rounded-full px-1.5"
-              >
+              <Badge variant="secondary" size="sm" className="ml-auto">
                 12
               </Badge>
             </DropdownMenuItem>
@@ -155,11 +151,7 @@ export default function Pattern() {
                 />
                 Your Numbers
               </span>
-              <Badge
-                variant="secondary"
-                size="sm"
-                className="rounded-full px-1.5"
-              >
+              <Badge variant="secondary" size="sm" className="ml-auto">
                 2
               </Badge>
             </DropdownMenuItem>
@@ -168,7 +160,10 @@ export default function Pattern() {
             <DropdownMenuSubTrigger>
               <span className="flex items-center gap-2">
                 <span
-                  className={cn("size-2 rounded-full", activeStatus.color)}
+                  className={cn(
+                    "style-vega:rounded-full style-nova:rounded-full style-lyra:rounded-full style-maia:rounded-full style-mira:rounded-full mx-1.25 size-2",
+                    activeStatus.color
+                  )}
                 />
                 {activeStatus.label}
               </span>

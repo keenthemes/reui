@@ -13,6 +13,7 @@ import {
 } from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
 import { DataGridColumnHeader } from "@/registry-reui/bases/radix/reui/data-grid/data-grid-column-header"
 import { DataGridPagination } from "@/registry-reui/bases/radix/reui/data-grid/data-grid-pagination"
+import { DataGridScrollArea } from "@/registry-reui/bases/radix/reui/data-grid/data-grid-scroll-area"
 import { DataGridTable } from "@/registry-reui/bases/radix/reui/data-grid/data-grid-table"
 import {
   ColumnDef,
@@ -30,7 +31,6 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/registry/bases/radix/ui/avatar"
-import { ScrollArea, ScrollBar } from "@/registry/bases/radix/ui/scroll-area"
 
 interface IData {
   id: string
@@ -367,10 +367,9 @@ export default function Pattern() {
     >
       <div className="w-full space-y-2.5">
         <DataGridContainer>
-          <ScrollArea>
+          <DataGridScrollArea>
             <DataGridTable />
-            <ScrollBar orientation="horizontal" />
-          </ScrollArea>
+          </DataGridScrollArea>
         </DataGridContainer>
         <DataGridPagination />
       </div>

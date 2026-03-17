@@ -33,7 +33,7 @@ export default function Pattern() {
           lucide="TableIcon"
           tabler="IconTable"
           hugeicons="GridTableIcon"
-          phosphor="GridNineIcon"
+          phosphor="TableIcon"
           remixicon="RiTable2"
           aria-hidden="true"
         />

@@ -1,5 +1,7 @@
-import fsSync from "node:fs"
+/// <reference types="node" />
+
 import { promises as fs } from "fs"
+import fsSync from "node:fs"
 import path from "path"
 import { fileURLToPath } from "url"
 
@@ -11,29 +13,36 @@ const BASES_DIR = path.join(PROJECT_ROOT, "registry-reui/bases")
 const PACKAGE_JSON_FILE = path.join(PROJECT_ROOT, "package.json")
 const REGISTRY_JSON_FILE = path.join(BASES_DIR, "registry.json")
 
-const COMMON_PACKAGES = ["react", "react-dom", "next", "next-themes", "@types/react", "@types/react-dom"]
+const COMMON_PACKAGES = [
+  "react",
+  "react-dom",
+  "next",
+  "next-themes",
+  "@types/react",
+  "@types/react-dom",
+]
 
 const SHARED_CSS_VARS = {
   light: {
     "destructive-foreground": "var(--color-red-800)",
-    "success": "var(--color-emerald-500)",
+    success: "var(--color-emerald-500)",
     "success-foreground": "var(--color-emerald-900)",
-    "info": "var(--color-violet-500)",
+    info: "var(--color-violet-500)",
     "info-foreground": "var(--color-violet-900)",
-    "warning": "var(--color-yellow-500)",
+    warning: "var(--color-yellow-500)",
     "warning-foreground": "var(--color-yellow-900)",
-    "invert": "var(--color-zinc-900)",
+    invert: "var(--color-zinc-900)",
     "invert-foreground": "var(--color-zinc-50)",
   },
   dark: {
     "destructive-foreground": "var(--color-red-600)",
-    "success": "var(--color-emerald-500)",
+    success: "var(--color-emerald-500)",
     "success-foreground": "var(--color-emerald-600)",
-    "info": "var(--color-violet-500)",
+    info: "var(--color-violet-500)",
     "info-foreground": "var(--color-violet-600)",
-    "warning": "var(--color-yellow-500)",
+    warning: "var(--color-yellow-500)",
     "warning-foreground": "var(--color-yellow-600)",
-    "invert": "var(--color-zinc-700)",
+    invert: "var(--color-zinc-700)",
     "invert-foreground": "var(--color-zinc-50)",
   },
 }
@@ -49,6 +58,12 @@ interface Category {
 interface RegistryData {
   categories: Category[]
   totalPatterns: number
+}
+
+interface GeneratedRegistryFile {
+  path: string
+  type: string
+  target: string
 }
 
 // Load existing categories from registry.json (single source of truth)
@@ -72,6 +87,41 @@ async function getPackageDependencies() {
   ]
 }
 
+function createSvgRegistryFile(importPath: string): GeneratedRegistryFile {
+  const normalizedImportPath = importPath.replace(/\.(?:t|j)sx?$/, "")
+
+  return {
+    path: path.posix.join(
+      "..",
+      "..",
+      "..",
+      "components",
+      "ui",
+      "svgs",
+      `${normalizedImportPath}.tsx`
+    ),
+    type: "registry:ui",
+    target: path.posix.join(
+      "components",
+      "ui",
+      "svgs",
+      `${normalizedImportPath}.tsx`
+    ),
+  }
+}
+
+function dedupeFiles<T extends { target?: string; path: string }>(
+  files: T[]
+): T[] {
+  const uniqueFiles = new Map<string, T>()
+
+  for (const file of files) {
+    uniqueFiles.set(file.target ?? file.path, file)
+  }
+
+  return Array.from(uniqueFiles.values())
+}
+
 function formatTitle(name: string) {
   return name
     .replace(/^p-/, "")
@@ -80,10 +130,23 @@ function formatTitle(name: string) {
     .join(" ")
 }
 
+function getRegistryDependencyName(importPath: string) {
+  const parts = importPath.split("/")
+  const kind = parts[2]
+  const lastPart = parts[parts.length - 1].replace(/\.(?:t|j)sx?$/, "")
+
+  if (parts.length > 4 && kind === "ui") {
+    return parts[3]
+  }
+
+  return lastPart
+}
+
 async function parseFile(filePath: string, packageDeps: string[]) {
   const content = await fs.readFile(filePath, "utf-8")
   const registryDependencies = new Set<string>()
   const dependencies = new Set<string>()
+  const files = new Map<string, GeneratedRegistryFile>()
 
   // Extract metadata from comments
   let description = ""
@@ -114,13 +177,7 @@ async function parseFile(filePath: string, packageDeps: string[]) {
   let match
   while ((match = importRegistryRegex.exec(content)) !== null) {
     const importPath = match[1]
-    const parts = importPath.split("/")
-    // If it's a deep import into a component directory, take the component name
-    // e.g. bases/base/ui/select/select-content -> select
-    const componentName =
-      parts.length > 4 && (parts[2] === "ui" || parts[2] === "reui")
-        ? parts[3]
-        : parts[parts.length - 1].replace(".tsx", "")
+    const componentName = getRegistryDependencyName(importPath)
 
     if (componentName !== "utils") {
       registryDependencies.add(componentName)
@@ -131,15 +188,17 @@ async function parseFile(filePath: string, packageDeps: string[]) {
   const importReuiRegex = /from\s+["']@\/registry-reui\/([^"']+)["']/g
   while ((match = importReuiRegex.exec(content)) !== null) {
     const importPath = match[1]
-    const parts = importPath.split("/")
-    // If it's a deep import into a component directory, take the component name
-    // e.g. bases/base/reui/data-grid/data-grid-pagination -> data-grid
-    const componentName =
-      parts.length > 4 && (parts[2] === "ui" || parts[2] === "reui")
-        ? parts[3]
-        : parts[parts.length - 1].replace(".tsx", "")
+    const componentName = getRegistryDependencyName(importPath)
 
     registryDependencies.add(componentName)
+  }
+
+  const importSvglRegex = /from\s+["']@\/components\/ui\/svgs\/([^"']+)["']/g
+  while ((match = importSvglRegex.exec(content)) !== null) {
+    const importPath = match[1]
+    const file = createSvgRegistryFile(importPath)
+
+    files.set(file.target, file)
   }
 
   // Resolve package dependencies
@@ -179,14 +238,19 @@ async function parseFile(filePath: string, packageDeps: string[]) {
     gridSize,
     registryDependencies: Array.from(registryDependencies).sort(),
     dependencies: Array.from(dependencies).sort(),
+    files: Array.from(files.values()),
   }
 }
 
 async function generate() {
   const packageDeps = await getPackageDependencies()
-  const bases = (await fs.readdir(BASES_DIR)).filter(f => {
+  const bases = (await fs.readdir(BASES_DIR)).filter((f) => {
     const fullPath = path.join(BASES_DIR, f)
-    return fsSync.statSync(fullPath).isDirectory() && !f.startsWith(".") && !f.startsWith("_")
+    return (
+      fsSync.statSync(fullPath).isDirectory() &&
+      !f.startsWith(".") &&
+      !f.startsWith("_")
+    )
   })
 
   const globalIndex: Record<string, Record<string, any>> = {}
@@ -223,6 +287,7 @@ async function generate() {
               type: "registry:hook",
               target: `hooks/${entry}`,
             },
+            ...info.files,
           ],
         })
       }
@@ -231,59 +296,70 @@ async function generate() {
     // Process REUI components
     if (fsSync.existsSync(reuiDir)) {
       const entries = await fs.readdir(reuiDir)
-      
+
       for (const entry of entries) {
         if (entry.startsWith("_")) continue
-        
+
         const entryPath = path.join(reuiDir, entry)
         const stat = await fs.stat(entryPath)
-        
+
         if (stat.isDirectory()) {
           // Handle subdirectory (e.g., data-grid/)
-          const subFiles = await fs.readdir(entryPath)
-          const tsxFiles = subFiles.filter(f => f.endsWith(".tsx") && !f.startsWith("_"))
-          
+          const subFiles = (await fs.readdir(entryPath)).sort()
+          const tsxFiles = subFiles.filter(
+            (f) => f.endsWith(".tsx") && !f.startsWith("_")
+          )
+
           // Find the main component file (matches directory name)
           const mainFileName = `${entry}.tsx`
           const hasMainFile = tsxFiles.includes(mainFileName)
-          
+          const orderedTsxFiles = hasMainFile
+            ? [mainFileName, ...tsxFiles.filter((f) => f !== mainFileName)]
+            : tsxFiles
+
           // Get all sub-component names (excluding main file) - used to filter internal deps
           const subComponentNames = new Set(
-            tsxFiles
-              .filter(f => f !== mainFileName)
-              .map(f => f.replace(".tsx", ""))
+            orderedTsxFiles
+              .filter((f) => f !== mainFileName)
+              .map((f) => f.replace(".tsx", ""))
           )
-          
+
           // First pass: collect all dependencies from all files in the directory
           const allExternalRegistryDeps = new Set<string>()
           const allDependencies = new Set<string>()
-          const fileInfoMap = new Map<string, Awaited<ReturnType<typeof parseFile>>>()
-          
-          for (const file of tsxFiles) {
+          const allReferencedFiles: GeneratedRegistryFile[] = []
+          const fileInfoMap = new Map<
+            string,
+            Awaited<ReturnType<typeof parseFile>>
+          >()
+
+          for (const file of orderedTsxFiles) {
             const filePath = path.join(entryPath, file)
             const info = await parseFile(filePath, packageDeps)
             fileInfoMap.set(file, info)
-            
+
             // Collect external registry dependencies (exclude internal sub-components)
             for (const dep of info.registryDependencies) {
               if (!subComponentNames.has(dep) && dep !== entry) {
                 allExternalRegistryDeps.add(dep)
               }
             }
-            
+
             // Collect all package dependencies
             for (const dep of info.dependencies) {
               allDependencies.add(dep)
             }
+
+            allReferencedFiles.push(...info.files)
           }
-          
+
           // Second pass: create registry items
-          for (const file of tsxFiles) {
+          for (const file of orderedTsxFiles) {
             const name = file.replace(".tsx", "")
             const info = fileInfoMap.get(file)!
-            
+
             const isMainFile = file === mainFileName
-            
+
             // Build meta object
             let meta: { order?: number; gridSize?: number } | undefined
             if (info.order !== undefined || info.gridSize !== undefined) {
@@ -291,42 +367,52 @@ async function generate() {
               if (info.order !== undefined) meta.order = info.order
               if (info.gridSize !== undefined) meta.gridSize = info.gridSize
             }
-            
+
             // For main file, include all files and merge external dependencies from all sub-components
             if (isMainFile && hasMainFile) {
-              const allFiles = tsxFiles.map(f => ({
+              const allFiles = orderedTsxFiles.map((f) => ({
                 path: `reui/${entry}/${f}`,
                 type: "registry:ui",
                 target: `components/reui/${entry}/${f}`,
               }))
-              
+
               reuiItems.push({
                 name,
                 type: "registry:ui",
                 title: info.description || info.title || formatTitle(name),
                 description: info.description,
-                registryDependencies: Array.from(allExternalRegistryDeps).sort(),
+                registryDependencies: Array.from(
+                  allExternalRegistryDeps
+                ).sort(),
                 dependencies: Array.from(allDependencies).sort(),
-                files: allFiles,
+                files: dedupeFiles([...allFiles, ...allReferencedFiles]),
                 meta,
-                cssVars: (name === "badge" || name === "alert") ? SHARED_CSS_VARS : undefined,
+                cssVars:
+                  name === "badge" || name === "alert"
+                    ? SHARED_CSS_VARS
+                    : undefined,
               })
             } else {
-              // Sub-component: single file entry, filter out internal deps
-              const externalDeps = info.registryDependencies.filter(
-                dep => !subComponentNames.has(dep) && dep !== entry
-              )
-              
               reuiItems.push({
                 name,
                 type: "registry:ui",
                 title: info.description || info.title || formatTitle(name),
                 description: info.description,
-                registryDependencies: externalDeps,
+                registryDependencies: info.registryDependencies,
                 dependencies: info.dependencies,
-                files: [{ path: `reui/${entry}/${file}`, type: "registry:ui", target: `component/reui/${entry}/${file}` }],
+                files: dedupeFiles([
+                  {
+                    path: `reui/${entry}/${file}`,
+                    type: "registry:ui",
+                    target: `components/reui/${entry}/${file}`,
+                  },
+                  ...info.files,
+                ]),
                 meta,
-                cssVars: (name === "badge" || name === "alert") ? SHARED_CSS_VARS : undefined,
+                cssVars:
+                  name === "badge" || name === "alert"
+                    ? SHARED_CSS_VARS
+                    : undefined,
               })
             }
           }
@@ -350,9 +436,19 @@ async function generate() {
             description: info.description,
             registryDependencies: info.registryDependencies,
             dependencies: info.dependencies,
-            files: [{ path: `reui/${entry}`, type: "registry:ui", target: `components/reui/${entry}` }],
+            files: dedupeFiles([
+              {
+                path: `reui/${entry}`,
+                type: "registry:ui",
+                target: `components/reui/${entry}`,
+              },
+              ...info.files,
+            ]),
             meta,
-            cssVars: (name === "badge" || name === "alert") ? SHARED_CSS_VARS : undefined,
+            cssVars:
+              name === "badge" || name === "alert"
+                ? SHARED_CSS_VARS
+                : undefined,
           })
         }
       }
@@ -394,13 +490,18 @@ async function generate() {
           }
 
           // Build files array - only include the pattern file itself
-          const patternFiles: Array<{ path: string; type: string; target: string }> = [
+          const patternFiles: Array<{
+            path: string
+            type: string
+            target: string
+          }> = dedupeFiles([
             {
               path: `patterns/${category}/${file}`,
               type: "registry:block",
               target: `components/patterns/${file}`,
             },
-          ]
+            ...info.files,
+          ])
 
           patternItems.push({
             name,
@@ -470,8 +571,12 @@ export const registry = {
         title: item.title,
         description: item.description || "",
         type: item.type,
-        registryDependencies: item.registryDependencies.length > 0 ? item.registryDependencies : undefined,
-        dependencies: item.dependencies.length > 0 ? item.dependencies : undefined,
+        registryDependencies:
+          item.registryDependencies.length > 0
+            ? item.registryDependencies
+            : undefined,
+        dependencies:
+          item.dependencies.length > 0 ? item.dependencies : undefined,
         files: item.files.map((f: any) => ({
           path: `registry-reui/bases/${base}/${f.path}`,
           type: f.type,
@@ -486,16 +591,23 @@ export const registry = {
 
   // Load existing categories from registry.json (single source of truth for names, labels, descriptions)
   const existingCategories = await loadExistingCategories()
-  const existingCategoriesMap = new Map(existingCategories.map(c => [c.name, c]))
+  const existingCategoriesMap = new Map(
+    existingCategories.map((c) => [c.name, c])
+  )
 
   // Calculate stats
   let totalPatterns = 0
   const patternCounts: Record<string, number> = {}
-  
+
   // Only count from "base" to avoid double counting
   const baseRegistry = globalIndex["base"] || {}
   for (const [name, item] of Object.entries(baseRegistry)) {
-    if (item.type !== "registry:block" || !name.startsWith("p-") || name.endsWith("-0")) continue
+    if (
+      item.type !== "registry:block" ||
+      !name.startsWith("p-") ||
+      name.endsWith("-0")
+    )
+      continue
     totalPatterns++
     const categories = (item.categories as string[]) || []
     categories.forEach((cat: string) => {
@@ -506,19 +618,26 @@ export const registry = {
   // Build unified categories array with updated counts
   // Use existing categories as base, add any new ones discovered
   const allCategoryNames = new Set([
-    ...existingCategories.map(c => c.name),
-    ...Object.keys(patternCounts)
+    ...existingCategories.map((c) => c.name),
+    ...Object.keys(patternCounts),
   ])
 
-  const categoriesArray = Array.from(allCategoryNames).map(catName => {
-    const existing = existingCategoriesMap.get(catName)
-    return {
-      name: catName,
-      label: existing?.label || catName.split("-").map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(" "),
-      description: existing?.description || "",
-      count: patternCounts[catName] || 0,
-    }
-  }).sort((a, b) => a.name.localeCompare(b.name))
+  const categoriesArray = Array.from(allCategoryNames)
+    .map((catName) => {
+      const existing = existingCategoriesMap.get(catName)
+      return {
+        name: catName,
+        label:
+          existing?.label ||
+          catName
+            .split("-")
+            .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
+            .join(" "),
+        description: existing?.description || "",
+        count: patternCounts[catName] || 0,
+      }
+    })
+    .sort((a, b) => a.name.localeCompare(b.name))
 
   // Generate patterns.json - Compact manifest for browsing and search
   const patternsManifest: any[] = []
@@ -527,28 +646,38 @@ export const registry = {
   // Use patterns from globalIndex["base"] as the primary source for the manifest
   const basePatterns = globalIndex["base"] || {}
   for (const [name, item] of Object.entries(basePatterns)) {
-    if (item.type === "registry:block" && name.startsWith("p-") && !name.endsWith("-0")) {
+    if (
+      item.type === "registry:block" &&
+      name.startsWith("p-") &&
+      !name.endsWith("-0")
+    ) {
       patternsManifest.push({
         name: item.name,
         title: item.title,
         categories: item.categories,
-        meta: item.meta
+        meta: item.meta,
       })
       seenPatterns.add(name)
     }
   }
 
-  await fs.writeFile(path.join(BASES_DIR, "patterns.json"), JSON.stringify(patternsManifest, null, 2))
+  await fs.writeFile(
+    path.join(BASES_DIR, "patterns.json"),
+    JSON.stringify(patternsManifest, null, 2)
+  )
   console.log("   ✅ Generated patterns.json")
 
   // Generate registry.json - SMALL file with pre-computed categories and stats
   // Using JSON for instant loading without TS compilation overhead
   const statsData = {
     categories: categoriesArray,
-    totalPatterns
+    totalPatterns,
   }
 
-  await fs.writeFile(path.join(BASES_DIR, "registry.json"), JSON.stringify(statsData, null, 2))
+  await fs.writeFile(
+    path.join(BASES_DIR, "registry.json"),
+    JSON.stringify(statsData, null, 2)
+  )
   console.log("   ✅ Generated registry.json")
 
   console.log(`\n📊 Stats:`)

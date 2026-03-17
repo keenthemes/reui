@@ -66,8 +66,7 @@ interface MetadataData {
 
 // Constants
 const DEFAULT_STYLE = "radix-nova"
-const BASE_URL =
-  process.env.NEXT_PUBLIC_APP_URL || "https://reui.io"
+const REUI_REGISTRY_NAMESPACE = "@reui"
 
 // ---------------------------------------------------------------------------
 // Metadata loading (mirrors registry-server.ts but with absolute paths)
@@ -322,19 +321,18 @@ async function getAllItemNames(): Promise<string[]> {
 }
 
 // ---------------------------------------------------------------------------
-// Resolve registryDependencies → absolute URLs
+// Resolve internal registryDependencies → @reui namespace
 // ---------------------------------------------------------------------------
 
 function resolveRegistryDeps(
   item: Record<string, any>,
-  styleName: string,
   allNames: Set<string>
 ): void {
   if (!item.registryDependencies) return
 
   item.registryDependencies = item.registryDependencies.map((dep: string) => {
     if (allNames.has(dep)) {
-      return `${BASE_URL}/r/styles/${styleName}/${dep}.json`
+      return `${REUI_REGISTRY_NAMESPACE}/${dep}`
     }
     return dep
   })
@@ -347,7 +345,7 @@ function resolveRegistryDeps(
 async function main() {
   const startTime = Date.now()
   console.log("Building static registry...")
-  console.log(`  Base URL: ${BASE_URL}`)
+  console.log(`  Internal registry namespace: ${REUI_REGISTRY_NAMESPACE}`)
 
   // Collect all style names (2 bases × 5 styles = 10)
   const styleNames: string[] = []
@@ -393,7 +391,7 @@ async function main() {
         if (!item) continue
 
         // Resolve registryDependencies to full URLs
-        resolveRegistryDeps(item, styleName, allNamesSet)
+        resolveRegistryDeps(item, allNamesSet)
 
         const json = JSON.stringify(item)
         await fs.writeFile(

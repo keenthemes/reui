@@ -15,6 +15,9 @@ import { IconLibraryName } from "@/registry/config"
 // Default styleName - matches the API default
 const DEFAULT_STYLE_NAME = "radix-nova"
 
+const COLLAPSIBLE_COPY_BUTTON_CLASS_NAME =
+  "pointer-events-none invisible opacity-0 transition-opacity group-data-[state=open]/collapsible:pointer-events-auto group-data-[state=open]/collapsible:visible group-data-[state=open]/collapsible:opacity-100"
+
 // Module-level cache: prevents duplicate /r/ fetches across renders and re-mounts.
 // Keyed by "styleName:name", stores raw code from the registry response.
 const clientCodeCache = new Map<string, string>()
@@ -31,6 +34,7 @@ export interface ComponentSourceClientProps {
   code?: string
   className?: string
   eventName?: "copy_pattern_code" | "copy_component_code"
+  showCopyButton?: boolean
 }
 
 export function ComponentSourceClient({
@@ -45,6 +49,7 @@ export function ComponentSourceClient({
   maxLines,
   code: initialCode,
   eventName,
+  showCopyButton = true,
 }: React.ComponentProps<"div"> & ComponentSourceClientProps) {
   const [config] = useConfig()
 
@@ -179,6 +184,7 @@ export function ComponentSourceClient({
           eventName={effectiveEventName}
           name={name}
           config={config}
+          showCopyButton={showCopyButton}
         />
       </div>
     )
@@ -194,6 +200,8 @@ export function ComponentSourceClient({
         eventName={effectiveEventName}
         name={name}
         config={config}
+        showCopyButton={showCopyButton}
+        copyButtonClassName={COLLAPSIBLE_COPY_BUTTON_CLASS_NAME}
       />
     </CodeCollapsibleWrapper>
   )
@@ -207,6 +215,8 @@ function ComponentCode({
   eventName,
   name,
   config,
+  showCopyButton,
+  copyButtonClassName,
 }: {
   code: string
   highlightedCode: string
@@ -215,6 +225,8 @@ function ComponentCode({
   eventName?: string
   name?: string
   config?: any
+  showCopyButton?: boolean
+  copyButtonClassName?: string
 }) {
   return (
     <figure data-rehype-pretty-code-figure="" className="[&>pre]:max-h-96">
@@ -228,16 +240,19 @@ function ComponentCode({
           {title}
         </figcaption>
       )}
-      <CopyButton
-        value={code}
-        event={eventName as any}
-        properties={{
-          name,
-          base: config?.base,
-          style: config?.style,
-          iconLibrary: config?.iconLibrary,
-        }}
-      />
+      {showCopyButton && (
+        <CopyButton
+          value={code}
+          event={eventName as any}
+          className={copyButtonClassName}
+          properties={{
+            name,
+            base: config?.base,
+            style: config?.style,
+            iconLibrary: config?.iconLibrary,
+          }}
+        />
+      )}
       <div dangerouslySetInnerHTML={{ __html: highlightedCode }} />
     </figure>
   )

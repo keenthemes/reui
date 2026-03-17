@@ -24,7 +24,7 @@ export function ComponentPreviewTabs({
   source: React.ReactNode
   sourcePreview?: React.ReactNode
 }) {
-  const [isMobileCodeVisible, setIsMobileCodeVisible] = React.useState(false)
+  const [isCodeExpanded, setIsCodeExpanded] = React.useState(false)
 
   return (
     <div
@@ -49,10 +49,10 @@ export function ComponentPreviewTabs({
         {!hideCode && (
           <div
             data-slot="code"
-            data-mobile-code-visible={isMobileCodeVisible}
+            data-mobile-code-visible={isCodeExpanded}
             className="relative overflow-hidden **:data-rehype-pretty-code-figure:m-0! **:data-rehype-pretty-code-figure:rounded-t-none **:data-rehype-pretty-code-figure:border-t [&_pre]:max-h-72"
           >
-            {isMobileCodeVisible ? (
+            {isCodeExpanded ? (
               source
             ) : (
               <div className="relative">
@@ -71,7 +71,7 @@ export function ComponentPreviewTabs({
                     variant="outline"
                     className="bg-background text-foreground dark:bg-background dark:text-foreground hover:bg-muted dark:hover:bg-muted relative z-10"
                     onClick={() => {
-                      setIsMobileCodeVisible(true)
+                      setIsCodeExpanded(true)
                     }}
                   >
                     View Code
