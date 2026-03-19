@@ -30,16 +30,16 @@ export function SiteHeader({ sticky = true }: { sticky?: boolean } = {}) {
             <Image
               src="/brand/logo-text-light.svg"
               alt={siteConfig.name}
-              width={75}
-              height={0}
-              className="shrink-0 dark:hidden"
+              width={269}
+              height={100}
+              className="h-auto w-[75px] shrink-0 dark:hidden"
             />
             <Image
               src="/brand/logo-text-dark.svg"
               alt={siteConfig.name}
-              width={75}
-              height={0}
-              className="hidden shrink-0 dark:inline-block"
+              width={269}
+              height={100}
+              className="hidden h-auto w-[75px] shrink-0 dark:inline-block"
             />
             <span className="sr-only">{siteConfig.name}</span>
           </Link>

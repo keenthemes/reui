@@ -71,14 +71,15 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/brand/logo-icon-dark.svg",
-        type: "image/svg+xml",
+        url: "/favicon.ico",
+        sizes: "any",
+        type: "image/x-icon",
       },
     ],
     shortcut: [
       {
-        url: "/brand/logo-icon-dark.svg",
-        type: "image/svg+xml",
+        url: "/favicon.ico",
+        type: "image/x-icon",
       },
     ],
   },
