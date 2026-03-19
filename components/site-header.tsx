@@ -4,6 +4,7 @@ import Link from "next/link"
 import { siteConfig } from "@/lib/config"
 import { getCategories } from "@/lib/registry"
 import { source } from "@/lib/source"
+import { cn } from "@/lib/utils"
 import { Separator } from "@/components/ui/separator"
 import { CommandMenu } from "@/components/command-menu"
 import { GitHubLink } from "@/components/github-link"
@@ -12,12 +13,17 @@ import { MobileNav } from "@/components/mobile-nav"
 import { ModeSwitcher } from "@/components/mode-switcher"
 import { XLink } from "@/components/x-link"
 
-export function SiteHeader() {
+export function SiteHeader({ sticky = true }: { sticky?: boolean } = {}) {
   const pageTree = source.getPageTree()
   const patternCategories = getCategories()
 
   return (
-    <header className="bg-background sticky top-0 z-50 w-full overscroll-none border-b border-transparent">
+    <header
+      className={cn(
+        "bg-background w-full overscroll-none border-b border-transparent",
+        sticky && "sticky top-0 z-50"
+      )}
+    >
       <div className="container-wrapper">
         <div className="flex h-[calc(var(--header-height)-1px)] items-center gap-3.5 **:data-[slot=separator]:h-4!">
           <Link href="/" className="flex items-center gap-2">

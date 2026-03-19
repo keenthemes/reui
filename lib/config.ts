@@ -1,3 +1,5 @@
+const reuiProWaitlistUrl = "https://pro.reui.io"
+
 export const siteConfig = {
   name: "ReUI",
   url: "https://reui.io",
@@ -6,6 +8,15 @@ export const siteConfig = {
   links: {
     twitter: "https://x.com/reui_io",
     github: "https://github.com/keenthemes/reui",
+    pro: reuiProWaitlistUrl,
+  },
+  announcementBar: {
+    enabled: true,
+    homeOnly: true,
+    badgeText: "ReUI Pro",
+    title: "Join the waitlist and lock in an exclusive 50% launch discount.",
+    linkUrl: reuiProWaitlistUrl,
+    linkText: "Join waitlist",
   },
   navItems: [
     {
@@ -21,9 +32,9 @@ export const siteConfig = {
       label: "Built with ReUI",
     },
     {
-      href: "#",
+      href: "https://pro.reui.io",
+      pro: true,
       label: "Pro",
-      soon: true,
     },
   ],
 }
