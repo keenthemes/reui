@@ -55,7 +55,7 @@ export function MainNav({
             <Tooltip key={item.href}>
               <TooltipTrigger asChild>{button}</TooltipTrigger>
               <TooltipContent className="leading-relaxed max-w-50">
-               🔥 Cooking something special! Join the waitlist for 50% off.
+               🔥 Cooking something special! Join the waitlist for 40% off.
               </TooltipContent>
             </Tooltip>
           )

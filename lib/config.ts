@@ -14,7 +14,7 @@ export const siteConfig = {
     enabled: true,
     homeOnly: true,
     badgeText: "ReUI Pro",
-    title: "Join the waitlist and lock in an exclusive 50% launch discount.",
+    title: "Join the waitlist and lock in an exclusive 40% launch discount.",
     linkUrl: reuiProWaitlistUrl,
     linkText: "Join waitlist",
   },
