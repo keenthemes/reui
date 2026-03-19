@@ -15,6 +15,7 @@ import "@/styles/globals.css"
 
 const appUrl =
   process.env.NEXT_PUBLIC_APP_URL || siteConfig.url || "https://reui.io"
+const defaultOgImageUrl = `${appUrl}/og?title=${encodeURIComponent(siteConfig.name)}&description=${encodeURIComponent(siteConfig.description)}`
 
 export const metadata: Metadata = {
   title: {
@@ -53,9 +54,9 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     images: [
       {
-        url: `${appUrl}/brand/logo-default.png`,
+        url: defaultOgImageUrl,
         width: 1200,
-        height: 630,
+        height: 628,
         alt: siteConfig.name,
       },
     ],
@@ -64,15 +65,24 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
-    images: [`${appUrl}/brand/logo-default.png`],
+    images: [defaultOgImageUrl],
     creator: "@reui_io",
   },
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/brand/logo-default.png",
-    apple: "/brand/logo-default.png",
+    icon: [
+      {
+        url: "/brand/logo-icon-dark.svg",
+        type: "image/svg+xml",
+      },
+    ],
+    shortcut: [
+      {
+        url: "/brand/logo-icon-dark.svg",
+        type: "image/svg+xml",
+      },
+    ],
   },
-  manifest: `${siteConfig.url}/site.webmanifest`,
+  manifest: "/manifest.webmanifest",
 }
 
 export default function RootLayout({
