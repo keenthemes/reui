@@ -8,9 +8,9 @@ import { Patterns } from "./components/patterns"
 import { Stats } from "./components/stats"
 import { WallOfLove } from "./components/wall-of-love"
 
-const title = "The Foundation for your Design System"
+const title = "Shadcn UI Patterns — 1,000+ Free React Components"
 const description =
-  "A set of beautifully designed components that you can customize, extend, and build on. Start here then make it your own. Open Source. Open Code."
+    "1,000+ free React components and patterns for shadcn/ui. Built with Next.js 15, Tailwind CSS v4, Radix UI and Base UI. Open source."
 
 export const dynamic = "force-static"
 export const revalidate = false
