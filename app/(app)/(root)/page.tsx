@@ -10,7 +10,7 @@ import { WallOfLove } from "./components/wall-of-love"
 
 const title = "Shadcn UI Patterns — 1,000+ Free React Components"
 const description =
-    "1,000+ free React components and patterns for shadcn/ui. Built with Next.js 15, Tailwind CSS v4, Radix UI and Base UI. Open source."
+    "1,000+ free React components and patterns for shadcn/ui. Built with Next.js 16, Tailwind CSS v4, Radix UI and Base UI. Open source."
 
 export const dynamic = "force-static"
 export const revalidate = false
