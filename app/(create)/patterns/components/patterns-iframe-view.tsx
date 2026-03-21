@@ -151,14 +151,23 @@ export function PatternsIframeView({
   // Track previous iframe src to detect actual changes
   const prevIframeSrcRef = React.useRef(iframeSrc)
 
-  // Sync design system params to iframe via postMessage (for non-URL changes)
+  // Sync design system params to iframe via postMessage (mirrors shadcn Preview:
+  // send on every effectiveParams change and on iframe load so messages are not
+  // missed before the iframe listener mounts).
   React.useEffect(() => {
     const iframe = iframeRef.current
-    if (!iframe || !iframeReady) return
+    if (!iframe) return
 
-    // Send current effective params to iframe
-    sendToIframe(iframe, "design-system-params", effectiveParams)
-  }, [effectiveParams, iframeReady])
+    const sendParams = () => {
+      sendToIframe(iframe, "design-system-params", effectiveParams)
+    }
+
+    sendParams()
+    iframe.addEventListener("load", sendParams)
+    return () => {
+      iframe.removeEventListener("load", sendParams)
+    }
+  }, [effectiveParams])
 
   // Stable message event listener (vercel-react-best-practices: client-event-listeners)
   React.useEffect(() => {

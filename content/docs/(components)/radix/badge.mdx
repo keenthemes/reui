@@ -211,6 +211,12 @@ This approach enables consistent, reusable state variants across the project wit
 </Badge>
 ```
 
+```tsx
+<Badge variant="outline" radius="full">
+  Pill
+</Badge>
+```
+
 ### Props
 
 | Prop                | Type                                                                                                                         |
@@ -219,3 +225,4 @@ This approach enables consistent, reusable state variants across the project wit
 | `variant` (Outline) | `"primary-outline" \| "warning-outline" \| "success-outline" \| "info-outline" \| "destructive-outline" \| "invert-outline"` |
 | `variant` (Light)   | `"primary-light" \| "warning-light" \| "success-light" \| "info-light" \| "destructive-light" \| "invert-light"`             |
 | `size`              | `"default" \| "xs" \| "sm" \| "lg" \| "xl"`                                                                                  |
+| `radius`            | `"default"` (per theme) \| `"full"` (per-theme max: Vega/Nova/Maia/Mira `rounded-full`, Lyra `rounded-none`)                 |

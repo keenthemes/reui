@@ -710,12 +710,12 @@ function DataGridTableRenderedRow<TData>({
 
 function DataGridTableEmpty() {
   const { table, props } = useDataGrid()
-  const totalColumns = table.getAllColumns().length
+  const visibleColumnCount = table.getVisibleLeafColumns().length
 
   return (
     <tr>
       <td
-        colSpan={totalColumns}
+        colSpan={Math.max(visibleColumnCount, 1)}
         className="text-muted-foreground style-vega:text-sm style-maia:text-sm style-nova:text-sm style-lyra:text-xs style-mira:text-xs/relaxed py-6 text-center"
       >
         {props.emptyMessage || "No data available"}

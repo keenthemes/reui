@@ -4,6 +4,8 @@ import { atomWithStorage } from "jotai/utils"
 import type {
   BaseColorName,
   BaseName,
+  ChartColorName,
+  FontHeadingValue,
   FontValue,
   IconLibraryName,
   MenuAccentValue,
@@ -26,7 +28,9 @@ export type Config = {
   style: StyleName
   theme: ThemeName
   baseColor: BaseColorName
+  chartColor: ChartColorName
   font: FontValue
+  fontHeading: FontHeadingValue
   iconLibrary: IconLibraryName
   menuAccent: MenuAccentValue
   menuColor: MenuColorValue
@@ -50,7 +54,9 @@ export const DEFAULT_CONFIG: Config = {
   style: "nova",
   theme: "neutral",
   baseColor: "neutral",
+  chartColor: "sky",
   font: "inter",
+  fontHeading: "inherit",
   iconLibrary: "lucide",
   menuAccent: "subtle",
   menuColor: "default",

@@ -2,118 +2,181 @@
 
 import * as React from "react"
 
-import { useConfig } from "@/hooks/use-config"
-import {
-  Item,
-  ItemContent,
-  ItemDescription,
-  ItemTitle,
-} from "@/registry/bases/radix/ui/item"
-import { type FontValue } from "@/registry/config"
+import { DEFAULT_CONFIG, useConfig } from "@/hooks/use-config"
+import { useMounted } from "@/hooks/use-mounted"
+import { type FontHeadingValue, type FontValue } from "@/registry/config"
 import { LockButton } from "@/app/(create)/components/lock-button"
 import {
   Picker,
   PickerContent,
   PickerGroup,
+  PickerLabel,
   PickerRadioGroup,
   PickerRadioItem,
   PickerSeparator,
   PickerTrigger,
 } from "@/app/(create)/components/picker"
-import { type Font } from "@/app/(create)/lib/fonts"
+import { FONTS } from "@/app/(create)/lib/fonts"
 import { useDesignSystemSearchParams } from "@/app/(create)/lib/search-params"
 
+type FontPickerOption = {
+  name: string
+  value: string
+  type: string
+  font: {
+    style: {
+      fontFamily: string
+    }
+  } | null
+}
+
 export function FontPicker({
+  label,
+  param,
   fonts,
   isMobile,
   anchorRef,
 }: {
-  fonts: readonly Font[]
+  label: string
+  param: "font" | "fontHeading"
+  fonts: readonly FontPickerOption[]
   isMobile: boolean
   anchorRef: React.RefObject<HTMLDivElement | null>
 }) {
-  const [mounted, setMounted] = React.useState(false)
+  const mounted = useMounted()
   const [params, setParams] = useDesignSystemSearchParams()
   const [config, setConfig] = useConfig()
 
-  React.useEffect(() => {
-    setMounted(true)
-  }, [])
+  const currentValue =
+    param === "font"
+      ? (params.font ?? config.font)
+      : (params.fontHeading ?? config.fontHeading)
+  const handleFontChange = React.useCallback(
+    (value: string) => {
+      if (param === "font") {
+        const next = value as FontValue
+        setParams({ font: next })
+        setConfig((prev) => ({ ...prev, font: next }))
+      } else {
+        const next = value as FontHeadingValue
+        setParams({ fontHeading: next })
+        setConfig((prev) => ({ ...prev, fontHeading: next }))
+      }
+    },
+    [param, setParams, setConfig]
+  )
 
   const currentFont = React.useMemo(
-    () => fonts.find((font) => font.value === (params.font ?? config.font)),
-    [fonts, params.font, config.font]
+    () => fonts.find((font) => font.value === currentValue),
+    [fonts, currentValue]
   )
+  const currentBodyFont = React.useMemo(
+    () => FONTS.find((font) => font.value === (params.font ?? config.font)),
+    [params.font, config.font]
+  )
+  const bodyFontTitle =
+    currentBodyFont?.name ??
+    FONTS.find((f) => f.value === DEFAULT_CONFIG.font)?.name ??
+    "Inter"
 
-  const handleValueChange = React.useCallback(
-    (value: string) => {
-      const newFont = value as FontValue
-      setParams({ font: newFont })
-      setConfig((prev) => ({ ...prev, font: newFont }))
-    },
-    [setParams, setConfig]
-  )
+  const inheritsBodyFont = param === "fontHeading" && currentValue === "inherit"
+  const displayFontName = inheritsBodyFont
+    ? bodyFontTitle
+    : (currentFont?.name ?? bodyFontTitle)
+  const inheritFontLabel = bodyFontTitle
+  const groupedFonts = React.useMemo(() => {
+    const pickerFonts =
+      param === "fontHeading"
+        ? fonts.filter((font) => font.value !== "inherit")
+        : fonts
+    const groups = new Map<string, FontPickerOption[]>()
+
+    for (const font of pickerFonts) {
+      const existing = groups.get(font.type)
+      if (existing) {
+        existing.push(font)
+        continue
+      }
+
+      groups.set(font.type, [font])
+    }
+
+    return Array.from(groups.entries()).map(([type, items]) => ({
+      type,
+      label: `${type.charAt(0).toUpperCase()}${type.slice(1)}`,
+      items,
+    }))
+  }, [fonts, param])
 
   return (
     <div className="group/picker relative">
       <Picker>
         <PickerTrigger>
-          <div className="flex flex-col justify-start text-left">
-            <div className="text-muted-foreground text-xs">Font</div>
-            <div className="text-foreground text-sm font-medium">
-              {mounted ? currentFont?.name : "..."}
+          <div className="min-w-0 flex-1 pr-10 text-left">
+            <div className="text-muted-foreground text-xs">{label}</div>
+            <div className="text-foreground truncate text-sm font-medium">
+              {mounted ? displayFontName : "..."}
             </div>
           </div>
-          <div
-            className="text-foreground pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base select-none"
-            style={{
-              fontFamily: mounted
-                ? currentFont?.font.style.fontFamily
-                : undefined,
-            }}
-          >
-            Aa
-          </div>
+          {mounted ? (
+            <div
+              className="text-foreground pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base select-none"
+              style={{
+                fontFamily:
+                  currentFont?.font?.style.fontFamily ??
+                  currentBodyFont?.font.style.fontFamily ??
+                  FONTS.find((f) => f.value === DEFAULT_CONFIG.font)?.font.style
+                    .fontFamily,
+              }}
+            >
+              Aa
+            </div>
+          ) : (
+            <div
+              className="pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 select-none"
+              aria-hidden
+            />
+          )}
         </PickerTrigger>
         <PickerContent
           anchor={isMobile ? anchorRef : undefined}
           side={isMobile ? "top" : "right"}
           align={isMobile ? "center" : "start"}
-          className="max-h-80 md:w-72"
+          className="max-h-96"
         >
           <PickerRadioGroup
-            value={currentFont?.value}
-            onValueChange={handleValueChange}
+            value={currentValue ?? undefined}
+            onValueChange={handleFontChange}
           >
-            <PickerGroup>
-              {fonts.map((font, index) => (
-                <React.Fragment key={font.value}>
-                  <PickerRadioItem value={font.value}>
-                    <Item size="xs">
-                      <ItemContent className="gap-1">
-                        <ItemTitle className="text-muted-foreground text-xs font-medium">
-                          {font.name}
-                        </ItemTitle>
-                        <ItemDescription
-                          style={{ fontFamily: font.font.style.fontFamily }}
-                        >
-                          Designers love packing quirky glyphs into test
-                          phrases.
-                        </ItemDescription>
-                      </ItemContent>
-                    </Item>
+            {param === "fontHeading" ? (
+              <>
+                <PickerGroup>
+                  <PickerRadioItem value="inherit" closeOnClick={isMobile}>
+                    {inheritFontLabel}
                   </PickerRadioItem>
-                  {index < fonts.length - 1 && (
-                    <PickerSeparator className="opacity-50" />
-                  )}
-                </React.Fragment>
-              ))}
-            </PickerGroup>
+                </PickerGroup>
+                <PickerSeparator />
+              </>
+            ) : null}
+            {groupedFonts.map((group) => (
+              <PickerGroup key={group.type}>
+                <PickerLabel>{group.label}</PickerLabel>
+                {group.items.map((font) => (
+                  <PickerRadioItem
+                    key={font.value}
+                    value={font.value}
+                    closeOnClick={isMobile}
+                  >
+                    {font.name}
+                  </PickerRadioItem>
+                ))}
+              </PickerGroup>
+            ))}
           </PickerRadioGroup>
         </PickerContent>
       </Picker>
       <LockButton
-        param="font"
+        param={param}
         className="absolute top-1/2 right-10 -translate-y-1/2"
       />
     </div>

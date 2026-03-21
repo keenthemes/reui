@@ -68,9 +68,9 @@ export function ThemePicker({
     <div className="group/picker relative">
       <Picker>
         <PickerTrigger>
-          <div className="flex flex-col justify-start text-left">
+          <div className="min-w-0 flex-1 pr-10 text-left">
             <div className="text-muted-foreground text-xs">Theme</div>
-            <div className="text-foreground text-sm font-medium">
+            <div className="text-foreground truncate text-sm font-medium">
               {mounted ? currentTheme?.title : "..."}
             </div>
           </div>

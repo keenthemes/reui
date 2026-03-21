@@ -21,6 +21,7 @@ import {
   MENU_COLORS,
   RADII,
   STYLES,
+  type FontHeadingValue,
 } from "@/registry/config"
 import { useLocks } from "@/app/(create)/hooks/use-locks"
 import { FONTS } from "@/app/(create)/lib/fonts"
@@ -41,12 +42,20 @@ export function RandomButton() {
   const { locks } = useLocks()
   const [params, setParams] = useDesignSystemSearchParams()
   const [config, setConfig] = useConfig()
+  const fontHeadingChoices = React.useMemo(
+    () =>
+      ["inherit", ...FONTS.map((f) => f.value)] as readonly FontHeadingValue[],
+    []
+  )
+
   const effectiveParams = React.useMemo(
     () => ({
       baseColor: params.baseColor ?? config.baseColor,
       style: params.style ?? config.style,
       theme: params.theme ?? config.theme,
+      chartColor: params.chartColor ?? config.chartColor,
       font: params.font ?? config.font,
+      fontHeading: params.fontHeading ?? config.fontHeading,
       radius: params.radius ?? config.radius,
       iconLibrary: params.iconLibrary ?? config.iconLibrary,
       menuAccent: params.menuAccent ?? config.menuAccent,
@@ -56,7 +65,9 @@ export function RandomButton() {
       params.baseColor,
       params.style,
       params.theme,
+      params.chartColor,
       params.font,
+      params.fontHeading,
       params.radius,
       params.iconLibrary,
       params.menuAccent,
@@ -64,7 +75,9 @@ export function RandomButton() {
       config.baseColor,
       config.style,
       config.theme,
+      config.chartColor,
       config.font,
+      config.fontHeading,
       config.radius,
       config.iconLibrary,
       config.menuAccent,
@@ -94,9 +107,15 @@ export function RandomButton() {
     const selectedTheme = locks.has("theme")
       ? effectiveParams.theme
       : randomItem(availableThemes).name
+    const selectedChartColor = locks.has("chartColor")
+      ? effectiveParams.chartColor
+      : randomItem(availableThemes).name
     const selectedFont = locks.has("font")
       ? effectiveParams.font
       : randomItem(availableFonts).value
+    const selectedFontHeading = locks.has("fontHeading")
+      ? effectiveParams.fontHeading
+      : randomItem(fontHeadingChoices)
     const selectedRadius = locks.has("radius")
       ? effectiveParams.radius
       : randomItem(availableRadii).name
@@ -119,8 +138,10 @@ export function RandomButton() {
       style: selectedStyle,
       baseColor,
       theme: selectedTheme,
+      chartColor: selectedChartColor,
       iconLibrary: selectedIconLibrary,
       font: selectedFont,
+      fontHeading: selectedFontHeading,
       menuAccent: selectedMenuAccent,
       menuColor: selectedMenuColor,
       radius: selectedRadius,
@@ -136,7 +157,7 @@ export function RandomButton() {
     )
     setParams(paramsToUpdate)
     setConfig((prev) => ({ ...prev, ...newValues }))
-  }, [setParams, setConfig, locks, effectiveParams])
+  }, [setParams, setConfig, locks, effectiveParams, fontHeadingChoices])
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {

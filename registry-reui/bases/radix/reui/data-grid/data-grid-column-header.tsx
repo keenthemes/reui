@@ -1,7 +1,10 @@
 "use client"
 
 import { HTMLAttributes, memo, ReactNode, useMemo } from "react"
-import { useDataGrid } from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
+import {
+  getColumnHeaderLabel,
+  useDataGrid,
+} from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
 import { Column } from "@tanstack/react-table"
 
 import { cn } from "@/registry/bases/radix/lib/utils"
@@ -26,6 +29,7 @@ interface DataGridColumnHeaderProps<
   TValue,
 > extends HTMLAttributes<HTMLDivElement> {
   column: Column<TData, TValue>
+  /** When omitted, uses `column.columnDef.meta.headerTitle`, then a string `columnDef.header`, then `column.id`. */
   title?: string
   icon?: ReactNode
   pinnable?: boolean
@@ -35,13 +39,14 @@ interface DataGridColumnHeaderProps<
 
 function DataGridColumnHeaderInner<TData, TValue>({
   column,
-  title = "",
+  title,
   icon,
   className,
   filter,
   visibility = false,
 }: DataGridColumnHeaderProps<TData, TValue>) {
   const { isLoading, table, props, recordCount } = useDataGrid()
+  const resolvedTitle = title ?? getColumnHeaderLabel(column)
 
   const columnOrder = table.getState().columnOrder
   const columnVisibilityKey = JSON.stringify(table.getState().columnVisibility)
@@ -335,10 +340,7 @@ function DataGridColumnHeaderInner<TData, TValue>({
           <DropdownMenuSubContent>
             {table
               .getAllColumns()
-              .filter(
-                (col) =>
-                  typeof col.accessorFn !== "undefined" && col.getCanHide()
-              )
+              .filter((col) => col.getCanHide())
               .map((col) => (
                 <DropdownMenuCheckboxItem
                   key={col.id}
@@ -347,7 +349,7 @@ function DataGridColumnHeaderInner<TData, TValue>({
                   onCheckedChange={(value) => col.toggleVisibility(!!value)}
                   className="capitalize"
                 >
-                  {col.columnDef.meta?.headerTitle || col.id}
+                  {getColumnHeaderLabel(col)}
                 </DropdownMenuCheckboxItem>
               ))}
           </DropdownMenuSubContent>
@@ -387,7 +389,7 @@ function DataGridColumnHeaderInner<TData, TValue>({
               disabled={isLoading || recordCount === 0}
             >
               {icon && icon}
-              {title}
+              {resolvedTitle}
               {sortIcon}
             </Button>
           </DropdownMenuTrigger>
@@ -401,8 +403,8 @@ function DataGridColumnHeaderInner<TData, TValue>({
             variant="ghost"
             className="-me-1 size-7 rounded-md"
             onClick={() => column.pin(false)}
-            aria-label={`Unpin ${title} column`}
-            title={`Unpin ${title} column`}
+            aria-label={`Unpin ${resolvedTitle} column`}
+            title={`Unpin ${resolvedTitle} column`}
           >
             <IconPlaceholder
               lucide="PinOffIcon"
@@ -429,7 +431,7 @@ function DataGridColumnHeaderInner<TData, TValue>({
           onClick={handleSort}
         >
           {icon && icon}
-          {title}
+          {resolvedTitle}
           {sortIcon}
         </Button>
       </div>
@@ -439,7 +441,7 @@ function DataGridColumnHeaderInner<TData, TValue>({
   return (
     <div className={headerLabelClassName}>
       {icon && icon}
-      {title}
+      {resolvedTitle}
     </div>
   )
 }

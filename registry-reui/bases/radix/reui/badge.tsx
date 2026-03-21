@@ -4,7 +4,7 @@ import { Slot } from "radix-ui"
 import { cn } from "@/registry/bases/radix/lib/utils"
 
 const badgeVariants = cva(
-  "style-vega:rounded-sm style-nova:rounded-sm style-lyra:rounded-none style-maia:rounded-4xl style-mira:rounded-sm relative inline-flex shrink-0 items-center justify-center w-fit border border-transparent font-medium whitespace-nowrap outline-none transition-shadow focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*=size-])]:size-3",
+  "relative inline-flex shrink-0 items-center justify-center w-fit border border-transparent font-medium whitespace-nowrap outline-none transition-shadow focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*=size-])]:size-3",
   {
     variants: {
       variant: {
@@ -53,10 +53,17 @@ const badgeVariants = cva(
         lg: "px-1.5 py-0.5 text-xs h-5.5 min-w-5.5 gap-1",
         xl: "px-2 py-0.75 text-sm h-6 min-w-6 gap-1.5",
       },
+      /** `default`: per-theme radius. `full`: max radius per theme (Lyra stays `rounded-none`). */
+      radius: {
+        default:
+          "style-vega:rounded-sm style-nova:rounded-sm style-lyra:rounded-none style-maia:rounded-4xl style-mira:rounded-sm",
+        full: "style-vega:rounded-full style-nova:rounded-full style-lyra:rounded-none style-maia:rounded-full style-mira:rounded-full",
+      },
     },
     defaultVariants: {
       variant: "default",
       size: "default",
+      radius: "default",
     },
   }
 )
@@ -70,6 +77,7 @@ function Badge({
   className,
   variant,
   size,
+  radius,
   asChild = false,
   ...props
 }: BadgeProps) {
@@ -78,7 +86,7 @@ function Badge({
   return (
     <Comp
       data-slot="badge"
-      className={cn(badgeVariants({ variant, size, className }))}
+      className={cn(badgeVariants({ variant, size, radius, className }))}
       {...props}
     />
   )

@@ -23,6 +23,7 @@
   --breakpoint-3xl: 1600px;
   --breakpoint-4xl: 2000px;
   --font-sans: var(--font-sans);
+  --font-heading: var(--font-heading);
   --font-mono: var(--font-mono);
   --font-inter: var(--font-inter);
   --radius-sm: calc(var(--radius) - 4px);
@@ -240,6 +241,9 @@
   body {
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
+  }
+  .cn-font-heading {
+    @apply font-heading;
   }
 
   @supports (font: -apple-system-body) and (-webkit-appearance: none) {

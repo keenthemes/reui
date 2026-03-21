@@ -2618,11 +2618,11 @@ export const patterns: Registry["items"] = [
   {
     "name": "p-badge-19",
     "type": "registry:block",
-    "title": "Badge with full radius",
+    "title": "Badge with full radius (radius=\"full\")",
     "categories": [
       "badge"
     ],
-    "description": "Badge with full radius",
+    "description": "Badge with full radius (radius=\"full\")",
     "registryDependencies": [
       "badge"
     ],

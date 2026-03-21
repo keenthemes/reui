@@ -13,7 +13,6 @@ import {
 import {
   BASE_COLORS,
   BASES,
-  DEFAULT_CONFIG,
   iconLibraries,
   MENU_ACCENTS,
   MENU_COLORS,
@@ -22,6 +21,8 @@ import {
   THEMES,
   type BaseColorName,
   type BaseName,
+  type ChartColorName,
+  type FontHeadingValue,
   type FontValue,
   type IconLibraryName,
   type MenuAccentValue,
@@ -32,6 +33,11 @@ import {
 } from "@/registry/config"
 import { FONTS } from "@/app/(create)/lib/fonts"
 
+const fontHeadingLiterals = [
+  "inherit",
+  ...FONTS.map((f) => f.value),
+] as const satisfies readonly FontHeadingValue[]
+
 const designSystemSearchParams = {
   base: parseAsStringLiteral<BaseName>(BASES.map((b) => b.name)),
   item: parseAsString.withOptions({ shallow: true }),
@@ -40,7 +46,9 @@ const designSystemSearchParams = {
   ),
   style: parseAsStringLiteral<StyleName>(STYLES.map((s) => s.name)),
   theme: parseAsStringLiteral<ThemeName>(THEMES.map((t) => t.name)),
+  chartColor: parseAsStringLiteral<ChartColorName>(THEMES.map((t) => t.name)),
   font: parseAsStringLiteral<FontValue>(FONTS.map((f) => f.value)),
+  fontHeading: parseAsStringLiteral<FontHeadingValue>(fontHeadingLiterals),
   baseColor: parseAsStringLiteral<BaseColorName>(
     BASE_COLORS.map((b) => b.name)
   ),

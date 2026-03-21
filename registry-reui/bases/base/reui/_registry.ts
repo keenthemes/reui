@@ -234,6 +234,7 @@ export const reui: Registry["items"] = [
     "title": "Data Grid Column Visibility",
     "description": "",
     "registryDependencies": [
+      "data-grid",
       "dropdown-menu"
     ],
     "dependencies": [

@@ -1,6 +1,7 @@
 "use client"
 
 import { ReactElement } from "react"
+import { getColumnHeaderLabel } from "@/registry-reui/bases/base/reui/data-grid/data-grid"
 import { Table } from "@tanstack/react-table"
 
 import {
@@ -29,10 +30,7 @@ function DataGridColumnVisibility<TData>({
           </DropdownMenuLabel>
           {table
             .getAllColumns()
-            .filter(
-              (column) =>
-                typeof column.accessorFn !== "undefined" && column.getCanHide()
-            )
+            .filter((column) => column.getCanHide())
             .map((column) => {
               return (
                 <DropdownMenuCheckboxItem
@@ -42,7 +40,7 @@ function DataGridColumnVisibility<TData>({
                   onSelect={(event) => event.preventDefault()}
                   onCheckedChange={(value) => column.toggleVisibility(!!value)}
                 >
-                  {column.columnDef.meta?.headerTitle || column.id}
+                  {getColumnHeaderLabel(column)}
                 </DropdownMenuCheckboxItem>
               )
             })}

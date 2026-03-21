@@ -24,6 +24,8 @@ interface DesignSystemContextValue {
   style: string | null
   theme: string | null
   font: string | null
+  fontHeading: string | null
+  chartColor: string | null
   baseColor: string | null
   menuAccent: string | null
   menuColor: string | null
@@ -50,7 +52,9 @@ export const DESIGN_SYSTEM_URL_KEYS = [
   "style",
   "theme",
   "baseColor",
+  "chartColor",
   "font",
+  "fontHeading",
   "iconLibrary",
   "menuAccent",
   "menuColor",
@@ -121,33 +125,58 @@ export function DesignSystemProvider({
 }: {
   children: React.ReactNode
 }) {
-  const [params] = useDesignSystemSearchParams({
+  const [params, setParams] = useDesignSystemSearchParams({
     shallow: true,
     history: "replace",
   })
-  const [config] = useConfig()
+  const [config, setConfig] = useConfig()
 
-  // Use local state for overrides received from parent via postMessage.
-  // This prevents URL updates which would trigger server-side re-renders.
-  const [overrides, setOverrides] = React.useState<
-    Partial<DesignSystemSearchParams>
-  >({})
+  // Match shadcn: sync iframe nuqs state from the host via postMessage so
+  // heading font and other params apply without relying on a separate
+  // override layer or cross-context localStorage sync.
+  const handleDesignSystemMessage = React.useCallback(
+    (nextParams: DesignSystemSearchParams) => {
+      setParams(nextParams)
+    },
+    [setParams]
+  )
 
-  // Listen for design system params from parent window (iframe mode)
-  // Store in local state instead of updating URL to avoid re-renders
-  useIframeMessageListener("design-system-params", setOverrides)
+  useIframeMessageListener("design-system-params", handleDesignSystemMessage)
 
-  // Merge: overrides (from postMessage) > params (from URL) > config (from localStorage)
-  const style = overrides.style ?? params.style ?? config.style
-  const theme = overrides.theme ?? params.theme ?? config.theme
-  const font = overrides.font ?? params.font ?? config.font
-  const baseColor = overrides.baseColor ?? params.baseColor ?? config.baseColor
-  const menuAccent =
-    overrides.menuAccent ?? params.menuAccent ?? config.menuAccent
-  const menuColor = overrides.menuColor ?? params.menuColor ?? config.menuColor
-  const radius = overrides.radius ?? params.radius ?? config.radius
-  const iconLibrary =
-    overrides.iconLibrary ?? params.iconLibrary ?? config.iconLibrary
+  // Merge: params (URL / postMessage via setParams) > config (localStorage)
+  const style = params.style ?? config.style
+  const theme = params.theme ?? config.theme
+  const font = params.font ?? config.font
+  const fontHeading =
+    params.fontHeading ?? config.fontHeading ?? DEFAULT_CONFIG.fontHeading
+  const chartColor =
+    params.chartColor ?? config.chartColor ?? DEFAULT_CONFIG.chartColor
+  const baseColor = params.baseColor ?? config.baseColor
+  const menuAccent = params.menuAccent ?? config.menuAccent
+  const menuColor = params.menuColor ?? config.menuColor
+  const radius = params.radius ?? config.radius
+  const iconLibrary = params.iconLibrary ?? config.iconLibrary
+
+  const effectiveRadius = style === "lyra" ? "none" : radius
+
+  const selectedFont = React.useMemo(
+    () => FONTS.find((fontOption) => fontOption.value === font),
+    [font]
+  )
+
+  const selectedHeadingFont = React.useMemo(() => {
+    if (fontHeading === "inherit" || fontHeading === font) {
+      return selectedFont
+    }
+    return FONTS.find((fontOption) => fontOption.value === fontHeading)
+  }, [font, fontHeading, selectedFont])
+
+  React.useEffect(() => {
+    if (style === "lyra" && radius !== "none") {
+      setParams({ radius: "none" })
+      setConfig((prev) => ({ ...prev, radius: "none" }))
+    }
+  }, [style, radius, setParams, setConfig])
 
   const [isReady, setIsReady] = React.useState(false)
 
@@ -175,31 +204,54 @@ export function DesignSystemProvider({
     })
     body.classList.add(`base-color-${baseColor}`)
 
-    // Update font.
-    const selectedFont = FONTS.find((f) => f.value === font)
+    // Body / UI font (--font-sans) and heading (--font-heading).
     if (selectedFont) {
-      const fontFamily = selectedFont.font.style.fontFamily
-      document.documentElement.style.setProperty("--font-sans", fontFamily)
+      document.documentElement.style.setProperty(
+        "--font-sans",
+        selectedFont.font.style.fontFamily
+      )
+    }
+    if (selectedHeadingFont) {
+      document.documentElement.style.setProperty(
+        "--font-heading",
+        selectedHeadingFont.font.style.fontFamily
+      )
     }
 
     setIsReady(true)
-  }, [style, theme, font, baseColor, iconLibrary])
+  }, [
+    style,
+    theme,
+    font,
+    fontHeading,
+    baseColor,
+    iconLibrary,
+    selectedFont,
+    selectedHeadingFont,
+  ])
 
   const registryTheme = React.useMemo(() => {
-    if (!baseColor || !theme || !menuAccent || !radius) {
+    if (
+      !baseColor ||
+      !theme ||
+      !menuAccent ||
+      !effectiveRadius ||
+      !chartColor
+    ) {
       return null
     }
 
-    const config: DesignSystemConfig = {
+    const themeConfig: DesignSystemConfig = {
       ...DEFAULT_CONFIG,
       baseColor,
       theme,
+      chartColor,
       menuAccent,
-      radius,
+      radius: effectiveRadius,
     }
 
-    return buildRegistryTheme(config)
-  }, [baseColor, theme, menuAccent, radius])
+    return buildRegistryTheme(themeConfig)
+  }, [baseColor, theme, chartColor, menuAccent, effectiveRadius])
 
   // Use useLayoutEffect for synchronous CSS var updates.
   React.useLayoutEffect(() => {
@@ -359,6 +411,8 @@ export function DesignSystemProvider({
         style,
         theme,
         font,
+        fontHeading,
+        chartColor,
         baseColor,
         menuAccent,
         menuColor,

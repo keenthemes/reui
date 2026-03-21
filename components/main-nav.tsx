@@ -3,6 +3,7 @@
 import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { ExternalLinkIcon } from "lucide-react"
 
 import { cn, isActive } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -11,7 +12,6 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-import { ExternalLinkIcon } from "lucide-react"
 
 export function MainNav({
   items,
@@ -41,8 +41,15 @@ export function MainNav({
             {item.soon ? (
               <span>{item.label}</span>
             ) : item.href ? (
-              item.href.startsWith('https://') ? (
-                <Link href={item.href} target="_blank" className="flex items-center gap-0.5" rel="noreferrer">{item.label} <ExternalLinkIcon className="size-3.5" /></Link>
+              item.href.startsWith("https://") ? (
+                <Link
+                  href={item.href}
+                  target="_blank"
+                  className="flex items-center gap-0.5"
+                  rel="noreferrer"
+                >
+                  {item.label} <ExternalLinkIcon className="size-3.5" />
+                </Link>
               ) : (
                 <Link href={item.href}>{item.label}</Link>
               )
@@ -54,8 +61,8 @@ export function MainNav({
           return (
             <Tooltip key={item.href}>
               <TooltipTrigger asChild>{button}</TooltipTrigger>
-              <TooltipContent className="leading-relaxed max-w-50">
-               🔥 Cooking something special! Join the waitlist for 40% off.
+              <TooltipContent className="max-w-50 leading-relaxed">
+                🔥 Cooking something special! Join the waitlist for 40% off.
               </TooltipContent>
             </Tooltip>
           )

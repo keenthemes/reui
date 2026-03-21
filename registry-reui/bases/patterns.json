@@ -1101,7 +1101,7 @@
   },
   {
     "name": "p-badge-19",
-    "title": "Badge with full radius",
+    "title": "Badge with full radius (radius=\"full\")",
     "categories": [
       "badge"
     ],

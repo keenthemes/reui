@@ -20,7 +20,7 @@ const frameVariants = cva(
     "style-vega:[--frame-radius:var(--radius-xl)] style-nova:[--frame-radius:var(--radius-xl)]",
     "style-lyra:[--frame-radius:var(--radius-none)] style-maia:[--frame-radius:var(--radius-2xl)] style-mira:[--frame-radius:var(--radius-lg)]",
     // Default panel token values — overridden per-variant below
-    "[--frame-panel-bg:var(--color-background)] [--frame-panel-border-color:var(--color-border)] [--frame-border-color:var(--color-border)]",
+    "[--frame-panel-bg:var(--color-card)] [--frame-panel-border-color:var(--color-border)] [--frame-border-color:var(--color-border)]",
   ],
   {
     variants: {

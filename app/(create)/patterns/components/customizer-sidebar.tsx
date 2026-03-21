@@ -1,13 +1,27 @@
 "use client"
 
 import * as React from "react"
+import dynamic from "next/dynamic"
 
 import { cn } from "@/lib/utils"
 import { useIsMobile } from "@/hooks/use-mobile"
 
-import { CustomizerSidebarContent } from "./customizer-sidebar-content"
 import { CustomizerSidebarHeader } from "./customizer-sidebar-header"
 import { useCustomizer } from "./patterns-provider"
+
+/** Client-only: nuqs + jotai + theme pickers diverge from SSR; avoids hydration errors. */
+const CustomizerSidebarContent = dynamic(
+  () =>
+    import("./customizer-sidebar-content").then(
+      (m) => m.CustomizerSidebarContent
+    ),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="max-h-[calc(100svh-240px)] flex-1" aria-hidden />
+    ),
+  }
+)
 
 export function CustomizerSidebar() {
   const { customizerOpen } = useCustomizer()
