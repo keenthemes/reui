@@ -13,9 +13,9 @@ import z from "zod"
 
 import { siteConfig } from "@/lib/config"
 import {
+  buildPageMetadata,
   buildBreadcrumbJsonLd,
   getComponentDocSeo,
-  getOgImageUrl,
   isCanonicalComponentDoc,
 } from "@/lib/seo"
 import { source } from "@/lib/source"
@@ -64,12 +64,12 @@ export async function generateMetadata(props: {
     componentSeo?.description ?? doc.description ?? siteConfig.description
   const canonicalPath = componentSeo?.canonicalPath ?? page.url
 
-  return {
+  return buildPageMetadata({
     title: metadataTitle,
+    titleSuffix: siteConfig.metadata.titleSuffixes.site,
     description: metadataDescription,
-    alternates: {
-      canonical: canonicalPath,
-    },
+    path: canonicalPath,
+    type: "article",
     robots:
       componentSeo && !componentSeo.shouldIndex
         ? {
@@ -77,29 +77,7 @@ export async function generateMetadata(props: {
             follow: true,
           }
         : undefined,
-    openGraph: {
-      title: metadataTitle,
-      description: metadataDescription,
-      type: "article",
-      url: absoluteUrl(canonicalPath),
-      images: [
-        {
-          url: getOgImageUrl(metadataTitle, metadataDescription),
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: metadataTitle,
-      description: metadataDescription,
-      images: [
-        {
-          url: getOgImageUrl(metadataTitle, metadataDescription),
-        },
-      ],
-      creator: "@reui_io",
-    },
-  }
+  })
 }
 
 export default async function Page(props: {

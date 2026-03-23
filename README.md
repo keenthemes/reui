@@ -52,7 +52,7 @@ ReUI provides in total: **17 custom in-house components** not found in base shad
 
 Custom-built, shadcn-compatible components not available in base shadcn/ui. Each is maintained by the Keenthemes team, ships full component API documentation, props reference, and usage examples, and is available in both Radix UI and Base UI flavors at [reui.io/docs](https://reui.io/docs).
 
-| Component | Patterns | Description | Patterns | Radix Docs | Base UI Docs |
+| Component | Patterns | Description | Patterns | Radix UI Docs | Base UI Docs |
 |-----------|----------|-------------|----------|-----------|--------------|
 | **Alert** | 10 | Contextual notifications with severity variants and dismissible states | [Preview](https://reui.io/patterns/alert) | [Radix UI](https://reui.io/docs/radix/alert) | [Base UI](https://reui.io/docs/base/alert) |
 | **Autocomplete** | 8 | Searchable input with async filtering and keyboard navigation | [Preview](https://reui.io/patterns/autocomplete) | [Radix UI](https://reui.io/docs/radix/autocomplete) | [Base UI](https://reui.io/docs/base/autocomplete) |

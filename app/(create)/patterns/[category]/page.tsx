@@ -11,11 +11,11 @@ import {
 } from "@/lib/registry"
 import { getPatternCategorySeo } from "@/lib/registry-seo-cache"
 import {
-  absoluteUrl,
+  buildPageMetadata,
   buildBreadcrumbJsonLd,
-  getOgImageUrl,
   isCanonicalComponentDoc,
 } from "@/lib/seo"
+import { siteConfig } from "@/lib/config"
 import { normalizeSlug } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Spinner } from "@/components/ui/spinner"
@@ -76,12 +76,11 @@ export async function generateMetadata({
   const categoryLabel = categoryInfo?.label ?? category
   const seo = getPatternCategorySeo(normalized)
 
-  return {
+  return buildPageMetadata({
     title: seo.title,
+    titleSuffix: siteConfig.metadata.titleSuffixes.patternCategory,
     description: seo.description,
-    alternates: {
-      canonical: `/patterns/${normalized}`,
-    },
+    path: `/patterns/${normalized}`,
     keywords: [
       seo.title,
       `shadcn ${categoryLabel.toLowerCase()}`,
@@ -90,28 +89,7 @@ export async function generateMetadata({
       "open source shadcn patterns",
       ...seo.keywords,
     ],
-    openGraph: {
-      title: seo.title,
-      description: seo.description,
-      url: absoluteUrl(`/patterns/${normalized}`),
-      type: "website",
-      images: [
-        {
-          url: getOgImageUrl(seo.title, seo.description),
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: seo.title,
-      description: seo.description,
-      images: [
-        {
-          url: getOgImageUrl(seo.title, seo.description),
-        },
-      ],
-    },
-  }
+  })
 }
 
 export default async function CategoryPatternsPage({

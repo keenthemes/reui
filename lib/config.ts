@@ -1,12 +1,23 @@
+const siteName = "ReUI"
+const siteUrl = "https://reui.io"
+const siteTwitterUrl = "https://x.com/reui_io"
 const reuiProWaitlistUrl = "https://pro.reui.io"
 
 export const siteConfig = {
-  name: "ReUI",
-  url: "https://reui.io",
+  name: siteName,
+  url: siteUrl,
   description:
     "Free & open-source library of 1,000+ components and patterns to 10x your productivity in shadcn projects.",
+  metadata: {
+    locale: "en_US",
+    titleTemplate: "%s",
+    titleSuffixes: {
+      site: siteName,
+      patternCategory: "UI Components and Patterns",
+    },
+  },
   links: {
-    twitter: "https://x.com/reui_io",
+    twitter: siteTwitterUrl,
     github: "https://github.com/keenthemes/reui",
     pro: reuiProWaitlistUrl,
   },

@@ -8,7 +8,7 @@ import {
   searchPatterns,
 } from "@/lib/registry"
 import { getPatternIndexSeo } from "@/lib/registry-seo-cache"
-import { absoluteUrl, buildBreadcrumbJsonLd, getOgImageUrl } from "@/lib/seo"
+import { buildBreadcrumbJsonLd, buildPageMetadata } from "@/lib/seo"
 import { GridSkeleton } from "@/components/grid-skeleton"
 import { JsonLd } from "@/components/json-ld"
 
@@ -63,45 +63,23 @@ const featuredCategories = [
   },
 ] as const
 
-export const metadata: Metadata = {
-  title,
+export const metadata: Metadata = buildPageMetadata({
+  title: title + ' - ReUI',
   description,
-  alternates: {
-    canonical: "/patterns",
-  },
+  path: "/patterns",
   keywords: [
+    "shadcn components",
+    "reui components",
+    "reui patterns",
     "shadcn patterns",
     "shadcn ui patterns",
-    "shadcn ui component patterns",
-    "shadcn component patterns",
-    "open source shadcn patterns",
-    "React patterns",
+    "shadcn ui component",
+    "open source shadcn component",
+    "React components",
     "Tailwind components",
-    "shadcn alert patterns",
-    "shadcn data grid patterns",
+    "shadcn data grid",
   ],
-  openGraph: {
-    title,
-    description,
-    url: absoluteUrl("/patterns"),
-    type: "website",
-    images: [
-      {
-        url: getOgImageUrl(title, description),
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-    images: [
-      {
-        url: getOgImageUrl(title, description),
-      },
-    ],
-  },
-}
+})
 
 export default function PatternsPage() {
   const categories = getCategories()

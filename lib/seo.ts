@@ -1,3 +1,5 @@
+import type { Metadata } from "next"
+
 import { siteConfig } from "@/lib/config"
 import { getCategoryDocsDescription } from "@/lib/registry"
 
@@ -60,6 +62,101 @@ export function getOgImageUrl(title: string, description: string) {
       description
     )}`
   )
+}
+
+type PageMetadataOptions = {
+  title: string
+  description: string
+  path: string
+  keywords?: Metadata["keywords"]
+  robots?: Metadata["robots"]
+  type?: "website" | "article"
+  titleSuffix?: string
+}
+
+function getSocialHandle(url: string) {
+  try {
+    const socialUrl = new URL(url)
+    const handle = socialUrl.pathname.split("/").filter(Boolean)[0]
+    return handle ? `@${handle}` : undefined
+  } catch {
+    return undefined
+  }
+}
+
+function getAbsoluteMetadataUrl(path: string) {
+  return path.startsWith("http://") || path.startsWith("https://")
+    ? path
+    : absoluteUrl(path)
+}
+
+export function getSiteAuthors(): NonNullable<Metadata["authors"]> {
+  return [
+    {
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+  ]
+}
+
+export function buildPageSocialMetadata({
+  title,
+  description,
+  path,
+  type = "website",
+}: Pick<PageMetadataOptions, "title" | "description" | "path" | "type">): Pick<
+  Metadata,
+  "openGraph" | "twitter"
+> {
+  const imageUrl = getOgImageUrl(title, description)
+  const twitterCreator = getSocialHandle(siteConfig.links.twitter)
+
+  return {
+    openGraph: {
+      title,
+      description,
+      url: getAbsoluteMetadataUrl(path),
+      type,
+      siteName: siteConfig.name,
+      locale: siteConfig.metadata.locale,
+      images: [{ url: imageUrl }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [{ url: imageUrl }],
+      ...(twitterCreator ? { creator: twitterCreator } : {}),
+    },
+  }
+}
+
+export function buildPageMetadata({
+  title,
+  description,
+  path,
+  keywords,
+  robots,
+  type = "website",
+  titleSuffix,
+}: PageMetadataOptions): Metadata {
+  const resolvedTitle = titleSuffix ? `${title} - ${titleSuffix}` : title
+
+  return {
+    title: resolvedTitle,
+    description,
+    alternates: {
+      canonical: path,
+    },
+    ...(keywords ? { keywords } : {}),
+    ...(robots ? { robots } : {}),
+    ...buildPageSocialMetadata({
+      title,
+      description,
+      path,
+      type,
+    }),
+  }
 }
 
 export function isCanonicalComponentDoc(

@@ -1,6 +1,6 @@
 import { Metadata } from "next"
 
-import { absoluteUrl, getOgImageUrl } from "@/lib/seo"
+import { buildPageMetadata } from "@/lib/seo"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteSubscribe } from "@/components/site-subscribe"
 
@@ -11,19 +11,17 @@ import { Stats } from "./components/stats"
 import { WallOfLove } from "./components/wall-of-love"
 
 const title =
-  "ReUI – Free Shadcn UI Components, Patterns, Blocks & Extensions"
+  "ReUI – Free Shadcn UI Components, Patterns, Blocks and Extensions"
 const description =
   "Discover the free 1000+ open-source shadcn/ui component patterns for React and Tailwind CSS."
 
 export const dynamic = "force-static"
 export const revalidate = false
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title,
   description,
-  alternates: {
-    canonical: "/",
-  },
+  path: "/",
   keywords: [
     "shadcn patterns",
     "shadcn components",
@@ -43,28 +41,7 @@ export const metadata: Metadata = {
     "shadcn sortable",
     "shadcn kanban",
   ],
-  openGraph: {
-    title,
-    description,
-    url: absoluteUrl("/"),
-    type: "website",
-    images: [
-      {
-        url: getOgImageUrl(title, description),
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-    images: [
-      {
-        url: getOgImageUrl(title, description),
-      },
-    ],
-  },
-}
+})
 
 export default function IndexPage() {
   return (

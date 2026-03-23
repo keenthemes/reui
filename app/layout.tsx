@@ -6,8 +6,9 @@ import { META_THEME_COLORS, siteConfig } from "@/lib/config"
 import { fontVariables } from "@/lib/fonts"
 import {
   buildOrganizationJsonLd,
+  buildPageSocialMetadata,
   buildWebSiteJsonLd,
-  getOgImageUrl,
+  getSiteAuthors,
   getSiteUrl,
 } from "@/lib/seo"
 import { cn } from "@/lib/utils"
@@ -21,12 +22,10 @@ import { ThemeProvider } from "@/components/theme-provider"
 import "@/styles/globals.css"
 
 const appUrl = getSiteUrl()
-const defaultOgImageUrl = getOgImageUrl(siteConfig.name, siteConfig.description)
-
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
-    template: `%s - ${siteConfig.name}`,
+    template: siteConfig.metadata.titleTemplate,
   },
   metadataBase: new URL(appUrl),
   alternates: {
@@ -55,37 +54,14 @@ export const metadata: Metadata = {
     "component library",
     "design system",
   ],
-  authors: [
-    {
-      name: "ReUI",
-      url: "https://reui.io",
-    },
-  ],
-  creator: "reui_io",
+  authors: getSiteAuthors(),
+  creator: siteConfig.name,
   publisher: siteConfig.name,
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: appUrl,
+  ...buildPageSocialMetadata({
     title: siteConfig.name,
     description: siteConfig.description,
-    siteName: siteConfig.name,
-    images: [
-      {
-        url: defaultOgImageUrl,
-        width: 1200,
-        height: 628,
-        alt: siteConfig.name,
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: siteConfig.name,
-    description: siteConfig.description,
-    images: [defaultOgImageUrl],
-    creator: "@reui_io",
-  },
+    path: "/",
+  }),
   icons: {
     icon: [
       {
