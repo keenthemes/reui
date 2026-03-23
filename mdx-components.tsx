@@ -20,9 +20,9 @@ import { Callout } from "@/components/callout"
 import { CodeBlockCommand } from "@/components/code-block-command"
 import { CodeCollapsibleWrapper } from "@/components/code-collapsible-wrapper"
 import { CodeTabs } from "@/components/code-tabs"
-import { ComponentPreview } from "@/components/component-preview"
-import { ComponentSource } from "@/components/component-source"
 import { CopyButton } from "@/components/copy-button"
+import { DocsComponentPreview } from "@/components/docs-component-preview"
+import { DocsComponentSource } from "@/components/docs-component-source"
 import { getIconForLanguageExtension } from "@/components/icons"
 
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
@@ -31,7 +31,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     h1: ({ className, ...props }: React.ComponentProps<"h1">) => (
       <h1
         className={cn(
-          "font-heading mt-2 scroll-m-28 text-3xl font-bold tracking-tight",
+          "font-site-heading mt-2 scroll-m-28 text-3xl font-bold tracking-tight",
           className
         )}
         {...props}
@@ -47,7 +47,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
             .replace(/\?/g, "")
             .toLowerCase()}
           className={cn(
-            "font-heading [&+]*:[code]:text-xl mt-10 scroll-m-28 text-xl font-medium tracking-tight first:mt-0 lg:mt-16 [&+.steps]:!mt-0 [&+.steps>h3]:!mt-4 [&+h3]:!mt-6 [&+p]:!mt-4",
+            "font-site-heading [&+]*:[code]:text-xl mt-10 scroll-m-28 text-xl font-medium tracking-tight first:mt-0 lg:mt-16 [&+.steps]:!mt-0 [&+.steps>h3]:!mt-4 [&+h3]:!mt-6 [&+p]:!mt-4",
             className
           )}
           {...props}
@@ -57,7 +57,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     h3: ({ className, ...props }: React.ComponentProps<"h3">) => (
       <h3
         className={cn(
-          "font-heading mt-12 scroll-m-28 text-lg font-medium tracking-tight [&+p]:!mt-4 *:[code]:text-xl",
+          "font-site-heading mt-12 scroll-m-28 text-lg font-medium tracking-tight [&+p]:!mt-4 *:[code]:text-xl",
           className
         )}
         {...props}
@@ -66,7 +66,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     h4: ({ className, ...props }: React.ComponentProps<"h4">) => (
       <h4
         className={cn(
-          "font-heading mt-8 scroll-m-28 text-base font-medium tracking-tight",
+          "font-site-heading mt-8 scroll-m-28 text-base font-medium tracking-tight",
           className
         )}
         {...props}
@@ -119,13 +119,13 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     ),
     img: ({ className, alt, ...props }: React.ComponentProps<"img">) => (
       // eslint-disable-next-line @next/next/no-img-element
-      <img className={cn("rounded-md", className)} alt={alt} {...props} />
+      <img className={cn("site-rounded-md", className)} alt={alt} {...props} />
     ),
     hr: ({ ...props }: React.ComponentProps<"hr">) => (
       <hr className="my-4 md:my-8" {...props} />
     ),
     table: ({ className, ...props }: React.ComponentProps<"table">) => (
-      <div className="scrollbar my-6 w-full overflow-y-auto rounded-lg border">
+      <div className="scrollbar site-rounded-lg border-site-border my-6 w-full overflow-y-auto border">
         <table
           className={cn(
             "relative w-full overflow-hidden border-none text-sm [&_tbody_tr:last-child]:border-b-0",
@@ -185,7 +185,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
       return (
         <figcaption
           className={cn(
-            "text-code-foreground [&_svg]:text-code-foreground flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70",
+            "text-site-code-foreground [&_svg]:text-site-code-foreground flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70",
             className
           )}
           {...props}
@@ -217,7 +217,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
         return (
           <code
             className={cn(
-              "bg-muted relative rounded-md px-[0.3rem] py-[0.2rem] font-mono text-[0.8rem] break-words outline-none",
+              "bg-site-muted site-rounded-md relative px-[0.3rem] py-[0.2rem] font-mono text-[0.8rem] break-words outline-none",
               className
             )}
             {...props}
@@ -250,7 +250,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     Step: ({ className, ...props }: React.ComponentProps<"h3">) => (
       <h3
         className={cn(
-          "font-heading mt-8 scroll-m-32 text-lg font-medium tracking-tight",
+          "font-site-heading mt-8 scroll-m-32 text-lg font-medium tracking-tight",
           className
         )}
         {...props}
@@ -275,7 +275,10 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
       ...props
     }: React.ComponentProps<"img">) => (
       <Image
-        className={cn("mt-6 rounded-md border", className)}
+        className={cn(
+          "site-rounded-md border-site-border mt-6 border",
+          className
+        )}
         src={typeof src === "string" ? src : ""}
         width={width ? Number(width) : undefined}
         height={height ? Number(height) : undefined}
@@ -294,7 +297,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     }: React.ComponentProps<typeof TabsList>) => (
       <TabsList
         className={cn(
-          "justify-start gap-4 rounded-none bg-transparent px-0",
+          "site-rounded-none justify-start gap-4 bg-transparent px-0",
           className
         )}
         {...props}
@@ -306,7 +309,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     }: React.ComponentProps<typeof TabsTrigger>) => (
       <TabsTrigger
         className={cn(
-          "text-muted-foreground data-[state=active]:text-foreground data-[state=active]:border-primary dark:data-[state=active]:border-primary hover:text-primary rounded-none border-0 border-b-2 border-transparent bg-transparent px-0 pb-3 text-base data-[state=active]:bg-transparent data-[state=active]:shadow-none dark:data-[state=active]:bg-transparent",
+          "text-site-muted-foreground data-[state=active]:text-site-foreground data-[state=active]:border-site-primary dark:data-[state=active]:border-site-primary hover:text-site-primary site-rounded-none border-0 border-b-2 border-transparent bg-transparent px-0 pb-3 text-base data-[state=active]:bg-transparent data-[state=active]:shadow-none dark:data-[state=active]:bg-transparent",
           className
         )}
         {...props}
@@ -318,7 +321,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     }: React.ComponentProps<typeof TabsContent>) => (
       <TabsContent
         className={cn(
-          "relative [&_h3.font-heading]:text-base [&_h3.font-heading]:font-medium *:[figure]:first:mt-0 [&>.steps]:mt-6",
+          "relative [&_h3.font-site-heading]:text-base [&_h3.font-site-heading]:font-medium *:[figure]:first:mt-0 [&>.steps]:mt-6",
           className
         )}
         {...props}
@@ -338,8 +341,8 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     AlertDescription,
     AspectRatio,
     CodeTabs,
-    ComponentPreview,
-    ComponentSource,
+    ComponentPreview: DocsComponentPreview,
+    ComponentSource: DocsComponentSource,
     CodeCollapsibleWrapper,
     Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
       <Link
@@ -353,7 +356,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     }: React.ComponentProps<typeof Link>) => (
       <Link
         className={cn(
-          "bg-surface text-surface-foreground hover:bg-surface/80 flex w-full flex-col items-center rounded-xl p-6 transition-colors sm:p-10",
+          "bg-site-surface text-site-surface-foreground hover:bg-site-surface/80 site-rounded-xl flex w-full flex-col items-center p-6 transition-colors sm:p-10",
           className
         )}
         {...props}

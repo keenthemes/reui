@@ -69,8 +69,8 @@ export function ThemePicker({
       <Picker>
         <PickerTrigger>
           <div className="min-w-0 flex-1 pr-10 text-left">
-            <div className="text-muted-foreground text-xs">Theme</div>
-            <div className="text-foreground truncate text-sm font-medium">
+            <div className="text-site-muted-foreground text-xs">Theme</div>
+            <div className="text-site-foreground truncate text-sm font-medium">
               {mounted ? currentTheme?.title : "..."}
             </div>
           </div>
@@ -86,7 +86,7 @@ export function ThemePicker({
                     ],
                 } as React.CSSProperties
               }
-              className="pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 rounded-full bg-(--color) select-none"
+              className="site-rounded-full pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 bg-(--color) select-none"
             />
           )}
         </PickerTrigger>
@@ -124,12 +124,12 @@ export function ThemePicker({
                                   ],
                               } as React.CSSProperties
                             }
-                            className="size-4 translate-y-1 rounded-full bg-(--color)"
+                            className="site-rounded-full size-4 translate-y-1 bg-(--color)"
                           />
                         )}
                         <div className="flex flex-col justify-start pointer-coarse:gap-1">
                           <div>{theme.title}</div>
-                          <div className="text-muted-foreground text-xs pointer-coarse:text-sm">
+                          <div className="text-site-muted-foreground text-xs pointer-coarse:text-sm">
                             Match base color
                           </div>
                         </div>
@@ -161,7 +161,7 @@ export function ThemePicker({
                                   ]?.["primary"],
                               } as React.CSSProperties
                             }
-                            className="size-4 rounded-full bg-(--color)"
+                            className="site-rounded-full size-4 bg-(--color)"
                           />
                         )}
                         {theme.title}

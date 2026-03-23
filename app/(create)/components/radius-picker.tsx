@@ -50,18 +50,18 @@ export function RadiusPicker({
       <Picker>
         <PickerTrigger>
           <div className="flex flex-col justify-start text-left">
-            <div className="text-muted-foreground text-xs">Radius</div>
-            <div className="text-foreground text-sm font-medium">
+            <div className="text-site-muted-foreground text-xs">Radius</div>
+            <div className="text-site-foreground text-sm font-medium">
               {mounted ? currentRadius?.label : "..."}
             </div>
           </div>
-          <div className="text-foreground pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 rotate-90 items-center justify-center text-base select-none">
+          <div className="text-site-foreground pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 rotate-90 items-center justify-center text-base select-none">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
               viewBox="0 0 24 24"
-              className="text-foreground"
+              className="text-site-foreground"
             >
               <path
                 fill="none"
@@ -91,7 +91,7 @@ export function RadiusPicker({
                 >
                   <div className="flex flex-col justify-start pointer-coarse:gap-1">
                     <div>{defaultRadius.label}</div>
-                    <div className="text-muted-foreground text-xs pointer-coarse:text-sm">
+                    <div className="text-site-muted-foreground text-xs pointer-coarse:text-sm">
                       Use radius from style
                     </div>
                   </div>

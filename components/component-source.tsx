@@ -27,7 +27,7 @@ export async function ComponentSource({
   collapsible = true,
   className,
   styleName = DEFAULT_STYLE_NAME,
-  iconLibrary = "lucide",
+  iconLibrary,
   maxLines,
   code: initialCode,
   async = false,
@@ -74,7 +74,7 @@ export async function ComponentSource({
 
     // Transform icons for display if code is provided via prop (e.g. from rehype)
     const effectiveIconLibrary =
-      iconLibrary || getIconLibraryFromStyle(styleName)
+      iconLibrary ?? getIconLibraryFromStyle(styleName)
     code = transformIcons(code, effectiveIconLibrary)
   }
 
@@ -99,7 +99,7 @@ export async function ComponentSource({
     if (code) {
       // Transform icons for display (not baked into static JSON)
       const effectiveIconLibrary =
-        iconLibrary || getIconLibraryFromStyle(styleName)
+        iconLibrary ?? getIconLibraryFromStyle(styleName)
       code = transformIcons(code, effectiveIconLibrary)
     }
   }
@@ -131,7 +131,7 @@ export async function ComponentSource({
 
         // Transform icons for file-based source
         const effectiveIconLibrary =
-          iconLibrary || getIconLibraryFromStyle(styleName)
+          iconLibrary ?? getIconLibraryFromStyle(styleName)
         code = transformIcons(code, effectiveIconLibrary)
       } catch (error) {
         console.error("Error reading source file", error)
@@ -221,7 +221,7 @@ function ComponentCode({
       {title && (
         <figcaption
           data-rehype-pretty-code-title=""
-          className="text-code-foreground [&_svg]:text-code-foreground flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70"
+          className="text-site-code-foreground [&_svg]:text-site-code-foreground flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70"
           data-language={language}
         >
           {getIconForLanguageExtension(language)}

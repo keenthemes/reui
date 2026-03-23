@@ -96,7 +96,7 @@ export function MobileNav({
                         }
                       >
                         <AccordionItem value="docs" className="border-none">
-                          <AccordionTrigger className="text-foreground/70 data-[state=open]:text-primary py-0 text-sm font-medium hover:no-underline">
+                          <AccordionTrigger className="text-site-foreground/70 data-[state=open]:text-site-primary py-0 text-sm font-medium hover:no-underline">
                             {item.label}
                           </AccordionTrigger>
                           <AccordionContent className="pt-4 pb-0">
@@ -123,7 +123,7 @@ export function MobileNav({
                                       value={item.$id ?? ""}
                                       className="border-none"
                                     >
-                                      <AccordionTrigger className="text-foreground/70 py-2 text-sm font-medium hover:no-underline">
+                                      <AccordionTrigger className="text-site-foreground/70 py-2 text-sm font-medium hover:no-underline">
                                         {item.name}
                                       </AccordionTrigger>
                                       <AccordionContent className="pb-2">
@@ -163,7 +163,7 @@ export function MobileNav({
                                                       </span>
                                                       <span
                                                         aria-hidden="true"
-                                                        className="flex size-1.5 rounded-full bg-blue-500"
+                                                        className="site-rounded-full flex size-1.5 bg-blue-500"
                                                         title={docsUpdateHint}
                                                       />
                                                     </>
@@ -183,9 +183,9 @@ export function MobileNav({
                         </AccordionItem>
                       </Accordion>
                     ) : item.soon ? (
-                      <span className="text-foreground/40 flex items-center gap-2 text-sm font-medium">
+                      <span className="text-site-foreground/40 flex items-center gap-2 text-sm font-medium">
                         {item.label}
-                        <span className="bg-muted text-muted-foreground rounded px-1.5 py-0.5 text-[10px] leading-none font-medium">
+                        <span className="bg-site-muted text-site-muted-foreground site-rounded-sm px-1.5 py-0.5 text-[10px] leading-none font-medium">
                           Soon
                         </span>
                       </span>
@@ -231,8 +231,8 @@ function MobileLink({
         onOpenChange?.(false)
       }}
       className={cn(
-        "hover:text-primary text-sm font-medium transition-colors",
-        active ? "text-primary" : "text-foreground/70",
+        "hover:text-site-primary text-sm font-medium transition-colors",
+        active ? "text-site-primary" : "text-site-foreground/70",
         className
       )}
       {...props}

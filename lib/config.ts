@@ -20,12 +20,12 @@ export const siteConfig = {
   },
   navItems: [
     {
-      href: "/docs",
-      label: "Docs",
-    },
-    {
       href: "/patterns",
       label: "Patterns",
+    },
+    {
+      href: "/docs",
+      label: "Docs",
     },
     {
       href: "/built-with-reui",

@@ -35,7 +35,7 @@ export function PatternsSidebarHeader() {
   }, [sidebarMenuView, setSidebarMenuView])
 
   return (
-    <SidebarHeader className="border-border/80 flex h-[51px] flex-row items-center justify-between border-b px-6 py-0">
+    <SidebarHeader className="border-site-border/80 flex h-[51px] flex-row items-center justify-between border-b px-6 py-0">
       <div className="flex w-full items-center gap-2">
         <FunnelIcon className="size-3.5 shrink-0 opacity-60" />
         <input

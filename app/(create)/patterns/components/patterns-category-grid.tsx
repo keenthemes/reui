@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils"
 
 import { PatternsCategoryCard } from "./patterns-category-card"
 import { PatternsEmptyState } from "./patterns-empty-state"
-import { PatternsHeader } from "./patterns-header"
 
 interface PatternsCategoryGridProps {
   categories: CategoryInfo[]
@@ -41,15 +40,12 @@ export function PatternsCategoryGrid({
   categories,
 }: PatternsCategoryGridProps) {
   return (
-    <div className="flex flex-col">
-      <PatternsHeader isGridFixed />
-      <div className="@container/category-grid container py-6">
-        {categories.length === 0 ? (
-          <PatternsEmptyState message="No categories found" />
-        ) : (
-          <PatternsCategoryMasonryGrid categories={categories} />
-        )}
-      </div>
+    <div className="@container/category-grid w-full px-6 py-6 sm:px-8 xl:px-10">
+      {categories.length === 0 ? (
+        <PatternsEmptyState message="No categories found" />
+      ) : (
+        <PatternsCategoryMasonryGrid categories={categories} />
+      )}
     </div>
   )
 }

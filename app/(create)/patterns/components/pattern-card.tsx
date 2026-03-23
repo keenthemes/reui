@@ -1,9 +1,7 @@
 "use client"
 
 import * as React from "react"
-import Link from "next/link"
 
-import { trackEvent } from "@/lib/events"
 import { getRegistryItemMetadata } from "@/lib/registry"
 import { useConfig } from "@/hooks/use-config"
 import { Button } from "@/components/ui/button"
@@ -30,26 +28,6 @@ export function PatternCard({
   const [config] = useConfig()
   const base = propBase || config?.base || "radix"
 
-  // Check if we are running inside an iframe
-  const isInsideIframe = React.useMemo(() => {
-    if (typeof window === "undefined") return false
-    return window.self !== window.top
-  }, [])
-
-  const handleViewCode = (e: React.MouseEvent) => {
-    if (isInsideIframe) {
-      e.preventDefault()
-      window.parent.postMessage(
-        {
-          type: "open-pattern-source",
-          name,
-          base,
-        },
-        window.location.origin
-      )
-    }
-  }
-
   // Get item from the base-specific metadata (lightweight, no React)
   const item = getRegistryItemMetadata(name, base)
 
@@ -65,7 +43,7 @@ export function PatternCard({
       isFullWidth={isFullWidth}
       footer={
         <>
-          <p className="text-muted-foreground flex flex-1 items-center gap-1.5 truncate text-xs">
+          <p className="text-site-muted-foreground flex flex-1 items-center gap-1.5 truncate text-xs">
             <span className="truncate">{item.description || name}</span>
           </p>
           <div className="flex items-center gap-1.5">
@@ -75,18 +53,11 @@ export function PatternCard({
             <CopyRegistry value={`@reui/${name}`} />
             <Sheet>
               <SheetTrigger asChild>
-                <Button
-                  className="h-7 text-xs"
-                  size="sm"
-                  variant="outline"
-                  onClick={handleViewCode}
-                >
+                <Button className="h-7 text-xs" size="sm" variant="outline">
                   View code
                 </Button>
               </SheetTrigger>
-              {!isInsideIframe && (
-                <PatternSourceSheetContent name={name} base={base} />
-              )}
+              <PatternSourceSheetContent name={name} base={base} />
             </Sheet>
           </div>
         </>

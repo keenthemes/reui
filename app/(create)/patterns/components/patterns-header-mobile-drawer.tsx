@@ -29,7 +29,7 @@ export function PatternsHeaderMobileDrawer() {
           <Button
             variant="ghost"
             size="icon-sm"
-            className="text-muted-foreground hover:text-foreground -ml-2 hover:bg-transparent"
+            className="text-site-muted-foreground hover:text-site-foreground -ml-2 hover:bg-transparent"
           >
             <Filter />
           </Button>

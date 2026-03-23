@@ -50,8 +50,8 @@ export function StylePicker({
       <Picker>
         <PickerTrigger>
           <div className="flex flex-col justify-start text-left">
-            <div className="text-muted-foreground text-xs">Style</div>
-            <div className="text-foreground text-sm font-medium">
+            <div className="text-site-muted-foreground text-xs">Style</div>
+            <div className="text-site-foreground text-sm font-medium">
               {mounted ? currentStyle?.title : "..."}
             </div>
           </div>
@@ -87,7 +87,7 @@ export function StylePicker({
                       )}
                       <div className="flex flex-col justify-start pointer-coarse:gap-1">
                         <div>{style.title}</div>
-                        <div className="text-muted-foreground text-xs pointer-coarse:text-sm">
+                        <div className="text-site-muted-foreground text-xs pointer-coarse:text-sm">
                           {style.description}
                         </div>
                       </div>

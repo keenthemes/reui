@@ -187,16 +187,16 @@ export function RandomButton() {
           variant="ghost"
           size="sm"
           onClick={handleRandomize}
-          className="border-foreground/10 bg-muted/50 h-[calc(--spacing(13.5))] w-[140px] touch-manipulation justify-between rounded-xl border select-none focus-visible:border-transparent focus-visible:ring-1 sm:rounded-lg md:w-full md:rounded-lg md:border-transparent md:bg-transparent md:pr-3.5! md:pl-2!"
+          className="border-site-foreground/10 bg-site-muted/50 site-rounded-xl sm:site-rounded-lg md:site-rounded-lg h-[calc(--spacing(13.5))] w-[140px] touch-manipulation justify-between border select-none focus-visible:border-transparent focus-visible:ring-1 md:w-full md:border-transparent md:bg-transparent md:pr-3.5! md:pl-2!"
         >
           <div className="flex flex-col justify-start text-left">
-            <div className="text-muted-foreground text-xs">Shuffle</div>
-            <div className="text-foreground text-sm font-medium">
+            <div className="text-site-muted-foreground text-xs">Shuffle</div>
+            <div className="text-site-foreground text-sm font-medium">
               Try Random
             </div>
           </div>
           <HugeiconsIcon icon={DiceFaces05Icon} className="size-5 md:hidden" />
-          <Kbd className="bg-foreground/10 text-foreground hidden md:flex">
+          <Kbd className="bg-site-foreground/10 text-site-foreground hidden md:flex">
             R
           </Kbd>
         </Button>

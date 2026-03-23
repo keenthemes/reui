@@ -12,7 +12,7 @@ export function DocsCopyPage({ page }: { page: string; url: string }) {
     <Button
       variant="secondary"
       size="sm"
-      className="h-8 rounded-md shadow-none md:h-7 md:text-[0.8rem]"
+      className="site-rounded-md h-8 shadow-none md:h-7 md:text-[0.8rem]"
       onClick={() => copyToClipboard(page)}
     >
       {isCopied ? <IconCheck /> : <IconCopy />}

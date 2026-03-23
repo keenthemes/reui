@@ -22,7 +22,7 @@ export function GitHubLink() {
 export async function StarsCount() {
   if (process.env.NODE_ENV === "development") {
     return (
-      <span className="text-muted-foreground w-6 text-xs tabular-nums">
+      <span className="text-site-muted-foreground w-6 text-xs tabular-nums">
         2.5k
       </span>
     )
@@ -38,21 +38,23 @@ export async function StarsCount() {
     // Handle undefined/null count
     if (typeof count !== "number") {
       return (
-        <span className="text-muted-foreground w-6 text-xs tabular-nums">
+        <span className="text-site-muted-foreground w-6 text-xs tabular-nums">
           2.5k
         </span>
       )
     }
 
     return (
-      <span className="text-muted-foreground w-6 text-xs tabular-nums">
+      <span className="text-site-muted-foreground w-6 text-xs tabular-nums">
         {count >= 1000 ? `${(count / 1000).toFixed(1)}k` : String(count)}
       </span>
     )
   } catch {
     // Fallback on fetch error
     return (
-      <span className="text-muted-foreground w-6 text-xs tabular-nums">—</span>
+      <span className="text-site-muted-foreground w-6 text-xs tabular-nums">
+        —
+      </span>
     )
   }
 }

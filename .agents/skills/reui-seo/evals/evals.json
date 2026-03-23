@@ -1,0 +1,34 @@
+{
+  "skill_name": "reui-seo",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Add full SEO content for the 'separator' pattern category in seo.json following ReUI conventions.",
+      "expected_output": "Should read pattern-seo-playbook or apply its rules: no em dash (U+2014); valid JSON; relatedComponents with title, integrationBody paragraphs and [[slug|Label]] inline links, no rendered link list; content.faqs 5–7 items; no FAQ subtitle in UI; keywords array for metadata.",
+      "assertions": [
+        "No em dash character in proposed copy",
+        "relatedComponents uses body with [[slug|Label]] syntax",
+        "sections aim for multiple paragraphs per section",
+        "keywords array populated for meta",
+        "Valid JSON structure for seo.json category",
+        "Does not recommend keyword badge UI on the page"
+      ],
+      "files": [
+        "oss/registry-reui/bases/seo.json",
+        "oss/.agents/skills/reui-seo/references/pattern-seo-playbook.md"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Expand the accordion category SEO in seo.json to be more comprehensive without breaking the site.",
+      "expected_output": "Should preserve JSON validity; avoid em dashes; expand summary, sections, faqs, and relatedComponents.body in line with depth targets; keep FAQ answers substantive; internal links only via [[slug|Label]] in relatedComponents.",
+      "assertions": [
+        "Mentions validation JSON.parse",
+        "Avoids em dash",
+        "References getPatternCategorySeo / seo.json as source",
+        "Expands content without duplicate boilerplate across unrelated categories"
+      ],
+      "files": ["oss/registry-reui/bases/seo.json"]
+    }
+  ]
+}

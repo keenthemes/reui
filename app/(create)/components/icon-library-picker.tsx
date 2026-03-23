@@ -267,12 +267,14 @@ export function IconLibraryPicker({
       <Picker>
         <PickerTrigger>
           <div className="min-w-0 flex-1 pr-10 text-left">
-            <div className="text-muted-foreground text-xs">Icon Library</div>
-            <div className="text-foreground truncate text-sm font-medium">
+            <div className="text-site-muted-foreground text-xs">
+              Icon Library
+            </div>
+            <div className="text-site-foreground truncate text-sm font-medium">
               {mounted ? currentIconLibrary?.title : "..."}
             </div>
           </div>
-          <div className="text-foreground *:[svg]:text-foreground! pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base select-none">
+          <div className="text-site-foreground *:[svg]:text-site-foreground! pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base select-none">
             {mounted && logos[currentIconLibrary?.name as keyof typeof logos]}
           </div>
         </PickerTrigger>
@@ -323,7 +325,7 @@ function IconLibraryPickerItem({
     >
       <Item size="xs">
         <ItemContent className="gap-1">
-          <ItemTitle className="text-muted-foreground text-xs font-medium">
+          <ItemTitle className="text-site-muted-foreground text-xs font-medium">
             {iconLibrary.title}
           </ItemTitle>
           <IconLibraryPreview iconLibrary={iconLibrary.name} />
@@ -362,7 +364,7 @@ const IconLibraryPreview = memo(function IconLibraryPreview({
           {previewIcons.map((iconName) => (
             <div
               key={iconName}
-              className="bg-muted size-6 animate-pulse rounded"
+              className="bg-site-muted site-rounded-sm size-6 animate-pulse"
             />
           ))}
         </div>

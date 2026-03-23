@@ -17,9 +17,9 @@ export function CustomizerSidebarHeader() {
   const { toggleCustomizer } = useCustomizer()
 
   return (
-    <div className="border-border/80 flex h-[51px] shrink-0 items-center justify-between overflow-hidden border-b px-4">
+    <div className="border-site-border/80 flex h-[51px] shrink-0 items-center justify-between overflow-hidden border-b px-4">
       <div className="min-w-0 flex-1 whitespace-nowrap">
-        <h2 className="text-foreground inline-flex items-center gap-1 font-medium">
+        <h2 className="text-site-foreground inline-flex items-center gap-1 font-medium">
           <Avatar className="size-4">
             <AvatarImage src="https://github.com/shadcn.png" />
             <AvatarFallback>CN</AvatarFallback>
@@ -27,7 +27,7 @@ export function CustomizerSidebarHeader() {
           <span className="text-xs leading-none">/</span>
           <span className="text-sm leading-none">create</span>
         </h2>
-        <p className="text-muted-foreground text-xs leading-none">
+        <p className="text-site-muted-foreground text-xs leading-none">
           Adjust shadcn styles
         </p>
       </div>

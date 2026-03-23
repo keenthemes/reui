@@ -3,6 +3,8 @@
 import * as React from "react"
 import Link from "next/link"
 
+import { siteConfig } from "@/lib/config"
+import { getRegistryJsonAbsoluteUrl } from "@/lib/registry"
 import { useConfig } from "@/hooks/use-config"
 import { Button } from "@/components/ui/button"
 import { SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet"
@@ -29,21 +31,36 @@ export function PatternSourceSheetContent({
   const styleName = `${config.base || "base"}-${config.style || "vega"}`
 
   const v0Url = React.useMemo(() => {
-    const registryUrl = `https://reui.io/r/styles/${styleName}/${name}.json`
+    const registryUrl = new URL(
+      getRegistryJsonAbsoluteUrl(
+        process.env.NEXT_PUBLIC_APP_URL || siteConfig.url,
+        styleName,
+        name
+      )
+    )
     const paramsString = serializeDesignSystemSearchParams("", params)
-    return `https://v0.dev/chat/api/open?url=${encodeURIComponent(registryUrl + paramsString)}`
+
+    if (paramsString) {
+      const designSystemParams = new URLSearchParams(paramsString.slice(1))
+
+      for (const [key, value] of designSystemParams.entries()) {
+        registryUrl.searchParams.set(key, value)
+      }
+    }
+
+    return `https://v0.dev/chat/api/open?url=${encodeURIComponent(registryUrl.toString())}`
   }, [styleName, name, params])
 
   return (
     <SheetContent
       overlay={false}
-      className="bg-sidebar flex flex-col gap-0 duration-200 data-ending-style:translate-x-8 data-ending-style:opacity-0 data-starting-style:translate-x-8 data-starting-style:opacity-0 sm:max-w-2xl [&_button.ring-offset-background]:hidden"
+      className="bg-site-sidebar flex flex-col gap-0 duration-200 data-ending-style:translate-x-8 data-ending-style:opacity-0 data-starting-style:translate-x-8 data-starting-style:opacity-0 sm:max-w-2xl [&_button.ring-offset-site-background]:hidden"
     >
       <SheetHeader className="p-6">
         <SheetTitle>Installation</SheetTitle>
       </SheetHeader>
       <div className="flex flex-1 flex-col overflow-hidden px-6 pb-6">
-        <div className="border-border relative rounded-lg border">
+        <div className="border-site-border site-rounded-lg relative border">
           <CodeBlockCommand
             __bun__={`bunx --bun shadcn@latest add @reui/${name}`}
             __npm__={`npx shadcn@latest add @reui/${name}`}
@@ -61,7 +78,7 @@ export function PatternSourceSheetContent({
               </Link>
             </Button>
           </div>
-          <div className="bg-code relative flex-1 grow overflow-hidden rounded-md border">
+          <div className="bg-site-code border-site-border site-rounded-md relative flex-1 grow overflow-hidden border">
             <ComponentSourceClient
               className="*:data-rehype-pretty-code-figure:no-scrollbar no-scrollbar h-full overflow-auto *:data-rehype-pretty-code-figure:mt-0 *:data-rehype-pretty-code-figure:max-h-full *:data-rehype-pretty-code-figure:overflow-y-auto"
               collapsible={false}

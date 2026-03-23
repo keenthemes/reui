@@ -1,70 +1,88 @@
 "use client"
 
-import { useCallback, useEffect, useRef, useState, useTransition } from "react"
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { SearchIcon, XIcon } from "lucide-react"
 import { useQueryState } from "nuqs"
 
 import { parseAsSearchStringClient } from "@/lib/nuqs"
+import {
+  filterPatternsBySearchQuery,
+  hasActivePatternSearch,
+  normalizePatternSearchQuery,
+} from "@/lib/pattern-search-filter"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
-import { Spinner } from "@/components/ui/spinner"
+
+import { usePatterns } from "./patterns-provider"
+
+const SEARCH_DEBOUNCE_MS = 320
 
 interface PatternsHeaderSearchProps {
   placeholder?: string
   className?: string
-  count?: number
 }
 
 export function PatternsHeaderSearch({
   placeholder = "Search patterns...",
   className,
-  count,
 }: PatternsHeaderSearchProps) {
-  const [isPending, startTransition] = useTransition()
   const inputRef = useRef<HTMLInputElement>(null)
   const pathname = usePathname()
   const router = useRouter()
   const searchParams = useSearchParams()
+  const { totalCount, categoryCounts, allPatterns } = usePatterns()
 
-  // Check if we're on a category page (not the main /patterns page)
   const isOnCategoryPage =
     pathname.startsWith("/patterns/") && pathname !== "/patterns"
+  const currentCategory = isOnCategoryPage
+    ? (pathname.split("/").at(-1) ?? "")
+    : ""
 
-  const [currentUrlQuery, setCurrentUrlQuery] = useQueryState(
+  const [, setCurrentUrlQuery] = useQueryState(
     "search",
     parseAsSearchStringClient.withOptions({
-      startTransition,
-      shallow: false,
+      shallow: true,
+      history: "replace",
     })
   )
 
-  // Local state for immediate UI feedback while typing
-  const [localQuery, setLocalQuery] = useState<string>(currentUrlQuery || "")
-  const localQueryRef = useRef(localQuery)
-  localQueryRef.current = localQuery
+  const committedSearch = normalizePatternSearchQuery(
+    searchParams.get("search") || ""
+  )
 
-  // Track if we should autofocus after a navigation/render
-  const shouldFocusRef = useRef(false)
+  const [localQuery, setLocalQuery] = useState<string>(() => committedSearch)
 
-  // Sync local query when URL query changes externally (e.g. back button)
-  useEffect(() => {
-    if (!isPending && localQueryRef.current !== (currentUrlQuery || "")) {
-      setLocalQuery(currentUrlQuery || "")
+  const resultCount = useMemo(() => {
+    if (!committedSearch) {
+      if (currentCategory) {
+        return categoryCounts[currentCategory] ?? 0
+      }
+      return totalCount
     }
-
-    // If we were waiting for a transition to finish to restore focus
-    if (!isPending && shouldFocusRef.current) {
-      shouldFocusRef.current = false
-      inputRef.current?.focus()
+    if (pathname !== "/patterns") {
+      return totalCount
     }
-  }, [currentUrlQuery, isPending])
+    return filterPatternsBySearchQuery(allPatterns, committedSearch).length
+  }, [
+    committedSearch,
+    pathname,
+    currentCategory,
+    categoryCounts,
+    totalCount,
+    allPatterns,
+  ])
 
-  // Helper to build URL with current params + search
+  const getSearchValueToCommit = useCallback((value: string) => {
+    const normalizedValue = normalizePatternSearchQuery(value)
+    return hasActivePatternSearch(normalizedValue) ? normalizedValue : null
+  }, [])
+
   const buildSearchUrl = useCallback(
     (basePath: string, searchValue: string | null) => {
       const params = new URLSearchParams(searchParams.toString())
+      params.delete("item")
       if (searchValue) {
         params.set("search", searchValue)
       } else {
@@ -78,54 +96,69 @@ export function PatternsHeaderSearch({
 
   const commitSearch = useCallback(
     (value: string) => {
-      const finalValue = value.trim()
+      const finalValue = getSearchValueToCommit(value)
+      const currentValue = committedSearch || null
 
-      // If the input is currently focused, we want to maintain that focus after the transition
-      if (document.activeElement === inputRef.current) {
-        shouldFocusRef.current = true
+      if (finalValue === currentValue) {
+        return
       }
 
-      // If on a category page, navigate to main patterns page with search
-      if (isOnCategoryPage && finalValue) {
-        // Only add search param, preserve other existing params
-        router.push(buildSearchUrl("/patterns", finalValue))
-      } else {
-        setCurrentUrlQuery(finalValue || null)
+      if (isOnCategoryPage) {
+        router.replace(buildSearchUrl(pathname, finalValue), {
+          scroll: false,
+        })
+        return
       }
+
+      setCurrentUrlQuery(finalValue)
     },
-    [setCurrentUrlQuery, isOnCategoryPage, router, buildSearchUrl]
+    [
+      getSearchValueToCommit,
+      committedSearch,
+      isOnCategoryPage,
+      router,
+      buildSearchUrl,
+      pathname,
+      setCurrentUrlQuery,
+    ]
   )
 
-  // Debounce URL update: wait for user to stop typing
+  // URL changed externally (back/forward, programmatic): sync input when not typing
   useEffect(() => {
-    if (localQuery === (currentUrlQuery || "")) return
+    if (document.activeElement === inputRef.current) {
+      return
+    }
+    setLocalQuery(committedSearch)
+  }, [committedSearch])
+
+  // Debounced URL update: search runs only after typing pauses,
+  // and only once the query becomes an active search (3+ chars).
+  useEffect(() => {
+    const nextCommittedSearch = getSearchValueToCommit(localQuery) || ""
+
+    if (nextCommittedSearch === committedSearch) return
 
     const timer = setTimeout(() => {
       commitSearch(localQuery)
-    }, 500)
+    }, SEARCH_DEBOUNCE_MS)
 
     return () => clearTimeout(timer)
-  }, [localQuery, currentUrlQuery, commitSearch])
+  }, [localQuery, committedSearch, getSearchValueToCommit, commitSearch])
 
   const handleClear = () => {
     setLocalQuery("")
-    shouldFocusRef.current = true
-
-    // If on category page with search, navigate back to that category (remove search)
     if (isOnCategoryPage) {
-      // Only remove search param, preserve other existing params
-      router.push(buildSearchUrl(pathname, null))
+      router.replace(buildSearchUrl(pathname, null), {
+        scroll: false,
+      })
     } else {
       setCurrentUrlQuery(null)
     }
-    // Maintain focus on the input after clearing
     inputRef.current?.focus()
   }
 
-  // Keyboard shortcuts
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Focus on "/" or "Cmd+K" (specific to this page)
       const isSearchShortcut =
         e.key === "/" || (e.key === "k" && (e.metaKey || e.ctrlKey))
 
@@ -145,22 +178,19 @@ export function PatternsHeaderSearch({
 
   const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      // Force immediate update on Enter
-      const finalValue = localQuery.trim()
-      shouldFocusRef.current = true
-      if (isOnCategoryPage && finalValue) {
-        // Only add search param, preserve other existing params
-        router.push(buildSearchUrl("/patterns", finalValue))
-      } else {
-        setCurrentUrlQuery(finalValue || null)
-      }
+      e.preventDefault()
+      commitSearch(localQuery)
     }
     if (e.key === "Escape") {
       if (localQuery) {
         setLocalQuery("")
-        shouldFocusRef.current = true
-        commitSearch("")
-        // Ensure focus is kept/regained after clearing
+        if (isOnCategoryPage) {
+          router.replace(buildSearchUrl(pathname, null), {
+            scroll: false,
+          })
+        } else {
+          setCurrentUrlQuery(null)
+        }
         inputRef.current?.focus()
       } else {
         inputRef.current?.blur()
@@ -168,14 +198,25 @@ export function PatternsHeaderSearch({
     }
   }
 
+  const flushOnBlur = () => {
+    const nextCommittedSearch = getSearchValueToCommit(localQuery) || ""
+    if (nextCommittedSearch !== committedSearch) {
+      commitSearch(localQuery)
+    }
+  }
+
+  const inSync = (getSearchValueToCommit(localQuery) || "") === committedSearch
+
+  const showFound =
+    inSync &&
+    pathname === "/patterns" &&
+    hasActivePatternSearch(committedSearch) &&
+    resultCount > 0
+
   return (
     <div className={cn("group relative flex-1", className)}>
       <div className="pointer-events-none absolute top-1/2 left-0 flex -translate-y-1/2 items-center pl-0">
-        {isPending ? (
-          <Spinner className="size-4 opacity-60" />
-        ) : (
-          <SearchIcon className="text-muted-foreground group-focus-within:text-foreground size-4 transition-colors" />
-        )}
+        <SearchIcon className="text-site-muted-foreground group-focus-within:text-site-foreground size-4 transition-colors" />
       </div>
       <input
         ref={inputRef}
@@ -184,16 +225,17 @@ export function PatternsHeaderSearch({
         value={localQuery}
         onChange={(e) => setLocalQuery(e.target.value)}
         onKeyDown={handleInputKeyDown}
+        onBlur={flushOnBlur}
         className={cn(
-          "ring-offset-background placeholder:text-muted-foreground flex h-9 w-full border-0 bg-transparent py-1 pl-6 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
+          "ring-offset-site-background placeholder:text-site-muted-foreground flex h-9 w-full border-0 bg-transparent py-1 pl-6 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
           localQuery ? "pr-32" : "pr-4"
         )}
       />
       <div className="absolute top-1/2 right-0 flex -translate-y-1/2 items-center gap-1 pr-1">
-        {localQuery && count && count > 0 ? (
+        {showFound ? (
           <div className="flex items-center gap-1.5">
-            <div className="text-muted-foreground hidden items-center gap-1.5 text-xs font-medium sm:flex">
-              Found {count} {count === 1 ? "pattern" : "patterns"}
+            <div className="text-site-muted-foreground hidden items-center gap-1.5 text-xs font-medium sm:flex">
+              Found {resultCount} {resultCount === 1 ? "pattern" : "patterns"}
             </div>
             <Separator
               className="ml-1 h-4! w-px shrink-0"

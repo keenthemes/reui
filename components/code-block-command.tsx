@@ -77,18 +77,18 @@ export function CodeBlockCommand({
           })
         }}
       >
-        <div className="border-border/50 flex items-center justify-between gap-2 border-b px-3 py-1">
+        <div className="border-site-border/50 flex items-center justify-between gap-2 border-b px-3 py-1">
           <div className="flex items-center gap-2">
             <div className="flex size-4 items-center justify-center rounded-[1px] opacity-70">
-              <Terminal className="text-foreground size-4" />
+              <Terminal className="text-site-foreground size-4" />
             </div>
-            <TabsList className="rounded-none bg-transparent p-0">
+            <TabsList className="site-rounded-none bg-transparent p-0">
               {Object.entries(tabs).map(([key]) => {
                 return (
                   <TabsTrigger
                     key={key}
                     value={key}
-                    className="data-[state=active]:bg-accent data-[state=active]:border-input h-7 border border-transparent pt-0.5 data-[state=active]:shadow-none"
+                    className="data-[state=active]:bg-site-accent data-[state=active]:border-site-input h-7 border border-transparent pt-0.5 data-[state=active]:shadow-none"
                   >
                     {key}
                   </TabsTrigger>

@@ -1,32 +1,42 @@
 import { Suspense } from "react"
 import type { Metadata } from "next"
+import Link from "next/link"
 import { notFound } from "next/navigation"
+import { BookOpenTextIcon } from "lucide-react"
 
 import {
-  getCategoryDescription,
+  getCategoryInfo,
   getCategoryNames,
-  getPatternCountByCategory,
-  isValidCategory,
+  getPatternsByCategory,
 } from "@/lib/registry"
-import { formatLabel, normalizeSlug } from "@/lib/utils"
+import { getPatternCategorySeo } from "@/lib/registry-seo-cache"
+import {
+  absoluteUrl,
+  buildBreadcrumbJsonLd,
+  getOgImageUrl,
+  isCanonicalComponentDoc,
+} from "@/lib/seo"
+import { normalizeSlug } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 import { Spinner } from "@/components/ui/spinner"
+import { JsonLd } from "@/components/json-ld"
 
+import { PatternCategoryPager } from "../components/pattern-category-pager"
+import {
+  PatternCategoryHeroIntro,
+  PatternCategorySeoContent,
+} from "../components/pattern-category-seo-content"
 import { CategoryPageContent } from "./category-page-content"
 
-function PatternsIframeViewSkeleton() {
+function PatternsPreviewSkeleton() {
   return (
-    <div className="flex flex-1 flex-col">
-      <div className="border-border/80 bg-background sticky top-(--header-height) z-10 flex h-[51px] items-center gap-2 border-b px-6">
-        <div className="bg-muted h-4 w-48 animate-pulse rounded" />
-      </div>
-      <div className="flex flex-1 items-center justify-center">
-        <Spinner className="size-5 opacity-60" />
-      </div>
+    <div className="flex min-h-[60svh] items-center justify-center">
+      <Spinner className="size-5 opacity-60" />
     </div>
   )
 }
 
-// Fully static — search filtering happens client-side in the iframe
+// Fully static — search filtering happens client-side in PatternsGrid
 export const dynamic = "force-static"
 export const revalidate = false
 
@@ -47,62 +57,57 @@ export async function generateMetadata({
 
   if (!category) {
     return {
-      title: "Patterns - ReUI",
+      title: "Patterns",
       description:
         "Patterns are composed components showing real-world usage. Filter by category and tags to find the perfect pattern for your project.",
     }
   }
 
   const normalized = normalizeSlug(category)
+  const categoryInfo = getCategoryInfo(normalized)
 
-  if (!isValidCategory(normalized)) {
+  if (!categoryInfo) {
     return {
-      title: "Patterns - ReUI",
+      title: "Patterns",
       description: "Pattern not found",
     }
   }
 
-  const categoryLabel = formatLabel(category)
-  const description = getCategoryDescription(category)
-  const title = `${categoryLabel} Patterns`
-  const seoDescription =
-    description ||
-    `Explore professional ${categoryLabel.toLowerCase()} patterns and examples for ReUI. High-quality, accessible React components built with Tailwind CSS.`
+  const categoryLabel = categoryInfo?.label ?? category
+  const seo = getPatternCategorySeo(normalized)
 
   return {
-    title,
-    description: seoDescription,
+    title: seo.title,
+    description: seo.description,
+    alternates: {
+      canonical: `/patterns/${normalized}`,
+    },
     keywords: [
-      categoryLabel,
-      `${categoryLabel} patterns`,
-      `${categoryLabel} examples`,
-      "React components",
-      "Tailwind CSS",
-      "ReUI patterns",
-      "shadcn create",
-      "shadcn components",
+      seo.title,
+      `shadcn ${categoryLabel.toLowerCase()}`,
+      `shadcn ${categoryLabel.toLowerCase()} patterns`,
+      `${categoryLabel} React examples`,
+      "open source shadcn patterns",
+      ...seo.keywords,
     ],
     openGraph: {
-      title: `${title} - ReUI`,
-      description: seoDescription,
+      title: seo.title,
+      description: seo.description,
+      url: absoluteUrl(`/patterns/${normalized}`),
       type: "website",
       images: [
         {
-          url: `/og?title=${encodeURIComponent(
-            title
-          )}&description=${encodeURIComponent(seoDescription)}`,
+          url: getOgImageUrl(seo.title, seo.description),
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${title} - ReUI`,
-      description: seoDescription,
+      title: seo.title,
+      description: seo.description,
       images: [
         {
-          url: `/og?title=${encodeURIComponent(
-            title
-          )}&description=${encodeURIComponent(seoDescription)}`,
+          url: getOgImageUrl(seo.title, seo.description),
         },
       ],
     },
@@ -116,17 +121,64 @@ export default async function CategoryPatternsPage({
 }) {
   const { category } = await params
   const normalized = normalizeSlug(category)
+  const categoryInfo = getCategoryInfo(normalized)
 
-  if (!isValidCategory(normalized)) {
+  if (!categoryInfo) {
     return notFound()
   }
 
-  // Pass total count for the category (search filtering is client-side in the iframe)
-  const count = getPatternCountByCategory(normalized)
-
+  const seo = getPatternCategorySeo(normalized)
+  const patterns = getPatternsByCategory(normalized)
+  const docsHref = isCanonicalComponentDoc(normalized)
+    ? `/docs/base/${normalized}`
+    : null
+  const faqJsonLd = seo.content?.faqs?.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: seo.content.faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer,
+          },
+        })),
+      }
+    : null
   return (
-    <Suspense fallback={<PatternsIframeViewSkeleton />}>
-      <CategoryPageContent category={normalized} count={count} />
-    </Suspense>
+    <>
+      <JsonLd
+        data={buildBreadcrumbJsonLd([
+          { name: "ReUI", path: "/" },
+          { name: "Patterns", path: "/patterns" },
+          { name: seo.title, path: `/patterns/${normalized}` },
+        ])}
+      />
+      {faqJsonLd ? <JsonLd data={faqJsonLd} /> : null}
+      <section>
+        <div className="mx-auto w-full max-w-7xl px-6 pt-8 pb-6 sm:px-8 xl:px-10">
+          <div className="flex flex-wrap items-end justify-between gap-3">
+            <h1 className="text-balanc mt-3 max-w-4xl min-w-0 text-xl font-bold sm:text-3xl">
+              {seo.title}
+            </h1>
+            {docsHref ? (
+              <Button variant="outline" size="sm" asChild className="shrink-0">
+                <Link href={docsHref}>
+                  <BookOpenTextIcon className="size-3.5 opacity-60" />
+                  View docs
+                </Link>
+              </Button>
+            ) : null}
+          </div>
+          {seo.intro ? <PatternCategoryHeroIntro intro={seo.intro} /> : null}
+        </div>
+      </section>
+      <Suspense fallback={<PatternsPreviewSkeleton />}>
+        <CategoryPageContent patterns={patterns} />
+      </Suspense>
+      <PatternCategorySeoContent seo={seo} />
+      <PatternCategoryPager currentCategory={normalized} />
+    </>
   )
 }

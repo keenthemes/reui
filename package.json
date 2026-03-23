@@ -2,7 +2,6 @@
   "name": "reui",
   "version": "2.0.1",
   "private": true,
-  "type": "module",
   "scripts": {
     "dev": "next dev --port 4000",
     "build": "next build",

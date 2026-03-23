@@ -6,16 +6,13 @@ import { Columns2Icon, Rows2Icon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useConfig, type PatternGridMode } from "@/hooks/use-config"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { sendToIframe } from "@/app/(create)/hooks/use-iframe-sync"
 
 interface PatternsHeaderGridToggleProps {
   className?: string
-  iframeRef?: React.RefObject<HTMLIFrameElement | null>
 }
 
 export function PatternsHeaderGridToggle({
   className,
-  iframeRef,
 }: PatternsHeaderGridToggleProps) {
   const [config, setConfig] = useConfig()
 
@@ -29,11 +26,6 @@ export function PatternsHeaderGridToggle({
       ...config,
       gridColumns: numVal,
     })
-
-    // Send grid columns to iframe if ref is provided
-    if (iframeRef?.current) {
-      sendToIframe(iframeRef.current, "grid-columns", { columns: numVal })
-    }
   }
 
   return (

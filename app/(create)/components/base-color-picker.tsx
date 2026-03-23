@@ -57,8 +57,8 @@ export function BaseColorPicker({
       <Picker>
         <PickerTrigger>
           <div className="flex flex-col justify-start text-left">
-            <div className="text-muted-foreground text-xs">Base Color</div>
-            <div className="text-foreground text-sm font-medium">
+            <div className="text-site-muted-foreground text-xs">Base Color</div>
+            <div className="text-site-foreground text-sm font-medium">
               {mounted ? currentBaseColor?.title : "..."}
             </div>
           </div>
@@ -72,7 +72,7 @@ export function BaseColorPicker({
                     ]?.["muted-foreground"],
                 } as React.CSSProperties
               }
-              className="pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 rounded-full bg-(--color) select-none"
+              className="site-rounded-full pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 bg-(--color) select-none"
             />
           )}
         </PickerTrigger>
@@ -99,7 +99,7 @@ export function BaseColorPicker({
                               ]?.["muted-foreground"],
                           } as React.CSSProperties
                         }
-                        className="size-4 rounded-full bg-(--color)"
+                        className="site-rounded-full size-4 bg-(--color)"
                       />
                     )}
                     {baseColor.title}
@@ -118,7 +118,7 @@ export function BaseColorPicker({
                   <div>
                     Switch to {resolvedTheme === "dark" ? "Light" : "Dark"} Mode
                   </div>
-                  <div className="text-muted-foreground text-xs pointer-coarse:text-sm">
+                  <div className="text-site-muted-foreground text-xs pointer-coarse:text-sm">
                     Base colors are easier to see in dark mode.
                   </div>
                 </div>

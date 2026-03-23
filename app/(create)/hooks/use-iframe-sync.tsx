@@ -4,30 +4,12 @@ import * as React from "react"
 
 import type { DesignSystemSearchParams } from "@/app/(create)/lib/search-params"
 
-// Message types for parent to iframe communication
 type DesignSystemParamsMessage = {
   type: "design-system-params"
   data: DesignSystemSearchParams
 }
 
-type GridColumnsMessage = {
-  type: "grid-columns"
-  data: { columns: 1 | 2 }
-}
-
-type NavigationMessage = {
-  type: "navigation"
-  data: {
-    category: string | null
-    searchQuery: string | null
-    params: DesignSystemSearchParams
-  }
-}
-
-type ParentToIframeMessage =
-  | DesignSystemParamsMessage
-  | GridColumnsMessage
-  | NavigationMessage
+type ParentToIframeMessage = DesignSystemParamsMessage
 
 export const isInIframe = () => {
   if (typeof window === "undefined") {
@@ -49,8 +31,9 @@ export function useIframeMessageListener<
     }
 
     const handleMessage = (event: MessageEvent) => {
-      // Validate origin to prevent cross-origin message injection
-      if (event.origin !== window.location.origin) return
+      if (event.origin !== window.location.origin) {
+        return
+      }
 
       if (event.data.type === messageType) {
         onMessage(event.data.data)
@@ -62,25 +45,4 @@ export function useIframeMessageListener<
       window.removeEventListener("message", handleMessage)
     }
   }, [messageType, onMessage])
-}
-
-export function sendToIframe<
-  Message extends ParentToIframeMessage,
-  MessageType extends Message["type"],
->(
-  iframe: HTMLIFrameElement | null,
-  messageType: MessageType,
-  data: Extract<Message, { type: MessageType }>["data"]
-) {
-  if (!iframe?.contentWindow) {
-    return
-  }
-
-  iframe.contentWindow.postMessage(
-    {
-      type: messageType,
-      data,
-    },
-    window.location.origin
-  )
 }

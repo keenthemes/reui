@@ -67,7 +67,12 @@ export const DEFAULT_CONFIG: Config = {
   custom: false,
 }
 
-export const configAtom = atomWithStorage<Config>("config", DEFAULT_CONFIG)
+export const configAtom = atomWithStorage<Config>(
+  "config",
+  DEFAULT_CONFIG,
+  undefined,
+  { getOnInit: true }
+)
 
 export function useConfig() {
   return useAtom(configAtom)

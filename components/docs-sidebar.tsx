@@ -40,7 +40,7 @@ function DocsUpdateIndicator({ path }: { path: string }) {
           <span className="sr-only">{hint}</span>
           <span
             aria-hidden="true"
-            className="flex size-2 rounded-full bg-blue-500"
+            className="site-rounded-full flex size-2 bg-blue-500"
           />
         </span>
       </TooltipTrigger>
@@ -75,7 +75,7 @@ export function DocsSidebar({
 
           return (
             <SidebarGroup key={item.$id}>
-              <SidebarGroupLabel className="text-muted-foreground font-medium">
+              <SidebarGroupLabel className="text-site-muted-foreground font-medium">
                 {item.name}
               </SidebarGroupLabel>
               <SidebarGroupContent>
@@ -95,7 +95,7 @@ export function DocsSidebar({
                           <SidebarMenuButton
                             asChild
                             isActive={page.url === pathname}
-                            className="data-[active=true]:bg-accent data-[active=true]:border-accent 3xl:fixed:w-full 3xl:fixed:max-w-48 relative h-[30px] w-fit overflow-visible border border-transparent text-[0.8rem] font-medium after:absolute after:inset-x-0 after:-inset-y-1 after:z-0 after:rounded-md"
+                            className="data-[active=true]:bg-site-accent data-[active=true]:border-site-accent 3xl:fixed:w-full 3xl:fixed:max-w-48 after:site-rounded-md relative h-[30px] w-fit overflow-visible border border-transparent text-[0.8rem] font-medium after:absolute after:inset-x-0 after:-inset-y-1 after:z-0"
                           >
                             <Link href={page.url} prefetch={false}>
                               <span className="pointer-events-none absolute inset-0 flex w-(--sidebar-width) bg-transparent" />

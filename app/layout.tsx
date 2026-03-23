@@ -4,18 +4,24 @@ import { NuqsAdapter } from "nuqs/adapters/next/app"
 
 import { META_THEME_COLORS, siteConfig } from "@/lib/config"
 import { fontVariables } from "@/lib/fonts"
+import {
+  buildOrganizationJsonLd,
+  buildWebSiteJsonLd,
+  getOgImageUrl,
+  getSiteUrl,
+} from "@/lib/seo"
 import { cn } from "@/lib/utils"
 import { LayoutProvider } from "@/hooks/use-layout"
 import { Toaster } from "@/components/ui/sonner"
 import { Analytics } from "@/components/analytics"
+import { JsonLd } from "@/components/json-ld"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
 
 import "@/styles/globals.css"
 
-const appUrl =
-  process.env.NEXT_PUBLIC_APP_URL || siteConfig.url || "https://reui.io"
-const defaultOgImageUrl = `${appUrl}/og?title=${encodeURIComponent(siteConfig.name)}&description=${encodeURIComponent(siteConfig.description)}`
+const appUrl = getSiteUrl()
+const defaultOgImageUrl = getOgImageUrl(siteConfig.name, siteConfig.description)
 
 export const metadata: Metadata = {
   title: {
@@ -23,51 +29,31 @@ export const metadata: Metadata = {
     template: `%s - ${siteConfig.name}`,
   },
   metadataBase: new URL(appUrl),
+  alternates: {
+    canonical: "/",
+  },
   description: siteConfig.description,
   keywords: [
     "ReUI",
-    "shadcn",
+    "shadcn patterns",
+    "shadcn components",
     "shadcn/ui",
     "shadcn ui",
-    "React",
-    "Next.js",
-    "TypeScript",
-    "JavaScript",
-    "Tailwind CSS",
-    "UI blocks",
-    "Blocks",
-    "Patterns",
-    "UI components",
+    "shadcn ecosystem",
+    "React components",
+    "Tailwind CSS components",
+    "open source UI",
+    "data grid",
+    "datagrid",
+    "data table",
+    "shadcn data grid",
+    "shadcn alert",
+    "shadcn filters",
+    "file upload",
+    "combobox",
+    "filters",
     "component library",
     "design system",
-    "UI design",
-    "web design",
-    "frontend",
-    "React components",
-    "react-components",
-    "react-ui",
-    "registry",
-    "registry-reui",
-    "data grid",
-    "data-grid",
-    "data table",
-    "data-table",
-    "file upload",
-    "file-upload",
-    "filters",
-    "combobox",
-    "date picker",
-    "date-picker",
-    "kanban",
-    "sortable",
-    "react tempaltes",
-    "nextjs templates",
-    "Components",
-    "Base UI",
-    "Radix UI",
-    "accessible UI",
-    "open source UI",
-    "Keen Themes",
   ],
   authors: [
     {
@@ -76,6 +62,7 @@ export const metadata: Metadata = {
     },
   ],
   creator: "reui_io",
+  publisher: siteConfig.name,
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -125,33 +112,22 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
       className={cn(fontVariables, "overscroll-none")}
     >
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                if (localStorage.theme === 'dark' || ((!('theme' in localStorage) || localStorage.theme === 'system') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                  document.querySelector('meta[name="theme-color"]').setAttribute('content', '${META_THEME_COLORS.dark}')
-                }
-                if (localStorage.layout) {
-                  document.documentElement.classList.add('layout-' + localStorage.layout)
-                }
-              } catch (_) {}
-            `,
-          }}
-        />
         <meta name="theme-color" content={META_THEME_COLORS.light} />
       </head>
       <body
+        suppressHydrationWarning
         className={cn(
-          "group/body overscroll-none antialiased [--footer-height:calc(var(--spacing)*14)] [--header-height:calc(var(--spacing)*14)] xl:[--footer-height:calc(var(--spacing)*24)]",
-          "[&:not(:has([data-slot=patterns-preview]))]:font-inter",
-          "style-nova" // for docs
+          "group/body overscroll-none antialiased [--footer-height:--spacing(14)] [--header-height:--spacing(14)] xl:[--footer-height:--spacing(24)]",
+          "[&:not(:has([data-slot=patterns-preview]))]:font-site-sans"
         )}
       >
+        <JsonLd data={buildWebSiteJsonLd()} />
+        <JsonLd data={buildOrganizationJsonLd()} />
         <ThemeProvider>
           <LayoutProvider>
             <JotaiProvider>

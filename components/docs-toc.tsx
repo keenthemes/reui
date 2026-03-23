@@ -113,12 +113,12 @@ export function DocsTableOfContents({
       )}
     >
       <p className="flex h-7 items-center text-xs font-medium">On This Page</p>
-      <div className="before:bg-border relative ms-3.5 flex flex-col gap-0.5 before:absolute before:inset-y-0 before:-left-3.25 before:w-px">
+      <div className="before:bg-site-border relative ms-3.5 flex flex-col gap-0.5 before:absolute before:inset-y-0 before:-left-3.25 before:w-px">
         {toc.map((item) => (
           <a
             key={item.url}
             href={item.url}
-            className="text-muted-foreground hover:text-foreground data-[active=true]:text-foreground data-[active=true]:before:bg-primary relative py-1 text-[0.8rem] no-underline transition-colors before:absolute before:inset-y-px before:-left-3.25 before:w-px before:rounded-full hover:bg-transparent data-[active=true]:bg-transparent data-[active=true]:before:w-0.5 data-[depth=3]:ps-3.5 data-[depth=4]:ps-5.5"
+            className="text-site-muted-foreground hover:text-site-foreground data-[active=true]:text-site-foreground data-[active=true]:before:bg-site-primary before:site-rounded-full relative py-1 text-[0.8rem] no-underline transition-colors before:absolute before:inset-y-px before:-left-3.25 before:w-px hover:bg-transparent data-[active=true]:bg-transparent data-[active=true]:before:w-0.5 data-[depth=3]:ps-3.5 data-[depth=4]:ps-5.5"
             data-active={item.url === `#${activeHeading}`}
             data-depth={item.depth}
           >

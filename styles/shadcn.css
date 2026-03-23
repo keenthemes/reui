@@ -93,3 +93,9 @@
     display: none;
   }
 }
+
+@layer base {
+  .cn-font-heading {
+    @apply font-heading;
+  }
+}

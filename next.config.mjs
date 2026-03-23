@@ -1,10 +1,60 @@
 import { createMDX } from "fumadocs-mdx/next"
 
+const registryDeploymentId =
+  process.env.VERCEL_DEPLOYMENT_ID ??
+  process.env.VERCEL_GIT_COMMIT_SHA ??
+  Date.now().toString(36)
+
+function versionedRegistryDestination(destination) {
+  const separator = destination.includes("?") ? "&" : "?"
+  return `${destination}${separator}v=${registryDeploymentId}`
+}
+
+function createVersionedRegistryRedirects(source, destination) {
+  return [
+    {
+      source,
+      missing: [
+        {
+          type: "query",
+          key: "v",
+        },
+      ],
+      destination: versionedRegistryDestination(destination),
+      permanent: false,
+    },
+    {
+      source,
+      has: [
+        {
+          type: "query",
+          key: "v",
+          value: "(?<registryVersion>.*)",
+        },
+      ],
+      destination: `${destination}?v=:registryVersion`,
+      permanent: true,
+    },
+  ]
+}
+
+const canonicalComponentDocRedirectPattern =
+  "alert|autocomplete|badge|data-grid|date-selector|file-upload|filters|frame|kanban|number-field|phone-input|rating|scrollspy|sortable|stepper|timeline|tree"
+
+const legacyPatternCategoryRedirectPattern =
+  "accordion|alert-dialog|aspect-ratio|avatar|breadcrumb|button|button-group|calendar|card|carousel|chart|checkbox|collapsible|combobox|command|context-menu|dialog|drawer|dropdown-menu|empty|field|hover-card|input|input-group|input-otp|item|kbd|label|menubar|native-select|navigation-menu|pagination|popover|progress|radio-group|resizable|scroll-area|select|separator|sheet|skeleton|slider|sonner|spinner|switch|table|tabs|textarea|toggle|toggle-group|tooltip"
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   devIndicators: false,
   skipTrailingSlashRedirect: true,
   skipProxyUrlNormalize: true,
+  env: {
+    // Shared with the browser so registry JSON URLs rotate on every deploy.
+    // Build timestamp is the last fallback so redeploys still invalidate caches
+    // even if Vercel system env exposure is disabled.
+    NEXT_PUBLIC_VERCEL_DEPLOYMENT_ID: registryDeploymentId,
+  },
   typescript: {
     ignoreBuildErrors: true
   },
@@ -54,6 +104,37 @@ const nextConfig = {
     ],
   },
   async headers() {
+    const versionedRegistryHeaders = [
+      {
+        key: "Cache-Control",
+        value:
+          "public, max-age=31536000, s-maxage=31536000, stale-while-revalidate=86400, immutable",
+      },
+      {
+        key: "CDN-Cache-Control",
+        value:
+          "public, max-age=31536000, s-maxage=31536000, stale-while-revalidate=86400",
+      },
+      {
+        key: "Vercel-CDN-Cache-Control",
+        value:
+          "public, max-age=31536000, s-maxage=31536000, stale-while-revalidate=86400",
+      },
+    ]
+    const redirectRegistryHeaders = [
+      {
+        key: "Cache-Control",
+        value: "no-store, max-age=0",
+      },
+      {
+        key: "CDN-Cache-Control",
+        value: "no-store",
+      },
+      {
+        key: "Vercel-CDN-Cache-Control",
+        value: "no-store",
+      },
+    ]
     const securityHeaders = [
       {
         key: "X-Content-Type-Options",
@@ -71,22 +152,27 @@ const nextConfig = {
 
     return [
       {
-        // Registry JSON files: aggressive CDN caching to reduce edge requests
-        source: "/r/:path*",
-        headers: [
+        // Versioned registry assets are immutable for the lifetime of a deploy.
+        source: "/r/styles/:path*",
+        has: [
           {
-            key: "Cache-Control",
-            value: "public, max-age=86400, s-maxage=31536000, stale-while-revalidate=31536000",
-          },
-          {
-            key: "CDN-Cache-Control",
-            value: "public, max-age=31536000, stale-while-revalidate=31536000",
-          },
-          {
-            key: "Vercel-CDN-Cache-Control",
-            value: "public, max-age=31536000, stale-while-revalidate=31536000",
+            type: "query",
+            key: "v",
           },
         ],
+        headers: versionedRegistryHeaders,
+      },
+      {
+        // Bare registry URLs must not cache the redirect response, otherwise a
+        // client could stay pinned to an older deployment id.
+        source: "/r/:path*",
+        missing: [
+          {
+            type: "query",
+            key: "v",
+          },
+        ],
+        headers: redirectRegistryHeaders,
       },
       {
         // All pages: allow same-origin + approved external sites to embed in iframes
@@ -139,40 +225,51 @@ const nextConfig = {
         destination: "/patterns/sonner",
         permanent: true,
       },
-      // Old component doc URLs → /patterns/:path
+      // Old ReUI component doc URLs should resolve to the canonical Base UI docs.
+      {
+        source: `/docs/:path(${canonicalComponentDocRedirectPattern})`,
+        destination: "/docs/base/:path",
+        permanent: true,
+      },
+      // Old pattern doc URLs → /patterns/:path
       // Only matches known pattern categories, NOT real docs pages like /docs/get-started
       {
-        source: "/docs/:path(accordion|alert|alert-dialog|aspect-ratio|autocomplete|avatar|badge|breadcrumb|button|button-group|calendar|card|carousel|chart|checkbox|collapsible|combobox|command|context-menu|data-grid|date-selector|dialog|drawer|dropdown-menu|empty|field|file-upload|filters|frame|hover-card|input|input-group|input-otp|item|kanban|kbd|label|menubar|native-select|navigation-menu|number-field|pagination|phone-input|popover|progress|radio-group|rating|resizable|scroll-area|scrollspy|select|separator|sheet|skeleton|slider|sonner|sortable|spinner|stepper|switch|table|tabs|textarea|timeline|toggle|toggle-group|tooltip|tree)",
+        source: `/docs/:path(${legacyPatternCategoryRedirectPattern})`,
         destination: "/patterns/:path",
         permanent: true,
       },
-      // Default style fallback: /r/styles/default/* → /r/styles/radix-nova/*
+      // Canonicalize registry URLs to a deploy-scoped cache key.
+      ...createVersionedRegistryRedirects(
+        "/r/styles/default/:path*",
+        "/r/styles/radix-nova/:path*"
+      ),
+      ...createVersionedRegistryRedirects(
+        "/r/default/:path*",
+        "/r/styles/radix-nova/:path*"
+      ),
+      ...createVersionedRegistryRedirects(
+        "/r/new-york/:path*",
+        "/r/styles/radix-nova/:path*"
+      ),
+      ...createVersionedRegistryRedirects(
+        "/r/new-york-v4/:path*",
+        "/r/styles/radix-nova/:path*"
+      ),
       {
-        source: "/r/styles/default/:path*",
-        destination: "/r/styles/radix-nova/:path*",
-        permanent: true,
+        source: "/r/styles/:path*",
+        missing: [
+          {
+            type: "query",
+            key: "v",
+          },
+        ],
+        destination: versionedRegistryDestination("/r/styles/:path*"),
+        permanent: false,
       },
-      {
-        source: "/r/default/:path*",
-        destination: "/r/styles/radix-nova/:path*",
-        permanent: true,
-      },
-      {
-        source: "/r/new-york/:path*",
-        destination: "/r/styles/radix-nova/:path*",
-        permanent: true,
-      },
-      {
-        source: "/r/new-york-v4/:path*",
-        destination: "/r/styles/radix-nova/:path*",
-        permanent: true,
-      },
-      // Backward-compat: old /r/:style/:name.json → new /r/styles/:style/:name.json
-      {
-        source: "/r/:style/:name.json",
-        destination: "/r/styles/:style/:name.json",
-        permanent: true,
-      },
+      ...createVersionedRegistryRedirects(
+        "/r/:style/:name.json",
+        "/r/styles/:style/:name.json"
+      ),
     ]
   }
 }

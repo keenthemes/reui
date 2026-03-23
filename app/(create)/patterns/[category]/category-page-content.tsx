@@ -1,36 +1,16 @@
 "use client"
 
-import { useQueryStates } from "nuqs"
-
-import { parseAsSearchStringClient } from "@/lib/nuqs"
-
-import { PatternsIframeView } from "../components/patterns-iframe-view"
+import { PatternsPreviewView } from "../components/patterns-preview-view"
+import type { Pattern } from "../types"
 
 interface CategoryPageContentProps {
-  category: string
-  count: number
+  patterns: Pattern[]
 }
 
 /**
- * Client wrapper that reads the search param from the URL via nuqs
- * and passes it to PatternsIframeView. This lets the /patterns/[category]
- * page be fully static while still supporting ?search= on the client.
+ * Client wrapper for the pattern grid. The page stays fully static while
+ * `?search=` filtering runs in `PatternsGrid` on the client.
  */
-export function CategoryPageContent({
-  category,
-  count,
-}: CategoryPageContentProps) {
-  const [filters] = useQueryStates({
-    search: parseAsSearchStringClient,
-  })
-
-  const searchQuery = filters.search || ""
-
-  return (
-    <PatternsIframeView
-      category={category}
-      searchQuery={searchQuery}
-      count={count}
-    />
-  )
+export function CategoryPageContent({ patterns }: CategoryPageContentProps) {
+  return <PatternsPreviewView patterns={patterns} />
 }

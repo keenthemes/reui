@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -24,15 +20,10 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./*"
-      ],
-      "react": [
-        "./node_modules/@types/react"
-      ],
-      "fumadocs-mdx:collections/*": [
-        ".source/*"
-      ]
+      "@/*": ["./*"],
+      "next-themes": ["./lib/next-themes"],
+      "react": ["./node_modules/@types/react"],
+      "fumadocs-mdx:collections/*": [".source/*"]
     }
   },
   "include": [
@@ -43,7 +34,5 @@
     "next.config.mjs",
     ".next/dev/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

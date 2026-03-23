@@ -2,8 +2,10 @@
 
 import * as React from "react"
 
+import { transformStyleClassNames } from "@/lib/code-utils"
 import { highlightCode } from "@/lib/highlight-code"
 import { getIconLibraryFromStyle, transformIcons } from "@/lib/icons"
+import { getRegistryDeploymentId, getRegistryJsonUrl } from "@/lib/registry"
 import { cn } from "@/lib/utils"
 import { useConfig } from "@/hooks/use-config"
 import { Spinner } from "@/components/ui/spinner"
@@ -19,7 +21,7 @@ const COLLAPSIBLE_COPY_BUTTON_CLASS_NAME =
   "pointer-events-none invisible opacity-0 transition-opacity group-data-[state=open]/collapsible:pointer-events-auto group-data-[state=open]/collapsible:visible group-data-[state=open]/collapsible:opacity-100"
 
 // Module-level cache: prevents duplicate /r/ fetches across renders and re-mounts.
-// Keyed by "styleName:name", stores raw code from the registry response.
+// Keyed by deployment + style + name so a fresh Vercel deploy does not reuse stale JSON.
 const clientCodeCache = new Map<string, string>()
 
 export interface ComponentSourceClientProps {
@@ -45,7 +47,7 @@ export function ComponentSourceClient({
   collapsible = true,
   className,
   styleName = DEFAULT_STYLE_NAME,
-  iconLibrary: _iconLibrary, // Icon library is now handled by the API
+  iconLibrary: _iconLibrary,
   maxLines,
   code: initialCode,
   eventName,
@@ -80,14 +82,14 @@ export function ComponentSourceClient({
           return
         }
 
-        const cacheKey = `${styleName}:${name}`
+        const cacheKey = `${getRegistryDeploymentId()}:${styleName}:${name}`
 
         // Check module-level cache first to avoid duplicate network requests
         if (clientCodeCache.has(cacheKey)) {
           currentCode = clientCodeCache.get(cacheKey)
         } else {
           try {
-            const url = `/r/styles/${styleName}/${name}.json`
+            const url = getRegistryJsonUrl(styleName, name)
             const res = await fetch(url, {
               signal: abortControllerRef.current.signal,
             })
@@ -125,9 +127,10 @@ export function ComponentSourceClient({
           ""
         )
 
-        // Transform icons for display (style classes already baked into static JSON)
+        // Keep client-rendered source aligned with the selected docs style and icon set.
+        currentCode = transformStyleClassNames(currentCode, styleName)
         const effectiveIconLibrary =
-          _iconLibrary || getIconLibraryFromStyle(styleName)
+          _iconLibrary ?? getIconLibraryFromStyle(styleName)
         currentCode = transformIcons(currentCode, effectiveIconLibrary)
 
         if (maxLines) {
@@ -151,7 +154,16 @@ export function ComponentSourceClient({
       isMounted = false
       abortControllerRef.current?.abort()
     }
-  }, [name, src, initialCode, styleName, language, title, maxLines])
+  }, [
+    name,
+    src,
+    initialCode,
+    styleName,
+    _iconLibrary,
+    language,
+    title,
+    maxLines,
+  ])
 
   if (isLoading) {
     return (
@@ -233,7 +245,7 @@ function ComponentCode({
       {title && (
         <figcaption
           data-rehype-pretty-code-title=""
-          className="text-code-foreground [&_svg]:text-code-foreground flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70"
+          className="text-site-code-foreground [&_svg]:text-site-code-foreground flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70"
           data-language={language}
         >
           {getIconForLanguageExtension(language)}

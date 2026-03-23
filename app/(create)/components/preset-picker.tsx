@@ -110,8 +110,8 @@ export function PresetPicker({
     <Picker>
       <PickerTrigger>
         <div className="flex flex-col justify-start text-left">
-          <div className="text-muted-foreground text-xs">Preset</div>
-          <div className="text-foreground line-clamp-1 text-sm font-medium">
+          <div className="text-site-muted-foreground text-xs">Preset</div>
+          <div className="text-site-foreground line-clamp-1 text-sm font-medium">
             {!mounted ? "..." : (currentPreset?.description ?? "Custom")}
           </div>
         </div>

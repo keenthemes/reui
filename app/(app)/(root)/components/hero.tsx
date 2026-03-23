@@ -57,10 +57,10 @@ export default function Hero() {
               2.0 Release
             </Badge>
             <span className="inline-flex max-w-[200px] items-center gap-1.5 text-center md:max-w-none">
-              <span className="text-foreground text-sm">
+              <span className="text-site-foreground text-sm">
                 10x your productivity with <strong>shadcn/ui</strong>
               </span>
-              <ArrowRightIcon className="text-foreground hidden size-3.5 transition-transform duration-200 group-hover/new:translate-x-0.5 md:inline-block" />
+              <ArrowRightIcon className="text-site-foreground hidden size-3.5 transition-transform duration-200 group-hover/new:translate-x-0.5 md:inline-block" />
             </span>
           </Link>
 
@@ -69,13 +69,17 @@ export default function Hero() {
           </h1>
 
           <div className="text-l max-w-lg text-center">
-            Supercharge your <strong>shadcn/ui</strong> projects with a free &{" "}
-            <strong>open-source</strong> collection of&nbsp;
-            <strong>premium-quality</strong> components & patterns.
+            Go beyond AI defaults and streamline high-end shadcn projects faster
+            with the largest free open-source collection of{" "}
+            <strong>shadcn/ui</strong> patterns and components for React and
+            Tailwind CSS.
           </div>
 
           <div className="mb-3 flex flex-wrap items-center justify-center gap-2 md:gap-3.5">
-            <Button asChild className="gap-1.5 rounded-lg px-5 text-nowrap">
+            <Button
+              asChild
+              className="site-rounded-lg gap-1.5 px-5 text-nowrap"
+            >
               <Link href="/docs/get-started">
                 Get Started
                 <ChevronRight />
@@ -84,9 +88,9 @@ export default function Hero() {
             <Button
               asChild
               variant="outline"
-              className="gap-1.5 rounded-lg px-5 text-nowrap"
+              className="site-rounded-lg gap-1.5 px-5 text-nowrap"
             >
-              <Link href="/patterns">Explore {totalCount}+ Patterns</Link>
+              <Link href="/patterns">Explore 1000+ Patterns</Link>
             </Button>
           </div>
 

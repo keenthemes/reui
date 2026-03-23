@@ -155,7 +155,7 @@ export function CommandMenu({
         <Button
           variant="secondary"
           className={cn(
-            "text-foreground relative h-8 w-full justify-start bg-transparent pl-2! font-medium shadow-none sm:pr-12 md:w-21"
+            "text-site-foreground relative h-8 w-full justify-start bg-transparent pl-2! font-medium shadow-none sm:pr-12 md:w-21"
           )}
           onClick={() => setOpen(true)}
           {...props}
@@ -171,14 +171,14 @@ export function CommandMenu({
       </DialogTrigger>
       <DialogContent
         showCloseButton={false}
-        className="rounded-xl border-none bg-clip-padding p-2 pb-11 shadow-2xl ring-4 ring-neutral-200/80 dark:bg-neutral-900 dark:ring-neutral-800"
+        className="site-rounded-xl border-none bg-clip-padding p-2 pb-11 shadow-2xl ring-4 ring-neutral-200/80 dark:bg-neutral-900 dark:ring-neutral-800"
       >
         <DialogHeader className="sr-only">
           <DialogTitle>Search...</DialogTitle>
           <DialogDescription>Search for a command to run...</DialogDescription>
         </DialogHeader>
         <Command
-          className="**:data-[slot=command-input-wrapper]:bg-input/50 **:data-[slot=command-input-wrapper]:border-input rounded-none bg-transparent **:data-[slot=command-input]:h-9! **:data-[slot=command-input]:py-0 **:data-[slot=command-input-wrapper]:mb-0 **:data-[slot=command-input-wrapper]:h-9! **:data-[slot=command-input-wrapper]:rounded-md **:data-[slot=command-input-wrapper]:border"
+          className="**:data-[slot=command-input-wrapper]:bg-site-input/50 **:data-[slot=command-input-wrapper]:border-site-input site-rounded-none **:data-[slot=command-input-wrapper]:site-rounded-md bg-transparent **:data-[slot=command-input]:h-9! **:data-[slot=command-input]:py-0 **:data-[slot=command-input-wrapper]:mb-0 **:data-[slot=command-input-wrapper]:h-9! **:data-[slot=command-input-wrapper]:border"
           filter={(value, search, keywords) => {
             const extendValue = value + " " + (keywords?.join(" ") || "")
             if (extendValue.toLowerCase().includes(search.toLowerCase())) {
@@ -189,7 +189,7 @@ export function CommandMenu({
         >
           <CommandInput placeholder="Search..." />
           <CommandList className="no-scrollbar min-h-80 scroll-pt-2 scroll-pb-1.5">
-            <CommandEmpty className="text-muted-foreground py-12 text-center text-sm">
+            <CommandEmpty className="text-site-muted-foreground py-12 text-center text-sm">
               No results found.
             </CommandEmpty>
             {navItems && navItems.length > 0 && (
@@ -218,7 +218,7 @@ export function CommandMenu({
                       {item.label}
                     </span>
                     {item.soon && (
-                      <span className="bg-muted text-muted-foreground ml-auto rounded px-1.5 py-0.5 text-[10px] leading-none font-medium">
+                      <span className="bg-site-muted text-site-muted-foreground site-rounded-sm ml-auto px-1.5 py-0.5 text-[10px] leading-none font-medium">
                         Soon
                       </span>
                     )}
@@ -302,7 +302,7 @@ export function CommandMenu({
             )}
           </CommandList>
         </Command>
-        <div className="text-muted-foreground absolute inset-x-0 bottom-0 z-20 flex h-10 items-center gap-2 rounded-b-xl border-t border-t-neutral-100 bg-neutral-50 px-4 text-xs font-medium dark:border-t-neutral-700 dark:bg-neutral-800">
+        <div className="text-site-muted-foreground absolute inset-x-0 bottom-0 z-20 flex h-10 items-center gap-2 rounded-b-[12px] border-t border-t-neutral-100 bg-neutral-50 px-4 text-xs font-medium dark:border-t-neutral-700 dark:bg-neutral-800">
           <div className="flex items-center gap-2">
             <CommandMenuKbd>
               <CornerDownLeftIcon />
@@ -357,7 +357,7 @@ function CommandMenuItem({
     <CommandItem
       ref={ref}
       className={cn(
-        "data-[selected=true]:border-input data-[selected=true]:bg-input/50 h-9 rounded-md border border-transparent px-3! font-medium",
+        "data-[selected=true]:border-site-input data-[selected=true]:bg-site-input/50 site-rounded-md h-9 border border-transparent px-3! font-medium",
         className
       )}
       {...props}
@@ -371,7 +371,7 @@ function CommandMenuKbd({ className, ...props }: React.ComponentProps<"kbd">) {
   return (
     <kbd
       className={cn(
-        "bg-background text-muted-foreground pointer-events-none flex h-5 items-center justify-center gap-1 rounded border px-1 font-sans text-[0.7rem] font-medium select-none [&_svg:not([class*='size-'])]:size-3",
+        "bg-site-background text-site-muted-foreground border-site-border site-rounded-sm font-site-sans pointer-events-none flex h-5 items-center justify-center gap-1 border px-1 text-[0.7rem] font-medium select-none [&_svg:not([class*='size-'])]:size-3",
         className
       )}
       {...props}

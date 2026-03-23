@@ -5,7 +5,8 @@
  * For server-only API functions, use @/lib/registry-server instead.
  *
  * Performance optimization:
- * - Categories are loaded from registry.json (~2KB)
+ * - Categories are loaded from registry.json (small JSON manifest)
+ * - Pattern category SEO copy is in seo.json (lazy-loaded in helpers)
  * - Metadata is loaded per-base from base/registry.ts
  * - Components are lazy-loaded on-demand
  */
@@ -15,7 +16,6 @@ import { LRUCache } from "lru-cache"
 import { registryItemSchema } from "shadcn/schema"
 
 import { transformStyleClassNames } from "@/lib/code-utils"
-import { normalizeSlug } from "@/lib/utils"
 import { BASES } from "@/registry/bases"
 import { PRESETS, type IconLibraryName } from "@/registry/config"
 import { STYLES } from "@/registry/styles"
@@ -28,15 +28,130 @@ const pathNode =
   typeof window === "undefined" ? eval('require("node:path")') : null
 const fs = typeof window === "undefined" ? eval('require("fs").promises') : null
 
+function normalizeRegistrySlug(value: string) {
+  return value.toLowerCase().replace(/\s+/g, "-")
+}
+
+/**
+ * Client and server must use the same deployment-scoped registry URL so a new
+ * Vercel deploy gets a new cache key without turning /r/styles into a function.
+ */
+export function getRegistryDeploymentId(): string {
+  return (
+    process.env.NEXT_PUBLIC_VERCEL_DEPLOYMENT_ID ??
+    process.env.VERCEL_DEPLOYMENT_ID ??
+    "local"
+  )
+}
+
+export function getRegistryJsonUrl(styleName: string, name: string): string {
+  const path = `/r/styles/${styleName}/${encodeURIComponent(name)}.json`
+  return `${path}?v=${encodeURIComponent(getRegistryDeploymentId())}`
+}
+
+export function getRegistryJsonAbsoluteUrl(
+  origin: string,
+  styleName: string,
+  name: string
+): string {
+  const normalizedOrigin = origin.endsWith("/") ? origin : `${origin}/`
+  return new URL(
+    getRegistryJsonUrl(styleName, name),
+    normalizedOrigin
+  ).toString()
+}
+
 // ============================================================================
 // Types
 // ============================================================================
+
+export interface CategorySeoInfo {
+  title?: string
+  /** Optional; use `{{count}}` (or legacy `[[count]]`) for the live pattern count from `registry.json` (same as `intro`). */
+  description?: string
+  /** Use `{{count}}` where the live pattern count from registry should appear (replaced at runtime). */
+  intro?: string
+  highlights?: string[]
+  keywords?: string[]
+  content?: CategorySeoContent
+  docsDescription?: string
+  relatedComponents?: RelatedComponentsBlock
+}
+
+/** Title + inline description (features list) */
+export interface CategorySeoFeatureItem {
+  title: string
+  description: string
+}
+
+export interface CategorySeoComponentListItem {
+  slug: string
+  title: string
+  badge?: string
+  description: string
+  href: string
+}
+
+export interface CategorySeoSection {
+  title: string
+  /** Lead-in paragraph before structured lists (e.g. pattern index "Popular Components") */
+  intro?: string
+  paragraphs?: string[]
+  bullets?: string[]
+  /** Structured features: bold title + description on one line each */
+  featureItems?: CategorySeoFeatureItem[]
+  /** Rich cards linking to pattern category pages (pattern index SEO) */
+  componentList?: CategorySeoComponentListItem[]
+}
+
+export interface CategorySeoFaq {
+  question: string
+  answer: string
+}
+
+export interface CategorySeoContent {
+  title: string
+  summary: string[]
+  sections: CategorySeoSection[]
+  faqs?: CategorySeoFaq[]
+}
+
+export interface RelatedComponentRef {
+  slug: string
+  label: string
+}
+
+/**
+ * Integration block: prose with `[[slug|Label]]` links.
+ * Use **Shadcn {Name}** in the visible label (e.g. `[[button|Shadcn Button]]`, `[[alert-dialog|Shadcn Alert Dialog]]`).
+ */
+export interface RelatedComponentsBlock {
+  /** e.g. "Integrating With Other Components" (Title Case) */
+  title: string
+  /** Optional reference list for authors only; not rendered on the page */
+  items?: RelatedComponentRef[]
+  /** Pattern index: internal links to `/patterns/{slug}` */
+  links?: RelatedComponentRef[]
+  /** 2–3 paragraphs; `[[slug|Label]]` renders as internal links */
+  integrationBody?: string[]
+}
 
 export interface CategoryInfo {
   name: string
   label: string
   description: string
   count: number
+}
+
+export interface PatternCategorySeo {
+  title: string
+  description: string
+  intro: string
+  /** @deprecated Pattern pages no longer surface highlight chips; kept optional for compatibility */
+  highlights?: string[]
+  keywords: string[]
+  content?: CategorySeoContent
+  relatedComponents?: RelatedComponentsBlock
 }
 
 export interface PatternData {
@@ -89,6 +204,22 @@ export type Category = string
 interface StatsData {
   categories: CategoryInfo[]
   totalPatterns: number
+}
+
+let _registrySeo: Record<string, CategorySeoInfo> | null = null
+
+/**
+ * Lazy-load `seo.json` once per runtime (Node / edge worker).
+ * Keeps the large SEO blob out of the client bundle unless these helpers run.
+ */
+function getRegistrySeoMapCached(): Record<string, CategorySeoInfo> {
+  if (!_registrySeo) {
+    _registrySeo = require("../registry-reui/bases/seo.json") as Record<
+      string,
+      CategorySeoInfo
+    >
+  }
+  return _registrySeo
 }
 
 interface MetadataData {
@@ -232,15 +363,31 @@ const registryCache = new LRUCache<string, any>({
 const inFlightRequests = new Map<string, Promise<any>>()
 
 // ============================================================================
-// Category Functions - Use __stats__.ts (small file, ~5KB)
+// Category Functions - Use registry.json category manifest
 // ============================================================================
 
+function fallbackCategoryLabel(category: string) {
+  return category
+    .split("-")
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" ")
+}
+
 /**
- * Get all categories with full info (name, label, description, count)
+ * Get all categories with full info (name, label, description, count, seo)
  * This is the primary way to get category data
  */
 export function getCategories(): CategoryInfo[] {
   return getStats().categories
+}
+
+/**
+ * Get full category info for a single category
+ */
+export function getCategoryInfo(category: string): CategoryInfo | undefined {
+  const normalized = normalizeRegistrySlug(category)
+  return getStats().categories.find((c) => c.name === normalized)
 }
 
 /**
@@ -261,35 +408,204 @@ export function getPatternsTotalCount(): number {
  * Get pattern count by category
  */
 export function getPatternCountByCategory(category: string): number {
-  const normalized = normalizeSlug(category)
-  const cat = getStats().categories.find((c) => c.name === normalized)
-  return cat?.count ?? 0
+  return getCategoryInfo(category)?.count ?? 0
 }
 
 /**
  * Get category description
  */
 export function getCategoryDescription(category: string): string | undefined {
-  const normalized = normalizeSlug(category)
-  const cat = getStats().categories.find((c) => c.name === normalized)
-  return cat?.description
+  return getCategoryInfo(category)?.description
+}
+
+/**
+ * Replaces `{{count}}` or legacy `[[count]]` in SEO copy with the live pattern count from `registry.json`.
+ * When count is 0, removes the placeholder and collapses extra spaces.
+ * Strings without either placeholder are returned unchanged (avoid accidental word injection).
+ */
+export function applySeoCountPlaceholder(text: string, count: number): string {
+  if (!text.includes("[[count]]") && !text.includes("{{count}}")) {
+    return text
+  }
+  if (count > 0) {
+    return text
+      .replace(/\{\{count\}\}/g, String(count))
+      .replace(/\[\[count\]\]/g, String(count))
+  }
+  return text
+    .replace(/\s*\{\{count\}\}\s*/g, " ")
+    .replace(/\s*\[\[count\]\]\s*/g, " ")
+    .replace(/\s{2,}/g, " ")
+    .trim()
+}
+
+/**
+ * Build computed SEO metadata for a category page using `seo.json`
+ * (lazy-loaded once per runtime) plus category stats from `registry.json`.
+ */
+export function getPatternCategorySeo(category: string): PatternCategorySeo {
+  const normalized = normalizeRegistrySlug(category)
+  const categoryInfo = getCategoryInfo(normalized)
+  const label = categoryInfo?.label ?? fallbackCategoryLabel(normalized)
+  const count = categoryInfo?.count ?? 0
+  const seo = getRegistrySeoMapCached()[normalized]
+  const title = seo?.title ?? `Shadcn ${label}`
+
+  if (
+    seo?.description ||
+    seo?.intro ||
+    seo?.keywords?.length ||
+    seo?.content ||
+    seo?.relatedComponents
+  ) {
+    const genericIntro =
+      count > 0
+        ? `Browse {{count}} production-ready shadcn ${label.toLowerCase()} patterns built to help you move from primitives to polished product UI faster.`
+        : `Browse production-ready shadcn ${label.toLowerCase()} patterns built to help you move from primitives to polished product UI faster.`
+    const rawDescription =
+      seo?.description ||
+      categoryInfo?.description ||
+      `Explore free open-source shadcn/ui ${label.toLowerCase()} patterns for React and Tailwind CSS in ReUI.`
+    const baseDescription = applySeoCountPlaceholder(rawDescription, count)
+    const intro = applySeoCountPlaceholder(seo.intro || genericIntro, count)
+
+    return {
+      title,
+      description: baseDescription,
+      intro,
+      keywords: seo?.keywords ?? [],
+      content: seo?.content,
+      relatedComponents: seo?.relatedComponents,
+    }
+  }
+
+  const genericDescription =
+    categoryInfo?.description ||
+    `Explore free open-source shadcn/ui ${label.toLowerCase()} patterns for React and Tailwind CSS in ReUI.`
+  const genericIntro =
+    count > 0
+      ? `Browse {{count}} production-ready shadcn ${label.toLowerCase()} patterns built to help you move from primitives to polished product UI faster.`
+      : `Browse production-ready shadcn ${label.toLowerCase()} patterns built to help you move from primitives to polished product UI faster.`
+
+  return {
+    title,
+    description: applySeoCountPlaceholder(genericDescription, count),
+    intro: applySeoCountPlaceholder(genericIntro, count),
+    keywords: [],
+    content: seo?.content,
+    relatedComponents: seo?.relatedComponents,
+  }
+}
+
+function applyCountToSeoContent(
+  content: CategorySeoContent,
+  count: number
+): CategorySeoContent {
+  return {
+    ...content,
+    title: applySeoCountPlaceholder(content.title, count),
+    summary: content.summary.map((s) => applySeoCountPlaceholder(s, count)),
+    sections: content.sections.map((section) => ({
+      ...section,
+      title: applySeoCountPlaceholder(section.title, count),
+      intro: section.intro
+        ? applySeoCountPlaceholder(section.intro, count)
+        : undefined,
+      paragraphs: section.paragraphs?.map((p) =>
+        applySeoCountPlaceholder(p, count)
+      ),
+      bullets: section.bullets?.map((b) => applySeoCountPlaceholder(b, count)),
+      featureItems: section.featureItems?.map((fi) => ({
+        ...fi,
+        title: applySeoCountPlaceholder(fi.title, count),
+        description: applySeoCountPlaceholder(fi.description, count),
+      })),
+      componentList: section.componentList?.map((item) => ({
+        ...item,
+        title: applySeoCountPlaceholder(item.title, count),
+        description: applySeoCountPlaceholder(item.description, count),
+      })),
+    })),
+    faqs: content.faqs?.map((faq) => ({
+      ...faq,
+      question: applySeoCountPlaceholder(faq.question, count),
+      answer: applySeoCountPlaceholder(faq.answer, count),
+    })),
+  }
+}
+
+/**
+ * SEO for `/patterns` (index): uses the `root` entry in `seo.json` and total pattern count.
+ */
+export function getPatternIndexSeo(): PatternCategorySeo {
+  const count = getPatternsTotalCount()
+  const root = getRegistrySeoMapCached()["root"]
+  const fallbackDescription = `Browse ${count}+ free open-source shadcn/ui patterns for React and Tailwind CSS.`
+
+  if (!root?.content && !root?.description && !root?.intro) {
+    return {
+      title: "Shadcn UI Component Patterns",
+      description: fallbackDescription,
+      intro: fallbackDescription,
+      keywords: [],
+    }
+  }
+
+  const title =
+    root.title ?? root.content?.title ?? "Shadcn UI Component Patterns"
+  const description = applySeoCountPlaceholder(
+    root.description ?? fallbackDescription,
+    count
+  )
+  const intro = applySeoCountPlaceholder(
+    root.intro ?? root.description ?? fallbackDescription,
+    count
+  )
+  const keywords = root.keywords ?? []
+  const content = root.content
+    ? applyCountToSeoContent(root.content, count)
+    : undefined
+  const relatedComponents = root.relatedComponents
+    ? {
+        title: root.relatedComponents.title,
+        links: root.relatedComponents.links,
+        integrationBody: root.relatedComponents.integrationBody,
+        items: root.relatedComponents.items,
+      }
+    : undefined
+
+  return {
+    title,
+    description,
+    intro,
+    keywords,
+    content,
+    relatedComponents,
+  }
 }
 
 /**
  * Check if a category is valid
  */
 export function isValidCategory(category: string): boolean {
-  const normalized = normalizeSlug(category)
-  return getStats().categories.some((c) => c.name === normalized)
+  return !!getCategoryInfo(category)
 }
 
 /**
  * Get category sort order
  */
 export function getCategorySortOrder(category: string): number {
-  const normalized = normalizeSlug(category)
+  const normalized = normalizeRegistrySlug(category)
   const index = getStats().categories.findIndex((c) => c.name === normalized)
   return index === -1 ? Number.POSITIVE_INFINITY : index
+}
+
+export function getCategoryDocsDescription(category: string) {
+  const normalized = normalizeRegistrySlug(category)
+  const raw = getRegistrySeoMapCached()[normalized]?.docsDescription
+  if (typeof raw !== "string") return undefined
+  const count = getCategoryInfo(normalized)?.count ?? 0
+  return applySeoCountPlaceholder(raw, count)
 }
 
 // Legacy exports for backwards compatibility
@@ -374,14 +690,14 @@ function ensurePatternIndexes() {
   })
 
   for (const pattern of sorted) {
-    const normalizedPrimary = normalizeSlug(pattern.primaryCategory)
+    const normalizedPrimary = normalizeRegistrySlug(pattern.primaryCategory)
     if (!catIndex.has(normalizedPrimary)) {
       catIndex.set(normalizedPrimary, [])
     }
     catIndex.get(normalizedPrimary)!.push(pattern)
 
     for (const cat of pattern.categories) {
-      const normalizedCat = normalizeSlug(cat)
+      const normalizedCat = normalizeRegistrySlug(cat)
       if (normalizedCat !== normalizedPrimary) {
         if (!catIndex.has(normalizedCat)) {
           catIndex.set(normalizedCat, [])
@@ -408,7 +724,7 @@ export function getAllPatterns(): PatternData[] {
  */
 export function getPatternsByCategory(category: string): PatternData[] {
   ensurePatternIndexes()
-  return _categoryIndex!.get(normalizeSlug(category)) ?? []
+  return _categoryIndex!.get(normalizeRegistrySlug(category)) ?? []
 }
 
 /**
@@ -445,87 +761,6 @@ export function searchPatterns(query: string): PatternData[] {
       return false
     })
   })
-}
-
-/**
- * Filter patterns by category and search
- */
-export function filterPatterns(
-  patternsSource: PatternData[],
-  filterCategories: string[],
-  query: string
-): PatternData[] {
-  ensurePatternIndexes()
-
-  let result: PatternData[]
-
-  // If we have categories, we filter by them first
-  if (filterCategories && filterCategories.length > 0) {
-    const normalizedFilters = filterCategories.map((c) => normalizeSlug(c))
-    const seen = new Set<string>()
-    result = []
-
-    for (const cat of normalizedFilters) {
-      const catPatterns = _categoryIndex!.get(cat) ?? []
-      for (const p of catPatterns) {
-        if (!seen.has(p.name)) {
-          seen.add(p.name)
-          result.push(p)
-        }
-      }
-    }
-  } else {
-    // No category filter, use the source provided or all patterns
-    result = patternsSource || _patternsArray!
-  }
-
-  // Apply search query if present
-  if (query && query.trim()) {
-    const lowerQuery = query.toLowerCase().trim()
-    const terms = lowerQuery.split(/\s+/).filter(Boolean)
-
-    if (terms.length > 0) {
-      result = result.filter((p) => {
-        return terms.every((term) => {
-          if (p.searchText.includes(term)) return true
-          if (term.length > 3 && term.endsWith("s")) {
-            const singular = term.slice(0, -1)
-            if (p.searchText.includes(singular)) return true
-          }
-          return false
-        })
-      })
-    }
-  }
-
-  return result
-}
-
-/**
- * Get paginated patterns
- */
-export function getPaginatedPatterns(
-  category: string | null,
-  search: string,
-  offset: number,
-  limit: number
-): { patterns: PatternData[]; total: number; hasMore: boolean } {
-  ensurePatternIndexes()
-
-  let filtered: PatternData[]
-  if (category) {
-    filtered = filterPatterns(_patternsArray!, [category], search)
-  } else if (search.trim()) {
-    filtered = searchPatterns(search)
-  } else {
-    filtered = _patternsArray!
-  }
-
-  return {
-    patterns: filtered.slice(offset, offset + limit),
-    total: filtered.length,
-    hasMore: offset + limit < filtered.length,
-  }
 }
 
 // ============================================================================
@@ -574,7 +809,7 @@ export async function getRegistryItem(
   styleName: string = DEFAULT_STYLE_NAME,
   iconLibrary?: string
 ) {
-  const cacheKey = `${styleName}:${iconLibrary || ""}:${name}`
+  const cacheKey = `${getRegistryDeploymentId()}:${styleName}:${iconLibrary || ""}:${name}`
 
   if (registryCache.has(cacheKey)) {
     return registryCache.get(cacheKey)
@@ -590,7 +825,7 @@ export async function getRegistryItem(
       if (typeof window !== "undefined") {
         try {
           // Use static /r/styles/ files (CDN-served, zero function invocations)
-          const url = `/r/styles/${styleName}/${encodeURIComponent(name)}.json`
+          const url = getRegistryJsonUrl(styleName, name)
           const res = await fetch(url)
           if (res.ok) {
             const data = await res.json()

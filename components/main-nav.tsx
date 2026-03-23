@@ -34,7 +34,7 @@ export function MainNav({
             asChild={!item.soon}
             className={cn(
               "relative",
-              active && "bg-muted text-primary",
+              active && "bg-site-muted text-site-primary",
               item.soon && "opacity-60"
             )}
           >

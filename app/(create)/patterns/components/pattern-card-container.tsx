@@ -43,7 +43,7 @@ export function PatternRenderer({
   if (isReloading) {
     return (
       <div className="flex h-full min-h-20 items-center justify-center">
-        <Spinner className="text-muted-foreground/40" />
+        <Spinner className="text-site-muted-foreground/40" />
       </div>
     )
   }
@@ -53,7 +53,7 @@ export function PatternRenderer({
 
   if (!Component) {
     return (
-      <div className="text-muted-foreground flex items-center justify-center p-6 text-sm">
+      <div className="text-site-muted-foreground flex items-center justify-center p-6 text-sm">
         Pattern {name} not found in {base}
       </div>
     )
@@ -65,7 +65,7 @@ export function PatternRenderer({
 export function PatternName({ name }: { name: string }) {
   return (
     <div
-      className="bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground flex h-7 items-center gap-1.5 rounded-md px-2 text-[10px] font-medium transition-all select-all"
+      className="bg-site-muted/50 text-site-muted-foreground hover:bg-site-muted hover:text-site-foreground site-rounded-md flex h-7 items-center gap-1.5 px-2 text-[10px] font-medium transition-all select-all"
       title="Pattern name"
     >
       {name}
@@ -108,14 +108,14 @@ export function PatternCardContainer({
     >
       <FrameContent
         className={cn(
-          "bg-background flex min-h-50 min-w-0 flex-1 flex-col flex-wrap items-center justify-center overflow-x-auto p-6 **:data-[slot=preview]:w-full sm:**:data-[slot=preview]:max-w-[80%] lg:px-8 lg:py-12"
+          "bg-site-background flex min-h-50 min-w-0 flex-1 flex-col flex-wrap items-center justify-center overflow-x-auto p-6 font-sans **:data-[slot=preview]:w-full sm:**:data-[slot=preview]:max-w-[80%] lg:px-8 lg:py-12"
         )}
       >
         {hasBeenVisible ? (
           <React.Suspense
             fallback={
               <div className="flex items-center justify-center py-10">
-                <Loader2Icon className="text-muted-foreground/40 size-6 animate-spin" />
+                <Loader2Icon className="text-site-muted-foreground/40 size-6 animate-spin" />
               </div>
             }
           >
@@ -123,7 +123,7 @@ export function PatternCardContainer({
           </React.Suspense>
         ) : (
           <div className="flex h-50 w-full items-center justify-center">
-            <Loader2Icon className="text-muted-foreground/10 size-5 animate-spin" />
+            <Loader2Icon className="text-site-muted-foreground/10 size-5 animate-spin" />
           </div>
         )}
       </FrameContent>

@@ -125,12 +125,12 @@ export function MenuColorPicker({
       <Picker>
         <PickerTrigger disabled={isDark && colorChoice === "inverted"}>
           <div className="min-w-0 flex-1 pr-10 text-left">
-            <div className="text-muted-foreground text-xs">Menu</div>
-            <div className="text-foreground truncate text-sm font-medium">
+            <div className="text-site-muted-foreground text-xs">Menu</div>
+            <div className="text-site-foreground truncate text-sm font-medium">
               {mounted ? currentMenu?.label : "..."}
             </div>
           </div>
-          <div className="text-foreground pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base select-none">
+          <div className="text-site-foreground pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base select-none">
             <HugeiconsIcon
               icon={Menu02Icon}
               strokeWidth={2}

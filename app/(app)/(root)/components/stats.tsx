@@ -20,7 +20,7 @@ export function Stats() {
       icon: Layers,
       title: `${patternsTotalCount}+ Patterns`,
       description:
-        "Reusable solutions that composed from shadcn components into real-world use cases.",
+        "Reusable solutions composed from shadcn/ui primitives into real-world product flows.",
     },
     {
       icon: Component,
@@ -32,7 +32,7 @@ export function Stats() {
       icon: Server,
       title: "Dual Library Support",
       description:
-        "All components and patterns are available in both shadcn Radix UI and Base UI versions.",
+        "ReUI ships canonical Base UI docs plus matching Radix UI implementations for the same high-value components.",
     },
   ]
 
@@ -44,15 +44,15 @@ export function Stats() {
             <Card key={stat.title}>
               <div className="flex items-center justify-start">
                 <stat.icon
-                  className="text-foreground/70 size-5"
+                  className="text-site-foreground/70 size-5"
                   strokeWidth={1.5}
                 />
               </div>
               <div className="space-y-3">
-                <h3 className="text-foreground text-base font-semibold tracking-tight">
+                <h3 className="text-site-foreground text-base font-semibold tracking-tight">
                   {stat.title}
                 </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed font-medium">
+                <p className="text-site-muted-foreground text-sm leading-relaxed font-medium">
                   {stat.description}
                 </p>
               </div>

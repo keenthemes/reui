@@ -64,7 +64,7 @@ function PatternsUpdateIndicator({ category }: { category: string }) {
           <span className="sr-only">{hint}</span>
           <span
             aria-hidden="true"
-            className="size-2 rounded-full bg-blue-500"
+            className="site-rounded-full size-2 bg-blue-500"
           />
         </span>
       </TooltipTrigger>
@@ -102,7 +102,10 @@ export const PatternsSidebarCategoryMenu = React.memo(
 
     // Build href with preserved design system params
     const buildHref = React.useCallback(
-      (basePath: string) => serializeDesignSystemSearchParams(basePath, params),
+      (basePath: string) => {
+        const { item: _item, search: _search, ...persistedParams } = params
+        return serializeDesignSystemSearchParams(basePath, persistedParams)
+      },
       [params]
     )
 
@@ -117,10 +120,10 @@ export const PatternsSidebarCategoryMenu = React.memo(
                   prefetch={false}
                   onClick={onSelect}
                   className={cn(
-                    "border-border flex items-center justify-between gap-2 rounded-md border px-2 py-1 text-xs transition-colors",
+                    "border-site-border site-rounded-md flex items-center justify-between gap-2 border px-2 py-1 text-xs transition-colors",
                     currentPathname === "/patterns"
-                      ? "bg-primary border-primary text-primary-foreground font-medium"
-                      : "text-foreground hover:bg-muted hover:text-foreground"
+                      ? "bg-site-primary border-site-primary text-site-primary-foreground font-medium"
+                      : "text-site-foreground hover:bg-site-muted hover:text-site-foreground"
                   )}
                 >
                   All Patterns
@@ -128,8 +131,8 @@ export const PatternsSidebarCategoryMenu = React.memo(
                     className={cn(
                       "text-xs",
                       currentPathname === "/patterns"
-                        ? "text-primary-foreground/70"
-                        : "text-muted-foreground/80"
+                        ? "text-site-primary-foreground/70"
+                        : "text-site-muted-foreground/80"
                     )}
                   >
                     {totalCount}
@@ -149,10 +152,10 @@ export const PatternsSidebarCategoryMenu = React.memo(
                     prefetch={false}
                     onClick={onSelect}
                     className={cn(
-                      "border-border flex items-center justify-between gap-2 rounded-md border px-2 py-1 text-xs transition-colors",
+                      "border-site-border site-rounded-md flex items-center justify-between gap-2 border px-2 py-1 text-xs transition-colors",
                       isActive
-                        ? "bg-primary border-primary text-primary-foreground font-medium"
-                        : "text-foreground hover:bg-muted hover:text-foreground"
+                        ? "bg-site-primary border-site-primary text-site-primary-foreground font-medium"
+                        : "text-site-foreground hover:bg-site-muted hover:text-site-foreground"
                     )}
                   >
                     <span>{formatLabel(category)}</span>
@@ -162,8 +165,8 @@ export const PatternsSidebarCategoryMenu = React.memo(
                         className={cn(
                           "text-xs",
                           isActive
-                            ? "text-primary-foreground/70"
-                            : "text-muted-foreground/80"
+                            ? "text-site-primary-foreground/70"
+                            : "text-site-muted-foreground/80"
                         )}
                       >
                         {count}
@@ -174,7 +177,7 @@ export const PatternsSidebarCategoryMenu = React.memo(
               })}
             </div>
             {filteredCategories.length === 0 && (
-              <div className="text-muted-foreground px-1 py-4 text-center text-sm">
+              <div className="text-site-muted-foreground px-1 py-4 text-center text-sm">
                 No category found
               </div>
             )}
@@ -192,10 +195,10 @@ export const PatternsSidebarCategoryMenu = React.memo(
               prefetch={false}
               onClick={onSelect}
               className={cn(
-                "flex items-center justify-between rounded-md px-3 py-2 text-sm transition-colors",
+                "site-rounded-md flex items-center justify-between px-3 py-2 text-sm transition-colors",
                 currentPathname === "/patterns"
-                  ? "bg-primary text-primary-foreground font-medium"
-                  : "text-foreground hover:bg-muted hover:text-foreground"
+                  ? "bg-site-primary text-site-primary-foreground font-medium"
+                  : "text-site-foreground hover:bg-site-muted hover:text-site-foreground"
               )}
             >
               <span>All Patterns</span>
@@ -203,8 +206,8 @@ export const PatternsSidebarCategoryMenu = React.memo(
                 className={cn(
                   "text-xs",
                   currentPathname === "/patterns"
-                    ? "text-primary-foreground/70"
-                    : "text-muted-foreground"
+                    ? "text-site-primary-foreground/70"
+                    : "text-site-muted-foreground"
                 )}
               >
                 {totalCount}
@@ -224,10 +227,10 @@ export const PatternsSidebarCategoryMenu = React.memo(
                 prefetch={false}
                 onClick={onSelect}
                 className={cn(
-                  "flex items-center justify-between rounded-md px-3 py-2 text-sm transition-colors",
+                  "site-rounded-md flex items-center justify-between px-3 py-2 text-sm transition-colors",
                   isActive
-                    ? "bg-primary text-primary-foreground font-medium"
-                    : "text-foreground hover:bg-muted hover:text-foreground"
+                    ? "bg-site-primary text-site-primary-foreground font-medium"
+                    : "text-site-foreground hover:bg-site-muted hover:text-site-foreground"
                 )}
               >
                 <span>{formatLabel(category)}</span>
@@ -237,8 +240,8 @@ export const PatternsSidebarCategoryMenu = React.memo(
                     className={cn(
                       "text-xs",
                       isActive
-                        ? "text-primary-foreground/70"
-                        : "text-muted-foreground/80"
+                        ? "text-site-primary-foreground/70"
+                        : "text-site-muted-foreground/80"
                     )}
                   >
                     {count}
@@ -248,7 +251,7 @@ export const PatternsSidebarCategoryMenu = React.memo(
             )
           })}
           {filteredCategories.length === 0 && (
-            <div className="text-muted-foreground px-3 py-4 text-center text-sm">
+            <div className="text-site-muted-foreground px-3 py-4 text-center text-sm">
               No category found
             </div>
           )}

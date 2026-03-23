@@ -1,16 +1,19 @@
 import { Metadata } from "next"
 
+import { absoluteUrl, getOgImageUrl } from "@/lib/seo"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteSubscribe } from "@/components/site-subscribe"
 
+import { FAQSection } from "./components/faq-section"
 import Hero from "./components/hero"
 import { Patterns } from "./components/patterns"
 import { Stats } from "./components/stats"
 import { WallOfLove } from "./components/wall-of-love"
 
-const title = "Shadcn UI Patterns — 1,000+ Free React Components"
+const title =
+  "ReUI – Free Shadcn UI Components, Patterns, Blocks & Extensions"
 const description =
-    "1,000+ free React components and patterns for shadcn/ui. Built with Next.js 16, Tailwind CSS v4, Radix UI and Base UI. Open source."
+  "Discover the free 1000+ open-source shadcn/ui component patterns for React and Tailwind CSS."
 
 export const dynamic = "force-static"
 export const revalidate = false
@@ -18,22 +21,46 @@ export const revalidate = false
 export const metadata: Metadata = {
   title,
   description,
+  alternates: {
+    canonical: "/",
+  },
+  keywords: [
+    "shadcn patterns",
+    "shadcn components",
+    "shadcn create",
+    "shadcn ui extensions",
+    "shadcn ui examples",
+    "shadcn ui patterns",
+    "free shadcn components",
+    "open-source shadcn components",
+    "shadcn data grid",
+    "shadcn datagrid",
+    "shadcn filters",
+    "shadcn file upload",
+    "shadcn stepper",
+    "shadcn timeline",
+    "shadcn rating",
+    "shadcn sortable",
+    "shadcn kanban",
+  ],
   openGraph: {
+    title,
+    description,
+    url: absoluteUrl("/"),
+    type: "website",
     images: [
       {
-        url: `/og?title=${encodeURIComponent(
-          title
-        )}&description=${encodeURIComponent(description)}`,
+        url: getOgImageUrl(title, description),
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
+    title,
+    description,
     images: [
       {
-        url: `/og?title=${encodeURIComponent(
-          title
-        )}&description=${encodeURIComponent(description)}`,
+        url: getOgImageUrl(title, description),
       },
     ],
   },
@@ -46,6 +73,7 @@ export default function IndexPage() {
       <Stats />
       <Patterns />
       <WallOfLove />
+      <FAQSection />
       <SiteSubscribe />
       <SiteFooter />
     </div>

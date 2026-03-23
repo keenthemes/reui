@@ -113,14 +113,14 @@ export function FontPicker({
       <Picker>
         <PickerTrigger>
           <div className="min-w-0 flex-1 pr-10 text-left">
-            <div className="text-muted-foreground text-xs">{label}</div>
-            <div className="text-foreground truncate text-sm font-medium">
+            <div className="text-site-muted-foreground text-xs">{label}</div>
+            <div className="text-site-foreground truncate text-sm font-medium">
               {mounted ? displayFontName : "..."}
             </div>
           </div>
           {mounted ? (
             <div
-              className="text-foreground pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base select-none"
+              className="text-site-foreground pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-base select-none"
               style={{
                 fontFamily:
                   currentFont?.font?.style.fontFamily ??

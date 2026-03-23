@@ -32,7 +32,7 @@ export function LockButton({
           onClick={() => toggleLock(param)}
           data-locked={locked}
           className={cn(
-            "flex size-4 cursor-pointer items-center justify-center rounded opacity-0 transition-opacity group-focus-within/picker:opacity-100 group-hover/picker:opacity-100 focus:opacity-100 data-[locked=true]:opacity-100 pointer-coarse:hidden",
+            "site-rounded-sm flex size-4 cursor-pointer items-center justify-center opacity-0 transition-opacity group-focus-within/picker:opacity-100 group-hover/picker:opacity-100 focus:opacity-100 data-[locked=true]:opacity-100 pointer-coarse:hidden",
             className
           )}
           aria-label={locked ? "Unlock" : "Lock"}
@@ -40,7 +40,7 @@ export function LockButton({
           <HugeiconsIcon
             icon={locked ? SquareLock01Icon : SquareUnlock01Icon}
             strokeWidth={2}
-            className="text-foreground size-5"
+            className="text-site-foreground size-5"
           />
         </button>
       </TooltipTrigger>

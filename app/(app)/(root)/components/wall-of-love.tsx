@@ -49,6 +49,15 @@ const testimonials: Testimonial[] = [
     },
   },
   {
+    text: "This looks pretty amazing! 🔥",
+    author: {
+      name: "supersheykh",
+      handle: "@SuperSheykh",
+      avatar: "https://unavatar.io/twitter/@SuperSheykh",
+      verified: true,
+    },
+  },
+  {
     text: "If there are changes on how to consume the component from the last version, please provide a migration guide of possible. Appreciate all the work, this is by far my favorite component.",
     author: {
       name: "Ayoub Alfurjani",
@@ -72,6 +81,15 @@ const testimonials: Testimonial[] = [
       name: "supersheykh",
       handle: "@SuperSheykh",
       avatar: "https://unavatar.io/twitter/@SuperSheykh",
+      verified: true,
+    },
+  },
+  {
+    text: "You have no idea how much time you saved me. I was looking for a virtualized shadcn grid or table, and I had basically given up on finding one. You just saved me a ton of time, and this is clearly better than anything I would have put together.\n\nThanks for all your hard work! As soon as you launch a Pro version, I will be first in line. Do you have a wait-list?",
+    author: {
+      name: "Richard Thermo",
+      handle: "@RThermo56",
+      avatar: "https://unavatar.io/twitter/@RThermo56",
       verified: true,
     },
   },
@@ -154,15 +172,6 @@ const testimonials: Testimonial[] = [
       handle: "@codewithimanshu",
       avatar: "https://unavatar.io/twitter/@codewithimanshu",
       verified: true,
-    },
-  },
-  {
-    text: "Cool you have RTL support like that, it's unique from UI libs I've seen.A small overflow on mobile though 👀",
-    author: {
-      name: "Mo Bahrampour",
-      handle: "@MHBahrampour",
-      avatar: "https://unavatar.io/twitter/@MHBahrampour",
-      verified: false,
     },
   },
   {
@@ -408,6 +417,7 @@ export function WallOfLove() {
     <section className="py-12 lg:py-24">
       <div className="container">
         <Heading
+          className="max-w-lg"
           badge="Feedback"
           title="Wall of Love"
           description="Hear from our community about their hands-on experience and feedback."
@@ -422,11 +432,11 @@ export function WallOfLove() {
             {displayedTestimonials.map((testimonial, i) => (
               <Card key={i}>
                 <div className="flex h-full flex-col gap-4">
-                  <p className="text-foreground/90 text-sm leading-relaxed">
+                  <p className="text-site-foreground/90 text-sm leading-relaxed whitespace-pre-line">
                     {testimonial.text}
                   </p>
                   <div className="mt-auto flex items-center gap-2.5 pt-2">
-                    <Avatar className="border-border h-9 w-9 border">
+                    <Avatar className="border-site-border h-9 w-9 border">
                       <AvatarImage
                         src={testimonial.author.avatar}
                         alt={testimonial.author.name}
@@ -437,7 +447,7 @@ export function WallOfLove() {
                     </Avatar>
                     <div className="flex min-w-0 flex-col">
                       <div className="flex items-center gap-1">
-                        <span className="text-foreground truncate text-sm font-semibold">
+                        <span className="text-site-foreground truncate text-sm font-semibold">
                           {testimonial.author.name}
                         </span>
                         {testimonial.author.verified && (
@@ -446,7 +456,7 @@ export function WallOfLove() {
                       </div>
                       <Link
                         href={`https://x.com/${testimonial.author.handle}`}
-                        className="text-muted-foreground truncate text-xs hover:underline"
+                        className="text-site-muted-foreground truncate text-xs hover:underline"
                       >
                         {testimonial.author.handle}
                       </Link>
@@ -457,7 +467,7 @@ export function WallOfLove() {
             ))}
           </div>
           {!showAll && (
-            <div className="from-background to-gray-100/ pointer-events-none absolute inset-x-0 bottom-0 hidden h-60 bg-linear-to-t to-5%" />
+            <div className="from-site-background to-gray-100/ pointer-events-none absolute inset-x-0 bottom-0 hidden h-60 bg-linear-to-t to-5%" />
           )}
         </div>
         {testimonials.length > INITIAL_DISPLAY_COUNT && (

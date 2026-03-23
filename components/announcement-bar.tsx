@@ -22,10 +22,10 @@ export function AnnouncementBar({ config }: { config: AnnouncementBarConfig }) {
   return (
     <div
       data-slot="announcement-bar"
-      className="relative flex items-center justify-center gap-2 bg-black px-4 py-2.5 text-center text-sm text-white"
+      className="font-site-sans relative flex items-center justify-center gap-2 bg-black px-4 py-2.5 text-center text-sm text-white"
     >
       {config.badgeText ? (
-        <span className="shrink-0 rounded-full border border-emerald-500/20 bg-emerald-500/20 px-2 py-0.5 text-xs font-semibold text-emerald-400">
+        <span className="site-rounded-full shrink-0 border border-emerald-500/20 bg-emerald-500/20 px-2 py-0.5 text-xs font-semibold text-emerald-400">
           {config.badgeText}
         </span>
       ) : null}

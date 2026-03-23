@@ -30,7 +30,7 @@ export function ComponentPreviewTabs({
     <div
       data-slot="component-preview"
       className={cn(
-        "group relative mt-4 mb-12 flex flex-col gap-2 overflow-hidden rounded-xl border",
+        "group site-rounded-xl border-site-border relative mt-4 mb-12 flex flex-col gap-2 overflow-hidden border",
         className
       )}
       {...props}
@@ -40,7 +40,7 @@ export function ComponentPreviewTabs({
           data-align={align}
           data-chromeless={chromeLessOnMobile}
           className={cn(
-            "preview flex h-72 w-full justify-center p-10 data-[align=center]:items-center data-[align=end]:items-end data-[align=start]:items-start data-[chromeless=true]:h-auto data-[chromeless=true]:p-0",
+            "preview flex h-72 w-full justify-center p-10 font-sans data-[align=center]:items-center data-[align=end]:items-end data-[align=start]:items-start data-[chromeless=true]:h-auto data-[chromeless=true]:p-0",
             previewClassName
           )}
         >
@@ -50,7 +50,7 @@ export function ComponentPreviewTabs({
           <div
             data-slot="code"
             data-mobile-code-visible={isCodeExpanded}
-            className="relative overflow-hidden **:data-rehype-pretty-code-figure:m-0! **:data-rehype-pretty-code-figure:rounded-t-none **:data-rehype-pretty-code-figure:border-t [&_pre]:max-h-72"
+            className="**:data-rehype-pretty-code-figure:site-rounded-none relative overflow-hidden **:data-rehype-pretty-code-figure:m-0! **:data-rehype-pretty-code-figure:border-t [&_pre]:max-h-72"
           >
             {isCodeExpanded ? (
               source
@@ -62,14 +62,14 @@ export function ComponentPreviewTabs({
                     className="absolute inset-0"
                     style={{
                       background:
-                        "linear-gradient(to top, var(--color-code), color-mix(in oklab, var(--color-code) 60%, transparent), transparent)",
+                        "linear-gradient(to top, var(--color-site-code), color-mix(in oklab, var(--color-site-code) 60%, transparent), transparent)",
                     }}
                   />
                   <Button
                     type="button"
                     size="sm"
                     variant="outline"
-                    className="bg-background text-foreground dark:bg-background dark:text-foreground hover:bg-muted dark:hover:bg-muted relative z-10"
+                    className="bg-site-background text-site-foreground dark:bg-site-background dark:text-site-foreground hover:bg-site-muted dark:hover:bg-site-muted relative z-10"
                     onClick={() => {
                       setIsCodeExpanded(true)
                     }}

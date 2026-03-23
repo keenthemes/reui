@@ -36,7 +36,7 @@ export function CustomizerSidebar() {
     <aside
       ref={anchorRef}
       className={cn(
-        "bg-background border-border/80 sticky top-(--header-height) hidden h-[calc(100svh-var(--header-height))] w-60 shrink-0 flex-col overflow-hidden border-l transition-[width,transform] duration-300 ease-in-out lg:flex",
+        "bg-site-background border-site-border/80 sticky top-(--header-height) hidden h-[calc(100svh-var(--header-height))] w-60 shrink-0 flex-col overflow-hidden border-l transition-[width,transform] duration-300 ease-in-out lg:flex",
         !customizerOpen && "w-0 border-l-0"
       )}
     >

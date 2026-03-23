@@ -1,8 +1,10 @@
 "use client"
 
 import * as React from "react"
+import { usePathname, useSearchParams } from "next/navigation"
 import { PanelLeftOpen } from "lucide-react"
 
+import { hasActivePatternSearch } from "@/lib/pattern-search-filter"
 import { Button } from "@/components/ui/button"
 import { Kbd } from "@/components/ui/kbd"
 import { useSidebar } from "@/components/ui/sidebar"
@@ -17,21 +19,19 @@ import { PatternsHeaderGridToggle } from "./patterns-header-grid-toggle"
 import { PatternsHeaderMobileDrawer } from "./patterns-header-mobile-drawer"
 import { PatternsHeaderSearch } from "./patterns-header-search"
 
-interface PatternsHeaderProps {
-  isGridFixed?: boolean
-  iframeRef?: React.RefObject<HTMLIFrameElement | null>
-  count?: number
-}
-
-export function PatternsHeader({
-  isGridFixed,
-  iframeRef,
-  count,
-}: PatternsHeaderProps) {
+export function PatternsHeader() {
   const { open, toggleSidebar } = useSidebar()
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+  const hasSearch = hasActivePatternSearch(searchParams.get("search") || "")
+  const currentCategory =
+    pathname.startsWith("/patterns/") && pathname !== "/patterns"
+      ? (pathname.split("/").at(-1) ?? "")
+      : ""
+  const showGridToggle = Boolean(currentCategory) || hasSearch
 
   return (
-    <div className="border-border/80 bg-background sticky top-(--header-height) z-10 flex h-[51px] items-center gap-2 border-b px-6">
+    <div className="border-site-border/80 bg-site-background sticky top-(--header-height) z-10 flex h-[51px] items-center gap-2 border-b px-6 sm:px-8 xl:px-10">
       <PatternsHeaderMobileDrawer />
 
       {!open && (
@@ -41,7 +41,7 @@ export function PatternsHeader({
               onClick={toggleSidebar}
               variant="ghost"
               size="icon-sm"
-              className="text-muted-foreground hover:text-foreground -ml-2 hidden hover:bg-transparent md:flex"
+              className="text-site-muted-foreground hover:text-site-foreground -ml-2 hidden hover:bg-transparent md:flex"
             >
               <PanelLeftOpen />
             </Button>
@@ -52,10 +52,10 @@ export function PatternsHeader({
         </Tooltip>
       )}
 
-      <PatternsHeaderSearch count={count} />
+      <PatternsHeaderSearch />
 
       <div className="ml-auto flex items-center gap-2">
-        {!isGridFixed && <PatternsHeaderGridToggle iframeRef={iframeRef} />}
+        {showGridToggle && <PatternsHeaderGridToggle />}
         <CustomizerSidebarToggle />
       </div>
     </div>

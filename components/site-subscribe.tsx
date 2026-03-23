@@ -153,7 +153,7 @@ export function SiteSubscribe() {
     <footer className="pb-6">
       <div className="container">
         <div
-          className="flex flex-wrap items-center justify-between gap-7 rounded-xl px-10 py-10 md:px-20 md:py-16"
+          className="site-rounded-xl flex flex-wrap items-center justify-between gap-7 px-10 py-10 md:px-20 md:py-16"
           style={style}
         >
           <div className="flex flex-col gap-1.5">
@@ -177,7 +177,7 @@ export function SiteSubscribe() {
                 setShowRecaptcha(false)
               }}
               placeholder="Your email address"
-              className="border-input/20 h-auto w-full rounded-lg border bg-white/5 px-5 py-3 text-white/80 placeholder:text-white/50 focus:ring focus:outline-none md:w-64"
+              className="border-site-input/20 site-rounded-lg h-auto w-full border bg-white/5 px-5 py-3 text-white/80 placeholder:text-white/50 focus:ring focus:outline-none md:w-64"
               required
             />
 
@@ -194,7 +194,7 @@ export function SiteSubscribe() {
               trigger={
                 <Button
                   type="submit"
-                  className="h-auto w-full rounded-lg bg-white px-5 py-3 font-semibold text-black/80 hover:bg-white hover:text-black md:w-auto"
+                  className="site-rounded-lg h-auto w-full bg-white px-5 py-3 font-semibold text-black/80 hover:bg-white hover:text-black md:w-auto"
                   disabled={loading}
                 >
                   {loading ? "Subscribing..." : "Subscribe"}

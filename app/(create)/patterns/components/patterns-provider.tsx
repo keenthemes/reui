@@ -9,10 +9,12 @@ import {
   useState,
 } from "react"
 
+import type { PatternData } from "@/lib/registry"
 import { useConfig, usePatternsState } from "@/hooks/use-config"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 
 import { CustomizerSidebar } from "./customizer-sidebar"
+import { PatternsHeader } from "./patterns-header"
 import { PatternsSidebar } from "./patterns-sidebar"
 
 // SSR-safe defaults — must match server render to avoid hydration mismatch
@@ -23,6 +25,8 @@ const DEFAULT_CUSTOMIZER_OPEN = true
 interface PatternsContextValue {
   totalCount: number
   categoryCounts: Record<string, number>
+  /** Full pattern list for search result counts in the header */
+  allPatterns: PatternData[]
   sidebarCategoryFilter: string
   setSidebarCategoryFilter: (filter: string) => void
   sidebarMenuView: "menu" | "inline"
@@ -58,12 +62,14 @@ interface PatternsProviderProps {
   children: React.ReactNode
   totalCount: number
   categoryCounts: Record<string, number>
+  allPatterns: PatternData[]
 }
 
 export function PatternsProvider({
   children,
   totalCount,
   categoryCounts,
+  allPatterns,
 }: PatternsProviderProps) {
   // Mount guard: use SSR defaults until after first client paint,
   // then switch to stored values from localStorage (via Jotai atoms).
@@ -73,6 +79,7 @@ export function PatternsProvider({
   // re-enabling CSS transitions. This prevents sidebar open/close animations
   // from playing during initial layout settlement.
   const [settled, setSettled] = useState(false)
+
   useEffect(() => {
     setMounted(true)
     // Double rAF: first frame applies stored values to DOM,
@@ -132,6 +139,7 @@ export function PatternsProvider({
     () => ({
       totalCount,
       categoryCounts,
+      allPatterns,
       sidebarCategoryFilter,
       setSidebarCategoryFilter,
       sidebarMenuView,
@@ -140,6 +148,7 @@ export function PatternsProvider({
     [
       totalCount,
       categoryCounts,
+      allPatterns,
       sidebarCategoryFilter,
       sidebarMenuView,
       setSidebarMenuView,
@@ -180,7 +189,10 @@ export function PatternsProvider({
             suppressHydrationWarning
           >
             <PatternsSidebar />
-            <SidebarInset className="bg-transparent">{children}</SidebarInset>
+            <SidebarInset className="bg-transparent">
+              <PatternsHeader />
+              <div className="flex flex-1 flex-col">{children}</div>
+            </SidebarInset>
             <CustomizerSidebar />
           </SidebarProvider>
         </div>

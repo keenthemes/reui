@@ -42,7 +42,7 @@ export function PatternsSidebar() {
   }
 
   return (
-    <Sidebar className="bg-background border-border/80 top-(--header-height) h-[calc(100svh-var(--header-height))] border-r">
+    <Sidebar className="bg-site-background border-site-border/80 top-(--header-height) h-[calc(100svh-var(--header-height))] border-r">
       <PatternsSidebarHeader />
       <SidebarContent className="p-0">
         <PatternsSidebarContent

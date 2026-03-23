@@ -31,7 +31,7 @@ export default function Page() {
         {templates.map((template) => (
           <div
             key={template.title}
-            className="border-border/60 flex flex-col gap-6 border-t py-15 lg:flex-row lg:items-center xl:gap-12 2xl:gap-20"
+            className="border-site-border/60 flex flex-col gap-6 border-t py-15 lg:flex-row lg:items-center xl:gap-12 2xl:gap-20"
           >
             {/* Left: Info */}
             <div className="order-2 w-full shrink-0 space-y-6 md:w-[500px] lg:order-1">
@@ -42,7 +42,7 @@ export default function Page() {
                 {template.free && <Badge variant="outline">Free</Badge>}
               </div>
 
-              <div className="text-muted-foreground text-base">
+              <div className="text-site-muted-foreground text-base">
                 {template.description}
               </div>
 
@@ -81,7 +81,7 @@ export default function Page() {
             </div>
 
             {/* Right: Image */}
-            <div className="order-1 flex w-full grow items-center justify-center overflow-hidden rounded-xl border shadow-md lg:order-2">
+            <div className="site-rounded-xl border-site-border order-1 flex w-full grow items-center justify-center overflow-hidden border shadow-md lg:order-2">
               <Link href={template.previewUrl} target="_blank">
                 <img
                   src={"/templates/" + template.thumbnail}

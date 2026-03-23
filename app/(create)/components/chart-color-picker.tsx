@@ -75,8 +75,10 @@ export function ChartColorPicker({
       <Picker>
         <PickerTrigger>
           <div className="min-w-0 flex-1 pr-10 text-left">
-            <div className="text-muted-foreground text-xs">Chart Color</div>
-            <div className="text-foreground truncate text-sm font-medium">
+            <div className="text-site-muted-foreground text-xs">
+              Chart Color
+            </div>
+            <div className="text-site-foreground truncate text-sm font-medium">
               {mounted ? (currentChartColor?.title ?? "...") : "..."}
             </div>
           </div>
@@ -92,7 +94,7 @@ export function ChartColorPicker({
                     ],
                 } as React.CSSProperties
               }
-              className="pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 rounded-full bg-(--color) select-none"
+              className="site-rounded-full pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 bg-(--color) select-none"
             />
           )}
         </PickerTrigger>

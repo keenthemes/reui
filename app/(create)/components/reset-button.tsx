@@ -54,11 +54,11 @@ export function ResetButton() {
         <Button
           variant="ghost"
           size="sm"
-          className="border-foreground/10 bg-muted/50 hidden h-[calc(--spacing(13.5))] w-[140px] touch-manipulation justify-between rounded-xl border select-none focus-visible:border-transparent focus-visible:ring-1 sm:rounded-lg md:flex md:w-full md:rounded-lg md:border-transparent md:bg-transparent md:pr-3.5! md:pl-2!"
+          className="border-site-foreground/10 bg-site-muted/50 site-rounded-xl sm:site-rounded-lg md:site-rounded-lg hidden h-[calc(--spacing(13.5))] w-[140px] touch-manipulation justify-between border select-none focus-visible:border-transparent focus-visible:ring-1 md:flex md:w-full md:border-transparent md:bg-transparent md:pr-3.5! md:pl-2!"
         >
           <div className="flex flex-col justify-start text-left">
-            <div className="text-muted-foreground text-xs">Reset</div>
-            <div className="text-foreground text-sm font-medium">
+            <div className="text-site-muted-foreground text-xs">Reset</div>
+            <div className="text-site-foreground text-sm font-medium">
               Start Over
             </div>
           </div>
@@ -74,8 +74,10 @@ export function ResetButton() {
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel className="rounded-lg">Cancel</AlertDialogCancel>
-          <AlertDialogAction className="rounded-lg" onClick={handleReset}>
+          <AlertDialogCancel className="site-rounded-lg">
+            Cancel
+          </AlertDialogCancel>
+          <AlertDialogAction className="site-rounded-lg" onClick={handleReset}>
             Reset
           </AlertDialogAction>
         </AlertDialogFooter>

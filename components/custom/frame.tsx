@@ -11,7 +11,7 @@ interface FrameProps extends React.HTMLAttributes<HTMLDivElement> {
 export const Frame = React.forwardRef<HTMLDivElement, FrameProps>(
   ({ children, url, className, ...props }, ref) => {
     const outerClasses = cn(
-      "bg-background relative border border-border/80 flex flex-col overflow-hidden rounded-2xl p-0.5 shadow-sm shadow-black/5",
+      "bg-site-background border-site-border/80 relative flex flex-col overflow-hidden rounded-[16px] border p-0.5 shadow-sm shadow-black/5",
       className
     )
 
@@ -22,7 +22,7 @@ export const Frame = React.forwardRef<HTMLDivElement, FrameProps>(
           ref={ref as any}
           className={cn(
             outerClasses,
-            "hover:ring-foreground/10 transition-all hover:shadow-lg"
+            "hover:ring-site-foreground/10 transition-all hover:shadow-lg"
           )}
         >
           {children}
@@ -47,7 +47,7 @@ export function FrameContent({
   return (
     <div
       className={cn(
-        "border-border relative overflow-hidden rounded-xl border",
+        "border-site-border site-rounded-xl relative overflow-hidden border",
         className
       )}
       {...props}
@@ -63,7 +63,10 @@ export function FrameFooter({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={cn("flex flex-col gap-1 p-3", className)} {...props}>
+    <div
+      className={cn("font-site-sans flex flex-col gap-1 p-3", className)}
+      {...props}
+    >
       {children}
     </div>
   )

@@ -170,6 +170,17 @@ export function DesignSystemProvider({
     }
     return FONTS.find((fontOption) => fontOption.value === fontHeading)
   }, [font, fontHeading, selectedFont])
+  const previousDocumentStateRef = React.useRef<{
+    styleClasses: string[]
+    baseColorClasses: string[]
+    fontSans: string
+    fontHeading: string
+    bodyFontFamily: string
+  } | null>(null)
+  const previousThemeStyleRef = React.useRef<{
+    existed: boolean
+    textContent: string
+  } | null>(null)
 
   React.useEffect(() => {
     if (style === "lyra" && radius !== "none") {
@@ -177,6 +188,31 @@ export function DesignSystemProvider({
       setConfig((prev) => ({ ...prev, radius: "none" }))
     }
   }, [style, radius, setParams, setConfig])
+
+  React.useEffect(() => {
+    if (!isInIframe()) {
+      return
+    }
+
+    const root = document.documentElement
+    const body = document.body
+    const previousRootOverflowY = root.style.overflowY
+    const previousBodyOverflowY = body.style.overflowY
+    const previousRootOverscroll = root.style.overscrollBehavior
+    const previousBodyOverscroll = body.style.overscrollBehavior
+
+    root.style.overflowY = "hidden"
+    body.style.overflowY = "hidden"
+    root.style.overscrollBehavior = "none"
+    body.style.overscrollBehavior = "none"
+
+    return () => {
+      root.style.overflowY = previousRootOverflowY
+      body.style.overflowY = previousBodyOverflowY
+      root.style.overscrollBehavior = previousRootOverscroll
+      body.style.overscrollBehavior = previousBodyOverscroll
+    }
+  }, [])
 
   const [isReady, setIsReady] = React.useState(false)
 
@@ -187,6 +223,21 @@ export function DesignSystemProvider({
     }
 
     const body = document.body
+    const root = document.documentElement
+
+    if (!previousDocumentStateRef.current) {
+      previousDocumentStateRef.current = {
+        styleClasses: Array.from(body.classList).filter((className) =>
+          className.startsWith("style-")
+        ),
+        baseColorClasses: Array.from(body.classList).filter((className) =>
+          className.startsWith("base-color-")
+        ),
+        fontSans: root.style.getPropertyValue("--font-sans"),
+        fontHeading: root.style.getPropertyValue("--font-heading"),
+        bodyFontFamily: body.style.fontFamily,
+      }
+    }
 
     // Update style class in place (remove old, add new).
     body.classList.forEach((className) => {
@@ -206,13 +257,11 @@ export function DesignSystemProvider({
 
     // Body / UI font (--font-sans) and heading (--font-heading).
     if (selectedFont) {
-      document.documentElement.style.setProperty(
-        "--font-sans",
-        selectedFont.font.style.fontFamily
-      )
+      root.style.setProperty("--font-sans", selectedFont.font.style.fontFamily)
+      body.style.fontFamily = selectedFont.font.style.fontFamily
     }
     if (selectedHeadingFont) {
-      document.documentElement.style.setProperty(
+      root.style.setProperty(
         "--font-heading",
         selectedHeadingFont.font.style.fontFamily
       )
@@ -229,6 +278,69 @@ export function DesignSystemProvider({
     selectedFont,
     selectedHeadingFont,
   ])
+
+  React.useEffect(() => {
+    return () => {
+      const previousDocumentState = previousDocumentStateRef.current
+      const body = document.body
+      const root = document.documentElement
+
+      if (previousDocumentState) {
+        body.classList.forEach((className) => {
+          if (
+            className.startsWith("style-") ||
+            className.startsWith("base-color-")
+          ) {
+            body.classList.remove(className)
+          }
+        })
+
+        previousDocumentState.styleClasses.forEach((className) => {
+          body.classList.add(className)
+        })
+
+        previousDocumentState.baseColorClasses.forEach((className) => {
+          body.classList.add(className)
+        })
+
+        if (previousDocumentState.fontSans) {
+          root.style.setProperty("--font-sans", previousDocumentState.fontSans)
+        } else {
+          root.style.removeProperty("--font-sans")
+        }
+
+        if (previousDocumentState.fontHeading) {
+          root.style.setProperty(
+            "--font-heading",
+            previousDocumentState.fontHeading
+          )
+        } else {
+          root.style.removeProperty("--font-heading")
+        }
+
+        if (previousDocumentState.bodyFontFamily) {
+          body.style.fontFamily = previousDocumentState.bodyFontFamily
+        } else {
+          body.style.removeProperty("font-family")
+        }
+      }
+
+      const styleElement = document.getElementById(
+        "design-system-theme-vars"
+      ) as HTMLStyleElement | null
+
+      if (!styleElement) {
+        return
+      }
+
+      if (previousThemeStyleRef.current?.existed) {
+        styleElement.textContent = previousThemeStyleRef.current.textContent
+        return
+      }
+
+      styleElement.remove()
+    }
+  }, [])
 
   const registryTheme = React.useMemo(() => {
     if (
@@ -260,9 +372,17 @@ export function DesignSystemProvider({
     }
 
     const styleId = "design-system-theme-vars"
-    let styleElement = document.getElementById(
+    const existingStyleElement = document.getElementById(
       styleId
     ) as HTMLStyleElement | null
+    let styleElement = existingStyleElement
+
+    if (!previousThemeStyleRef.current) {
+      previousThemeStyleRef.current = {
+        existed: Boolean(existingStyleElement),
+        textContent: existingStyleElement?.textContent ?? "",
+      }
+    }
 
     if (!styleElement) {
       styleElement = document.createElement("style")
@@ -317,6 +437,93 @@ export function DesignSystemProvider({
         { type: "iframe-ready" },
         window.location.origin
       )
+    }
+  }, [isReady])
+
+  // Keep the host iframe height in sync with the rendered preview so the
+  // parent page can use normal document scrolling instead of an inner iframe
+  // scrollbar. ResizeObserver handles layout changes while MutationObserver
+  // catches dynamic content insertions before layout settles.
+  React.useEffect(() => {
+    if (!isReady || !isInIframe()) {
+      return
+    }
+
+    let frameId = 0
+    let lastHeight = 0
+
+    const getDocumentHeight = () => {
+      const root = document.documentElement
+      const body = document.body
+
+      return Math.ceil(
+        Math.max(
+          root.scrollHeight,
+          body.scrollHeight,
+          root.offsetHeight,
+          body.offsetHeight,
+          root.getBoundingClientRect().height,
+          body.getBoundingClientRect().height
+        )
+      )
+    }
+
+    const postHeight = () => {
+      frameId = 0
+      const nextHeight = getDocumentHeight()
+
+      if (!nextHeight || Math.abs(nextHeight - lastHeight) < 2) {
+        return
+      }
+
+      lastHeight = nextHeight
+      window.parent.postMessage(
+        { type: "iframe-height", height: nextHeight },
+        window.location.origin
+      )
+    }
+
+    const scheduleHeightUpdate = () => {
+      if (frameId) {
+        return
+      }
+
+      frameId = window.requestAnimationFrame(postHeight)
+    }
+
+    scheduleHeightUpdate()
+
+    const resizeObserver = new ResizeObserver(() => {
+      scheduleHeightUpdate()
+    })
+
+    resizeObserver.observe(document.documentElement)
+    resizeObserver.observe(document.body)
+
+    const mutationObserver = new MutationObserver(() => {
+      scheduleHeightUpdate()
+    })
+
+    mutationObserver.observe(document.body, {
+      childList: true,
+      subtree: true,
+      characterData: true,
+    })
+
+    window.addEventListener("resize", scheduleHeightUpdate)
+
+    void document.fonts?.ready?.then(() => {
+      scheduleHeightUpdate()
+    })
+
+    return () => {
+      if (frameId) {
+        window.cancelAnimationFrame(frameId)
+      }
+
+      resizeObserver.disconnect()
+      mutationObserver.disconnect()
+      window.removeEventListener("resize", scheduleHeightUpdate)
     }
   }, [isReady])
 

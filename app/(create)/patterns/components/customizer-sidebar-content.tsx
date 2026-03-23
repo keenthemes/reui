@@ -85,7 +85,7 @@ export function CustomizerSidebarContent({
           </FieldGroup>
         </div>
       </ScrollArea>
-      <div className="border-border/80 flex flex-col gap-0 border-t p-3">
+      <div className="border-site-border/80 flex flex-col gap-0 border-t p-3">
         <RandomButton />
         <ResetButton />
       </div>

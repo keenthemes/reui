@@ -5,6 +5,7 @@ import { getRegistryComponent } from "@/lib/registry"
 import { ComponentClient } from "@/components/component-client"
 import { ComponentPreviewTabs } from "@/components/component-preview-tabs"
 import { ComponentSource } from "@/components/component-source"
+import type { IconLibraryName } from "@/registry/config"
 
 // Default styleName - matches the API default
 const DEFAULT_STYLE_NAME = "radix-nova"
@@ -18,11 +19,13 @@ export function ComponentPreview({
   hideCode = false,
   chromeLessOnMobile = false,
   styleName = DEFAULT_STYLE_NAME,
+  iconLibrary,
   code,
   ...props
 }: React.ComponentProps<"div"> & {
   name: string
   styleName?: string
+  iconLibrary?: IconLibraryName
   align?: "center" | "start" | "end"
   description?: string
   hideCode?: boolean
@@ -35,9 +38,9 @@ export function ComponentPreview({
 
   if (!Component) {
     return (
-      <p className="text-muted-foreground mt-6 text-sm">
+      <p className="text-site-muted-foreground mt-6 text-sm">
         Component{" "}
-        <code className="bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm">
+        <code className="bg-site-muted site-rounded-sm relative px-[0.3rem] py-[0.2rem] font-mono text-sm">
           {name}
         </code>{" "}
         not found in registry.
@@ -57,6 +60,7 @@ export function ComponentPreview({
           name={name}
           collapsible={false}
           styleName={styleName}
+          iconLibrary={iconLibrary}
           code={code}
           showCopyButton
         />
@@ -66,6 +70,7 @@ export function ComponentPreview({
           name={name}
           collapsible={false}
           styleName={styleName}
+          iconLibrary={iconLibrary}
           maxLines={3}
           code={code}
           showCopyButton={false}
