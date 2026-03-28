@@ -1,11 +1,14 @@
 /**
  * sync-registry.mts
  *
- * Syncs registry content from shadcn/apps/v4/registry → registry/
+ * Syncs upstream shadcn registry sources from `shadcn/apps/v4/registry` → `registry/`
+ * (shared primitives, hooks, UI, styles). ReUI catalog blocks (`c-*` under
+ * `registry-reui/bases/*/components`) are **not** copied from here — generate them with
+ * `pnpm registry:generate` after edits.
  *
  * Usage:
- *   pnpm sync:registry           # sync changed/new files
- *   pnpm sync:registry -- --dry  # preview without writing
+ *   pnpm registry:sync           # sync changed/new files (+ icons build via package script)
+ *   pnpm registry:sync -- --dry  # preview without writing
  */
 
 import fs from "node:fs"

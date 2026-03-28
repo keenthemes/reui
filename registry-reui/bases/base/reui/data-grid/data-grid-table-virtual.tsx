@@ -285,7 +285,9 @@ function DataGridTableVirtual<TData>({
     table,
     props.tableLayout?.rowsPinnable
   )
-  const columnCount = table.getVisibleFlatColumns().length
+  const columnCount =
+    table.getVisibleFlatColumns().length +
+    (props.tableLayout?.columnsResizable ? 1 : 0)
   const isInfiniteMode = typeof onFetchMore === "function"
   const [viewportElements, setViewportElements] =
     useState<DataGridTableVirtualScrollElements>({

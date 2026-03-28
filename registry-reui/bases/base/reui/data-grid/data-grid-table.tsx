@@ -4,11 +4,14 @@ import {
   CSSProperties,
   Fragment,
   memo,
-  MouseEvent,
+  MouseEvent as ReactMouseEvent,
   ReactNode,
+  TouchEvent as ReactTouchEvent,
   Ref,
-  TouchEvent,
+  useCallback,
+  useEffect,
   useMemo,
+  useState,
 } from "react"
 import { useDataGrid } from "@/registry-reui/bases/base/reui/data-grid/data-grid"
 import {
@@ -91,6 +94,187 @@ function assignRef<T>(ref: Ref<T> | undefined, value: T | null) {
   ;(ref as { current: T | null }).current = value
 }
 
+type DataGridResizeStartEvent =
+  | ReactMouseEvent<HTMLDivElement>
+  | ReactTouchEvent<HTMLDivElement>
+
+type DataGridResizeDocumentEvent = globalThis.MouseEvent | globalThis.TouchEvent
+
+function isDataGridTouchEvent(
+  event: DataGridResizeStartEvent | DataGridResizeDocumentEvent
+): event is ReactTouchEvent<HTMLDivElement> | globalThis.TouchEvent {
+  return "touches" in event
+}
+
+function getDataGridResizeEventClientX(
+  event: DataGridResizeStartEvent | DataGridResizeDocumentEvent
+) {
+  if (isDataGridTouchEvent(event)) {
+    return event.touches[0]?.clientX ?? event.changedTouches[0]?.clientX
+  }
+
+  return event.clientX
+}
+
+function startDataGridColumnResizeOnEnd<TData>(
+  event: DataGridResizeStartEvent,
+  header: Header<TData, unknown>,
+  table: Table<TData>
+) {
+  const column = table.getColumn(header.column.id)
+
+  if (!column || !column.getCanResize()) return
+  if (isDataGridTouchEvent(event) && event.touches.length > 1) return
+
+  event.persist?.()
+
+  const ownerDocument = event.currentTarget.ownerDocument
+  const previousBodyCursor = ownerDocument.body.style.cursor
+  const previousDocumentCursor = ownerDocument.documentElement.style.cursor
+  const startSize = header.getSize()
+  const dragStartClientX = getDataGridResizeEventClientX(event)
+  const headerCell = event.currentTarget.closest("th")
+  const headerRect = headerCell?.getBoundingClientRect()
+  const startOffset =
+    headerRect &&
+    Number.isFinite(
+      table.options.columnResizeDirection === "rtl"
+        ? headerRect.left
+        : headerRect.right
+    )
+      ? table.options.columnResizeDirection === "rtl"
+        ? headerRect.left
+        : headerRect.right
+      : dragStartClientX
+
+  if (typeof dragStartClientX !== "number" || typeof startOffset !== "number") {
+    return
+  }
+
+  ownerDocument.body.style.cursor = "col-resize"
+  ownerDocument.documentElement.style.cursor = "col-resize"
+
+  const columnSizingStart = header
+    .getLeafHeaders()
+    .map(
+      (leafHeader) =>
+        [leafHeader.column.id, leafHeader.column.getSize()] as [string, number]
+    )
+  const directionMultiplier =
+    table.options.columnResizeDirection === "rtl" ? -1 : 1
+
+  const updateOffset = (clientXPos?: number, commit = false) => {
+    if (typeof clientXPos !== "number") return
+
+    let nextColumnSizing: Record<string, number> = {}
+    const deltaOffset = (clientXPos - dragStartClientX) * directionMultiplier
+    const deltaPercentage = Math.max(deltaOffset / startSize, -0.999999)
+
+    columnSizingStart.forEach(([columnId, headerSize]) => {
+      nextColumnSizing[columnId] =
+        Math.round(
+          Math.max(headerSize + headerSize * deltaPercentage, 0) * 100
+        ) / 100
+    })
+
+    table.setColumnSizingInfo((old) => ({
+      ...old,
+      startOffset,
+      startSize,
+      deltaOffset,
+      deltaPercentage,
+      columnSizingStart,
+      isResizingColumn: column.id,
+    }))
+
+    if (commit) {
+      table.setColumnSizing((old) => ({
+        ...old,
+        ...nextColumnSizing,
+      }))
+    }
+  }
+
+  const endResize = (clientXPos?: number) => {
+    updateOffset(clientXPos, true)
+    table.setColumnSizingInfo((old) => ({
+      ...old,
+      isResizingColumn: false,
+      startOffset: null,
+      startSize: null,
+      deltaOffset: null,
+      deltaPercentage: null,
+      columnSizingStart: [],
+    }))
+    ownerDocument.body.style.cursor = previousBodyCursor
+    ownerDocument.documentElement.style.cursor = previousDocumentCursor
+  }
+
+  const mouseMoveHandler = (moveEvent: globalThis.MouseEvent) => {
+    updateOffset(moveEvent.clientX)
+  }
+  const mouseUpHandler = (upEvent: globalThis.MouseEvent) => {
+    ownerDocument.removeEventListener("mousemove", mouseMoveHandler)
+    ownerDocument.removeEventListener("mouseup", mouseUpHandler)
+    endResize(upEvent.clientX)
+  }
+  const touchMoveHandler = (moveEvent: globalThis.TouchEvent) => {
+    if (moveEvent.cancelable) {
+      moveEvent.preventDefault()
+      moveEvent.stopPropagation()
+    }
+
+    updateOffset(getDataGridResizeEventClientX(moveEvent))
+  }
+  const touchEndHandler = (endEvent: globalThis.TouchEvent) => {
+    ownerDocument.removeEventListener("touchmove", touchMoveHandler)
+    ownerDocument.removeEventListener("touchend", touchEndHandler)
+
+    if (endEvent.cancelable) {
+      endEvent.preventDefault()
+      endEvent.stopPropagation()
+    }
+
+    endResize(getDataGridResizeEventClientX(endEvent))
+  }
+
+  const passiveIfSupported = { passive: false } as const
+
+  if (isDataGridTouchEvent(event)) {
+    ownerDocument.addEventListener(
+      "touchmove",
+      touchMoveHandler,
+      passiveIfSupported
+    )
+    ownerDocument.addEventListener(
+      "touchend",
+      touchEndHandler,
+      passiveIfSupported
+    )
+  } else {
+    ownerDocument.addEventListener(
+      "mousemove",
+      mouseMoveHandler,
+      passiveIfSupported
+    )
+    ownerDocument.addEventListener(
+      "mouseup",
+      mouseUpHandler,
+      passiveIfSupported
+    )
+  }
+
+  table.setColumnSizingInfo((old) => ({
+    ...old,
+    startOffset,
+    startSize,
+    deltaOffset: 0,
+    deltaPercentage: 0,
+    columnSizingStart,
+    isResizingColumn: column.id,
+  }))
+}
+
 type DataGridTablePinnedBoundary = "top" | "bottom"
 
 function getDataGridTableRowSections<TData>(
@@ -153,6 +337,64 @@ function getDataGridTableResolvedRows<TData>(
   return resolvedRows
 }
 
+function DataGridTableFillCol() {
+  const { props } = useDataGrid()
+
+  if (!props.tableLayout?.columnsResizable) return null
+
+  return (
+    <col
+      data-slot="data-grid-table-fill-col"
+      style={{ width: "var(--data-grid-fill-size, 0px)" }}
+    />
+  )
+}
+
+function DataGridTableFillHeadCell() {
+  const { props } = useDataGrid()
+
+  if (!props.tableLayout?.columnsResizable) return null
+
+  return (
+    <th
+      aria-hidden="true"
+      data-slot="data-grid-table-fill-head-cell"
+      style={{ width: "var(--data-grid-fill-size, 0px)" }}
+      className="p-0"
+    />
+  )
+}
+
+function DataGridTableFillBodyCell() {
+  const { props } = useDataGrid()
+
+  if (!props.tableLayout?.columnsResizable) return null
+
+  return (
+    <td
+      aria-hidden="true"
+      data-slot="data-grid-table-fill-body-cell"
+      style={{ width: "var(--data-grid-fill-size, 0px)" }}
+      className="p-0"
+    />
+  )
+}
+
+function DataGridTableFillFootCell() {
+  const { props } = useDataGrid()
+
+  if (!props.tableLayout?.columnsResizable) return null
+
+  return (
+    <td
+      aria-hidden="true"
+      data-slot="data-grid-table-fill-foot-cell"
+      style={{ width: "var(--data-grid-fill-size, 0px)" }}
+      className="border-t p-0"
+    />
+  )
+}
+
 function DataGridTableBase({ children }: { children: ReactNode }) {
   const { props, table } = useDataGrid()
   const visibleColumns = table.getVisibleLeafColumns()
@@ -177,8 +419,6 @@ function DataGridTableBase({ children }: { children: ReactNode }) {
   }, [
     props.tableLayout?.columnsResizable,
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    table.getState().columnSizingInfo,
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     table.getState().columnSizing,
   ])
 
@@ -186,7 +426,8 @@ function DataGridTableBase({ children }: { children: ReactNode }) {
     <table
       data-slot="data-grid-table"
       className={cn(
-        "text-foreground style-vega:text-sm style-maia:text-sm style-nova:text-sm style-lyra:text-xs style-mira:text-xs/relaxed w-full min-w-full caption-bottom text-left align-middle font-normal rtl:text-right",
+        "text-foreground style-vega:text-sm style-maia:text-sm style-nova:text-sm style-lyra:text-xs style-mira:text-xs/relaxed caption-bottom text-left align-middle font-normal rtl:text-right",
+        props.tableLayout?.columnsResizable ? "min-w-0" : "w-full min-w-full",
         props.tableLayout?.width === "auto" ? "table-auto" : "table-fixed",
         !props.tableLayout?.columnsResizable && "",
         !props.tableLayout?.columnsDraggable &&
@@ -195,7 +436,10 @@ function DataGridTableBase({ children }: { children: ReactNode }) {
       )}
       style={
         props.tableLayout?.columnsResizable
-          ? { ...columnSizeVars, width: table.getTotalSize() }
+          ? {
+              ...columnSizeVars,
+              width: `calc(${table.getTotalSize()}px + var(--data-grid-fill-size, 0px))`,
+            }
           : undefined
       }
     >
@@ -212,6 +456,7 @@ function DataGridTableBase({ children }: { children: ReactNode }) {
             }
           />
         ))}
+        <DataGridTableFillCol />
       </colgroup>
       {children}
     </table>
@@ -230,20 +475,67 @@ function DataGridTableViewport({
   style?: CSSProperties
 }) {
   const { props, table } = useDataGrid()
+  const [viewportElement, setViewportElement] = useState<HTMLDivElement | null>(
+    null
+  )
+  const [containerWidth, setContainerWidth] = useState(0)
+  const handleViewportRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      setViewportElement(node)
+      assignRef(viewportRef, node)
+    },
+    [viewportRef]
+  )
+  const fillWidth =
+    props.tableLayout?.columnsResizable && containerWidth > 0
+      ? Math.max(0, containerWidth - table.getTotalSize())
+      : 0
+
+  useEffect(() => {
+    if (!viewportElement || !props.tableLayout?.columnsResizable) {
+      setContainerWidth(0)
+      return
+    }
+
+    const scrollViewport =
+      (viewportElement.closest(
+        '[data-slot="scroll-area-viewport"]'
+      ) as HTMLElement | null) ?? viewportElement.parentElement
+    const measurementTarget = scrollViewport ?? viewportElement
+
+    const syncContainerWidth = () => {
+      setContainerWidth(measurementTarget.clientWidth)
+    }
+
+    syncContainerWidth()
+
+    if (typeof ResizeObserver === "undefined") return
+
+    const observer = new ResizeObserver(syncContainerWidth)
+    observer.observe(measurementTarget)
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [props.tableLayout?.columnsResizable, viewportElement])
 
   return (
     <div
       data-slot="data-grid-table-viewport"
-      ref={viewportRef}
-      className={cn("min-w-full align-top", className)}
+      ref={handleViewportRef}
+      className={cn("relative min-w-full align-top", className)}
       style={{
         ...(props.tableLayout?.columnsResizable
-          ? { width: table.getTotalSize() }
+          ? {
+              width: `calc(${table.getTotalSize()}px + var(--data-grid-fill-size, 0px))`,
+              ["--data-grid-fill-size" as string]: `${fillWidth}px`,
+            }
           : undefined),
         ...style,
       }}
     >
       {children}
+      <DataGridTableResizeIndicator viewportElement={viewportElement} />
     </div>
   )
 }
@@ -285,6 +577,7 @@ function DataGridTableHeadRow<TData>({
       )}
     >
       {children}
+      <DataGridTableFillHeadCell />
     </tr>
   )
 }
@@ -366,22 +659,37 @@ function DataGridTableHeadRowCellResize<TData>({
 }: {
   header: Header<TData, unknown>
 }) {
+  const { props, table } = useDataGrid()
   const { column } = header
   const isLastVisibleColumn =
     column.getIndex() ===
     header.getContext().table.getVisibleLeafColumns().length - 1
-  const resizeHandler = header.getResizeHandler()
+  const isResizeModeOnEnd =
+    (props.tableLayout?.columnsResizeMode ?? table.options.columnResizeMode) ===
+    "onEnd"
 
-  const handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
+  const handleMouseDown = (event: ReactMouseEvent<HTMLDivElement>) => {
     event.preventDefault()
     event.stopPropagation()
-    resizeHandler(event)
+
+    if (isResizeModeOnEnd) {
+      startDataGridColumnResizeOnEnd(event, header, table)
+      return
+    }
+
+    header.getResizeHandler()(event)
   }
 
-  const handleTouchStart = (event: TouchEvent<HTMLDivElement>) => {
+  const handleTouchStart = (event: ReactTouchEvent<HTMLDivElement>) => {
     event.preventDefault()
     event.stopPropagation()
-    resizeHandler(event)
+
+    if (isResizeModeOnEnd) {
+      startDataGridColumnResizeOnEnd(event, header, table)
+      return
+    }
+
+    header.getResizeHandler()(event)
   }
 
   return (
@@ -396,12 +704,74 @@ function DataGridTableHeadRowCellResize<TData>({
             ? "end-0 w-5 justify-end before:hidden"
             : "-end-2 w-5 justify-center before:absolute before:inset-y-0 before:w-px before:-translate-x-px before:bg-border",
           column.getIsResizing() &&
-            (isLastVisibleColumn
-              ? "before:absolute before:end-0 before:block before:inset-y-0 before:w-0.5 before:bg-primary opacity-100"
-              : "before:block before:bg-primary before:w-0.5 opacity-100")
+            (isResizeModeOnEnd
+              ? "opacity-100"
+              : isLastVisibleColumn
+                ? "before:absolute before:end-0 before:block before:inset-y-0 before:w-0.5 before:bg-primary opacity-100"
+                : "before:block before:bg-primary before:w-0.5 opacity-100")
         ),
       }}
     />
+  )
+}
+
+function DataGridTableResizeIndicator({
+  viewportElement,
+}: {
+  viewportElement: HTMLDivElement | null
+}) {
+  const { props, table } = useDataGrid()
+  const columnSizingInfo = table.getState().columnSizingInfo
+  const resizingColumnId = columnSizingInfo.isResizingColumn
+  const resizeMode =
+    props.tableLayout?.columnsResizeMode ?? table.options.columnResizeMode
+
+  if (
+    !props.tableLayout?.columnsResizable ||
+    resizeMode !== "onEnd" ||
+    !resizingColumnId
+  ) {
+    return null
+  }
+
+  const resizingHeader = table
+    .getFlatHeaders()
+    .find(
+      (header) =>
+        header.column.id === resizingColumnId || header.id === resizingColumnId
+    )
+
+  if (!resizingHeader) return null
+
+  const deltaOffset = columnSizingInfo.deltaOffset ?? 0
+  const headerHeight =
+    viewportElement
+      ?.querySelector('[data-slot="data-grid-table"] thead')
+      ?.getBoundingClientRect().height ?? 0
+  const indicatorLeft =
+    typeof columnSizingInfo.startOffset === "number" && viewportElement
+      ? columnSizingInfo.startOffset -
+        viewportElement.getBoundingClientRect().left
+      : resizingHeader.getStart() + resizingHeader.getSize()
+
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-y-0 z-20"
+      style={{
+        left: indicatorLeft,
+        transform: `translateX(${deltaOffset}px)`,
+      }}
+    >
+      <div className="bg-primary/85 absolute inset-y-0 left-0 w-px -translate-x-1/2" />
+      <div
+        className="bg-primary absolute top-0 left-0 -translate-x-1/2 rounded-b-sm shadow-xs"
+        style={{
+          width: 5,
+          height: Math.max(headerHeight, 6),
+        }}
+      />
+    </div>
   )
 }
 
@@ -447,6 +817,7 @@ function DataGridTableFootRow({ children }: { children: ReactNode }) {
       )}
     >
       {children}
+      <DataGridTableFillFootCell />
     </tr>
   )
 }
@@ -498,6 +869,7 @@ function DataGridTableBodyRowSkeleton({ children }: { children: ReactNode }) {
       )}
     >
       {children}
+      <DataGridTableFillBodyCell />
     </tr>
   )
 }
@@ -596,6 +968,7 @@ function DataGridTableBodyRow<TData>({
       )}
     >
       {children}
+      <DataGridTableFillBodyCell />
     </tr>
   )
 }
@@ -609,7 +982,12 @@ function DataGridTableBodyRowExpandded<TData>({ row }: { row: Row<TData> }) {
         props.tableLayout?.rowBorder && "[&:not(:last-child)>td]:border-b"
       )}
     >
-      <td colSpan={row.getVisibleCells().length}>
+      <td
+        colSpan={
+          row.getVisibleCells().length +
+          (props.tableLayout?.columnsResizable ? 1 : 0)
+        }
+      >
         {table
           .getAllColumns()
           .find((column) => column.columnDef.meta?.expandedContent)
@@ -710,7 +1088,9 @@ function DataGridTableRenderedRow<TData>({
 
 function DataGridTableEmpty() {
   const { table, props } = useDataGrid()
-  const visibleColumnCount = table.getVisibleLeafColumns().length
+  const visibleColumnCount =
+    table.getVisibleLeafColumns().length +
+    (props.tableLayout?.columnsResizable ? 1 : 0)
 
   return (
     <tr>

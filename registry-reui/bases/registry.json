@@ -3,411 +3,411 @@
     {
       "name": "accordion",
       "label": "Accordion",
-      "description": "Open-source shadcn accordion patterns for FAQ layouts, settings panels, and help sections.",
+      "description": "Open-source shadcn accordion components for FAQ layouts, settings panels, and help sections.",
       "count": 11
     },
     {
       "name": "alert",
       "label": "Alert",
-      "description": "Open-source shadcn alert patterns for status messages, warning banners, and destructive notices.",
+      "description": "Open-source shadcn alert components for status messages, warning banners, and destructive notices.",
       "count": 20
     },
     {
       "name": "alert-dialog",
       "label": "Alert Dialog",
-      "description": "Open-source shadcn alert dialog patterns for delete confirmations, destructive actions, and critical decisions.",
+      "description": "Open-source shadcn alert dialog components for delete confirmations, destructive actions, and critical decisions.",
       "count": 14
     },
     {
       "name": "aspect-ratio",
       "label": "Aspect Ratio",
-      "description": "Open-source shadcn aspect ratio patterns for responsive media, image galleries, and video previews.",
+      "description": "Open-source shadcn aspect ratio components for responsive media, image galleries, and video previews.",
       "count": 8
     },
     {
       "name": "autocomplete",
       "label": "Autocomplete",
-      "description": "Open-source shadcn autocomplete patterns for smart search, typeahead inputs, and suggestion lists.",
+      "description": "Open-source shadcn autocomplete components for smart search, typeahead inputs, and suggestion lists.",
       "count": 12
     },
     {
       "name": "avatar",
       "label": "Avatar",
-      "description": "Open-source shadcn avatar patterns for user profiles, team directories, and comment threads.",
+      "description": "Open-source shadcn avatar components for user profiles, team directories, and comment threads.",
       "count": 35
     },
     {
       "name": "badge",
       "label": "Badge",
-      "description": "Open-source shadcn badge patterns for status labels, feature tags, and count indicators.",
+      "description": "Open-source shadcn badge components for status labels, feature tags, and count indicators.",
       "count": 25
     },
     {
       "name": "breadcrumb",
       "label": "Breadcrumb",
-      "description": "Open-source shadcn breadcrumb patterns for navigation trails, docs hierarchy, and app wayfinding.",
+      "description": "Open-source shadcn breadcrumb components for navigation trails, docs hierarchy, and app wayfinding.",
       "count": 15
     },
     {
       "name": "button",
       "label": "Button",
-      "description": "Open-source shadcn button patterns for primary actions, form submissions, and toolbar controls.",
+      "description": "Open-source shadcn button components for primary actions, form submissions, and toolbar controls.",
       "count": 61
     },
     {
       "name": "button-group",
       "label": "Button Group",
-      "description": "Open-source shadcn button group patterns for segmented controls, toolbar actions, and view switchers.",
+      "description": "Open-source shadcn button group components for segmented controls, toolbar actions, and view switchers.",
       "count": 57
     },
     {
       "name": "calendar",
       "label": "Calendar",
-      "description": "Open-source shadcn calendar patterns for date picking, scheduling flows, and booking interfaces.",
+      "description": "Open-source shadcn calendar components for date picking, scheduling flows, and booking interfaces.",
       "count": 30
     },
     {
       "name": "card",
       "label": "Card",
-      "description": "Open-source shadcn card patterns for content previews, dashboard widgets, and product summaries.",
+      "description": "Open-source shadcn card components for content previews, dashboard widgets, and product summaries.",
       "count": 18
     },
     {
       "name": "carousel",
       "label": "Carousel",
-      "description": "Open-source shadcn carousel patterns for image galleries, feature showcases, and testimonials.",
+      "description": "Open-source shadcn carousel components for image galleries, feature showcases, and testimonials.",
       "count": 11
     },
     {
       "name": "chart",
       "label": "Chart",
-      "description": "Open-source shadcn chart patterns for analytics dashboards, KPI tracking, and reports.",
+      "description": "Open-source shadcn chart components for analytics dashboards, KPI tracking, and reports.",
       "count": 25
     },
     {
       "name": "checkbox",
       "label": "Checkbox",
-      "description": "Open-source shadcn checkbox patterns for multi-select forms, settings preferences, and table selection.",
+      "description": "Open-source shadcn checkbox components for multi-select forms, settings preferences, and table selection.",
       "count": 22
     },
     {
       "name": "collapsible",
       "label": "Collapsible",
-      "description": "Open-source shadcn collapsible patterns for expandable sections, detail rows, and progressive disclosure.",
+      "description": "Open-source shadcn collapsible components for expandable sections, detail rows, and progressive disclosure.",
       "count": 10
     },
     {
       "name": "combobox",
       "label": "Combobox",
-      "description": "Open-source shadcn combobox patterns for searchable selection, async lookup, and command menus.",
+      "description": "Open-source shadcn combobox components for searchable selection, async lookup, and command menus.",
       "count": 20
     },
     {
       "name": "command",
       "label": "Command",
-      "description": "Open-source shadcn command menu patterns for command palettes, global search, and power-user navigation.",
+      "description": "Open-source shadcn command menu components for command palettes, global search, and power-user navigation.",
       "count": 8
     },
     {
       "name": "context-menu",
       "label": "Context Menu",
-      "description": "Open-source shadcn context menu patterns for right-click menus, file actions, and table row actions.",
+      "description": "Open-source shadcn context menu components for right-click menus, file actions, and table row actions.",
       "count": 10
     },
     {
       "name": "data-grid",
       "label": "Data Grid",
-      "description": "Open-source shadcn data grid patterns for sorting and filtering, virtualized tables, and admin dashboards.",
+      "description": "Open-source shadcn data grid components for sorting and filtering, virtualized tables, and admin dashboards.",
       "count": 29
     },
     {
       "name": "date-selector",
       "label": "Date Selector",
-      "description": "Open-source shadcn date selector patterns for date range picking, booking windows, and calendar filters.",
+      "description": "Open-source shadcn date selector components for date range picking, booking windows, and calendar filters.",
       "count": 4
     },
     {
       "name": "dialog",
       "label": "Dialog",
-      "description": "Open-source shadcn dialog patterns for modal forms, focused tasks, and confirmations.",
+      "description": "Open-source shadcn dialog components for modal forms, focused tasks, and confirmations.",
       "count": 10
     },
     {
       "name": "drawer",
       "label": "Drawer",
-      "description": "Open-source shadcn drawer patterns for mobile panels, slide-over forms, and secondary workflows.",
+      "description": "Open-source shadcn drawer components for mobile panels, slide-over forms, and secondary workflows.",
       "count": 5
     },
     {
       "name": "dropdown-menu",
       "label": "Dropdown Menu",
-      "description": "Open-source shadcn dropdown menu patterns for action menus, profile menus, and toolbar menus.",
+      "description": "Open-source shadcn dropdown menu components for action menus, profile menus, and toolbar menus.",
       "count": 18
     },
     {
       "name": "empty",
       "label": "Empty",
-      "description": "Open-source shadcn empty state patterns for zero-data screens, first-run onboarding, and guided next steps.",
+      "description": "Open-source shadcn empty state components for zero-data screens, first-run onboarding, and guided next steps.",
       "count": 20
     },
     {
       "name": "field",
       "label": "Field",
-      "description": "Open-source shadcn form field patterns for form composition, validated inputs, and helper text.",
+      "description": "Open-source shadcn form field components for form composition, validated inputs, and helper text.",
       "count": 11
     },
     {
       "name": "file-upload",
       "label": "File Upload",
-      "description": "Open-source shadcn file upload patterns for drag-and-drop uploads, multi-file flows, and upload progress.",
+      "description": "Open-source shadcn file upload components for drag-and-drop uploads, multi-file flows, and upload progress.",
       "count": 10
     },
     {
       "name": "filters",
       "label": "Filters",
-      "description": "Open-source shadcn filters patterns for filter bars, faceted search, and dashboard filtering.",
+      "description": "Open-source shadcn filters components for filter bars, faceted search, and dashboard filtering.",
       "count": 9
     },
     {
       "name": "frame",
       "label": "Frame",
-      "description": "Open-source shadcn frame patterns for embedded previews, app shells, and device mockups.",
+      "description": "Open-source shadcn frame components for embedded previews, app shells, and device mockups.",
       "count": 17
     },
     {
       "name": "hover-card",
       "label": "Hover Card",
-      "description": "Open-source shadcn hover card patterns for profile previews, rich link previews, and contextual details.",
+      "description": "Open-source shadcn hover card components for profile previews, rich link previews, and contextual details.",
       "count": 8
     },
     {
       "name": "input",
       "label": "Input",
-      "description": "Open-source shadcn input patterns for form entry, search fields, and auth screens.",
+      "description": "Open-source shadcn input components for form entry, search fields, and auth screens.",
       "count": 31
     },
     {
       "name": "input-group",
       "label": "Input Group",
-      "description": "Open-source shadcn input group patterns for prefixed inputs, suffixed actions, and combined form controls.",
+      "description": "Open-source shadcn input group components for prefixed inputs, suffixed actions, and combined form controls.",
       "count": 40
     },
     {
       "name": "input-otp",
       "label": "Input Otp",
-      "description": "Open-source shadcn OTP input patterns for verification codes, 2FA flows, and secure confirmation screens.",
+      "description": "Open-source shadcn OTP input components for verification codes, 2FA flows, and secure confirmation screens.",
       "count": 6
     },
     {
       "name": "item",
       "label": "Item",
-      "description": "Open-source shadcn item row patterns for list rows, settings items, and action rows.",
+      "description": "Open-source shadcn item row components for list rows, settings items, and action rows.",
       "count": 12
     },
     {
       "name": "kanban",
       "label": "Kanban",
-      "description": "Open-source shadcn kanban patterns for task boards, workflow pipelines, and drag-and-drop planning.",
+      "description": "Open-source shadcn kanban components for task boards, workflow pipelines, and drag-and-drop planning.",
       "count": 5
     },
     {
       "name": "kbd",
       "label": "Kbd",
-      "description": "Open-source shadcn keyboard shortcut patterns for hotkey hints, command docs, and shortcut legends.",
+      "description": "Open-source shadcn keyboard shortcut components for hotkey hints, command docs, and shortcut legends.",
       "count": 6
     },
     {
       "name": "label",
       "label": "Label",
-      "description": "Open-source shadcn label patterns for form labels, accessible inputs, and field pairing.",
+      "description": "Open-source shadcn label components for form labels, accessible inputs, and field pairing.",
       "count": 13
     },
     {
       "name": "menubar",
       "label": "Menubar",
-      "description": "Open-source shadcn menubar patterns for desktop navigation, editor menus, and app commands.",
+      "description": "Open-source shadcn menubar components for desktop navigation, editor menus, and app commands.",
       "count": 5
     },
     {
       "name": "native-select",
       "label": "Native Select",
-      "description": "Open-source shadcn native select patterns for lightweight selects, mobile-friendly forms, and basic option picking.",
+      "description": "Open-source shadcn native select components for lightweight selects, mobile-friendly forms, and basic option picking.",
       "count": 6
     },
     {
       "name": "navigation-menu",
       "label": "Navigation Menu",
-      "description": "Open-source shadcn navigation menu patterns for site navigation, mega menus, and product navigation.",
+      "description": "Open-source shadcn navigation menu components for site navigation, mega menus, and product navigation.",
       "count": 4
     },
     {
       "name": "number-field",
       "label": "Number Field",
-      "description": "Open-source shadcn number field patterns for quantity pickers, pricing inputs, and step controls.",
+      "description": "Open-source shadcn number field components for quantity pickers, pricing inputs, and step controls.",
       "count": 6
     },
     {
       "name": "pagination",
       "label": "Pagination",
-      "description": "Open-source shadcn pagination patterns for table pagination, search results, and content archives.",
+      "description": "Open-source shadcn pagination components for table pagination, search results, and content archives.",
       "count": 15
     },
     {
       "name": "phone-input",
       "label": "Phone Input",
-      "description": "Open-source shadcn phone input patterns for international signup, contact forms, and country codes.",
+      "description": "Open-source shadcn phone input components for international signup, contact forms, and country codes.",
       "count": 8
     },
     {
       "name": "popover",
       "label": "Popover",
-      "description": "Open-source shadcn popover patterns for inline settings, contextual actions, and lightweight overlays.",
+      "description": "Open-source shadcn popover components for inline settings, contextual actions, and lightweight overlays.",
       "count": 11
     },
     {
       "name": "progress",
       "label": "Progress",
-      "description": "Open-source shadcn progress patterns for upload progress, goal tracking, and setup steps.",
+      "description": "Open-source shadcn progress components for upload progress, goal tracking, and setup steps.",
       "count": 8
     },
     {
       "name": "radio-group",
       "label": "Radio Group",
-      "description": "Open-source shadcn radio group patterns for single-choice forms, plan selection, and settings preferences.",
+      "description": "Open-source shadcn radio group components for single-choice forms, plan selection, and settings preferences.",
       "count": 17
     },
     {
       "name": "rating",
       "label": "Rating",
-      "description": "Open-source shadcn rating patterns for product reviews, feedback forms, and satisfaction scores.",
+      "description": "Open-source shadcn rating components for product reviews, feedback forms, and satisfaction scores.",
       "count": 9
     },
     {
       "name": "resizable",
       "label": "Resizable",
-      "description": "Open-source shadcn resizable patterns for split panes, workspace layouts, and draggable dividers.",
+      "description": "Open-source shadcn resizable components for split panes, workspace layouts, and draggable dividers.",
       "count": 10
     },
     {
       "name": "scroll-area",
       "label": "Scroll Area",
-      "description": "Open-source shadcn scroll area patterns for custom scroll regions, sidebar panes, and dense lists.",
+      "description": "Open-source shadcn scroll area components for custom scroll regions, sidebar panes, and dense lists.",
       "count": 5
     },
     {
       "name": "scrollspy",
       "label": "Scrollspy",
-      "description": "Open-source shadcn scrollspy patterns for docs navigation, active table of contents, and long-form sections.",
+      "description": "Open-source shadcn scrollspy components for docs navigation, active table of contents, and long-form sections.",
       "count": 2
     },
     {
       "name": "select",
       "label": "Select",
-      "description": "Open-source shadcn select patterns for form selection, settings menus, and filter controls.",
+      "description": "Open-source shadcn select components for form selection, settings menus, and filter controls.",
       "count": 33
     },
     {
       "name": "separator",
       "label": "Separator",
-      "description": "Open-source shadcn separator patterns for content grouping, toolbar dividers, and section breaks.",
+      "description": "Open-source shadcn separator components for content grouping, toolbar dividers, and section breaks.",
       "count": 6
     },
     {
       "name": "sheet",
       "label": "Sheet",
-      "description": "Open-source shadcn sheet patterns for slide-over details, side panels, and task flows.",
+      "description": "Open-source shadcn sheet components for slide-over details, side panels, and task flows.",
       "count": 4
     },
     {
       "name": "skeleton",
       "label": "Skeleton",
-      "description": "Open-source shadcn skeleton patterns for loading placeholders, perceived performance, and content previews.",
+      "description": "Open-source shadcn skeleton components for loading placeholders, perceived performance, and content previews.",
       "count": 10
     },
     {
       "name": "slider",
       "label": "Slider",
-      "description": "Open-source shadcn slider patterns for range filters, pricing controls, and media settings.",
+      "description": "Open-source shadcn slider components for range filters, pricing controls, and media settings.",
       "count": 12
     },
     {
       "name": "sonner",
       "label": "Sonner",
-      "description": "Open-source shadcn Sonner toast patterns for success feedback, error states, and non-blocking updates.",
+      "description": "Open-source shadcn Sonner toast components for success feedback, error states, and non-blocking updates.",
       "count": 21
     },
     {
       "name": "sortable",
       "label": "Sortable",
-      "description": "Open-source shadcn sortable patterns for drag-and-drop lists, priority ranking, and reordering rows.",
+      "description": "Open-source shadcn sortable components for drag-and-drop lists, priority ranking, and reordering rows.",
       "count": 7
     },
     {
       "name": "spinner",
       "label": "Spinner",
-      "description": "Open-source shadcn spinner patterns for loading indicators, async actions, and button states.",
+      "description": "Open-source shadcn spinner components for loading indicators, async actions, and button states.",
       "count": 12
     },
     {
       "name": "stepper",
       "label": "Stepper",
-      "description": "Open-source shadcn stepper patterns for multi-step forms, checkout flows, and onboarding.",
+      "description": "Open-source shadcn stepper components for multi-step forms, checkout flows, and onboarding.",
       "count": 15
     },
     {
       "name": "switch",
       "label": "Switch",
-      "description": "Open-source shadcn switch patterns for settings toggles, preferences, and binary choices.",
+      "description": "Open-source shadcn switch components for settings toggles, preferences, and binary choices.",
       "count": 14
     },
     {
       "name": "table",
       "label": "Table",
-      "description": "Open-source shadcn table patterns for admin tables, data display, and responsive lists.",
+      "description": "Open-source shadcn table components for admin tables, data display, and responsive lists.",
       "count": 17
     },
     {
       "name": "tabs",
       "label": "Tabs",
-      "description": "Open-source shadcn tabs patterns for segmented content, settings views, and dashboard sections.",
+      "description": "Open-source shadcn tabs components for segmented content, settings views, and dashboard sections.",
       "count": 9
     },
     {
       "name": "textarea",
       "label": "Textarea",
-      "description": "Open-source shadcn textarea patterns for comments, long-form input, and support tickets.",
+      "description": "Open-source shadcn textarea components for comments, long-form input, and support tickets.",
       "count": 6
     },
     {
       "name": "timeline",
       "label": "Timeline",
-      "description": "Open-source shadcn timeline patterns for activity feeds, roadmaps, and event history.",
+      "description": "Open-source shadcn timeline components for activity feeds, roadmaps, and event history.",
       "count": 12
     },
     {
       "name": "toggle",
       "label": "Toggle",
-      "description": "Open-source shadcn toggle patterns for formatting controls, compact actions, and binary UI states.",
+      "description": "Open-source shadcn toggle components for formatting controls, compact actions, and binary UI states.",
       "count": 14
     },
     {
       "name": "toggle-group",
       "label": "Toggle Group",
-      "description": "Open-source shadcn toggle group patterns for view switches, toolbar options, and mutually exclusive actions.",
+      "description": "Open-source shadcn toggle group components for view switches, toolbar options, and mutually exclusive actions.",
       "count": 16
     },
     {
       "name": "tooltip",
       "label": "Tooltip",
-      "description": "Open-source shadcn tooltip patterns for inline hints, contextual guidance, and helper text.",
+      "description": "Open-source shadcn tooltip components for inline hints, contextual guidance, and helper text.",
       "count": 16
     },
     {
       "name": "tree",
       "label": "Tree",
-      "description": "Open-source shadcn tree patterns for file explorers, nested navigation, and hierarchical data.",
+      "description": "Open-source shadcn tree components for file explorers, nested navigation, and hierarchical data.",
       "count": 7
     }
   ],
-  "totalPatterns": 1003
+  "totalComponents": 1003
 }

@@ -15,7 +15,7 @@ import { XLink } from "@/components/x-link"
 
 export function SiteHeader({ sticky = true }: { sticky?: boolean } = {}) {
   const pageTree = source.getPageTree()
-  const patternCategories = getCategories()
+  const componentCategories = getCategories()
 
   return (
     <header
@@ -53,7 +53,7 @@ export function SiteHeader({ sticky = true }: { sticky?: boolean } = {}) {
               <CommandMenu
                 tree={pageTree}
                 navItems={siteConfig.navItems}
-                patternCategories={patternCategories}
+                componentCategories={componentCategories}
               />
             </div>
 

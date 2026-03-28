@@ -88,6 +88,7 @@ export interface DataGridProps<TData extends object> {
     width?: "auto" | "fixed"
     columnsVisibility?: boolean
     columnsResizable?: boolean
+    columnsResizeMode?: "onChange" | "onEnd"
     columnsPinnable?: boolean
     columnsMovable?: boolean
     columnsDraggable?: boolean
@@ -125,6 +126,14 @@ function DataGridProvider<TData extends object>({
   ...props
 }: DataGridProps<TData> & { table: Table<TData> }) {
   const tableState = table.getState()
+  const resolvedColumnsResizeMode =
+    props.tableLayout?.columnsResizeMode ?? "onEnd"
+
+  // Keep resize mode aligned with the DataGrid contract every render so
+  // consumer-level useReactTable options cannot flip it back between drags.
+  if (props.tableLayout?.columnsResizable) {
+    table.options.columnResizeMode = resolvedColumnsResizeMode
+  }
 
   // Memoize context value so consumers don't re-render during column resize.
   // Column sizing state is intentionally excluded from deps -- CSS variables
@@ -190,6 +199,7 @@ function DataGrid<TData extends object>({
       width: "fixed",
       columnsVisibility: false,
       columnsResizable: false,
+      columnsResizeMode: "onEnd",
       columnsPinnable: false,
       columnsMovable: false,
       columnsDraggable: false,

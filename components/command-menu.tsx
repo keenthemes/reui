@@ -67,12 +67,12 @@ function collectPages(
 export function CommandMenu({
   tree,
   navItems,
-  patternCategories = [],
+  componentCategories = [],
   ...props
 }: DialogProps & {
   tree: ReturnType<typeof source.getPageTree>
   navItems?: { href: string; label: string; soon?: boolean }[]
-  patternCategories?: CategoryInfo[]
+  componentCategories?: CategoryInfo[]
 }) {
   const router = useRouter()
   const isMac = useIsMac()
@@ -272,25 +272,25 @@ export function CommandMenu({
                 </CommandGroup>
               )
             })}
-            {patternCategories.length > 0 && (
+            {componentCategories.length > 0 && (
               <CommandGroup
-                heading="Patterns"
+                heading="Components"
                 className="p-0! **:[[cmdk-group-heading]]:p-3!"
               >
-                {patternCategories.map((category) => (
+                {componentCategories.map((category) => (
                   <CommandMenuItem
-                    key={`pattern-cat-${category.name}`}
-                    value={`Pattern Category ${category.label}`}
+                    key={`component-cat-${category.name}`}
+                    value={`Component category ${category.label}`}
                     onHighlight={handleCategoryHighlight}
                     keywords={[
-                      "pattern",
+                      "component",
                       "category",
                       category.name,
                       category.label,
                     ]}
                     onSelect={() => {
                       runCommand(() =>
-                        router.push(`/patterns/${normalizeSlug(category.name)}`)
+                        router.push(`/components/${normalizeSlug(category.name)}`)
                       )
                     }}
                   >

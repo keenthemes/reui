@@ -1,4 +1,11 @@
 /// <reference types="node" />
+/**
+ * Generates `registry.ts`, `_registry.ts`, `components.json`, and `registry.json` under each base
+ * (see `registry-reui/bases/{base}/`) from `registry-reui/bases/{base}/components` (catalog blocks, `c-*` names).
+ *
+ * Public URLs for these blocks live under `/components`. `registry.json` exposes
+ * `totalComponents` as the total c-* block count.
+ */
 
 import { promises as fs } from "fs"
 import fsSync from "node:fs"
@@ -57,7 +64,8 @@ interface Category {
 
 interface RegistryData {
   categories: Category[]
-  totalPatterns: number
+  /** Total c-* catalog blocks */
+  totalComponents: number
 }
 
 interface GeneratedRegistryFile {
@@ -124,7 +132,7 @@ function dedupeFiles<T extends { target?: string; path: string }>(
 
 function formatTitle(name: string) {
   return name
-    .replace(/^p-/, "")
+    .replace(/^c-/, "")
     .split("-")
     .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
     .join(" ")
@@ -259,11 +267,11 @@ async function generate() {
     const baseDir = path.join(BASES_DIR, base)
     const reuiDir = path.join(baseDir, "reui")
     const hooksDir = path.join(baseDir, "hooks")
-    const patternsDir = path.join(baseDir, "patterns")
+    const catalogDir = path.join(baseDir, "components")
 
     const reuiItems: any[] = []
     const hooksItems: any[] = []
-    const patternItems: any[] = []
+    const catalogItems: any[] = []
 
     // Process Hooks
     if (fsSync.existsSync(hooksDir)) {
@@ -454,7 +462,7 @@ async function generate() {
       }
     }
 
-    // Build a set of known REUI component names (to filter from pattern dependencies)
+    // Build a set of known REUI component names (to filter from catalog block dependencies)
     const reuiComponentNames = new Set<string>()
     for (const item of reuiItems) {
       reuiComponentNames.add(item.name)
@@ -463,11 +471,11 @@ async function generate() {
       reuiComponentNames.add(item.name)
     }
 
-    // Process Patterns
-    if (fsSync.existsSync(patternsDir)) {
-      const categories = await fs.readdir(patternsDir)
+    // Process catalog blocks (registry:block under bases/*/components/)
+    if (fsSync.existsSync(catalogDir)) {
+      const categories = await fs.readdir(catalogDir)
       for (const category of categories) {
-        const categoryDir = path.join(patternsDir, category)
+        const categoryDir = path.join(catalogDir, category)
         if (!(await fs.stat(categoryDir)).isDirectory()) continue
 
         const files = await fs.readdir(categoryDir)
@@ -489,21 +497,21 @@ async function generate() {
             }
           }
 
-          // Build files array - only include the pattern file itself
-          const patternFiles: Array<{
+          // Build files array - only include the block file itself
+          const blockFiles: Array<{
             path: string
             type: string
             target: string
           }> = dedupeFiles([
             {
-              path: `patterns/${category}/${file}`,
+              path: `components/${category}/${file}`,
               type: "registry:block",
-              target: `components/patterns/${file}`,
+              target: `components/examples/${file}`,
             },
             ...info.files,
           ])
 
-          patternItems.push({
+          catalogItems.push({
             name,
             type: "registry:block",
             title: info.description || info.title || formatTitle(name),
@@ -511,7 +519,7 @@ async function generate() {
             description: info.description,
             registryDependencies: info.registryDependencies,
             dependencies: info.dependencies,
-            files: patternFiles,
+            files: blockFiles,
             meta,
           })
         }
@@ -535,11 +543,11 @@ async function generate() {
       )
     }
 
-    if (patternItems.length > 0) {
-      const patternsRegistryPath = path.join(patternsDir, "_registry.ts")
+    if (catalogItems.length > 0) {
+      const catalogRegistryPath = path.join(catalogDir, "_registry.ts")
       await fs.writeFile(
-        patternsRegistryPath,
-        `import { type Registry } from "shadcn/schema"\n\nexport const patterns: Registry["items"] = ${JSON.stringify(patternItems, null, 2)}\n`
+        catalogRegistryPath,
+        `import { type Registry } from "shadcn/schema"\n\nexport const components: Registry["items"] = ${JSON.stringify(catalogItems, null, 2)}\n`
       )
     }
 
@@ -550,21 +558,21 @@ async function generate() {
       `import { registryItemSchema, type Registry } from "shadcn/schema"
 import { z } from "zod"
 
+import { components } from "./components/_registry"
 import { hooks } from "./hooks/_registry"
-import { patterns } from "./patterns/_registry"
 import { reui } from "./reui/_registry"
 
 export const registry = {
   name: "shadcn/ui",
   homepage: "https://ui.shadcn.com",
-  items: z.array(registryItemSchema).parse([...reui, ...hooks, ...patterns]),
+  items: z.array(registryItemSchema).parse([...reui, ...hooks, ...components]),
 } satisfies Registry
 `
     )
 
     // Build global index for this base
     globalIndex[base] = {}
-    const allItems = [...reuiItems, ...hooksItems, ...patternItems]
+    const allItems = [...reuiItems, ...hooksItems, ...catalogItems]
     for (const item of allItems) {
       globalIndex[base][item.name] = {
         name: item.name,
@@ -595,23 +603,22 @@ export const registry = {
     existingCategories.map((c) => [c.name, c])
   )
 
-  // Calculate stats
-  let totalPatterns = 0
-  const patternCounts: Record<string, number> = {}
+  // Calculate stats (c-* catalog blocks only; single-source base to avoid double counting)
+  let totalCatalogBlocks = 0
+  const categoryBlockCounts: Record<string, number> = {}
 
-  // Only count from "base" to avoid double counting
   const baseRegistry = globalIndex["base"] || {}
   for (const [name, item] of Object.entries(baseRegistry)) {
     if (
       item.type !== "registry:block" ||
-      !name.startsWith("p-") ||
+      !name.startsWith("c-") ||
       name.endsWith("-0")
     )
       continue
-    totalPatterns++
+    totalCatalogBlocks++
     const categories = (item.categories as string[]) || []
     categories.forEach((cat: string) => {
-      patternCounts[cat] = (patternCounts[cat] || 0) + 1
+      categoryBlockCounts[cat] = (categoryBlockCounts[cat] || 0) + 1
     })
   }
 
@@ -619,7 +626,7 @@ export const registry = {
   // Use existing categories as base, add any new ones discovered
   const allCategoryNames = new Set([
     ...existingCategories.map((c) => c.name),
-    ...Object.keys(patternCounts),
+    ...Object.keys(categoryBlockCounts),
   ])
 
   const categoriesArray = Array.from(allCategoryNames)
@@ -634,44 +641,44 @@ export const registry = {
             .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
             .join(" "),
         description: existing?.description || "",
-        count: patternCounts[catName] || 0,
+        count: categoryBlockCounts[catName] || 0,
       }
     })
     .sort((a, b) => a.name.localeCompare(b.name))
 
-  // Generate patterns.json - Compact manifest for browsing and search
-  const patternsManifest: any[] = []
-  const seenPatterns = new Set<string>()
+  // Generate components.json - Compact manifest for browsing and search
+  const componentsManifest: any[] = []
+  const seenComponents = new Set<string>()
 
-  // Use patterns from globalIndex["base"] as the primary source for the manifest
-  const basePatterns = globalIndex["base"] || {}
-  for (const [name, item] of Object.entries(basePatterns)) {
+  // Use blocks from globalIndex["base"] as the primary source for the manifest
+  const baseBlocks = globalIndex["base"] || {}
+  for (const [name, item] of Object.entries(baseBlocks)) {
     if (
       item.type === "registry:block" &&
-      name.startsWith("p-") &&
+      name.startsWith("c-") &&
       !name.endsWith("-0")
     ) {
-      patternsManifest.push({
+      componentsManifest.push({
         name: item.name,
         title: item.title,
         categories: item.categories,
         meta: item.meta,
       })
-      seenPatterns.add(name)
+      seenComponents.add(name)
     }
   }
 
   await fs.writeFile(
-    path.join(BASES_DIR, "patterns.json"),
-    JSON.stringify(patternsManifest, null, 2)
+    path.join(BASES_DIR, "components.json"),
+    JSON.stringify(componentsManifest, null, 2)
   )
-  console.log("   ✅ Generated patterns.json")
+  console.log("   ✅ Generated components.json")
 
   // Generate registry.json - SMALL file with pre-computed categories and stats
   // Using JSON for instant loading without TS compilation overhead
   const statsData = {
     categories: categoriesArray,
-    totalPatterns,
+    totalComponents: totalCatalogBlocks,
   }
 
   await fs.writeFile(
@@ -681,7 +688,7 @@ export const registry = {
   console.log("   ✅ Generated registry.json")
 
   console.log(`\n📊 Stats:`)
-  console.log(`   - Total Patterns: ${totalPatterns}`)
+  console.log(`   - Total catalog blocks (c-*): ${totalCatalogBlocks}`)
   console.log(`   - Bases: ${Object.keys(globalIndex).join(", ")}`)
   console.log("\n✅ Registry generation complete!")
 }

@@ -57,7 +57,10 @@ export function getPagesFromFolder(
 }
 
 // Get current base (radix or base) from pathname.
+// Component docs: /docs/components/radix/alert | /docs/components/base/alert
 export function getCurrentBase(pathname: string): string {
-  const baseMatch = pathname.match(/\/docs\/(radix|base)\//)
-  return baseMatch ? baseMatch[1] : DEFAULT_CONFIG.base // Default to base.
+  const baseMatch =
+    pathname.match(/\/docs\/components\/(radix|base)(?:\/|$)/) ??
+    pathname.match(/\/docs\/(radix|base)(?:\/|$)/)
+  return baseMatch ? baseMatch[1] : DEFAULT_CONFIG.base
 }

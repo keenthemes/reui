@@ -13,7 +13,7 @@ import { ItemInstance } from "@headless-tree/core"
 import { Slot } from "radix-ui"
 
 import { cn } from "@/registry/bases/radix/lib/utils"
-import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
 
 type ToggleIconType = "chevron" | "plus-minus"
 

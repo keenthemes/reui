@@ -1,11 +1,11 @@
 "use client"
 
 import * as React from "react"
-import Script from "next/script"
 import { MoonIcon, SunIcon } from "lucide-react"
 import { useTheme } from "next-themes"
 
 import { useMetaColor } from "@/hooks/use-meta-color"
+import { PreviewShortcutForwarder } from "@/components/preview-shortcut-forwarder"
 import { Button } from "@/components/ui/button"
 import { Kbd } from "@/components/ui/kbd"
 import {
@@ -15,6 +15,8 @@ import {
 } from "@/components/ui/tooltip"
 
 export const DARK_MODE_FORWARD_TYPE = "dark-mode-forward"
+
+const DARK_MODE_KEYS = ["d"] as const
 
 export function ModeSwitcher() {
   const { setTheme, resolvedTheme } = useTheme()
@@ -72,36 +74,9 @@ export function ModeSwitcher() {
 
 export function DarkModeScript() {
   return (
-    <Script
-      id="dark-mode-listener"
-      strategy="beforeInteractive"
-      dangerouslySetInnerHTML={{
-        __html: `
-            (function() {
-              // Forward D key
-              document.addEventListener('keydown', function(e) {
-                if ((e.key === 'd' || e.key === 'D') && !e.metaKey && !e.ctrlKey) {
-                  if (
-                    (e.target instanceof HTMLElement && e.target.isContentEditable) ||
-                    e.target instanceof HTMLInputElement ||
-                    e.target instanceof HTMLTextAreaElement ||
-                    e.target instanceof HTMLSelectElement
-                  ) {
-                    return;
-                  }
-                  e.preventDefault();
-                  if (window.parent && window.parent !== window) {
-                    window.parent.postMessage({
-                      type: '${DARK_MODE_FORWARD_TYPE}',
-                      key: e.key
-                    }, window.location.origin);
-                  }
-                }
-              });
-
-            })();
-          `,
-      }}
+    <PreviewShortcutForwarder
+      forwardType={DARK_MODE_FORWARD_TYPE}
+      keys={DARK_MODE_KEYS}
     />
   )
 }

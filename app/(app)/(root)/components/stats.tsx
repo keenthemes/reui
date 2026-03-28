@@ -3,22 +3,22 @@
 import React from "react"
 import { Box, Component, Layers, Server } from "lucide-react"
 
-import { getPatternsTotalCount } from "@/lib/registry"
+import { getTotalComponentCount } from "@/lib/registry"
 import { Card } from "@/components/custom/card"
 
 export function Stats() {
-  const patternsTotalCount = getPatternsTotalCount()
+  const totalComponentCount = getTotalComponentCount()
 
   const stats = [
     {
       icon: Box,
-      title: `100% Free & Open-Source`,
+      title: `Free & Open-Source Core`,
       description:
-        "The most complete open-source shadcn library loved by devs and teams around the world.",
+        "The most complete open-source shadcn component library loved by devs around the world.",
     },
     {
       icon: Layers,
-      title: `${patternsTotalCount}+ Patterns`,
+      title: `${totalComponentCount}+ Components`,
       description:
         "Reusable solutions composed from shadcn/ui primitives into real-world product flows.",
     },
@@ -26,13 +26,13 @@ export function Stats() {
       icon: Component,
       title: "Shadcn Create Compatible",
       description:
-        "All components and patterns are compatible with all 5 shadcn create styles.",
+        "All components are compatible with all 5 Shadcn Create styles and settings.",
     },
     {
       icon: Server,
       title: "Dual Library Support",
       description:
-        "ReUI ships canonical Base UI docs plus matching Radix UI implementations for the same high-value components.",
+        "ReUI supports both Base UI and Radix UI library versions of all components.",
     },
   ]
 

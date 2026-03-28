@@ -34,8 +34,10 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   keywords: [
     "ReUI",
-    "shadcn patterns",
+    "shadcn catalog",
     "shadcn components",
+    "reui components",
+    "reui blocks",
     "shadcn/ui",
     "shadcn ui",
     "shadcn ecosystem",
@@ -99,7 +101,7 @@ export default function RootLayout({
         suppressHydrationWarning
         className={cn(
           "group/body overscroll-none antialiased [--footer-height:--spacing(14)] [--header-height:--spacing(14)] xl:[--footer-height:--spacing(24)]",
-          "[&:not(:has([data-slot=patterns-preview]))]:font-site-sans"
+          "[&:not(:has([data-slot=component-preview]))]:font-site-sans"
         )}
       >
         <JsonLd data={buildWebSiteJsonLd()} />

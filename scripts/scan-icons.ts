@@ -8,7 +8,7 @@ import {
   SyntaxKind,
 } from "ts-morph"
 
-// Only scan base folder - radix is a mirror created by migrate-radix.mts
+// Only scan base folder — radix mirrors base. Catalog blocks: bases/base/components (c-*).
 const TARGET_DIR = "registry-reui/bases/base"
 const OUTPUT_FILE = "registry/icons/scanned-icons.json"
 const UNMAPPED_OUTPUT_FILE = "registry/icons/unmapped-icons.json"

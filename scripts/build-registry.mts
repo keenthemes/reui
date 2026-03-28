@@ -1,7 +1,8 @@
 /**
  * Build Static Registry
  *
- * Pre-compiles all registry items into static JSON files in public/r/styles/.
+ * Pre-compiles all registry items (reui, hooks, and catalog `c-*` blocks from
+ * `registry-reui/bases/{base}/components`) into static JSON files in `public/r/styles/`.
  * This eliminates serverless function invocations for registry serving —
  * files are served directly from the CDN edge.
  *
@@ -10,7 +11,7 @@
  *   public/r/styles/{style}/{name}.json — one file per item per style
  *   public/r/styles/default/            — alias for radix-nova (the default)
  *
- * Run: pnpm build:registry
+ * Run: pnpm registry:build
  */
 
 import { promises as fs } from "node:fs"
@@ -95,12 +96,12 @@ async function getMetadata(base: string): Promise<MetadataData> {
     for (const item of mod.hooks || []) metadata[item.name] = item
   } catch {}
 
-  // Load patterns
+  // Load catalog blocks (c-*)
   try {
     const mod = await import(
-      `../registry-reui/bases/${base}/patterns/_registry.ts`
+      `../registry-reui/bases/${base}/components/_registry.ts`
     )
-    for (const item of mod.patterns || []) metadata[item.name] = item
+    for (const item of mod.components || []) metadata[item.name] = item
   } catch {}
 
   metadataCache[base] = { Metadata: { [base]: metadata } }
@@ -149,8 +150,8 @@ function transformImportPaths(code: string, base: string): string {
       "@/lib/"
     )
     .replace(
-      /@\/registry-reui\/bases\/__generated\/(?:base|radix)-(?:vega|nova|maia|lyra|mira)\/patterns\//g,
-      "@/components/patterns/"
+      /@\/registry-reui\/bases\/__generated\/(?:base|radix)-(?:vega|nova|maia|lyra|mira)\/components\//g,
+      "@/components/examples/"
     )
     .replace(
       new RegExp(`@/registry-reui/bases/${base}/reui/`, "g"),
@@ -166,8 +167,8 @@ function transformImportPaths(code: string, base: string): string {
     )
     .replace(new RegExp(`@/registry-reui/bases/${base}/lib/`, "g"), "@/lib/")
     .replace(
-      new RegExp(`@/registry-reui/bases/${base}/patterns/`, "g"),
-      "@/components/patterns/"
+      new RegExp(`@/registry-reui/bases/${base}/components/`, "g"),
+      "@/components/examples/"
     )
     .replace(
       /@\/registry(?:-reui)?\/bases\/(?:base|radix)\/reui\//g,
@@ -183,8 +184,8 @@ function transformImportPaths(code: string, base: string): string {
     )
     .replace(/@\/registry(?:-reui)?\/bases\/(?:base|radix)\/lib\//g, "@/lib/")
     .replace(
-      /@\/registry(?:-reui)?\/bases\/(?:base|radix)\/patterns\//g,
-      "@/components/patterns/"
+      /@\/registry(?:-reui)?\/bases\/(?:base|radix)\/components\//g,
+      "@/components/examples/"
     )
     .replace(/@\/registry\/bases\/(?:base|radix)\/ui\//g, "@/components/ui/")
     .replace(
@@ -204,8 +205,8 @@ function transformImportPaths(code: string, base: string): string {
 // Determine registry source type
 // ---------------------------------------------------------------------------
 
-function getRegistrySource(name: string): { type: "patterns" | "reui" } {
-  return { type: name.startsWith("p-") ? "patterns" : "reui" }
+function getRegistrySource(name: string): { type: "blocks" | "reui" } {
+  return { type: name.startsWith("c-") ? "blocks" : "reui" }
 }
 
 // ---------------------------------------------------------------------------
@@ -267,8 +268,8 @@ async function buildRegistryItem(
       const fileName = filePath.split("/").pop()
       const { type: sourceType } = getRegistrySource(name)
 
-      if (sourceType === "patterns") {
-        target = `components/patterns/${fileName}`
+      if (sourceType === "blocks") {
+        target = `components/examples/${fileName}`
       } else if (fileType === "registry:ui") {
         target = `components/reui/${fileName}`
       } else if (fileType === "registry:hook") {

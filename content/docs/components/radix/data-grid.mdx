@@ -1,0 +1,658 @@
+---
+title: Data Grid
+description: A powerful TanStack Table v8 data grid with sorting, filtering, pagination, footer rows, drag-and-drop, virtualization, infinite scroll, and row pinning.
+component: true
+base: radix
+links:
+  api: https://tanstack.com/table/latest
+---
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-1"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+The current `data-grid` package ships the shared grid context, table renderers, pagination, column controls, drag-and-drop helpers, virtualization, infinite scroll, footer helpers, and row-pinning support. Footer components (`DataGridTableFoot`, `DataGridTableFootRow`, `DataGridTableFootRowCell`) and the `DataGridTableRowPin` toggle are exported from `data-grid-table.tsx`.
+
+The radix build ships the shared grid context, footer helpers, virtualization support, row pinning helpers, and the dedicated `data-grid-scroll-area.tsx` wrapper used by the latest sticky-header and infinite-scroll demos.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add @reui/data-grid
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the shared core dependencies:</Step>
+
+```bash
+npm install radix-ui @tanstack/react-table class-variance-authority
+```
+
+To enable drag-and-drop column or row reordering, install:
+
+```bash
+npm install @dnd-kit/core @dnd-kit/modifiers @dnd-kit/sortable @dnd-kit/utilities
+```
+
+To enable virtualization and infinite scroll, install:
+
+```bash
+npm install @tanstack/react-virtual
+```
+
+<Step>Copy the shipped files you need into your project.</Step>
+
+`data-grid-table.tsx` exports the footer helpers and `DataGridTableRowPin`. `data-grid-table-virtual.tsx` adds virtualization, infinite scroll, and `footerContent` support. `data-grid-scroll-area.tsx` provides the dedicated radix scroll wrapper.
+
+<ComponentSource
+  styleName="radix-nova"
+  name="data-grid"
+  title="components/reui/data-grid/data-grid.tsx"
+/>
+
+<ComponentSource
+  styleName="radix-nova"
+  name="data-grid-table"
+  title="components/reui/data-grid/data-grid-table.tsx"
+/>
+
+<ComponentSource
+  styleName="radix-nova"
+  name="data-grid-pagination"
+  title="components/reui/data-grid/data-grid-pagination.tsx"
+/>
+
+<ComponentSource
+  styleName="radix-nova"
+  name="data-grid-column-header"
+  title="components/reui/data-grid/data-grid-column-header.tsx"
+/>
+
+<ComponentSource
+  styleName="radix-nova"
+  name="data-grid-column-filter"
+  title="components/reui/data-grid/data-grid-column-filter.tsx"
+/>
+
+<ComponentSource
+  styleName="radix-nova"
+  name="data-grid-column-visibility"
+  title="components/reui/data-grid/data-grid-column-visibility.tsx"
+/>
+
+<ComponentSource
+  styleName="radix-nova"
+  name="data-grid-table-dnd"
+  title="components/reui/data-grid/data-grid-table-dnd.tsx"
+/>
+
+<ComponentSource
+  styleName="radix-nova"
+  name="data-grid-table-dnd-rows"
+  title="components/reui/data-grid/data-grid-table-dnd-rows.tsx"
+/>
+
+<ComponentSource
+  styleName="radix-nova"
+  name="data-grid-table-virtual"
+  title="components/reui/data-grid/data-grid-table-virtual.tsx"
+/>
+
+<ComponentSource
+  styleName="radix-nova"
+  name="data-grid-scroll-area"
+  title="components/reui/data-grid/data-grid-scroll-area.tsx"
+/>
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  DataGrid,
+  DataGridContainer,
+  DataGridPagination,
+  DataGridTable,
+  DataGridTableFootRow,
+  DataGridTableFootRowCell,
+} from "@/components/reui/data-grid"
+```
+
+```tsx
+const footer = (
+  <DataGridTableFootRow>
+    <DataGridTableFootRowCell colSpan={columns.length}>
+      Showing {data.length} rows
+    </DataGridTableFootRowCell>
+  </DataGridTableFootRow>
+)
+
+const table = useReactTable({
+  data,
+  columns,
+  getCoreRowModel: getCoreRowModel(),
+})
+
+return (
+  <DataGrid
+    table={table}
+    recordCount={data.length}
+    tableLayout={{ rowsPinnable: true }}
+  >
+    <DataGridContainer>
+      <DataGridTable footerContent={footer} />
+    </DataGridContainer>
+    <DataGridPagination />
+  </DataGrid>
+)
+```
+
+Use `DataGridTableRowPin` inside a column definition to let users pin rows, swap in `DataGridTableVirtual` when you need virtualization or infinite scroll, and wrap sticky-header tables with `DataGridScrollArea` when you want the dedicated radix scroll wrapper. When rows can be pinned or virtualized, provide a stable `getRowId` so row identity stays intact across reordering.
+
+## Examples
+
+### Cell Border
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-2"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Dense Table
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-3"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Light Table
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-4"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Striped Table
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-5"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Auto Width
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-6"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Row Selection
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-7"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Expandable Row
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-8"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Sub Data Grid
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-9"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Column Icons
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-10"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Sortable Columns
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-11"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Movable Columns
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-12"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Draggable Columns
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-13"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Draggable Rows
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-14"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Resizable Columns
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-15"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Pinnable Columns
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-16"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Sticky Header
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-17"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Column Controls
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-18"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Card Container
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-19"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Column Visibility
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-20"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Loading Skeleton
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-21"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### CRUD
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-22"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### CRUD in Frame
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-23"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Footer Totals
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-24"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Footer Summary
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-25"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Footer Aggregates
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-26"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Infinite Scroll (Local)
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-27"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Infinite Scroll (Remote)
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-28"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Row Pinning
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-29"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+## API Reference
+
+### DataGrid
+
+The root component that provides the table context.
+
+| Prop                   | Type                      | Default                | Description                                                            |
+| :--------------------- | :------------------------ | :--------------------- | :--------------------------------------------------------------------- |
+| `table`                | `Table<TData>`            | -                      | `Required`. The TanStack Table instance.                               |
+| `recordCount`          | `number`                  | -                      | `Required`. Total number of records.                                   |
+| `isLoading`            | `boolean`                 | `false`                | Whether the table is in a loading state.                               |
+| `loadingMode`          | `"skeleton" \| "spinner"` | `"skeleton"`           | The visual style of the loading state.                                 |
+| `loadingMessage`       | `ReactNode \| string`     | `"Loading..."`         | Message to display when `loadingMode` is `"spinner"`.                  |
+| `fetchingMoreMessage`  | `ReactNode \| string`     | `loadingMessage`       | Message to display while `DataGridTableVirtual` is fetching more rows. |
+| `allRowsLoadedMessage` | `ReactNode \| string`     | `"All records loaded"` | Message to display when virtual infinite scroll reaches the end.       |
+| `emptyMessage`         | `ReactNode \| string`     | `"No data available"`  | Message to display when the table is empty.                            |
+| `onRowClick`           | `(row: TData) => void`    | -                      | Callback function triggered when a row is clicked.                     |
+| `tableLayout`          | `DataGridTableLayout`     | -                      | Configuration for table layout and features.                           |
+| `tableClassNames`      | `DataGridTableClassNames` | -                      | Custom CSS classes for various table parts.                            |
+| `className`            | `string`                  | -                      | Additional CSS classes for the root grid component.                    |
+
+---
+
+### DataGridTableLayout
+
+Configuration object for the table's behavior and appearance.
+
+| Property            | Type                | Default   | Description                                                 |
+| :------------------ | :------------------ | :-------- | :---------------------------------------------------------- |
+| `dense`             | `boolean`           | `false`   | Whether to use dense padding for cells.                     |
+| `cellBorder`        | `boolean`           | `false`   | Whether to show vertical borders between cells.             |
+| `rowBorder`         | `boolean`           | `true`    | Whether to show horizontal borders between rows.            |
+| `rowRounded`        | `boolean`           | `false`   | Whether to add rounded corners to rows.                     |
+| `stripped`          | `boolean`           | `false`   | Whether to use zebra-striping for rows.                     |
+| `headerBackground`  | `boolean`           | `true`    | Whether to show a background color for the header.          |
+| `headerBorder`      | `boolean`           | `true`    | Whether to show a border below the header.                  |
+| `headerSticky`      | `boolean`           | `false`   | Whether the header should be sticky during scroll.          |
+| `width`             | `"auto" \| "fixed"` | `"fixed"` | The table layout algorithm (`table-auto` vs `table-fixed`). |
+| `columnsVisibility` | `boolean`           | `false`   | Enables column visibility toggling.                         |
+| `columnsResizable`  | `boolean`           | `false`   | Enables column resizing.                                    |
+| `columnsPinnable`   | `boolean`           | `false`   | Enables column pinning.                                     |
+| `columnsMovable`    | `boolean`           | `false`   | Enables moving columns via menu.                            |
+| `columnsDraggable`  | `boolean`           | `false`   | Enables drag-and-drop for columns.                          |
+| `rowsDraggable`     | `boolean`           | `false`   | Enables drag-and-drop for rows.                             |
+| `rowsPinnable`      | `boolean`           | `false`   | Enables row pinning (top/bottom).                           |
+
+---
+
+### DataGridTableClassNames
+
+Custom CSS classes for different parts of the table.
+
+| Property       | Type     | Default | Description                                        |
+| :------------- | :------- | :------ | :------------------------------------------------- |
+| `base`         | `string` | -       | CSS classes for the `<table>` element.             |
+| `header`       | `string` | -       | CSS classes for the `<thead>` element.             |
+| `headerRow`    | `string` | -       | CSS classes for header rows.                       |
+| `headerSticky` | `string` | -       | CSS classes for sticky header state.               |
+| `body`         | `string` | -       | CSS classes for the `<tbody>` element.             |
+| `bodyRow`      | `string` | -       | CSS classes for body rows.                         |
+| `footer`       | `string` | -       | CSS classes for the `<tfoot>` element.             |
+| `edgeCell`     | `string` | -       | CSS classes for the first and last cells in a row. |
+
+---
+
+### DataGridContainer
+
+A scrollable container for the table.
+
+| Prop        | Type      | Default | Description                                    |
+| :---------- | :-------- | :------ | :--------------------------------------------- |
+| `border`    | `boolean` | `true`  | Whether to show a border around the container. |
+| `className` | `string`  | -       | Additional CSS classes for the container.      |
+
+---
+
+### DataGridScrollArea
+
+Dedicated scroll wrapper for wide grids and sticky headers.
+
+| Prop          | Type                                   | Default  | Description                             |
+| :------------ | :------------------------------------- | :------- | :-------------------------------------- |
+| `children`    | `ReactNode`                            | -        | `Required`. The grid content to wrap.   |
+| `orientation` | `"horizontal" \| "vertical" \| "both"` | `"both"` | Which scrollbars to render.             |
+| `className`   | `string`                               | -        | Additional CSS classes for the wrapper. |
+
+---
+
+### DataGridTable
+
+The component that renders the actual HTML table. It automatically handles data rendering, loading states (skeletons/spinners), empty states, footer rows, and pinned rows when `rowsPinnable` is enabled on the parent `DataGrid`.
+
+| Prop            | Type        | Default | Description                                        |
+| :-------------- | :---------- | :------ | :------------------------------------------------- |
+| `footerContent` | `ReactNode` | -       | Optional footer content rendered inside `<tfoot>`. |
+| `renderHeader`  | `boolean`   | `true`  | Whether to render the table header.                |
+
+---
+
+### DataGridPagination
+
+The component for table pagination controls.
+
+| Prop                | Type       | Default                      | Description                                           |
+| :------------------ | :--------- | :--------------------------- | :---------------------------------------------------- |
+| `sizes`             | `number[]` | `[5, 10, 25, 50, 100]`       | Array of available page sizes.                        |
+| `sizesLabel`        | `string`   | `"Show"`                     | Label for the page size selector.                     |
+| `sizesDescription`  | `string`   | `"per page"`                 | Description following the page size selector.         |
+| `rowsPerPageLabel`  | `string`   | `"Rows per page"`            | Accessible label for the rows per page selector.      |
+| `info`              | `string`   | `"{from} - {to} of {count}"` | Template for displaying record info.                  |
+| `more`              | `boolean`  | `false`                      | Whether to show ellipsis for more pages.              |
+| `moreLimit`         | `number`   | `5`                          | The number of page buttons to show before truncating. |
+| `previousPageLabel` | `string`   | `"Go to previous page"`      | Accessible label for the previous page button.        |
+| `nextPageLabel`     | `string`   | `"Go to next page"`          | Accessible label for the next page button.            |
+| `ellipsisText`      | `string`   | `"..."`                      | Text to display for the ellipsis button.              |
+| `className`         | `string`   | -                            | Additional CSS classes for the pagination container.  |
+
+---
+
+### DataGridColumnHeader
+
+A flexible column header component with built-in support for sorting, pinning, and moving columns.
+
+| Prop         | Type                    | Default | Description                                                |
+| :----------- | :---------------------- | :------ | :--------------------------------------------------------- |
+| `column`     | `Column<TData, TValue>` | -       | `Required`. The TanStack Column instance.                  |
+| `title`      | `string`                | -       | The title to display in the header.                        |
+| `icon`       | `ReactNode`             | -       | Optional icon to display next to the title.                |
+| `filter`     | `ReactNode`             | -       | Optional filter component to display in the header menu.   |
+| `visibility` | `boolean`               | `false` | Whether to include column visibility controls in the menu. |
+
+---
+
+### DataGridColumnFilter
+
+A popover-based multi-select filter for columns.
+
+| Prop      | Type                                                            | Default | Description                                       |
+| :-------- | :-------------------------------------------------------------- | :------ | :------------------------------------------------ |
+| `column`  | `Column<TData, TValue>`                                         | -       | The TanStack Column instance to filter.           |
+| `title`   | `string`                                                        | -       | The title for the filter trigger and placeholder. |
+| `options` | `Array<{ label: string, value: string, icon?: ComponentType }>` | -       | `Required`. The list of options to filter by.     |
+
+---
+
+### DataGridColumnVisibility
+
+A dropdown component to toggle column visibility.
+
+| Prop      | Type           | Default | Description                                              |
+| :-------- | :------------- | :------ | :------------------------------------------------------- |
+| `table`   | `Table<TData>` | -       | `Required`. The TanStack Table instance.                 |
+| `trigger` | `ReactElement` | -       | `Required`. The trigger element for the visibility menu. |
+
+---
+
+### DataGridTableDnd
+
+Used for enabling column drag-and-drop reordering with optional footer rendering.
+
+| Prop            | Type                            | Default | Description                                                       |
+| :-------------- | :------------------------------ | :------ | :---------------------------------------------------------------- |
+| `handleDragEnd` | `(event: DragEndEvent) => void` | -       | `Required`. Callback triggered when a column drag operation ends. |
+| `footerContent` | `ReactNode`                     | -       | Optional footer content rendered inside `<tfoot>`.                |
+
+---
+
+### DataGridTableDndRows
+
+Used for enabling row drag-and-drop reordering with optional footer rendering.
+
+| Prop            | Type                            | Default | Description                                                        |
+| :-------------- | :------------------------------ | :------ | :----------------------------------------------------------------- |
+| `dataIds`       | `UniqueIdentifier[]`            | -       | `Required`. Array of unique identifiers for the current page data. |
+| `handleDragEnd` | `(event: DragEndEvent) => void` | -       | `Required`. Callback triggered when a row drag operation ends.     |
+| `footerContent` | `ReactNode`                     | -       | Optional footer content rendered inside `<tfoot>`.                 |
+
+---
+
+### DataGridTableVirtual
+
+A virtualized table renderer using `@tanstack/react-virtual` for row virtualization, infinite scroll, optional footer rows, and pinned rows when `rowsPinnable` is enabled. The wrapper manages row count and the scroll element for you, while `virtualizerOptions` lets you customize the underlying TanStack Virtual instance.
+
+| Prop                 | Type                                     | Default | Description                                                                                                                          |
+| :------------------- | :--------------------------------------- | :------ | :----------------------------------------------------------------------------------------------------------------------------------- |
+| `height`             | `number \| string`                       | -       | Optional fixed height when not using an outer scroll container.                                                                      |
+| `estimateSize`       | `number`                                 | `48`    | Estimated row height in pixels for the virtualizer.                                                                                  |
+| `overscan`           | `number`                                 | `10`    | Number of rows to render outside the visible area.                                                                                   |
+| `footerContent`      | `ReactNode`                              | -       | Optional footer content rendered inside `<tfoot>`.                                                                                   |
+| `renderHeader`       | `boolean`                                | `true`  | Whether to render the table header.                                                                                                  |
+| `onFetchMore`        | `() => void`                             | -       | Callback triggered when user scrolls near the bottom.                                                                                |
+| `isFetchingMore`     | `boolean`                                | -       | Whether additional data is currently being loaded.                                                                                   |
+| `hasMore`            | `boolean`                                | -       | Whether there are more records available to fetch.                                                                                   |
+| `fetchMoreOffset`    | `number`                                 | `0`     | How many rows before the end should trigger `onFetchMore`.                                                                           |
+| `virtualizerOptions` | `DataGridTableVirtualizerOptions<TData>` | -       | Optional passthrough for TanStack Virtual settings like `enabled`, `getItemKey`, `measureElement`, `rangeExtractor`, and `onChange`. |
+
+---
+
+### DataGridTableRowPin
+
+A pin/unpin toggle button for use in column definitions to enable row pinning.
+
+| Prop  | Type         | Default | Description                                  |
+| :---- | :----------- | :------ | :------------------------------------------- |
+| `row` | `Row<TData>` | -       | `Required`. The TanStack Table row instance. |
+
+---
+
+### DataGridTableFoot
+
+Wrapper component for the table footer (`<tfoot>`).
+
+---
+
+### DataGridTableFootRow
+
+A row inside the table footer.
+
+---
+
+### DataGridTableFootRowCell
+
+A cell inside a footer row.
+
+| Prop        | Type        | Default | Description                      |
+| :---------- | :---------- | :------ | :------------------------------- |
+| `colSpan`   | `number`    | -       | Column span for the footer cell. |
+| `className` | `string`    | -       | Additional CSS classes.          |
+| `children`  | `ReactNode` | -       | Content of the footer cell.      |

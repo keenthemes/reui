@@ -16,7 +16,7 @@ Use this workflow when **revising `oss/registry-reui/bases/seo.json`** for many 
 1. **Gold reference**: `seo.json` → **`accordion`** (user-maintained template).
 2. **`oss/.agents/skills/reui-seo/`** (SKILL + `references/pattern-seo-playbook.md`).
 3. **`oss/.agents/skills/shadcn/SKILL.md`** + `rules/*.md` for composition, forms, Base vs Radix.
-4. **`oss/lib/seo.ts`** → `isCanonicalComponentDoc` slugs (where `/docs/base/...` links resolve).
+4. **`oss/lib/seo.ts`** → `isCanonicalComponentDoc` slugs (where `/docs/components/base/...` links resolve).
 5. **`oss/registry-reui/bases/registry.json`** → valid category `name` slugs for `[[slug|Shadcn Label]]`.
 6. Optional: **`seo-audit`** skill for SERP/meta/heading checks; **`marketing-ideas`** for keyword clusters and positioning language (not for fluff).
 7. **Context7 MCP**: confirm technical statements (e.g. TanStack Table APIs, Radix primitives) when the writer is unsure.
@@ -46,7 +46,7 @@ Repeat up to **5 rounds** per batch: fix findings, re-run until clean or capped.
 ## Special cases
 
 - **`data-grid`**: Mention **TanStack Table** (React) for headless table logic, column defs, sorting/filtering; borders and density via Tailwind + shadcn tokens; keyboard and WAI-ARIA for grid semantics where applicable.
-- **Canonical doc components** (`data-grid`, `alert`, … per `seo.ts`): internal links to those slugs go to **`/docs/base/{slug}`** automatically.
+- **Canonical doc components** (`data-grid`, `alert`, … per `seo.ts`): internal links to those slugs go to **`/docs/components/base/{slug}`** automatically.
 
 ## Long-running execution
 

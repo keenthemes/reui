@@ -11,8 +11,8 @@ import {
 
 const FAQ_INLINE_LINK = /\[([^\]]+)\]\(([^)]+)\)/g
 
-/** Renders `[Label](/path)` as internal `<Link>` (same styling as Patterns hero links). */
-export function renderFaqAnswerWithPatternLinks(text: string): ReactNode {
+/** Renders `[Label](/path)` as internal `<Link>` (same styling as homepage hero links). */
+export function renderFaqAnswerWithInlineLinks(text: string): ReactNode {
   const parts: ReactNode[] = []
   let lastIndex = 0
   const re = new RegExp(FAQ_INLINE_LINK.source, "g")
@@ -47,41 +47,41 @@ export const defaultReuiFaqItems: FAQSectionItem[] = [
   // ── General ──────────────────────────────────────────────────────────────
   {
     id: "free-open-source",
-    question: "Are ReUI patterns free and open source?",
+    question: "Are ReUI components free and open source?",
     answer:
-      "Yes. The entire ReUI OSS library is free and MIT-licensed. Every pattern is open source, copy-and-own, and built for the shadcn/ui ecosystem. Use them in personal, commercial, and enterprise projects without attribution requirements.",
+      "Yes. The entire ReUI OSS library is free and MIT-licensed. Every catalog component is open source, copy-and-own, and built for the shadcn/ui ecosystem. Use them in personal, commercial, and enterprise projects without attribution requirements.",
   },
   {
-    id: "components-vs-patterns",
+    id: "primitives-vs-catalog",
     question:
-      "What is the difference between a component and a pattern in ReUI?",
+      "How are ReUI catalog components different from shadcn/ui primitives?",
     answer:
-      "A component is a primitive or composable building block such as Alert, Dialog, Button, Badge, and so on. A pattern combines those primitives into a more complete interface: [Data Grid](/patterns/data-grid) with [Filters](/patterns/filters) and [Pagination](/patterns/pagination), [File Upload](/patterns/file-upload) with [Progress](/patterns/progress) and [Sorting](/patterns/sortable), [Kanban](/patterns/kanban), or Multi-step checkout [Stepper](/patterns/stepper). ReUI ships both: raw component variants and full interface patterns built from them.",
+      "shadcn/ui gives you primitives and variants: Alert, Dialog, Button, Badge, and so on. ReUI adds composed, production-ready components that combine those primitives into full interfaces: [Data Grid](/components/data-grid) with [Filters](/components/filters) and [Pagination](/components/pagination), [File Upload](/components/file-upload) with [Progress](/components/progress) and [Sorting](/components/sortable), [Kanban](/components/kanban), or multi-step checkout with [Stepper](/components/stepper). You get both: core primitives and higher-level components you can copy into your app.",
   },
   {
     id: "react-next",
-    question: "Can I use ReUI patterns in React and Next.js projects?",
+    question: "Can I use ReUI components in React and Next.js projects?",
     answer:
-      "Yes. ReUI patterns are built for modern React and integrate naturally into Next.js App Router projects or literally any React based framework. Fetch data in Server Components, pass it to client-side interactive components, and wire patterns to your API routes or Server Actions. All patterns follow the same boundaries shadcn/ui uses.",
+      "Yes. ReUI components are built for modern React and integrate naturally into Next.js App Router projects or any React-based framework. Fetch data in Server Components, pass it to client-side interactive components, and wire UI to your API routes or Server Actions. Everything follows the same boundaries shadcn/ui uses.",
   },
   {
     id: "tailwind-shadcn-support",
-    question: "Do ReUI patterns work with Tailwind CSS v4 and shadcn/ui?",
+    question: "Do ReUI components work with Tailwind CSS v4 and shadcn/ui?",
     answer:
-      "Yes. ReUI patterns are built directly on top of shadcn/ui primitives and styled with Tailwind CSS v4 utility classes. They are fully compatible with Shadcn design system",
+      "Yes. ReUI components are built directly on top of shadcn/ui primitives and styled with Tailwind CSS v4 utility classes. They are fully compatible with the Shadcn design system.",
   },
   {
     id: "shadcn-create-compatibility",
-    question: "Are ReUI patterns compatible with Shadcn Create style options?",
+    question: "Are ReUI components compatible with Shadcn Create style options?",
     answer:
-      "Fully. ReUI patterns are compiled against all Shadcn Create style configurations. Every style option you configure in the Shadcn Create customizer such as base color, color scale, border radius, and font family propagates to ReUI pattern previews and to the source code you copy. What you see in the preview is exactly what lands in your project.",
+      "Fully. ReUI components are compiled against all Shadcn Create style configurations. Every style option you configure in the Shadcn Create customizer—base color, color scale, border radius, and font family—propagates to ReUI previews and to the source code you copy. What you see in the preview is exactly what lands in your project.",
   },
   {
     id: "best-starting-points",
     question:
-      "Which ReUI patterns are the best starting point for a new project?",
+      "Which ReUI components are the best starting point for a new project?",
     answer:
-      "For most product teams the highest-leverage starting points are [Data Grid](/patterns/data-grid), [Filters](/patterns/filters), [File Upload](/patterns/file-upload), [Combobox](/patterns/combobox), [Alert](/patterns/alert), [Kanban](/patterns/kanban), and [Stepper](/patterns/stepper). They solve the most common and time-consuming product UI problems and usually save the most implementation time in the first sprint.",
+      "For most product teams the highest-leverage starting points are [Data Grid](/components/data-grid), [Filters](/components/filters), [File Upload](/components/file-upload), [Combobox](/components/combobox), [Alert](/components/alert), [Kanban](/components/kanban), and [Stepper](/components/stepper). They solve the most common and time-consuming product UI problems and usually save the most implementation time in the first sprint.",
   },
 
   // ── In-House Components ───────────────────────────────────────────────────
@@ -95,14 +95,14 @@ export const defaultReuiFaqItems: FAQSectionItem[] = [
     id: "inhouse-radix-base-ui",
     question: "Do in-house components support both Radix UI and Base UI?",
     answer:
-      "Yes. Every ReUI in-house component ships in two API flavors: a Radix UI version for teams using standard shadcn/ui primitives, and a Base UI version for teams on @base-ui/react. Both versions share identical Tailwind CSS styling and visual output only the underlying headless primitive differs. You can find the full component API, props reference, and usage examples for each version in the dedicated docs pages.",
+      "Yes. Every ReUI in-house component ships in two API flavors: a Radix UI version for teams using standard shadcn/ui primitives, and a Base UI version for teams on @base-ui/react. Both versions share identical Tailwind CSS styling and visual output—only the underlying headless primitive differs. You can find the full component API, props reference, and usage examples for each version in the dedicated docs pages.",
   },
   {
     id: "inhouse-docs",
     question:
       "Where can I find the full API and props docs for in-house components?",
     answer:
-      "Each in-house component has dedicated documentation with the complete component API, prop reference, and usage examples. Visit /docs/base/[component] for the Base UI version and /docs/radix/[component] for the Radix UI version. For example: /docs/base/data-grid, /docs/base/filters, /docs/base/kanban, /docs/base/file-upload, /docs/base/sortable, and /docs/base/frame.",
+      "Each in-house component has dedicated documentation with the complete component API, prop reference, and usage examples. Visit /docs/components/base/[component] for the Base UI version and /docs/components/radix/[component] for the Radix UI version. For example: /docs/components/base/data-grid, /docs/components/base/filters, /docs/components/base/kanban, /docs/components/base/file-upload, /docs/components/base/sortable, and /docs/components/base/frame.",
   },
   {
     id: "base-radix",
@@ -118,7 +118,7 @@ export const defaultReuiFaqItems: FAQSectionItem[] = [
     question:
       "What is the difference between the free ReUI library and ReUI Pro?",
     answer:
-      "The free ReUI library available now gives you full access to all open-source component patterns, in-house components, and Shadcn Create compatibility with no restrictions. [ReUI Pro](https://pro.reui.io) is an upcoming premium tier focused on three things: a curated collection of premium design-forward blocks and page templates, a library of animated icons built for the shadcn/ui ecosystem, and AI-powered tooling to help teams compose, customize, and ship polished shadcn interfaces faster. Pro is aimed at teams that want to go beyond components and deliver consistently high-quality, design-forward product UIs.",
+      "The free ReUI library available now gives you full access to all open-source catalog components, in-house components, and Shadcn Create compatibility with no restrictions. [ReUI Pro](https://pro.reui.io) is an upcoming premium tier focused on three things: a curated collection of premium design-forward blocks and page templates, a library of animated icons built for the shadcn/ui ecosystem, and AI-powered tooling to help teams compose, customize, and ship polished shadcn interfaces faster. Pro is aimed at teams that want to go beyond the catalog and deliver consistently high-quality, design-forward product UIs.",
   },
   {
     id: "pro-waitlist",
@@ -138,8 +138,9 @@ interface FAQSectionProps {
 
 export function FAQSection({
   badge = "FAQ",
-  title = "Frequently asked questions about ReUI patterns",
-  description = "Answers about free open-source shadcn/ui patterns, React and Tailwind CSS usage, and how to adapt ReUI examples for real product UI.",
+  title = "Frequently asked questions about ReUI components",
+  description =
+    "Answers about free open-source shadcn/ui components, React and Tailwind CSS usage, and how to use ReUI in real product UI.",
   items = defaultReuiFaqItems,
   className,
 }: FAQSectionProps) {
@@ -166,7 +167,7 @@ export function FAQSection({
                   </AccordionTrigger>
                   <AccordionContent className="text-site-foreground/90 text-sm leading-7 text-pretty">
                     {typeof item.answer === "string"
-                      ? renderFaqAnswerWithPatternLinks(item.answer)
+                      ? renderFaqAnswerWithInlineLinks(item.answer)
                       : item.answer}
                   </AccordionContent>
                 </AccordionItem>

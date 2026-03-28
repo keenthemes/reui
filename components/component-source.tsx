@@ -44,7 +44,7 @@ export async function ComponentSource({
   maxLines?: number
   code?: string
   async?: boolean
-  eventName?: "copy_pattern_code" | "copy_component_code"
+  eventName?: "copy_component_code"
   showCopyButton?: boolean
 }) {
   if (async) {
@@ -153,9 +153,7 @@ export async function ComponentSource({
   const lang = language ?? title?.split(".").pop() ?? "tsx"
   const highlightedCode = await highlightCode(code, lang)
 
-  const effectiveEventName =
-    eventName ||
-    (name?.startsWith("p-") ? "copy_pattern_code" : "copy_component_code")
+  const effectiveEventName = eventName ?? "copy_component_code"
 
   if (!collapsible) {
     return (

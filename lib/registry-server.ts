@@ -106,10 +106,10 @@ export function getIconLibraryForStyle(styleName: string): IconLibraryName {
 }
 
 /**
- * Determine if a name is a pattern or reui component
+ * Determine if a name is a catalog block (c-*) or reui component
  */
-function getRegistrySource(name: string): { type: "patterns" | "reui" } {
-  return { type: name.startsWith("p-") ? "patterns" : "reui" }
+function getRegistrySource(name: string): { type: "blocks" | "reui" } {
+  return { type: name.startsWith("c-") ? "blocks" : "reui" }
 }
 
 /**
@@ -143,15 +143,15 @@ function getMetadata(base: string = "base"): MetadataData {
       }
 
       try {
-        const patternsMod = require(
-          `../registry-reui/bases/${base}/patterns/_registry`
+        const componentsMod = require(
+          `../registry-reui/bases/${base}/components/_registry`
         )
-        const patternItems = patternsMod.patterns || []
-        for (const item of patternItems) {
+        const blockItems = componentsMod.components || []
+        for (const item of blockItems) {
           metadata[item.name] = item
         }
       } catch (e) {
-        console.warn(`Could not load patterns registry for ${base}`, e)
+        console.warn(`Could not load components registry for ${base}`, e)
       }
 
       metadataCache[base] = { Metadata: { [base]: metadata } }
@@ -273,8 +273,8 @@ export function transformImportPaths(code: string, base: string): string {
         "@/lib/"
       )
       .replace(
-        /@\/registry-reui\/bases\/__generated\/(?:base|radix)-(?:vega|nova|maia|lyra|mira)\/patterns\//g,
-        "@/components/patterns/"
+        /@\/registry-reui\/bases\/__generated\/(?:base|radix)-(?:vega|nova|maia|lyra|mira)\/components\//g,
+        "@/components/examples/"
       )
       // Handle base paths
       .replace(
@@ -291,8 +291,8 @@ export function transformImportPaths(code: string, base: string): string {
       )
       .replace(new RegExp(`@/registry-reui/bases/${base}/lib/`, "g"), "@/lib/")
       .replace(
-        new RegExp(`@/registry-reui/bases/${base}/patterns/`, "g"),
-        "@/components/patterns/"
+        new RegExp(`@/registry-reui/bases/${base}/components/`, "g"),
+        "@/components/examples/"
       )
       // Generic registry path replacements
       .replace(
@@ -309,8 +309,8 @@ export function transformImportPaths(code: string, base: string): string {
       )
       .replace(/@\/registry(?:-reui)?\/bases\/(?:base|radix)\/lib\//g, "@/lib/")
       .replace(
-        /@\/registry(?:-reui)?\/bases\/(?:base|radix)\/patterns\//g,
-        "@/components/patterns/"
+        /@\/registry(?:-reui)?\/bases\/(?:base|radix)\/components\//g,
+        "@/components/examples/"
       )
       // Handle @/registry/bases paths
       .replace(/@\/registry\/bases\/(?:base|radix)\/ui\//g, "@/components/ui/")
@@ -401,8 +401,8 @@ export async function getRegistryItemForApi(
       const fileName = filePath.split("/").pop()
       const { type: sourceType } = getRegistrySource(name)
 
-      if (sourceType === "patterns") {
-        target = `components/patterns/${fileName}`
+      if (sourceType === "blocks") {
+        target = `components/examples/${fileName}`
       } else if (fileType === "registry:ui") {
         target = `components/reui/${fileName}`
       } else if (fileType === "registry:hook") {

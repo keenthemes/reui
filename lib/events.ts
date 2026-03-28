@@ -4,10 +4,10 @@ import { z } from "zod"
 const eventSchema = z.object({
   name: z.enum([
     "copy_command",
-    "copy_pattern_code",
     "copy_component_code",
-    "copy_pattern_cli",
+    "copy_component_cli",
     "registry_access",
+    "set_layout",
   ]),
   // declare type AllowedPropertyValues = string | number | boolean | null
   properties: z

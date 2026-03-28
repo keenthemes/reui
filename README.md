@@ -1,4 +1,4 @@
-# ReUI
+# ReUI - Design-forward shadcn kit for interfaces that stand out.
 
 <div align="center">
 
@@ -8,9 +8,9 @@
 [![React](https://img.shields.io/badge/React-18%2B-blue?logo=react)](https://react.dev/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-4%2B-blue?logo=tailwindcss)](https://tailwindcss.com/)
 
-**Design-forward shadcn UI kit for interfaces that stand out. 1000+ free patterns built with realistic dashboard layouts.**
+**Go beyond AI defaults and streamline high-end shadcn projects faster without touching the essentials. 1000+ free components and composed examples built with realistic dashboard layouts.**
 
-[Explore 1000+ Free Shadcn Patterns](https://reui.io) · [Component Docs](https://reui.io/docs) · [ReUI Pro](https://pro.reui.io) · [GitHub](https://github.com/keenthemes/reui)
+[Explore the component catalog](https://reui.io/components) · [Component Docs](https://reui.io/docs) · [ReUI Pro](https://pro.reui.io) · [GitHub](https://github.com/keenthemes/reui)
 
 </div>
 
@@ -18,28 +18,26 @@
 
 ## About ReUI
 
-ReUI is a free, open-source pattern library for the [shadcn/ui](https://ui.shadcn.com/) ecosystem. Explore 1,000+ production-ready UI patterns across 68 components each built inside realistic dashboard layouts, 
-not isolated demos and copy them directly into your React projects.
-
+ReUI is a free, open-source component library for the [shadcn/ui](https://ui.shadcn.com/) ecosystem. Explore 1,000+ production-ready components across 68 categories, each shown inside realistic dashboard layouts—not isolated demos—and copy them directly into your React projects.
 
 ### Why ReUI?
 
-- **In-House Components Not in Base shadcn/ui** — Data Grid, Kanban, Filters, Sortable, Timeline, Stepper, Tree, and more, built for real-world dashboard requirements
-- **1000+ UI Patterns** - Reusable solutions composed from shadcn/ui primitives into real-world product flows
-- **Dual API Support** — Radix UI and Base UI versions for all 16 in-house components
-- **All Shadcn Create Styles Supported** — Vega, Nova, Maia, Lyra & Mira.
+- **17 In-House component primitives not in default shadcn/ui** — Data Grid, Kanban, Filters, Sortable, Timeline, Stepper, Tree, and more, built for real-world dashboard requirements
+- **1000+ registry components** — Reusable examples composed from shadcn/ui primitives into real-world product flows
+- **Dual Component library support** — Radix UI and Base UI versions for all 16 in-house components
+- **Compatible with Shadcn Create styles and settings** — Vega, Nova, Maia, Lyra & Mira.
 
 ---
 
 ## Key Features
 
-- **1,000+ Free UI Patterns** — Production-ready, copy-paste patterns for dashboards, forms, tables, and more
+- **1,000+ free examples** — Production-ready, copy-paste layouts for dashboards, forms, tables, and more
 - **17 In-house Components** — Custom in-house components not found in base shadcn/ui
 - **Copy-and-Own Model** — No npm package, no lock-in. Own the source code in your repo
 - **Dual API** — Radix UI and Base UI versions for all in-house components
 - **Shadcn Compatible** — Built on shadcn primitives and Tailwind CSS
 - **All Shadcn Create Themes** — Works with New York, Default, and all color token customizations
-- **TypeScript** — Fully typed components and patterns
+- **TypeScript** — Fully typed components and registry blocks
 - **MIT License** — Free and open-source forever
 
 ---
@@ -52,81 +50,80 @@ ReUI provides in total: **17 custom in-house components** not found in base shad
 
 Custom-built, shadcn-compatible components not available in base shadcn/ui. Each is maintained by the Keenthemes team, ships full component API documentation, props reference, and usage examples, and is available in both Radix UI and Base UI flavors at [reui.io/docs](https://reui.io/docs).
 
-| Component | Patterns | Description | Patterns | Radix UI Docs | Base UI Docs |
-|-----------|----------|-------------|----------|-----------|--------------|
-| **Alert** | 10 | Contextual notifications with severity variants and dismissible states | [Preview](https://reui.io/patterns/alert) | [Radix UI](https://reui.io/docs/radix/alert) | [Base UI](https://reui.io/docs/base/alert) |
-| **Autocomplete** | 8 | Searchable input with async filtering and keyboard navigation | [Preview](https://reui.io/patterns/autocomplete) | [Radix UI](https://reui.io/docs/radix/autocomplete) | [Base UI](https://reui.io/docs/base/autocomplete) |
-| **Badge** | 16 | Status indicators with multiple styles, sizes, and dot variants | [Preview](https://reui.io/patterns/badge) | [Radix UI](https://reui.io/docs/radix/badge) | [Base UI](https://reui.io/docs/base/badge) |
-| **Data Grid** | 29 | Advanced table powered by TanStack Table + Virtual with DnD, pinning, resizing, and infinite scroll | [Preview](https://reui.io/patterns/data-grid) | [Radix UI](https://reui.io/docs/radix/data-grid) | [Base UI](https://reui.io/docs/base/data-grid) |
-| **Date Selector** | 9 | Flexible date range picker with calendar UI and preset ranges | [Preview](https://reui.io/patterns/date-selector) | [Radix UI](https://reui.io/docs/radix/date-selector) | [Base UI](https://reui.io/docs/base/date-selector) |
-| **Filters** | 9 | URL-state filter panel with TanStack Table integration, Zod validation, and multi-field types | [Preview](https://reui.io/patterns/filters) | [Radix UI](https://reui.io/docs/radix/filters) | [Base UI](https://reui.io/docs/base/filters) |
-| **File Upload** | 10 | Advanced File Upload patters with multi file upload and dropzone support | [Preview](https://reui.io/patterns/file-upload) | [Radix UI](https://reui.io/docs/radix/file-upload) | [Base UI](https://reui.io/docs/base/file-upload) |
-| **Filters** | 9 | URL-state filter panel with TanStack Table integration, Zod validation, and multi-field types | [Preview](https://reui.io/patterns/filters) | [Radix UI](https://reui.io/docs/radix/filters) | [Base UI](https://reui.io/docs/base/filters) |
-| **Frame** | 8 | Card like wrapper for panels and content areas | [Preview](https://reui.io/patterns/frame) | [Radix UI](https://reui.io/docs/radix/frame) | [Base UI](https://reui.io/docs/base/frame) |
-| **Kanban** | 5 | Drag-and-drop task boards built on DnD Kit with dynamic overlays and composable cards | [Preview](https://reui.io/patterns/kanban) | [Radix UI](https://reui.io/docs/radix/kanban) | [Base UI](https://reui.io/docs/base/kanban) |
-| **Number Field** | 8 | Numeric input with increment/decrement controls and formatting | [Preview](https://reui.io/patterns/number-field) | [Radix UI](https://reui.io/docs/radix/number-field) | [Base UI](https://reui.io/docs/base/number-field) |
-| **Phone Input** | 7 | International phone number input with country selector and formatting | [Preview](https://reui.io/patterns/phone-input) | [Radix UI](https://reui.io/docs/radix/phone-input) | [Base UI](https://reui.io/docs/base/phone-input) |
-| **Rating** | 8 | Star and icon-based rating with half-star, read-only, and custom icon support | [Preview](https://reui.io/patterns/rating) | [Radix UI](https://reui.io/docs/radix/rating) | [Base UI](https://reui.io/docs/base/rating) |
-| **Scrollspy** | 6 | Auto-highlighting navigation that tracks scroll position across sections | [Preview](https://reui.io/patterns/scrollspy) | [Radix UI](https://reui.io/docs/radix/scrollspy) | [Base UI](https://reui.io/docs/base/scrollspy) |
-| **Sortable** | 7 | Drag-and-drop list reordering with DnD Kit — vertical, grid, and nested layouts | [Preview](https://reui.io/patterns/sortable) | [Radix UI](https://reui.io/docs/radix/sortable) | [Base UI](https://reui.io/docs/base/sortable) |
-| **Stepper** | 15 | Multi-step forms and onboarding wizards with React Hook Form per-step validation | [Preview](https://reui.io/patterns/stepper) | [Radix UI](https://reui.io/docs/radix/stepper) | [Base UI](https://reui.io/docs/base/stepper) |
-| **Timeline** | 12 | Sequential event display — deployment logs, activity feeds, milestones, and order trackers | [Preview](https://reui.io/patterns/timeline) | [Radix UI](https://reui.io/docs/radix/timeline) | [Base UI](https://reui.io/docs/base/timeline) |
-| **Tree** | 9 | Hierarchical data display built on Headless Tree with expand/collapse and keyboard navigation | [Preview](https://reui.io/patterns/tree) | [Radix UI](https://reui.io/docs/radix/tree) | [Base UI](https://reui.io/docs/base/tree) |
+| Component | # | Description | Preview | Radix UI Docs | Base UI Docs |
+|-----------|---|-------------|---------|---------------|--------------|
+| **Alert** | 10 | Contextual notifications with severity variants and dismissible states | [Preview](https://reui.io/components/alert) | [Radix UI](https://reui.io/docs/components/radix/alert) | [Base UI](https://reui.io/docs/components/base/alert) |
+| **Autocomplete** | 8 | Searchable input with async filtering and keyboard navigation | [Preview](https://reui.io/components/autocomplete) | [Radix UI](https://reui.io/docs/components/radix/autocomplete) | [Base UI](https://reui.io/docs/components/base/autocomplete) |
+| **Badge** | 16 | Status indicators with multiple styles, sizes, and dot variants | [Preview](https://reui.io/components/badge) | [Radix UI](https://reui.io/docs/components/radix/badge) | [Base UI](https://reui.io/docs/components/base/badge) |
+| **Data Grid** | 29 | Advanced table powered by TanStack Table + Virtual with DnD, pinning, resizing, and infinite scroll | [Preview](https://reui.io/components/data-grid) | [Radix UI](https://reui.io/docs/components/radix/data-grid) | [Base UI](https://reui.io/docs/components/base/data-grid) |
+| **Date Selector** | 9 | Flexible date range picker with calendar UI and preset ranges | [Preview](https://reui.io/components/date-selector) | [Radix UI](https://reui.io/docs/components/radix/date-selector) | [Base UI](https://reui.io/docs/components/base/date-selector) |
+| **Filters** | 9 | URL-state filter panel with TanStack Table integration, Zod validation, and multi-field types | [Preview](https://reui.io/components/filters) | [Radix UI](https://reui.io/docs/components/radix/filters) | [Base UI](https://reui.io/docs/components/base/filters) |
+| **File Upload** | 10 | Advanced file upload with multi-file upload and dropzone support | [Preview](https://reui.io/components/file-upload) | [Radix UI](https://reui.io/docs/components/radix/file-upload) | [Base UI](https://reui.io/docs/components/base/file-upload) |
+| **Frame** | 8 | Card-like wrapper for panels and content areas | [Preview](https://reui.io/components/frame) | [Radix UI](https://reui.io/docs/components/radix/frame) | [Base UI](https://reui.io/docs/components/base/frame) |
+| **Kanban** | 5 | Drag-and-drop task boards built on DnD Kit with dynamic overlays and composable cards | [Preview](https://reui.io/components/kanban) | [Radix UI](https://reui.io/docs/components/radix/kanban) | [Base UI](https://reui.io/docs/components/base/kanban) |
+| **Number Field** | 8 | Numeric input with increment/decrement controls and formatting | [Preview](https://reui.io/components/number-field) | [Radix UI](https://reui.io/docs/components/radix/number-field) | [Base UI](https://reui.io/docs/components/base/number-field) |
+| **Phone Input** | 7 | International phone number input with country selector and formatting | [Preview](https://reui.io/components/phone-input) | [Radix UI](https://reui.io/docs/components/radix/phone-input) | [Base UI](https://reui.io/docs/components/base/phone-input) |
+| **Rating** | 8 | Star and icon-based rating with half-star, read-only, and custom icon support | [Preview](https://reui.io/components/rating) | [Radix UI](https://reui.io/docs/components/radix/rating) | [Base UI](https://reui.io/docs/components/base/rating) |
+| **Scrollspy** | 6 | Auto-highlighting navigation that tracks scroll position across sections | [Preview](https://reui.io/components/scrollspy) | [Radix UI](https://reui.io/docs/components/radix/scrollspy) | [Base UI](https://reui.io/docs/components/base/scrollspy) |
+| **Sortable** | 7 | Drag-and-drop list reordering with DnD Kit — vertical, grid, and nested layouts | [Preview](https://reui.io/components/sortable) | [Radix UI](https://reui.io/docs/components/radix/sortable) | [Base UI](https://reui.io/docs/components/base/sortable) |
+| **Stepper** | 15 | Multi-step forms and onboarding wizards with React Hook Form per-step validation | [Preview](https://reui.io/components/stepper) | [Radix UI](https://reui.io/docs/components/radix/stepper) | [Base UI](https://reui.io/docs/components/base/stepper) |
+| **Timeline** | 12 | Sequential event display — deployment logs, activity feeds, milestones, and order trackers | [Preview](https://reui.io/components/timeline) | [Radix UI](https://reui.io/docs/components/radix/timeline) | [Base UI](https://reui.io/docs/components/base/timeline) |
+| **Tree** | 9 | Hierarchical data display built on Headless Tree with expand/collapse and keyboard navigation | [Preview](https://reui.io/components/tree) | [Radix UI](https://reui.io/docs/components/radix/tree) | [Base UI](https://reui.io/docs/components/base/tree) |
 
-### Shadcn Components with Pattern Library (52 Components)
+### Shadcn components with example library (52)
 
-All standard shadcn/ui components are included with extensive pattern variations:
+All standard shadcn/ui primitives are included with many composed examples:
 
-| Component | Patterns | Use Case | Link |
+| Component | Examples | Use case | Link |
 |-----------|----------|----------|------|
-| **Accordion** | 13 | Collapsible FAQ sections, nested content groups | [Accordion patterns →](https://reui.io/patterns/accordion) |
-| **Alert Dialog** | 7 | Confirm destructive actions, critical warnings | [Alert Dialog patterns →](https://reui.io/patterns/alert-dialog) |
-| **Aspect Ratio** | 4 | Fixed-dimension image and video containers | [Aspect Ratio patterns →](https://reui.io/patterns/aspect-ratio) |
-| **Avatar** | 12 | User profile images with fallbacks and status badges | [Avatar patterns →](https://reui.io/patterns/avatar) |
-| **Breadcrumb** | 9 | Navigation hierarchy and path indicators | [Breadcrumb patterns →](https://reui.io/patterns/breadcrumb) |
-| **Button** | 61 | Primary actions — the largest pattern set in ReUI | [Button patterns →](https://reui.io/patterns/button) |
-| **Calendar** | 8 | Date selection with single, range, and multi-select modes | [Calendar patterns →](https://reui.io/patterns/calendar) |
-| **Card** | 21 | Content containers for dashboards and layouts | [Card patterns →](https://reui.io/patterns/card) |
-| **Carousel** | 11 | Image galleries and content sliders | [Carousel patterns →](https://reui.io/patterns/carousel) |
-| **Chart** | 25 | Data visualization — bar, area, line, pie, radar, and more with Recharts | [Chart patterns →](https://reui.io/patterns/chart) |
-| **Checkbox** | 10 | Multi-select form inputs | [Checkbox patterns →](https://reui.io/patterns/checkbox) |
-| **Collapsible** | 5 | Expand/collapse content sections | [Collapsible patterns →](https://reui.io/patterns/collapsible) |
-| **Combobox** | 12 | Searchable dropdown selection | [Combobox patterns →](https://reui.io/patterns/combobox) |
-| **Command** | 8 | Command palettes and search interfaces | [Command patterns →](https://reui.io/patterns/command) |
-| **Context Menu** | 6 | Right-click menus with actions | [Context Menu patterns →](https://reui.io/patterns/context-menu) |
-| **Data Table** | 14 | Sortable, filterable structured data display | [Data Table patterns →](https://reui.io/patterns/data-table) |
-| **Date Picker** | 12 | Calendar-based date selection | [Date Picker patterns →](https://reui.io/patterns/date-picker) |
-| **Dialog** | 13 | Modal windows and overlays | [Dialog patterns →](https://reui.io/patterns/dialog) |
-| **Drawer** | 8 | Slide-out side panels | [Drawer patterns →](https://reui.io/patterns/drawer) |
-| **Dropdown Menu** | 15 | Action menus and navigation dropdowns | [Dropdown Menu patterns →](https://reui.io/patterns/dropdown-menu) |
-| **File Upload** | 10 | Drag-and-drop and click-to-upload interfaces | [File Upload patterns →](https://reui.io/patterns/file-upload) |
-| **Form** | 17 | Complete form layouts with React Hook Form and Zod validation | [Form patterns →](https://reui.io/patterns/form) |
-| **Hover Card** | 5 | Preview popovers on hover | [Hover Card patterns →](https://reui.io/patterns/hover-card) |
-| **Input** | 17 | Text input fields with variants and addons | [Input patterns →](https://reui.io/patterns/input) |
-| **Input OTP** | 7 | One-time password input fields | [Input OTP patterns →](https://reui.io/patterns/input-otp) |
-| **Label** | 4 | Form field labels | [Label patterns →](https://reui.io/patterns/label) |
-| **Menubar** | 5 | Application-level menu bars | [Menubar patterns →](https://reui.io/patterns/menubar) |
-| **Navigation Menu** | 10 | Primary site navigation with mega menus | [Navigation Menu patterns →](https://reui.io/patterns/navigation-menu) |
-| **Pagination** | 11 | Page navigation for lists and data tables | [Pagination patterns →](https://reui.io/patterns/pagination) |
-| **Popover** | 7 | Floating content panels | [Popover patterns →](https://reui.io/patterns/popover) |
-| **Progress** | 9 | Progress bars and loading indicators | [Progress patterns →](https://reui.io/patterns/progress) |
-| **Radio Group** | 10 | Exclusive option selection inputs | [Radio Group patterns →](https://reui.io/patterns/radio-group) |
-| **Resizable** | 5 | Draggable resizable panel layouts | [Resizable patterns →](https://reui.io/patterns/resizable) |
-| **Scroll Area** | 6 | Custom-styled scrollable containers | [Scroll Area patterns →](https://reui.io/patterns/scroll-area) |
-| **Select** | 12 | Dropdown selection fields | [Select patterns →](https://reui.io/patterns/select) |
-| **Separator** | 4 | Visual dividers and section separators | [Separator patterns →](https://reui.io/patterns/separator) |
-| **Sheet** | 8 | Slide-in panels and drawers | [Sheet patterns →](https://reui.io/patterns/sheet) |
-| **Skeleton** | 10 | Loading placeholder screens | [Skeleton patterns →](https://reui.io/patterns/skeleton) |
-| **Slider** | 10 | Range and value sliders | [Slider patterns →](https://reui.io/patterns/slider) |
-| **Sonner** | 8 | Toast notification system | [Sonner patterns →](https://reui.io/patterns/sonner) |
-| **Switch** | 10 | Toggle switches | [Switch patterns →](https://reui.io/patterns/switch) |
-| **Table** | 9 | HTML table layouts | [Table patterns →](https://reui.io/patterns/table) |
-| **Tabs** | 13 | Tabbed navigation and content panels | [Tabs patterns →](https://reui.io/patterns/tabs) |
-| **Textarea** | 8 | Multi-line text inputs with autosize and character count | [Textarea patterns →](https://reui.io/patterns/textarea) |
-| **Toast** | 7 | Toast notification banners | [Toast patterns →](https://reui.io/patterns/toast) |
-| **Toggle** | 7 | Toggle button states | [Toggle patterns →](https://reui.io/patterns/toggle) |
-| **Toggle Group** | 7 | Grouped toggle buttons | [Toggle Group patterns →](https://reui.io/patterns/toggle-group) |
-| **Tooltip** | 7 | Hover tooltips and contextual hints | [Tooltip patterns →](https://reui.io/patterns/tooltip) |
+| **Accordion** | 13 | Collapsible FAQ sections, nested content groups | [Accordion examples →](https://reui.io/components/accordion) |
+| **Alert Dialog** | 7 | Confirm destructive actions, critical warnings | [Alert Dialog examples →](https://reui.io/components/alert-dialog) |
+| **Aspect Ratio** | 4 | Fixed-dimension image and video containers | [Aspect Ratio examples →](https://reui.io/components/aspect-ratio) |
+| **Avatar** | 12 | User profile images with fallbacks and status badges | [Avatar examples →](https://reui.io/components/avatar) |
+| **Breadcrumb** | 9 | Navigation hierarchy and path indicators | [Breadcrumb examples →](https://reui.io/components/breadcrumb) |
+| **Button** | 61 | Primary actions — the largest example set in ReUI | [Button examples →](https://reui.io/components/button) |
+| **Calendar** | 8 | Date selection with single, range, and multi-select modes | [Calendar examples →](https://reui.io/components/calendar) |
+| **Card** | 21 | Content containers for dashboards and layouts | [Card examples →](https://reui.io/components/card) |
+| **Carousel** | 11 | Image galleries and content sliders | [Carousel examples →](https://reui.io/components/carousel) |
+| **Chart** | 25 | Data visualization — bar, area, line, pie, radar, and more with Recharts | [Chart examples →](https://reui.io/components/chart) |
+| **Checkbox** | 10 | Multi-select form inputs | [Checkbox examples →](https://reui.io/components/checkbox) |
+| **Collapsible** | 5 | Expand/collapse content sections | [Collapsible examples →](https://reui.io/components/collapsible) |
+| **Combobox** | 12 | Searchable dropdown selection | [Combobox examples →](https://reui.io/components/combobox) |
+| **Command** | 8 | Command palettes and search interfaces | [Command examples →](https://reui.io/components/command) |
+| **Context Menu** | 6 | Right-click menus with actions | [Context Menu examples →](https://reui.io/components/context-menu) |
+| **Data Table** | 14 | Sortable, filterable structured data display | [Data Table examples →](https://reui.io/components/data-table) |
+| **Date Picker** | 12 | Calendar-based date selection | [Date Picker examples →](https://reui.io/components/date-picker) |
+| **Dialog** | 13 | Modal windows and overlays | [Dialog examples →](https://reui.io/components/dialog) |
+| **Drawer** | 8 | Slide-out side panels | [Drawer examples →](https://reui.io/components/drawer) |
+| **Dropdown Menu** | 15 | Action menus and navigation dropdowns | [Dropdown Menu examples →](https://reui.io/components/dropdown-menu) |
+| **File Upload** | 10 | Drag-and-drop and click-to-upload interfaces | [File Upload examples →](https://reui.io/components/file-upload) |
+| **Form** | 17 | Complete form layouts with React Hook Form and Zod validation | [Form examples →](https://reui.io/components/form) |
+| **Hover Card** | 5 | Preview popovers on hover | [Hover Card examples →](https://reui.io/components/hover-card) |
+| **Input** | 17 | Text input fields with variants and addons | [Input examples →](https://reui.io/components/input) |
+| **Input OTP** | 7 | One-time password input fields | [Input OTP examples →](https://reui.io/components/input-otp) |
+| **Label** | 4 | Form field labels | [Label examples →](https://reui.io/components/label) |
+| **Menubar** | 5 | Application-level menu bars | [Menubar examples →](https://reui.io/components/menubar) |
+| **Navigation Menu** | 10 | Primary site navigation with mega menus | [Navigation Menu examples →](https://reui.io/components/navigation-menu) |
+| **Pagination** | 11 | Page navigation for lists and data tables | [Pagination examples →](https://reui.io/components/pagination) |
+| **Popover** | 7 | Floating content panels | [Popover examples →](https://reui.io/components/popover) |
+| **Progress** | 9 | Progress bars and loading indicators | [Progress examples →](https://reui.io/components/progress) |
+| **Radio Group** | 10 | Exclusive option selection inputs | [Radio Group examples →](https://reui.io/components/radio-group) |
+| **Resizable** | 5 | Draggable resizable panel layouts | [Resizable examples →](https://reui.io/components/resizable) |
+| **Scroll Area** | 6 | Custom-styled scrollable containers | [Scroll Area examples →](https://reui.io/components/scroll-area) |
+| **Select** | 12 | Dropdown selection fields | [Select examples →](https://reui.io/components/select) |
+| **Separator** | 4 | Visual dividers and section separators | [Separator examples →](https://reui.io/components/separator) |
+| **Sheet** | 8 | Slide-in panels and drawers | [Sheet examples →](https://reui.io/components/sheet) |
+| **Skeleton** | 10 | Loading placeholder screens | [Skeleton examples →](https://reui.io/components/skeleton) |
+| **Slider** | 10 | Range and value sliders | [Slider examples →](https://reui.io/components/slider) |
+| **Sonner** | 8 | Toast notification system | [Sonner examples →](https://reui.io/components/sonner) |
+| **Switch** | 10 | Toggle switches | [Switch examples →](https://reui.io/components/switch) |
+| **Table** | 9 | HTML table layouts | [Table examples →](https://reui.io/components/table) |
+| **Tabs** | 13 | Tabbed navigation and content panels | [Tabs examples →](https://reui.io/components/tabs) |
+| **Textarea** | 8 | Multi-line text inputs with autosize and character count | [Textarea examples →](https://reui.io/components/textarea) |
+| **Toast** | 7 | Toast notification banners | [Toast examples →](https://reui.io/components/toast) |
+| **Toggle** | 7 | Toggle button states | [Toggle examples →](https://reui.io/components/toggle) |
+| **Toggle Group** | 7 | Grouped toggle buttons | [Toggle Group examples →](https://reui.io/components/toggle-group) |
+| **Tooltip** | 7 | Hover tooltips and contextual hints | [Tooltip examples →](https://reui.io/components/tooltip) |
 
 ---
 
@@ -134,22 +131,22 @@ All standard shadcn/ui components are included with extensive pattern variations
 
 ### Installation
 
-ReUI follows the shadcn CLI approach — add patterns directly into your project:
+ReUI follows the shadcn CLI approach — add blocks from the registry directly into your project (registry items use the `c-` prefix):
 
 ```bash
-npx shadcn@latest add @reui/p-button-10	
-npx shadcn@latest add @reui/p-data-grid-9	
-npx shadcn@latest add @reui/p-filters-5	
+npx shadcn@latest add @reui/c-button-10
+npx shadcn@latest add @reui/c-data-grid-9
+npx shadcn@latest add @reui/c-filters-5
 ```
 
 ### Quick Start
 
-1. **Browse patterns** — Visit [reui.io](https://reui.io) to explore 1,000+ patterns
-2. **Copy code** — Each pattern includes a ready-to-use code snippet
+1. **Browse the catalog** — Visit [reui.io/components](https://reui.io/components) to explore 1,000+ composed examples (`c-*` blocks)
+2. **Copy code** — Each example includes a ready-to-use code snippet
 3. **Customize** — Modify with your Tailwind CSS tokens and design system
 4. **Own it** — The code lives in your repo, not a package
 
-ReUI patterns are powered by [@tanstack/react-table](https://tanstack.com/table), [@dnd-kit/core](https://dndkit.com), [recharts](https://recharts.org), [react-hook-form](https://react-hook-form.com), [zod](https://zod.dev), and other best-in-class React libraries.
+ReUI builds on [@tanstack/react-table](https://tanstack.com/table), [@dnd-kit/core](https://dndkit.com), [recharts](https://recharts.org), [react-hook-form](https://react-hook-form.com), [zod](https://zod.dev), and other best-in-class React libraries.
 
 ### Requirements
 
@@ -160,11 +157,11 @@ ReUI patterns are powered by [@tanstack/react-table](https://tanstack.com/table)
 
 ## Documentation
 
-- **ReUI Docs** — [reui.io/docs/radix](https://reui.io/docs)
-- **1000+ Patterns Explorer** — [reui.io](https://reui.io/patterns)
+- **ReUI Docs** — [reui.io/docs](https://reui.io/docs)
+- **Component catalog** — [reui.io/components](https://reui.io/components) — legacy `/patterns` URLs redirect here
 - **GitHub** — [github.com/keenthemes/reui](https://github.com/keenthemes/reui)
 
-Each component page includes live examples, copy-paste snippets, CLI instalaltion guides, TypeScript types, prop documentation, and accessibility notes.
+Each component page includes live examples, copy-paste snippets, CLI installation guides, TypeScript types, prop documentation, and accessibility notes.
 
 ---
 
@@ -196,10 +193,10 @@ and ai tooling on top of the same shadcn/ui foundation.
 
 ## Contributing
 
-We welcome contributions — new patterns, bug fixes, documentation improvements, and component additions all help the community.
+We welcome contributions — new examples, bug fixes, documentation improvements, and component additions all help the community.
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/new-pattern`)
+2. Create a feature branch (`git checkout -b feature/your-change`)
 3. Add your changes with TypeScript types and accessibility features
 4. Open a pull request with a clear description
 

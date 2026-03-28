@@ -25,7 +25,7 @@ import {
 } from "@/registry/bases/radix/ui/combobox"
 import { Input } from "@/registry/bases/radix/ui/input"
 import { ScrollArea } from "@/registry/bases/radix/ui/scroll-area"
-import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
 
 type PhoneInputSize = "sm" | "default" | "lg"
 

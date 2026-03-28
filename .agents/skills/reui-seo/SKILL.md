@@ -7,7 +7,7 @@ metadata:
 
 # ReUI SEO (pattern categories)
 
-You help write and structure **SEO content** for **`/patterns/[category]`** pages. The source of truth for per-category copy is **`oss/registry-reui/bases/seo.json`**, merged by **`getPatternCategorySeo`** in **`oss/lib/registry.ts`**.
+You help write and structure **SEO content** for **`/components/[category]`** pages. The source of truth for per-category copy is **`oss/registry-reui/bases/seo.json`**, merged by **`getComponentCategorySeo`** in **`oss/lib/registry.ts`**.
 
 ## First read
 
@@ -66,10 +66,10 @@ Use these **themes** when drafting or expanding any category (adapt to the compo
 |---------|------|
 | Merge SEO from JSON | `oss/lib/registry.ts` |
 | React `cache()` for SEO | `oss/lib/registry-seo-cache.ts` |
-| Metadata + FAQ JSON-LD | `oss/app/(create)/patterns/[category]/page.tsx` |
-| Sections, FAQ accordion, related block | `oss/app/(create)/patterns/components/pattern-category-seo-content.tsx` |
-| Parse `[[slug\|Label]]` | `pattern-category-seo-content.tsx` (`renderSeoLinkedText`, `PatternCategoryRelatedComponents`) |
-| Prev/next label `N Label Patterns` | `oss/app/(create)/patterns/components/pattern-category-pager.tsx` |
+| Metadata + FAQ JSON-LD | `oss/app/(create)/components/[category]/page.tsx` |
+| Sections, FAQ accordion, related block | `oss/app/(create)/components/components/pattern-category-seo-content.tsx` |
+| Parse `[[slug\|Label]]` | `pattern-category-seo-content.tsx` (`renderSeoLinkedText`, `ComponentCategoryRelatedComponents`) |
+| Prev/next label `N Label components` | `oss/app/(create)/components/components/pattern-category-pager.tsx` |
 
 ## Verification
 

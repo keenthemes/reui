@@ -10,6 +10,12 @@
 - Skip "Here's what I did" summaries unless complex
 - Use bullet points over paragraphs
 - Don't explain obvious changes
+- Always use the most relevant available skills before implementing
+- Never copy reference UI verbatim; reinterpret it into an original composition
+- For product UI, prefer proven ReUI/shadcn patterns over ad-hoc custom markup
+- Keep blocks responsive by default with strong mobile behavior and polished UX
+- Favor clean code, extracted reuse, and minimal Tailwind classes
+- In `meta.json`, keep `description` to 5-6 words max and make it the clearest summary of the block’s main feature
 
 ## Project Overview
 
@@ -94,7 +100,7 @@ oss/
 │   ├── bases/
 │   │   ├── base/                    # Base UI patterns
 │   │   │   ├── patterns/            # Pattern components by category
-│   │   │   │   ├── alert/           # p-alert-1.tsx, p-alert-2.tsx...
+│   │   │   │   ├── alert/           # c-alert-1.tsx, c-alert-2.tsx...
 │   │   │   │   ├── button/
 │   │   │   │   └── .../             # 40+ categories
 │   │   │   ├── reui/                # ReUI-specific components
@@ -269,8 +275,8 @@ export default function Pattern() {
 **Search Implementation** (`lib/registry.ts`):
 ```tsx
 // Multi-term search with plural handling
-searchPatterns("button loading") // Matches "button" AND "loading"
-searchPatterns("buttons")        // Matches "button" (plural → singular)
+searchCatalog("button loading") // Matches "button" AND "loading"
+searchCatalog("buttons")        // Matches "button" (plural → singular)
 
 // Category filtering
 filterPatterns({ category: "alert", query: "icon" })
@@ -281,7 +287,7 @@ getPaginatedPatterns({ category, query, page, perPage: 48 })
 
 **Indexing**:
 - Lazy-loaded on first access via `ensurePatternIndexes()`
-- Category index: `Map<category, PatternData[]>`
+- Category index: `Map<category, ComponentCatalogItem[]>`
 - Search text: name + title + categories
 - Sorted by primary category, then by `meta.order`
 
@@ -510,7 +516,7 @@ Then install:
 
 ```bash
 npx shadcn@latest add @reui/alert
-npx shadcn@latest add @reui/p-statistic-card-1
+npx shadcn@latest add @reui/c-statistic-card-1
 ```
 
 ## Hydration Safety Pattern

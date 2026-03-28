@@ -1,6 +1,14 @@
 "use client"
 
-import { CSSProperties, Fragment, ReactNode, useId, useRef } from "react"
+import {
+  CSSProperties,
+  Fragment,
+  ReactNode,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+} from "react"
 import { useDataGrid } from "@/registry-reui/bases/base/reui/data-grid/data-grid"
 import {
   DataGridTableBase,
@@ -45,7 +53,7 @@ import {
 } from "@tanstack/react-table"
 
 import { Button } from "@/registry/bases/base/ui/button"
-import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
 
 function DataGridTableDndHeader<TData>({
   header,
@@ -76,6 +84,7 @@ function DataGridTableDndHeader<TData>({
     position: "relative",
     transform: CSS.Translate.toString(transform),
     transition,
+    cursor: isDragging ? "grabbing" : undefined,
     whiteSpace: "nowrap",
     width: props.tableLayout?.columnsResizable
       ? `calc(var(--header-${header.id}-size) * 1px)`
@@ -94,7 +103,7 @@ function DataGridTableDndHeader<TData>({
           <Button
             size="icon-sm"
             variant="ghost"
-            className="-ms-2 size-6 cursor-move"
+            className={`-ms-2 size-6 ${isDragging ? "cursor-grabbing" : "cursor-grab active:cursor-grabbing"}`}
             {...attributes}
             {...listeners}
             aria-label="Drag to reorder"
@@ -134,6 +143,7 @@ function DataGridTableDndCell<TData>({ cell }: { cell: Cell<TData, unknown> }) {
     position: "relative",
     transform: CSS.Translate.toString(transform),
     transition,
+    cursor: isDragging ? "grabbing" : undefined,
     width: props.tableLayout?.columnsResizable
       ? `calc(var(--col-${cell.column.id}-size) * 1px)`
       : cell.column.getSize(),
@@ -157,12 +167,29 @@ function DataGridTableDnd<TData>({
   const { table, isLoading, props } = useDataGrid()
   const pagination = table.getState().pagination
   const containerRef = useRef<HTMLDivElement>(null)
+  const [isDraggingColumn, setIsDraggingColumn] = useState(false)
 
   const sensors = useSensors(
     useSensor(MouseSensor, {}),
     useSensor(TouchSensor, {}),
     useSensor(KeyboardSensor, {})
   )
+
+  useEffect(() => {
+    if (!isDraggingColumn) return
+
+    const { body, documentElement } = document
+    const previousBodyCursor = body.style.cursor
+    const previousDocumentCursor = documentElement.style.cursor
+
+    body.style.cursor = "grabbing"
+    documentElement.style.cursor = "grabbing"
+
+    return () => {
+      body.style.cursor = previousBodyCursor
+      documentElement.style.cursor = previousDocumentCursor
+    }
+  }, [isDraggingColumn])
 
   // Custom modifier to restrict dragging within table bounds with edge offset
   const restrictToTableBounds: Modifier = ({ draggingNodeRect, transform }) => {
@@ -192,10 +219,22 @@ function DataGridTableDnd<TData>({
       collisionDetection={closestCenter}
       id={useId()}
       modifiers={[restrictToTableBounds]}
-      onDragEnd={handleDragEnd}
+      onDragCancel={() => setIsDraggingColumn(false)}
+      onDragEnd={(event) => {
+        setIsDraggingColumn(false)
+        handleDragEnd(event)
+      }}
+      onDragStart={() => setIsDraggingColumn(true)}
       sensors={sensors}
     >
-      <DataGridTableViewport viewportRef={containerRef} className="relative">
+      <DataGridTableViewport
+        viewportRef={containerRef}
+        className={
+          isDraggingColumn
+            ? "relative cursor-grabbing [&_*]:cursor-grabbing!"
+            : "relative"
+        }
+      >
         <DataGridTableBase>
           <DataGridTableHead>
             {table

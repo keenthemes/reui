@@ -35,7 +35,7 @@ export interface ComponentSourceClientProps {
   maxLines?: number
   code?: string
   className?: string
-  eventName?: "copy_pattern_code" | "copy_component_code"
+  eventName?: "copy_component_code"
   showCopyButton?: boolean
 }
 
@@ -181,9 +181,7 @@ export function ComponentSourceClient({
 
   const lang = language ?? title?.split(".").pop() ?? "tsx"
 
-  const effectiveEventName =
-    eventName ||
-    (name?.startsWith("p-") ? "copy_pattern_code" : "copy_component_code")
+  const effectiveEventName = eventName ?? "copy_component_code"
 
   if (!collapsible) {
     return (

@@ -6,14 +6,14 @@ import { SiteSubscribe } from "@/components/site-subscribe"
 
 import { FAQSection } from "./components/faq-section"
 import Hero from "./components/hero"
-import { Patterns } from "./components/patterns"
+import { HomeComponents } from "./components/components"
 import { Stats } from "./components/stats"
 import { WallOfLove } from "./components/wall-of-love"
 
 const title =
-  "ReUI – Free Shadcn UI Components, Patterns, Blocks and Extensions"
+  "ReUI – Shadcn UI Components and Blocks"
 const description =
-  "Discover the free 1000+ open-source shadcn/ui component patterns for React and Tailwind CSS."
+  "Discover the 1000+ free shadcn/ui components and blocks for React and Tailwind CSS."
 
 export const dynamic = "force-static"
 export const revalidate = false
@@ -23,12 +23,14 @@ export const metadata: Metadata = buildPageMetadata({
   description,
   path: "/",
   keywords: [
-    "shadcn patterns",
+    "shadcn catalog",
     "shadcn components",
+    "reui components",
+    "reui blocks",
     "shadcn create",
     "shadcn ui extensions",
     "shadcn ui examples",
-    "shadcn ui patterns",
+    "shadcn ui components",
     "free shadcn components",
     "open-source shadcn components",
     "shadcn data grid",
@@ -48,7 +50,7 @@ export default function IndexPage() {
     <div className="homepage relative overflow-hidden bg-linear-to-b to-gray-100 to-35% dark:to-zinc-900">
       <Hero />
       <Stats />
-      <Patterns />
+      <HomeComponents />
       <WallOfLove />
       <FAQSection />
       <SiteSubscribe />

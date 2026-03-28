@@ -7,13 +7,13 @@ export const siteConfig = {
   name: siteName,
   url: siteUrl,
   description:
-    "Free & open-source library of 1,000+ components and patterns to 10x your productivity in shadcn projects.",
+    "Free & open-source library of 1,000+ shadcn components to 10x your productivity in shadcn projects.",
   metadata: {
     locale: "en_US",
     titleTemplate: "%s",
     titleSuffixes: {
       site: siteName,
-      patternCategory: "UI Components and Patterns",
+      componentCategory: "UI Components",
     },
   },
   links: {
@@ -31,8 +31,8 @@ export const siteConfig = {
   },
   navItems: [
     {
-      href: "/patterns",
-      label: "Patterns",
+      href: "/components",
+      label: "Components",
     },
     {
       href: "/docs",

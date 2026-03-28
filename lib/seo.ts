@@ -181,7 +181,7 @@ export interface ComponentDocSeo {
 }
 
 /**
- * SEO + on-page copy for canonical component docs (`/docs/base/...` and `/docs/radix/...`).
+ * SEO + on-page copy for canonical component docs (`/docs/components/base/...` and `/docs/components/radix/...`).
  */
 export function getComponentDocSeo(
   slug: CanonicalComponentDocSlug,
@@ -189,7 +189,7 @@ export function getComponentDocSeo(
   base: "base" | "radix",
   docDescription?: string | null
 ): ComponentDocSeo {
-  const canonicalPath = `/docs/base/${slug}`
+  const canonicalPath = `/docs/components/${base}/${slug}`
   const displayTitle = `Shadcn ${label}`
 
   const docHook = docDescription?.trim() ?? ""
@@ -220,29 +220,28 @@ export function getComponentDocSeo(
 }
 
 /**
- * Patterns CTA intro: Radix vs Base UI copy for the bottom docs section.
+ * Docs catalog CTA intro: Radix vs Base UI copy for the bottom docs section.
  */
-export function getDocsComponentPatternsIntro(
+export function getDocsComponentCatalogIntro(
   slug: CanonicalComponentDocSlug,
   label: string,
   count: number,
   base: "base" | "radix"
 ): string {
   const p = count
-  const plural = p === 1 ? "pattern" : "patterns"
 
   if (slug === "alert") {
     if (base === "radix") {
-      return `Browse ${p} production-ready Shadcn ${label} patterns for success, warning, destructive, and inline actions. Alerts follow accessible roles from the Radix stack and stay fully compatible with Shadcn Create so radius, color, and typography match your configured theme.`
+      return `Browse ${p} production-ready Shadcn ${label} components for success, warning, destructive, and inline actions. Alerts follow accessible roles from the Radix stack and stay fully compatible with Shadcn Create so radius, color, and typography match your configured theme.`
     }
-    return `Browse ${p} production-ready Shadcn ${label} patterns for success, warning, destructive, and inline actions. Alerts use Base UI primitives and composable patterns, and stay fully compatible with Shadcn Create so radius, color, and typography match your configured theme.`
+    return `Browse ${p} production-ready Shadcn ${label} components for success, warning, destructive, and inline actions. Alerts use Base UI primitives and composable building blocks, and stay fully compatible with Shadcn Create so radius, color, and typography match your configured theme.`
   }
 
   if (base === "radix") {
-    return `Browse ${p} production-ready Shadcn ${label} ${plural} for dashboards, forms, and product UI. These examples follow the Radix UI implementation with accessible primitives from the Radix stack and stay fully compatible with Shadcn Create so radius, color, and typography match your configured theme.`
+    return `Browse ${p} production-ready Shadcn ${label} components for dashboards, forms, and product UI. These examples follow the Radix UI implementation with accessible primitives from the Radix stack and stay fully compatible with Shadcn Create so radius, color, and typography match your configured theme.`
   }
 
-  return `Browse ${p} production-ready Shadcn ${label} ${plural} for dashboards, forms, and product UI. These examples use Base UI primitives from @base-ui/react and stay fully compatible with Shadcn Create so radius, color, and typography match your configured theme.`
+  return `Browse ${p} production-ready Shadcn ${label} components for dashboards, forms, and product UI. These examples use Base UI primitives from @base-ui/react and stay fully compatible with Shadcn Create so radius, color, and typography match your configured theme.`
 }
 
 type BreadcrumbItem = {
@@ -288,7 +287,7 @@ export function buildWebSiteJsonLd() {
     },
     potentialAction: {
       "@type": "SearchAction",
-      target: absoluteUrl("/patterns?search={search_term_string}"),
+      target: absoluteUrl("/components?search={search_term_string}"),
       "query-input": "required name=search_term_string",
     },
   }

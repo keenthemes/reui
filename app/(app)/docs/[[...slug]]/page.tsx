@@ -23,7 +23,7 @@ import { absoluteUrl } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { DocsBaseSwitcher } from "@/components/docs-base-switcher"
-import { DocsComponentPatternsSection } from "@/components/docs-component-patterns-section"
+import { DocsComponentCatalogSection } from "@/components/docs-component-catalog-section"
 import { DocsCopyPage } from "@/components/docs-copy-page"
 import { DocsTableOfContents } from "@/components/docs-toc"
 import { JsonLd } from "@/components/json-ld"
@@ -48,12 +48,15 @@ export async function generateMetadata(props: {
 
   const doc = page.data
   const docBase =
-    params.slug?.[0] === "base" || params.slug?.[0] === "radix"
-      ? params.slug[0]
+    params.slug?.[0] === "components" &&
+    (params.slug?.[1] === "base" || params.slug?.[1] === "radix")
+      ? params.slug[1]
       : null
   const componentSlug =
-    params.slug?.length === 2 && isCanonicalComponentDoc(params.slug[1])
-      ? params.slug[1]
+    params.slug?.length === 3 &&
+    docBase &&
+    isCanonicalComponentDoc(params.slug[2])
+      ? params.slug[2]
       : null
   const componentSeo =
     docBase && componentSlug
@@ -109,10 +112,10 @@ export default async function Page(props: {
     .parse(attributes)
 
   // Extract component name from slug for the base switcher
-  // URL structure: /docs/base/{component} or /docs/radix/{component}
+  // URL structure: /docs/components/base/{component} or /docs/components/radix/{component}
   const isComponentDoc = component === true && base !== undefined
   const componentName =
-    isComponentDoc && params.slug?.length >= 2 ? params.slug[1] : undefined
+    isComponentDoc && params.slug?.length >= 3 ? params.slug[2] : undefined
   const componentSeo =
     isComponentDoc &&
     componentName &&
@@ -222,7 +225,7 @@ export default async function Page(props: {
               />
             </div>
             {isComponentDoc && componentName && base ? (
-              <DocsComponentPatternsSection
+              <DocsComponentCatalogSection
                 componentSlug={componentName}
                 docBase={base}
               />

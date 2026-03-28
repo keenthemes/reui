@@ -6,7 +6,7 @@ import { source } from "@/lib/source"
 
 /**
  * All published doc routes (same set as `source.generateParams()`), including
- * every `/docs/base/...` and `/docs/radix/...` page. Using `getPages()` avoids
+ * every `/docs/components/base/...` and `/docs/components/radix/...` page. Using `getPages()` avoids
  * dropping URLs when two pages share the same `name` in the page tree.
  */
 function collectDocUrls(): string[] {
@@ -21,18 +21,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = [
     baseUrl,
     `${baseUrl}/docs`,
-    `${baseUrl}/patterns`,
+    `${baseUrl}/components`,
     `${baseUrl}/built-with-reui`,
     "https://v1.reui.io",
   ]
 
   const docPaths = collectDocUrls().map((path) => `${baseUrl}${path}`)
 
-  const patternPaths = getCategories().map(
-    (category) => `${baseUrl}/patterns/${category.name}`
+  const componentCategoryPaths = getCategories().map(
+    (category) => `${baseUrl}/components/${category.name}`
   )
 
-  const allUrls = [...staticPaths, ...docPaths, ...patternPaths]
+  const allUrls = [...staticPaths, ...docPaths, ...componentCategoryPaths]
 
   return allUrls.map((url) => ({ url }))
 }

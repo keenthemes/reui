@@ -19,7 +19,7 @@ import {
 } from "@/registry/bases/base/ui/combobox"
 import { Input } from "@/registry/bases/base/ui/input"
 import { ScrollArea } from "@/registry/bases/base/ui/scroll-area"
-import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
 
 type PhoneInputSize = "sm" | "default" | "lg"
 

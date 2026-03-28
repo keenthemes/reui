@@ -10,7 +10,7 @@ import {
 
 import { cn } from "@/registry/bases/base/lib/utils"
 import { Button, buttonVariants } from "@/registry/bases/base/ui/button"
-import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
 
 function Calendar({
   className,

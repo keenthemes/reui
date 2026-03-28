@@ -1,10 +1,10 @@
 "use client"
 
 import { useMemo, useState } from "react"
+import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 import { Column } from "@tanstack/react-table"
 
 import { cn } from "@/registry/bases/radix/lib/utils"
-import { Badge } from "@/registry/bases/radix/ui/badge"
 import { Button } from "@/registry/bases/radix/ui/button"
 import { Input } from "@/registry/bases/radix/ui/input"
 import {
@@ -13,7 +13,7 @@ import {
   PopoverTrigger,
 } from "@/registry/bases/radix/ui/popover"
 import { Separator } from "@/registry/bases/radix/ui/separator"
-import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
 
 interface DataGridColumnFilterProps<TData, TValue> {
   column?: Column<TData, TValue>
@@ -140,7 +140,7 @@ function DataGridColumnFilter<TData, TValue>({
                         hugeicons="Tick02Icon"
                         phosphor="CheckIcon"
                         remixicon="RiCheckLine"
-                        className="size-4"
+                        className="h-4 w-4"
                       />
                     </div>
                     {option.icon && (

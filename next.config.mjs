@@ -200,8 +200,13 @@ const nextConfig = {
   redirects() {
     return [
       {
-        source: "/components",
-        destination: "/docs/components",
+        source: "/patterns",
+        destination: "/components",
+        permanent: true,
+      },
+      {
+        source: "/patterns/:path*",
+        destination: "/components/:path*",
         permanent: true,
       },
       {
@@ -217,25 +222,36 @@ const nextConfig = {
       // Special case redirects (intentional renames, listed before catch-all)
       {
         source: "/docs/form",
-        destination: "/patterns/field",
+        destination: "/components/field",
         permanent: true,
       },
       {
         source: "/docs/toast",
-        destination: "/patterns/sonner",
+        destination: "/components/sonner",
+        permanent: true,
+      },
+      // Legacy component doc paths (before /docs/components/{base}/…)
+      {
+        source: "/docs/base/:path*",
+        destination: "/docs/components/base/:path*",
+        permanent: true,
+      },
+      {
+        source: "/docs/radix/:path*",
+        destination: "/docs/components/radix/:path*",
         permanent: true,
       },
       // Old ReUI component doc URLs should resolve to the canonical Base UI docs.
       {
         source: `/docs/:path(${canonicalComponentDocRedirectPattern})`,
-        destination: "/docs/base/:path",
+        destination: "/docs/components/base/:path",
         permanent: true,
       },
-      // Old pattern doc URLs → /patterns/:path
+      // Old pattern doc URLs → /components/:path
       // Only matches known pattern categories, NOT real docs pages like /docs/get-started
       {
         source: `/docs/:path(${legacyPatternCategoryRedirectPattern})`,
-        destination: "/patterns/:path",
+        destination: "/components/:path",
         permanent: true,
       },
       // Canonicalize registry URLs to a deploy-scoped cache key.

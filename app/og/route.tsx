@@ -4,13 +4,18 @@ import { siteConfig } from "@/lib/config"
 
 export const runtime = "edge"
 
-function decodeBase64Font(base64Font: string) {
+function decodeBase64Font(base64Font: string): ArrayBuffer {
   const binary = atob(base64Font)
-  return Uint8Array.from(binary, (char) => char.charCodeAt(0))
+  const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0))
+  // ImageResponse FontOptions expects ArrayBuffer | Buffer, not Uint8Array
+  return bytes.buffer.slice(
+    bytes.byteOffset,
+    bytes.byteOffset + bytes.byteLength
+  )
 }
 
 async function loadAssets(): Promise<
-  { name: string; data: Uint8Array; weight: 400 | 600; style: "normal" }[]
+  { name: string; data: ArrayBuffer; weight: 400 | 600; style: "normal" }[]
 > {
   const [
     { base64Font: normal },

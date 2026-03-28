@@ -4,7 +4,7 @@ import { useState } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/registry/bases/base/lib/utils"
-import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
 
 const ratingVariants = cva("flex items-center", {
   variants: {

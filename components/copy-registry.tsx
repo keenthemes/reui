@@ -52,7 +52,7 @@ export function CopyRegistry({ value, ...props }: CopyRegistryProps) {
       setHasCopied(true)
 
       trackEvent({
-        name: "copy_pattern_cli",
+        name: "copy_component_cli",
         properties: {
           command,
           pm,

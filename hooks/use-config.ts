@@ -15,13 +15,13 @@ import type {
   ThemeName,
 } from "@/registry/config"
 
-export type PatternGridMode = 1 | 2
+export type CatalogGridMode = 1 | 2
 
 export type Config = {
   // App preferences (not synced with URL)
   packageManager: "npm" | "yarn" | "pnpm" | "bun"
   installationType: "cli" | "manual"
-  gridColumns: PatternGridMode
+  gridColumns: CatalogGridMode
 
   // Design system params (synced with URL)
   base: BaseName
@@ -78,19 +78,22 @@ export function useConfig() {
   return useAtom(configAtom)
 }
 
-export interface PatternsState {
+export interface ComponentsLayoutState {
   sidebarOpen: boolean
   activeCategory?: string
   sidebarMenuView?: "menu" | "inline"
 }
 
-const patternsStateAtom = atomWithStorage<PatternsState>("patterns-state", {
-  sidebarOpen: true,
-  sidebarMenuView: "menu",
-})
+const componentsLayoutStateAtom = atomWithStorage<ComponentsLayoutState>(
+  "components-layout",
+  {
+    sidebarOpen: true,
+    sidebarMenuView: "menu",
+  }
+)
 
-export function usePatternsState() {
-  return useAtom(patternsStateAtom)
+export function useComponentsLayoutState() {
+  return useAtom(componentsLayoutStateAtom)
 }
 
 // Blocks states configuration

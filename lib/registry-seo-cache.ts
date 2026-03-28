@@ -1,20 +1,20 @@
 import { cache } from "react"
 
 import {
-  getPatternCategorySeo as getPatternCategorySeoUncached,
-  getPatternIndexSeo as getPatternIndexSeoUncached,
-  type PatternCategorySeo,
+  getComponentCategorySeo as getComponentCategorySeoUncached,
+  getComponentIndexSeo as getComponentIndexSeoUncached,
+  type ComponentCategorySeo,
 } from "./registry"
 
 /**
- * Per-request memoization for static pattern category pages that call SEO helpers
+ * Per-request memoization for static component category pages that call SEO helpers
  * more than once (e.g. `generateMetadata` + page body).
  */
-export const getPatternCategorySeo = cache(
-  (category: string): PatternCategorySeo =>
-    getPatternCategorySeoUncached(category)
+export const getComponentCategorySeo = cache(
+  (category: string): ComponentCategorySeo =>
+    getComponentCategorySeoUncached(category)
 )
 
-export const getPatternIndexSeo = cache(
-  (): PatternCategorySeo => getPatternIndexSeoUncached()
+export const getComponentIndexSeo = cache(
+  (): ComponentCategorySeo => getComponentIndexSeoUncached()
 )

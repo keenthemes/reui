@@ -28,7 +28,7 @@ import { Calendar, CalendarDayButton } from "@/registry/bases/base/ui/calendar"
 import { Input } from "@/registry/bases/base/ui/input"
 import { ScrollArea } from "@/registry/bases/base/ui/scroll-area"
 import { Tabs, TabsList, TabsTrigger } from "@/registry/bases/base/ui/tabs"
-import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
 
 export interface DateSelectorI18nConfig {
   // Labels

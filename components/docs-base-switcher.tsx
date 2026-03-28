@@ -22,7 +22,7 @@ export function DocsBaseSwitcher({
       {(BASES as RegistryItem[]).map((baseItem) => (
         <Link
           key={baseItem.name}
-          href={`/docs/${baseItem.name}/${component}`}
+          href={`/docs/components/${baseItem.name}/${component}`}
           data-active={base === baseItem.name}
           className="text-site-muted-foreground hover:text-site-foreground data-[active=true]:text-site-foreground after:bg-site-foreground relative inline-flex items-center justify-center gap-1 pt-1 pb-0.5 text-base font-medium transition-colors after:absolute after:inset-x-0 after:bottom-[-4px] after:h-0.5 after:opacity-0 after:transition-opacity data-[active=true]:after:opacity-100"
         >

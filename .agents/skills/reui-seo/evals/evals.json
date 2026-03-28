@@ -25,7 +25,7 @@
       "assertions": [
         "Mentions validation JSON.parse",
         "Avoids em dash",
-        "References getPatternCategorySeo / seo.json as source",
+        "References getComponentCategorySeo / seo.json as source",
         "Expands content without duplicate boilerplate across unrelated categories"
       ],
       "files": ["oss/registry-reui/bases/seo.json"]

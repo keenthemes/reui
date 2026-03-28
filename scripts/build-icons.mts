@@ -1,4 +1,8 @@
 #!/usr/bin/env tsx
+/**
+ * Collects icon usage from registry sources, including catalog blocks under
+ * `registry-reui/bases/base/components` (c-*.tsx).
+ */
 import * as fs from "fs"
 import * as path from "path"
 import { iconLibraries, type IconLibraryName } from "shadcn/icons"
@@ -27,10 +31,10 @@ function scanIconUsage(): IconUsage {
   }, {} as IconUsage)
 
   // ── 1. Scan <IconPlaceholder> in registry bases ──
-  // Only scan base folder - radix is a mirror created by migrate-radix.mts
+  // Catalog blocks: registry-reui/bases/base/components. Only scan base — radix mirrors base.
   const scanDirs = [
     path.join(process.cwd(), "registry/bases"),
-    path.join(process.cwd(), "registry-reui/bases/base/patterns"),
+    path.join(process.cwd(), "registry-reui/bases/base/components"),
     path.join(process.cwd(), "registry-reui/bases/base/reui"),
   ]
 
@@ -186,7 +190,7 @@ if (isWatchMode) {
   // Only watch base folder - radix is a mirror created by migrate-radix.mts
   const SCAN_DIRS = [
     path.join(process.cwd(), "registry/bases"),
-    path.join(process.cwd(), "registry-reui/bases/base/patterns"),
+    path.join(process.cwd(), "registry-reui/bases/base/components"),
     path.join(process.cwd(), "registry-reui/bases/base/reui"),
     path.join(process.cwd(), "app"),
   ].filter((dir) => fs.existsSync(dir))

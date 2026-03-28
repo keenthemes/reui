@@ -5,9 +5,11 @@ import {
   CSSProperties,
   ReactNode,
   useContext,
+  useEffect,
   useId,
   useMemo,
   useRef,
+  useState,
 } from "react"
 import { useDataGrid } from "@/registry-reui/bases/base/reui/data-grid/data-grid"
 import {
@@ -49,7 +51,7 @@ import { Cell, flexRender, HeaderGroup, Row } from "@tanstack/react-table"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/bases/base/ui/button"
-import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
 
 // Context to share sortable listeners from row to handle
 type SortableContextValue = ReturnType<typeof useSortable>
@@ -68,7 +70,7 @@ function DataGridTableDndRowHandle({ className }: { className?: string }) {
         variant="ghost"
         size="icon-sm"
         className={cn(
-          "size-7 cursor-move opacity-70 hover:bg-transparent hover:opacity-100",
+          "size-7 cursor-grab opacity-70 hover:bg-transparent hover:opacity-100 active:cursor-grabbing",
           className
         )}
         disabled
@@ -89,7 +91,7 @@ function DataGridTableDndRowHandle({ className }: { className?: string }) {
       variant="ghost"
       size="icon-sm"
       className={cn(
-        "size-7 cursor-move opacity-70 hover:bg-transparent hover:opacity-100",
+        "size-7 cursor-grab opacity-70 hover:bg-transparent hover:opacity-100 active:cursor-grabbing",
         className
       )}
       {...context.attributes}
@@ -124,6 +126,7 @@ function DataGridTableDndRow<TData>({ row }: { row: Row<TData> }) {
     opacity: isDragging ? 0.8 : 1,
     zIndex: isDragging ? 1 : 0,
     position: "relative",
+    cursor: isDragging ? "grabbing" : undefined,
   }
 
   return (
@@ -158,12 +161,29 @@ function DataGridTableDndRows<TData>({
   const { table, isLoading, props } = useDataGrid()
   const pagination = table.getState().pagination
   const tableContainerRef = useRef<HTMLDivElement>(null)
+  const [isDraggingRow, setIsDraggingRow] = useState(false)
 
   const sensors = useSensors(
     useSensor(MouseSensor, {}),
     useSensor(TouchSensor, {}),
     useSensor(KeyboardSensor, {})
   )
+
+  useEffect(() => {
+    if (!isDraggingRow) return
+
+    const { body, documentElement } = document
+    const previousBodyCursor = body.style.cursor
+    const previousDocumentCursor = documentElement.style.cursor
+
+    body.style.cursor = "grabbing"
+    documentElement.style.cursor = "grabbing"
+
+    return () => {
+      body.style.cursor = previousBodyCursor
+      documentElement.style.cursor = previousDocumentCursor
+    }
+  }, [isDraggingRow])
 
   const modifiers = useMemo(() => {
     const restrictToTableContainer: Modifier = ({
@@ -197,12 +217,21 @@ function DataGridTableDndRows<TData>({
       id={useId()}
       collisionDetection={closestCenter}
       modifiers={modifiers}
-      onDragEnd={handleDragEnd}
+      onDragCancel={() => setIsDraggingRow(false)}
+      onDragEnd={(event) => {
+        setIsDraggingRow(false)
+        handleDragEnd(event)
+      }}
+      onDragStart={() => setIsDraggingRow(true)}
       sensors={sensors}
     >
       <DataGridTableViewport
         viewportRef={tableContainerRef}
-        className="relative"
+        className={
+          isDraggingRow
+            ? "relative cursor-grabbing [&_*]:cursor-grabbing!"
+            : "relative"
+        }
       >
         <DataGridTableBase>
           <DataGridTableHead>

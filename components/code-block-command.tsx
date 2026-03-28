@@ -3,7 +3,7 @@
 import * as React from "react"
 import { CheckIcon, Copy, Terminal } from "lucide-react"
 
-import { useConfig } from "@/hooks/use-config"
+import { DEFAULT_CONFIG, useConfig } from "@/hooks/use-config"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
@@ -26,6 +26,11 @@ export function CodeBlockCommand({
 }) {
   const [config, setConfig] = useConfig()
   const [hasCopied, setHasCopied] = React.useState(false)
+  const [mounted, setMounted] = React.useState(false)
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
 
   React.useEffect(() => {
     if (hasCopied) {
@@ -34,7 +39,9 @@ export function CodeBlockCommand({
     }
   }, [hasCopied])
 
-  const packageManager = config.packageManager || "pnpm"
+  const packageManager = mounted
+    ? (config.packageManager ?? DEFAULT_CONFIG.packageManager)
+    : DEFAULT_CONFIG.packageManager
 
   const tabs = React.useMemo(() => {
     return {
