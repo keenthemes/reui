@@ -15,7 +15,7 @@ import {
   CardTitle,
 } from "@/registry/bases/radix/ui/card"
 import { ScrollArea } from "@/registry/bases/radix/ui/scroll-area"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function Pattern() {
   const [date, setDate] = useState<Date | undefined>(new Date())

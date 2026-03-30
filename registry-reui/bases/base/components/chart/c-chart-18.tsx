@@ -20,7 +20,7 @@ import {
   ChartTooltipContent,
   type ChartConfig,
 } from "@/registry/bases/base/ui/chart"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 const chartData = [
   { month: "January", api: 1820, webhook: 1640 },

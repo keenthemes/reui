@@ -39,7 +39,7 @@ import {
 import { Button } from "@/registry/bases/base/ui/button"
 import { ScrollArea, ScrollBar } from "@/registry/bases/base/ui/scroll-area"
 import { Skeleton } from "@/registry/bases/base/ui/skeleton"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 interface IData {
   id: string

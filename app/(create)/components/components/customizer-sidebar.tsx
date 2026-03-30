@@ -6,8 +6,8 @@ import dynamic from "next/dynamic"
 import { cn } from "@/lib/utils"
 import { useIsMobile } from "@/hooks/use-mobile"
 
-import { CustomizerSidebarHeader } from "./customizer-sidebar-header"
 import { useCustomizer } from "./components-provider"
+import { CustomizerSidebarHeader } from "./customizer-sidebar-header"
 
 /** Client-only: nuqs + jotai + theme pickers diverge from SSR; avoids hydration errors. */
 const CustomizerSidebarContent = dynamic(

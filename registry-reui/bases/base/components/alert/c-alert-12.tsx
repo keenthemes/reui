@@ -8,7 +8,7 @@ import {
 } from "@/registry-reui/bases/base/reui/alert"
 import { Frame, FramePanel } from "@/registry-reui/bases/base/reui/frame"
 
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function Pattern() {
   return (

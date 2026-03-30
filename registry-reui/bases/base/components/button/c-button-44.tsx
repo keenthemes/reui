@@ -7,7 +7,7 @@ import { useEffect, useState } from "react"
 
 import { Button } from "@/registry/bases/base/ui/button"
 import { Spinner } from "@/registry/bases/base/ui/spinner"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 type Status = "idle" | "loading" | "success"
 

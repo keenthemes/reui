@@ -16,7 +16,7 @@ import {
   PopoverTrigger,
 } from "@/registry/bases/base/ui/popover"
 import { ScrollArea } from "@/registry/bases/base/ui/scroll-area"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function Pattern() {
   const id = useId()

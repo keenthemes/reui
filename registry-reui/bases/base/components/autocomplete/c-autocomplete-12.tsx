@@ -26,7 +26,7 @@ import {
   FieldLabel,
   FieldSet,
 } from "@/registry/bases/base/ui/field"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 const FormSchema = z.object({
   feature: z

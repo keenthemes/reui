@@ -15,7 +15,7 @@ import {
   CollapsibleTrigger,
 } from "@/registry/bases/radix/ui/collapsible"
 import { Progress } from "@/registry/bases/radix/ui/progress"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function Pattern() {
   return (

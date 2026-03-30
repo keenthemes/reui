@@ -3,7 +3,7 @@
 
 import { Button } from "@/registry/bases/radix/ui/button"
 import { Toggle } from "@/registry/bases/radix/ui/toggle"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function Pattern() {
   return (

@@ -13,7 +13,7 @@ import {
 } from "@/registry-reui/bases/radix/reui/filters"
 
 import { Button } from "@/registry/bases/radix/ui/button"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 const StatusIcon = ({ status }: { status: string }) => {
   switch (status) {

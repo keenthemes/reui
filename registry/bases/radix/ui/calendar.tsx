@@ -10,7 +10,7 @@ import {
 
 import { cn } from "@/registry/bases/radix/lib/utils"
 import { Button, buttonVariants } from "@/registry/bases/radix/ui/button"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 function Calendar({
   className,

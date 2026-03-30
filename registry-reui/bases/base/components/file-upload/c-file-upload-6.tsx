@@ -29,7 +29,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/registry/bases/base/ui/table"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 interface FileUploadItem extends FileWithPreview {
   progress: number

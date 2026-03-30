@@ -7,7 +7,7 @@ import { useRender } from "@base-ui/react/use-render"
 import { ItemInstance } from "@headless-tree/core"
 
 import { cn } from "@/registry/bases/base/lib/utils"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 type ToggleIconType = "chevron" | "plus-minus"
 

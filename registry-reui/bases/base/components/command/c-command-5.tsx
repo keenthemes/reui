@@ -17,7 +17,7 @@ import {
   CommandList,
 } from "@/registry/bases/base/ui/command"
 import { Kbd } from "@/registry/bases/base/ui/kbd"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 const files = [
   { name: "page.tsx", path: "src/app/page.tsx", type: "tsx" },

@@ -18,7 +18,7 @@ import {
   SortableItemHandle,
 } from "@/registry-reui/bases/radix/reui/sortable"
 
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 interface GalleryImage {
   id: string

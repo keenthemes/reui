@@ -8,7 +8,7 @@ import { useId, useState } from "react"
 import { cn } from "@/registry/bases/base/lib/utils"
 import { Field, FieldLabel } from "@/registry/bases/base/ui/field"
 import { Input } from "@/registry/bases/base/ui/input"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function Pattern() {
   const id = useId()

@@ -12,8 +12,8 @@ import { buildBreadcrumbJsonLd, buildPageMetadata } from "@/lib/seo"
 import { GridSkeleton } from "@/components/grid-skeleton"
 import { JsonLd } from "@/components/json-ld"
 
-import { ComponentCategorySeoContent } from "./components/component-category-seo-content"
 import { ComponentCategoryGrid } from "./components/component-category-grid"
+import { ComponentCategorySeoContent } from "./components/component-category-seo-content"
 import { ComponentPageContent } from "./components/component-page-content"
 
 // Fully static — view switching (category grid vs inline preview) happens client-side
@@ -64,7 +64,7 @@ const featuredCategories = [
 ] as const
 
 export const metadata: Metadata = buildPageMetadata({
-  title: title + ' - ReUI',
+  title: title + " - ReUI",
   description,
   path: "/components",
   keywords: [
@@ -99,8 +99,8 @@ export default function ComponentsPage() {
             Shadcn UI Components
           </h1>
           <p className="text-site-muted-foreground mt-4 text-base leading-7 text-pretty">
-            Browse {totalComponentCount}+ free open-source shadcn/ui components for
-            React and Tailwind CSS. ReUI helps you move from primitives to
+            Browse {totalComponentCount}+ free open-source shadcn/ui components
+            for React and Tailwind CSS. ReUI helps you move from primitives to
             polished product UI with real examples for alerts, data grids,
             filters, file uploads, forms, navigation, and more.
           </p>

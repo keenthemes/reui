@@ -4,9 +4,9 @@ import * as React from "react"
 
 import { Sidebar, SidebarContent, useSidebar } from "@/components/ui/sidebar"
 
-import { useComponents } from "./components-provider"
 import { ComponentSidebarContent } from "./component-sidebar-content"
 import { ComponentSidebarHeader } from "./component-sidebar-header"
+import { useComponents } from "./components-provider"
 
 export function ComponentSidebar() {
   const { toggleSidebar, isMobile } = useSidebar()

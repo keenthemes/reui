@@ -6,7 +6,7 @@ import {
   RadioGroup,
   RadioGroupItem,
 } from "@/registry/bases/radix/ui/radio-group"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 const items = [
   {

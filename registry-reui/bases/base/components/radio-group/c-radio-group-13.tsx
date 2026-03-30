@@ -8,7 +8,7 @@ import {
   RadioGroup,
   RadioGroupItem,
 } from "@/registry/bases/base/ui/radio-group"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 const VisaIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="none" {...props}>

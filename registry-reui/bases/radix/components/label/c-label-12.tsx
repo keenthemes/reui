@@ -9,7 +9,7 @@ import { Button } from "@/registry/bases/radix/ui/button"
 import { Field, FieldDescription } from "@/registry/bases/radix/ui/field"
 import { Input } from "@/registry/bases/radix/ui/input"
 import { Label } from "@/registry/bases/radix/ui/label"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function Pattern() {
   const [isEditing, setIsEditing] = useState(false)

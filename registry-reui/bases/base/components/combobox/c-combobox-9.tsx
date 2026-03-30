@@ -11,7 +11,7 @@ import {
 } from "@/registry/bases/base/ui/combobox"
 import { Field } from "@/registry/bases/base/ui/field"
 import { InputGroupAddon } from "@/registry/bases/base/ui/input-group"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"]
 

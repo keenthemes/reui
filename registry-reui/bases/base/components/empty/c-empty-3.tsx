@@ -14,7 +14,7 @@ import {
   InputGroupInput,
 } from "@/registry/bases/base/ui/input-group"
 import { Kbd } from "@/registry/bases/base/ui/kbd"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function Pattern() {
   return (

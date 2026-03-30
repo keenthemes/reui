@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/registry/bases/base/ui/button"
 import { Calendar } from "@/registry/bases/base/ui/calendar"
 import { Card, CardContent, CardFooter } from "@/registry/bases/base/ui/card"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 const events = [
   {

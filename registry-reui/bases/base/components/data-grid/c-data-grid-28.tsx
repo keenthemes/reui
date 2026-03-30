@@ -30,7 +30,7 @@ import {
   CardContent,
   CardHeader,
 } from "@/registry/bases/base/ui/card"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 interface IData {
   id: string

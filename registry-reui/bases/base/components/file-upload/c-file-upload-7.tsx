@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/registry/bases/base/ui/button"
 import { Card, CardContent } from "@/registry/bases/base/ui/card"
 import { Progress } from "@/registry/bases/base/ui/progress"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 interface ImageFile {
   id: string

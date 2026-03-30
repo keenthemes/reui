@@ -5,7 +5,6 @@ import { MoonIcon, SunIcon } from "lucide-react"
 import { useTheme } from "next-themes"
 
 import { useMetaColor } from "@/hooks/use-meta-color"
-import { PreviewShortcutForwarder } from "@/components/preview-shortcut-forwarder"
 import { Button } from "@/components/ui/button"
 import { Kbd } from "@/components/ui/kbd"
 import {
@@ -13,6 +12,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { PreviewShortcutForwarder } from "@/components/preview-shortcut-forwarder"
 
 export const DARK_MODE_FORWARD_TYPE = "dark-mode-forward"
 

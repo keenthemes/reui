@@ -24,7 +24,7 @@ import {
 } from "@/registry/bases/radix/ui/avatar"
 import { Button } from "@/registry/bases/radix/ui/button"
 import { Card, CardContent, CardHeader } from "@/registry/bases/radix/ui/card"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 interface Task {
   id: string

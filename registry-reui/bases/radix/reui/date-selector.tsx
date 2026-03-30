@@ -28,7 +28,7 @@ import { Calendar, CalendarDayButton } from "@/registry/bases/radix/ui/calendar"
 import { Input } from "@/registry/bases/radix/ui/input"
 import { ScrollArea } from "@/registry/bases/radix/ui/scroll-area"
 import { Tabs, TabsList, TabsTrigger } from "@/registry/bases/radix/ui/tabs"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export interface DateSelectorI18nConfig {
   // Labels

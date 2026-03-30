@@ -51,7 +51,7 @@ import { Cell, flexRender, HeaderGroup, Row } from "@tanstack/react-table"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/bases/radix/ui/button"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 // Context to share sortable listeners from row to handle
 type SortableContextValue = ReturnType<typeof useSortable>

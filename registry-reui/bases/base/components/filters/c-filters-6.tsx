@@ -49,7 +49,7 @@ import {
 } from "@/registry/bases/base/ui/popover"
 import { ScrollArea } from "@/registry/bases/base/ui/scroll-area"
 import { Slider } from "@/registry/bases/base/ui/slider"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 // Type for custom renderer props
 type CustomRendererProps = {

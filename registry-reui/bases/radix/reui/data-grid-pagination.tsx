@@ -13,7 +13,7 @@ import {
   SelectValue,
 } from "@/registry/bases/radix/ui/select"
 import { Skeleton } from "@/registry/bases/radix/ui/skeleton"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 interface DataGridPaginationProps {
   sizes?: number[]

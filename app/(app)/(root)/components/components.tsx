@@ -1,15 +1,14 @@
 import Link from "next/link"
 
 import { getCategories, getTotalComponentCount } from "@/lib/registry"
+import { Button } from "@/components/ui/button"
 import { Heading } from "@/components/custom/heading"
 import { HomeComponentCategoryCard } from "@/app/(app)/(root)/components/home-component-category-card"
-import { Button } from "@/components/ui/button"
 
 export function HomeComponents() {
   const totalCount = getTotalComponentCount()
   const categories = [...getCategories()]
     .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label))
-    .slice(0, 24)
 
   return (
     <section className="container-wrapper py-12 [contain-intrinsic-size:1px_1200px] [content-visibility:auto] lg:py-24">
@@ -75,10 +74,7 @@ export function HomeComponents() {
           ))}
         </div>
         <div className="mt-8 flex justify-center">
-          <Button
-            asChild
-            variant="outline"
-          >
+          <Button asChild variant="outline">
             <Link href="/components">Explore all {totalCount}+ components</Link>
           </Button>
         </div>

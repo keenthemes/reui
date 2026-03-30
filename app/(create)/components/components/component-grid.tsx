@@ -3,18 +3,18 @@
 import { Suspense, useMemo } from "react"
 import { useQueryStates } from "nuqs"
 
-import { parseAsSearchStringClient } from "@/lib/nuqs"
 import {
   filterCatalogBySearchQuery,
   hasActiveCatalogSearch,
   normalizeCatalogSearchQuery,
 } from "@/lib/catalog-search-filter"
+import { parseAsSearchStringClient } from "@/lib/nuqs"
 import { cn } from "@/lib/utils"
 import { useConfig } from "@/hooks/use-config"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Spinner } from "@/components/ui/spinner"
 
-import type { CatalogItem, CatalogGridMode } from "../types"
+import type { CatalogGridMode, CatalogItem } from "../types"
 import { ComponentCard } from "./component-card"
 import { ComponentCardContainer } from "./component-card-container"
 import { ComponentEmptyState } from "./component-empty-state"
@@ -47,7 +47,11 @@ function ComponentCardSkeleton() {
  * Static-friendly catalog grid: `?search=` is filtered on the client so pages
  * stay CDN-cacheable without a dedicated iframe preview route.
  */
-function ComponentGridContent({ catalogItems }: { catalogItems: CatalogItem[] }) {
+function ComponentGridContent({
+  catalogItems,
+}: {
+  catalogItems: CatalogItem[]
+}) {
   const [config] = useConfig()
   const gridColumns = (config?.gridColumns ?? 2) as CatalogGridMode
 

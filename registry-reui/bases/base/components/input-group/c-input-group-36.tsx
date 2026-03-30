@@ -20,7 +20,7 @@ import {
   InputGroupButton,
   InputGroupInput,
 } from "@/registry/bases/base/ui/input-group"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 const httpMethodColors = {
   GET: "text-emerald-600 dark:text-emerald-400",

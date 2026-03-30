@@ -5,12 +5,12 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { SearchIcon, XIcon } from "lucide-react"
 import { useQueryState } from "nuqs"
 
-import { parseAsSearchStringClient } from "@/lib/nuqs"
 import {
   filterCatalogBySearchQuery,
   hasActiveCatalogSearch,
   normalizeCatalogSearchQuery,
 } from "@/lib/catalog-search-filter"
+import { parseAsSearchStringClient } from "@/lib/nuqs"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"

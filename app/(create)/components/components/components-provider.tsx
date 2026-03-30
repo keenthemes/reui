@@ -10,12 +10,12 @@ import {
 } from "react"
 
 import type { ComponentCatalogItem } from "@/lib/registry"
-import { useConfig, useComponentsLayoutState } from "@/hooks/use-config"
+import { useComponentsLayoutState, useConfig } from "@/hooks/use-config"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 
-import { CustomizerSidebar } from "./customizer-sidebar"
 import { ComponentHeader } from "./component-header"
 import { ComponentSidebar } from "./component-sidebar"
+import { CustomizerSidebar } from "./customizer-sidebar"
 
 // SSR-safe defaults — must match server render to avoid hydration mismatch
 const DEFAULT_SIDEBAR_OPEN = true
@@ -185,7 +185,7 @@ export function ComponentsProvider({
             data-components-layout=""
             open={sidebarOpen}
             onOpenChange={handleOpenChange}
-            className="bordered-sidebar flex-1 min-h-0 [--top-spacing:0] **:data-[sidebar=sidebar]:bg-transparent"
+            className="bordered-sidebar min-h-0 flex-1 [--top-spacing:0] **:data-[sidebar=sidebar]:bg-transparent"
             suppressHydrationWarning
           >
             <ComponentSidebar />

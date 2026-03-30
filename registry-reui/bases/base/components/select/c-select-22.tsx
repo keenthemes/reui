@@ -14,7 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/registry/bases/base/ui/select"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 const items = [
   { label: "Select an option", value: null },

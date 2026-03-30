@@ -18,7 +18,7 @@ import {
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/bases/base/ui/button"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 interface FileUploadCompactProps {
   maxFiles?: number

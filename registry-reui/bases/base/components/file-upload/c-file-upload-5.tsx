@@ -22,7 +22,7 @@ import { Badge } from "@/registry-reui/bases/base/reui/badge"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/bases/base/ui/button"
 import { Progress } from "@/registry/bases/base/ui/progress"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 interface FileUploadItem extends FileWithPreview {
   progress: number

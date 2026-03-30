@@ -14,10 +14,10 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 
-import { CustomizerSidebarToggle } from "./customizer-sidebar-toggle"
 import { ComponentHeaderGridToggle } from "./component-header-grid-toggle"
 import { ComponentHeaderMobileDrawer } from "./component-header-mobile-drawer"
 import { ComponentHeaderSearch } from "./component-header-search"
+import { CustomizerSidebarToggle } from "./customizer-sidebar-toggle"
 
 export function ComponentHeader() {
   const { open, toggleSidebar } = useSidebar()

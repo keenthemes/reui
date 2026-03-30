@@ -26,7 +26,7 @@ import {
   DialogTitle,
 } from "@/registry/bases/base/ui/dialog"
 import { Spinner } from "@/registry/bases/base/ui/spinner"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 interface GalleryUploadProps {
   maxFiles?: number

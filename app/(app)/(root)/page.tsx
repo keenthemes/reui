@@ -4,14 +4,13 @@ import { buildPageMetadata } from "@/lib/seo"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteSubscribe } from "@/components/site-subscribe"
 
+import { HomeComponents } from "./components/components"
 import { FAQSection } from "./components/faq-section"
 import Hero from "./components/hero"
-import { HomeComponents } from "./components/components"
 import { Stats } from "./components/stats"
 import { WallOfLove } from "./components/wall-of-love"
 
-const title =
-  "ReUI – Shadcn UI Components and Blocks"
+const title = "ReUI – Shadcn UI Components and Blocks"
 const description =
   "Discover the 1000+ free shadcn/ui components and blocks for React and Tailwind CSS."
 

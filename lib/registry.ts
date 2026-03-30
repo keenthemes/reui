@@ -234,13 +234,13 @@ let _categoryIndex: Map<string, ComponentCatalogItem[]> | null = null
 function getStats(): StatsData {
   if (!_stats) {
     try {
-      const raw = require("../registry-reui/bases/registry.json") as StatsData & {
-        totalPatterns?: number
-      }
+      const raw =
+        require("../registry-reui/bases/registry.json") as StatsData & {
+          totalPatterns?: number
+        }
       _stats = {
         categories: raw.categories ?? [],
-        totalComponents:
-          raw.totalComponents ?? raw.totalPatterns ?? 0,
+        totalComponents: raw.totalComponents ?? raw.totalPatterns ?? 0,
       }
     } catch (e) {
       console.error("Failed to load registry stats", e)
@@ -450,7 +450,9 @@ export function applySeoCountPlaceholder(text: string, count: number): string {
  * Build computed SEO metadata for a category page using `seo.json`
  * (lazy-loaded once per runtime) plus category stats from `registry.json`.
  */
-export function getComponentCategorySeo(category: string): ComponentCategorySeo {
+export function getComponentCategorySeo(
+  category: string
+): ComponentCategorySeo {
   const normalized = normalizeRegistrySlug(category)
   const categoryInfo = getCategoryInfo(normalized)
   const label = categoryInfo?.label ?? fallbackCategoryLabel(normalized)
@@ -558,8 +560,7 @@ export function getComponentIndexSeo(): ComponentCategorySeo {
     }
   }
 
-  const title =
-    root.title ?? root.content?.title ?? "Shadcn UI Components"
+  const title = root.title ?? root.content?.title ?? "Shadcn UI Components"
   const description = applySeoCountPlaceholder(
     root.description ?? fallbackDescription,
     count
@@ -729,7 +730,9 @@ export function getAllCatalogItems(): ComponentCatalogItem[] {
 /**
  * Catalog items for a category slug
  */
-export function getComponentsByCategory(category: string): ComponentCatalogItem[] {
+export function getComponentsByCategory(
+  category: string
+): ComponentCatalogItem[] {
   ensureCatalogIndexes()
   return _categoryIndex!.get(normalizeRegistrySlug(category)) ?? []
 }

@@ -15,7 +15,7 @@ import {
   ComboboxList,
 } from "@/registry/bases/radix/ui/combobox"
 import { Field } from "@/registry/bases/radix/ui/field"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"]
 

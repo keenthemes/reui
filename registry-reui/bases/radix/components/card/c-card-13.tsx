@@ -15,7 +15,7 @@ import {
   CardTitle,
 } from "@/registry/bases/radix/ui/card"
 import { Progress } from "@/registry/bases/radix/ui/progress"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function Pattern() {
   const [isOpen, setIsOpen] = useState(false)

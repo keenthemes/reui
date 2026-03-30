@@ -16,7 +16,7 @@ import {
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/bases/radix/ui/button"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 interface AvatarUploadProps {
   maxSize?: number

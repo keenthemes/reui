@@ -27,7 +27,7 @@ import { Button } from "@/registry/bases/radix/ui/button"
 import { Calendar } from "@/registry/bases/radix/ui/calendar"
 import { Card, CardContent } from "@/registry/bases/radix/ui/card"
 import { ScrollArea } from "@/registry/bases/radix/ui/scroll-area"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function Pattern() {
   const today = new Date()

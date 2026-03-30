@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/registry/bases/radix/ui/button"
 import { Card, CardContent } from "@/registry/bases/radix/ui/card"
 import { Progress } from "@/registry/bases/radix/ui/progress"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 interface ImageFile {
   id: string

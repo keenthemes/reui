@@ -17,7 +17,7 @@ import {
   TableCell,
   TableRow,
 } from "@/registry/bases/base/ui/table"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function Pattern() {
   return (

@@ -13,8 +13,8 @@ import z from "zod"
 
 import { siteConfig } from "@/lib/config"
 import {
-  buildPageMetadata,
   buildBreadcrumbJsonLd,
+  buildPageMetadata,
   getComponentDocSeo,
   isCanonicalComponentDoc,
 } from "@/lib/seo"

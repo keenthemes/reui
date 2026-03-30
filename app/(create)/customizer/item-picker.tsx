@@ -6,7 +6,6 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import { type RegistryItem } from "shadcn/schema"
 
 import { useConfig } from "@/hooks/use-config"
-import { PreviewShortcutForwarder } from "@/components/preview-shortcut-forwarder"
 import { Button } from "@/components/ui/button"
 import {
   Combobox,
@@ -21,6 +20,7 @@ import {
   ComboboxTrigger,
   ComboboxValue,
 } from "@/components/ui/combobox"
+import { PreviewShortcutForwarder } from "@/components/preview-shortcut-forwarder"
 import { useDesignSystemSearchParams } from "@/app/(create)/lib/search-params"
 import { groupItemsByType } from "@/app/(create)/lib/utils"
 

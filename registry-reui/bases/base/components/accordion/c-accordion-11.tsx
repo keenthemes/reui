@@ -13,7 +13,7 @@ import { Button } from "@/registry/bases/base/ui/button"
 import { ButtonGroup } from "@/registry/bases/base/ui/button-group"
 import { Input } from "@/registry/bases/base/ui/input"
 import { Spinner } from "@/registry/bases/base/ui/spinner"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function Pattern() {
   return (

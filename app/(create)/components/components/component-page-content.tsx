@@ -3,8 +3,8 @@
 import * as React from "react"
 import { useQueryStates } from "nuqs"
 
-import { parseAsSearchStringClient } from "@/lib/nuqs"
 import { hasActiveCatalogSearch } from "@/lib/catalog-search-filter"
+import { parseAsSearchStringClient } from "@/lib/nuqs"
 
 import type { CatalogItem } from "../types"
 import { ComponentPreviewView } from "./component-preview-view"

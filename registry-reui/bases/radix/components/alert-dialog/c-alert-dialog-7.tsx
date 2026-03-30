@@ -14,7 +14,7 @@ import {
 import { Button } from "@/registry/bases/radix/ui/button"
 import { Checkbox } from "@/registry/bases/radix/ui/checkbox"
 import { Label } from "@/registry/bases/radix/ui/label"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function Pattern() {
   return (

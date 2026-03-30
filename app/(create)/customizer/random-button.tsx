@@ -5,7 +5,6 @@ import { DiceFaces05Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 
 import { DEFAULT_CONFIG, useConfig } from "@/hooks/use-config"
-import { PreviewShortcutForwarder } from "@/components/preview-shortcut-forwarder"
 import { Button } from "@/components/ui/button"
 import { Kbd } from "@/components/ui/kbd"
 import {
@@ -13,6 +12,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { PreviewShortcutForwarder } from "@/components/preview-shortcut-forwarder"
 import {
   BASE_COLORS,
   getThemesForBaseColor,

@@ -39,7 +39,7 @@ import {
 import { Button } from "@/registry/bases/radix/ui/button"
 import { ScrollArea, ScrollBar } from "@/registry/bases/radix/ui/scroll-area"
 import { Skeleton } from "@/registry/bases/radix/ui/skeleton"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 interface IData {
   id: string

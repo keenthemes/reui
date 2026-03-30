@@ -19,7 +19,7 @@ import {
   SortableItemHandle,
 } from "@/registry-reui/bases/base/reui/sortable"
 
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 interface Track {
   id: string

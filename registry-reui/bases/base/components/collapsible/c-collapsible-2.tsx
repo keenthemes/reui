@@ -15,7 +15,7 @@ import {
   FieldLabel,
   FieldTitle,
 } from "@/registry/bases/base/ui/field"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 const settings = [
   { id: "push", label: "Push notifications", defaultChecked: true },

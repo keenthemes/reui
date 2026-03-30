@@ -13,7 +13,7 @@ import {
   TimelineTitle,
 } from "@/registry-reui/bases/base/reui/timeline"
 
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 const orderStatus = [
   {

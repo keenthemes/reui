@@ -3,7 +3,7 @@
 
 import { Button } from "@/registry/bases/radix/ui/button"
 import { Kbd, KbdGroup } from "@/registry/bases/radix/ui/kbd"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function Pattern() {
   return (

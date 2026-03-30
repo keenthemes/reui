@@ -17,7 +17,7 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from "@/registry/bases/base/ui/command"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function Pattern() {
   const [open, setOpen] = useState(false)

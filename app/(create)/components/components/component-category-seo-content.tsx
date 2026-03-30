@@ -3,7 +3,10 @@
 import * as React from "react"
 import Link from "next/link"
 
-import type { ComponentCategorySeo, RelatedComponentsBlock } from "@/lib/registry"
+import type {
+  ComponentCategorySeo,
+  RelatedComponentsBlock,
+} from "@/lib/registry"
 import { isCanonicalComponentDoc } from "@/lib/seo"
 import { cn } from "@/lib/utils"
 import {

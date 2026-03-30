@@ -37,7 +37,9 @@ export function ComponentHeaderMobileDrawer() {
         <DrawerContent className="h-full">
           <DrawerHeader className="sr-only">
             <DrawerTitle>Filters</DrawerTitle>
-            <DrawerDescription>Filter components by category.</DrawerDescription>
+            <DrawerDescription>
+              Filter components by category.
+            </DrawerDescription>
           </DrawerHeader>
           <div className="h-full py-4">
             <ComponentSidebarContent

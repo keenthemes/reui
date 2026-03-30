@@ -8,7 +8,7 @@ import {
   AvatarGroupCount,
   AvatarImage,
 } from "@/registry/bases/radix/ui/avatar"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function Pattern() {
   return (

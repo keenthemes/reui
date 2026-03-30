@@ -8,7 +8,7 @@ import { toast } from "sonner"
 
 import { Button } from "@/registry/bases/radix/ui/button"
 import { Progress } from "@/registry/bases/radix/ui/progress"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 function UploadToast({ progress }: { progress: number }) {
   const done = progress >= 100

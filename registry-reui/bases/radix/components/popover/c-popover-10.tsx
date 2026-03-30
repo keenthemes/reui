@@ -13,7 +13,7 @@ import {
 } from "@/registry/bases/radix/ui/popover"
 import { Slider } from "@/registry/bases/radix/ui/slider"
 import { Switch } from "@/registry/bases/radix/ui/switch"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function Pattern() {
   const [volume, setVolume] = useState([75])

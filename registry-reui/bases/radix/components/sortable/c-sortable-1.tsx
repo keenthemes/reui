@@ -13,7 +13,7 @@ import {
 } from "@/registry-reui/bases/radix/reui/sortable"
 import { toast } from "sonner"
 
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 interface SortableItem {
   id: string

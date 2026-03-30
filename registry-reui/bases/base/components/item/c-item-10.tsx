@@ -20,7 +20,7 @@ import {
   ItemTitle,
 } from "@/registry/bases/base/ui/item"
 import { Progress } from "@/registry/bases/base/ui/progress"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function Pattern() {
   return (

@@ -9,7 +9,7 @@ import {
   ItemTitle,
 } from "@/registry/bases/radix/ui/item"
 import { Kbd } from "@/registry/bases/radix/ui/kbd"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 const commands = [
   {

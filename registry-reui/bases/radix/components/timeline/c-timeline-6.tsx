@@ -30,7 +30,7 @@ import {
   CollapsibleTrigger,
 } from "@/registry/bases/radix/ui/collapsible"
 import { Spinner } from "@/registry/bases/radix/ui/spinner"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 const pipelineSteps = [
   {

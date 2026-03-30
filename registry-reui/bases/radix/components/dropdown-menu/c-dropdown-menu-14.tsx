@@ -25,7 +25,7 @@ import {
   DropdownMenuTrigger,
 } from "@/registry/bases/radix/ui/dropdown-menu"
 import { Tabs, TabsList, TabsTrigger } from "@/registry/bases/radix/ui/tabs"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 const statuses = [
   { value: "available", label: "Available", color: "bg-green-500" },

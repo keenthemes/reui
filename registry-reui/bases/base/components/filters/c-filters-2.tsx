@@ -14,7 +14,7 @@ import {
 import { z } from "zod"
 
 import { Button } from "@/registry/bases/base/ui/button"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 // Zod validation helper - wraps a Zod schema to return validation result with message
 function zodValidator<T extends z.ZodType>(schema: T) {

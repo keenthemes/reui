@@ -10601,6 +10601,7 @@ export const components: Registry["items"] = [
       "data-grid-scroll-area",
       "data-grid-table",
       "dropdown-menu",
+      "separator",
       "use-copy-to-clipboard"
     ],
     "dependencies": [

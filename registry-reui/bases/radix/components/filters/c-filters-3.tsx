@@ -18,7 +18,7 @@ import {
   AvatarImage,
 } from "@/registry/bases/radix/ui/avatar"
 import { Button } from "@/registry/bases/radix/ui/button"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 // Priority icon component
 const PriorityIcon = ({ priority }: { priority: string }) => {

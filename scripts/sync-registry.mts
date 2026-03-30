@@ -3,8 +3,12 @@
  *
  * Syncs upstream shadcn registry sources from `shadcn/apps/v4/registry` → `registry/`
  * (shared primitives, hooks, UI, styles). ReUI catalog blocks (`c-*` under
- * `registry-reui/bases/*/components`) are **not** copied from here — generate them with
+ * `registry-reui/bases/* /components`) are **not** copied from here — generate them with
  * `pnpm registry:generate` after edits.
+ *
+ * Also syncs `app/(create)/components/icon-placeholder.tsx` from the v4 app (thin re-export).
+ * The upstream target is `@/app/(app)/create/...`; OSS rewrites it to the implementation at
+ * `@/app/(create)/customizer/icon-placeholder`.
  *
  * Usage:
  *   pnpm registry:sync           # sync changed/new files (+ icons build via package script)
@@ -25,6 +29,21 @@ const PROJECT_ROOT = path.resolve(__dirname, "..")
 const REPO_ROOT = path.resolve(PROJECT_ROOT, "..")
 const SOURCE_DIR = path.resolve(REPO_ROOT, "shadcn/apps/v4/registry")
 const DEST_DIR = path.resolve(PROJECT_ROOT, "registry")
+
+/** v4 app: barrel that matches shadcn registry imports (`@/app/(create)/components/icon-placeholder`). */
+const SHADCN_APP_ICON_PLACEHOLDER_SRC = path.resolve(
+  REPO_ROOT,
+  "shadcn/apps/v4/app/(create)/components/icon-placeholder.tsx"
+)
+const OSS_APP_ICON_PLACEHOLDER_DEST = path.resolve(
+  PROJECT_ROOT,
+  "app/(create)/components/icon-placeholder.tsx"
+)
+
+/** Shadcn re-exports the real component from the `(app)/create` tree; OSS keeps the impl under `customizer/`. */
+const SHADCN_ICON_PLACEHOLDER_REEXPORT =
+  '"@/app/(app)/create/components/icon-placeholder"'
+const OSS_ICON_PLACEHOLDER_IMPL = '"@/app/(create)/customizer/icon-placeholder"'
 
 const SYNC_ITEMS = [
   "bases/base/hooks",
@@ -72,6 +91,10 @@ function filesMatch(a: string, b: string): boolean {
   return fs.readFileSync(a).equals(fs.readFileSync(b))
 }
 
+function transformIconPlaceholderForOss(srcContent: string): string {
+  return srcContent.replaceAll(SHADCN_ICON_PLACEHOLDER_REEXPORT, OSS_ICON_PLACEHOLDER_IMPL)
+}
+
 function logLine(symbol: string, relPath: string) {
   console.log(`  ${symbol} ${relPath}`)
 }
@@ -101,6 +124,41 @@ function syncFile(src: string, dest: string, stats: Stats) {
     if (!DRY) fs.copyFileSync(src, dest)
     stats.updated++
     logLine("~", rel)
+  }
+}
+
+function syncAppIconPlaceholder(stats: Stats) {
+  const display = path.relative(REPO_ROOT, OSS_APP_ICON_PLACEHOLDER_DEST)
+
+  if (!fs.existsSync(SHADCN_APP_ICON_PLACEHOLDER_SRC)) {
+    console.warn(`  ! ${display} (source not found — skipping)`)
+    stats.skipped++
+    return
+  }
+
+  const next = transformIconPlaceholderForOss(
+    fs.readFileSync(SHADCN_APP_ICON_PLACEHOLDER_SRC, "utf8")
+  )
+  const exists = fs.existsSync(OSS_APP_ICON_PLACEHOLDER_DEST)
+  const same = exists && fs.readFileSync(OSS_APP_ICON_PLACEHOLDER_DEST, "utf8") === next
+
+  if (same) {
+    stats.unchanged++
+    if (VERBOSE) logLine("·", display)
+    return
+  }
+
+  if (!DRY) {
+    fs.mkdirSync(path.dirname(OSS_APP_ICON_PLACEHOLDER_DEST), { recursive: true })
+    fs.writeFileSync(OSS_APP_ICON_PLACEHOLDER_DEST, next, "utf8")
+  }
+
+  if (!exists) {
+    stats.added++
+    logLine("+", display)
+  } else {
+    stats.updated++
+    logLine("~", display)
   }
 }
 
@@ -177,13 +235,18 @@ async function sync() {
     }
   }
 
+  const appSrcLabel = path.relative(REPO_ROOT, SHADCN_APP_ICON_PLACEHOLDER_SRC)
+  const appDestLabel = path.relative(REPO_ROOT, OSS_APP_ICON_PLACEHOLDER_DEST)
+  console.log(`\n${label}Syncing app barrel: ${appSrcLabel} → ${appDestLabel}\n`)
+  syncAppIconPlaceholder(totals)
+
   // ---------------------------------------------------------------------------
   // Summary
   // ---------------------------------------------------------------------------
 
   const changed = totals.added + totals.updated + totals.deleted
   console.log("\n──────────────────────────────────────────────")
-  console.log(`  Sync complete: ${srcLabel} → ${destLabel}`)
+  console.log(`  Sync complete: ${srcLabel} → ${destLabel} (+ app icon-placeholder)`)
   if (changed === 0 && totals.skipped === 0) {
     console.log("  ✓ Everything is already up to date.")
   } else {

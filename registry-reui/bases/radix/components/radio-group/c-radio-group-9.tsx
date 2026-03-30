@@ -13,7 +13,7 @@ import {
   RadioGroupItem,
 } from "@/registry/bases/radix/ui/radio-group"
 import { Separator } from "@/registry/bases/radix/ui/separator"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function Pattern() {
   return (

@@ -19,7 +19,7 @@ import {
   ItemTitle,
 } from "@/registry/bases/base/ui/item"
 import { Tabs, TabsList, TabsTrigger } from "@/registry/bases/base/ui/tabs"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 type FileTreeItem = { name: string } | { name: string; items: FileTreeItem[] }
 

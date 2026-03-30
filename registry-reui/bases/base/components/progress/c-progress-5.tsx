@@ -12,7 +12,7 @@ import {
   ItemTitle,
 } from "@/registry/bases/base/ui/item"
 import { Progress } from "@/registry/bases/base/ui/progress"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 const files = [
   { id: "1", name: "document.pdf", progress: 45, status: "2m 30s" },

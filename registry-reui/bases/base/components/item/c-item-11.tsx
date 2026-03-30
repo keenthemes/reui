@@ -14,7 +14,7 @@ import {
   ItemSeparator,
   ItemTitle,
 } from "@/registry/bases/base/ui/item"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function Pattern() {
   return (

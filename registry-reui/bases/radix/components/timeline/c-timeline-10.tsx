@@ -15,7 +15,7 @@ import {
 } from "@/registry-reui/bases/radix/reui/timeline"
 
 import { cn } from "@/registry/bases/radix/lib/utils"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 const deployments = [
   {

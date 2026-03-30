@@ -10,7 +10,7 @@ import {
   FieldTitle,
 } from "@/registry/bases/base/ui/field"
 import { Switch } from "@/registry/bases/base/ui/switch"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 const features = [
   {

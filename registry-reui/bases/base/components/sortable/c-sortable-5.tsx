@@ -19,7 +19,7 @@ import {
 } from "@/registry-reui/bases/base/reui/sortable"
 
 import { Switch } from "@/registry/bases/base/ui/switch"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 interface NotificationChannel {
   id: string

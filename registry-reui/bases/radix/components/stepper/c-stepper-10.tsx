@@ -17,7 +17,7 @@ import {
   StepperTrigger,
 } from "@/registry-reui/bases/radix/reui/stepper"
 
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 const steps = [
   { title: "Step 1", description: "Description" },

@@ -24,7 +24,7 @@ import {
 
 import { cn } from "@/registry/bases/radix/lib/utils"
 import { Progress } from "@/registry/bases/radix/ui/progress"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 interface Feature {
   id: string

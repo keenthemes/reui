@@ -24,8 +24,7 @@ export function SectionBackdrop({
   opacity = variant === "separator" ? 0.06 : 0.03,
   className,
 }: SectionBackdropProps) {
-  const inset =
-    variant === "separator" ? "inset-0" : "-inset-x-6 inset-y-0"
+  const inset = variant === "separator" ? "inset-0" : "-inset-x-6 inset-y-0"
 
   return (
     <div

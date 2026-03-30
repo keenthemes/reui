@@ -15,7 +15,7 @@ import {
 } from "@/registry-reui/bases/base/reui/timeline"
 
 import { cn } from "@/registry/bases/base/lib/utils"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 const releases = [
   {

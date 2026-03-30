@@ -11,7 +11,7 @@ import {
 import { hotkeysCoreFeature, syncDataLoaderFeature } from "@headless-tree/core"
 import { useTree } from "@headless-tree/react"
 
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 interface Item {
   name: string

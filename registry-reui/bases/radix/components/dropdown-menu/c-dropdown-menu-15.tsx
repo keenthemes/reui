@@ -17,7 +17,7 @@ import {
   DropdownMenuTrigger,
 } from "@/registry/bases/radix/ui/dropdown-menu"
 import { Separator } from "@/registry/bases/radix/ui/separator"
-import { IconPlaceholder } from "@/app/(create)/customizer/icon-placeholder"
+import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 const user = {
   name: "Alex Johnson",
