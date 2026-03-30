@@ -7,8 +7,14 @@ import { Menu } from "lucide-react"
 
 import { getDocsPageUpdateHint } from "@/lib/docs"
 import { showMcpDocs } from "@/lib/flags"
+import {
+  getAllPagesFromFolder,
+  getCurrentBase,
+  getPagesFromFolder,
+} from "@/lib/page-tree"
+import type { CategoryInfo } from "@/lib/registry"
 import { source } from "@/lib/source"
-import { cn, isActive } from "@/lib/utils"
+import { cn, isActive, normalizeSlug } from "@/lib/utils"
 import {
   Accordion,
   AccordionContent,
@@ -24,25 +30,51 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer"
+import { ComponentUpdateIndicator } from "@/components/component-update-indicator"
 
 export function MobileNav({
   items,
   tree,
+  componentCategories,
   className,
 }: {
   tree: ReturnType<typeof source.getPageTree>
   items: { href: string; label: string; soon?: boolean }[]
+  componentCategories?: CategoryInfo[]
   className?: string
 }) {
   const [open, setOpen] = React.useState(false)
   const pathname = usePathname()
+  const currentBase = getCurrentBase(pathname)
+  const mobileComponentCategories = React.useMemo(
+    () => componentCategories ?? [],
+    [componentCategories]
+  )
+  const componentCategoryLinks = React.useMemo(
+    () =>
+      [...mobileComponentCategories]
+        .sort((a, b) => a.label.localeCompare(b.label))
+        .map((category) => ({
+          ...category,
+          href: `/components/${normalizeSlug(category.name)}`,
+        })),
+    [mobileComponentCategories]
+  )
+  const totalComponentCount = React.useMemo(
+    () =>
+      mobileComponentCategories.reduce(
+        (total, category) => total + category.count,
+        0
+      ),
+    [mobileComponentCategories]
+  )
 
   const activeFolders = React.useMemo(() => {
     const folders: string[] = []
     tree.children.forEach((item) => {
       if (item.type === "folder") {
-        const hasActiveChild = item.children.some(
-          (child) => child.type === "page" && child.url === pathname
+        const hasActiveChild = getAllPagesFromFolder(item).some(
+          (page) => page.url === pathname
         )
         if (hasActiveChild && item.$id) {
           folders.push(item.$id)
@@ -84,9 +116,70 @@ export function MobileNav({
               </MobileLink>
               {items.map((item, index) => {
                 const isDocs = item.href === "/docs"
+                const isComponents = item.href === "/components"
                 return (
                   <div key={index} className="flex flex-col gap-3">
-                    {isDocs ? (
+                    {isComponents ? (
+                      <Accordion
+                        type="single"
+                        collapsible
+                        className="w-full"
+                        defaultValue={
+                          isActive(pathname, "/components")
+                            ? "components"
+                            : undefined
+                        }
+                      >
+                        <AccordionItem
+                          value="components"
+                          className="border-none"
+                        >
+                          <AccordionTrigger className="text-site-foreground/70 data-[state=open]:text-site-primary py-0 text-sm font-medium hover:no-underline">
+                            {item.label}
+                          </AccordionTrigger>
+                          <AccordionContent className="pt-4 pb-0">
+                            <div className="flex flex-col gap-3 pl-4">
+                              <MobileLink
+                                href={item.href}
+                                onOpenChange={setOpen}
+                                active={pathname === item.href}
+                                className="flex items-center justify-between gap-3 text-sm font-normal"
+                              >
+                                <span>All Components</span>
+                                <span className="text-site-muted-foreground text-xs">
+                                  {totalComponentCount}
+                                </span>
+                              </MobileLink>
+                              {componentCategoryLinks.length > 0 ? (
+                                <div className="flex flex-col gap-2">
+                                  {componentCategoryLinks.map((category) => {
+                                    return (
+                                      <MobileLink
+                                        key={category.name}
+                                        href={category.href}
+                                        onOpenChange={setOpen}
+                                        active={pathname === category.href}
+                                        className="flex items-center justify-between gap-3 text-sm font-normal"
+                                      >
+                                        <span>{category.label}</span>
+                                        <span className="flex shrink-0 items-center gap-2">
+                                          <ComponentUpdateIndicator
+                                            category={category.name}
+                                          />
+                                          <span className="text-site-muted-foreground text-xs">
+                                            {category.count}
+                                          </span>
+                                        </span>
+                                      </MobileLink>
+                                    )
+                                  })}
+                                </div>
+                              ) : null}
+                            </div>
+                          </AccordionContent>
+                        </AccordionItem>
+                      </Accordion>
+                    ) : isDocs ? (
                       <Accordion
                         type="single"
                         collapsible
@@ -117,6 +210,24 @@ export function MobileNav({
                                 {tree.children.map((item) => {
                                   if (item.type !== "folder") return null
 
+                                  const pages = getPagesFromFolder(
+                                    item,
+                                    currentBase
+                                  ).filter((page) => {
+                                    if (
+                                      !showMcpDocs &&
+                                      page.url?.includes("/mcp")
+                                    ) {
+                                      return false
+                                    }
+
+                                    return true
+                                  })
+
+                                  if (pages.length === 0) {
+                                    return null
+                                  }
+
                                   return (
                                     <AccordionItem
                                       key={item.$id}
@@ -128,48 +239,32 @@ export function MobileNav({
                                       </AccordionTrigger>
                                       <AccordionContent className="pb-2">
                                         <div className="flex flex-col gap-2 pt-1 pl-4">
-                                          {item.children.map((child) => {
-                                            if (
-                                              child.type === "page" &&
-                                              !showMcpDocs &&
-                                              child.url?.includes("/mcp")
-                                            ) {
-                                              return null
-                                            }
-
+                                          {pages.map((page) => {
                                             const docsUpdateHint =
-                                              child.type === "page"
-                                                ? getDocsPageUpdateHint(
-                                                    child.url
-                                                  )
-                                                : undefined
+                                              getDocsPageUpdateHint(page.url)
 
                                             return (
-                                              child.type === "page" && (
-                                                <MobileLink
-                                                  key={child.url}
-                                                  href={child.url}
-                                                  onOpenChange={setOpen}
-                                                  active={
-                                                    child.url === pathname
-                                                  }
-                                                  className="flex items-center gap-2 text-sm font-normal"
-                                                >
-                                                  {child.name}
-                                                  {docsUpdateHint && (
-                                                    <>
-                                                      <span className="sr-only">
-                                                        {docsUpdateHint}
-                                                      </span>
-                                                      <span
-                                                        aria-hidden="true"
-                                                        className="site-rounded-full flex size-1.5 bg-blue-500"
-                                                        title={docsUpdateHint}
-                                                      />
-                                                    </>
-                                                  )}
-                                                </MobileLink>
-                                              )
+                                              <MobileLink
+                                                key={page.url}
+                                                href={page.url}
+                                                onOpenChange={setOpen}
+                                                active={page.url === pathname}
+                                                className="flex items-center justify-between gap-3 text-sm font-normal"
+                                              >
+                                                <span>{page.name}</span>
+                                                {docsUpdateHint ? (
+                                                  <span className="inline-flex shrink-0 cursor-help items-center">
+                                                    <span className="sr-only">
+                                                      {docsUpdateHint}
+                                                    </span>
+                                                    <span
+                                                      aria-hidden="true"
+                                                      className="site-rounded-full flex size-1.5 bg-blue-500"
+                                                      title={docsUpdateHint}
+                                                    />
+                                                  </span>
+                                                ) : null}
+                                              </MobileLink>
                                             )
                                           })}
                                         </div>

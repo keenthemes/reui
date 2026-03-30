@@ -56,14 +56,10 @@ const nextConfig = {
     NEXT_PUBLIC_VERCEL_DEPLOYMENT_ID: registryDeploymentId,
   },
   typescript: {
-    ignoreBuildErrors: true
+    ignoreBuildErrors: true,
   },
   outputFileTracingIncludes: {
-    "/*": [
-      "./registry/**/*",
-      "./registry-reui/**/*",
-      "./public/r/styles/**/*",
-    ],
+    "/*": ["./registry/**/*", "./registry-reui/**/*", "./public/r/styles/**/*"],
   },
   experimental: {
     // Enable file system cache for development
@@ -181,7 +177,8 @@ const nextConfig = {
           ...securityHeaders,
           {
             key: "Content-Security-Policy",
-            value: "frame-ancestors 'self' https://shoogle.dev https://*.shoogle.dev",
+            value:
+              "frame-ancestors 'self' https://shoogle.dev https://*.shoogle.dev",
           },
         ],
       },
@@ -271,6 +268,10 @@ const nextConfig = {
         "/r/new-york-v4/:path*",
         "/r/styles/radix-nova/:path*"
       ),
+      ...createVersionedRegistryRedirects(
+        "/r/:name.json",
+        "/r/styles/radix-nova/:name.json"
+      ),
       {
         source: "/r/styles/:path*",
         missing: [
@@ -287,7 +288,7 @@ const nextConfig = {
         "/r/styles/:style/:name.json"
       ),
     ]
-  }
+  },
 }
 
 const withMDX = createMDX({})

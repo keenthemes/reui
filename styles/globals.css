@@ -104,6 +104,11 @@
 
 /* Default */
 :root {
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-inter);
+  --font-mono:
+    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -184,7 +189,7 @@
   --sidebar-ring: oklch(0.439 0 0);
 
   /* Extended colors */
-  --destructive-foreground: var(--color-red-600); 
+  --destructive-foreground: var(--color-red-600);
   --success: var(--color-emerald-500);
   --success-foreground: var(--color-emerald-600);
   --info: var(--color-violet-500);

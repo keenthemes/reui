@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 
 import { buildPageMetadata } from "@/lib/seo"
+import { SiteHeader } from "@/components/site-header"
 
 const title = "Projects Built with ReUI"
 const description =
@@ -17,5 +18,10 @@ export default function BuiltWithReuiLayout({
 }: {
   children: React.ReactNode
 }) {
-  return children
+  return (
+    <>
+      <SiteHeader />
+      {children}
+    </>
+  )
 }

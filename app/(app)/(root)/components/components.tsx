@@ -1,18 +1,18 @@
-"use client"
-
-import React from "react"
 import Link from "next/link"
 
 import { getCategories, getTotalComponentCount } from "@/lib/registry"
 import { Heading } from "@/components/custom/heading"
-import { ComponentCategoryCard } from "@/app/(create)/components/components/component-category-card"
+import { HomeComponentCategoryCard } from "@/app/(app)/(root)/components/home-component-category-card"
+import { Button } from "@/components/ui/button"
 
 export function HomeComponents() {
   const totalCount = getTotalComponentCount()
-  const categories = React.useMemo(() => getCategories(), [])
+  const categories = [...getCategories()]
+    .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label))
+    .slice(0, 24)
 
   return (
-    <section className="container-wrapper py-12 lg:py-24">
+    <section className="container-wrapper py-12 [contain-intrinsic-size:1px_1200px] [content-visibility:auto] lg:py-24">
       <div className="container">
         <Heading
           badge="Components"
@@ -23,6 +23,7 @@ export function HomeComponents() {
               primitives into production-ready UI. Start from{" "}
               <Link
                 href="/components/data-grid"
+                prefetch={false}
                 className="text-site-primary underline underline-offset-4"
               >
                 Data Grid
@@ -30,6 +31,7 @@ export function HomeComponents() {
               ,{" "}
               <Link
                 href="/components/filters"
+                prefetch={false}
                 className="text-site-primary underline underline-offset-4"
               >
                 Filters
@@ -37,6 +39,7 @@ export function HomeComponents() {
               ,{" "}
               <Link
                 href="/components/file-upload"
+                prefetch={false}
                 className="text-site-primary underline underline-offset-4"
               >
                 File Upload
@@ -44,6 +47,7 @@ export function HomeComponents() {
               ,{" "}
               <Link
                 href="/components/kanban"
+                prefetch={false}
                 className="text-site-primary underline underline-offset-4"
               >
                 Kanban
@@ -51,23 +55,32 @@ export function HomeComponents() {
               , or{" "}
               <Link
                 href="/components/sortable"
+                prefetch={false}
                 className="text-site-primary underline underline-offset-4"
               >
                 Sortable
               </Link>{" "}
-              and browse every category below.
+              and explore the most-used categories below.
             </>
           }
         />
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {categories.map((cat) => (
-            <ComponentCategoryCard
+            <HomeComponentCategoryCard
               key={cat.name}
               name={cat.name}
               label={cat.label}
               count={cat.count}
             />
           ))}
+        </div>
+        <div className="mt-8 flex justify-center">
+          <Button
+            asChild
+            variant="outline"
+          >
+            <Link href="/components">Explore all {totalCount}+ components</Link>
+          </Button>
         </div>
       </div>
     </section>

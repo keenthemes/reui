@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import { Provider as JotaiProvider } from "jotai"
 import { NuqsAdapter } from "nuqs/adapters/next/app"
 
 import { META_THEME_COLORS, siteConfig } from "@/lib/config"
@@ -12,7 +11,6 @@ import {
   getSiteUrl,
 } from "@/lib/seo"
 import { cn } from "@/lib/utils"
-import { LayoutProvider } from "@/hooks/use-layout"
 import { Toaster } from "@/components/ui/sonner"
 import { Analytics } from "@/components/analytics"
 import { JsonLd } from "@/components/json-ld"
@@ -107,16 +105,12 @@ export default function RootLayout({
         <JsonLd data={buildWebSiteJsonLd()} />
         <JsonLd data={buildOrganizationJsonLd()} />
         <ThemeProvider>
-          <LayoutProvider>
-            <JotaiProvider>
-              <NuqsAdapter>
-                {children}
-                <TailwindIndicator />
-                <Toaster position="top-center" />
-              </NuqsAdapter>
-            </JotaiProvider>
-            <Analytics />
-          </LayoutProvider>
+          <NuqsAdapter>
+            {children}
+            <TailwindIndicator />
+            <Toaster position="top-center" />
+          </NuqsAdapter>
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>

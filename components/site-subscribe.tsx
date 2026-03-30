@@ -150,7 +150,7 @@ export function SiteSubscribe() {
   }
 
   return (
-    <footer className="pb-6">
+    <footer className="pb-6 [contain-intrinsic-size:1px_420px] [content-visibility:auto]">
       <div className="container">
         <div
           className="site-rounded-xl flex flex-wrap items-center justify-between gap-7 px-10 py-10 md:px-20 md:py-16"

@@ -392,7 +392,7 @@ const testimonials: Testimonial[] = [
   },
 ]
 
-const INITIAL_DISPLAY_COUNT = 36
+const INITIAL_DISPLAY_COUNT = 28
 
 const TwitterVerifiedIcon = ({ className }: { className?: string }) => (
   <svg
@@ -414,7 +414,7 @@ export function WallOfLove() {
     : testimonials.slice(0, INITIAL_DISPLAY_COUNT)
 
   return (
-    <section className="py-12 lg:py-24">
+    <section className="py-12 [contain-intrinsic-size:1px_1400px] [content-visibility:auto] lg:py-24">
       <div className="container">
         <Heading
           className="max-w-lg"
@@ -440,6 +440,9 @@ export function WallOfLove() {
                       <AvatarImage
                         src={testimonial.author.avatar}
                         alt={testimonial.author.name}
+                        loading="lazy"
+                        decoding="async"
+                        referrerPolicy="no-referrer"
                       />
                       <AvatarFallback>
                         {testimonial.author.name.charAt(0)}

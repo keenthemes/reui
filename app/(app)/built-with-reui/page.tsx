@@ -1,6 +1,7 @@
 "use client"
 
 import React from "react"
+import Image from "next/image"
 import Link from "next/link"
 import { ChevronRight, ExternalLink } from "lucide-react"
 
@@ -81,13 +82,21 @@ export default function Page() {
             </div>
 
             {/* Right: Image */}
-            <div className="site-rounded-xl border-site-border order-1 flex w-full grow items-center justify-center overflow-hidden border shadow-md lg:order-2">
-              <Link href={template.previewUrl} target="_blank">
-                <img
-                  src={"/templates/" + template.thumbnail}
-                  alt={template.title}
-                  className="w-full object-cover lg:-mb-[100px]"
-                />
+            <div className="site-rounded-xl border-site-border order-1 w-full grow overflow-hidden border shadow-md lg:order-2">
+              <Link
+                href={template.previewUrl}
+                target="_blank"
+                className="block size-full"
+              >
+                <div className="relative aspect-[4/3] w-full">
+                  <Image
+                    src={`/templates/${template.thumbnail}`}
+                    alt={template.title}
+                    fill
+                    sizes="(min-width: 1536px) 700px, (min-width: 1024px) 50vw, 100vw"
+                    className="object-cover object-top"
+                  />
+                </div>
               </Link>
             </div>
           </div>

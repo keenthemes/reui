@@ -1,7 +1,4 @@
-"use client"
-
 import Link from "next/link"
-import { usePathname } from "next/navigation"
 import { ChevronRightIcon } from "lucide-react"
 
 interface AnnouncementBarConfig {
@@ -14,10 +11,7 @@ interface AnnouncementBarConfig {
 }
 
 export function AnnouncementBar({ config }: { config: AnnouncementBarConfig }) {
-  const pathname = usePathname()
-
   if (!config.enabled) return null
-  if (config.homeOnly && pathname !== "/") return null
 
   return (
     <div

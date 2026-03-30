@@ -4,15 +4,10 @@ import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
-import { PATTERNS_MENU_UPDATES } from "@/config/update"
 import { getCategoryNames } from "@/lib/registry"
 import { cn, formatLabel, normalizeSlug } from "@/lib/utils"
 import { SidebarGroup, SidebarGroupContent } from "@/components/ui/sidebar"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
+import { ComponentUpdateIndicator } from "@/components/component-update-indicator"
 import {
   serializeDesignSystemSearchParams,
   useDesignSystemSearchParams,
@@ -24,55 +19,6 @@ interface ComponentSidebarCategoryMenuProps {
   onSelect?: () => void
   filter?: string
   view?: "list" | "compact"
-}
-
-function getComponentCategoryKey(value: string) {
-  const [path = ""] = value.split(/[?#]/)
-  const normalized = path.replace(/^\/+|\/+$/g, "")
-
-  if (!normalized) {
-    return ""
-  }
-
-  const segments = normalized.split("/")
-  const lastSegment = segments.at(-1) ?? normalized
-  return normalizeSlug(lastSegment)
-}
-
-const componentMenuUpdates = new Map(
-  Object.entries(PATTERNS_MENU_UPDATES).map(([componentName, hint]) => [
-    getComponentCategoryKey(componentName),
-    hint,
-  ])
-)
-
-function getComponentMenuUpdateHint(categoryOrPath: string) {
-  return componentMenuUpdates.get(getComponentCategoryKey(categoryOrPath))
-}
-
-function ComponentUpdateIndicator({ category }: { category: string }) {
-  const hint = getComponentMenuUpdateHint(category)
-
-  if (!hint) {
-    return null
-  }
-
-  return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <span className="inline-flex shrink-0 cursor-help">
-          <span className="sr-only">{hint}</span>
-          <span
-            aria-hidden="true"
-            className="site-rounded-full size-2 bg-blue-500"
-          />
-        </span>
-      </TooltipTrigger>
-      <TooltipContent side="right" sideOffset={8}>
-        {hint}
-      </TooltipContent>
-    </Tooltip>
-  )
 }
 
 export const ComponentSidebarCategoryMenu = React.memo(

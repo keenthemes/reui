@@ -1,14 +1,9 @@
+import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, ChevronRight } from "lucide-react"
 
 import { getTotalComponentCount } from "@/lib/registry"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
 import { SectionBackdrop } from "@/components/custom/section-backdrop"
 import { Icons } from "@/components/icons"
 
@@ -58,16 +53,17 @@ export default function Hero() {
         <div className="bg-site-background border-site-border flex items-center justify-center rounded-full border shadow-xs shadow-black/5">
           <Link
             href="/docs/changelog"
-            className="group bg-site-muted/40 text-sm hover:bg-site-muted/60 flex items-center gap-2 rounded-full pl-2 py-1 pr-1 transition-colors duration-200"
+            className="group bg-site-muted/40 hover:bg-site-muted/60 flex items-center gap-2 rounded-full py-1 pr-1 pl-2 text-xs transition-colors duration-200 sm:text-sm"
           >
-            <strong>2.0 Release:</strong>
-            <span className="text-site-foreground text-sm font-medium">
+            <strong className="inline sm:hidden">v2.0:</strong>
+            <strong className="hidden sm:inline">v2.0 Release:</strong>
+            <span className="text-site-foreground font-medium">
               10x your productivity with <strong>shadcn/ui</strong>
             </span>
-            <span className="bg-site-background group-hover:bg-site-background flex size-6 items-center justify-center rounded-full shadow-sm transition-colors duration-200">
+            <span className="bg-site-background group-hover:bg-site-background flex size-6 shrink-0 items-center justify-center rounded-full shadow-sm transition-colors duration-200">
               <ArrowRight
                 className="text-site-foreground size-3.5"
-                aria-hidden="true"  
+                aria-hidden="true"
               />
             </span>
           </Link>
@@ -75,23 +71,28 @@ export default function Hero() {
 
         <h1
           id="hero-heading"
-          className="text-site-foreground inline-flex max-w-4xl flex-wrap items-center justify-center gap-2 leading-[1.1] font-semibold tracking-tight text-balance sm:text-6xl lg:text-5xl"
+          className="text-site-foreground inline-flex max-w-4xl flex-wrap items-center justify-center gap-2 text-2xl leading-[1.1] font-semibold tracking-tight text-balance lg:text-5xl"
         >
           <span>Supercharge your </span>
           <span className="inline-flex items-center gap-1">
-            <Avatar className="mt-0.5 ml-1 size-9 shrink-0" aria-hidden="true">
-              <AvatarImage src={SHADCN_AVATAR} alt="" />
-              <AvatarFallback className="text-sm">S</AvatarFallback>
-            </Avatar>
+            <Image
+              src={SHADCN_AVATAR}
+              alt=""
+              width={36}
+              height={36}
+              unoptimized
+              aria-hidden="true"
+              className="site-rounded-full mt-0.5 ml-1 size-6 shrink-0 sm:size-9"
+            />
             <span className="flex items-center">shadcn/ui</span>
           </span>
-          <br />
           <span> projects & ship faster</span>
         </h1>
 
         <p className="text-site-foreground/90 max-w-xl text-base leading-relaxed text-pretty sm:text-lg">
-          Go beyond AI defaults and build interfaces faster that stand out with the largest free and open-source collection of{" "}
-          shadcn/ui components for React and Tailwind CSS
+          Go beyond AI defaults and build interfaces faster that stand out with
+          the largest free and open-source collection of shadcn/ui components
+          for React and Tailwind CSS
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-4">
@@ -101,28 +102,29 @@ export default function Hero() {
               <ChevronRight className="size-4" />
             </Link>
           </Button>
-          <Button asChild variant="outline" className="site-rounded-lg min-w-36">
-            <Link href="/components">
-              Explore {totalCount}+ components
-            </Link>
+          <Button
+            asChild
+            variant="outline"
+            className="site-rounded-lg min-w-36"
+          >
+            <Link href="/components">Explore {totalCount}+ components</Link>
           </Button>
         </div>
 
         <div className="flex items-center justify-center gap-6 pt-2">
           {brands.map((brand, index) => (
-            <div key={index} className="flex flex-col items-center">
-              <Tooltip>
-                <TooltipTrigger className="size-5">
-                  {brand.logo({
-                    className:
-                      "" +
-                      (brand.className
-                        ? ` ${brand.className}`
-                        : "h-full w-full"),
-                  })}
-                </TooltipTrigger>
-                <TooltipContent>{brand.title}</TooltipContent>
-              </Tooltip>
+            <div
+              key={index}
+              className="flex flex-col items-center"
+              title={brand.title}
+            >
+              <div className="size-5" aria-label={brand.title}>
+                {brand.logo({
+                  className:
+                    "" +
+                    (brand.className ? ` ${brand.className}` : "h-full w-full"),
+                })}
+              </div>
             </div>
           ))}
         </div>

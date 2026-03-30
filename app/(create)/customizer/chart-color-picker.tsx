@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { useTheme } from "next-themes"
 
 import { useConfig } from "@/hooks/use-config"
 import { useMounted } from "@/hooks/use-mounted"
@@ -28,6 +29,7 @@ export function ChartColorPicker({
   isMobile: boolean
   anchorRef: React.RefObject<HTMLDivElement | null>
 }) {
+  const { resolvedTheme } = useTheme()
   const mounted = useMounted()
   const [params, setParams] = useDesignSystemSearchParams()
   const [config, setConfig] = useConfig()
@@ -87,7 +89,9 @@ export function ChartColorPicker({
               style={
                 {
                   "--color":
-                    currentChartColor?.cssVars?.dark?.[
+                    currentChartColor?.cssVars?.[
+                      (resolvedTheme as "light" | "dark") ?? "dark"
+                    ]?.[
                       currentChartColorIsBaseColor
                         ? "muted-foreground"
                         : "primary"
@@ -113,15 +117,43 @@ export function ChartColorPicker({
                 .filter((theme) =>
                   BASE_COLORS.find((baseColor) => baseColor.name === theme.name)
                 )
-                .map((theme) => (
-                  <PickerRadioItem
-                    key={theme.name}
-                    value={theme.name}
-                    closeOnClick={isMobile}
-                  >
-                    {theme.title}
-                  </PickerRadioItem>
-                ))}
+                .map((theme) => {
+                  const isBaseColor = BASE_COLORS.find(
+                    (baseColor) => baseColor.name === theme.name
+                  )
+
+                  return (
+                    <PickerRadioItem
+                      key={theme.name}
+                      value={theme.name}
+                      closeOnClick={isMobile}
+                    >
+                      <div className="flex items-start gap-2">
+                        {mounted && resolvedTheme && (
+                          <div
+                            style={
+                              {
+                                "--color":
+                                  theme.cssVars?.[
+                                    resolvedTheme as "light" | "dark"
+                                  ]?.[
+                                    isBaseColor ? "muted-foreground" : "primary"
+                                  ],
+                              } as React.CSSProperties
+                            }
+                            className="site-rounded-full size-4 translate-y-1 bg-(--color)"
+                          />
+                        )}
+                        <div className="flex flex-col justify-start pointer-coarse:gap-1">
+                          <div>{theme.title}</div>
+                          <div className="text-site-muted-foreground text-xs pointer-coarse:text-sm">
+                            Match base color
+                          </div>
+                        </div>
+                      </div>
+                    </PickerRadioItem>
+                  )
+                })}
             </PickerGroup>
             <PickerSeparator />
             <PickerGroup>
@@ -138,7 +170,22 @@ export function ChartColorPicker({
                     value={theme.name}
                     closeOnClick={isMobile}
                   >
-                    {theme.title}
+                    <div className="flex items-center gap-2">
+                      {mounted && resolvedTheme && (
+                        <div
+                          style={
+                            {
+                              "--color":
+                                theme.cssVars?.[
+                                  resolvedTheme as "light" | "dark"
+                                ]?.primary,
+                            } as React.CSSProperties
+                          }
+                          className="site-rounded-full size-4 bg-(--color)"
+                        />
+                      )}
+                      {theme.title}
+                    </div>
                   </PickerRadioItem>
                 ))}
             </PickerGroup>

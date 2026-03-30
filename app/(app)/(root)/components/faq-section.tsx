@@ -25,7 +25,11 @@ export function renderFaqAnswerWithInlineLinks(text: string): ReactNode {
     const label = match[1]
     const href = match[2]
     parts.push(
-      <Link key={`faq-a-${key++}`} href={href} className="font-semibold text-site-primary underline underline-offset-4">
+      <Link
+        key={`faq-a-${key++}`}
+        href={href}
+        className="text-site-primary font-semibold underline underline-offset-4"
+      >
         {label}
       </Link>
     )
@@ -72,7 +76,8 @@ export const defaultReuiFaqItems: FAQSectionItem[] = [
   },
   {
     id: "shadcn-create-compatibility",
-    question: "Are ReUI components compatible with Shadcn Create style options?",
+    question:
+      "Are ReUI components compatible with Shadcn Create style options?",
     answer:
       "Fully. ReUI components are compiled against all Shadcn Create style configurations. Every style option you configure in the Shadcn Create customizer—base color, color scale, border radius, and font family—propagates to ReUI previews and to the source code you copy. What you see in the preview is exactly what lands in your project.",
   },
@@ -139,8 +144,7 @@ interface FAQSectionProps {
 export function FAQSection({
   badge = "FAQ",
   title = "Frequently asked questions about ReUI components",
-  description =
-    "Answers about free open-source shadcn/ui components, React and Tailwind CSS usage, and how to use ReUI in real product UI.",
+  description = "Answers about free open-source shadcn/ui components, React and Tailwind CSS usage, and how to use ReUI in real product UI.",
   items = defaultReuiFaqItems,
   className,
 }: FAQSectionProps) {
@@ -149,7 +153,12 @@ export function FAQSection({
   }
 
   return (
-    <section className={cn("container-wrapper mb-20 py-12", className)}>
+    <section
+      className={cn(
+        "container-wrapper mb-20 py-12 [contain-intrinsic-size:1px_1100px] [content-visibility:auto]",
+        className
+      )}
+    >
       <div className="container space-y-10">
         <h2 className="mx-auto text-center text-3xl font-semibold text-balance sm:text-4xl">
           Frequently Asked Questions

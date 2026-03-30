@@ -13,7 +13,7 @@ import {
   isInIframe,
   useIframeMessageListener,
 } from "@/app/(create)/hooks/use-iframe-sync"
-import { FONTS } from "@/app/(create)/lib/fonts"
+import { ensurePreviewFontsLoaded, FONTS } from "@/app/(create)/lib/fonts"
 import {
   loadDesignSystemSearchParams,
   useDesignSystemSearchParams,
@@ -71,7 +71,7 @@ export const DESIGN_SYSTEM_URL_KEYS = [
  * Use this in the patterns layout (host page).
  *
  * NOTE: This provider renders children immediately to avoid causing
- * child components (like iframes) to mount/unmount during hydration.
+ * child components to mount/unmount during hydration.
  */
 export function DesignSystemSyncProvider({
   children,
@@ -110,15 +110,14 @@ export function DesignSystemSyncProvider({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []) // Run only once on mount
 
-  // Render children immediately - don't wait for sync to complete
-  // This prevents iframe from mounting/unmounting during hydration
+  // Render children immediately - don't wait for sync to complete.
   return <>{children}</>
 }
 
 /**
- * Full provider for iframe pages.
+ * Full provider for the components preview shell.
  * Applies design system styles (CSS classes, CSS variables, fonts) to the page.
- * Use this in iframe preview pages.
+ * Same-origin embed messaging remains supported for legacy preview hosts.
  */
 export function DesignSystemProvider({
   children,
@@ -131,9 +130,8 @@ export function DesignSystemProvider({
   })
   const [config, setConfig] = useConfig()
 
-  // Match shadcn: sync iframe nuqs state from the host via postMessage so
-  // heading font and other params apply without relying on a separate
-  // override layer or cross-context localStorage sync.
+  // Sync design-system params from same-origin embed hosts via postMessage so
+  // the preview can still react to externally controlled state.
   const handleDesignSystemMessage = React.useCallback(
     (nextParams: DesignSystemSearchParams) => {
       setParams(nextParams)
@@ -189,31 +187,6 @@ export function DesignSystemProvider({
     }
   }, [style, radius, setParams, setConfig])
 
-  React.useEffect(() => {
-    if (!isInIframe()) {
-      return
-    }
-
-    const root = document.documentElement
-    const body = document.body
-    const previousRootOverflowY = root.style.overflowY
-    const previousBodyOverflowY = body.style.overflowY
-    const previousRootOverscroll = root.style.overscrollBehavior
-    const previousBodyOverscroll = body.style.overscrollBehavior
-
-    root.style.overflowY = "hidden"
-    body.style.overflowY = "hidden"
-    root.style.overscrollBehavior = "none"
-    body.style.overscrollBehavior = "none"
-
-    return () => {
-      root.style.overflowY = previousRootOverflowY
-      body.style.overflowY = previousBodyOverflowY
-      root.style.overscrollBehavior = previousRootOverscroll
-      body.style.overscrollBehavior = previousBodyOverscroll
-    }
-  }, [])
-
   const [isReady, setIsReady] = React.useState(false)
 
   // Use useLayoutEffect for synchronous style updates to prevent flash.
@@ -256,6 +229,8 @@ export function DesignSystemProvider({
     body.classList.add(`base-color-${baseColor}`)
 
     // Body / UI font (--font-sans) and heading (--font-heading).
+    ensurePreviewFontsLoaded([font, fontHeading])
+
     if (selectedFont) {
       root.style.setProperty("--font-sans", selectedFont.font.style.fontFamily)
       body.style.fontFamily = selectedFont.font.style.fontFamily
@@ -428,9 +403,7 @@ export function DesignSystemProvider({
     styleElement.textContent = cssText
   }, [registryTheme])
 
-  // Signal parent that iframe content is ready and interactive.
-  // This fires after styles are applied (isReady=true), so the parent can
-  // remove the loading overlay as soon as the iframe renders styled content.
+  // Signal same-origin embed hosts once the preview is fully styled.
   React.useEffect(() => {
     if (isReady && isInIframe()) {
       window.parent.postMessage(
@@ -440,10 +413,7 @@ export function DesignSystemProvider({
     }
   }, [isReady])
 
-  // Keep the host iframe height in sync with the rendered preview so the
-  // parent page can use normal document scrolling instead of an inner iframe
-  // scrollbar. ResizeObserver handles layout changes while MutationObserver
-  // catches dynamic content insertions before layout settles.
+  // Keep same-origin embedded previews height-synced for legacy hosts.
   React.useEffect(() => {
     if (!isReady || !isInIframe()) {
       return

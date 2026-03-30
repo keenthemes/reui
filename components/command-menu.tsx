@@ -11,9 +11,7 @@ import {
   SquareDashedIcon,
 } from "lucide-react"
 
-import { showMcpDocs } from "@/lib/flags"
 import type { CategoryInfo } from "@/lib/registry"
-import { source } from "@/lib/source"
 import { cn, normalizeSlug } from "@/lib/utils"
 import { useConfig } from "@/hooks/use-config"
 import { useIsMac } from "@/hooks/use-is-mac"
@@ -39,38 +37,25 @@ import { Kbd, KbdGroup } from "@/components/ui/kbd"
 import { Separator } from "@/components/ui/separator"
 import { copyToClipboardWithMeta } from "@/components/copy-button"
 
-type PageTreeNode = ReturnType<typeof source.getPageTree>["children"][number]
+type CommandPage = {
+  url: string
+  name: string
+  isComponent: boolean
+}
 
-function collectPages(
-  nodes: PageTreeNode[]
-): { url: string; name: React.ReactNode }[] {
-  const pages: { url: string; name: React.ReactNode }[] = []
-  const seen = new Set<string>()
-  function walk(items: PageTreeNode[]) {
-    for (const node of items) {
-      if (node.type === "page") {
-        // Deduplicate by page name (e.g. base/alert and radix/alert)
-        const key = node.name?.toString() ?? node.url
-        if (!seen.has(key)) {
-          seen.add(key)
-          pages.push({ url: node.url, name: node.name })
-        }
-      } else if (node.type === "folder" && node.children) {
-        walk(node.children)
-      }
-    }
-  }
-  walk(nodes)
-  return pages
+export type CommandMenuGroup = {
+  id: string
+  name: string
+  pages: CommandPage[]
 }
 
 export function CommandMenu({
-  tree,
+  groups,
   navItems,
   componentCategories = [],
   ...props
 }: DialogProps & {
-  tree: ReturnType<typeof source.getPageTree>
+  groups: CommandMenuGroup[]
   navItems?: { href: string; label: string; soon?: boolean }[]
   componentCategories?: CategoryInfo[]
 }) {
@@ -226,41 +211,27 @@ export function CommandMenu({
                 ))}
               </CommandGroup>
             )}
-            {tree.children.map((group) => {
-              if (group.type !== "folder") return null
-              const pages = collectPages(group.children)
-              if (pages.length === 0) return null
-
+            {groups.map((group) => {
               return (
                 <CommandGroup
-                  key={group.$id}
+                  key={group.id}
                   heading={group.name}
                   className="p-0! **:[[cmdk-group-heading]]:scroll-mt-16 **:[[cmdk-group-heading]]:p-3! **:[[cmdk-group-heading]]:pb-1!"
                 >
-                  {pages.map((item) => {
-                    const isComponent = item.url.includes("/components/")
-
-                    if (!showMcpDocs && item.url.includes("/mcp")) {
-                      return null
-                    }
-
+                  {group.pages.map((item) => {
                     return (
                       <CommandMenuItem
                         key={item.url}
-                        value={
-                          item.name?.toString()
-                            ? `${group.name} ${item.name}`
-                            : ""
-                        }
-                        keywords={isComponent ? ["component"] : undefined}
+                        value={item.name ? `${group.name} ${item.name}` : ""}
+                        keywords={item.isComponent ? ["component"] : undefined}
                         onHighlight={() =>
-                          handlePageHighlight(isComponent, item)
+                          handlePageHighlight(item.isComponent, item)
                         }
                         onSelect={() => {
                           runCommand(() => router.push(item.url))
                         }}
                       >
-                        {isComponent ? (
+                        {item.isComponent ? (
                           <SquareDashedIcon />
                         ) : (
                           <IconArrowRight />
@@ -290,7 +261,9 @@ export function CommandMenu({
                     ]}
                     onSelect={() => {
                       runCommand(() =>
-                        router.push(`/components/${normalizeSlug(category.name)}`)
+                        router.push(
+                          `/components/${normalizeSlug(category.name)}`
+                        )
                       )
                     }}
                   >

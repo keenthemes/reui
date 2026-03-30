@@ -1,6 +1,3 @@
-"use client"
-
-import React from "react"
 import { Box, Component, Layers, Server } from "lucide-react"
 
 import { getTotalComponentCount } from "@/lib/registry"

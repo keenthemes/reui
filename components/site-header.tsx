@@ -2,20 +2,81 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { siteConfig } from "@/lib/config"
+import { showMcpDocs } from "@/lib/flags"
 import { getCategories } from "@/lib/registry"
 import { source } from "@/lib/source"
 import { cn } from "@/lib/utils"
 import { Separator } from "@/components/ui/separator"
-import { CommandMenu } from "@/components/command-menu"
+import type { CommandMenuGroup } from "@/components/command-menu"
 import { GitHubLink } from "@/components/github-link"
 import { MainNav } from "@/components/main-nav"
-import { MobileNav } from "@/components/mobile-nav"
-import { ModeSwitcher } from "@/components/mode-switcher"
+import {
+  SiteHeaderCommandMenu,
+  SiteHeaderMobileNav,
+  SiteHeaderModeSwitcher,
+} from "@/components/site-header-client"
 import { XLink } from "@/components/x-link"
+
+type PageTreeNode = ReturnType<typeof source.getPageTree>["children"][number]
+
+function buildCommandMenuGroups(nodes: PageTreeNode[]) {
+  return nodes.flatMap<CommandMenuGroup>((node) => {
+    if (node.type !== "folder") {
+      return []
+    }
+
+    const pages: CommandMenuGroup["pages"] = []
+    const seen = new Set<string>()
+
+    const walk = (items: PageTreeNode[]) => {
+      for (const item of items) {
+        if (item.type === "page") {
+          if (!showMcpDocs && item.url.includes("/mcp")) {
+            continue
+          }
+
+          const name = item.name?.toString() ?? ""
+          const key = name || item.url
+
+          if (seen.has(key)) {
+            continue
+          }
+
+          seen.add(key)
+          pages.push({
+            url: item.url,
+            name,
+            isComponent: item.url.includes("/components/"),
+          })
+          continue
+        }
+
+        if (item.type === "folder" && item.children) {
+          walk(item.children)
+        }
+      }
+    }
+
+    walk(node.children)
+
+    if (pages.length === 0) {
+      return []
+    }
+
+    return [
+      {
+        id: node.$id,
+        name: node.name.toString(),
+        pages,
+      },
+    ]
+  })
+}
 
 export function SiteHeader({ sticky = true }: { sticky?: boolean } = {}) {
   const pageTree = source.getPageTree()
   const componentCategories = getCategories()
+  const commandGroups = buildCommandMenuGroups(pageTree.children)
 
   return (
     <header
@@ -43,17 +104,17 @@ export function SiteHeader({ sticky = true }: { sticky?: boolean } = {}) {
             />
             <span className="sr-only">{siteConfig.name}</span>
           </Link>
-          <MobileNav
+          <SiteHeaderMobileNav
             tree={pageTree}
-            items={siteConfig.navItems}
-            className="flex lg:hidden"
+            navItems={siteConfig.navItems}
+            componentCategories={componentCategories}
           />
           <div className="ml-auto flex items-center gap-1 md:flex-1 md:justify-end">
             <div className="mr-2 hidden w-full flex-1 md:flex md:w-auto md:flex-none">
-              <CommandMenu
-                tree={pageTree}
+              <SiteHeaderCommandMenu
                 navItems={siteConfig.navItems}
                 componentCategories={componentCategories}
+                commandGroups={commandGroups}
               />
             </div>
 
@@ -64,7 +125,7 @@ export function SiteHeader({ sticky = true }: { sticky?: boolean } = {}) {
             <div className="flex items-center gap-0">
               <GitHubLink />
               <XLink />
-              <ModeSwitcher />
+              <SiteHeaderModeSwitcher />
             </div>
           </div>
         </div>
