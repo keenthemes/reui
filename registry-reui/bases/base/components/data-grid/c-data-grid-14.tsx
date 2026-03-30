@@ -186,7 +186,7 @@ export default function Pattern() {
         cell: (info) => (
           <Link
             href={`mailto:${info.getValue()}`}
-            className="hover:text-primary hover:underline"
+            className="hover:text-primary hover:underline text-truncate"
           >
             {info.getValue() as string}
           </Link>

@@ -285,7 +285,7 @@ export default function Pattern() {
             </div>
           )
         },
-        size: 110,
+        size: 250,
         enableSorting: false,
         enableHiding: false,
       },
@@ -314,7 +314,7 @@ export default function Pattern() {
             {info.getValue() as string}
           </Link>
         ),
-        size: 90,
+        size: 150,
         enableSorting: false,
       },
       {
@@ -348,7 +348,7 @@ export default function Pattern() {
             </div>
           )
         },
-        size: 110,
+        size: 150,
         enableSorting: false,
       },
     ],

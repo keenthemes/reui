@@ -1,8 +1,6 @@
 import { Suspense } from "react"
 import type { Metadata } from "next"
-import Link from "next/link"
 import { notFound } from "next/navigation"
-import { BookOpenTextIcon } from "lucide-react"
 
 import { siteConfig } from "@/lib/config"
 import {
@@ -11,13 +9,8 @@ import {
   getComponentsByCategory,
 } from "@/lib/registry"
 import { getComponentCategorySeo } from "@/lib/registry-seo-cache"
-import {
-  buildBreadcrumbJsonLd,
-  buildPageMetadata,
-  isCanonicalComponentDoc,
-} from "@/lib/seo"
+import { buildBreadcrumbJsonLd, buildPageMetadata } from "@/lib/seo"
 import { normalizeSlug } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
 import { Spinner } from "@/components/ui/spinner"
 import { JsonLd } from "@/components/json-ld"
 
@@ -26,6 +19,7 @@ import {
   ComponentCategoryHeroIntro,
   ComponentCategorySeoContent,
 } from "../components/component-category-seo-content"
+import { ComponentDocsLink } from "../components/component-docs-link"
 import { CategoryPageContent } from "./category-page-content"
 
 function ComponentPreviewSkeleton() {
@@ -107,9 +101,6 @@ export default async function CategoryComponentsPage({
 
   const seo = getComponentCategorySeo(normalized)
   const catalogItems = getComponentsByCategory(normalized)
-  const docsHref = isCanonicalComponentDoc(normalized)
-    ? `/docs/components/base/${normalized}`
-    : null
   const faqJsonLd = seo.content?.faqs?.length
     ? {
         "@context": "https://schema.org",
@@ -140,14 +131,7 @@ export default async function CategoryComponentsPage({
             <h1 className="text-balanc mt-3 min-w-0 flex-1 text-xl font-bold sm:text-3xl">
               {seo.title}
             </h1>
-            {docsHref ? (
-              <Button variant="outline" size="sm" asChild className="shrink-0">
-                <Link href={docsHref}>
-                  <BookOpenTextIcon className="size-3.5 opacity-60" />
-                  View docs
-                </Link>
-              </Button>
-            ) : null}
+            <ComponentDocsLink slug={normalized} />
           </div>
           {seo.intro ? <ComponentCategoryHeroIntro intro={seo.intro} /> : null}
         </div>
