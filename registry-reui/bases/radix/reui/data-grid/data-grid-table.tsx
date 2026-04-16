@@ -1061,6 +1061,14 @@ function DataGridTableBodyRowCell<TData>({
   )
 }
 
+function getDataGridTableCellSkeleton<TData>(cell: Cell<TData, unknown>) {
+  return (
+    cell.column.columnDef.meta?.skeleton ?? (
+      <div className="bg-muted/70 h-7 w-full animate-pulse rounded-md" />
+    )
+  )
+}
+
 function DataGridTableRenderedRow<TData>({
   row,
   pinnedBoundary,
@@ -1070,6 +1078,23 @@ function DataGridTableRenderedRow<TData>({
   pinnedBoundary?: DataGridTablePinnedBoundary
   rowRef?: Ref<HTMLTableRowElement>
 }) {
+  const { props, table } = useDataGrid()
+  const isPendingRow =
+    props.loadingMode === "skeleton" &&
+    Boolean(table.options.meta?.editing?.isRowPending(row.id))
+
+  if (isPendingRow) {
+    return (
+      <DataGridTableBodyRowSkeleton>
+        {row.getVisibleCells().map((cell: Cell<TData, unknown>) => (
+          <DataGridTableBodyRowSkeletonCell column={cell.column} key={cell.id}>
+            {getDataGridTableCellSkeleton(cell)}
+          </DataGridTableBodyRowSkeletonCell>
+        ))}
+      </DataGridTableBodyRowSkeleton>
+    )
+  }
+
   return (
     <Fragment>
       <DataGridTableBodyRow

@@ -10822,6 +10822,82 @@ export const components: Registry["items"] = [
     }
   },
   {
+    "name": "c-data-grid-30",
+    "type": "registry:block",
+    "title": "Data grid with inline editing and generated edit dialog",
+    "categories": [
+      "data-grid"
+    ],
+    "description": "Data grid with inline editing and generated edit dialog",
+    "registryDependencies": [
+      "badge",
+      "button",
+      "card",
+      "data-grid",
+      "data-grid-column-header",
+      "data-grid-editing",
+      "data-grid-pagination",
+      "data-grid-scroll-area",
+      "data-grid-table",
+      "dropdown-menu",
+      "skeleton",
+      "use-editable-data-grid"
+    ],
+    "dependencies": [
+      "@tanstack/react-table",
+      "sonner"
+    ],
+    "files": [
+      {
+        "path": "components/data-grid/c-data-grid-30.tsx",
+        "type": "registry:block",
+        "target": "components/examples/c-data-grid-30.tsx"
+      }
+    ],
+    "meta": {
+      "order": 30,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "c-data-grid-31",
+    "type": "registry:block",
+    "title": "Data grid with async inline editing and optimistic rollback",
+    "categories": [
+      "data-grid"
+    ],
+    "description": "Data grid with async inline editing and optimistic rollback",
+    "registryDependencies": [
+      "badge",
+      "button",
+      "card",
+      "data-grid",
+      "data-grid-column-header",
+      "data-grid-editing",
+      "data-grid-pagination",
+      "data-grid-scroll-area",
+      "data-grid-table",
+      "dropdown-menu",
+      "skeleton",
+      "use-editable-data-grid"
+    ],
+    "dependencies": [
+      "@tanstack/react-table",
+      "sonner"
+    ],
+    "files": [
+      {
+        "path": "components/data-grid/c-data-grid-31.tsx",
+        "type": "registry:block",
+        "target": "components/examples/c-data-grid-31.tsx"
+      }
+    ],
+    "meta": {
+      "order": 31,
+      "gridSize": 1
+    }
+  },
+  {
     "name": "c-data-grid-4",
     "type": "registry:block",
     "title": "Data grid without table borders",

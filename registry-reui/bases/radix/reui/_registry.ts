@@ -113,13 +113,22 @@ export const reui: Registry["items"] = [
       "badge",
       "button",
       "checkbox",
+      "dialog",
       "dropdown-menu",
+      "field",
       "input",
+      "label",
+      "number-field",
       "popover",
+      "radio-group",
+      "rating",
+      "scroll-area",
       "select",
       "separator",
       "skeleton",
-      "spinner"
+      "spinner",
+      "switch",
+      "textarea"
     ],
     "dependencies": [
       "@dnd-kit/core",
@@ -151,6 +160,11 @@ export const reui: Registry["items"] = [
         "path": "reui/data-grid/data-grid-column-visibility.tsx",
         "type": "registry:ui",
         "target": "components/reui/data-grid/data-grid-column-visibility.tsx"
+      },
+      {
+        "path": "reui/data-grid/data-grid-editing.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/data-grid/data-grid-editing.tsx"
       },
       {
         "path": "reui/data-grid/data-grid-pagination.tsx",
@@ -245,6 +259,39 @@ export const reui: Registry["items"] = [
         "path": "reui/data-grid/data-grid-column-visibility.tsx",
         "type": "registry:ui",
         "target": "components/reui/data-grid/data-grid-column-visibility.tsx"
+      }
+    ]
+  },
+  {
+    "name": "data-grid-editing",
+    "type": "registry:ui",
+    "title": "Data Grid Editing",
+    "description": "",
+    "registryDependencies": [
+      "button",
+      "checkbox",
+      "data-grid",
+      "dialog",
+      "field",
+      "input",
+      "label",
+      "number-field",
+      "radio-group",
+      "rating",
+      "scroll-area",
+      "select",
+      "spinner",
+      "switch",
+      "textarea"
+    ],
+    "dependencies": [
+      "@tanstack/react-table"
+    ],
+    "files": [
+      {
+        "path": "reui/data-grid/data-grid-editing.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/data-grid/data-grid-editing.tsx"
       }
     ]
   },

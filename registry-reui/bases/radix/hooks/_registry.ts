@@ -17,6 +17,25 @@ export const hooks: Registry["items"] = [
     ]
   },
   {
+    "name": "use-editable-data-grid",
+    "type": "registry:hook",
+    "title": "Use Editable Data Grid",
+    "description": "",
+    "registryDependencies": [
+      "data-grid"
+    ],
+    "dependencies": [
+      "@tanstack/react-table"
+    ],
+    "files": [
+      {
+        "path": "hooks/use-editable-data-grid.ts",
+        "type": "registry:hook",
+        "target": "hooks/use-editable-data-grid.ts"
+      }
+    ]
+  },
+  {
     "name": "use-file-upload",
     "type": "registry:hook",
     "title": "Use File Upload",

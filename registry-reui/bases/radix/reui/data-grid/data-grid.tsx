@@ -11,6 +11,98 @@ import {
 
 import { cn } from "@/registry/bases/radix/lib/utils"
 
+export type DataGridEditorKind =
+  | "text"
+  | "email"
+  | "textarea"
+  | "number"
+  | "select"
+  | "radio"
+  | "checkbox"
+  | "switch"
+  | "rating"
+
+export interface DataGridEditorOption<TValue = unknown> {
+  label: string
+  value: TValue
+  description?: string
+  disabled?: boolean
+}
+
+export interface DataGridColumnEditorRenderProps<
+  TData extends RowData = RowData,
+  TValue = unknown,
+> {
+  table: Table<TData>
+  row: TData
+  rowId: string
+  columnId: string
+  value: TValue
+  setValue: (value: TValue) => void
+  commit: (value?: TValue) => Promise<boolean>
+  cancel: () => void
+  isEditing: boolean
+  isPending: boolean
+  error?: string | null
+  editor: DataGridColumnEditor<TData, TValue>
+}
+
+export interface DataGridColumnEditor<
+  TData extends RowData = RowData,
+  TValue = unknown,
+> {
+  kind: DataGridEditorKind
+  label?: string
+  placeholder?: string
+  description?: string
+  options?: DataGridEditorOption<TValue>[]
+  required?: boolean
+  min?: number
+  max?: number
+  step?: number
+  dialogOnly?: boolean
+  inlineOnly?: boolean
+  parse?: (value: unknown, row: TData) => TValue
+  validate?: (value: TValue, row: TData) => string | null | undefined
+  renderInline?: (
+    props: DataGridColumnEditorRenderProps<TData, TValue>
+  ) => ReactNode
+  renderDialog?: (
+    props: DataGridColumnEditorRenderProps<TData, TValue>
+  ) => ReactNode
+}
+
+export interface DataGridEditingTableMeta<TData extends RowData = RowData> {
+  activeCell: { rowId: string; columnId: string } | null
+  dialogOpen: boolean
+  dialogRow: TData | null
+  dialogRowId: string | null
+  dialogDraft: Partial<TData> | null
+  dialogErrors: Record<string, string | undefined>
+  dialogMessage: string | null
+  startCellEdit: (row: TData, columnId: string) => void
+  cancelCellEdit: (rowId?: string, columnId?: string) => void
+  updateCellDraft: (rowId: string, columnId: string, value: unknown) => void
+  commitCellEdit: (
+    row: TData,
+    columnId: string,
+    value?: unknown
+  ) => Promise<boolean>
+  isCellEditing: (rowId: string, columnId: string) => boolean
+  isCellPending: (rowId: string, columnId: string) => boolean
+  getCellDraftValue: (row: TData, columnId: string) => unknown
+  getCellError: (rowId: string, columnId: string) => string | undefined
+  openDialog: (row: TData) => void
+  closeDialog: () => void
+  updateDialogDraft: (columnId: string, value: unknown) => void
+  saveDialog: () => Promise<boolean>
+  getDialogValue: (columnId: string) => unknown
+  getDialogError: (columnId: string) => string | undefined
+  clearDialogMessage: () => void
+  isRowPending: (rowId: string) => boolean
+  isGridPending: () => boolean
+}
+
 declare module "@tanstack/react-table" {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface ColumnMeta<TData extends RowData, TValue> {
@@ -19,6 +111,12 @@ declare module "@tanstack/react-table" {
     cellClassName?: string
     skeleton?: ReactNode
     expandedContent?: (row: TData) => ReactNode
+    editor?: DataGridColumnEditor<TData, TValue>
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  interface TableMeta<TData extends RowData> {
+    editing?: DataGridEditingTableMeta<TData>
   }
 }
 
@@ -31,6 +129,14 @@ export function getColumnHeaderLabel<TData, TValue>(
   const defHeader = column.columnDef.header
   if (typeof defHeader === "string") return defHeader
   return String(column.id)
+}
+
+export function getDataGridColumnEditor<TData, TValue>(
+  column: Column<TData, TValue>
+): DataGridColumnEditor<TData, TValue> | undefined {
+  return column.columnDef.meta?.editor as
+    | DataGridColumnEditor<TData, TValue>
+    | undefined
 }
 
 export type DataGridApiFetchParams = {
