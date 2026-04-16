@@ -118,7 +118,7 @@
       "name": "data-grid",
       "label": "Data Grid",
       "description": "Open-source shadcn data grid components for sorting and filtering, virtualized tables, and admin dashboards.",
-      "count": 29
+      "count": 31
     },
     {
       "name": "date-selector",
@@ -409,5 +409,5 @@
       "count": 7
     }
   ],
-  "totalComponents": 1003
+  "totalComponents": 1005
 }

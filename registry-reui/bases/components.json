@@ -4375,6 +4375,28 @@
     }
   },
   {
+    "name": "c-data-grid-30",
+    "title": "Data grid with inline editing and generated edit dialog",
+    "categories": [
+      "data-grid"
+    ],
+    "meta": {
+      "order": 30,
+      "gridSize": 1
+    }
+  },
+  {
+    "name": "c-data-grid-31",
+    "title": "Data grid with async inline editing and optimistic rollback",
+    "categories": [
+      "data-grid"
+    ],
+    "meta": {
+      "order": 31,
+      "gridSize": 1
+    }
+  },
+  {
     "name": "c-data-grid-4",
     "title": "Data grid without table borders",
     "categories": [

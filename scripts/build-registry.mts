@@ -201,6 +201,10 @@ function transformImportPaths(code: string, base: string): string {
     .trimStart()
 }
 
+function normalizeLineEndings(value: string): string {
+  return value.replace(/\r\n?/g, "\n")
+}
+
 // ---------------------------------------------------------------------------
 // Determine registry source type
 // ---------------------------------------------------------------------------
@@ -261,6 +265,7 @@ async function buildRegistryItem(
     if (fileType !== "registry:page") {
       content = content.replace(/export default/g, "export")
     }
+    content = normalizeLineEndings(content)
 
     // Determine target path
     let target = fileTarget
