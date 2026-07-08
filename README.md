@@ -174,7 +174,7 @@ A one-time license then unlocks the premium catalog on the same shadcn/ui founda
 |---------|--------|-------------|---------------------|
 | **485+ Pro Blocks** | Pro | Full-page sections across Application, Solutions, eCommerce, Data Grid, and Marketing | [Blocks](https://reui.io/blocks) · [Application](https://reui.io/blocks/application) · [Solutions](https://reui.io/blocks/solutions) · [eCommerce](https://reui.io/blocks/ecommerce) · [Data Grid](https://reui.io/blocks/data-grid) · [Marketing](https://reui.io/blocks/marketing) |
 | **562 Motion Icons** | Ultimate | Hand-crafted icons in 4 styles (Outline, Solid, Duotone, Filled) with hover animation — 2,248 variants | [Icons catalog](https://reui.io/icons) |
-| **MCP Server** | Free | Connect any coding agent (Claude, Codex, Cursor, v0, Lovable, Replit, OpenCode, VS Code, Zed) to the ReUI registry for live scored search, inline component APIs, and one-command shadcn installs | [MCP Server docs](https://reui.io/docs/mcp) · [All docs](https://reui.io/docs) |
+| **MCP Server** | Free | Connect any coding agent (Claude, Codex, Cursor, v0, Lovable, Replit, OpenCode, VS Code, Zed) to the ReUI registry for live scored search, inline component APIs, and one-command shadcn installs | [MCP Server docs](https://reui.io/mcp) |
 | **Agent Skill** | Free | One command teaches your agent the ReUI workflow — search → install → read the real API → adapt by reuse → audit; agent-agnostic, no license | [Agent Skill docs](https://reui.io/docs/agent-skills) |
 | **Workspace** | Pro | ReUI account with favorites, collections, and team access | [Sign in](https://reui.io/account) |
 
@@ -251,12 +251,6 @@ See [CONTRIBUTING.md](https://github.com/keenthemes/reui/blob/main/CONTRIBUTING.
 ## License
 
 ReUI is open-source software licensed under the [MIT License](https://github.com/keenthemes/reui/blob/main/LICENSE.md).
-
----
-
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=keenthemes/reui&type=Date)](https://www.star-history.com/#keenthemes/reui&Date)
 
 ---
 
