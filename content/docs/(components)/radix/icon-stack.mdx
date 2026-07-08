@@ -1,0 +1,107 @@
+---
+title: Icon Stack
+description: Shadcn Icon Stack for isometric icons, layered icon illustrations, and empty-state visuals.
+component: true
+base: radix
+---
+
+<ComponentPreview styleName="radix-nova" name="c-icon-stack-1" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add @reui/icon-stack
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource
+  styleName="radix-nova"
+  name="icon-stack"
+  title="components/reui/icon-stack.tsx"
+/>
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { InboxIcon } from "lucide-react"
+
+import { IconStack } from "@/components/reui/icon-stack"
+```
+
+```tsx
+<IconStack aria-hidden="true">
+  <InboxIcon className="size-4" />
+</IconStack>
+```
+
+`IconStack` is a shadcn-compatible ReUI primitive for building layered
+isometric icons and compact isometric illustrations. Use it for empty states,
+onboarding steps, feature cards, dashboard status panels, and small UI moments
+that need more depth than a flat icon.
+
+The main preview above shows the basic shadcn icon stack pattern: a layered SVG
+stack with one centered icon. Style the inner icon or custom content directly
+with its own `className`; the stack only provides the isometric artwork and
+overlay position. Keep meaningful labels in surrounding copy and mark purely
+decorative stacks with `aria-hidden="true"`.
+
+## Examples
+
+### Sizes
+
+<ComponentPreview styleName="radix-nova" name="c-icon-stack-2" />
+
+### Colors
+
+<ComponentPreview styleName="radix-nova" name="c-icon-stack-3" />
+
+### Icon Badge
+
+<ComponentPreview styleName="radix-nova" name="c-icon-stack-4" />
+
+### Empty State Illustration
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-icon-stack-5"
+  className="**:[.preview]:h-auto"
+/>
+
+### Item Media
+
+<ComponentPreview styleName="radix-nova" name="c-icon-stack-6" />
+
+## API Reference
+
+### IconStack
+
+| Prop        | Type              | Default | Description                                           |
+| :---------- | :---------------- | :------ | :---------------------------------------------------- |
+| `className` | `string`          | -       | Controls the outer wrapper size, color, and layout.   |
+| `children`  | `React.ReactNode` | -       | Renders optional decorative content inside the stack. |
+
+All native `div` props are supported.

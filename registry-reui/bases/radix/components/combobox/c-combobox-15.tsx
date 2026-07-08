@@ -1,6 +1,3 @@
-// Description: A multi-select with chips that cannot be removed
-// Order: 15
-
 "use client"
 
 import { Fragment } from "react"

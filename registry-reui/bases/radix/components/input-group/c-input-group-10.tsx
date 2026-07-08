@@ -1,6 +1,3 @@
-// Description: Input group with action button addon
-// Order: 10
-
 import { Field } from "@/registry/bases/radix/ui/field"
 import {
   InputGroup,

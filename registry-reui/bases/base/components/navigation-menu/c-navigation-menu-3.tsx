@@ -1,8 +1,3 @@
-// Description: Navigation menu with icons.
-// Order: 3
-
-import Link from "next/link"
-
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -25,7 +20,7 @@ export default function Pattern() {
                 <li>
                   <NavigationMenuLink
                     render={
-                      <Link href="#" className="flex items-center gap-2" />
+                      <a href="#" className="flex items-center gap-2" />
                     }
                   >
                     <IconPlaceholder
@@ -41,7 +36,7 @@ export default function Pattern() {
                 <li>
                   <NavigationMenuLink
                     render={
-                      <Link href="#" className="flex items-center gap-2" />
+                      <a href="#" className="flex items-center gap-2" />
                     }
                   >
                     <IconPlaceholder

@@ -1,6 +1,3 @@
-// Description: Advanced accordion with custom icons and badges
-// Order: 6
-
 import { Badge } from "@/registry-reui/bases/base/reui/badge"
 
 import {
@@ -75,11 +72,11 @@ export default function Pattern() {
           <AccordionItem
             key={item.value}
             value={item.value}
-            className="border-border bg-card style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-4xl style-mira:rounded-md border px-2 **:data-[slot=accordion-content]:p-0!"
+            className="border-border bg-card rounded-lg border px-2 **:data-[slot=accordion-content]:p-0!"
           >
             <AccordionTrigger className="items-center px-1 py-3 font-semibold hover:no-underline">
               <div className="flex items-center gap-3">
-                <div className="bg-muted style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-4xl style-mira:rounded-md flex size-8 items-center justify-center">
+                <div className="bg-muted rounded-lg flex size-8 items-center justify-center">
                   {item.icon}
                 </div>
                 <span>{item.trigger}</span>

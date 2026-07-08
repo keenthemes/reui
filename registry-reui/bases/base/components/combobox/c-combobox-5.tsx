@@ -1,6 +1,3 @@
-// Description: A combobox with auto-highlight enabled
-// Order: 5
-
 import {
   Combobox,
   ComboboxContent,

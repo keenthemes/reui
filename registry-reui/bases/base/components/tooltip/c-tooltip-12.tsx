@@ -1,6 +1,3 @@
-// Description: Tooltip on disabled button with wrapper
-// Order: 12
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   Tooltip,

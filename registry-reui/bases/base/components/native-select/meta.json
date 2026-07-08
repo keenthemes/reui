@@ -1,0 +1,38 @@
+[
+  {
+    "name": "c-native-select-1",
+    "title": "Basic native select.",
+    "description": "Basic native select.",
+    "order": 1
+  },
+  {
+    "name": "c-native-select-2",
+    "title": "Native select with options grouped.",
+    "description": "Native select with options grouped.",
+    "order": 2
+  },
+  {
+    "name": "c-native-select-3",
+    "title": "Small native select.",
+    "description": "Small native select.",
+    "order": 3
+  },
+  {
+    "name": "c-native-select-4",
+    "title": "Native select embedded within a field.",
+    "description": "Native select embedded within a field.",
+    "order": 4
+  },
+  {
+    "name": "c-native-select-5",
+    "title": "Disabled native select.",
+    "description": "Disabled native select.",
+    "order": 5
+  },
+  {
+    "name": "c-native-select-6",
+    "title": "Invalid native select.",
+    "description": "Invalid native select.",
+    "order": 6
+  }
+]

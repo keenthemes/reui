@@ -1,11 +1,7 @@
-/* Site-only isolated tokens. These remain stable while shadcn/create updates the
-   shared document tokens for previews. */
-
-@custom-variant fixed (&:is(.layout-fixed *));
+/* Site-only isolated tokens. These remain stable while shadcn/create updates
+   the shared document tokens for previews. */
 
 @theme inline {
-  --breakpoint-3xl: 1600px;
-  --breakpoint-4xl: 2000px;
   --font-site-sans: var(--site-font-sans);
   --font-site-heading: var(--site-font-heading);
   --font-site-mono: var(--site-font-mono);
@@ -45,11 +41,11 @@
   --color-site-sidebar: var(--site-sidebar);
   --color-site-sidebar-foreground: var(--site-sidebar-foreground);
   --color-site-sidebar-primary: var(--site-sidebar-primary);
-  --color-site-sidebar-primary-foreground: var(--site-sidebar-primary-foreground);
-  --color-site-sidebar-accent: var(--site-sidebar-accent);
-  --color-site-sidebar-accent-foreground: var(
-    --site-sidebar-accent-foreground
+  --color-site-sidebar-primary-foreground: var(
+    --site-sidebar-primary-foreground
   );
+  --color-site-sidebar-accent: var(--site-sidebar-accent);
+  --color-site-sidebar-accent-foreground: var(--site-sidebar-accent-foreground);
   --color-site-sidebar-border: var(--site-sidebar-border);
   --color-site-sidebar-ring: var(--site-sidebar-ring);
   --color-site-surface: var(--site-surface);
@@ -87,7 +83,7 @@
   --site-secondary: oklch(0.97 0 0);
   --site-secondary-foreground: oklch(0.205 0 0);
   --site-muted: oklch(0.97 0 0);
-  --site-muted-foreground: oklch(0.556 0 0);
+  --site-muted-foreground: oklch(0.52 0 0);
   --site-accent: oklch(0.97 0 0);
   --site-accent-foreground: oklch(0.205 0 0);
   --site-destructive: oklch(0.577 0.245 27.325);
@@ -201,6 +197,16 @@
   border-radius: var(--site-radius-lg);
 }
 
+@utility site-rounded-t-lg {
+  border-top-left-radius: var(--site-radius-lg);
+  border-top-right-radius: var(--site-radius-lg);
+}
+
+@utility site-rounded-b-lg {
+  border-bottom-left-radius: var(--site-radius-lg);
+  border-bottom-right-radius: var(--site-radius-lg);
+}
+
 @utility site-rounded-xl {
   border-radius: var(--site-radius-xl);
 }
@@ -217,16 +223,6 @@
   border-radius: var(--site-radius-full);
 }
 
-@utility site-rounded-t-lg {
-  border-top-left-radius: var(--site-radius-lg);
-  border-top-right-radius: var(--site-radius-lg);
-}
-
-@utility site-rounded-b-lg {
-  border-bottom-left-radius: var(--site-radius-lg);
-  border-bottom-right-radius: var(--site-radius-lg);
-}
-
 @utility site-rounded-l-md {
   border-top-left-radius: var(--site-radius-md);
   border-bottom-left-radius: var(--site-radius-md);
@@ -235,211 +231,4 @@
 @utility site-rounded-r-md {
   border-top-right-radius: var(--site-radius-md);
   border-bottom-right-radius: var(--site-radius-md);
-}
-
-@layer base {
-  ::selection {
-    @apply bg-site-selection text-site-selection-foreground;
-  }
-
-  html {
-    @apply scroll-smooth;
-  }
-
-  body {
-    font-synthesis-weight: none;
-    text-rendering: optimizeLegibility;
-  }
-
-  @supports (font: -apple-system-body) and (-webkit-appearance: none) {
-    [data-wrapper] {
-      @apply min-[1800px]:border-t;
-    }
-  }
-
-  a:active,
-  button:active {
-    @apply opacity-60 md:opacity-100;
-  }
-}
-
-@utility border-grid {
-  @apply border-site-border/50 dark:border-site-border;
-}
-
-@utility section-soft {
-  @apply from-site-background to-site-surface/40 dark:bg-site-background 3xl:fixed:bg-none bg-linear-to-b;
-}
-
-@utility theme-container {
-  @apply font-sans;
-}
-
-@utility container-wrapper {
-  @apply 3xl:fixed:max-w-[calc(var(--breakpoint-2xl)+2rem)] mx-auto w-full px-4 lg:px-6;
-}
-
-@utility container {
-  @apply 3xl:max-w-7xl mx-auto max-w-[1400px] px-4 lg:px-6;
-}
-
-@utility scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: var(--site-input) transparent;
-
-  ::-webkit-scrollbar {
-    width: 5px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: var(--site-input);
-    border-radius: 5px;
-  }
-}
-
-@utility border-ghost {
-  @apply after:border-site-border relative after:absolute after:inset-0 after:border after:mix-blend-darken dark:after:mix-blend-lighten;
-}
-
-@utility step {
-  counter-increment: step;
-
-  &:before {
-    @apply border-site-background bg-site-muted mr-2 inline-flex size-6 items-center justify-center site-rounded-full text-center -indent-px font-site-mono text-sm font-medium md:absolute md:mt-[-4px] md:ml-[-50px] md:size-9 md:border-4;
-    content: counter(step);
-  }
-}
-
-@utility extend-touch-target {
-  @media (pointer: coarse) {
-    @apply relative touch-manipulation after:absolute after:-inset-2;
-  }
-}
-
-@layer components {
-  .steps {
-    &:first-child {
-      @apply mt-0!;
-    }
-
-    &:first-child > h3:first-child {
-      @apply mt-0!;
-    }
-
-    > h3 {
-      @apply mt-8!;
-    }
-
-    > h3 + p {
-      @apply mt-2!;
-    }
-  }
-
-  [data-rehype-pretty-code-figure] {
-    background-color: var(--site-code);
-    color: var(--site-code-foreground);
-    border-radius: var(--site-radius-lg);
-    border-width: 0;
-    border-color: var(--site-border);
-    margin-top: calc(var(--spacing) * 6);
-    overflow: hidden;
-    font-size: var(--text-sm);
-    outline: none;
-    position: relative;
-    @apply -mx-1 md:-mx-1;
-
-    &:has([data-rehype-pretty-code-title]) [data-slot="copy-button"] {
-      top: calc(var(--spacing) * 1.5) !important;
-    }
-  }
-
-  [data-rehype-pretty-code-title] {
-    border-bottom: color-mix(in oklab, var(--site-border) 30%, transparent);
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    padding-block: calc(var(--spacing) * 2.5);
-    padding-inline: calc(var(--spacing) * 4);
-    font-size: var(--text-sm);
-    font-family: var(--site-font-mono);
-    color: var(--site-code-foreground);
-  }
-
-  [data-line-numbers] {
-    display: grid;
-    min-width: 100%;
-    white-space: pre;
-    border: 0;
-    background: transparent;
-    padding: 0;
-    counter-reset: line;
-    box-decoration-break: clone;
-  }
-
-  [data-line-numbers] [data-line]::before {
-    font-size: var(--text-sm);
-    counter-increment: line;
-    content: counter(line);
-    display: inline-block;
-    width: calc(var(--spacing) * 16);
-    padding-right: calc(var(--spacing) * 6);
-    text-align: right;
-    color: var(--site-code-number);
-    background-color: var(--site-code);
-    position: sticky;
-    left: 0;
-  }
-
-  [data-line-numbers] [data-highlighted-line][data-line]::before {
-    background-color: var(--site-code-highlight);
-  }
-
-  [data-line] {
-    padding-top: calc(var(--spacing) * 0.5);
-    padding-bottom: calc(var(--spacing) * 0.5);
-    min-height: calc(var(--spacing) * 1);
-    width: 100%;
-    display: inline-block;
-  }
-
-  [data-line] span {
-    color: var(--shiki-light);
-
-    @variant dark {
-      color: var(--shiki-dark) !important;
-    }
-  }
-
-  [data-highlighted-line],
-  [data-highlighted-chars] {
-    position: relative;
-    background-color: var(--site-code-highlight);
-  }
-
-  [data-highlighted-line] {
-    &:after {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 2px;
-      height: 100%;
-      content: "";
-      background-color: color-mix(
-        in oklab,
-        var(--site-muted-foreground) 50%,
-        transparent
-      );
-    }
-  }
-
-  [data-highlighted-chars] {
-    border-radius: var(--site-radius-sm);
-    padding-inline: 0.3rem;
-    padding-block: 0.1rem;
-    font-family: var(--site-font-mono);
-    font-size: 0.8rem;
-  }
 }

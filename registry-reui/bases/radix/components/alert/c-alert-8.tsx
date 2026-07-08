@@ -1,6 +1,3 @@
-// Description: Error alert
-// Order: 8
-
 import {
   Alert,
   AlertDescription,

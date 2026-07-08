@@ -1,6 +1,3 @@
-// Description: Pagination with arrows buttons
-// Order: 7
-
 import {
   Pagination,
   PaginationContent,

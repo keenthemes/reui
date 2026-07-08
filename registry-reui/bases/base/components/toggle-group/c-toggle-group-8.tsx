@@ -1,6 +1,3 @@
-// Description: Toggle group for view mode switching
-// Order: 8
-
 import {
   ToggleGroup,
   ToggleGroupItem,

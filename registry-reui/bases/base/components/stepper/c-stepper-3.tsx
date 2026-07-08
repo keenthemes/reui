@@ -1,7 +1,3 @@
-// Description: Stepper with loading state
-// Order: 3
-// GridSize: 1
-
 "use client"
 
 import {

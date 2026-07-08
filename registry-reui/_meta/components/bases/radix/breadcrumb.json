@@ -1,0 +1,359 @@
+{
+  "items": [
+    {
+      "name": "c-breadcrumb-1",
+      "type": "registry:block",
+      "title": "Basic breadcrumb",
+      "categories": [
+        "breadcrumb"
+      ],
+      "description": "Basic breadcrumb",
+      "registryDependencies": [
+        "breadcrumb"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/breadcrumb/c-breadcrumb-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-breadcrumb-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-breadcrumb-2",
+      "type": "registry:block",
+      "title": "Breadcrumb with dropdown menu",
+      "categories": [
+        "breadcrumb"
+      ],
+      "description": "Breadcrumb with dropdown menu",
+      "registryDependencies": [
+        "breadcrumb",
+        "button",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/breadcrumb/c-breadcrumb-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-breadcrumb-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-breadcrumb-3",
+      "type": "registry:block",
+      "title": "Breadcrumb with Next.js link",
+      "categories": [
+        "breadcrumb"
+      ],
+      "description": "Breadcrumb with Next.js link",
+      "registryDependencies": [
+        "breadcrumb"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/breadcrumb/c-breadcrumb-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-breadcrumb-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-breadcrumb-4",
+      "type": "registry:block",
+      "title": "Breadcrumb with a custom slash separator",
+      "categories": [
+        "breadcrumb"
+      ],
+      "description": "Breadcrumb with a custom slash separator",
+      "registryDependencies": [
+        "breadcrumb"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/breadcrumb/c-breadcrumb-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-breadcrumb-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-breadcrumb-5",
+      "type": "registry:block",
+      "title": "Breadcrumb with icons for each item",
+      "categories": [
+        "breadcrumb"
+      ],
+      "description": "Breadcrumb with icons for each item",
+      "registryDependencies": [
+        "breadcrumb"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/breadcrumb/c-breadcrumb-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-breadcrumb-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-breadcrumb-6",
+      "type": "registry:block",
+      "title": "Breadcrumb with ellipsis for long paths",
+      "categories": [
+        "breadcrumb"
+      ],
+      "description": "Breadcrumb with ellipsis for long paths",
+      "registryDependencies": [
+        "breadcrumb"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/breadcrumb/c-breadcrumb-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-breadcrumb-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-breadcrumb-7",
+      "type": "registry:block",
+      "title": "Breadcrumb items with avatars",
+      "categories": [
+        "breadcrumb"
+      ],
+      "description": "Breadcrumb items with avatars",
+      "registryDependencies": [
+        "avatar",
+        "breadcrumb"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/breadcrumb/c-breadcrumb-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-breadcrumb-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-breadcrumb-8",
+      "type": "registry:block",
+      "title": "Breadcrumb with double chevron separators",
+      "categories": [
+        "breadcrumb"
+      ],
+      "description": "Breadcrumb with double chevron separators",
+      "registryDependencies": [
+        "breadcrumb"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/breadcrumb/c-breadcrumb-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-breadcrumb-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-breadcrumb-9",
+      "type": "registry:block",
+      "title": "Breadcrumb inside card",
+      "categories": [
+        "breadcrumb"
+      ],
+      "description": "Breadcrumb inside card",
+      "registryDependencies": [
+        "breadcrumb",
+        "card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/breadcrumb/c-breadcrumb-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-breadcrumb-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-breadcrumb-10",
+      "type": "registry:block",
+      "title": "Pill-style breadcrumb inside frame",
+      "categories": [
+        "breadcrumb"
+      ],
+      "description": "Pill-style breadcrumb inside frame",
+      "registryDependencies": [
+        "breadcrumb",
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/breadcrumb/c-breadcrumb-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-breadcrumb-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-breadcrumb-11",
+      "type": "registry:block",
+      "title": "Breadcrumb items containing badge with count",
+      "categories": [
+        "breadcrumb"
+      ],
+      "description": "Breadcrumb items containing badge with count",
+      "registryDependencies": [
+        "badge",
+        "breadcrumb"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/breadcrumb/c-breadcrumb-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-breadcrumb-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    },
+    {
+      "name": "c-breadcrumb-12",
+      "type": "registry:block",
+      "title": "Breadcrumb starting with home icon item",
+      "categories": [
+        "breadcrumb"
+      ],
+      "description": "Breadcrumb starting with home icon item",
+      "registryDependencies": [
+        "breadcrumb",
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/breadcrumb/c-breadcrumb-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-breadcrumb-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12
+      }
+    },
+    {
+      "name": "c-breadcrumb-13",
+      "type": "registry:block",
+      "title": "Breadcrumb with a custom separator",
+      "categories": [
+        "breadcrumb"
+      ],
+      "description": "Breadcrumb with a custom separator",
+      "registryDependencies": [
+        "breadcrumb"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/breadcrumb/c-breadcrumb-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-breadcrumb-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13
+      }
+    },
+    {
+      "name": "c-breadcrumb-14",
+      "type": "registry:block",
+      "title": "Button-style breadcrumb",
+      "categories": [
+        "breadcrumb"
+      ],
+      "description": "Button-style breadcrumb",
+      "registryDependencies": [
+        "breadcrumb",
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/breadcrumb/c-breadcrumb-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-breadcrumb-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14
+      }
+    },
+    {
+      "name": "c-breadcrumb-15",
+      "type": "registry:block",
+      "title": "Breadcrumb with project, user and document info",
+      "categories": [
+        "breadcrumb"
+      ],
+      "description": "Breadcrumb with project, user and document info",
+      "registryDependencies": [
+        "avatar",
+        "breadcrumb",
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/breadcrumb/c-breadcrumb-15.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-breadcrumb-15.tsx"
+        }
+      ],
+      "meta": {
+        "order": 15
+      }
+    }
+  ]
+}

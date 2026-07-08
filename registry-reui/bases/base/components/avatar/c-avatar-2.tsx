@@ -1,6 +1,3 @@
-// Description: Avatar with fallback
-// Order: 2
-
 import { Avatar, AvatarFallback } from "@/registry/bases/base/ui/avatar"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 

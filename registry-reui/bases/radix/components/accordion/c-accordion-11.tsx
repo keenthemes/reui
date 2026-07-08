@@ -1,6 +1,3 @@
-// Description: Accordion pattern for onboarding or setup steps with icons, badges, and QR codes
-// Order: 11
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import {
@@ -22,12 +19,12 @@ export default function Pattern() {
         type="single"
         collapsible
         defaultValue="pos-app"
-        className="border-border style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-4xl style-mira:rounded-md overflow-hidden border"
+        className="border-border rounded-lg overflow-hidden border"
       >
         {/* Step 1: Completed */}
         <AccordionItem
           value="add-products"
-          className="style-maia:px-0 bg-transparent px-4"
+          className="bg-transparent px-4"
         >
           <AccordionTrigger className="items-center py-4 font-semibold hover:no-underline">
             <div className="flex w-full items-center justify-between pr-4">
@@ -55,7 +52,7 @@ export default function Pattern() {
         {/* Step 2: Expanded/In Progress */}
         <AccordionItem
           value="pos-app"
-          className="style-maia:px-0 bg-transparent px-4"
+          className="bg-transparent px-4"
         >
           <AccordionTrigger className="items-center py-4 font-semibold hover:no-underline">
             <div className="flex w-full items-center justify-between pr-4">
@@ -84,7 +81,7 @@ export default function Pattern() {
                   </Button>
                 </ButtonGroup>
               </div>
-              <div className="bg-muted/30 border-border style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-4xl style-mira:rounded-md flex shrink-0 items-center justify-center border p-3">
+              <div className="bg-muted/30 border-border rounded-lg flex shrink-0 items-center justify-center border p-3">
                 <IconPlaceholder
                   lucide="QrCodeIcon"
                   tabler="IconQrcode"
@@ -102,7 +99,7 @@ export default function Pattern() {
         {/* Step 3: Pending */}
         <AccordionItem
           value="price-stock"
-          className="style-maia:px-0 bg-transparent px-4"
+          className="bg-transparent px-4"
         >
           <AccordionTrigger className="items-center py-4 font-semibold hover:no-underline">
             <div className="flex w-full items-center justify-between pr-4">

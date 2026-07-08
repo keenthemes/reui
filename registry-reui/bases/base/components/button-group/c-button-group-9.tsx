@@ -1,6 +1,3 @@
-// Description: Nested button groups for complex action sets
-// Order: 9
-
 import { Button } from "@/registry/bases/base/ui/button"
 import { ButtonGroup } from "@/registry/bases/base/ui/button-group"
 import {

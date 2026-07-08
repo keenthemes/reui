@@ -1,6 +1,3 @@
-// Description: Switch with tooltip info
-// Order: 9
-
 import { Field, FieldLabel } from "@/registry/bases/base/ui/field"
 import { Switch } from "@/registry/bases/base/ui/switch"
 import {

@@ -1,6 +1,3 @@
-// Description: Rating scale using numerical buttons
-// Order: 25
-
 "use client"
 
 import { useState } from "react"

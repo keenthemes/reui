@@ -1,6 +1,3 @@
-// Description: Pill-style breadcrumb inside frame
-// Order: 10
-
 import { Frame, FramePanel } from "@/registry-reui/bases/radix/reui/frame"
 
 import {

@@ -1,6 +1,3 @@
-// Description: Order summary with separators
-// Order: 6
-
 import { Separator } from "@/registry/bases/base/ui/separator"
 
 export default function Pattern() {

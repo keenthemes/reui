@@ -1,6 +1,3 @@
-// Description: Button group with dropdown menu
-// Order: 4
-
 import { Button } from "@/registry/bases/base/ui/button"
 import { ButtonGroup } from "@/registry/bases/base/ui/button-group"
 import {

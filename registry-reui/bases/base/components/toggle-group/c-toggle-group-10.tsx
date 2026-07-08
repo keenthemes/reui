@@ -1,6 +1,3 @@
-// Description: Toggle group for color theme
-// Order: 10
-
 import {
   ToggleGroup,
   ToggleGroupItem,

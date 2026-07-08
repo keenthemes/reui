@@ -1,6 +1,3 @@
-// Description: Stacked alerts within a Frame
-// Order: 13
-
 import {
   Alert,
   AlertAction,

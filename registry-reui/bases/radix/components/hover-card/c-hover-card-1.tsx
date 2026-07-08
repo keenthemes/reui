@@ -1,6 +1,3 @@
-// Description: Basic hover card.
-// Order: 1
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   HoverCard,

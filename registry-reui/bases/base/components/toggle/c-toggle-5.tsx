@@ -1,6 +1,3 @@
-// Description: Disabled toggle.
-// Order: 5
-
 import { Toggle } from "@/registry/bases/base/ui/toggle"
 
 export default function Pattern() {

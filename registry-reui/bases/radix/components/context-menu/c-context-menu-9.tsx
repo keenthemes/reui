@@ -1,6 +1,3 @@
-// Description: Context menu with different alignment sides.
-// Order: 9
-
 import {
   ContextMenu,
   ContextMenuContent,
@@ -15,7 +12,7 @@ export default function Pattern() {
       <div className="grid grid-cols-2 gap-2">
         {(["left", "top", "bottom", "right"] as const).map((side) => (
           <ContextMenu key={side}>
-            <ContextMenuTrigger className="text-muted-foreground style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-4xl style-mira:rounded-md flex aspect-[2/0.5] items-center justify-center border border-dashed p-4 text-sm capitalize">
+            <ContextMenuTrigger className="text-muted-foreground rounded-lg flex aspect-[2/0.5] items-center justify-center border border-dashed p-4 text-sm capitalize">
               {side}
             </ContextMenuTrigger>
             <ContextMenuContent side={side}>

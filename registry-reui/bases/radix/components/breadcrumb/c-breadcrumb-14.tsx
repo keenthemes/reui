@@ -1,6 +1,3 @@
-// Description: Button-style breadcrumb
-// Order: 14
-
 import {
   Breadcrumb,
   BreadcrumbItem,

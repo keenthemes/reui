@@ -1,6 +1,3 @@
-// Description: Share link input with visibility selector and copy action
-// Order: 40
-
 "use client"
 
 import { useState } from "react"

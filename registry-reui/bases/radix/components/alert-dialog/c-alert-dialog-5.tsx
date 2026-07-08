@@ -1,6 +1,3 @@
-// Description: Destructive alert dialog for irreversible actions like deletion
-// Order: 5
-
 import {
   AlertDialog,
   AlertDialogAction,

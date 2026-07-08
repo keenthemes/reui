@@ -1,7 +1,3 @@
-// Description: Sortable list of items with nested layout
-// Order: 3
-// GridSize: 1
-
 "use client"
 
 import { useState } from "react"
@@ -126,7 +122,7 @@ export default function Pattern() {
                 >
                   {group.values.map((value) => (
                     <SortableItem key={value.id} value={value.id}>
-                      <div className="border-border style-vega:rounded-md style-nova:rounded-md style-lyra:rounded-none style-maia:rounded-3xl style-mira:rounded-md flex items-center gap-2 border p-1.5">
+                      <div className="border-border rounded-md flex items-center gap-2 border p-1.5">
                         <SortableItemHandle className="text-muted-foreground hover:text-foreground cursor-grab">
                           <IconPlaceholder
                             lucide="GripVerticalIcon"

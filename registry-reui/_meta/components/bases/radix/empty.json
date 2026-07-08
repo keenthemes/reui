@@ -1,0 +1,483 @@
+{
+  "items": [
+    {
+      "name": "c-empty-1",
+      "type": "registry:block",
+      "title": "Basic empty state",
+      "categories": [
+        "empty"
+      ],
+      "description": "Basic empty state",
+      "registryDependencies": [
+        "button",
+        "empty"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/empty/c-empty-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-empty-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-empty-2",
+      "type": "registry:block",
+      "title": "Search empty state",
+      "categories": [
+        "empty"
+      ],
+      "description": "Search empty state",
+      "registryDependencies": [
+        "button",
+        "empty"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/empty/c-empty-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-empty-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-empty-3",
+      "type": "registry:block",
+      "title": "Empty state with search input",
+      "categories": [
+        "empty"
+      ],
+      "description": "Empty state with search input",
+      "registryDependencies": [
+        "empty",
+        "input-group",
+        "kbd"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/empty/c-empty-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-empty-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-empty-4",
+      "type": "registry:block",
+      "title": "Empty state with add button",
+      "categories": [
+        "empty"
+      ],
+      "description": "Empty state with add button",
+      "registryDependencies": [
+        "button",
+        "empty"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/empty/c-empty-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-empty-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-empty-5",
+      "type": "registry:block",
+      "title": "Document empty state",
+      "categories": [
+        "empty"
+      ],
+      "description": "Document empty state",
+      "registryDependencies": [
+        "button",
+        "card",
+        "empty"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/empty/c-empty-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-empty-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-empty-6",
+      "type": "registry:block",
+      "title": "Dashed upload empty state",
+      "categories": [
+        "empty"
+      ],
+      "description": "Dashed upload empty state",
+      "registryDependencies": [
+        "button",
+        "empty"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/empty/c-empty-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-empty-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-empty-7",
+      "type": "registry:block",
+      "title": "Inbox empty state",
+      "categories": [
+        "empty"
+      ],
+      "description": "Inbox empty state",
+      "registryDependencies": [
+        "empty"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/empty/c-empty-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-empty-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-empty-8",
+      "type": "registry:block",
+      "title": "Team members empty state",
+      "categories": [
+        "empty"
+      ],
+      "description": "Team members empty state",
+      "registryDependencies": [
+        "button",
+        "card",
+        "empty"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/empty/c-empty-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-empty-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-empty-9",
+      "type": "registry:block",
+      "title": "No notifications empty state",
+      "categories": [
+        "empty"
+      ],
+      "description": "No notifications empty state",
+      "registryDependencies": [
+        "empty"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/empty/c-empty-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-empty-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-empty-10",
+      "type": "registry:block",
+      "title": "No data analytics empty state",
+      "categories": [
+        "empty"
+      ],
+      "description": "No data analytics empty state",
+      "registryDependencies": [
+        "button",
+        "empty"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/empty/c-empty-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-empty-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-empty-11",
+      "type": "registry:block",
+      "title": "Bookmarks empty state",
+      "categories": [
+        "empty"
+      ],
+      "description": "Bookmarks empty state",
+      "registryDependencies": [
+        "button",
+        "empty"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/empty/c-empty-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-empty-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    },
+    {
+      "name": "c-empty-12",
+      "type": "registry:block",
+      "title": "Tasks empty state",
+      "categories": [
+        "empty"
+      ],
+      "description": "Tasks empty state",
+      "registryDependencies": [
+        "button",
+        "card",
+        "empty"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/empty/c-empty-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-empty-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12
+      }
+    },
+    {
+      "name": "c-empty-13",
+      "type": "registry:block",
+      "title": "No automations empty state with toggle illustration",
+      "categories": [
+        "empty"
+      ],
+      "description": "No automations empty state with toggle illustration",
+      "registryDependencies": [
+        "button",
+        "empty"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/empty/c-empty-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-empty-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13
+      }
+    },
+    {
+      "name": "c-empty-14",
+      "type": "registry:block",
+      "title": "Comments empty state with isometric board illustration",
+      "categories": [
+        "empty"
+      ],
+      "description": "Comments empty state with isometric board illustration",
+      "registryDependencies": [
+        "empty"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/empty/c-empty-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-empty-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14
+      }
+    },
+    {
+      "name": "c-empty-15",
+      "type": "registry:block",
+      "title": "No products empty state with stacked cards and blur effect",
+      "categories": [
+        "empty"
+      ],
+      "description": "No products empty state with stacked cards and blur effect",
+      "registryDependencies": [
+        "empty"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/empty/c-empty-15.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-empty-15.tsx"
+        }
+      ],
+      "meta": {
+        "order": 15
+      }
+    },
+    {
+      "name": "c-empty-16",
+      "type": "registry:block",
+      "title": "Search empty state with stacked file cards illustration",
+      "categories": [
+        "empty"
+      ],
+      "description": "Search empty state with stacked file cards illustration",
+      "registryDependencies": [
+        "empty"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/empty/c-empty-16.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-empty-16.tsx"
+        }
+      ],
+      "meta": {
+        "order": 16
+      }
+    },
+    {
+      "name": "c-empty-17",
+      "type": "registry:block",
+      "title": "No messages empty state with chat bubbles illustration",
+      "categories": [
+        "empty"
+      ],
+      "description": "No messages empty state with chat bubbles illustration",
+      "registryDependencies": [
+        "button",
+        "empty"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/empty/c-empty-17.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-empty-17.tsx"
+        }
+      ],
+      "meta": {
+        "order": 17
+      }
+    },
+    {
+      "name": "c-empty-18",
+      "type": "registry:block",
+      "title": "No payments empty state with credit card illustration",
+      "categories": [
+        "empty"
+      ],
+      "description": "No payments empty state with credit card illustration",
+      "registryDependencies": [
+        "button",
+        "empty"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/empty/c-empty-18.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-empty-18.tsx"
+        }
+      ],
+      "meta": {
+        "order": 18
+      }
+    },
+    {
+      "name": "c-empty-19",
+      "type": "registry:block",
+      "title": "No integrations empty state with connected nodes illustration",
+      "categories": [
+        "empty"
+      ],
+      "description": "No integrations empty state with connected nodes illustration",
+      "registryDependencies": [
+        "button",
+        "empty"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/empty/c-empty-19.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-empty-19.tsx"
+        }
+      ],
+      "meta": {
+        "order": 19
+      }
+    },
+    {
+      "name": "c-empty-20",
+      "type": "registry:block",
+      "title": "No events empty state with calendar illustration",
+      "categories": [
+        "empty"
+      ],
+      "description": "No events empty state with calendar illustration",
+      "registryDependencies": [
+        "button",
+        "empty"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/empty/c-empty-20.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-empty-20.tsx"
+        }
+      ],
+      "meta": {
+        "order": 20
+      }
+    }
+  ]
+}

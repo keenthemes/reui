@@ -1,6 +1,3 @@
-// Description: Card with icon, title and link
-// Order: 17
-
 import { Card, CardContent } from "@/registry/bases/radix/ui/card"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
@@ -25,7 +22,7 @@ export default function Pattern() {
   return (
     <Card className="w-full max-w-xs">
       <CardContent className="flex flex-col gap-3">
-        <div className="bg-primary style-vega:rounded-lg style-maia:rounded-xl style-nova:rounded-md style-lyra:rounded-none style-mira:rounded-md [&_svg]:text-primary-foreground flex size-11 items-center justify-center [&_svg]:size-5">
+        <div className="bg-primary rounded-md [&_svg]:text-primary-foreground flex size-11 items-center justify-center [&_svg]:size-5">
           {item.icon}
         </div>
         <a

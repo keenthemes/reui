@@ -1,0 +1,395 @@
+{
+  "items": [
+    {
+      "name": "c-tooltip-1",
+      "type": "registry:block",
+      "title": "Basic tooltip.",
+      "categories": [
+        "tooltip"
+      ],
+      "description": "Basic tooltip.",
+      "registryDependencies": [
+        "button",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/tooltip/c-tooltip-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-tooltip-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-tooltip-2",
+      "type": "registry:block",
+      "title": "Tooltips opening from different sides.",
+      "categories": [
+        "tooltip"
+      ],
+      "description": "Tooltips opening from different sides.",
+      "registryDependencies": [
+        "button",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/tooltip/c-tooltip-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-tooltip-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-tooltip-3",
+      "type": "registry:block",
+      "title": "Tooltip with icon trigger.",
+      "categories": [
+        "tooltip"
+      ],
+      "description": "Tooltip with icon trigger.",
+      "registryDependencies": [
+        "button",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/tooltip/c-tooltip-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-tooltip-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-tooltip-4",
+      "type": "registry:block",
+      "title": "Tooltip with keyboard shortcut.",
+      "categories": [
+        "tooltip"
+      ],
+      "description": "Tooltip with keyboard shortcut.",
+      "registryDependencies": [
+        "button",
+        "kbd",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/tooltip/c-tooltip-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-tooltip-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-tooltip-5",
+      "type": "registry:block",
+      "title": "Tooltip on notification bell with badge count",
+      "categories": [
+        "tooltip"
+      ],
+      "description": "Tooltip on notification bell with badge count",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/tooltip/c-tooltip-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-tooltip-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-tooltip-6",
+      "type": "registry:block",
+      "title": "Tooltip with status badge",
+      "categories": [
+        "tooltip"
+      ],
+      "description": "Tooltip with status badge",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/tooltip/c-tooltip-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-tooltip-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-tooltip-7",
+      "type": "registry:block",
+      "title": "Tooltip with icon and description",
+      "categories": [
+        "tooltip"
+      ],
+      "description": "Tooltip with icon and description",
+      "registryDependencies": [
+        "badge",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/tooltip/c-tooltip-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-tooltip-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-tooltip-8",
+      "type": "registry:block",
+      "title": "Toolbar with tooltip actions",
+      "categories": [
+        "tooltip"
+      ],
+      "description": "Toolbar with tooltip actions",
+      "registryDependencies": [
+        "button",
+        "separator",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/tooltip/c-tooltip-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-tooltip-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-tooltip-9",
+      "type": "registry:block",
+      "title": "Tooltip with warning badge",
+      "categories": [
+        "tooltip"
+      ],
+      "description": "Tooltip with warning badge",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/tooltip/c-tooltip-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-tooltip-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-tooltip-10",
+      "type": "registry:block",
+      "title": "Tooltip with feature badge and upgrade link",
+      "categories": [
+        "tooltip"
+      ],
+      "description": "Tooltip with feature badge and upgrade link",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/tooltip/c-tooltip-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-tooltip-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-tooltip-11",
+      "type": "registry:block",
+      "title": "Tooltip with avatar and role badge",
+      "categories": [
+        "tooltip"
+      ],
+      "description": "Tooltip with avatar and role badge",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/tooltip/c-tooltip-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-tooltip-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    },
+    {
+      "name": "c-tooltip-12",
+      "type": "registry:block",
+      "title": "Tooltip on disabled button with wrapper",
+      "categories": [
+        "tooltip"
+      ],
+      "description": "Tooltip on disabled button with wrapper",
+      "registryDependencies": [
+        "button",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/tooltip/c-tooltip-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-tooltip-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12
+      }
+    },
+    {
+      "name": "c-tooltip-13",
+      "type": "registry:block",
+      "title": "Tooltip with online status indicator",
+      "categories": [
+        "tooltip"
+      ],
+      "description": "Tooltip with online status indicator",
+      "registryDependencies": [
+        "avatar",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/tooltip/c-tooltip-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-tooltip-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13
+      }
+    },
+    {
+      "name": "c-tooltip-14",
+      "type": "registry:block",
+      "title": "Tooltip with file info and badges",
+      "categories": [
+        "tooltip"
+      ],
+      "description": "Tooltip with file info and badges",
+      "registryDependencies": [
+        "badge",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/tooltip/c-tooltip-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-tooltip-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14
+      }
+    },
+    {
+      "name": "c-tooltip-15",
+      "type": "registry:block",
+      "title": "Tooltip with label badges",
+      "categories": [
+        "tooltip"
+      ],
+      "description": "Tooltip with label badges",
+      "registryDependencies": [
+        "badge",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/tooltip/c-tooltip-15.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-tooltip-15.tsx"
+        }
+      ],
+      "meta": {
+        "order": 15
+      }
+    },
+    {
+      "name": "c-tooltip-16",
+      "type": "registry:block",
+      "title": "Tooltip with action button inside",
+      "categories": [
+        "tooltip"
+      ],
+      "description": "Tooltip with action button inside",
+      "registryDependencies": [
+        "button",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/tooltip/c-tooltip-16.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-tooltip-16.tsx"
+        }
+      ],
+      "meta": {
+        "order": 16
+      }
+    }
+  ]
+}

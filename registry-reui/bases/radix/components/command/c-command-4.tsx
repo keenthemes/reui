@@ -1,6 +1,3 @@
-// Description: Command with many groups
-// Order: 4
-
 "use client"
 
 import { useState } from "react"

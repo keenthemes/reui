@@ -1,6 +1,3 @@
-// Description: Hover card with paginated release notes
-// Order: 8
-
 "use client"
 
 import { useState } from "react"

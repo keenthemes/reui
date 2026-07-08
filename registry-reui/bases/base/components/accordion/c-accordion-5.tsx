@@ -1,6 +1,3 @@
-// Description: Accordion with disabled items and highlighted state
-// Order: 5
-
 import {
   Accordion,
   AccordionContent,
@@ -38,7 +35,7 @@ export default function Pattern() {
       <Accordion
         multiple={false}
         defaultValue={["item-1"]}
-        className="border-border style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-4xl style-mira:rounded-md overflow-hidden border"
+        className="border-border rounded-lg overflow-hidden border"
       >
         {items.map((item) => (
           <AccordionItem

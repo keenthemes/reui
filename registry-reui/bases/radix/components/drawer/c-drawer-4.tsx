@@ -1,6 +1,3 @@
-// Description: A drawer that opens from the top side
-// Order: 4
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   Drawer,
@@ -29,7 +26,7 @@ export default function Pattern() {
             {Array.from({ length: 10 }).map((_, index) => (
               <p
                 key={index}
-                className="style-lyra:mb-2 style-lyra:leading-relaxed mb-4 leading-normal"
+                className="mb-4 leading-normal"
               >
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut

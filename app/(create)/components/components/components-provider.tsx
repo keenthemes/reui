@@ -8,25 +8,21 @@ import {
   useMemo,
   useState,
 } from "react"
+import { usePathname } from "next/navigation"
 
-import type { ComponentCatalogItem } from "@/lib/registry"
-import { useComponentsLayoutState, useConfig } from "@/hooks/use-config"
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
-
-import { ComponentHeader } from "./component-header"
-import { ComponentSidebar } from "./component-sidebar"
-import { CustomizerSidebar } from "./customizer-sidebar"
-
-// SSR-safe defaults — must match server render to avoid hydration mismatch
-const DEFAULT_SIDEBAR_OPEN = true
-const DEFAULT_SIDEBAR_MENU_VIEW: "menu" | "inline" = "menu"
-const DEFAULT_CUSTOMIZER_OPEN = true
+import { DEFAULT_COMPONENTS_STATE } from "@/lib/preferences"
+import {
+  useComponentsLayoutState,
+  type ComponentsLayoutState,
+  type Config,
+} from "@/hooks/use-config"
+import { SidebarProvider } from "@/components/ui/sidebar"
 
 interface ComponentsContextValue {
   totalCount: number
   categoryCounts: Record<string, number>
-  /** Full catalog list for search result counts in the header */
-  catalogItems: ComponentCatalogItem[]
+  searchResultCount: number | null
+  setSearchResultCount: (count: number | null) => void
   sidebarCategoryFilter: string
   setSidebarCategoryFilter: (filter: string) => void
   sidebarMenuView: "menu" | "inline"
@@ -62,26 +58,24 @@ interface ComponentsProviderProps {
   children: React.ReactNode
   totalCount: number
   categoryCounts: Record<string, number>
-  catalogItems: ComponentCatalogItem[]
+  initialConfig: Config
+  initialComponentsLayout: ComponentsLayoutState
 }
 
 export function ComponentsProvider({
   children,
   totalCount,
   categoryCounts,
-  catalogItems,
+  initialComponentsLayout,
 }: ComponentsProviderProps) {
-  // Mount guard: use SSR defaults until after first client paint,
-  // then switch to stored values from localStorage (via Jotai atoms).
-  // This prevents hydration mismatch and flash of wrong layout.
-  const [mounted, setMounted] = useState(false)
+  const [hydrated, setHydrated] = useState(false)
   // Settled guard: after stored values are applied, wait one frame before
   // re-enabling CSS transitions. This prevents sidebar open/close animations
   // from playing during initial layout settlement.
   const [settled, setSettled] = useState(false)
 
   useEffect(() => {
-    setMounted(true)
+    setHydrated(true)
     // Double rAF: first frame applies stored values to DOM,
     // second frame ensures paint is complete before enabling transitions.
     requestAnimationFrame(() => {
@@ -93,20 +87,36 @@ export function ComponentsProvider({
 
   // Ephemeral state (not persisted)
   const [sidebarCategoryFilter, setSidebarCategoryFilter] = useState("")
+  const [searchResultCount, setSearchResultCount] = useState<number | null>(
+    null
+  )
 
   // Single source of truth: Jotai atoms from use-config.ts
   const [layoutState, setLayoutState] = useComponentsLayoutState()
-  const [config, setConfig] = useConfig()
 
-  // Gate values: use SSR defaults until mounted, then use stored values.
-  // This ensures server HTML and initial client render produce identical output.
-  const sidebarOpen = mounted ? layoutState.sidebarOpen : DEFAULT_SIDEBAR_OPEN
-  const sidebarMenuView = mounted
-    ? (layoutState.sidebarMenuView ?? DEFAULT_SIDEBAR_MENU_VIEW)
-    : DEFAULT_SIDEBAR_MENU_VIEW
-  const customizerOpen = mounted
-    ? (config.customizerOpen ?? DEFAULT_CUSTOMIZER_OPEN)
-    : DEFAULT_CUSTOMIZER_OPEN
+  const sidebarOpen = hydrated
+    ? layoutState.sidebarOpen
+    : initialComponentsLayout.sidebarOpen
+  const sidebarMenuView = hydrated
+    ? (layoutState.sidebarMenuView ??
+      DEFAULT_COMPONENTS_STATE.sidebarMenuView ??
+      "menu")
+    : (initialComponentsLayout.sidebarMenuView ??
+      DEFAULT_COMPONENTS_STATE.sidebarMenuView ??
+      "menu")
+
+  // Customizer open/closed is intentionally NOT persisted. The panel
+  // starts closed on every page load — user re-opens it via toolbar
+  // or keyboard shortcut as needed. Decoupled from `config` so opening
+  // the panel doesn't write to localStorage / cookie.
+  const [customizerOpen, setCustomizerOpenState] = useState(false)
+
+  // The customizer is intentionally NOT remembered across navigations.
+  // Reset to closed on every pathname change.
+  const pathname = usePathname()
+  useEffect(() => {
+    setCustomizerOpenState(false)
+  }, [pathname])
 
   // Stable callbacks that write directly to atoms
   const setSidebarMenuView = useCallback(
@@ -124,22 +134,20 @@ export function ComponentsProvider({
   )
 
   const toggleCustomizer = useCallback(() => {
-    setConfig((prev) => ({ ...prev, customizerOpen: !prev.customizerOpen }))
-  }, [setConfig])
+    setCustomizerOpenState((prev) => !prev)
+  }, [])
 
-  const handleSetCustomizerOpen = useCallback(
-    (open: boolean) => {
-      setConfig((prev) => ({ ...prev, customizerOpen: open }))
-    },
-    [setConfig]
-  )
+  const handleSetCustomizerOpen = useCallback((open: boolean) => {
+    setCustomizerOpenState(open)
+  }, [])
 
   // Memoize context values to prevent unnecessary re-renders
   const componentsValue = useMemo<ComponentsContextValue>(
     () => ({
       totalCount,
       categoryCounts,
-      catalogItems,
+      searchResultCount,
+      setSearchResultCount,
       sidebarCategoryFilter,
       setSidebarCategoryFilter,
       sidebarMenuView,
@@ -148,7 +156,7 @@ export function ComponentsProvider({
     [
       totalCount,
       categoryCounts,
-      catalogItems,
+      searchResultCount,
       sidebarCategoryFilter,
       sidebarMenuView,
       setSidebarMenuView,
@@ -167,10 +175,7 @@ export function ComponentsProvider({
   return (
     <ComponentsContext.Provider value={componentsValue}>
       <CustomizerContext.Provider value={customizerValue}>
-        <div
-          className={mounted ? "opacity-100" : "opacity-0"}
-          suppressHydrationWarning
-        >
+        <>
           {/* Suppress CSS transitions until layout has settled with stored values.
               This prevents sidebars from animating open→closed on initial load. */}
           {!settled && (
@@ -185,17 +190,11 @@ export function ComponentsProvider({
             data-components-layout=""
             open={sidebarOpen}
             onOpenChange={handleOpenChange}
-            className="bordered-sidebar min-h-0 flex-1 [--top-spacing:0] **:data-[sidebar=sidebar]:bg-transparent"
-            suppressHydrationWarning
+            className="bordered-sidebar min-h-[calc(100svh-var(--site-top-offset)-10px)] [--top-spacing:0] **:data-[sidebar=sidebar]:bg-transparent"
           >
-            <ComponentSidebar />
-            <SidebarInset className="min-h-0 bg-transparent">
-              <ComponentHeader />
-              <div className="flex min-h-0 flex-col">{children}</div>
-            </SidebarInset>
-            <CustomizerSidebar />
+            {children}
           </SidebarProvider>
-        </div>
+        </>
       </CustomizerContext.Provider>
     </ComponentsContext.Provider>
   )

@@ -1,8 +1,3 @@
-// Description: Carousel with custom spacing
-// Order: 7
-
-import Image from "next/image"
-
 import { Card } from "@/registry/bases/base/ui/card"
 import {
   Carousel,
@@ -20,11 +15,12 @@ export default function Pattern() {
           <CarouselItem key={index} className="basis-1/2 pl-1">
             <div className="p-1">
               <Card className="relative aspect-square overflow-hidden border-0 p-0">
-                <Image
+                <img
                   src={`https://picsum.photos/600/600?grayscale&random=${index + 35}`}
                   alt={`Slide ${index + 1}`}
-                  fill
-                  className="object-cover"
+                  width={600}
+                  height={600}
+                  className="h-full w-full object-cover"
                 />
               </Card>
             </div>

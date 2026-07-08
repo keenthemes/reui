@@ -1,6 +1,3 @@
-// Description: Select with user avatars
-// Order: 18
-
 import {
   Avatar,
   AvatarFallback,

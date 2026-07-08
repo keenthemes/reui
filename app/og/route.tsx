@@ -1,21 +1,17 @@
 import { ImageResponse } from "next/og"
 
-import { siteConfig } from "@/lib/config"
+const OG_IMAGE_SIZE = {
+  width: 1200,
+  height: 630,
+} as const
 
-export const runtime = "edge"
-
-function decodeBase64Font(base64Font: string): ArrayBuffer {
-  const binary = atob(base64Font)
-  const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0))
-  // ImageResponse FontOptions expects ArrayBuffer | Buffer, not Uint8Array
-  return bytes.buffer.slice(
-    bytes.byteOffset,
-    bytes.byteOffset + bytes.byteLength
-  )
-}
+// Defensive caps — ImageResponse rendering is CPU-expensive; without a
+// cap an attacker can DoS the function by sending 50 KB titles.
+const MAX_TITLE_LEN = 120
+const MAX_DESCRIPTION_LEN = 240
 
 async function loadAssets(): Promise<
-  { name: string; data: ArrayBuffer; weight: 400 | 600; style: "normal" }[]
+  { name: string; data: Buffer; weight: 400 | 600; style: "normal" }[]
 > {
   const [
     { base64Font: normal },
@@ -30,31 +26,57 @@ async function loadAssets(): Promise<
   return [
     {
       name: "Geist",
-      data: decodeBase64Font(normal),
+      data: Buffer.from(normal, "base64"),
       weight: 400 as const,
       style: "normal" as const,
     },
     {
       name: "Geist Mono",
-      data: decodeBase64Font(mono),
+      data: Buffer.from(mono, "base64"),
       weight: 400 as const,
       style: "normal" as const,
     },
     {
       name: "Geist",
-      data: decodeBase64Font(semibold),
+      data: Buffer.from(semibold, "base64"),
       weight: 600 as const,
       style: "normal" as const,
     },
   ]
 }
 
+// Decode the embedded fonts once per server instance instead of on every
+// request. `loadAssets()` base64-decodes 3 OTF files (~CPU); only the first
+// OG render on a cold instance should pay for it. Steady state is served from
+// the CDN (immutable + `?v=`), so this only matters on cache misses — but when
+// they happen (new deploy, new title, scraper fan-out), warm invocations now
+// reuse the decoded buffers instead of re-decoding.
+let fontsPromise: ReturnType<typeof loadAssets> | null = null
+function getFonts() {
+  if (!fontsPromise) {
+    fontsPromise = loadAssets()
+  }
+  return fontsPromise
+}
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
-  const title = searchParams.get("title") || siteConfig.name
-  const description = searchParams.get("description") || siteConfig.description
+  const rawTitle = searchParams.get("title")?.trim() || "ReUI"
+  const rawDesc =
+    searchParams.get("description")?.trim() ||
+    "High-quality React components and in-house primitives for shadcn/ui."
 
-  const [fonts] = await Promise.all([loadAssets()])
+  // Truncate to defensive caps before rendering.
+  const title =
+    rawTitle.length > MAX_TITLE_LEN
+      ? rawTitle.slice(0, MAX_TITLE_LEN) + "…"
+      : rawTitle
+  const description =
+    rawDesc.length > MAX_DESCRIPTION_LEN
+      ? rawDesc.slice(0, MAX_DESCRIPTION_LEN) + "…"
+      : rawDesc
+
+  const fonts = await getFonts()
 
   const response = new ImageResponse(
     <div
@@ -89,13 +111,23 @@ export async function GET(request: Request) {
           />
         </svg>
       </div>
-      <div tw="flex flex-col absolute w-[896px] justify-center inset-32">
+      {/* `gap-8` is intentionally an inline style, not a `tw` utility: the
+          `tw` shorthand in `@vercel/og` (twrnc) has no `gap-*` utility, so it
+          silently skips it and logs "`gap-8` unknown or invalid utility" on
+          every render. Satori's layout engine honors `gap` via inline style
+          (32px === Tailwind `gap-8`), so this both restores the intended
+          spacing and removes the log noise. */}
+      <div
+        tw="flex flex-col absolute w-[896px] justify-center inset-32"
+        style={{ gap: 32 }}
+      >
         <div
-          tw="tracking-tight flex-grow-1 flex flex-col justify-center leading-[1.1]"
+          tw="flex-grow-1 flex flex-col justify-center"
           style={{
             textWrap: "balance",
             fontWeight: 600,
             fontSize: title && title.length > 20 ? 64 : 80,
+            lineHeight: 1.1,
             letterSpacing: "-0.04em",
           }}
         >
@@ -113,15 +145,18 @@ export async function GET(request: Request) {
       </div>
     </div>,
     {
-      width: 1200,
-      height: 628,
+      ...OG_IMAGE_SIZE,
       fonts,
     }
   )
 
+  // Callers append `&v=<deploymentId>` (see `getOgImageUrl`), so each URL is
+  // deploy-unique and its rendered image never changes — safe to mark
+  // `immutable` and cache for a year in the browser, the CDN, and social
+  // scrapers. A new deploy produces new URLs, so everything refreshes.
   response.headers.set(
     "Cache-Control",
-    "public, max-age=86400, s-maxage=31536000, stale-while-revalidate=31536000"
+    "public, max-age=31536000, s-maxage=31536000, stale-while-revalidate=86400, immutable"
   )
   response.headers.set("CDN-Cache-Control", "public, max-age=31536000")
   response.headers.set("Vercel-CDN-Cache-Control", "public, max-age=31536000")

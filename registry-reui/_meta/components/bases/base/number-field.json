@@ -1,0 +1,150 @@
+{
+  "items": [
+    {
+      "name": "c-number-field-1",
+      "type": "registry:block",
+      "title": "Basic number field",
+      "categories": [
+        "number-field"
+      ],
+      "description": "Basic number field",
+      "registryDependencies": [
+        "number-field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/number-field/c-number-field-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-number-field-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-number-field-2",
+      "type": "registry:block",
+      "title": "Basic number field",
+      "categories": [
+        "number-field"
+      ],
+      "description": "Basic number field",
+      "registryDependencies": [
+        "number-field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/number-field/c-number-field-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-number-field-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-number-field-3",
+      "type": "registry:block",
+      "title": "Basic number field",
+      "categories": [
+        "number-field"
+      ],
+      "description": "Basic number field",
+      "registryDependencies": [
+        "number-field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/number-field/c-number-field-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-number-field-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-number-field-4",
+      "type": "registry:block",
+      "title": "Number filed with buttons on right",
+      "categories": [
+        "number-field"
+      ],
+      "description": "Number filed with buttons on right",
+      "registryDependencies": [
+        "number-field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/number-field/c-number-field-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-number-field-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-number-field-5",
+      "type": "registry:block",
+      "title": "Number field with spinner buttons",
+      "categories": [
+        "number-field"
+      ],
+      "description": "Number field with spinner buttons",
+      "registryDependencies": [
+        "number-field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/number-field/c-number-field-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-number-field-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-number-field-6",
+      "type": "registry:block",
+      "title": "Number field in form",
+      "categories": [
+        "number-field"
+      ],
+      "description": "Number field in form",
+      "registryDependencies": [
+        "alert",
+        "button",
+        "field",
+        "number-field"
+      ],
+      "dependencies": [
+        "@hookform/resolvers",
+        "react-hook-form",
+        "sonner",
+        "zod"
+      ],
+      "files": [
+        {
+          "path": "components/number-field/c-number-field-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-number-field-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    }
+  ]
+}

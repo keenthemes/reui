@@ -1,0 +1,86 @@
+[
+  {
+    "name": "c-toggle-1",
+    "title": "Basic toggle.",
+    "description": "Basic toggle.",
+    "order": 1
+  },
+  {
+    "name": "c-toggle-2",
+    "title": "Toggle buttons with outline variant.",
+    "description": "Toggle buttons with outline variant.",
+    "order": 2
+  },
+  {
+    "name": "c-toggle-3",
+    "title": "Toggle buttons in different sizes.",
+    "description": "Toggle buttons in different sizes.",
+    "order": 3
+  },
+  {
+    "name": "c-toggle-4",
+    "title": "Toggle with button and icon.",
+    "description": "Toggle with button and icon.",
+    "order": 4
+  },
+  {
+    "name": "c-toggle-5",
+    "title": "Disabled toggle.",
+    "description": "Disabled toggle.",
+    "order": 5
+  },
+  {
+    "name": "c-toggle-6",
+    "title": "Toggle with icon.",
+    "description": "Toggle with icon.",
+    "order": 6
+  },
+  {
+    "name": "c-toggle-7",
+    "title": "Toggle with notification count badge",
+    "description": "Toggle with notification count badge",
+    "order": 7
+  },
+  {
+    "name": "c-toggle-8",
+    "title": "Toggle size variants showcase",
+    "description": "Toggle size variants showcase",
+    "order": 8
+  },
+  {
+    "name": "c-toggle-9",
+    "title": "Toggle with icon swap on press",
+    "description": "Toggle with icon swap on press",
+    "order": 9
+  },
+  {
+    "name": "c-toggle-10",
+    "title": "Toggle with text label that changes",
+    "description": "Toggle with text label that changes",
+    "order": 10
+  },
+  {
+    "name": "c-toggle-11",
+    "title": "Social media reaction toggles",
+    "description": "Social media reaction toggles",
+    "order": 11
+  },
+  {
+    "name": "c-toggle-12",
+    "title": "Toggle with tooltip",
+    "description": "Toggle with tooltip",
+    "order": 12
+  },
+  {
+    "name": "c-toggle-13",
+    "title": "Disabled toggle states",
+    "description": "Disabled toggle states",
+    "order": 13
+  },
+  {
+    "name": "c-toggle-14",
+    "title": "Toggle as mute/unmute button",
+    "description": "Toggle as mute/unmute button",
+    "order": 14
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "name": "c-breadcrumb-1",
+    "title": "Basic breadcrumb",
+    "description": "Basic breadcrumb",
+    "order": 1
+  },
+  {
+    "name": "c-breadcrumb-2",
+    "title": "Breadcrumb with dropdown menu",
+    "description": "Breadcrumb with dropdown menu",
+    "order": 2
+  },
+  {
+    "name": "c-breadcrumb-3",
+    "title": "Breadcrumb with Next.js link",
+    "description": "Breadcrumb with Next.js link",
+    "order": 3
+  },
+  {
+    "name": "c-breadcrumb-4",
+    "title": "Breadcrumb with a custom slash separator",
+    "description": "Breadcrumb with a custom slash separator",
+    "order": 4
+  },
+  {
+    "name": "c-breadcrumb-5",
+    "title": "Breadcrumb with icons for each item",
+    "description": "Breadcrumb with icons for each item",
+    "order": 5
+  },
+  {
+    "name": "c-breadcrumb-6",
+    "title": "Breadcrumb with ellipsis for long paths",
+    "description": "Breadcrumb with ellipsis for long paths",
+    "order": 6
+  },
+  {
+    "name": "c-breadcrumb-7",
+    "title": "Breadcrumb items with avatars",
+    "description": "Breadcrumb items with avatars",
+    "order": 7
+  },
+  {
+    "name": "c-breadcrumb-8",
+    "title": "Breadcrumb with double chevron separators",
+    "description": "Breadcrumb with double chevron separators",
+    "order": 8
+  },
+  {
+    "name": "c-breadcrumb-9",
+    "title": "Breadcrumb inside card",
+    "description": "Breadcrumb inside card",
+    "order": 9
+  },
+  {
+    "name": "c-breadcrumb-10",
+    "title": "Pill-style breadcrumb inside frame",
+    "description": "Pill-style breadcrumb inside frame",
+    "order": 10
+  },
+  {
+    "name": "c-breadcrumb-11",
+    "title": "Breadcrumb items containing badge with count",
+    "description": "Breadcrumb items containing badge with count",
+    "order": 11
+  },
+  {
+    "name": "c-breadcrumb-12",
+    "title": "Breadcrumb starting with home icon item",
+    "description": "Breadcrumb starting with home icon item",
+    "order": 12
+  },
+  {
+    "name": "c-breadcrumb-13",
+    "title": "Breadcrumb with a custom separator",
+    "description": "Breadcrumb with a custom separator",
+    "order": 13
+  },
+  {
+    "name": "c-breadcrumb-14",
+    "title": "Button-style breadcrumb",
+    "description": "Button-style breadcrumb",
+    "order": 14
+  },
+  {
+    "name": "c-breadcrumb-15",
+    "title": "Breadcrumb with project, user and document info",
+    "description": "Breadcrumb with project, user and document info",
+    "order": 15
+  }
+]

@@ -1,7 +1,3 @@
-// Description: Data grid with remote infinite scroll
-// GridSize: 1
-// Order: 28
-
 "use client"
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
@@ -143,7 +139,7 @@ export default function Pattern() {
             {row.original.id}
           </span>
         ),
-        size: 40,
+        size: 70,
         enableSorting: false,
       },
       {
@@ -173,7 +169,10 @@ export default function Pattern() {
             </div>
           </div>
         ),
-        size: 280,
+        minSize: 200,
+        meta: {
+          autoSize: true,
+        },
         enableSorting: true,
       },
       {

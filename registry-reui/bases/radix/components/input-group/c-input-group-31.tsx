@@ -1,6 +1,3 @@
-// Description: Input group with inline start and block-end addon
-// Order: 31
-
 import { Field } from "@/registry/bases/radix/ui/field"
 import {
   InputGroup,

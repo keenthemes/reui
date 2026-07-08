@@ -1,6 +1,3 @@
-// Description: Popover alignment positions.
-// Order: 4
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   Popover,

@@ -1,6 +1,3 @@
-// Description: No notifications empty state
-// Order: 9
-
 import {
   Empty,
   EmptyDescription,

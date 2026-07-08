@@ -1,6 +1,3 @@
-// Description: Rating with show value.
-// Order: 3
-
 import { Rating } from "@/registry-reui/bases/radix/reui/rating"
 
 export default function Pattern() {

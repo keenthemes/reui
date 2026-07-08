@@ -1,6 +1,3 @@
-// Description: Shortcut Tooltip Button (Kbd hints)
-// Order: 54
-
 import { Button } from "@/registry/bases/base/ui/button"
 import { Kbd } from "@/registry/bases/base/ui/kbd"
 import {

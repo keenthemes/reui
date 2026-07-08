@@ -1,7 +1,3 @@
-// Description: Leaderboard table with rank, score, and level badges
-// Order: 15
-// GridSize: 1
-
 import { Badge } from "@/registry-reui/bases/base/reui/badge"
 
 import {

@@ -1,6 +1,3 @@
-// Description: Inline horizontal radio group
-// Order: 16
-
 import { Field, FieldLabel } from "@/registry/bases/base/ui/field"
 import {
   RadioGroup,

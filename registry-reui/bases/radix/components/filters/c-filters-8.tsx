@@ -1,7 +1,3 @@
-// Description: Filters with data grid and async mode
-// Order: 8
-// GridSize: 1
-
 "use client"
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"

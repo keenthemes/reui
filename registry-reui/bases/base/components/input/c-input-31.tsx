@@ -1,6 +1,3 @@
-// Description: Minimal input without borders or background
-// Order: 31
-
 import { Field, FieldLabel } from "@/registry/bases/base/ui/field"
 import { Input } from "@/registry/bases/base/ui/input"
 

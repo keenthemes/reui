@@ -1,6 +1,3 @@
-// Description: Duotone gradient bar chart
-// Order: 10
-
 "use client"
 
 import { CSSProperties, SVGProps } from "react"
@@ -147,7 +144,7 @@ export default function ChartDuotone() {
                         </span>
                       </div>
                       <span className="text-foreground font-semibold">
-                        {value.toLocaleString()}
+                        {Number(value).toLocaleString()}
                       </span>
                     </div>
                   )}

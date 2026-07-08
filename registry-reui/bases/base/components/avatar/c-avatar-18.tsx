@@ -1,6 +1,3 @@
-// Description: Avatar group with online status on one
-// Order: 18
-
 import {
   Avatar,
   AvatarBadge,

@@ -1,8 +1,3 @@
-// Description: Basic navigation menu.
-// Order: 1
-
-import Link from "next/link"
-
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -24,26 +19,26 @@ export default function Pattern() {
               <ul className="w-80">
                 <li>
                   <NavigationMenuLink asChild>
-                    <Link href="#">
+                    <a href="#">
                       <div className="flex flex-col gap-1 px-1">
                         <div className="font-medium">Introduction</div>
                         <div className="text-muted-foreground line-clamp-2 text-sm">
                           Re-usable components built with Tailwind CSS.
                         </div>
                       </div>
-                    </Link>
+                    </a>
                   </NavigationMenuLink>
                 </li>
                 <li>
                   <NavigationMenuLink asChild>
-                    <Link href="#">
+                    <a href="#">
                       <div className="flex flex-col gap-1 px-1">
                         <div className="font-medium">Installation</div>
                         <div className="text-muted-foreground line-clamp-2 text-sm">
                           How to install dependencies and structure your app.
                         </div>
                       </div>
-                    </Link>
+                    </a>
                   </NavigationMenuLink>
                 </li>
               </ul>
@@ -54,7 +49,7 @@ export default function Pattern() {
               asChild
               className={navigationMenuTriggerStyle()}
             >
-              <Link href="#">Documentation</Link>
+              <a href="#">Documentation</a>
             </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>

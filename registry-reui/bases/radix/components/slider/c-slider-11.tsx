@@ -1,6 +1,3 @@
-// Description: Slider with dynamic tooltip indicator
-// Order: 11
-
 "use client"
 
 import { useState } from "react"

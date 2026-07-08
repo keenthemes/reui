@@ -1,6 +1,3 @@
-// Description: Avatar with an online status badge
-// Order: 6
-
 import {
   Avatar,
   AvatarBadge,

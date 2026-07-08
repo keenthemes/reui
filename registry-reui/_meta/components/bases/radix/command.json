@@ -1,0 +1,200 @@
+{
+  "items": [
+    {
+      "name": "c-command-1",
+      "type": "registry:block",
+      "title": "Basic command",
+      "categories": [
+        "command"
+      ],
+      "description": "Basic command",
+      "registryDependencies": [
+        "card",
+        "command"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/command/c-command-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-command-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-command-2",
+      "type": "registry:block",
+      "title": "Command with shortcuts",
+      "categories": [
+        "command"
+      ],
+      "description": "Command with shortcuts",
+      "registryDependencies": [
+        "button",
+        "command"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/command/c-command-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-command-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-command-3",
+      "type": "registry:block",
+      "title": "Command with groups",
+      "categories": [
+        "command"
+      ],
+      "description": "Command with groups",
+      "registryDependencies": [
+        "button",
+        "command"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/command/c-command-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-command-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-command-4",
+      "type": "registry:block",
+      "title": "Command with many groups",
+      "categories": [
+        "command"
+      ],
+      "description": "Command with many groups",
+      "registryDependencies": [
+        "button",
+        "command"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/command/c-command-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-command-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-command-5",
+      "type": "registry:block",
+      "title": "File search command palette",
+      "categories": [
+        "command"
+      ],
+      "description": "File search command palette",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "command",
+        "kbd"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/command/c-command-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-command-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-command-6",
+      "type": "registry:block",
+      "title": "User search command with avatars",
+      "categories": [
+        "command"
+      ],
+      "description": "User search command with avatars",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "command"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/command/c-command-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-command-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-command-7",
+      "type": "registry:block",
+      "title": "Action palette with keyboard shortcuts",
+      "categories": [
+        "command"
+      ],
+      "description": "Action palette with keyboard shortcuts",
+      "registryDependencies": [
+        "button",
+        "command"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/command/c-command-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-command-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-command-8",
+      "type": "registry:block",
+      "title": "Command with recent and favorites sections",
+      "categories": [
+        "command"
+      ],
+      "description": "Command with recent and favorites sections",
+      "registryDependencies": [
+        "button",
+        "command"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/command/c-command-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-command-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    }
+  ]
+}

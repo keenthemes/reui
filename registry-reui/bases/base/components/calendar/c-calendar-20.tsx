@@ -1,6 +1,3 @@
-// Description: Display 2 months
-// Order: 20
-
 "use client"
 
 import { useState } from "react"

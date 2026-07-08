@@ -1,6 +1,3 @@
-// Description: Badge with avatar
-// Order: 24
-
 import { Badge } from "@/registry-reui/bases/base/reui/badge"
 
 import {

@@ -1,6 +1,3 @@
-// Description: Select with colored status dots
-// Order: 23
-
 "use client"
 
 import { useState } from "react"

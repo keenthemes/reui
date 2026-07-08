@@ -1,7 +1,3 @@
-// Description: Stepper with progress bar indicator
-// Order: 6
-// GridSize: 1
-
 "use client"
 
 import {

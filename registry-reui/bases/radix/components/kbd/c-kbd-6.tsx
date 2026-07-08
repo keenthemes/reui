@@ -1,6 +1,3 @@
-// Description: Keyboard shortcuts reference list
-// Order: 6
-
 import { Kbd, KbdGroup } from "@/registry/bases/radix/ui/kbd"
 import { Separator } from "@/registry/bases/radix/ui/separator"
 

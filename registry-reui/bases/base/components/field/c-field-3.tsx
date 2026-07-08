@@ -1,6 +1,3 @@
-// Description: Field with select control
-// Order: 3
-
 import {
   Field,
   FieldDescription,

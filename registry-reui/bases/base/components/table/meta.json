@@ -1,0 +1,115 @@
+[
+  {
+    "name": "c-table-1",
+    "title": "Basic table.",
+    "description": "Basic table.",
+    "order": 1
+  },
+  {
+    "name": "c-table-2",
+    "title": "Table with footer.",
+    "description": "Table with footer.",
+    "order": 2
+  },
+  {
+    "name": "c-table-3",
+    "title": "Table in card with status badges.",
+    "description": "Table in card with status badges.",
+    "order": 3
+  },
+  {
+    "name": "c-table-4",
+    "title": "Table card with actions column.",
+    "description": "Table card with actions column.",
+    "order": 4
+  },
+  {
+    "name": "c-table-5",
+    "title": "Table with interactive elements.",
+    "description": "Table with interactive elements.",
+    "order": 5
+  },
+  {
+    "name": "c-table-6",
+    "title": "Team members table with avatars, roles, and status",
+    "description": "Team members table with avatars, roles, and status",
+    "order": 6
+  },
+  {
+    "name": "c-table-7",
+    "title": "Orders table with customer info and payment status",
+    "description": "Orders table with customer info and payment status",
+    "order": 7,
+    "gridSize": 1
+  },
+  {
+    "name": "c-table-8",
+    "title": "Projects table with team avatars and status",
+    "description": "Projects table with team avatars and status",
+    "order": 8,
+    "gridSize": 1
+  },
+  {
+    "name": "c-table-9",
+    "title": "Activity log table with user avatars and timestamps",
+    "description": "Activity log table with user avatars and timestamps",
+    "order": 9,
+    "gridSize": 1
+  },
+  {
+    "name": "c-table-10",
+    "title": "Subscriptions table with plan badges and billing info",
+    "description": "Subscriptions table with plan badges and billing info",
+    "order": 10,
+    "gridSize": 1
+  },
+  {
+    "name": "c-table-11",
+    "title": "Product inventory table with stock badges and prices",
+    "description": "Product inventory table with stock badges and prices",
+    "order": 11,
+    "gridSize": 1
+  },
+  {
+    "name": "c-table-12",
+    "title": "API keys table with permission badges and actions",
+    "description": "API keys table with permission badges and actions",
+    "order": 12,
+    "gridSize": 1
+  },
+  {
+    "name": "c-table-13",
+    "title": "File manager table with owners and sharing badges",
+    "description": "File manager table with owners and sharing badges",
+    "order": 13,
+    "gridSize": 1
+  },
+  {
+    "name": "c-table-14",
+    "title": "Issues table with priority, assignee, and labels",
+    "description": "Issues table with priority, assignee, and labels",
+    "order": 14,
+    "gridSize": 1
+  },
+  {
+    "name": "c-table-15",
+    "title": "Leaderboard table with rank, score, and level badges",
+    "description": "Leaderboard table with rank, score, and level badges",
+    "order": 15,
+    "gridSize": 1
+  },
+  {
+    "name": "c-table-16",
+    "title": "Vertical table with employee profile details",
+    "description": "Vertical table with employee profile details",
+    "order": 16,
+    "gridSize": 1
+  },
+  {
+    "name": "c-table-17",
+    "title": "Vertical table with server configuration details",
+    "description": "Vertical table with server configuration details",
+    "order": 17,
+    "gridSize": 1
+  }
+]

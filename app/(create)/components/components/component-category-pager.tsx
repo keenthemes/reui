@@ -2,10 +2,10 @@ import Link from "next/link"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 import {
-  getCategoryInfo,
-  getCategoryNames,
+  getComponentCategories,
+  getComponentCategoryInfo,
   getComponentCountByCategory,
-} from "@/lib/registry"
+} from "@/lib/component-stats"
 import { cn, normalizeSlug } from "@/lib/utils"
 
 interface ComponentCategoryPagerProps {
@@ -13,22 +13,22 @@ interface ComponentCategoryPagerProps {
 }
 
 const linkClass =
-  "border-site-border bg-site-background hover:bg-site-muted/50 focus-visible:ring-site-ring text-foreground group flex min-h-14 w-full min-w-0 items-center gap-3 site-rounded-xl border px-4 py-3 transition-colors focus-visible:ring-2 focus-visible:outline-none sm:min-h-16 sm:px-5"
+  "border-site-border bg-site-background hover:bg-site-muted/50 focus-visible:ring-site-ring text-site-foreground group flex min-h-14 w-full min-w-0 items-center gap-3 site-rounded-xl border px-4 py-3 transition-colors focus-visible:ring-2 focus-visible:outline-none sm:min-h-16 sm:px-5"
 
 function formatAdjacentCategoryTitle(categorySlug: string) {
-  const info = getCategoryInfo(categorySlug)
+  const info = getComponentCategoryInfo(categorySlug)
   if (!info) {
     return ""
   }
   const count = getComponentCountByCategory(categorySlug)
-  return `${count} Shadcn ${info.label} components`
+  return `${count} Shadcn ${info.label} Components`
 }
 
 export function ComponentCategoryPager({
   currentCategory,
 }: ComponentCategoryPagerProps) {
   const normalized = normalizeSlug(currentCategory)
-  const names = getCategoryNames()
+  const names = getComponentCategories().map((category) => category.slug)
   const index = names.indexOf(normalized)
 
   if (index === -1) {
@@ -45,7 +45,7 @@ export function ComponentCategoryPager({
   return (
     <nav
       className="w-full px-6 pt-2 pb-10 sm:px-8 xl:px-10"
-      aria-label="Adjacent pattern categories"
+      aria-label="Adjacent component categories"
     >
       <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
         <div className="min-w-0">
@@ -55,7 +55,7 @@ export function ComponentCategoryPager({
               className={cn(linkClass, "justify-between")}
             >
               <ChevronLeft
-                className="text-site-muted-foreground group-hover:text-foreground size-4 shrink-0 transition-colors"
+                className="text-site-muted-foreground group-hover:text-site-foreground size-4 shrink-0 transition-colors"
                 aria-hidden
               />
               <span className="min-w-0 flex-1 text-right">
@@ -85,7 +85,7 @@ export function ComponentCategoryPager({
                 </span>
               </span>
               <ChevronRight
-                className="text-site-muted-foreground group-hover:text-foreground size-4 shrink-0 transition-colors"
+                className="text-site-muted-foreground group-hover:text-site-foreground size-4 shrink-0 transition-colors"
                 aria-hidden
               />
             </Link>

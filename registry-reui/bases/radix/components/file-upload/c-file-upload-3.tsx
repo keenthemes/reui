@@ -1,7 +1,3 @@
-// Description: Basic drag and drop file upload
-// Order: 3
-// GridSize: 1
-
 "use client"
 
 import {
@@ -66,7 +62,7 @@ export default function Pattern({
       {/* Compact Upload Area */}
       <div
         className={cn(
-          "border-border style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-lg style-mira:rounded-lg flex items-center gap-3 border border-dashed p-4 transition-colors",
+          "border-border rounded-lg flex items-center gap-3 border border-dashed p-4 transition-colors",
           isDragging
             ? "border-primary bg-primary/5"
             : "border-muted-foreground/25 hover:border-muted-foreground/50"

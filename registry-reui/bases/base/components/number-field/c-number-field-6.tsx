@@ -1,6 +1,3 @@
-// Description: Number field in form
-// Order: 6
-
 "use client"
 
 import {

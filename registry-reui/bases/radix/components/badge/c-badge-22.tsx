@@ -1,6 +1,3 @@
-// Description: Badge with a status dot
-// Order: 22
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 export default function Pattern() {

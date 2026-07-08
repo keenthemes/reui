@@ -1,6 +1,3 @@
-// Description: Small size alert dialog for quick confirmations
-// Order: 2
-
 import {
   AlertDialog,
   AlertDialogAction,

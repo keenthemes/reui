@@ -1,11 +1,12 @@
-import { type CategoryInfo } from "@/lib/registry"
+import type { ComponentCategoryInfo as CategoryInfo } from "@/lib/component-stats"
 
-export type { CatalogGridMode } from "@/hooks/use-config"
+export type ComponentGridMode = 1 | 2
 export type { CategoryInfo }
 export type GridSize = 1 | 2
 
-export interface CatalogItem {
+export interface Component {
   name: string
+  title?: string
   description?: string
   categories: string[]
   primaryCategory?: string

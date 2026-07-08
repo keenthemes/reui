@@ -1,6 +1,3 @@
-// Description: Dashed upload empty state
-// Order: 6
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   Empty,

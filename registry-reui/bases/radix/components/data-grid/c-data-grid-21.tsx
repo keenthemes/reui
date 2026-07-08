@@ -1,13 +1,11 @@
-// Description: Data grid with loading skeleton
-// GridSize: 1
-// Order: 21
-
 "use client"
 
 import { useMemo, useState } from "react"
-import Link from "next/link"
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
-import { DataGrid } from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
+import {
+  DataGrid,
+  DataGridContainer,
+} from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
 import { DataGridColumnHeader } from "@/registry-reui/bases/radix/reui/data-grid/data-grid-column-header"
 import { DataGridPagination } from "@/registry-reui/bases/radix/reui/data-grid/data-grid-pagination"
 import { DataGridScrollArea } from "@/registry-reui/bases/radix/reui/data-grid/data-grid-scroll-area"
@@ -316,12 +314,12 @@ export default function Pattern() {
         ),
         cell: (info) => (
           <div className="truncate">
-            <Link
+            <a
               href={`mailto:${info.getValue()}`}
               className="hover:text-primary hover:underline"
             >
               {info.getValue() as string}
-            </Link>
+            </a>
           </div>
         ),
         size: 150,
@@ -411,10 +409,14 @@ export default function Pattern() {
             </Button>
           </CardAction>
         </CardHeader>
-        <div className="w-full border-y">
-          <DataGridScrollArea>
-            <DataGridTable />
-          </DataGridScrollArea>
+        <div className="w-full px-3.5">
+          <Card className="p-0">
+            <DataGridContainer>
+              <DataGridScrollArea>
+                <DataGridTable />
+              </DataGridScrollArea>
+            </DataGridContainer>
+          </Card>
         </div>
         <CardFooter className="border-none bg-transparent! px-3.5 py-0">
           <DataGridPagination />

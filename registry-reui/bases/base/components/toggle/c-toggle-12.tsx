@@ -1,6 +1,3 @@
-// Description: Toggle with tooltip
-// Order: 12
-
 import { Toggle } from "@/registry/bases/base/ui/toggle"
 import {
   Tooltip,

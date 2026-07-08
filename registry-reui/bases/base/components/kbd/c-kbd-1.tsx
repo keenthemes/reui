@@ -1,6 +1,3 @@
-// Description: Basic keyboard keys.
-// Order: 1
-
 import { Kbd } from "@/registry/bases/base/ui/kbd"
 
 export default function Pattern() {

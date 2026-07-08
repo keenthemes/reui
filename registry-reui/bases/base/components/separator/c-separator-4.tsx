@@ -1,6 +1,3 @@
-// Description: Horizontal separator between items in a list.
-// Order: 4
-
 import { Separator } from "@/registry/bases/base/ui/separator"
 
 export default function Pattern() {

@@ -1,7 +1,3 @@
-// Description: Stepper with content for each step
-// Order: 10
-// GridSize: 1
-
 "use client"
 
 import {

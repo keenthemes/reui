@@ -1,7 +1,3 @@
-// Description: Skeleton loader for a list with actions
-// Order: 7
-// GridSize: 1
-
 import { Separator } from "@/registry/bases/radix/ui/separator"
 import { Skeleton } from "@/registry/bases/radix/ui/skeleton"
 

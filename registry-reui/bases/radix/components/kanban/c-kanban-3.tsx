@@ -1,7 +1,3 @@
-// Description: Kanban board with frame columns
-// Order: 3
-// GridSize: 1
-
 "use client"
 
 import { ComponentProps, useState } from "react"

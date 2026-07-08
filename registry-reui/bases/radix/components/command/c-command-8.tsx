@@ -1,6 +1,3 @@
-// Description: Command with recent and favorites sections
-// Order: 8
-
 "use client"
 
 import { useState } from "react"

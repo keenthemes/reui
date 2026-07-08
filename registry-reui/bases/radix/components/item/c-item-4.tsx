@@ -1,6 +1,3 @@
-// Description: Clickable navigation items with icons and chevron
-// Order: 4
-
 import {
   Item,
   ItemActions,

@@ -1,6 +1,3 @@
-// Description: Avatar with loading state demonstration
-// Order: 30
-
 "use client"
 
 import { useEffect, useState } from "react"

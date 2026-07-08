@@ -1,6 +1,3 @@
-// Description: Large progress.
-// Order: 3
-
 import { Progress } from "@/registry/bases/radix/ui/progress"
 
 export default function Pattern() {

@@ -1,6 +1,3 @@
-// Description: Popover with media preview.
-// Order: 8
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   Popover,

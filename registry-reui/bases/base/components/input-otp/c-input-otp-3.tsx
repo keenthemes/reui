@@ -1,6 +1,3 @@
-// Description: OTP input with multiple separators.
-// Order: 3
-
 "use client"
 
 import { useState } from "react"

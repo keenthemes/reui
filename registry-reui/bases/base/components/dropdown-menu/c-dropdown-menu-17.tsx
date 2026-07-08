@@ -1,6 +1,3 @@
-// Description: Notifications dropdown with items
-// Order: 17
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   DropdownMenu,

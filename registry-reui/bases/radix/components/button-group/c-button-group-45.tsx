@@ -1,6 +1,3 @@
-// Description: Environment switcher with indicator
-// Order: 45
-
 "use client"
 
 import { useState } from "react"

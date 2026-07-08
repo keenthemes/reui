@@ -1,6 +1,3 @@
-// Description: Avatar group with numerical count
-// Order: 25
-
 import {
   Avatar,
   AvatarFallback,

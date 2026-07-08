@@ -1,6 +1,3 @@
-// Description: Input group in invalid state
-// Order: 3
-
 import { Field } from "@/registry/bases/radix/ui/field"
 import {
   InputGroup,

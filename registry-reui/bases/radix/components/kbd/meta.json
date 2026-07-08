@@ -1,0 +1,38 @@
+[
+  {
+    "name": "c-kbd-1",
+    "title": "Basic keyboard keys.",
+    "description": "Basic keyboard keys.",
+    "order": 1
+  },
+  {
+    "name": "c-kbd-2",
+    "title": "Keyboard keys grouped together.",
+    "description": "Keyboard keys grouped together.",
+    "order": 2
+  },
+  {
+    "name": "c-kbd-3",
+    "title": "Keyboard keys combined with icons.",
+    "description": "Keyboard keys combined with icons.",
+    "order": 3
+  },
+  {
+    "name": "c-kbd-4",
+    "title": "Keyboard key within an input.",
+    "description": "Keyboard key within an input.",
+    "order": 4
+  },
+  {
+    "name": "c-kbd-5",
+    "title": "Keyboard shortcut in a tooltip.",
+    "description": "Keyboard shortcut in a tooltip.",
+    "order": 5
+  },
+  {
+    "name": "c-kbd-6",
+    "title": "Keyboard shortcuts reference list",
+    "description": "Keyboard shortcuts reference list",
+    "order": 6
+  }
+]

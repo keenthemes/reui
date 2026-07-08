@@ -1,0 +1,26 @@
+[
+  {
+    "name": "c-navigation-menu-1",
+    "title": "Basic navigation menu.",
+    "description": "Basic navigation menu.",
+    "order": 1
+  },
+  {
+    "name": "c-navigation-menu-2",
+    "title": "Navigation menu with grid layout.",
+    "description": "Navigation menu with grid layout.",
+    "order": 2
+  },
+  {
+    "name": "c-navigation-menu-3",
+    "title": "Navigation menu with icons.",
+    "description": "Navigation menu with icons.",
+    "order": 3
+  },
+  {
+    "name": "c-navigation-menu-4",
+    "title": "Navigation menu with grid layout and learn more button.",
+    "description": "Navigation menu with grid layout and learn more button.",
+    "order": 4
+  }
+]

@@ -1,7 +1,3 @@
-// Description: Filters with custom controls
-// Order: 6
-// GridSize: 1
-
 "use client"
 
 import { useCallback, useEffect, useMemo, useState } from "react"

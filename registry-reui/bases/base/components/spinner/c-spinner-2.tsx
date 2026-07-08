@@ -1,6 +1,3 @@
-// Description: Spinners in buttons.
-// Order: 2
-
 import { Button } from "@/registry/bases/base/ui/button"
 import { Spinner } from "@/registry/bases/base/ui/spinner"
 

@@ -1,7 +1,3 @@
-// Description: Skeleton loader for avatars and user info.
-// Order: 1
-// GridSize: 1
-
 import { Skeleton } from "@/registry/bases/base/ui/skeleton"
 
 export default function Pattern() {

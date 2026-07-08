@@ -1,7 +1,3 @@
-// Description: Skeleton loader for a card grid
-// Order: 8
-// GridSize: 1
-
 import {
   Card,
   CardContent,

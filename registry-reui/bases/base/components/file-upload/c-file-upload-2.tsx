@@ -1,6 +1,3 @@
-// Description: Avatar upload
-// Order: 2
-
 "use client"
 
 import {

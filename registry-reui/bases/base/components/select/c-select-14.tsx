@@ -1,6 +1,3 @@
-// Description: Select component with Button side by side
-// Order: 14
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   Select,

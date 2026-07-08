@@ -1,0 +1,74 @@
+[
+  {
+    "name": "c-autocomplete-1",
+    "title": "Basic autocomplete control",
+    "description": "Basic autocomplete control",
+    "order": 1
+  },
+  {
+    "name": "c-autocomplete-2",
+    "title": "Disabled state",
+    "description": "Disabled state",
+    "order": 2
+  },
+  {
+    "name": "c-autocomplete-3",
+    "title": "Auto highlight option as you type",
+    "description": "Auto highlight option as you type",
+    "order": 3
+  },
+  {
+    "name": "c-autocomplete-4",
+    "title": "Control with label",
+    "description": "Control with label",
+    "order": 4
+  },
+  {
+    "name": "c-autocomplete-5",
+    "title": "With clear button",
+    "description": "With clear button",
+    "order": 5
+  },
+  {
+    "name": "c-autocomplete-6",
+    "title": "With trigger button",
+    "description": "With trigger button",
+    "order": 6
+  },
+  {
+    "name": "c-autocomplete-7",
+    "title": "With clear and trigger buttons",
+    "description": "With clear and trigger buttons",
+    "order": 7
+  },
+  {
+    "name": "c-autocomplete-8",
+    "title": "With groups and labels",
+    "description": "With groups and labels",
+    "order": 8
+  },
+  {
+    "name": "c-autocomplete-9",
+    "title": "With search results",
+    "description": "With search results",
+    "order": 9
+  },
+  {
+    "name": "c-autocomplete-10",
+    "title": "Small autocomplete",
+    "description": "Small autocomplete",
+    "order": 10
+  },
+  {
+    "name": "c-autocomplete-11",
+    "title": "Large autocomplete",
+    "description": "Large autocomplete",
+    "order": 11
+  },
+  {
+    "name": "c-autocomplete-12",
+    "title": "Form integration",
+    "description": "Form integration",
+    "order": 12
+  }
+]

@@ -1,6 +1,3 @@
-// Description: Fields with input groups
-// Order: 1
-
 import {
   Field,
   FieldDescription,

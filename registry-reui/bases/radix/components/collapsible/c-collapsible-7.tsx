@@ -1,6 +1,3 @@
-// Description: Nested collapsible list with actions
-// Order: 7
-
 "use client"
 
 import { useState } from "react"

@@ -1,6 +1,3 @@
-// Description: Label in a disabled state.
-// Order: 4
-
 import { Field } from "@/registry/bases/radix/ui/field"
 import { Input } from "@/registry/bases/radix/ui/input"
 import { Label } from "@/registry/bases/radix/ui/label"

@@ -1,6 +1,3 @@
-// Description: No data analytics empty state
-// Order: 10
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   Empty,

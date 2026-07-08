@@ -1,6 +1,3 @@
-// Description: Advanced password strength indicator with progress
-// Order: 23
-
 "use client"
 
 import { useId, useMemo, useState } from "react"

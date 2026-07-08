@@ -1,0 +1,143 @@
+{
+  "items": [
+    {
+      "name": "c-native-select-1",
+      "type": "registry:block",
+      "title": "Basic native select.",
+      "categories": [
+        "native-select"
+      ],
+      "description": "Basic native select.",
+      "registryDependencies": [
+        "native-select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/native-select/c-native-select-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-native-select-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-native-select-2",
+      "type": "registry:block",
+      "title": "Native select with options grouped.",
+      "categories": [
+        "native-select"
+      ],
+      "description": "Native select with options grouped.",
+      "registryDependencies": [
+        "native-select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/native-select/c-native-select-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-native-select-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-native-select-3",
+      "type": "registry:block",
+      "title": "Small native select.",
+      "categories": [
+        "native-select"
+      ],
+      "description": "Small native select.",
+      "registryDependencies": [
+        "native-select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/native-select/c-native-select-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-native-select-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-native-select-4",
+      "type": "registry:block",
+      "title": "Native select embedded within a field.",
+      "categories": [
+        "native-select"
+      ],
+      "description": "Native select embedded within a field.",
+      "registryDependencies": [
+        "field",
+        "native-select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/native-select/c-native-select-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-native-select-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-native-select-5",
+      "type": "registry:block",
+      "title": "Disabled native select.",
+      "categories": [
+        "native-select"
+      ],
+      "description": "Disabled native select.",
+      "registryDependencies": [
+        "native-select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/native-select/c-native-select-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-native-select-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-native-select-6",
+      "type": "registry:block",
+      "title": "Invalid native select.",
+      "categories": [
+        "native-select"
+      ],
+      "description": "Invalid native select.",
+      "registryDependencies": [
+        "native-select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/native-select/c-native-select-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-native-select-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    }
+  ]
+}

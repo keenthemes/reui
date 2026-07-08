@@ -1,0 +1,996 @@
+{
+  "items": [
+    {
+      "name": "c-input-group-1",
+      "type": "registry:block",
+      "title": "Basic input group",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Basic input group",
+      "registryDependencies": [
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-input-group-2",
+      "type": "registry:block",
+      "title": "Input group in disabled state",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Input group in disabled state",
+      "registryDependencies": [
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-input-group-3",
+      "type": "registry:block",
+      "title": "Input group in invalid state",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Input group in invalid state",
+      "registryDependencies": [
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-input-group-4",
+      "type": "registry:block",
+      "title": "Input group with prefix icon",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Input group with prefix icon",
+      "registryDependencies": [
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-input-group-5",
+      "type": "registry:block",
+      "title": "Input group with suffix icon",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Input group with suffix icon",
+      "registryDependencies": [
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-input-group-6",
+      "type": "registry:block",
+      "title": "Input group with both prefix and suffix icons",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Input group with both prefix and suffix icons",
+      "registryDependencies": [
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-input-group-7",
+      "type": "registry:block",
+      "title": "Input group with prefix text addon",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Input group with prefix text addon",
+      "registryDependencies": [
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-input-group-8",
+      "type": "registry:block",
+      "title": "Input group with suffix text addon",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Input group with suffix text addon",
+      "registryDependencies": [
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-input-group-9",
+      "type": "registry:block",
+      "title": "Input group with both prefix and suffix text addons",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Input group with both prefix and suffix text addons",
+      "registryDependencies": [
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-input-group-10",
+      "type": "registry:block",
+      "title": "Input group with action button addon",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Input group with action button addon",
+      "registryDependencies": [
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-input-group-11",
+      "type": "registry:block",
+      "title": "Input group with icon button action",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Input group with icon button action",
+      "registryDependencies": [
+        "field",
+        "input-group"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    },
+    {
+      "name": "c-input-group-12",
+      "type": "registry:block",
+      "title": "Input group with dropdown menu selection",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Input group with dropdown menu selection",
+      "registryDependencies": [
+        "dropdown-menu",
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12
+      }
+    },
+    {
+      "name": "c-input-group-13",
+      "type": "registry:block",
+      "title": "Input group with keyboard shortcut (Kbd)",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Input group with keyboard shortcut (Kbd)",
+      "registryDependencies": [
+        "field",
+        "input-group",
+        "kbd"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13
+      }
+    },
+    {
+      "name": "c-input-group-14",
+      "type": "registry:block",
+      "title": "Input group with tooltip action",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Input group with tooltip action",
+      "registryDependencies": [
+        "field",
+        "input-group",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14
+      }
+    },
+    {
+      "name": "c-input-group-15",
+      "type": "registry:block",
+      "title": "Input group with loading spinner",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Input group with loading spinner",
+      "registryDependencies": [
+        "field",
+        "input-group",
+        "spinner"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-15.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-15.tsx"
+        }
+      ],
+      "meta": {
+        "order": 15
+      }
+    },
+    {
+      "name": "c-input-group-16",
+      "type": "registry:block",
+      "title": "Input group with block-start addon",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Input group with block-start addon",
+      "registryDependencies": [
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-16.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-16.tsx"
+        }
+      ],
+      "meta": {
+        "order": 16
+      }
+    },
+    {
+      "name": "c-input-group-17",
+      "type": "registry:block",
+      "title": "Textarea input group with dynamic character limit",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Textarea input group with dynamic character limit",
+      "registryDependencies": [
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-17.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-17.tsx"
+        }
+      ],
+      "meta": {
+        "order": 17
+      }
+    },
+    {
+      "name": "c-input-group-18",
+      "type": "registry:block",
+      "title": "AI Chat textarea with rich toolbar actions",
+      "categories": [
+        "input-group"
+      ],
+      "description": "AI Chat textarea with rich toolbar actions",
+      "registryDependencies": [
+        "dropdown-menu",
+        "field",
+        "input-group",
+        "kbd"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-18.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-18.tsx"
+        }
+      ],
+      "meta": {
+        "order": 18
+      }
+    },
+    {
+      "name": "c-input-group-19",
+      "type": "registry:block",
+      "title": "AI Chat interface with file and context attachments",
+      "categories": [
+        "input-group"
+      ],
+      "description": "AI Chat interface with file and context attachments",
+      "registryDependencies": [
+        "dropdown-menu",
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-19.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-19.tsx"
+        }
+      ],
+      "meta": {
+        "order": 19
+      }
+    },
+    {
+      "name": "c-input-group-20",
+      "type": "registry:block",
+      "title": "Input group demonstrating label usage",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Input group demonstrating label usage",
+      "registryDependencies": [
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-20.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-20.tsx"
+        }
+      ],
+      "meta": {
+        "order": 20
+      }
+    },
+    {
+      "name": "c-input-group-21",
+      "type": "registry:block",
+      "title": "Input group with multiple icons/buttons at the end",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Input group with multiple icons/buttons at the end",
+      "registryDependencies": [
+        "field",
+        "input-group"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-21.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-21.tsx"
+        }
+      ],
+      "meta": {
+        "order": 21
+      }
+    },
+    {
+      "name": "c-input-group-22",
+      "type": "registry:block",
+      "title": "Input group with popover trigger addon",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Input group with popover trigger addon",
+      "registryDependencies": [
+        "field",
+        "input-group",
+        "popover"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-22.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-22.tsx"
+        }
+      ],
+      "meta": {
+        "order": 22
+      }
+    },
+    {
+      "name": "c-input-group-23",
+      "type": "registry:block",
+      "title": "Input group with Sparkles icon and complex Kbd shortcut",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Input group with Sparkles icon and complex Kbd shortcut",
+      "registryDependencies": [
+        "field",
+        "input-group",
+        "kbd"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-23.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-23.tsx"
+        }
+      ],
+      "meta": {
+        "order": 23
+      }
+    },
+    {
+      "name": "c-input-group-24",
+      "type": "registry:block",
+      "title": "Input group with success indicator circle",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Input group with success indicator circle",
+      "registryDependencies": [
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-24.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-24.tsx"
+        }
+      ],
+      "meta": {
+        "order": 24
+      }
+    },
+    {
+      "name": "c-input-group-25",
+      "type": "registry:block",
+      "title": "Input group with search results count",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Input group with search results count",
+      "registryDependencies": [
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-25.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-25.tsx"
+        }
+      ],
+      "meta": {
+        "order": 25
+      }
+    },
+    {
+      "name": "c-input-group-26",
+      "type": "registry:block",
+      "title": "Textarea input group with action buttons",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Textarea input group with action buttons",
+      "registryDependencies": [
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-26.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-26.tsx"
+        }
+      ],
+      "meta": {
+        "order": 26
+      }
+    },
+    {
+      "name": "c-input-group-27",
+      "type": "registry:block",
+      "title": "Input group wrapped in a button group with text prefixes/suffixes",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Input group wrapped in a button group with text prefixes/suffixes",
+      "registryDependencies": [
+        "button-group",
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-27.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-27.tsx"
+        }
+      ],
+      "meta": {
+        "order": 27
+      }
+    },
+    {
+      "name": "c-input-group-28",
+      "type": "registry:block",
+      "title": "Input group with a menu button (three dots) at the end",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Input group with a menu button (three dots) at the end",
+      "registryDependencies": [
+        "dropdown-menu",
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-28.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-28.tsx"
+        }
+      ],
+      "meta": {
+        "order": 28
+      }
+    },
+    {
+      "name": "c-input-group-29",
+      "type": "registry:block",
+      "title": "Pill-shaped input group with a category dropdown at the end",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Pill-shaped input group with a category dropdown at the end",
+      "registryDependencies": [
+        "dropdown-menu",
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-29.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-29.tsx"
+        }
+      ],
+      "meta": {
+        "order": 29
+      }
+    },
+    {
+      "name": "c-input-group-30",
+      "type": "registry:block",
+      "title": "Input group with inline addons (no separating borders)",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Input group with inline addons (no separating borders)",
+      "registryDependencies": [
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-30.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-30.tsx"
+        }
+      ],
+      "meta": {
+        "order": 30
+      }
+    },
+    {
+      "name": "c-input-group-31",
+      "type": "registry:block",
+      "title": "Input group with inline start and block-end addon",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Input group with inline start and block-end addon",
+      "registryDependencies": [
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-31.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-31.tsx"
+        }
+      ],
+      "meta": {
+        "order": 31
+      }
+    },
+    {
+      "name": "c-input-group-32",
+      "type": "registry:block",
+      "title": "Member row with avatar, email and role selection",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Member row with avatar, email and role selection",
+      "registryDependencies": [
+        "avatar",
+        "dropdown-menu",
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-32.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-32.tsx"
+        }
+      ],
+      "meta": {
+        "order": 32
+      }
+    },
+    {
+      "name": "c-input-group-33",
+      "type": "registry:block",
+      "title": "Project save interface with status and action buttons",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Project save interface with status and action buttons",
+      "registryDependencies": [
+        "dropdown-menu",
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-33.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-33.tsx"
+        }
+      ],
+      "meta": {
+        "order": 33,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-input-group-34",
+      "type": "registry:block",
+      "title": "Pill-shaped AI prompt bar with voice and audio icons",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Pill-shaped AI prompt bar with voice and audio icons",
+      "registryDependencies": [
+        "dropdown-menu",
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-34.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-34.tsx"
+        }
+      ],
+      "meta": {
+        "order": 34,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-input-group-35",
+      "type": "registry:block",
+      "title": "Password input with visibility toggle",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Password input with visibility toggle",
+      "registryDependencies": [
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-35.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-35.tsx"
+        }
+      ],
+      "meta": {
+        "order": 35
+      }
+    },
+    {
+      "name": "c-input-group-36",
+      "type": "registry:block",
+      "title": "API request input with method selector and send action",
+      "categories": [
+        "input-group"
+      ],
+      "description": "API request input with method selector and send action",
+      "registryDependencies": [
+        "dropdown-menu",
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-36.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-36.tsx"
+        }
+      ],
+      "meta": {
+        "order": 36
+      }
+    },
+    {
+      "name": "c-input-group-37",
+      "type": "registry:block",
+      "title": "Order search input with status filter",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Order search input with status filter",
+      "registryDependencies": [
+        "checkbox",
+        "field",
+        "input-group",
+        "label",
+        "popover"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-37.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-37.tsx"
+        }
+      ],
+      "meta": {
+        "order": 37
+      }
+    },
+    {
+      "name": "c-input-group-38",
+      "type": "registry:block",
+      "title": "Company search input with region selector",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Company search input with region selector",
+      "registryDependencies": [
+        "dropdown-menu",
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-38.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-38.tsx"
+        }
+      ],
+      "meta": {
+        "order": 38
+      }
+    },
+    {
+      "name": "c-input-group-39",
+      "type": "registry:block",
+      "title": "Contact search input with filter and actions menu",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Contact search input with filter and actions menu",
+      "registryDependencies": [
+        "checkbox",
+        "dropdown-menu",
+        "field",
+        "input-group",
+        "label",
+        "popover"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-39.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-39.tsx"
+        }
+      ],
+      "meta": {
+        "order": 39
+      }
+    },
+    {
+      "name": "c-input-group-40",
+      "type": "registry:block",
+      "title": "Share link input with visibility selector and copy action",
+      "categories": [
+        "input-group"
+      ],
+      "description": "Share link input with visibility selector and copy action",
+      "registryDependencies": [
+        "dropdown-menu",
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-group/c-input-group-40.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-group-40.tsx"
+        }
+      ],
+      "meta": {
+        "order": 40
+      }
+    }
+  ]
+}

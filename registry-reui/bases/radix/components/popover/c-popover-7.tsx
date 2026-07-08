@@ -1,6 +1,3 @@
-// Description: Popover with custom content
-// Order: 7
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   Popover,

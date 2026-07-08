@@ -1,6 +1,3 @@
-// Description: Input with character counter
-// Order: 6
-
 "use client"
 
 import { useState } from "react"

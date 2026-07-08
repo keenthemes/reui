@@ -1,7 +1,3 @@
-// Description: Skeleton loader for a full profile page
-// Order: 9
-// GridSize: 1
-
 import { Card, CardContent, CardHeader } from "@/registry/bases/base/ui/card"
 import { Separator } from "@/registry/bases/base/ui/separator"
 import { Skeleton } from "@/registry/bases/base/ui/skeleton"

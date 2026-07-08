@@ -1,6 +1,3 @@
-// Description: Display week numbers
-// Order: 10
-
 "use client"
 
 import { useState } from "react"

@@ -1,7 +1,3 @@
-// Description: Segmented control tabs
-// Order: 9
-// GridSize: 1
-
 "use client"
 
 import { useState } from "react"

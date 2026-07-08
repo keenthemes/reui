@@ -1,6 +1,3 @@
-// Description: Input group in disabled state
-// Order: 2
-
 import { Field } from "@/registry/bases/radix/ui/field"
 import {
   InputGroup,

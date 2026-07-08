@@ -1,7 +1,3 @@
-// Description: Filters with various field types
-// Order: 1
-// GridSize: 1
-
 "use client"
 
 import { useCallback, useState } from "react"

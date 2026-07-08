@@ -1,6 +1,3 @@
-// Description: Invalid checkbox
-// Order: 3
-
 import { Checkbox } from "@/registry/bases/base/ui/checkbox"
 import { Field, FieldLabel } from "@/registry/bases/base/ui/field"
 

@@ -1,6 +1,3 @@
-// Description: Full page loading state
-// Order: 8
-
 import {
   Card,
   CardContent,

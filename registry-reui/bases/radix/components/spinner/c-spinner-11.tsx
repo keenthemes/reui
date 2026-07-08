@@ -1,6 +1,3 @@
-// Description: Spinner overlay on card
-// Order: 11
-
 import { Card, CardContent } from "@/registry/bases/radix/ui/card"
 import { Spinner } from "@/registry/bases/radix/ui/spinner"
 

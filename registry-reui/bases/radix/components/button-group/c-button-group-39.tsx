@@ -1,6 +1,3 @@
-// Description: Split button with dropdown trigger
-// Order: 39
-
 "use client"
 
 import { Button } from "@/registry/bases/radix/ui/button"

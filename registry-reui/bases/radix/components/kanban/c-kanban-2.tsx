@@ -1,7 +1,3 @@
-// Description: Kanban board with dynamic overlay
-// Order: 2
-// GridSize: 1
-
 "use client"
 
 import { ComponentProps, useState } from "react"

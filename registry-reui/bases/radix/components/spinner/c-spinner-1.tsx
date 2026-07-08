@@ -1,6 +1,3 @@
-// Description: Basic spinner.
-// Order: 1
-
 import { Spinner } from "@/registry/bases/radix/ui/spinner"
 
 export default function Pattern() {

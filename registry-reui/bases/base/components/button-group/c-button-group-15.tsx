@@ -1,6 +1,3 @@
-// Description: Star button group with count and dropdown
-// Order: 15
-
 import { Badge } from "@/registry-reui/bases/base/reui/badge"
 
 import { Button } from "@/registry/bases/base/ui/button"

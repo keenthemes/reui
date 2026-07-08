@@ -1,6 +1,3 @@
-// Description: A combobox with a clear button
-// Order: 4
-
 import {
   Combobox,
   ComboboxContent,

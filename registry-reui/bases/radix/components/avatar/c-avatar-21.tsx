@@ -1,6 +1,3 @@
-// Description: Compact social proof with initials
-// Order: 21
-
 import { Frame, FramePanel } from "@/registry-reui/bases/radix/reui/frame"
 
 import {

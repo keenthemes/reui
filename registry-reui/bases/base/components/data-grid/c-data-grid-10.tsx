@@ -1,11 +1,6 @@
-// Description: Data grid with column icons
-// GridSize: 1
-// Order: 10
-
 "use client"
 
 import { useMemo, useState } from "react"
-import Link from "next/link"
 import {
   DataGrid,
   DataGridContainer,
@@ -307,12 +302,12 @@ export default function Pattern() {
           />
         ),
         cell: (info) => (
-          <Link
+          <a
             href={`mailto:${info.getValue()}`}
             className="hover:text-primary hover:underline"
           >
             {info.getValue() as string}
-          </Link>
+          </a>
         ),
         size: 150,
         enableSorting: false,

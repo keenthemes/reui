@@ -1,6 +1,3 @@
-// Description: Rows per page select with range info and first/prev/next/last icons
-// Order: 12
-
 import {
   NativeSelect,
   NativeSelectOption,

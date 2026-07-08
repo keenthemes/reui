@@ -1,6 +1,3 @@
-// Description: Toast with upload progress simulation
-// Order: 10
-
 "use client"
 
 import { useRef } from "react"
@@ -14,7 +11,7 @@ function UploadToast({ progress }: { progress: number }) {
   const done = progress >= 100
 
   return (
-    <div className="bg-popover text-popover-foreground border-border style-vega:rounded-md style-nova:rounded-md style-lyra:rounded-none style-maia:rounded-3xl style-mira:rounded-md flex w-[350px] flex-col gap-3 border p-4 shadow-lg">
+    <div className="bg-popover text-popover-foreground border-border rounded-md flex w-[350px] flex-col gap-3 border p-4 shadow-lg">
       <div className="flex items-center gap-3">
         <div className="bg-muted flex size-8 shrink-0 items-center justify-center">
           <IconPlaceholder

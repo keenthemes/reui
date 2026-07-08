@@ -1,6 +1,3 @@
-// Description: User and create menu
-// Order: 15
-
 import {
   Avatar,
   AvatarFallback,

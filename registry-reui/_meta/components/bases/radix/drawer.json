@@ -1,0 +1,124 @@
+{
+  "items": [
+    {
+      "name": "c-drawer-1",
+      "type": "registry:block",
+      "title": "A basic drawer with scrollable content",
+      "categories": [
+        "drawer"
+      ],
+      "description": "A basic drawer with scrollable content",
+      "registryDependencies": [
+        "button",
+        "drawer"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/drawer/c-drawer-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-drawer-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-drawer-2",
+      "type": "registry:block",
+      "title": "A drawer that opens from the right side",
+      "categories": [
+        "drawer"
+      ],
+      "description": "A drawer that opens from the right side",
+      "registryDependencies": [
+        "button",
+        "drawer"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/drawer/c-drawer-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-drawer-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-drawer-3",
+      "type": "registry:block",
+      "title": "A drawer that opens from the left side",
+      "categories": [
+        "drawer"
+      ],
+      "description": "A drawer that opens from the left side",
+      "registryDependencies": [
+        "button",
+        "drawer"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/drawer/c-drawer-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-drawer-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-drawer-4",
+      "type": "registry:block",
+      "title": "A drawer that opens from the top side",
+      "categories": [
+        "drawer"
+      ],
+      "description": "A drawer that opens from the top side",
+      "registryDependencies": [
+        "button",
+        "drawer"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/drawer/c-drawer-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-drawer-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-drawer-5",
+      "type": "registry:block",
+      "title": "Drawers opening from different sides",
+      "categories": [
+        "drawer"
+      ],
+      "description": "Drawers opening from different sides",
+      "registryDependencies": [
+        "button",
+        "drawer"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/drawer/c-drawer-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-drawer-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    }
+  ]
+}

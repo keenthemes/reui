@@ -1,6 +1,3 @@
-// Description: Input with multiple error messages
-// Order: 21
-
 import { Field, FieldError, FieldLabel } from "@/registry/bases/base/ui/field"
 import { Input } from "@/registry/bases/base/ui/input"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"

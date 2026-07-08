@@ -1,6 +1,3 @@
-// Description: Responsive field layout
-// Order: 9
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   Field,

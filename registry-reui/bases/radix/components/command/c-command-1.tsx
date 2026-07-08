@@ -1,6 +1,3 @@
-// Description: Basic command
-// Order: 1
-
 import { Card, CardContent } from "@/registry/bases/radix/ui/card"
 import {
   Command,

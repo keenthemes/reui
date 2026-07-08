@@ -1,7 +1,3 @@
-// Description: Timeline with roadmap.
-// Order: 2
-// GridSize: 1
-
 import {
   Timeline,
   TimelineContent,

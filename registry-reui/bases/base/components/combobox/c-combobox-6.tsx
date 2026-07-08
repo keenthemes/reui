@@ -1,6 +1,3 @@
-// Description: A combobox with grouped options
-// Order: 6
-
 import {
   Combobox,
   ComboboxCollection,

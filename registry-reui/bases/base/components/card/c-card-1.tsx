@@ -1,6 +1,3 @@
-// Description: Basic card
-// Order: 1
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   Card,

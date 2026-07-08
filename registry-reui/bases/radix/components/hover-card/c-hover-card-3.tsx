@@ -1,6 +1,3 @@
-// Description: Hover card with profile information.
-// Order: 3
-
 import {
   Avatar,
   AvatarFallback,

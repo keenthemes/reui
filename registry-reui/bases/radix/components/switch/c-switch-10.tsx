@@ -1,6 +1,3 @@
-// Description: Switch with badges
-// Order: 10
-
 import { Badge } from "@/registry/bases/radix/ui/badge"
 import { Field, FieldLabel } from "@/registry/bases/radix/ui/field"
 import { Switch } from "@/registry/bases/radix/ui/switch"

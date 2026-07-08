@@ -1,7 +1,3 @@
-// Description: Tabs with line variant.
-// Order: 2
-// GridSize: 1
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   Card,

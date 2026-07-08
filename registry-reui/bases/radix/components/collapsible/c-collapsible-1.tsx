@@ -1,6 +1,3 @@
-// Description: Basic collapsible
-// Order: 1
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import { Button } from "@/registry/bases/radix/ui/button"
@@ -33,7 +30,7 @@ export default function Pattern() {
           </CollapsibleTrigger>
         </div>
 
-        <div className="bg-muted/30 style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-4xl style-mira:rounded-md flex items-center justify-between border px-3 py-2 text-sm">
+        <div className="bg-muted/30 rounded-lg flex items-center justify-between border px-3 py-2 text-sm">
           <span className="text-muted-foreground">Status</span>
           <Badge variant="success-light">Shipped</Badge>
         </div>

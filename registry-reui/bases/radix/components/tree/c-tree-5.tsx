@@ -1,6 +1,3 @@
-// Description: File explorer tree with type icons
-// Order: 5
-
 "use client"
 
 import {

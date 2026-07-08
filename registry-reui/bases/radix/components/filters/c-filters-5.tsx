@@ -1,7 +1,3 @@
-// Description: Filters with large size controls
-// Order: 5
-// GridSize: 1
-
 "use client"
 
 import { useCallback, useState } from "react"

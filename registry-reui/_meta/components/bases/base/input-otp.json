@@ -1,0 +1,156 @@
+{
+  "items": [
+    {
+      "name": "c-input-otp-1",
+      "type": "registry:block",
+      "title": "Basic OTP input.",
+      "categories": [
+        "input-otp"
+      ],
+      "description": "Basic OTP input.",
+      "registryDependencies": [
+        "field",
+        "input-otp"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-otp/c-input-otp-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-otp-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-input-otp-2",
+      "type": "registry:block",
+      "title": "OTP input with numeric digits.",
+      "categories": [
+        "input-otp"
+      ],
+      "description": "OTP input with numeric digits.",
+      "registryDependencies": [
+        "field",
+        "input-otp"
+      ],
+      "dependencies": [
+        "input-otp"
+      ],
+      "files": [
+        {
+          "path": "components/input-otp/c-input-otp-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-otp-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-input-otp-3",
+      "type": "registry:block",
+      "title": "OTP input with multiple separators.",
+      "categories": [
+        "input-otp"
+      ],
+      "description": "OTP input with multiple separators.",
+      "registryDependencies": [
+        "field",
+        "input-otp"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-otp/c-input-otp-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-otp-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-input-otp-4",
+      "type": "registry:block",
+      "title": "OTP input with letters and numbers.",
+      "categories": [
+        "input-otp"
+      ],
+      "description": "OTP input with letters and numbers.",
+      "registryDependencies": [
+        "field",
+        "input-otp"
+      ],
+      "dependencies": [
+        "input-otp"
+      ],
+      "files": [
+        {
+          "path": "components/input-otp/c-input-otp-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-otp-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-input-otp-5",
+      "type": "registry:block",
+      "title": "OTP input for PIN codes.",
+      "categories": [
+        "input-otp"
+      ],
+      "description": "OTP input for PIN codes.",
+      "registryDependencies": [
+        "field",
+        "input-otp"
+      ],
+      "dependencies": [
+        "input-otp"
+      ],
+      "files": [
+        {
+          "path": "components/input-otp/c-input-otp-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-otp-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-input-otp-6",
+      "type": "registry:block",
+      "title": "OTP input verification code.",
+      "categories": [
+        "input-otp"
+      ],
+      "description": "OTP input verification code.",
+      "registryDependencies": [
+        "button",
+        "card",
+        "field",
+        "input-otp"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input-otp/c-input-otp-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-otp-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    }
+  ]
+}

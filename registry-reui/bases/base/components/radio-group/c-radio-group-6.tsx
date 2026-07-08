@@ -1,6 +1,3 @@
-// Description: Radio group with legend and description
-// Order: 6
-
 import {
   Field,
   FieldDescription,

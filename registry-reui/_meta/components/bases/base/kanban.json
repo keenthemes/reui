@@ -1,0 +1,141 @@
+{
+  "items": [
+    {
+      "name": "c-kanban-1",
+      "type": "registry:block",
+      "title": "Kanban board with placeholder overlay",
+      "categories": [
+        "kanban"
+      ],
+      "description": "Kanban board with placeholder overlay",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "kanban"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/kanban/c-kanban-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-kanban-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-kanban-2",
+      "type": "registry:block",
+      "title": "Kanban board with dynamic overlay",
+      "categories": [
+        "kanban"
+      ],
+      "description": "Kanban board with dynamic overlay",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "kanban"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/kanban/c-kanban-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-kanban-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-kanban-3",
+      "type": "registry:block",
+      "title": "Kanban board with frame columns",
+      "categories": [
+        "kanban"
+      ],
+      "description": "Kanban board with frame columns",
+      "registryDependencies": [
+        "badge",
+        "frame",
+        "kanban"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/kanban/c-kanban-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-kanban-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-kanban-4",
+      "type": "registry:block",
+      "title": "Minimal kanban with stacked frame",
+      "categories": [
+        "kanban"
+      ],
+      "description": "Minimal kanban with stacked frame",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "frame",
+        "kanban",
+        "progress"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/kanban/c-kanban-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-kanban-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-kanban-5",
+      "type": "registry:block",
+      "title": "Feature roadmap kanban with progress",
+      "categories": [
+        "kanban"
+      ],
+      "description": "Feature roadmap kanban with progress",
+      "registryDependencies": [
+        "badge",
+        "frame",
+        "kanban",
+        "progress"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/kanban/c-kanban-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-kanban-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5,
+        "gridSize": 1
+      }
+    }
+  ]
+}

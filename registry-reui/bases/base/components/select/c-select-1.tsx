@@ -1,6 +1,3 @@
-// Description: A basic select component with a list of options
-// Order: 1
-
 "use client"
 
 import { Field } from "@/registry/bases/base/ui/field"

@@ -1,0 +1,300 @@
+{
+  "items": [
+    {
+      "name": "c-timeline-1",
+      "type": "registry:block",
+      "title": "Basic timeline.",
+      "categories": [
+        "timeline"
+      ],
+      "description": "Basic timeline.",
+      "registryDependencies": [
+        "timeline"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/timeline/c-timeline-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-timeline-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-timeline-2",
+      "type": "registry:block",
+      "title": "Timeline with roadmap.",
+      "categories": [
+        "timeline"
+      ],
+      "description": "Timeline with roadmap.",
+      "registryDependencies": [
+        "timeline"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/timeline/c-timeline-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-timeline-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-timeline-3",
+      "type": "registry:block",
+      "title": "Timeline with order status.",
+      "categories": [
+        "timeline"
+      ],
+      "description": "Timeline with order status.",
+      "registryDependencies": [
+        "timeline"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/timeline/c-timeline-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-timeline-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-timeline-4",
+      "type": "registry:block",
+      "title": "Timeline with git activity.",
+      "categories": [
+        "timeline"
+      ],
+      "description": "Timeline with git activity.",
+      "registryDependencies": [
+        "timeline"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/timeline/c-timeline-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-timeline-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-timeline-5",
+      "type": "registry:block",
+      "title": "Timeline with milestones.",
+      "categories": [
+        "timeline"
+      ],
+      "description": "Timeline with milestones.",
+      "registryDependencies": [
+        "timeline"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/timeline/c-timeline-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-timeline-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-timeline-6",
+      "type": "registry:block",
+      "title": "Timeline with pipeline steps.",
+      "categories": [
+        "timeline"
+      ],
+      "description": "Timeline with pipeline steps.",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "collapsible",
+        "frame",
+        "spinner",
+        "timeline"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/timeline/c-timeline-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-timeline-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-timeline-7",
+      "type": "registry:block",
+      "title": "Timeline with roadmap items.",
+      "categories": [
+        "timeline"
+      ],
+      "description": "Timeline with roadmap items.",
+      "registryDependencies": [
+        "timeline"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/timeline/c-timeline-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-timeline-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-timeline-8",
+      "type": "registry:block",
+      "title": "Vertical timeline",
+      "categories": [
+        "timeline"
+      ],
+      "description": "Vertical timeline",
+      "registryDependencies": [
+        "timeline"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/timeline/c-timeline-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-timeline-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-timeline-9",
+      "type": "registry:block",
+      "title": "Horizontal timeline with leading labels",
+      "categories": [
+        "timeline"
+      ],
+      "description": "Horizontal timeline with leading labels",
+      "registryDependencies": [
+        "timeline"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/timeline/c-timeline-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-timeline-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-timeline-10",
+      "type": "registry:block",
+      "title": "Deployment log timeline",
+      "categories": [
+        "timeline"
+      ],
+      "description": "Deployment log timeline",
+      "registryDependencies": [
+        "badge",
+        "timeline"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/timeline/c-timeline-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-timeline-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-timeline-11",
+      "type": "registry:block",
+      "title": "Activity feed timeline with user avatars",
+      "categories": [
+        "timeline"
+      ],
+      "description": "Activity feed timeline with user avatars",
+      "registryDependencies": [
+        "avatar",
+        "timeline"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/timeline/c-timeline-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-timeline-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-timeline-12",
+      "type": "registry:block",
+      "title": "Compact horizontal milestone timeline",
+      "categories": [
+        "timeline"
+      ],
+      "description": "Compact horizontal milestone timeline",
+      "registryDependencies": [
+        "badge",
+        "timeline"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/timeline/c-timeline-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-timeline-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12,
+        "gridSize": 1
+      }
+    }
+  ]
+}

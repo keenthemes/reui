@@ -1,7 +1,3 @@
-// Description: Cover image upload.
-// Order: 10
-// GridSize: 1
-
 "use client"
 
 import { useState } from "react"
@@ -132,7 +128,7 @@ export default function Pattern({
       {/* Cover Upload Area */}
       <div
         className={cn(
-          "group border-border style-vega:rounded-xl style-nova:rounded-xl style-lyra:rounded-none style-maia:rounded-4xl style-mira:rounded-md relative overflow-hidden border transition-all duration-200",
+          "group border-border rounded-xl relative overflow-hidden border transition-all duration-200",
           isDragging
             ? "border-primary bg-primary/5 border-dashed"
             : hasImage

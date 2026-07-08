@@ -1,0 +1,349 @@
+{
+  "items": [
+    {
+      "name": "c-alert-dialog-1",
+      "type": "registry:block",
+      "title": "Basic alert dialog with title, description, and action buttons",
+      "categories": [
+        "alert-dialog"
+      ],
+      "description": "Basic alert dialog with title, description, and action buttons",
+      "registryDependencies": [
+        "alert-dialog",
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert-dialog/c-alert-dialog-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-dialog-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-alert-dialog-2",
+      "type": "registry:block",
+      "title": "Small size alert dialog for quick confirmations",
+      "categories": [
+        "alert-dialog"
+      ],
+      "description": "Small size alert dialog for quick confirmations",
+      "registryDependencies": [
+        "alert-dialog",
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert-dialog/c-alert-dialog-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-dialog-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-alert-dialog-3",
+      "type": "registry:block",
+      "title": "Alert dialog with icon",
+      "categories": [
+        "alert-dialog"
+      ],
+      "description": "Alert dialog with icon",
+      "registryDependencies": [
+        "alert-dialog",
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert-dialog/c-alert-dialog-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-dialog-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-alert-dialog-4",
+      "type": "registry:block",
+      "title": "Small size alert dialog with media (icon)",
+      "categories": [
+        "alert-dialog"
+      ],
+      "description": "Small size alert dialog with media (icon)",
+      "registryDependencies": [
+        "alert-dialog",
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert-dialog/c-alert-dialog-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-dialog-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-alert-dialog-5",
+      "type": "registry:block",
+      "title": "Destructive alert dialog for irreversible actions like deletion",
+      "categories": [
+        "alert-dialog"
+      ],
+      "description": "Destructive alert dialog for irreversible actions like deletion",
+      "registryDependencies": [
+        "alert-dialog",
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert-dialog/c-alert-dialog-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-dialog-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-alert-dialog-6",
+      "type": "registry:block",
+      "title": "Alert dialog nested within a standard Dialog component",
+      "categories": [
+        "alert-dialog"
+      ],
+      "description": "Alert dialog nested within a standard Dialog component",
+      "registryDependencies": [
+        "alert-dialog",
+        "button",
+        "dialog"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert-dialog/c-alert-dialog-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-dialog-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-alert-dialog-7",
+      "type": "registry:block",
+      "title": "Task success confirmation",
+      "categories": [
+        "alert-dialog"
+      ],
+      "description": "Task success confirmation",
+      "registryDependencies": [
+        "alert-dialog",
+        "button",
+        "checkbox",
+        "label"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert-dialog/c-alert-dialog-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-dialog-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-alert-dialog-8",
+      "type": "registry:block",
+      "title": "Account deactivation confirmation",
+      "categories": [
+        "alert-dialog"
+      ],
+      "description": "Account deactivation confirmation",
+      "registryDependencies": [
+        "alert-dialog",
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert-dialog/c-alert-dialog-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-dialog-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-alert-dialog-9",
+      "type": "registry:block",
+      "title": "Warning for unsaved changes when navigating away",
+      "categories": [
+        "alert-dialog"
+      ],
+      "description": "Warning for unsaved changes when navigating away",
+      "registryDependencies": [
+        "alert-dialog",
+        "button",
+        "checkbox",
+        "frame",
+        "label"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert-dialog/c-alert-dialog-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-dialog-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-alert-dialog-10",
+      "type": "registry:block",
+      "title": "Confirmation for successful e-ticket registration",
+      "categories": [
+        "alert-dialog"
+      ],
+      "description": "Confirmation for successful e-ticket registration",
+      "registryDependencies": [
+        "alert-dialog",
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert-dialog/c-alert-dialog-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-dialog-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-alert-dialog-11",
+      "type": "registry:block",
+      "title": "System update notification requiring application restart",
+      "categories": [
+        "alert-dialog"
+      ],
+      "description": "System update notification requiring application restart",
+      "registryDependencies": [
+        "alert-dialog",
+        "badge",
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert-dialog/c-alert-dialog-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-dialog-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    },
+    {
+      "name": "c-alert-dialog-12",
+      "type": "registry:block",
+      "title": "Billing warning for expired subscriptions or failed payments",
+      "categories": [
+        "alert-dialog"
+      ],
+      "description": "Billing warning for expired subscriptions or failed payments",
+      "registryDependencies": [
+        "alert-dialog",
+        "badge",
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert-dialog/c-alert-dialog-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-dialog-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12
+      }
+    },
+    {
+      "name": "c-alert-dialog-13",
+      "type": "registry:block",
+      "title": "Logout confirmation dialog",
+      "categories": [
+        "alert-dialog"
+      ],
+      "description": "Logout confirmation dialog",
+      "registryDependencies": [
+        "alert-dialog",
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert-dialog/c-alert-dialog-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-dialog-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13
+      }
+    },
+    {
+      "name": "c-alert-dialog-14",
+      "type": "registry:block",
+      "title": "Advanced security audit confirmation",
+      "categories": [
+        "alert-dialog"
+      ],
+      "description": "Advanced security audit confirmation",
+      "registryDependencies": [
+        "alert-dialog",
+        "badge",
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert-dialog/c-alert-dialog-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-dialog-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14
+      }
+    }
+  ]
+}

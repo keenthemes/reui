@@ -1,6 +1,3 @@
-// Description: Card radio group with descriptions
-// Order: 7
-
 import {
   Field,
   FieldContent,

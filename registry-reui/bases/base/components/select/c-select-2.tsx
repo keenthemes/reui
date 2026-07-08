@@ -1,6 +1,3 @@
-// Description: Select with icons and placeholder state
-// Order: 2
-
 "use client"
 
 import { ReactElement } from "react"

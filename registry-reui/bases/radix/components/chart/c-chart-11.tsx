@@ -1,10 +1,6 @@
-// Description: Animated monochrome bar chart
-// Order: 11
-
 "use client"
 
 import { CSSProperties, SVGProps, useMemo, useState } from "react"
-import { JetBrains_Mono } from "next/font/google"
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 import { motion } from "motion/react"
 import { Bar, BarChart, XAxis } from "recharts"
@@ -24,11 +20,6 @@ import {
   ChartTooltipContent,
 } from "@/registry/bases/radix/ui/chart"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
-
-const jetBrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-})
 
 interface CustomBarProps extends SVGProps<SVGSVGElement> {
   setActiveIndex: (index?: number) => void
@@ -75,7 +66,7 @@ const CustomBar = (props: CustomBarProps) => {
           style={{
             willChange: "transform, opacity", // helps with performance
           }}
-          className={jetBrainsMono.className}
+          className="font-mono"
           key={index}
           initial={{ opacity: 0, y: -10, filter: "blur(3px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -128,12 +119,7 @@ export default function Pattern() {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           Conversion Rates
-          <span
-            className={cn(
-              jetBrainsMono.className,
-              "ml-auto text-xl tracking-tighter"
-            )}
-          >
+          <span className={cn("ml-auto font-mono text-xl tracking-tighter")}>
             ${activeData ? activeData.desktop : "123"}
           </span>
           <Badge variant="success-light">
@@ -202,7 +188,7 @@ export default function Pattern() {
                         </span>
                       </div>
                       <span className="text-foreground font-semibold">
-                        {value.toLocaleString()}
+                        {Number(value).toLocaleString()}
                       </span>
                     </div>
                   )}

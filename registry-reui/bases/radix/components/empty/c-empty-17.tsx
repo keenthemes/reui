@@ -1,6 +1,3 @@
-// Description: No messages empty state with chat bubbles illustration
-// Order: 17
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   Empty,

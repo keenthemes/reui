@@ -1,7 +1,3 @@
-// Description: Activity feed timeline with user avatars
-// Order: 11
-// GridSize: 1
-
 import {
   Timeline,
   TimelineContent,

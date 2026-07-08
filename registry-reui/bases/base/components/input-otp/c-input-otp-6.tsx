@@ -1,6 +1,3 @@
-// Description: OTP input verification code.
-// Order: 6
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   Card,

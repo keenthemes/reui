@@ -1,6 +1,3 @@
-// Description: Menubar with icons.
-// Order: 4
-
 import {
   Menubar,
   MenubarContent,

@@ -1,6 +1,3 @@
-// Description: Pagination with ellipsis indicator
-// Order: 10
-
 import {
   Pagination,
   PaginationContent,

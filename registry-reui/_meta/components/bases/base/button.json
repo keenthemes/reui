@@ -1,0 +1,1427 @@
+{
+  "items": [
+    {
+      "name": "c-button-1",
+      "type": "registry:block",
+      "title": "Default button",
+      "categories": [
+        "button"
+      ],
+      "description": "Default button",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-button-2",
+      "type": "registry:block",
+      "title": "Secondary button",
+      "categories": [
+        "button"
+      ],
+      "description": "Secondary button",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-button-3",
+      "type": "registry:block",
+      "title": "Outline button",
+      "categories": [
+        "button"
+      ],
+      "description": "Outline button",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-button-4",
+      "type": "registry:block",
+      "title": "Ghost button",
+      "categories": [
+        "button"
+      ],
+      "description": "Ghost button",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-button-5",
+      "type": "registry:block",
+      "title": "Destructive button",
+      "categories": [
+        "button"
+      ],
+      "description": "Destructive button",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-button-6",
+      "type": "registry:block",
+      "title": "Link button variant",
+      "categories": [
+        "button"
+      ],
+      "description": "Link button variant",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-button-7",
+      "type": "registry:block",
+      "title": "Extra small button",
+      "categories": [
+        "button"
+      ],
+      "description": "Extra small button",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-button-8",
+      "type": "registry:block",
+      "title": "Small button",
+      "categories": [
+        "button"
+      ],
+      "description": "Small button",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-button-9",
+      "type": "registry:block",
+      "title": "Large button",
+      "categories": [
+        "button"
+      ],
+      "description": "Large button",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-button-10",
+      "type": "registry:block",
+      "title": "Disabled button",
+      "categories": [
+        "button"
+      ],
+      "description": "Disabled button",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-button-11",
+      "type": "registry:block",
+      "title": "Icon button",
+      "categories": [
+        "button"
+      ],
+      "description": "Icon button",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    },
+    {
+      "name": "c-button-12",
+      "type": "registry:block",
+      "title": "Button with an icon on the right",
+      "categories": [
+        "button"
+      ],
+      "description": "Button with an icon on the right",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12
+      }
+    },
+    {
+      "name": "c-button-13",
+      "type": "registry:block",
+      "title": "Button in a loading state",
+      "categories": [
+        "button"
+      ],
+      "description": "Button in a loading state",
+      "registryDependencies": [
+        "button",
+        "spinner"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13
+      }
+    },
+    {
+      "name": "c-button-14",
+      "type": "registry:block",
+      "title": "Button with an icon on the left",
+      "categories": [
+        "button"
+      ],
+      "description": "Button with an icon on the left",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14
+      }
+    },
+    {
+      "name": "c-button-15",
+      "type": "registry:block",
+      "title": "Button with an invalid state highlight",
+      "categories": [
+        "button"
+      ],
+      "description": "Button with an invalid state highlight",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-15.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-15.tsx"
+        }
+      ],
+      "meta": {
+        "order": 15
+      }
+    },
+    {
+      "name": "c-button-16",
+      "type": "registry:block",
+      "title": "Secondary button with an icon on the left",
+      "categories": [
+        "button"
+      ],
+      "description": "Secondary button with an icon on the left",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-16.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-16.tsx"
+        }
+      ],
+      "meta": {
+        "order": 16
+      }
+    },
+    {
+      "name": "c-button-17",
+      "type": "registry:block",
+      "title": "Secondary button with an icon on the right",
+      "categories": [
+        "button"
+      ],
+      "description": "Secondary button with an icon on the right",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-17.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-17.tsx"
+        }
+      ],
+      "meta": {
+        "order": 17
+      }
+    },
+    {
+      "name": "c-button-18",
+      "type": "registry:block",
+      "title": "Outline button with an icon on the left",
+      "categories": [
+        "button"
+      ],
+      "description": "Outline button with an icon on the left",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-18.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-18.tsx"
+        }
+      ],
+      "meta": {
+        "order": 18
+      }
+    },
+    {
+      "name": "c-button-19",
+      "type": "registry:block",
+      "title": "Outline button with an icon on the right",
+      "categories": [
+        "button"
+      ],
+      "description": "Outline button with an icon on the right",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-19.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-19.tsx"
+        }
+      ],
+      "meta": {
+        "order": 19
+      }
+    },
+    {
+      "name": "c-button-20",
+      "type": "registry:block",
+      "title": "Ghost button with an icon on the left",
+      "categories": [
+        "button"
+      ],
+      "description": "Ghost button with an icon on the left",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-20.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-20.tsx"
+        }
+      ],
+      "meta": {
+        "order": 20
+      }
+    },
+    {
+      "name": "c-button-21",
+      "type": "registry:block",
+      "title": "Ghost button with an icon on the right",
+      "categories": [
+        "button"
+      ],
+      "description": "Ghost button with an icon on the right",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-21.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-21.tsx"
+        }
+      ],
+      "meta": {
+        "order": 21
+      }
+    },
+    {
+      "name": "c-button-22",
+      "type": "registry:block",
+      "title": "Destructive button with an icon on the left",
+      "categories": [
+        "button"
+      ],
+      "description": "Destructive button with an icon on the left",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-22.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-22.tsx"
+        }
+      ],
+      "meta": {
+        "order": 22
+      }
+    },
+    {
+      "name": "c-button-23",
+      "type": "registry:block",
+      "title": "Destructive button with an icon on the right",
+      "categories": [
+        "button"
+      ],
+      "description": "Destructive button with an icon on the right",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-23.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-23.tsx"
+        }
+      ],
+      "meta": {
+        "order": 23
+      }
+    },
+    {
+      "name": "c-button-24",
+      "type": "registry:block",
+      "title": "Extra small icon button",
+      "categories": [
+        "button"
+      ],
+      "description": "Extra small icon button",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-24.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-24.tsx"
+        }
+      ],
+      "meta": {
+        "order": 24
+      }
+    },
+    {
+      "name": "c-button-25",
+      "type": "registry:block",
+      "title": "Small icon button",
+      "categories": [
+        "button"
+      ],
+      "description": "Small icon button",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-25.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-25.tsx"
+        }
+      ],
+      "meta": {
+        "order": 25
+      }
+    },
+    {
+      "name": "c-button-26",
+      "type": "registry:block",
+      "title": "Large (lg) icon-only button",
+      "categories": [
+        "button"
+      ],
+      "description": "Large (lg) icon-only button",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-26.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-26.tsx"
+        }
+      ],
+      "meta": {
+        "order": 26
+      }
+    },
+    {
+      "name": "c-button-27",
+      "type": "registry:block",
+      "title": "Button rendered as a Next.js Link",
+      "categories": [
+        "button"
+      ],
+      "description": "Button rendered as a Next.js Link",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-27.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-27.tsx"
+        }
+      ],
+      "meta": {
+        "order": 27
+      }
+    },
+    {
+      "name": "c-button-28",
+      "type": "registry:block",
+      "title": "Link button with an icon on the left",
+      "categories": [
+        "button"
+      ],
+      "description": "Link button with an icon on the left",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-28.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-28.tsx"
+        }
+      ],
+      "meta": {
+        "order": 28
+      }
+    },
+    {
+      "name": "c-button-29",
+      "type": "registry:block",
+      "title": "Link button with an icon on the right",
+      "categories": [
+        "button"
+      ],
+      "description": "Link button with an icon on the right",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-29.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-29.tsx"
+        }
+      ],
+      "meta": {
+        "order": 29
+      }
+    },
+    {
+      "name": "c-button-30",
+      "type": "registry:block",
+      "title": "Large button with an icon on the left",
+      "categories": [
+        "button"
+      ],
+      "description": "Large button with an icon on the left",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-30.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-30.tsx"
+        }
+      ],
+      "meta": {
+        "order": 30
+      }
+    },
+    {
+      "name": "c-button-31",
+      "type": "registry:block",
+      "title": "Large button with an icon on the right",
+      "categories": [
+        "button"
+      ],
+      "description": "Large button with an icon on the right",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-31.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-31.tsx"
+        }
+      ],
+      "meta": {
+        "order": 31
+      }
+    },
+    {
+      "name": "c-button-32",
+      "type": "registry:block",
+      "title": "Outline button with an invalid state",
+      "categories": [
+        "button"
+      ],
+      "description": "Outline button with an invalid state",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-32.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-32.tsx"
+        }
+      ],
+      "meta": {
+        "order": 32
+      }
+    },
+    {
+      "name": "c-button-33",
+      "type": "registry:block",
+      "title": "Ghost button with an invalid state",
+      "categories": [
+        "button"
+      ],
+      "description": "Ghost button with an invalid state",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-33.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-33.tsx"
+        }
+      ],
+      "meta": {
+        "order": 33
+      }
+    },
+    {
+      "name": "c-button-34",
+      "type": "registry:block",
+      "title": "Button with an icon on the left",
+      "categories": [
+        "button"
+      ],
+      "description": "Button with an icon on the left",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-34.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-34.tsx"
+        }
+      ],
+      "meta": {
+        "order": 34
+      }
+    },
+    {
+      "name": "c-button-35",
+      "type": "registry:block",
+      "title": "Ghost button with more/less toggle",
+      "categories": [
+        "button"
+      ],
+      "description": "Ghost button with more/less toggle",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-35.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-35.tsx"
+        }
+      ],
+      "meta": {
+        "order": 35
+      }
+    },
+    {
+      "name": "c-button-36",
+      "type": "registry:block",
+      "title": "Social login buttons with Remix Icons",
+      "categories": [
+        "button"
+      ],
+      "description": "Social login buttons with Remix Icons",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "@remixicon/react"
+      ],
+      "files": [
+        {
+          "path": "components/button/c-button-36.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-36.tsx"
+        }
+      ],
+      "meta": {
+        "order": 36
+      }
+    },
+    {
+      "name": "c-button-37",
+      "type": "registry:block",
+      "title": "Outline like button with count",
+      "categories": [
+        "button"
+      ],
+      "description": "Outline like button with count",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-37.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-37.tsx"
+        }
+      ],
+      "meta": {
+        "order": 37
+      }
+    },
+    {
+      "name": "c-button-38",
+      "type": "registry:block",
+      "title": "Star button with count",
+      "categories": [
+        "button"
+      ],
+      "description": "Star button with count",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-38.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-38.tsx"
+        }
+      ],
+      "meta": {
+        "order": 38
+      }
+    },
+    {
+      "name": "c-button-39",
+      "type": "registry:block",
+      "title": "Button with an unread badge",
+      "categories": [
+        "button"
+      ],
+      "description": "Button with an unread badge",
+      "registryDependencies": [
+        "badge",
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-39.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-39.tsx"
+        }
+      ],
+      "meta": {
+        "order": 39
+      }
+    },
+    {
+      "name": "c-button-40",
+      "type": "registry:block",
+      "title": "Button with icon, label, and shortcut keys",
+      "categories": [
+        "button"
+      ],
+      "description": "Button with icon, label, and shortcut keys",
+      "registryDependencies": [
+        "button",
+        "kbd"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-40.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-40.tsx"
+        }
+      ],
+      "meta": {
+        "order": 40
+      }
+    },
+    {
+      "name": "c-button-41",
+      "type": "registry:block",
+      "title": "Copy button with feedback",
+      "categories": [
+        "button"
+      ],
+      "description": "Copy button with feedback",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-41.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-41.tsx"
+        }
+      ],
+      "meta": {
+        "order": 41
+      }
+    },
+    {
+      "name": "c-button-42",
+      "type": "registry:block",
+      "title": "Icon-only copy button with feedback",
+      "categories": [
+        "button"
+      ],
+      "description": "Icon-only copy button with feedback",
+      "registryDependencies": [
+        "button",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-42.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-42.tsx"
+        }
+      ],
+      "meta": {
+        "order": 42
+      }
+    },
+    {
+      "name": "c-button-43",
+      "type": "registry:block",
+      "title": "Animated hamburger / close toggle button",
+      "categories": [
+        "button"
+      ],
+      "description": "Animated hamburger / close toggle button",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-43.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-43.tsx"
+        }
+      ],
+      "meta": {
+        "order": 43
+      }
+    },
+    {
+      "name": "c-button-44",
+      "type": "registry:block",
+      "title": "Async action button with loading and success states",
+      "categories": [
+        "button"
+      ],
+      "description": "Async action button with loading and success states",
+      "registryDependencies": [
+        "button",
+        "spinner"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-44.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-44.tsx"
+        }
+      ],
+      "meta": {
+        "order": 44
+      }
+    },
+    {
+      "name": "c-button-45",
+      "type": "registry:block",
+      "title": "Outline button with inline count badge",
+      "categories": [
+        "button"
+      ],
+      "description": "Outline button with inline count badge",
+      "registryDependencies": [
+        "badge",
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-45.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-45.tsx"
+        }
+      ],
+      "meta": {
+        "order": 45
+      }
+    },
+    {
+      "name": "c-button-46",
+      "type": "registry:block",
+      "title": "Button with status dot badge",
+      "categories": [
+        "button"
+      ],
+      "description": "Button with status dot badge",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-46.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-46.tsx"
+        }
+      ],
+      "meta": {
+        "order": 46
+      }
+    },
+    {
+      "name": "c-button-47",
+      "type": "registry:block",
+      "title": "Ghost button with a status badge",
+      "categories": [
+        "button"
+      ],
+      "description": "Ghost button with a status badge",
+      "registryDependencies": [
+        "badge",
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-47.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-47.tsx"
+        }
+      ],
+      "meta": {
+        "order": 47
+      }
+    },
+    {
+      "name": "c-button-48",
+      "type": "registry:block",
+      "title": "Icon button with notification badge",
+      "categories": [
+        "button"
+      ],
+      "description": "Icon button with notification badge",
+      "registryDependencies": [
+        "badge",
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-48.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-48.tsx"
+        }
+      ],
+      "meta": {
+        "order": 48
+      }
+    },
+    {
+      "name": "c-button-49",
+      "type": "registry:block",
+      "title": "Go back link button",
+      "categories": [
+        "button"
+      ],
+      "description": "Go back link button",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-49.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-49.tsx"
+        }
+      ],
+      "meta": {
+        "order": 49
+      }
+    },
+    {
+      "name": "c-button-50",
+      "type": "registry:block",
+      "title": "Go back link button with animation",
+      "categories": [
+        "button"
+      ],
+      "description": "Go back link button with animation",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-50.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-50.tsx"
+        }
+      ],
+      "meta": {
+        "order": 50
+      }
+    },
+    {
+      "name": "c-button-51",
+      "type": "registry:block",
+      "title": "Expanding button from icon to label",
+      "categories": [
+        "button"
+      ],
+      "description": "Expanding button from icon to label",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-51.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-51.tsx"
+        }
+      ],
+      "meta": {
+        "order": 51
+      }
+    },
+    {
+      "name": "c-button-52",
+      "type": "registry:block",
+      "title": "Multi-line button with icon, title & description",
+      "categories": [
+        "button"
+      ],
+      "description": "Multi-line button with icon, title & description",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-52.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-52.tsx"
+        }
+      ],
+      "meta": {
+        "order": 52
+      }
+    },
+    {
+      "name": "c-button-53",
+      "type": "registry:block",
+      "title": "Sliding Icon Button (Hover reveal)",
+      "categories": [
+        "button"
+      ],
+      "description": "Sliding Icon Button (Hover reveal)",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-53.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-53.tsx"
+        }
+      ],
+      "meta": {
+        "order": 53
+      }
+    },
+    {
+      "name": "c-button-54",
+      "type": "registry:block",
+      "title": "Shortcut Tooltip Button (Kbd hints)",
+      "categories": [
+        "button"
+      ],
+      "description": "Shortcut Tooltip Button (Kbd hints)",
+      "registryDependencies": [
+        "button",
+        "kbd",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-54.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-54.tsx"
+        }
+      ],
+      "meta": {
+        "order": 54
+      }
+    },
+    {
+      "name": "c-button-55",
+      "type": "registry:block",
+      "title": "Button with avatar",
+      "categories": [
+        "button"
+      ],
+      "description": "Button with avatar",
+      "registryDependencies": [
+        "avatar",
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-55.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-55.tsx"
+        }
+      ],
+      "meta": {
+        "order": 55
+      }
+    },
+    {
+      "name": "c-button-56",
+      "type": "registry:block",
+      "title": "Outline button with avatar",
+      "categories": [
+        "button"
+      ],
+      "description": "Outline button with avatar",
+      "registryDependencies": [
+        "avatar",
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-56.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-56.tsx"
+        }
+      ],
+      "meta": {
+        "order": 56
+      }
+    },
+    {
+      "name": "c-button-57",
+      "type": "registry:block",
+      "title": "Small button with avatar",
+      "categories": [
+        "button"
+      ],
+      "description": "Small button with avatar",
+      "registryDependencies": [
+        "avatar",
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-57.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-57.tsx"
+        }
+      ],
+      "meta": {
+        "order": 57
+      }
+    },
+    {
+      "name": "c-button-58",
+      "type": "registry:block",
+      "title": "Small outline button with avatar",
+      "categories": [
+        "button"
+      ],
+      "description": "Small outline button with avatar",
+      "registryDependencies": [
+        "avatar",
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-58.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-58.tsx"
+        }
+      ],
+      "meta": {
+        "order": 58
+      }
+    },
+    {
+      "name": "c-button-59",
+      "type": "registry:block",
+      "title": "Social login buttons with Remix icons",
+      "categories": [
+        "button"
+      ],
+      "description": "Social login buttons with Remix icons",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "@remixicon/react"
+      ],
+      "files": [
+        {
+          "path": "components/button/c-button-59.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-59.tsx"
+        }
+      ],
+      "meta": {
+        "order": 59
+      }
+    },
+    {
+      "name": "c-button-60",
+      "type": "registry:block",
+      "title": "Social icon-only buttons with Remix icons",
+      "categories": [
+        "button"
+      ],
+      "description": "Social icon-only buttons with Remix icons",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "@remixicon/react"
+      ],
+      "files": [
+        {
+          "path": "components/button/c-button-60.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-60.tsx"
+        }
+      ],
+      "meta": {
+        "order": 60
+      }
+    },
+    {
+      "name": "c-button-61",
+      "type": "registry:block",
+      "title": "Theme toggle button with animated moon and sun icons",
+      "categories": [
+        "button"
+      ],
+      "description": "Theme toggle button with animated moon and sun icons",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button/c-button-61.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-61.tsx"
+        }
+      ],
+      "meta": {
+        "order": 61
+      }
+    }
+  ]
+}

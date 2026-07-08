@@ -1,6 +1,3 @@
-// Description: Color temperature slider
-// Order: 8
-
 "use client"
 
 import { useState } from "react"

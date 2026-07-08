@@ -1,6 +1,3 @@
-// Description: Frame with medium border radius
-// Order: 14
-
 import {
   Frame,
   FrameDescription,

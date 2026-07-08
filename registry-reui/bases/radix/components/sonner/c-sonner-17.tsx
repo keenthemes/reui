@@ -1,6 +1,3 @@
-// Description: Multi-action invert toast with avatar group
-// Order: 17
-
 import { toast } from "sonner"
 
 import {
@@ -35,7 +32,7 @@ const reviewers = [
 export default function Pattern() {
   const showToast = () => {
     toast.custom(() => (
-      <div className="bg-invert text-invert-foreground style-vega:rounded-md style-nova:rounded-md style-lyra:rounded-none style-maia:rounded-3xl style-mira:rounded-md flex w-[356px] flex-col gap-3 border border-transparent p-4 shadow-lg">
+      <div className="bg-invert text-invert-foreground rounded-md flex w-[356px] flex-col gap-3 border border-transparent p-4 shadow-lg">
         <div className="flex items-center justify-between">
           <p className="text-sm font-semibold">Pull Request #284</p>
           <span className="text-invert-foreground/40 text-xs">2m ago</span>

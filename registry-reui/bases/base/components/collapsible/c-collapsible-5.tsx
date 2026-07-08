@@ -1,6 +1,3 @@
-// Description: Collapsible form fields
-// Order: 5
-
 "use client"
 
 import { useState } from "react"

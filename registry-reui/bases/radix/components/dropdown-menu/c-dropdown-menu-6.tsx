@@ -1,6 +1,3 @@
-// Description: Dropdown menu with checkboxes
-// Order: 6
-
 "use client"
 
 import { useState } from "react"

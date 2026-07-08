@@ -1,6 +1,3 @@
-// Description: Range input with value indicator
-// Order: 29
-
 "use client"
 
 import { useState } from "react"

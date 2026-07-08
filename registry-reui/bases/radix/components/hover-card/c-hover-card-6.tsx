@@ -1,6 +1,3 @@
-// Description: Hover card inside a dialog.
-// Order: 6
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   Dialog,

@@ -1,6 +1,3 @@
-// Description: Breadcrumb items containing badge with count
-// Order: 11
-
 import { Badge } from "@/registry-reui/bases/base/reui/badge"
 
 import {

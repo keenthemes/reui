@@ -1,6 +1,3 @@
-// Description: Basic input group
-// Order: 1
-
 import { Field } from "@/registry/bases/base/ui/field"
 import {
   InputGroup,

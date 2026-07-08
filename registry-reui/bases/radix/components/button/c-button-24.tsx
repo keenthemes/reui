@@ -1,6 +1,3 @@
-// Description: Extra small icon button
-// Order: 24
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 

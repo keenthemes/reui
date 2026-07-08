@@ -1,0 +1,50 @@
+[
+  {
+    "name": "c-hover-card-1",
+    "title": "Basic hover card.",
+    "description": "Basic hover card.",
+    "order": 1
+  },
+  {
+    "name": "c-hover-card-2",
+    "title": "Hover card with positions.",
+    "description": "Hover card with positions.",
+    "order": 2
+  },
+  {
+    "name": "c-hover-card-3",
+    "title": "Hover card with profile information.",
+    "description": "Hover card with profile information.",
+    "order": 3
+  },
+  {
+    "name": "c-hover-card-4",
+    "title": "Hover card with icon",
+    "description": "Hover card with icon",
+    "order": 4
+  },
+  {
+    "name": "c-hover-card-5",
+    "title": "Hover card with an image and text content.",
+    "description": "Hover card with an image and text content.",
+    "order": 5
+  },
+  {
+    "name": "c-hover-card-6",
+    "title": "Hover card inside a dialog.",
+    "description": "Hover card inside a dialog.",
+    "order": 6
+  },
+  {
+    "name": "c-hover-card-7",
+    "title": "Timestamp hover card with active relative time",
+    "description": "Timestamp hover card with active relative time",
+    "order": 7
+  },
+  {
+    "name": "c-hover-card-8",
+    "title": "Hover card with paginated release notes",
+    "description": "Hover card with paginated release notes",
+    "order": 8
+  }
+]

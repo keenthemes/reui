@@ -1,6 +1,3 @@
-// Description: Disabled native select.
-// Order: 5
-
 import {
   NativeSelect,
   NativeSelectOption,

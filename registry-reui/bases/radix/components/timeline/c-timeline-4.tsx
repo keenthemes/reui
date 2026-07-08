@@ -1,7 +1,3 @@
-// Description: Timeline with git activity.
-// Order: 4
-// GridSize: 1
-
 import {
   Timeline,
   TimelineContent,

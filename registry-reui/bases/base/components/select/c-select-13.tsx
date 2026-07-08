@@ -1,6 +1,3 @@
-// Description: Select component inline with Input
-// Order: 13
-
 import { Input } from "@/registry/bases/base/ui/input"
 import {
   Select,

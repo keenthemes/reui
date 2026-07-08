@@ -1,7 +1,3 @@
-// Description: Card file upload.
-// Order: 9
-// GridSize: 1
-
 "use client"
 
 import { useEffect, useState } from "react"
@@ -295,7 +291,7 @@ export default function Pattern({
       {/* Upload Area */}
       <div
         className={cn(
-          "style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-lg style-mira:rounded-lg relative border border-dashed p-6 text-center transition-colors",
+          "rounded-lg relative border border-dashed p-6 text-center transition-colors",
           isDragging
             ? "border-primary bg-primary/5"
             : "border-muted-foreground/25 hover:border-muted-foreground/50"
@@ -397,7 +393,7 @@ export default function Pattern({
                 </Button>
 
                 {/* Wrapper */}
-                <div className="bg-card style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-lg style-mira:rounded-lg relative overflow-hidden border transition-colors">
+                <div className="bg-card rounded-lg relative overflow-hidden border transition-colors">
                   {/* Image preview or file icon area */}
                   <div className="bg-muted border-border relative aspect-square border-b">
                     {fileItem.file.type.startsWith("image/") &&

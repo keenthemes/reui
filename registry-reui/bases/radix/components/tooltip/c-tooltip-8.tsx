@@ -1,6 +1,3 @@
-// Description: Toolbar with tooltip actions
-// Order: 8
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import { Separator } from "@/registry/bases/radix/ui/separator"
 import {

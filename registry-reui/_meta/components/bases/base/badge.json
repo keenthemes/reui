@@ -1,0 +1,582 @@
+{
+  "items": [
+    {
+      "name": "c-badge-1",
+      "type": "registry:block",
+      "title": "Default badge",
+      "categories": [
+        "badge"
+      ],
+      "description": "Default badge",
+      "registryDependencies": [
+        "badge"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/badge/c-badge-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-badge-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-badge-2",
+      "type": "registry:block",
+      "title": "Secondary badge",
+      "categories": [
+        "badge"
+      ],
+      "description": "Secondary badge",
+      "registryDependencies": [
+        "badge"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/badge/c-badge-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-badge-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-badge-3",
+      "type": "registry:block",
+      "title": "Destructive badge",
+      "categories": [
+        "badge"
+      ],
+      "description": "Destructive badge",
+      "registryDependencies": [
+        "badge"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/badge/c-badge-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-badge-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-badge-4",
+      "type": "registry:block",
+      "title": "Success badge",
+      "categories": [
+        "badge"
+      ],
+      "description": "Success badge",
+      "registryDependencies": [
+        "badge"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/badge/c-badge-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-badge-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-badge-5",
+      "type": "registry:block",
+      "title": "Info badge",
+      "categories": [
+        "badge"
+      ],
+      "description": "Info badge",
+      "registryDependencies": [
+        "badge"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/badge/c-badge-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-badge-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-badge-6",
+      "type": "registry:block",
+      "title": "Warning badge",
+      "categories": [
+        "badge"
+      ],
+      "description": "Warning badge",
+      "registryDependencies": [
+        "badge"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/badge/c-badge-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-badge-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-badge-7",
+      "type": "registry:block",
+      "title": "Outline badge",
+      "categories": [
+        "badge"
+      ],
+      "description": "Outline badge",
+      "registryDependencies": [
+        "badge"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/badge/c-badge-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-badge-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-badge-8",
+      "type": "registry:block",
+      "title": "Primary outline badge",
+      "categories": [
+        "badge"
+      ],
+      "description": "Primary outline badge",
+      "registryDependencies": [
+        "badge"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/badge/c-badge-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-badge-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-badge-9",
+      "type": "registry:block",
+      "title": "Destructive outline badge",
+      "categories": [
+        "badge"
+      ],
+      "description": "Destructive outline badge",
+      "registryDependencies": [
+        "badge"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/badge/c-badge-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-badge-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-badge-10",
+      "type": "registry:block",
+      "title": "Info outline badge",
+      "categories": [
+        "badge"
+      ],
+      "description": "Info outline badge",
+      "registryDependencies": [
+        "badge"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/badge/c-badge-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-badge-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-badge-11",
+      "type": "registry:block",
+      "title": "Success outline badge",
+      "categories": [
+        "badge"
+      ],
+      "description": "Success outline badge",
+      "registryDependencies": [
+        "badge"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/badge/c-badge-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-badge-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    },
+    {
+      "name": "c-badge-12",
+      "type": "registry:block",
+      "title": "Warning outline badge",
+      "categories": [
+        "badge"
+      ],
+      "description": "Warning outline badge",
+      "registryDependencies": [
+        "badge"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/badge/c-badge-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-badge-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12
+      }
+    },
+    {
+      "name": "c-badge-13",
+      "type": "registry:block",
+      "title": "Primary light badge",
+      "categories": [
+        "badge"
+      ],
+      "description": "Primary light badge",
+      "registryDependencies": [
+        "badge"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/badge/c-badge-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-badge-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13
+      }
+    },
+    {
+      "name": "c-badge-14",
+      "type": "registry:block",
+      "title": "Destructive light badge",
+      "categories": [
+        "badge"
+      ],
+      "description": "Destructive light badge",
+      "registryDependencies": [
+        "badge"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/badge/c-badge-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-badge-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14
+      }
+    },
+    {
+      "name": "c-badge-15",
+      "type": "registry:block",
+      "title": "Success light badge",
+      "categories": [
+        "badge"
+      ],
+      "description": "Success light badge",
+      "registryDependencies": [
+        "badge"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/badge/c-badge-15.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-badge-15.tsx"
+        }
+      ],
+      "meta": {
+        "order": 15
+      }
+    },
+    {
+      "name": "c-badge-16",
+      "type": "registry:block",
+      "title": "Info light badge",
+      "categories": [
+        "badge"
+      ],
+      "description": "Info light badge",
+      "registryDependencies": [
+        "badge"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/badge/c-badge-16.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-badge-16.tsx"
+        }
+      ],
+      "meta": {
+        "order": 16
+      }
+    },
+    {
+      "name": "c-badge-17",
+      "type": "registry:block",
+      "title": "Warning light badge",
+      "categories": [
+        "badge"
+      ],
+      "description": "Warning light badge",
+      "registryDependencies": [
+        "badge"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/badge/c-badge-17.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-badge-17.tsx"
+        }
+      ],
+      "meta": {
+        "order": 17
+      }
+    },
+    {
+      "name": "c-badge-18",
+      "type": "registry:block",
+      "title": "Badge size variations",
+      "categories": [
+        "badge"
+      ],
+      "description": "Badge size variations",
+      "registryDependencies": [
+        "badge"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/badge/c-badge-18.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-badge-18.tsx"
+        }
+      ],
+      "meta": {
+        "order": 18
+      }
+    },
+    {
+      "name": "c-badge-19",
+      "type": "registry:block",
+      "title": "Badge with full radius (radius=\"full\")",
+      "categories": [
+        "badge"
+      ],
+      "description": "Badge with full radius (radius=\"full\")",
+      "registryDependencies": [
+        "badge"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/badge/c-badge-19.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-badge-19.tsx"
+        }
+      ],
+      "meta": {
+        "order": 19
+      }
+    },
+    {
+      "name": "c-badge-20",
+      "type": "registry:block",
+      "title": "Badge with an icon",
+      "categories": [
+        "badge"
+      ],
+      "description": "Badge with an icon",
+      "registryDependencies": [
+        "badge"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/badge/c-badge-20.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-badge-20.tsx"
+        }
+      ],
+      "meta": {
+        "order": 20
+      }
+    },
+    {
+      "name": "c-badge-21",
+      "type": "registry:block",
+      "title": "Badge with a dismiss button",
+      "categories": [
+        "badge"
+      ],
+      "description": "Badge with a dismiss button",
+      "registryDependencies": [
+        "badge",
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/badge/c-badge-21.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-badge-21.tsx"
+        }
+      ],
+      "meta": {
+        "order": 21
+      }
+    },
+    {
+      "name": "c-badge-22",
+      "type": "registry:block",
+      "title": "Badge with a status dot",
+      "categories": [
+        "badge"
+      ],
+      "description": "Badge with a status dot",
+      "registryDependencies": [
+        "badge"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/badge/c-badge-22.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-badge-22.tsx"
+        }
+      ],
+      "meta": {
+        "order": 22
+      }
+    },
+    {
+      "name": "c-badge-23",
+      "type": "registry:block",
+      "title": "Badge rendered as a link",
+      "categories": [
+        "badge"
+      ],
+      "description": "Badge rendered as a link",
+      "registryDependencies": [
+        "badge"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/badge/c-badge-23.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-badge-23.tsx"
+        }
+      ],
+      "meta": {
+        "order": 23
+      }
+    },
+    {
+      "name": "c-badge-24",
+      "type": "registry:block",
+      "title": "Badge with avatar",
+      "categories": [
+        "badge"
+      ],
+      "description": "Badge with avatar",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/badge/c-badge-24.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-badge-24.tsx"
+        }
+      ],
+      "meta": {
+        "order": 24
+      }
+    },
+    {
+      "name": "c-badge-25",
+      "type": "registry:block",
+      "title": "Badge with flag image",
+      "categories": [
+        "badge"
+      ],
+      "description": "Badge with flag image",
+      "registryDependencies": [
+        "badge"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/badge/c-badge-25.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-badge-25.tsx"
+        }
+      ],
+      "meta": {
+        "order": 25
+      }
+    }
+  ]
+}

@@ -1,6 +1,3 @@
-// Description: Small native select.
-// Order: 3
-
 import {
   NativeSelect,
   NativeSelectOption,

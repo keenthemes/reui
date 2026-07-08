@@ -1,6 +1,3 @@
-// Description: Input group wrapped in a button group with text prefixes/suffixes
-// Order: 27
-
 import {
   ButtonGroup,
   ButtonGroupText,

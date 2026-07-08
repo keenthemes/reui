@@ -1,6 +1,3 @@
-// Description: User profile dropdown menu with theme toggle and status selector
-// Order: 14
-
 "use client"
 
 import { useState } from "react"
@@ -161,7 +158,7 @@ export default function Pattern() {
               <span className="flex items-center gap-2">
                 <span
                   className={cn(
-                    "style-vega:rounded-full style-nova:rounded-full style-lyra:rounded-full style-maia:rounded-full style-mira:rounded-full mx-1.25 size-2",
+                    "rounded-full mx-1.25 size-2",
                     activeStatus.color
                   )}
                 />

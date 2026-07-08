@@ -1,6 +1,3 @@
-// Description: Progress bar with custom colors.
-// Order: 8
-
 "use client"
 
 import { useEffect, useState } from "react"

@@ -1,6 +1,3 @@
-// Description: Timezone select with UTC offsets
-// Order: 28
-
 import { Field } from "@/registry/bases/base/ui/field"
 import {
   Select,

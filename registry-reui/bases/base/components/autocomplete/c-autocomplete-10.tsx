@@ -1,6 +1,3 @@
-// Description: Small autocomplete
-// Order: 10
-
 import {
   Autocomplete,
   AutocompleteContent,

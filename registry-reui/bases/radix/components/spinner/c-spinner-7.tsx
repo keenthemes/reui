@@ -1,6 +1,3 @@
-// Description: Overlay loading spinner
-// Order: 7
-
 import {
   Card,
   CardContent,

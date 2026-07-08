@@ -1,6 +1,3 @@
-// Description: Size variant select with small trigger
-// Order: 33
-
 import { Field } from "@/registry/bases/radix/ui/field"
 import {
   Select,

@@ -1,6 +1,3 @@
-// Description: Field with OTP input
-// Order: 6
-
 import {
   Field,
   FieldDescription,

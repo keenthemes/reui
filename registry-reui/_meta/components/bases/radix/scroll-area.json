@@ -1,0 +1,119 @@
+{
+  "items": [
+    {
+      "name": "c-scroll-area-1",
+      "type": "registry:block",
+      "title": "Basic scroll area",
+      "categories": [
+        "scroll-area"
+      ],
+      "description": "Basic scroll area",
+      "registryDependencies": [
+        "scroll-area"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/scroll-area/c-scroll-area-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-scroll-area-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-scroll-area-2",
+      "type": "registry:block",
+      "title": "Scroll area with horizontal scrollbar",
+      "categories": [
+        "scroll-area"
+      ],
+      "description": "Scroll area with horizontal scrollbar",
+      "registryDependencies": [
+        "scroll-area"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/scroll-area/c-scroll-area-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-scroll-area-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-scroll-area-3",
+      "type": "registry:block",
+      "title": "Scroll area with both scrollbars",
+      "categories": [
+        "scroll-area"
+      ],
+      "description": "Scroll area with both scrollbars",
+      "registryDependencies": [
+        "scroll-area"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/scroll-area/c-scroll-area-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-scroll-area-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-scroll-area-4",
+      "type": "registry:block",
+      "title": "Scroll area with fade effect",
+      "categories": [
+        "scroll-area"
+      ],
+      "description": "Scroll area with fade effect",
+      "registryDependencies": [
+        "scroll-area"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/scroll-area/c-scroll-area-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-scroll-area-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-scroll-area-5",
+      "type": "registry:block",
+      "title": "Scroll area with scrollbar gutter",
+      "categories": [
+        "scroll-area"
+      ],
+      "description": "Scroll area with scrollbar gutter",
+      "registryDependencies": [
+        "scroll-area"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/scroll-area/c-scroll-area-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-scroll-area-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    }
+  ]
+}

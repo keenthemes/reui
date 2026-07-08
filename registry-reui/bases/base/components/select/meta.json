@@ -1,0 +1,200 @@
+[
+  {
+    "name": "c-select-1",
+    "title": "A basic select component with a list of options",
+    "description": "A basic select component with a list of options",
+    "order": 1
+  },
+  {
+    "name": "c-select-2",
+    "title": "Select with icons and placeholder state",
+    "description": "Select with icons and placeholder state",
+    "order": 2
+  },
+  {
+    "name": "c-select-3",
+    "title": "Select component with grouped options and labels",
+    "description": "Select component with grouped options and labels",
+    "order": 3
+  },
+  {
+    "name": "c-select-4",
+    "title": "Select component with a large list of options",
+    "description": "Select component with a large list of options",
+    "order": 4
+  },
+  {
+    "name": "c-select-5",
+    "title": "Select component with small trigger size",
+    "description": "Select component with small trigger size",
+    "order": 5
+  },
+  {
+    "name": "c-select-6",
+    "title": "Select component with a subscription plan style",
+    "description": "Select component with a subscription plan style",
+    "order": 6
+  },
+  {
+    "name": "c-select-7",
+    "title": "Select component with item alignment disabled",
+    "description": "Select component with item alignment disabled",
+    "order": 7
+  },
+  {
+    "name": "c-select-8",
+    "title": "Select component within a Field with label and description",
+    "description": "Select component within a Field with label and description",
+    "order": 8
+  },
+  {
+    "name": "c-select-9",
+    "title": "Select component in an invalid state",
+    "description": "Select component in an invalid state",
+    "order": 9
+  },
+  {
+    "name": "c-select-10",
+    "title": "Select component in a disabled state",
+    "description": "Select component in a disabled state",
+    "order": 10
+  },
+  {
+    "name": "c-select-11",
+    "title": "Select component inside a Dialog",
+    "description": "Select component inside a Dialog",
+    "order": 11
+  },
+  {
+    "name": "c-select-12",
+    "title": "Select component with multiple selection",
+    "description": "Select component with multiple selection",
+    "order": 12
+  },
+  {
+    "name": "c-select-13",
+    "title": "Select component inline with Input",
+    "description": "Select component inline with Input",
+    "order": 13
+  },
+  {
+    "name": "c-select-14",
+    "title": "Select component with Button side by side",
+    "description": "Select component with Button side by side",
+    "order": 14
+  },
+  {
+    "name": "c-select-15",
+    "title": "Select component with item alignment enabled",
+    "description": "Select component with item alignment enabled",
+    "order": 15
+  },
+  {
+    "name": "c-select-16",
+    "title": "Select with custom access level descriptions",
+    "description": "Select with custom access level descriptions",
+    "order": 16
+  },
+  {
+    "name": "c-select-17",
+    "title": "Select with colored bullets for status",
+    "description": "Select with colored bullets for status",
+    "order": 17
+  },
+  {
+    "name": "c-select-18",
+    "title": "Select with user avatars",
+    "description": "Select with user avatars",
+    "order": 18
+  },
+  {
+    "name": "c-select-19",
+    "title": "Select with status badges",
+    "description": "Select with status badges",
+    "order": 19
+  },
+  {
+    "name": "c-select-20",
+    "title": "Select with indicator on the left side",
+    "description": "Select with indicator on the left side",
+    "order": 20
+  },
+  {
+    "name": "c-select-21",
+    "title": "Select with clear button",
+    "description": "Select with clear button",
+    "order": 21
+  },
+  {
+    "name": "c-select-22",
+    "title": "Select with custom chevrons up down icon",
+    "description": "Select with custom chevrons up down icon",
+    "order": 22
+  },
+  {
+    "name": "c-select-23",
+    "title": "Multi-select with overlapping dots",
+    "description": "Multi-select with overlapping dots",
+    "order": 23
+  },
+  {
+    "name": "c-select-24",
+    "title": "Select with grouped options and separators",
+    "description": "Select with grouped options and separators",
+    "order": 24
+  },
+  {
+    "name": "c-select-25",
+    "title": "Country picker select with flag emojis",
+    "description": "Country picker select with flag emojis",
+    "order": 25
+  },
+  {
+    "name": "c-select-26",
+    "title": "Status filter select with colored dots",
+    "description": "Status filter select with colored dots",
+    "order": 26
+  },
+  {
+    "name": "c-select-27",
+    "title": "Select with description text per option",
+    "description": "Select with description text per option",
+    "order": 27
+  },
+  {
+    "name": "c-select-28",
+    "title": "Timezone select with UTC offsets",
+    "description": "Timezone select with UTC offsets",
+    "order": 28
+  },
+  {
+    "name": "c-select-29",
+    "title": "Select with avatar items for team member assignment",
+    "description": "Select with avatar items for team member assignment",
+    "order": 29
+  },
+  {
+    "name": "c-select-30",
+    "title": "Priority select with colored badges",
+    "description": "Priority select with colored badges",
+    "order": 30
+  },
+  {
+    "name": "c-select-31",
+    "title": "Font family select with preview",
+    "description": "Font family select with preview",
+    "order": 31
+  },
+  {
+    "name": "c-select-32",
+    "title": "Select with icon-labeled categories",
+    "description": "Select with icon-labeled categories",
+    "order": 32
+  },
+  {
+    "name": "c-select-33",
+    "title": "Size variant select with small trigger",
+    "description": "Size variant select with small trigger",
+    "order": 33
+  }
+]

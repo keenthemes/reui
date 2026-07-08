@@ -1,6 +1,3 @@
-// Description: Service status summary stacked within a frame
-// Order: 17
-
 import {
   Alert,
   AlertAction,

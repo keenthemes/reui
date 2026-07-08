@@ -1,6 +1,3 @@
-// Description: Frame with small spacing
-// Order: 10
-
 import {
   Frame,
   FrameDescription,

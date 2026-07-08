@@ -1,6 +1,3 @@
-// Description: Gradient area chart with stripe overlay
-// Order: 13
-
 "use client"
 
 import { CSSProperties } from "react"

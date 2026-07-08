@@ -1,6 +1,3 @@
-// Description: AI Chat interface with file and context attachments
-// Order: 19
-
 "use client"
 
 import { useState } from "react"

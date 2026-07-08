@@ -3,17 +3,17 @@
 import * as React from "react"
 
 import {
+  getRegistryBaseName,
   getSelectedRegistryStyleName,
-  resolveRegistryIconLibrary,
+  resolveRegistryOptions,
 } from "@/lib/docs-registry-options"
-import { getRegistryComponent } from "@/lib/registry"
 import { useConfig } from "@/hooks/use-config"
-import { ComponentClient } from "@/components/component-client"
 import { ComponentPreviewTabs } from "@/components/component-preview-tabs"
 import {
   ComponentSourceClient,
   type ComponentSourceClientProps,
 } from "@/components/component-source-client"
+import { DocsComponentLivePreview } from "@/components/docs-component-live-preview"
 import type { IconLibraryName } from "@/registry/config"
 
 type DocsComponentPreviewProps = React.ComponentProps<"div"> & {
@@ -48,13 +48,21 @@ function useResolvedRegistryOptions(
     [config.base, config.style, hasStoredConfig, initialStyleName]
   )
 
-  const resolvedIconLibrary = React.useMemo(
-    () =>
-      hasStoredConfig
-        ? resolveRegistryIconLibrary(config.iconLibrary, resolvedStyleName)
-        : initialIconLibrary,
-    [config.iconLibrary, hasStoredConfig, initialIconLibrary, resolvedStyleName]
-  )
+  const resolvedIconLibrary = React.useMemo(() => {
+    if (!hasStoredConfig) {
+      return initialIconLibrary
+    }
+
+    return resolveRegistryOptions({
+      styleName: resolvedStyleName,
+      iconLibrary: config.iconLibrary,
+    }).iconLibrary
+  }, [
+    config.iconLibrary,
+    hasStoredConfig,
+    initialIconLibrary,
+    resolvedStyleName,
+  ])
 
   return { resolvedStyleName, resolvedIconLibrary }
 }
@@ -96,6 +104,7 @@ export function DocsComponentSourceSwitch({
 
 export function DocsComponentPreviewSwitch({
   children,
+  initialCategory,
   initialStyleName,
   initialIconLibrary,
   name,
@@ -112,6 +121,7 @@ export function DocsComponentPreviewSwitch({
   ...props
 }: DocsComponentPreviewProps & {
   children: React.ReactNode
+  initialCategory?: string
   initialStyleName: string
   initialIconLibrary: IconLibraryName
 }) {
@@ -125,11 +135,6 @@ export function DocsComponentPreviewSwitch({
     initialIconLibrary
   )
 
-  const Component = React.useMemo(
-    () => getRegistryComponent(name, resolvedStyleName),
-    [name, resolvedStyleName]
-  )
-
   if (
     resolvedStyleName === initialStyleName &&
     resolvedIconLibrary === initialIconLibrary
@@ -137,11 +142,11 @@ export function DocsComponentPreviewSwitch({
     return <>{children}</>
   }
 
-  if (!Component) {
+  if (!initialCategory) {
     return (
       <p className="text-site-muted-foreground mt-6 text-sm">
         Component{" "}
-        <code className="bg-site-muted site-rounded-sm relative px-[0.3rem] py-[0.2rem] font-mono text-sm">
+        <code className="bg-site-muted site-rounded-sm font-site-mono relative px-[0.3rem] py-[0.2rem] text-sm">
           {name}
         </code>{" "}
         not found in registry.
@@ -155,7 +160,13 @@ export function DocsComponentPreviewSwitch({
       previewClassName={previewClassName}
       align={align}
       hideCode={hideCode}
-      component={<ComponentClient name={name} styleName={resolvedStyleName} />}
+      component={
+        <DocsComponentLivePreview
+          name={name}
+          base={getRegistryBaseName(resolvedStyleName)}
+          category={initialCategory}
+        />
+      }
       source={
         <ComponentSourceClient
           name={name}
@@ -164,17 +175,6 @@ export function DocsComponentPreviewSwitch({
           iconLibrary={resolvedIconLibrary}
           code={code}
           showCopyButton
-        />
-      }
-      sourcePreview={
-        <ComponentSourceClient
-          name={name}
-          collapsible={false}
-          styleName={resolvedStyleName}
-          iconLibrary={resolvedIconLibrary}
-          maxLines={3}
-          code={code}
-          showCopyButton={false}
         />
       }
       chromeLessOnMobile={chromeLessOnMobile}

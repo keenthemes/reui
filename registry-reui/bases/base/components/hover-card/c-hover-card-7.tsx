@@ -1,6 +1,3 @@
-// Description: Timestamp hover card with active relative time
-// Order: 7
-
 "use client"
 
 import { useEffect, useState } from "react"

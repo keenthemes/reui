@@ -1,6 +1,3 @@
-// Description: Radar chart with gradient fill
-// Order: 23
-
 "use client"
 
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts"

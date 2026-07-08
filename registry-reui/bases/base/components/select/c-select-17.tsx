@@ -1,6 +1,3 @@
-// Description: Select with colored bullets for status
-// Order: 17
-
 import { cn } from "@/lib/utils"
 import { Field } from "@/registry/bases/base/ui/field"
 import {

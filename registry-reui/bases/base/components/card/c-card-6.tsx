@@ -1,6 +1,3 @@
-// Description: Card with dropdown menu
-// Order: 6
-
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
   DropdownMenu,

@@ -1,6 +1,3 @@
-// Description: Button group buttons with separators
-// Order: 23
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   ButtonGroup,

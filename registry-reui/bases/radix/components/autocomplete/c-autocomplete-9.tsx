@@ -1,6 +1,3 @@
-// Description: With search results
-// Order: 9
-
 "use client"
 
 import { ReactNode, useEffect, useState } from "react"

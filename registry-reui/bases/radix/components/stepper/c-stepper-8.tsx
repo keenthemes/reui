@@ -1,7 +1,3 @@
-// Description: Stepper with descriptions
-// Order: 8
-// GridSize: 1
-
 "use client"
 
 import {

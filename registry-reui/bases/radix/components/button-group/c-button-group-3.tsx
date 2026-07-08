@@ -1,6 +1,3 @@
-// Description: Button group with buttons and badge
-// Order: 3
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import { Button } from "@/registry/bases/radix/ui/button"

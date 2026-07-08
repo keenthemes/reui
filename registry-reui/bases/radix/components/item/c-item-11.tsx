@@ -1,6 +1,3 @@
-// Description: Integration items with connect actions
-// Order: 11
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import { Button } from "@/registry/bases/radix/ui/button"
@@ -11,7 +8,6 @@ import {
   ItemDescription,
   ItemGroup,
   ItemMedia,
-  ItemSeparator,
   ItemTitle,
 } from "@/registry/bases/radix/ui/item"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
@@ -23,17 +19,17 @@ export default function Pattern() {
         <Item variant="outline" size="xs">
           <ItemMedia variant="icon">
             <IconPlaceholder
-              lucide="GitBranchIcon"
-              tabler="IconGitBranch"
-              hugeicons="GitBranchIcon"
-              phosphor="GitBranchIcon"
-              remixicon="RiGitBranchLine"
+              lucide="DatabaseIcon"
+              tabler="IconDatabase"
+              hugeicons="DatabaseIcon"
+              phosphor="DatabaseIcon"
+              remixicon="RiDatabase2Line"
             />
           </ItemMedia>
           <ItemContent>
-            <ItemTitle>GitHub</ItemTitle>
+            <ItemTitle>Database</ItemTitle>
             <ItemDescription>
-              Connect repositories and sync code
+              Sync records from your data warehouse
             </ItemDescription>
           </ItemContent>
           <ItemActions>
@@ -45,17 +41,17 @@ export default function Pattern() {
         <Item variant="outline" size="xs">
           <ItemMedia variant="icon">
             <IconPlaceholder
-              lucide="FigmaIcon"
-              tabler="IconBrandFigma"
-              hugeicons="FigmaIcon"
-              phosphor="FigmaLogoIcon"
-              remixicon="RiFigmaLine"
+              lucide="WebhookIcon"
+              tabler="IconWebhook"
+              hugeicons="WebhookIcon"
+              phosphor="WebhooksLogoIcon"
+              remixicon="RiWebhookLine"
             />
           </ItemMedia>
           <ItemContent>
-            <ItemTitle>Figma</ItemTitle>
+            <ItemTitle>Webhooks</ItemTitle>
             <ItemDescription>
-              Import designs and sync components
+              Push realtime events to your endpoints
             </ItemDescription>
           </ItemContent>
           <ItemActions>
@@ -67,16 +63,18 @@ export default function Pattern() {
         <Item variant="outline" size="xs">
           <ItemMedia variant="icon">
             <IconPlaceholder
-              lucide="SlackIcon"
-              tabler="IconBrandSlack"
-              hugeicons="SlackIcon"
-              phosphor="SlackLogoIcon"
-              remixicon="RiSlackLine"
+              lucide="CodeIcon"
+              tabler="IconCode"
+              hugeicons="CodeIcon"
+              phosphor="CodeIcon"
+              remixicon="RiCodeLine"
             />
           </ItemMedia>
           <ItemContent>
-            <ItemTitle>Slack</ItemTitle>
-            <ItemDescription>Send notifications to channels</ItemDescription>
+            <ItemTitle>API access</ItemTitle>
+            <ItemDescription>
+              Build custom integrations with the REST API
+            </ItemDescription>
           </ItemContent>
           <ItemActions>
             <Button variant="outline" size="sm">

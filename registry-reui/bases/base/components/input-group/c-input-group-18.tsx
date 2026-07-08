@@ -1,6 +1,3 @@
-// Description: AI Chat textarea with rich toolbar actions
-// Order: 18
-
 "use client"
 
 import { useState } from "react"

@@ -1,6 +1,3 @@
-// Description: Account deactivation confirmation
-// Order: 8
-
 import {
   AlertDialog,
   AlertDialogAction,
@@ -22,7 +19,7 @@ export default function Pattern() {
       />
       <AlertDialogContent>
         <div className="flex items-start gap-3 py-1">
-          <div className="bg-destructive/10 dark:bg-destructive/10 style-vega:rounded-full style-nova:rounded-full style-lyra:rounded-none style-maia:rounded-full style-mira:rounded-full flex size-10 shrink-0 items-center justify-center">
+          <div className="bg-destructive/10 dark:bg-destructive/10 rounded-full flex size-10 shrink-0 items-center justify-center">
             <IconPlaceholder
               lucide="CircleAlertIcon"
               tabler="IconAlertCircle"

@@ -1,6 +1,3 @@
-// Description: Table with interactive elements.
-// Order: 5
-
 import { Card, CardContent } from "@/registry/bases/radix/ui/card"
 import { Input } from "@/registry/bases/radix/ui/input"
 import {

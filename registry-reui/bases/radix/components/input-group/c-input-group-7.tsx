@@ -1,6 +1,3 @@
-// Description: Input group with prefix text addon
-// Order: 7
-
 import { Field } from "@/registry/bases/radix/ui/field"
 import {
   InputGroup,

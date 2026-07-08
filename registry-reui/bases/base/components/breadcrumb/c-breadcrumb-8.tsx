@@ -1,6 +1,3 @@
-// Description: Breadcrumb with double chevron separators
-// Order: 8
-
 import {
   Breadcrumb,
   BreadcrumbItem,

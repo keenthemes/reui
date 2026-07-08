@@ -1,7 +1,3 @@
-// Description: Tabs with vertical orientation.
-// Order: 3
-// GridSize: 1
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   Card,

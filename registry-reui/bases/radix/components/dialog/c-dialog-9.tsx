@@ -1,6 +1,3 @@
-// Description: Dialog with keyboard shortcuts list
-// Order: 9
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   Dialog,

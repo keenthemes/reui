@@ -1,8 +1,3 @@
-// Description: Navigation menu with grid layout and learn more button.
-// Order: 4
-
-import Link from "next/link"
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   NavigationMenu,
@@ -145,7 +140,7 @@ export default function Pattern() {
                         asChild
                         className="flex items-start gap-2 p-3"
                       >
-                        <Link href="#">
+                        <a href="#">
                           {item.icon}
                           <div className="flex flex-col gap-0.5">
                             <div className="text-sm leading-none font-medium">
@@ -155,14 +150,14 @@ export default function Pattern() {
                               {item.description}
                             </p>
                           </div>
-                        </Link>
+                        </a>
                       </NavigationMenuLink>
                     </li>
                   ))}
                 </ul>
                 <div className="mt-2 px-1 pb-1">
                   <Button className="w-full" asChild>
-                    <Link href="#">Learn more</Link>
+                    <a href="#">Learn more</a>
                   </Button>
                 </div>
               </div>

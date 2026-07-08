@@ -1,6 +1,3 @@
-// Description: Vertical separator for inline elements.
-// Order: 2
-
 import { Separator } from "@/registry/bases/radix/ui/separator"
 
 export default function Pattern() {

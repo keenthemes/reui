@@ -1,6 +1,3 @@
-// Description: Invert alert
-// Order: 9
-
 import {
   Alert,
   AlertDescription,

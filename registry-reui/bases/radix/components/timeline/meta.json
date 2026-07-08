@@ -1,0 +1,86 @@
+[
+  {
+    "name": "c-timeline-1",
+    "title": "Basic timeline.",
+    "description": "Basic timeline.",
+    "order": 1,
+    "gridSize": 1
+  },
+  {
+    "name": "c-timeline-2",
+    "title": "Timeline with roadmap.",
+    "description": "Timeline with roadmap.",
+    "order": 2,
+    "gridSize": 1
+  },
+  {
+    "name": "c-timeline-3",
+    "title": "Timeline with order status.",
+    "description": "Timeline with order status.",
+    "order": 3,
+    "gridSize": 1
+  },
+  {
+    "name": "c-timeline-4",
+    "title": "Timeline with git activity.",
+    "description": "Timeline with git activity.",
+    "order": 4,
+    "gridSize": 1
+  },
+  {
+    "name": "c-timeline-5",
+    "title": "Timeline with milestones.",
+    "description": "Timeline with milestones.",
+    "order": 5,
+    "gridSize": 1
+  },
+  {
+    "name": "c-timeline-6",
+    "title": "Timeline with pipeline steps.",
+    "description": "Timeline with pipeline steps.",
+    "order": 6,
+    "gridSize": 1
+  },
+  {
+    "name": "c-timeline-7",
+    "title": "Timeline with roadmap items.",
+    "description": "Timeline with roadmap items.",
+    "order": 7,
+    "gridSize": 1
+  },
+  {
+    "name": "c-timeline-8",
+    "title": "Vertical timeline",
+    "description": "Vertical timeline",
+    "order": 8,
+    "gridSize": 1
+  },
+  {
+    "name": "c-timeline-9",
+    "title": "Horizontal timeline with leading labels",
+    "description": "Horizontal timeline with leading labels",
+    "order": 9,
+    "gridSize": 1
+  },
+  {
+    "name": "c-timeline-10",
+    "title": "Deployment log timeline",
+    "description": "Deployment log timeline",
+    "order": 10,
+    "gridSize": 1
+  },
+  {
+    "name": "c-timeline-11",
+    "title": "Activity feed timeline with user avatars",
+    "description": "Activity feed timeline with user avatars",
+    "order": 11,
+    "gridSize": 1
+  },
+  {
+    "name": "c-timeline-12",
+    "title": "Compact horizontal milestone timeline",
+    "description": "Compact horizontal milestone timeline",
+    "order": 12,
+    "gridSize": 1
+  }
+]

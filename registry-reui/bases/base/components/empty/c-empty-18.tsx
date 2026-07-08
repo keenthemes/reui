@@ -1,6 +1,3 @@
-// Description: No payments empty state with credit card illustration
-// Order: 18
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   Empty,

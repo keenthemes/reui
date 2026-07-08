@@ -1,6 +1,3 @@
-// Description: Toggle group for pricing tier
-// Order: 16
-
 import {
   ToggleGroup,
   ToggleGroupItem,

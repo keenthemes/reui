@@ -1,6 +1,3 @@
-// Description: Select with icon-labeled categories
-// Order: 32
-
 import { Field } from "@/registry/bases/radix/ui/field"
 import {
   Select,

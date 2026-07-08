@@ -1,6 +1,3 @@
-// Description: A drawer that opens from the left side
-// Order: 3
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   Drawer,

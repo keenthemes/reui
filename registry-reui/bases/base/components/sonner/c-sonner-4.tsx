@@ -1,6 +1,3 @@
-// Description: Toast variants with colored icons
-// Order: 4
-
 import { toast } from "sonner"
 
 import { Button } from "@/registry/bases/base/ui/button"

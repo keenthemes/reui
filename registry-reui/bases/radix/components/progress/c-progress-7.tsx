@@ -1,6 +1,3 @@
-// Description: Multi-step progress indicator
-// Order: 7
-
 import { Progress } from "@/registry/bases/radix/ui/progress"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 

@@ -1,7 +1,3 @@
-// Description: Kanban board with placeholder overlay
-// Order: 1
-// GridSize: 1
-
 "use client"
 
 import { ComponentProps, useState } from "react"
@@ -236,7 +232,7 @@ export default function Pattern() {
           <TaskColumn key={columnValue} value={columnValue} tasks={tasks} />
         ))}
       </KanbanBoard>
-      <KanbanOverlay className="bg-muted/10 style-vega:rounded-md style-nova:rounded-md style-lyra:rounded-none style-maia:rounded-md style-mira:rounded-md border-2 border-dashed" />
+      <KanbanOverlay className="bg-muted/10 rounded-md border-2 border-dashed" />
     </Kanban>
   )
 }

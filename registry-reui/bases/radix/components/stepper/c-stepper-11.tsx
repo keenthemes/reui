@@ -1,7 +1,3 @@
-// Description: Stepper with progress bar and titles
-// Order: 11
-// GridSize: 1
-
 "use client"
 
 import {

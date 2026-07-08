@@ -1,6 +1,3 @@
-// Description: Team members empty state
-// Order: 8
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   Card,

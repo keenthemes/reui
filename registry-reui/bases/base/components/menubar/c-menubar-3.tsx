@@ -1,6 +1,3 @@
-// Description: Menubar with checkbox & radio items.
-// Order: 3
-
 "use client"
 
 import { useState } from "react"

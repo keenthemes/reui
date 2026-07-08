@@ -1,47 +1,118 @@
 /**
  * Registry - Client-safe registry operations
  *
- * This module provides client-safe access to registry data.
- * For server-only API functions, use @/lib/registry-server instead.
+ * This module provides client-safe access to the component registry data.
  *
- * Performance optimization:
- * - Categories are loaded from registry.json (small JSON manifest)
- * - Component category SEO copy is in seo.json (lazy-loaded in helpers)
- * - Metadata is loaded per-base from base/registry.ts
- * - Components are lazy-loaded on-demand
+ * Data source (single source of truth):
+ * - registry-reui/_meta/components/bases/{base} — per-category component metadata with files
+ *
+ * Components are lazy-loaded on-demand.
  */
 
 import * as React from "react"
+import baseComponentNameIndex from "@/registry-reui/_meta/components/bases/base/name-index.json"
+import radixComponentNameIndex from "@/registry-reui/_meta/components/bases/radix/name-index.json"
 import { LRUCache } from "lru-cache"
 import { registryItemSchema } from "shadcn/schema"
 
-import { transformStyleClassNames } from "@/lib/code-utils"
+import { devCached } from "@/lib/dev-cache"
+import { componentPreviewCategoryLoaders } from "@/lib/generated/component-preview-loaders"
+import { isStyleAwareRegistryItemName } from "@/lib/public-registry"
+import { getRegistryDeploymentId } from "@/lib/registry-deployment"
+import { normalizeAbsoluteUrl } from "@/lib/site-url"
+import { normalizeSlug } from "@/lib/utils"
 import { BASES } from "@/registry/bases"
 import { PRESETS, type IconLibraryName } from "@/registry/config"
 import { STYLES } from "@/registry/styles"
+
+/**
+ * Static name -> category lookup for client-side getComponent. Built by
+ * build-components.mts, ~30KB per base, JSON-imported so Turbopack can
+ * inline it. This replaces a dynamic template import() that previously
+ * forced the bundler to discover and chunk every block/component source
+ * file under registry-reui, making production builds OOM at ~10k blocks.
+ */
+const componentNameToCategory: Record<string, Record<string, string>> = {
+  base: baseComponentNameIndex as Record<string, string>,
+  radix: radixComponentNameIndex as Record<string, string>,
+}
+
+/**
+ * Slim manifest entry mirrors SlimBlockEntry from block-manifest-index,
+ * duplicated here to keep this module client-safe. block-manifest-index
+ * imports fs at module scope, and importing it from this file would
+ * taint the client bundle (reachable from component-client.tsx via
+ * getRegistryComponent).
+ */
+interface SlimManifestEntry {
+  name: string
+  title: string
+  description?: string
+  group: string
+  primaryCategory: string
+  categories?: string[]
+  meta?: {
+    order?: number
+    gridSize?: 1 | 2
+    previewHeight?: string
+    className?: string
+    colSpan?: number
+  }
+  searchText: string
+}
 
 // ============================================================================
 // Server-side modules (lazy-loaded to avoid client-side bundling issues)
 // ============================================================================
 
-const pathNode =
-  typeof window === "undefined" ? eval('require("node:path")') : null
-const fs = typeof window === "undefined" ? eval('require("fs").promises') : null
+// Server-only Node modules. Resolved lazily so the file can still be
+// imported (statically analyzed) by client builds — the actual require()
+// only runs when we're in the server runtime. Using `createRequire` here
+// instead of `eval('require(...)')` is friendlier to CSP and bundler
+// security scanners (no `unsafe-eval`).
+const pathNode: typeof import("node:path") | null = (() => {
+  if (typeof window !== "undefined") return null
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const { createRequire } =
+    require("node:module") as typeof import("node:module")
+  const req = createRequire(import.meta.url)
+  return req("node:path") as typeof import("node:path")
+})()
 
-function normalizeRegistrySlug(value: string) {
-  return value.toLowerCase().replace(/\s+/g, "-")
+const fsNode: typeof import("node:fs") | null = (() => {
+  if (typeof window !== "undefined") return null
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const { createRequire } =
+    require("node:module") as typeof import("node:module")
+  const req = createRequire(import.meta.url)
+  return req("node:fs") as typeof import("node:fs")
+})()
+
+const fs: typeof import("node:fs/promises") | null = (() => {
+  if (typeof window !== "undefined") return null
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const { createRequire } =
+    require("node:module") as typeof import("node:module")
+  const req = createRequire(import.meta.url)
+  return req("node:fs/promises") as typeof import("node:fs/promises")
+})()
+
+// Path-traversal hardening: a registry segment must match this pattern.
+// Rejects `..`, `/`, `\`, %-encoded sneaky bits, leading/trailing dots.
+const SAFE_REGISTRY_SEGMENT = /^[a-z0-9][a-z0-9_-]*$/i
+
+function isSafeRegistrySegment(value: string | null | undefined): boolean {
+  if (!value || typeof value !== "string") return false
+  if (value.includes("..") || value.includes("/") || value.includes("\\")) {
+    return false
+  }
+  return SAFE_REGISTRY_SEGMENT.test(value)
 }
 
-/**
- * Client and server must use the same deployment-scoped registry URL so a new
- * Vercel deploy gets a new cache key without turning /r/styles into a function.
- */
-export function getRegistryDeploymentId(): string {
-  return (
-    process.env.NEXT_PUBLIC_VERCEL_DEPLOYMENT_ID ??
-    process.env.VERCEL_DEPLOYMENT_ID ??
-    "local"
-  )
+function normalizeRegistryOrigin(origin: string) {
+  const normalized = normalizeAbsoluteUrl(origin)
+
+  return normalized.endsWith("/") ? normalized : `${normalized}/`
 }
 
 export function getRegistryJsonUrl(styleName: string, name: string): string {
@@ -53,11 +124,10 @@ export function getRegistryJsonAbsoluteUrl(
   origin: string,
   styleName: string,
   name: string
-): string {
-  const normalizedOrigin = origin.endsWith("/") ? origin : `${origin}/`
+) {
   return new URL(
     getRegistryJsonUrl(styleName, name),
-    normalizedOrigin
+    normalizeRegistryOrigin(origin)
   ).toString()
 }
 
@@ -65,99 +135,69 @@ export function getRegistryJsonAbsoluteUrl(
 // Types
 // ============================================================================
 
-export interface CategorySeoInfo {
-  title?: string
-  /** Optional; use `{{count}}` (or legacy `[[count]]`) for the live component count from `registry.json` (same as `intro`). */
-  description?: string
-  /** Use `{{count}}` where the live component count from registry should appear (replaced at runtime). */
-  intro?: string
-  highlights?: string[]
-  keywords?: string[]
-  content?: CategorySeoContent
-  docsDescription?: string
-  relatedComponents?: RelatedComponentsBlock
-}
-
-/** Title + inline description (features list) */
-export interface CategorySeoFeatureItem {
-  title: string
-  description: string
-}
-
-export interface CategorySeoComponentListItem {
-  slug: string
-  title: string
-  badge?: string
-  description: string
-  href: string
-}
-
-export interface CategorySeoSection {
-  title: string
-  /** Lead-in paragraph before structured lists (e.g. catalog index "Popular Components") */
-  intro?: string
-  paragraphs?: string[]
-  bullets?: string[]
-  /** Structured features: bold title + description on one line each */
-  featureItems?: CategorySeoFeatureItem[]
-  /** Rich cards linking to component category pages (catalog index SEO) */
-  componentList?: CategorySeoComponentListItem[]
-}
-
-export interface CategorySeoFaq {
-  question: string
-  answer: string
-}
-
-export interface CategorySeoContent {
-  title: string
-  summary: string[]
-  sections: CategorySeoSection[]
-  faqs?: CategorySeoFaq[]
-}
-
-export interface RelatedComponentRef {
-  slug: string
-  label: string
-}
-
-/**
- * Integration block: prose with `[[slug|Label]]` links.
- * Use **Shadcn {Name}** in the visible label (e.g. `[[button|Shadcn Button]]`, `[[alert-dialog|Shadcn Alert Dialog]]`).
- */
-export interface RelatedComponentsBlock {
-  /** e.g. "Integrating With Other Components" (Title Case) */
-  title: string
-  /** Optional reference list for authors only; not rendered on the page */
-  items?: RelatedComponentRef[]
-  /** Component catalog index: internal links to `/components/{slug}` */
-  links?: RelatedComponentRef[]
-  /** 2–3 paragraphs; `[[slug|Label]]` renders as internal links */
-  integrationBody?: string[]
-}
-
 export interface CategoryInfo {
   name: string
+  slug: string
   label: string
   description: string
+  icon: string
+  count: number
+  groupSlug: string
+}
+
+export interface BlockGroup {
+  slug: string
+  label: string
+  icon: string
+  totalBlocks: number
+  categories: BlockCategory[]
+}
+
+export interface BlockCategory {
+  slug: string
+  label: string
+  description: string
+  icon: string
   count: number
 }
 
-export interface ComponentCategorySeo {
-  title: string
-  description: string
-  intro: string
-  /** @deprecated Category pages no longer surface highlight chips; kept optional for compatibility */
-  highlights?: string[]
-  keywords: string[]
-  content?: CategorySeoContent
-  relatedComponents?: RelatedComponentsBlock
+export interface BlocksData {
+  groups: BlockGroup[]
+  totalBlocks: number
 }
 
-export interface ComponentCatalogItem {
+export interface IconEntry {
+  name: string
+  slug: string
+  category: string
+  styles: string[]
+}
+
+export interface IconCategory {
+  slug: string
+  label: string
+  count: number
+  /** Whether this category's animated icon set is ready. See lib/registry-data.ts. */
+  animated?: boolean
+}
+
+export interface IconsData {
+  styles: string[]
+  categories: IconCategory[]
+  icons: IconEntry[]
+  totalIcons: number
+}
+
+export interface BlockData {
   name: string
   title: string
   description: string | undefined
+  docs: string | undefined
+  /** npm package dependencies (e.g. ["lucide-react", "date-fns"]) */
+  dependencies: string[]
+  /** shadcn/ui registry component dependencies (e.g. ["button", "badge"]) */
+  registryDependencies: string[]
+  group: string
   categories: string[]
   primaryCategory: string
   meta:
@@ -166,6 +206,7 @@ export interface ComponentCatalogItem {
         colSpan?: number
         gridSize?: 1 | 2
         order?: number
+        previewHeight?: string
       }
     | undefined
   searchText: string
@@ -189,109 +230,170 @@ export interface RegistryItem {
   dependencies?: string[]
   devDependencies?: string[]
   categories?: string[]
+  group?: string
   meta?: Record<string, unknown>
   cssVars?: Record<string, any>
 }
 
-// Legacy type aliases for backwards compatibility
 export type ComponentCategory = string
 export type Category = string
 
 // ============================================================================
-// Lazy-loaded modules (using JSON for zero compilation overhead)
+// Lazy-loaded data (cached at module level)
 // ============================================================================
-
-interface StatsData {
-  categories: CategoryInfo[]
-  totalComponents: number
-}
-
-let _registrySeo: Record<string, CategorySeoInfo> | null = null
-
-/**
- * Lazy-load `seo.json` once per runtime (Node / edge worker).
- * Keeps the large SEO blob out of the client bundle unless these helpers run.
- */
-function getRegistrySeoMapCached(): Record<string, CategorySeoInfo> {
-  if (!_registrySeo) {
-    _registrySeo = require("../registry-reui/bases/seo.json") as Record<
-      string,
-      CategorySeoInfo
-    >
-  }
-  return _registrySeo
-}
 
 interface MetadataData {
   Metadata: Record<string, Record<string, RegistryItem>>
 }
 
-let _stats: StatsData | null = null
-const _metadataCache: Record<string, MetadataData> = {}
-let _catalogItems: ComponentCatalogItem[] | null = null
-let _categoryIndex: Map<string, ComponentCatalogItem[]> | null = null
+// All caches use devCached (globalThis) to survive dev module re-evaluations.
 
-function getStats(): StatsData {
-  if (!_stats) {
-    try {
-      const raw =
-        require("../registry-reui/bases/registry.json") as StatsData & {
-          totalPatterns?: number
-        }
-      _stats = {
-        categories: raw.categories ?? [],
-        totalComponents: raw.totalComponents ?? raw.totalPatterns ?? 0,
+// ============================================================================
+// Core data loader — categories.json (single source of truth)
+// ============================================================================
+
+/**
+ * Legacy category-hierarchy accessor. The open-source build ships components
+ * only, so this returns an empty set; category data for the component catalog
+ * comes from `lib/component-stats.ts`.
+ */
+export function getBlocksData(): BlocksData {
+  return { groups: [], totalBlocks: 0 }
+}
+
+/**
+ * Derive flat category list from the group/category hierarchy.
+ */
+function getFlatCategories(): CategoryInfo[] {
+  return devCached("registry-flat-categories", () => {
+    const data = getBlocksData()
+    const cats: CategoryInfo[] = []
+    for (const group of data.groups) {
+      for (const cat of group.categories) {
+        cats.push({
+          name: cat.slug,
+          slug: cat.slug,
+          label: cat.label,
+          description: cat.description,
+          icon: cat.icon,
+          count: cat.count,
+          groupSlug: group.slug,
+        })
       }
-    } catch (e) {
-      console.error("Failed to load registry stats", e)
-      _stats = { categories: [], totalComponents: 0 }
     }
+    // Order follows categories.json (the single source of truth used by every
+    // surface); never re-sort alphabetically, or this helper diverges from the
+    // canonical group/category order returned by lib/registry-data.ts.
+    return cats
+  })
+}
+
+// ============================================================================
+// Metadata loading (per-base metadata shards plus shared reui/hooks registries)
+// ============================================================================
+
+function readRegistryShardItemsSync(
+  entity: "components" | "blocks",
+  base: string
+): RegistryItem[] {
+  if (!pathNode || !fsNode) {
+    return []
   }
-  return _stats
+
+  const dirPath = pathNode.join(
+    process.cwd(),
+    "registry-reui",
+    "_meta",
+    entity,
+    "bases",
+    base
+  )
+
+  try {
+    const files: string[] = []
+    const walk = (currentDir: string) => {
+      const entries = fsNode.readdirSync(currentDir, { withFileTypes: true })
+
+      for (const entry of entries) {
+        const entryPath = pathNode.join(currentDir, entry.name)
+
+        if (entry.isDirectory()) {
+          walk(entryPath)
+          continue
+        }
+
+        if (entry.isFile() && entry.name.endsWith(".json")) {
+          files.push(entryPath)
+        }
+      }
+    }
+
+    walk(dirPath)
+    files.sort((a: string, b: string) => a.localeCompare(b))
+
+    const items: RegistryItem[] = []
+
+    for (const file of files) {
+      const raw = fsNode.readFileSync(file, "utf-8")
+      const mod = JSON.parse(raw) as { items?: RegistryItem[] }
+      if (Array.isArray(mod.items)) {
+        items.push(...mod.items)
+      }
+    }
+
+    return items
+  } catch {
+    return []
+  }
 }
 
 function getMetadata(base: string = "base"): MetadataData {
-  if (!_metadataCache[base]) {
+  return devCached(`registry-metadata:${base}`, () => {
     try {
       const metadata: Record<string, RegistryItem> = {}
 
-      // Directly load catalog blocks and reui registries for reliability and performance
-      // This avoids potential issues with the aggregate registry.ts file
       try {
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
+        const hooksMod = require(
+          `../registry-reui/bases/${base}/hooks/_registry`
+        )
+        const hookItems = hooksMod.hooks || []
+        for (const item of hookItems) metadata[item.name] = item
+      } catch (e) {
+        console.warn(`Could not load hooks registry for ${base}`, e)
+      }
+
+      try {
+        const componentItems = readRegistryShardItemsSync("components", base)
+        for (const item of componentItems) metadata[item.name] = item
+      } catch (e) {
+        console.warn(`Could not load component metadata shards for ${base}`, e)
+      }
+
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
         const reuiMod = require(`../registry-reui/bases/${base}/reui/_registry`)
         const reuiItems = reuiMod.reui || []
-        for (const item of reuiItems) {
-          metadata[item.name] = item
-        }
+        for (const item of reuiItems) metadata[item.name] = item
       } catch (e) {
         console.warn(`Could not load reui registry for ${base}`, e)
       }
 
       try {
-        const componentsMod = require(
-          `../registry-reui/bases/${base}/components/_registry`
-        )
-        const blockItems = componentsMod.components || []
-        for (const item of blockItems) {
-          metadata[item.name] = item
-        }
+        const blockItems = readRegistryShardItemsSync("blocks", base)
+        for (const item of blockItems) metadata[item.name] = item
       } catch (e) {
-        console.warn(`Could not load components registry for ${base}`, e)
+        console.warn(`Could not load block metadata shards for ${base}`, e)
       }
 
-      _metadataCache[base] = { Metadata: { [base]: metadata } }
+      return { Metadata: { [base]: metadata } }
     } catch (e) {
       console.error(`Failed to load registry for base: ${base}`, e)
-      // Fallback to empty if not found
-      _metadataCache[base] = { Metadata: { [base]: {} } }
+      return { Metadata: { [base]: {} } }
     }
-  }
-  return _metadataCache[base]
+  })
 }
 
-/**
- * Get full metadata for all bases or a specific base
- */
 export function getRegistryMetadata(base?: string) {
   if (base) {
     const { Metadata } = getMetadata(base)
@@ -300,59 +402,100 @@ export function getRegistryMetadata(base?: string) {
 
   const allMetadata: Record<string, Record<string, RegistryItem>> = {}
   const bases = ["base", "radix"]
-
   for (const b of bases) {
     const { Metadata } = getMetadata(b)
-    if (Metadata[b]) {
-      allMetadata[b] = Metadata[b]
-    }
+    if (Metadata[b]) allMetadata[b] = Metadata[b]
   }
   return allMetadata
 }
 
-/**
- * Get metadata for a specific registry item
- */
 export function getRegistryItemMetadata(name: string, base: string = "base") {
   const { Metadata } = getMetadata(base)
   return Metadata[base]?.[name]
 }
 
+// ============================================================================
+// Component loading
+// ============================================================================
+
 const componentCache = new Map<string, React.LazyExoticComponent<any>>()
 
-/**
- * Get a lazy-loaded component by base and name
- */
+const MAX_CONCURRENT_IMPORTS = 6
+let activeImports = 0
+const importQueue: Array<{
+  resolve: (mod: any) => void
+  reject: (err: any) => void
+  loader: () => Promise<any>
+}> = []
+
+function flushImportQueue() {
+  while (activeImports < MAX_CONCURRENT_IMPORTS && importQueue.length > 0) {
+    const next = importQueue.shift()!
+    activeImports++
+    next
+      .loader()
+      .then(next.resolve, next.reject)
+      .finally(() => {
+        activeImports--
+        flushImportQueue()
+      })
+  }
+}
+
+function throttledImport(loader: () => Promise<any>): Promise<any> {
+  if (activeImports < MAX_CONCURRENT_IMPORTS) {
+    activeImports++
+    return loader().finally(() => {
+      activeImports--
+      flushImportQueue()
+    })
+  }
+  return new Promise((resolve, reject) => {
+    importQueue.push({ resolve, reject, loader })
+  })
+}
+
 export function getComponent(
   base: string,
-  name: string
+  name: string,
+  category?: string
 ): React.LazyExoticComponent<any> | null {
-  const cacheKey = `${base}:${name}`
+  const normalizedCategory = category
+    ? normalizeSlug(category)
+    : componentNameToCategory[base]?.[name]
 
-  if (componentCache.has(cacheKey)) {
-    return componentCache.get(cacheKey)!
-  }
-
-  const item = getRegistryItemMetadata(name, base)
-  if (!item || !item.files?.[0]?.path) {
+  if (!normalizedCategory) {
+    // Hooks / reui shared modules don't have a category — they aren't
+    // browsable previews. The catalog never asks for these via this path
+    // (server code handles them directly), so returning null here is safe.
     return null
   }
 
-  // Extract relative path from metadata
-  // e.g., "registry-reui/bases/base/reui/alert.tsx" -> "reui/alert.tsx"
-  const path = item.files[0].path.replace(`registry-reui/bases/${base}/`, "")
+  const cacheKey = `${base}:${normalizedCategory}:${name}`
+  if (componentCache.has(cacheKey)) return componentCache.get(cacheKey)!
 
-  const lazyComponent = React.lazy(
-    () => import(`@/registry-reui/bases/${base}/${path}`)
+  const categoryLoaderKey = `${base}:${normalizedCategory}`
+  const categoryLoader = componentPreviewCategoryLoaders[categoryLoaderKey]
+  if (!categoryLoader) return null
+
+  const lazyComponent = React.lazy(() =>
+    throttledImport(() =>
+      categoryLoader().then((mod) => {
+        const loader = mod.componentPreviewLoaders?.[name]
+        if (!loader) {
+          throw new Error(
+            `Component preview loader not found for ${base}/${normalizedCategory}/${name}`
+          )
+        }
+        return throttledImport(() => loader())
+      })
+    )
   )
 
   componentCache.set(cacheKey, lazyComponent)
   return lazyComponent
 }
 
-/**
- * Check if a component exists in the registry
- */
 export function hasComponent(base: string, name: string): boolean {
   return !!getRegistryItemMetadata(name, base)
 }
@@ -363,275 +506,78 @@ export function hasComponent(base: string, name: string): boolean {
 
 const registryCache = new LRUCache<string, any>({
   max: 500,
-  ttl: 1000 * 60 * 20, // 20 minutes
+  ttl: 1000 * 60 * 20,
 })
 
-// Track in-flight requests to prevent duplicate network calls (e.g. from StrictMode)
 const inFlightRequests = new Map<string, Promise<any>>()
 
 // ============================================================================
-// Category Functions - Use registry.json category manifest
+// Category Functions — derived from block metadata categories.json
 // ============================================================================
 
-function fallbackCategoryLabel(category: string) {
-  return category
-    .split("-")
-    .filter(Boolean)
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join(" ")
-}
-
 /**
- * Get all categories with full info (name, label, description, count, seo)
- * This is the primary way to get category data
+ * Get all categories with full info (name, label, description, icon, count, groupSlug)
  */
 export function getCategories(): CategoryInfo[] {
-  return getStats().categories
+  return getFlatCategories()
 }
 
-/**
- * Get full category info for a single category
- */
-export function getCategoryInfo(category: string): CategoryInfo | undefined {
-  const normalized = normalizeRegistrySlug(category)
-  return getStats().categories.find((c) => c.name === normalized)
-}
-
-/**
- * Get category names only
- */
 export function getCategoryNames(): string[] {
-  return getStats().categories.map((c) => c.name)
+  return getFlatCategories().map((c) => c.name)
 }
 
-/**
- * Total number of c-* catalog blocks in `registry.json`.
- */
-export function getTotalComponentCount(): number {
-  return getStats().totalComponents
+export function getCategoryInfo(category: string): CategoryInfo | undefined {
+  const normalized = normalizeSlug(category)
+  return getFlatCategories().find((c) => c.name === normalized)
 }
 
-/**
- * Catalog block count for a category
- */
-export function getComponentCountByCategory(category: string): number {
-  return getCategoryInfo(category)?.count ?? 0
+export function getBlocksTotalCount(): number {
+  return getBlocksData().totalBlocks
 }
 
-/**
- * Get category description
- */
+export function getBlockCountByCategory(category: string): number {
+  const normalized = normalizeSlug(category)
+  const cat = getFlatCategories().find((c) => c.name === normalized)
+  return cat?.count ?? 0
+}
+
 export function getCategoryDescription(category: string): string | undefined {
-  return getCategoryInfo(category)?.description
+  const normalized = normalizeSlug(category)
+  const cat = getFlatCategories().find((c) => c.name === normalized)
+  return cat?.description
 }
 
-/**
- * Replaces `{{count}}` or legacy `[[count]]` in SEO copy with the live component count from `registry.json`.
- * When count is 0, removes the placeholder and collapses extra spaces.
- * Strings without either placeholder are returned unchanged (avoid accidental word injection).
- */
-export function applySeoCountPlaceholder(text: string, count: number): string {
-  if (!text.includes("[[count]]") && !text.includes("{{count}}")) {
-    return text
-  }
-  if (count > 0) {
-    return text
-      .replace(/\{\{count\}\}/g, String(count))
-      .replace(/\[\[count\]\]/g, String(count))
-  }
-  return text
-    .replace(/\s*\{\{count\}\}\s*/g, " ")
-    .replace(/\s*\[\[count\]\]\s*/g, " ")
-    .replace(/\s{2,}/g, " ")
-    .trim()
+export function getCategoryIcon(category: string): string | undefined {
+  const normalized = normalizeSlug(category)
+  const cat = getFlatCategories().find((c) => c.name === normalized)
+  return cat?.icon
 }
 
-/**
- * Build computed SEO metadata for a category page using `seo.json`
- * (lazy-loaded once per runtime) plus category stats from `registry.json`.
- */
-export function getComponentCategorySeo(
-  category: string
-): ComponentCategorySeo {
-  const normalized = normalizeRegistrySlug(category)
-  const categoryInfo = getCategoryInfo(normalized)
-  const label = categoryInfo?.label ?? fallbackCategoryLabel(normalized)
-  const count = categoryInfo?.count ?? 0
-  const seo = getRegistrySeoMapCached()[normalized]
-  const title = seo?.title ?? `Shadcn ${label}`
-
-  if (
-    seo?.description ||
-    seo?.intro ||
-    seo?.keywords?.length ||
-    seo?.content ||
-    seo?.relatedComponents
-  ) {
-    const genericIntro =
-      count > 0
-        ? `Browse {{count}} production-ready shadcn ${label.toLowerCase()} components built to help you move from primitives to polished product UI faster.`
-        : `Browse production-ready shadcn ${label.toLowerCase()} components built to help you move from primitives to polished product UI faster.`
-    const rawDescription =
-      seo?.description ||
-      categoryInfo?.description ||
-      `Explore free open-source shadcn/ui ${label.toLowerCase()} components for React and Tailwind CSS in ReUI.`
-    const baseDescription = applySeoCountPlaceholder(rawDescription, count)
-    const intro = applySeoCountPlaceholder(seo.intro || genericIntro, count)
-
-    return {
-      title,
-      description: baseDescription,
-      intro,
-      keywords: seo?.keywords ?? [],
-      content: seo?.content,
-      relatedComponents: seo?.relatedComponents,
-    }
-  }
-
-  const genericDescription =
-    categoryInfo?.description ||
-    `Explore free open-source shadcn/ui ${label.toLowerCase()} components for React and Tailwind CSS in ReUI.`
-  const genericIntro =
-    count > 0
-      ? `Browse {{count}} production-ready shadcn ${label.toLowerCase()} components built to help you move from primitives to polished product UI faster.`
-      : `Browse production-ready shadcn ${label.toLowerCase()} components built to help you move from primitives to polished product UI faster.`
-
-  return {
-    title,
-    description: applySeoCountPlaceholder(genericDescription, count),
-    intro: applySeoCountPlaceholder(genericIntro, count),
-    keywords: [],
-    content: seo?.content,
-    relatedComponents: seo?.relatedComponents,
-  }
-}
-
-function applyCountToSeoContent(
-  content: CategorySeoContent,
-  count: number
-): CategorySeoContent {
-  return {
-    ...content,
-    title: applySeoCountPlaceholder(content.title, count),
-    summary: content.summary.map((s) => applySeoCountPlaceholder(s, count)),
-    sections: content.sections.map((section) => ({
-      ...section,
-      title: applySeoCountPlaceholder(section.title, count),
-      intro: section.intro
-        ? applySeoCountPlaceholder(section.intro, count)
-        : undefined,
-      paragraphs: section.paragraphs?.map((p) =>
-        applySeoCountPlaceholder(p, count)
-      ),
-      bullets: section.bullets?.map((b) => applySeoCountPlaceholder(b, count)),
-      featureItems: section.featureItems?.map((fi) => ({
-        ...fi,
-        title: applySeoCountPlaceholder(fi.title, count),
-        description: applySeoCountPlaceholder(fi.description, count),
-      })),
-      componentList: section.componentList?.map((item) => ({
-        ...item,
-        title: applySeoCountPlaceholder(item.title, count),
-        description: applySeoCountPlaceholder(item.description, count),
-      })),
-    })),
-    faqs: content.faqs?.map((faq) => ({
-      ...faq,
-      question: applySeoCountPlaceholder(faq.question, count),
-      answer: applySeoCountPlaceholder(faq.answer, count),
-    })),
-  }
-}
-
-/**
- * SEO for `/components` (index): uses the `root` entry in `seo.json` and total component count.
- */
-export function getComponentIndexSeo(): ComponentCategorySeo {
-  const count = getTotalComponentCount()
-  const root = getRegistrySeoMapCached()["root"]
-  const fallbackDescription = `Browse ${count}+ free open-source shadcn/ui components for React and Tailwind CSS.`
-
-  if (!root?.content && !root?.description && !root?.intro) {
-    return {
-      title: "Shadcn UI Components",
-      description: fallbackDescription,
-      intro: fallbackDescription,
-      keywords: [],
-    }
-  }
-
-  const title = root.title ?? root.content?.title ?? "Shadcn UI Components"
-  const description = applySeoCountPlaceholder(
-    root.description ?? fallbackDescription,
-    count
-  )
-  const intro = applySeoCountPlaceholder(
-    root.intro ?? root.description ?? fallbackDescription,
-    count
-  )
-  const keywords = root.keywords ?? []
-  const content = root.content
-    ? applyCountToSeoContent(root.content, count)
-    : undefined
-  const relatedComponents = root.relatedComponents
-    ? {
-        title: root.relatedComponents.title,
-        links: root.relatedComponents.links,
-        integrationBody: root.relatedComponents.integrationBody,
-        items: root.relatedComponents.items,
-      }
-    : undefined
-
-  return {
-    title,
-    description,
-    intro,
-    keywords,
-    content,
-    relatedComponents,
-  }
-}
-
-/**
- * Check if a category is valid
- */
 export function isValidCategory(category: string): boolean {
-  return !!getCategoryInfo(category)
+  const normalized = normalizeSlug(category)
+  return getFlatCategories().some((c) => c.name === normalized)
 }
 
-/**
- * Get category sort order
- */
 export function getCategorySortOrder(category: string): number {
-  const normalized = normalizeRegistrySlug(category)
-  const index = getStats().categories.findIndex((c) => c.name === normalized)
+  const normalized = normalizeSlug(category)
+  const index = getFlatCategories().findIndex((c) => c.name === normalized)
   return index === -1 ? Number.POSITIVE_INFINITY : index
-}
-
-export function getCategoryDocsDescription(category: string) {
-  const normalized = normalizeRegistrySlug(category)
-  const raw = getRegistrySeoMapCached()[normalized]?.docsDescription
-  if (typeof raw !== "string") return undefined
-  const count = getCategoryInfo(normalized)?.count ?? 0
-  return applySeoCountPlaceholder(raw, count)
 }
 
 // Legacy exports for backwards compatibility
 export const componentCategories = new Proxy([] as string[], {
   get(target, prop) {
-    const names = getStats().categories.map((c) => c.name)
+    const names = getFlatCategories().map((c) => c.name)
     if (prop === "length") return names.length
     if (prop === Symbol.iterator) return names[Symbol.iterator].bind(names)
-    if (typeof prop === "string" && !isNaN(Number(prop))) {
+    if (typeof prop === "string" && !isNaN(Number(prop)))
       return names[Number(prop)]
-    }
-    if (typeof prop === "string" && prop in Array.prototype) {
+    if (typeof prop === "string" && prop in Array.prototype)
       return (names as any)[prop]
-    }
     return undefined
   },
   has(target, prop) {
-    return getStats().categories.some((c) => c.name === prop)
+    return getFlatCategories().some((c) => c.name === prop)
   },
 }) as unknown as readonly string[]
 
@@ -642,144 +588,219 @@ export function categories<T extends Category[]>(...cats: T): T {
 }
 
 // ============================================================================
-// Catalog (c-*) — lazy index from components.json
+// Component registry functions
 // ============================================================================
 
-function ensureCatalogIndexes() {
-  if (_catalogItems !== null) return
+interface BlockIndexes {
+  blocksArray: BlockData[]
+  blockByNameIndex: Map<string, BlockData>
+  blockCategoryIndex: Map<string, BlockData[]>
+  blockGroupCategoryIndex: Map<string, BlockData[]>
+}
 
-  const itemsByName = new Map<string, ComponentCatalogItem>()
-  const catIndex = new Map<string, ComponentCatalogItem[]>()
+function summaryToBlockData(summary: SlimManifestEntry): BlockData {
+  const itemCategories =
+    summary.categories && summary.categories.length > 0
+      ? summary.categories
+      : [summary.primaryCategory]
+  return {
+    name: summary.name,
+    title: summary.title || "",
+    description: summary.description || "",
+    docs: undefined,
+    dependencies: [],
+    registryDependencies: [],
+    group: summary.group,
+    categories: itemCategories,
+    primaryCategory: summary.primaryCategory,
+    meta: summary.meta,
+    searchText: summary.searchText,
+  }
+}
+
+function readSlimManifestEntries(): SlimManifestEntry[] {
+  if (!fsNode || !pathNode) {
+    return []
+  }
 
   try {
-    // Load from components.json - Compact manifest for high performance
-    const manifest = require("../registry-reui/bases/components.json")
+    const indexPath = pathNode.join(
+      process.cwd(),
+      "registry-reui",
+      "_meta",
+      "blocks",
+      "manifest-index.json"
+    )
 
-    for (const item of manifest) {
-      const itemCategories = item.categories || []
-      let primaryCategory = itemCategories[0]
-
-      if (!primaryCategory) {
-        const nameParts = item.name.split("-")
-        primaryCategory = nameParts.slice(1, -1).join("-")
-      }
-
-      // Smart search text: include name, title, categories
-      const searchText = [
-        item.name,
-        item.title || "",
-        ...itemCategories,
-        primaryCategory,
-      ]
-        .join(" ")
-        .toLowerCase()
-
-      const row: ComponentCatalogItem = {
-        name: item.name,
-        title: item.title || "",
-        description: item.description || "",
-        categories: itemCategories,
-        primaryCategory,
-        meta: item.meta,
-        searchText,
-      }
-
-      itemsByName.set(item.name, row)
+    if (!fsNode.existsSync(indexPath)) {
+      return []
     }
+
+    const raw = fsNode.readFileSync(indexPath, "utf-8")
+    const parsed = JSON.parse(raw) as { items?: SlimManifestEntry[] }
+    return Array.isArray(parsed.items) ? parsed.items : []
   } catch (e) {
-    console.error("Failed to load components.json manifest", e)
+    console.error("Failed to load manifest-index.json", e)
+    return []
   }
+}
 
-  const sorted = Array.from(itemsByName.values()).sort((a, b) => {
-    if (a.primaryCategory !== b.primaryCategory) {
-      return a.primaryCategory.localeCompare(b.primaryCategory)
+function getBlockIndexes(): BlockIndexes {
+  return devCached("registry-block-indexes", () => {
+    const blocksMap = new Map<string, BlockData>()
+    const categoryIndex = new Map<string, BlockData[]>()
+    const groupCategoryIndex = new Map<string, BlockData[]>()
+
+    for (const summary of readSlimManifestEntries()) {
+      blocksMap.set(summary.name, summaryToBlockData(summary))
     }
-    return (a.meta?.order ?? 9999) - (b.meta?.order ?? 9999)
-  })
 
-  for (const item of sorted) {
-    const normalizedPrimary = normalizeRegistrySlug(item.primaryCategory)
-    if (!catIndex.has(normalizedPrimary)) {
-      catIndex.set(normalizedPrimary, [])
-    }
-    catIndex.get(normalizedPrimary)!.push(item)
+    const sorted = Array.from(blocksMap.values()).sort((a, b) => {
+      if (a.primaryCategory !== b.primaryCategory)
+        return a.primaryCategory.localeCompare(b.primaryCategory)
+      return (a.meta?.order ?? 9999) - (b.meta?.order ?? 9999)
+    })
 
-    for (const cat of item.categories) {
-      const normalizedCat = normalizeRegistrySlug(cat)
-      if (normalizedCat !== normalizedPrimary) {
-        if (!catIndex.has(normalizedCat)) {
-          catIndex.set(normalizedCat, [])
+    for (const block of sorted) {
+      const normalizedPrimary = normalizeSlug(block.primaryCategory)
+      if (!categoryIndex.has(normalizedPrimary))
+        categoryIndex.set(normalizedPrimary, [])
+      categoryIndex.get(normalizedPrimary)!.push(block)
+
+      const groupCategoryKey = `${block.group}/${normalizedPrimary}`
+      if (!groupCategoryIndex.has(groupCategoryKey))
+        groupCategoryIndex.set(groupCategoryKey, [])
+      groupCategoryIndex.get(groupCategoryKey)!.push(block)
+
+      for (const cat of block.categories) {
+        const normalizedCat = normalizeSlug(cat)
+        if (normalizedCat !== normalizedPrimary) {
+          if (!categoryIndex.has(normalizedCat))
+            categoryIndex.set(normalizedCat, [])
+          categoryIndex.get(normalizedCat)!.push(block)
+
+          const alternateKey = `${block.group}/${normalizedCat}`
+          if (!groupCategoryIndex.has(alternateKey))
+            groupCategoryIndex.set(alternateKey, [])
+          groupCategoryIndex.get(alternateKey)!.push(block)
         }
-        catIndex.get(normalizedCat)!.push(item)
       }
     }
-  }
 
-  _catalogItems = sorted
-  _categoryIndex = catIndex
+    return {
+      blocksArray: sorted,
+      blockByNameIndex: blocksMap,
+      blockCategoryIndex: categoryIndex,
+      blockGroupCategoryIndex: groupCategoryIndex,
+    }
+  })
 }
 
-/**
- * All catalog items (c-* blocks) — loads full metadata from `components.json`.
- */
-export function getAllCatalogItems(): ComponentCatalogItem[] {
-  ensureCatalogIndexes()
-  return _catalogItems!
+export function getAllBlocks(): BlockData[] {
+  return getBlockIndexes().blocksArray
 }
 
-/**
- * Catalog items for a category slug
- */
-export function getComponentsByCategory(
-  category: string
-): ComponentCatalogItem[] {
-  ensureCatalogIndexes()
-  return _categoryIndex!.get(normalizeRegistrySlug(category)) ?? []
+export function getBlocksByCategory(category: string): BlockData[] {
+  return getBlockIndexes().blockCategoryIndex.get(normalizeSlug(category)) ?? []
 }
 
-/**
- * Search catalog blocks (name, title, categories)
- */
-export function searchCatalog(query: string): ComponentCatalogItem[] {
-  ensureCatalogIndexes()
-
-  if (!query.trim()) return _catalogItems!
+export function searchBlocks(query: string): BlockData[] {
+  const { blocksArray, blockCategoryIndex } = getBlockIndexes()
+  if (!query.trim()) return blocksArray
 
   const lowerQuery = query.toLowerCase().trim()
-
-  // Exact category match gets priority
-  const exactMatch = _categoryIndex!.get(lowerQuery)
+  const exactMatch = blockCategoryIndex.get(lowerQuery)
   if (exactMatch) return exactMatch
 
-  // Smart multi-term search
   const terms = lowerQuery.split(/\s+/).filter(Boolean)
-  if (terms.length === 0) return _catalogItems!
+  if (terms.length === 0) return blocksArray
 
-  return _catalogItems!.filter((p) => {
-    // All terms must match at least something in the search text
-    // We check for partial matches of each term
-    return terms.every((term) => {
-      // Direct inclusion check
+  return blocksArray.filter((p) =>
+    terms.every((term) => {
       if (p.searchText.includes(term)) return true
-
-      // If term is plural (ends with s), try singular
       if (term.length > 3 && term.endsWith("s")) {
         const singular = term.slice(0, -1)
         if (p.searchText.includes(singular)) return true
       }
-
       return false
     })
-  })
+  )
+}
+
+export function filterBlocks(
+  blocksSource: BlockData[],
+  filterCategories: string[],
+  query: string
+): BlockData[] {
+  const { blocksArray, blockCategoryIndex } = getBlockIndexes()
+
+  let result: BlockData[]
+
+  if (filterCategories && filterCategories.length > 0) {
+    const normalizedFilters = filterCategories.map((c) => normalizeSlug(c))
+    const seen = new Set<string>()
+    result = []
+    for (const cat of normalizedFilters) {
+      const categoryBlocks = blockCategoryIndex.get(cat) ?? []
+      for (const p of categoryBlocks) {
+        if (!seen.has(p.name)) {
+          seen.add(p.name)
+          result.push(p)
+        }
+      }
+    }
+  } else {
+    result = blocksSource || blocksArray
+  }
+
+  if (query && query.trim()) {
+    const lowerQuery = query.toLowerCase().trim()
+    const terms = lowerQuery.split(/\s+/).filter(Boolean)
+    if (terms.length > 0) {
+      result = result.filter((p) =>
+        terms.every((term) => {
+          if (p.searchText.includes(term)) return true
+          if (term.length > 3 && term.endsWith("s")) {
+            const singular = term.slice(0, -1)
+            if (p.searchText.includes(singular)) return true
+          }
+          return false
+        })
+      )
+    }
+  }
+
+  return result
+}
+
+export function getPaginatedBlocks(
+  category: string | null,
+  search: string,
+  offset: number,
+  limit: number
+): { patterns: BlockData[]; total: number; hasMore: boolean } {
+  const { blocksArray } = getBlockIndexes()
+
+  let filtered: BlockData[]
+  if (category) {
+    filtered = filterBlocks(blocksArray, [category], search)
+  } else if (search.trim()) {
+    filtered = searchBlocks(search)
+  } else {
+    filtered = blocksArray
+  }
+
+  return {
+    patterns: filtered.slice(offset, offset + limit),
+    total: filtered.length,
+    hasMore: offset + limit < filtered.length,
+  }
 }
 
 // ============================================================================
 // Component Functions
 // ============================================================================
 
-/**
- * Get a lazy-loaded component by name
- */
 export function getRegistryComponent(
   name: string,
   styleName: string = "radix"
@@ -793,6 +814,34 @@ export function getRegistryComponent(
 // ============================================================================
 
 const DEFAULT_STYLE_NAME = "base-nova"
+const DEFAULT_REGISTRY_STYLE_VARIANT = "nova"
+const REGISTRY_STYLE_VARIANTS = new Set([
+  "vega",
+  "nova",
+  "maia",
+  "lyra",
+  "mira",
+  "luma",
+  "sera",
+])
+
+function getStaticRegistryStyleCandidates(styleName: string, name: string) {
+  const candidates = [styleName]
+
+  if (!isStyleAwareRegistryItemName(name)) {
+    const [base, ...variantParts] = styleName.split("-")
+    const variant = variantParts.join("-")
+    if (
+      base &&
+      variant !== DEFAULT_REGISTRY_STYLE_VARIANT &&
+      REGISTRY_STYLE_VARIANTS.has(variant)
+    ) {
+      candidates.push(`${base}-${DEFAULT_REGISTRY_STYLE_VARIANT}`)
+    }
+  }
+
+  return candidates
+}
 
 function getRegistryKey(styleName: string): string {
   if (styleName.startsWith("base-")) return "base"
@@ -819,23 +868,16 @@ export async function getRegistryItem(
   styleName: string = DEFAULT_STYLE_NAME,
   iconLibrary?: string
 ) {
-  const cacheKey = `${getRegistryDeploymentId()}:${styleName}:${iconLibrary || ""}:${name}`
+  const cacheKey = `${styleName}:${iconLibrary || ""}:${name}`
 
-  if (registryCache.has(cacheKey)) {
-    return registryCache.get(cacheKey)
-  }
-
-  // Deduplicate in-flight requests
-  if (inFlightRequests.has(cacheKey)) {
-    return inFlightRequests.get(cacheKey)
-  }
+  if (registryCache.has(cacheKey)) return registryCache.get(cacheKey)
+  if (inFlightRequests.has(cacheKey)) return inFlightRequests.get(cacheKey)
 
   const requestPromise = (async () => {
     try {
       if (typeof window !== "undefined") {
         try {
-          // Use static /r/styles/ files (CDN-served, zero function invocations)
-          const url = getRegistryJsonUrl(styleName, name)
+          const url = `/r/styles/${styleName}/${encodeURIComponent(name)}.json`
           const res = await fetch(url)
           if (res.ok) {
             const data = await res.json()
@@ -861,22 +903,38 @@ export async function getRegistryItem(
         return null
       }
 
+      // Path-traversal hardening: both segments MUST match the safe-name
+      // pattern, otherwise we refuse to touch the disk. Attacker input
+      // like `?name=../../etc/passwd` or `?styleName=../foo` is killed
+      // here. Returns null cleanly (caller already handles missing).
+      if (!isSafeRegistrySegment(name)) {
+        registryCache.set(cacheKey, null)
+        return null
+      }
+
       const projectRoot = process.cwd()
       let item: RegistryItem | undefined
 
-      try {
-        const registryPath = pathNode.join(
-          projectRoot,
-          "public",
-          "r",
-          "styles",
-          styleName,
-          `${name}.json`
-        )
-        const content = await fs.readFile(registryPath, "utf-8")
-        item = JSON.parse(content)
-      } catch {
-        // Fall back to metadata
+      for (const candidateStyleName of getStaticRegistryStyleCandidates(
+        styleName,
+        name
+      )) {
+        if (!isSafeRegistrySegment(candidateStyleName)) continue
+        try {
+          const registryPath = pathNode.join(
+            projectRoot,
+            "public",
+            "r",
+            "styles",
+            candidateStyleName,
+            `${name}.json`
+          )
+          const content = await fs.readFile(registryPath, "utf-8")
+          item = JSON.parse(content)
+          break
+        } catch {
+          // Try the next candidate, then fall back to metadata.
+        }
       }
 
       if (!item) {
@@ -885,20 +943,27 @@ export async function getRegistryItem(
         item = Metadata[registryKey]?.[name] as RegistryItem | undefined
 
         if (item) {
-          try {
-            const registryPath = pathNode.join(
-              projectRoot,
-              "public",
-              "r",
-              "styles",
-              styleName,
-              `${item.name}.json`
-            )
-            const content = await fs.readFile(registryPath, "utf-8")
-            const jsonItem = JSON.parse(content)
-            if (jsonItem?.files) item = jsonItem
-          } catch {
-            // Use metadata version
+          const metadataItemName = item.name
+          for (const candidateStyleName of getStaticRegistryStyleCandidates(
+            styleName,
+            metadataItemName
+          )) {
+            try {
+              const registryPath = pathNode.join(
+                projectRoot,
+                "public",
+                "r",
+                "styles",
+                candidateStyleName,
+                `${metadataItemName}.json`
+              )
+              const content = await fs.readFile(registryPath, "utf-8")
+              const jsonItem = JSON.parse(content)
+              if (jsonItem?.files) item = jsonItem
+              break
+            } catch {
+              // Use metadata version after all candidates miss.
+            }
           }
         }
       }
@@ -926,7 +991,7 @@ export async function getRegistryItem(
       const processedFiles: RegistryItemFile[] = await Promise.all(
         files.map(async (file) => {
           let content = file.content ?? ""
-          if (!content) content = await getFileContent(file, styleName)
+          if (!content) content = await getFileContent(file)
           return {
             ...file,
             path: pathNode.relative(process.cwd(), file.path),
@@ -957,10 +1022,7 @@ export async function getRegistryItem(
   return requestPromise
 }
 
-async function getFileContent(
-  file: RegistryItemFile,
-  styleName: string = DEFAULT_STYLE_NAME
-) {
+async function getFileContent(file: RegistryItemFile) {
   const filePath = pathNode.resolve(process.cwd(), file.path)
 
   let code = ""
@@ -975,11 +1037,6 @@ async function getFileContent(
   }
 
   code = fixImport(code)
-  code = transformStyleClassNames(code, styleName)
-  code = code.replace(
-    /^\s*\/\/[*\s]*(?:Description|Order|GridSize|PreviewHeight):.*$\n?/gm,
-    ""
-  )
 
   return code.trim()
 }
@@ -1072,3 +1129,86 @@ export function createFileTreeForRegistryItemFiles(
 
   return root
 }
+
+/**
+ * Resolve an array of block names against the live registry.
+ * Returns BlockData only for names that still exist, preserving input order.
+ * Used by favorites to silently skip blocks removed from the registry.
+ */
+export function resolveBlockNames(names: string[]): BlockData[] {
+  const { blockByNameIndex } = getBlockIndexes()
+  const result: BlockData[] = []
+  for (const name of names) {
+    const block = blockByNameIndex.get(name)
+    if (block) result.push(block)
+  }
+  return result
+}
+
+/**
+ * Check whether a single block name exists in the registry.
+ */
+export function isValidBlockName(name: string): boolean {
+  return getBlockIndexes().blockByNameIndex.has(name)
+}
+
+// Legacy aliases retained while older imports are phased out.
+export type PatternData = BlockData
+export const getAllPatterns = getAllBlocks
+export const getPatternsTotalCount = getBlocksTotalCount
+export const getPatternCountByCategory = getBlockCountByCategory
+export const getPatternsByCategory = getBlocksByCategory
+export const searchPatterns = searchBlocks
+export const filterPatterns = filterBlocks
+export const getPaginatedPatterns = getPaginatedBlocks
+
+// ============================================================================
+// Blocks Group/Category Functions — all from block metadata categories.json
+// ============================================================================
+
+export function getBlockGroups(): BlockGroup[] {
+  return getBlocksData().groups
+}
+
+export function getBlockGroupCategories(groupSlug: string): BlockCategory[] {
+  const group = getBlocksData().groups.find((g) => g.slug === groupSlug)
+  return group?.categories ?? []
+}
+
+export function getBlocksByGroupAndCategory(
+  group: string,
+  category: string
+): BlockData[] {
+  const key = `${normalizeSlug(group)}/${normalizeSlug(category)}`
+  return getBlockIndexes().blockGroupCategoryIndex.get(key) ?? []
+}
+
+export function getBlocksByGroup(group: string): BlockData[] {
+  const normalizedGroup = normalizeSlug(group)
+  return getBlockIndexes().blocksArray.filter(
+    (p) => p.group === normalizedGroup
+  )
+}
+
+export function isValidGroup(group: string): boolean {
+  return getBlocksData().groups.some((g) => g.slug === normalizeSlug(group))
+}
+
+export function isValidGroupCategory(group: string, category: string): boolean {
+  const groupData = getBlocksData().groups.find(
+    (g) => g.slug === normalizeSlug(group)
+  )
+  if (!groupData) return false
+  return groupData.categories.some((c) => c.slug === normalizeSlug(category))
+}
+
+export function getGroupForCategory(category: string): string | null {
+  const normalized = normalizeSlug(category)
+  for (const group of getBlocksData().groups) {
+    if (group.categories.some((c) => c.slug === normalized)) {
+      return group.slug
+    }
+  }
+  return null
+}
+

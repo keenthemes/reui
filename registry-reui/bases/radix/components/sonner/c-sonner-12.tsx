@@ -1,6 +1,3 @@
-// Description: Custom accent border toast
-// Order: 12
-
 import { toast } from "sonner"
 
 import { Button } from "@/registry/bases/radix/ui/button"
@@ -9,7 +6,7 @@ import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 export default function Pattern() {
   const showToast = () => {
     toast.custom(() => (
-      <div className="bg-popover text-popover-foreground border-border style-vega:rounded-md style-nova:rounded-md style-lyra:rounded-none style-maia:rounded-3xl style-mira:rounded-md flex w-[356px] items-start gap-3 border border-l-4 border-l-blue-500 p-4 shadow-lg">
+      <div className="bg-popover text-popover-foreground border-border rounded-md flex w-[356px] items-start gap-3 border border-l-4 border-l-blue-500 p-4 shadow-lg">
         <div className="text-blue-500">
           <IconPlaceholder
             lucide="InfoIcon"

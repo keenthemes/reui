@@ -1,6 +1,3 @@
-// Description: Avatar with custom badge
-// Order: 31
-
 import {
   Avatar,
   AvatarFallback,

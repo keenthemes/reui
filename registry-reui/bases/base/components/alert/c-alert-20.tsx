@@ -1,6 +1,3 @@
-// Description: User message notification alert
-// Order: 20
-
 import {
   Alert,
   AlertAction,

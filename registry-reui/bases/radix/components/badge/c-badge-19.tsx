@@ -1,6 +1,3 @@
-// Description: Badge with full radius (radius="full")
-// Order: 19
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 export default function Pattern() {

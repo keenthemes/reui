@@ -1,6 +1,3 @@
-// Description: Scroll area with fade effect
-// Order: 4
-
 import { cn } from "@/registry/bases/radix/lib/utils"
 import { ScrollArea } from "@/registry/bases/radix/ui/scroll-area"
 
@@ -8,7 +5,7 @@ export default function Pattern() {
   return (
     <ScrollArea
       className={cn(
-        "style-vega:rounded-lg style-lyra:rounded-none style-maia:rounded-2xl style-nova:rounded-2xl style-mira:rounded-md h-72 w-48 border",
+        "rounded-2xl h-72 w-48 border",
         "**:data-[slot=scroll-area-thumb]:bg-foreground/15 **:data-[slot=scroll-area-thumb]:rounded-full",
         "**:data-[slot=scroll-area-viewport]:mask-t-from-[calc(100%-min(var(--fade-size),var(--scroll-area-overflow-y-start)))]",
         "**:data-[slot=scroll-area-viewport]:mask-r-from-[calc(100%-min(var(--fade-size),var(--scroll-area-overflow-x-end)))]",
@@ -21,7 +18,7 @@ export default function Pattern() {
         {Array.from({ length: 10 }).map((_, i) => (
           <div
             key={i}
-            className="style-vega:rounded-lg style-lyra:rounded-none style-maia:rounded-2xl style-nova:rounded-2xl style-mira:rounded-md relative h-36 w-40 shrink-0 overflow-hidden border"
+            className="rounded-2xl relative h-36 w-40 shrink-0 overflow-hidden border"
           >
             <img
               src={`https://picsum.photos/400/300?random=${i + 1}`}

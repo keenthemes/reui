@@ -1,6 +1,3 @@
-// Description: Pagination with hover effect.
-// Order: 3
-
 "use client"
 
 import {

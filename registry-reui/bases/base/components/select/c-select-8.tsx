@@ -1,6 +1,3 @@
-// Description: Select component within a Field with label and description
-// Order: 8
-
 import {
   Field,
   FieldDescription,

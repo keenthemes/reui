@@ -1,6 +1,3 @@
-// Description: Toast with close button on top-right
-// Order: 18
-
 import { toast } from "sonner"
 
 import { Button } from "@/registry/bases/radix/ui/button"

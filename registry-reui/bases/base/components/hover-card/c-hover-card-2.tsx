@@ -1,6 +1,3 @@
-// Description: Hover card with positions.
-// Order: 2
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   HoverCard,

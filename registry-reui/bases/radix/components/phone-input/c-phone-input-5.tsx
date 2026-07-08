@@ -1,6 +1,3 @@
-// Description: Phone input with preset value
-// Order: 5
-
 import { PhoneInput } from "@/registry-reui/bases/radix/reui/phone-input"
 
 export default function Pattern() {

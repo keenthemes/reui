@@ -1,0 +1,74 @@
+[
+  {
+    "name": "c-item-1",
+    "title": "Basic item with title and description",
+    "description": "Basic item with title and description",
+    "order": 1
+  },
+  {
+    "name": "c-item-2",
+    "title": "Items with icon media and action buttons",
+    "description": "Items with icon media and action buttons",
+    "order": 2
+  },
+  {
+    "name": "c-item-3",
+    "title": "User item with avatar, info, and follow button",
+    "description": "User item with avatar, info, and follow button",
+    "order": 3
+  },
+  {
+    "name": "c-item-4",
+    "title": "Clickable navigation items with icons and chevron",
+    "description": "Clickable navigation items with icons and chevron",
+    "order": 4
+  },
+  {
+    "name": "c-item-5",
+    "title": "Item group with status badges",
+    "description": "Item group with status badges",
+    "order": 5
+  },
+  {
+    "name": "c-item-6",
+    "title": "File items with icon media, size, and actions",
+    "description": "File items with icon media, size, and actions",
+    "order": 6
+  },
+  {
+    "name": "c-item-7",
+    "title": "Items with keyboard shortcuts",
+    "description": "Items with keyboard shortcuts",
+    "order": 7
+  },
+  {
+    "name": "c-item-8",
+    "title": "Small-size items with badges",
+    "description": "Small-size items with badges",
+    "order": 8
+  },
+  {
+    "name": "c-item-9",
+    "title": "Team members with roles and multiple actions",
+    "description": "Team members with roles and multiple actions",
+    "order": 9
+  },
+  {
+    "name": "c-item-10",
+    "title": "Item with header and footer sections",
+    "description": "Item with header and footer sections",
+    "order": 10
+  },
+  {
+    "name": "c-item-11",
+    "title": "Integration items with connect actions",
+    "description": "Integration items with connect actions",
+    "order": 11
+  },
+  {
+    "name": "c-item-12",
+    "title": "Activity feed items with avatars and actions",
+    "description": "Activity feed items with avatars and actions",
+    "order": 12
+  }
+]

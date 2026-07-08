@@ -1,6 +1,3 @@
-// Description: A combobox in an invalid state
-// Order: 3
-
 import {
   Combobox,
   ComboboxContent,

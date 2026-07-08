@@ -1,6 +1,3 @@
-// Description: Basic menubar.
-// Order: 1
-
 import {
   Menubar,
   MenubarContent,

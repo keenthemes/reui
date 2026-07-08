@@ -1,7 +1,3 @@
-// Description: Filters with input validation
-// Order: 2
-// GridSize: 1
-
 "use client"
 
 import { useCallback, useState } from "react"

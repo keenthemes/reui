@@ -5,7 +5,11 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/registry/bases/base/lib/utils"
 
 const badgeVariants = cva(
-  "relative inline-flex shrink-0 items-center justify-center w-fit border border-transparent font-medium whitespace-nowrap outline-none transition-shadow focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*=size-])]:size-3",
+  [
+    "relative inline-flex shrink-0 items-center justify-center w-fit border border-transparent font-medium whitespace-nowrap outline-none transition-shadow",
+    "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50",
+    "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*=size-])]:size-3",
+  ],
   {
     variants: {
       variant: {
@@ -19,19 +23,19 @@ const badgeVariants = cva(
         focus: "bg-focus text-focus-foreground",
         invert: "bg-invert text-invert-foreground",
         "primary-light":
-          "bg-primary/10 border-none text-primary dark:bg-primary/20",
+          "border-primary/10 bg-primary/10 text-primary dark:border-primary/25 dark:bg-primary/15 dark:text-primary",
         "warning-light":
-          "bg-warning/10 border-none text-warning-foreground dark:bg-warning/20",
+          "border-warning/15 bg-warning/10 text-warning-foreground dark:border-warning/25 dark:bg-warning/15 dark:text-warning",
         "success-light":
-          "bg-success/10 border-none text-success-foreground dark:bg-success/20",
+          "border-success/15 bg-success/10 text-success-foreground dark:border-success/25 dark:bg-success/15 dark:text-success",
         "info-light":
-          "bg-info/10 border-none text-info-foreground dark:bg-info/20",
+          "border-info/15 bg-info/10 text-info-foreground dark:border-info/25 dark:bg-info/15 dark:text-info",
         "destructive-light":
-          "bg-destructive/10 border-none text-destructive-foreground dark:bg-destructive/20",
+          "border-destructive/15 bg-destructive/10 text-destructive-foreground dark:border-destructive/25 dark:bg-destructive/15 dark:text-destructive",
         "invert-light":
-          "bg-invert/10 border-none text-foreground dark:bg-invert/20",
+          "border-invert/15 bg-invert/10 text-foreground dark:border-invert/45 dark:bg-invert/35 dark:text-invert-foreground",
         "focus-light":
-          "bg-focus/10 border-none text-focus-foreground dark:bg-focus/20",
+          "border-focus/15 bg-focus/10 text-focus-foreground dark:border-focus/25 dark:bg-focus/15 dark:text-focus",
         "primary-outline":
           "bg-background border-border text-primary dark:bg-input/30",
         "warning-outline":
@@ -54,11 +58,11 @@ const badgeVariants = cva(
         lg: "px-1.5 py-0.5 text-xs h-5.5 min-w-5.5 gap-1",
         xl: "px-2 py-0.75 text-sm h-6 min-w-6 gap-1.5",
       },
-      /** `default`: per-theme radius. `full`: max radius per theme (Lyra stays `rounded-none`). */
+      /** `default`: active style radius. `full`: pill radius. */
       radius: {
         default:
-          "style-vega:rounded-sm style-nova:rounded-sm style-lyra:rounded-none style-maia:rounded-4xl style-mira:rounded-sm",
-        full: "style-vega:rounded-full style-nova:rounded-full style-lyra:rounded-none style-maia:rounded-full style-mira:rounded-full",
+          "style-vega:rounded-sm style-nova:rounded-sm style-maia:rounded-4xl style-lyra:rounded-none style-mira:rounded-sm style-luma:rounded-4xl style-rhea:rounded-2xl style-sera:rounded-none",
+        full: "rounded-full",
       },
     },
     defaultVariants: {

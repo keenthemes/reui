@@ -1,6 +1,3 @@
-// Description: Basic switch.
-// Order: 1
-
 import { Field, FieldLabel } from "@/registry/bases/base/ui/field"
 import { Switch } from "@/registry/bases/base/ui/switch"
 

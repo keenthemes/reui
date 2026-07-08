@@ -1,6 +1,3 @@
-// Description: Slider synced with number input
-// Order: 7
-
 "use client"
 
 import { useState } from "react"

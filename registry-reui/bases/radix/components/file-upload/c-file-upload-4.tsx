@@ -1,7 +1,3 @@
-// Description: Gallery file upload
-// Order: 4
-// GridSize: 1
-
 "use client"
 
 import { useState } from "react"
@@ -107,7 +103,7 @@ export default function Pattern({
       {/* Upload Area */}
       <div
         className={cn(
-          "style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-lg style-mira:rounded-lg relative border border-dashed p-8 text-center transition-colors",
+          "rounded-lg relative border border-dashed p-8 text-center transition-colors",
           isDragging
             ? "border-primary bg-primary/5"
             : "border-muted-foreground/25 hover:border-muted-foreground/50"
@@ -195,7 +191,7 @@ export default function Pattern({
               {isImage(fileItem.file) && fileItem.preview ? (
                 <>
                   {loadingImages[fileItem.id] !== false && (
-                    <div className="bg-muted/50 style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-lg style-mira:rounded-lg absolute inset-0 flex items-center justify-center border">
+                    <div className="bg-muted/50 rounded-lg absolute inset-0 flex items-center justify-center border">
                       <Spinner className="text-muted-foreground size-6" />
                     </div>
                   )}
@@ -209,7 +205,7 @@ export default function Pattern({
                       }))
                     }
                     className={cn(
-                      "style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-lg style-mira:rounded-lg h-full w-full border object-cover transition-all group-hover/item:scale-105",
+                      "rounded-lg h-full w-full border object-cover transition-all group-hover/item:scale-105",
                       loadingImages[fileItem.id] !== false
                         ? "opacity-0"
                         : "opacity-100"
@@ -217,7 +213,7 @@ export default function Pattern({
                   />
                 </>
               ) : (
-                <div className="bg-muted style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-lg style-mira:rounded-lg flex h-full w-full items-center justify-center border">
+                <div className="bg-muted rounded-lg flex h-full w-full items-center justify-center border">
                   <IconPlaceholder
                     lucide="ImageIcon"
                     tabler="IconPhoto"
@@ -230,7 +226,7 @@ export default function Pattern({
               )}
 
               {/* Overlay */}
-              <div className="style-vega:bg-black/50 style-nova:bg-black/50 style-lyra:bg-black/50 style-maia:bg-black/50 style-mira:bg-black/50 absolute inset-0 flex items-center justify-center gap-2 opacity-0 transition-opacity group-hover/item:opacity-100">
+              <div className="bg-black/50 absolute inset-0 flex items-center justify-center gap-2 opacity-0 transition-opacity group-hover/item:opacity-100">
                 {/* View Button */}
                 {fileItem.preview && (
                   <Button
@@ -272,7 +268,7 @@ export default function Pattern({
               </div>
 
               {/* File Info */}
-              <div className="style-vega:rounded-b-lg style-nova:rounded-b-lg style-lyra:rounded-none style-maia:rounded-b-lg style-mira:rounded-b-lg absolute right-0 bottom-0 left-0 bg-black/70 p-2 text-white opacity-0 transition-opacity group-hover:opacity-100">
+              <div className="rounded-b-lg absolute right-0 bottom-0 left-0 bg-black/70 p-2 text-white opacity-0 transition-opacity group-hover:opacity-100">
                 <p className="truncate text-xs font-medium">
                   {fileItem.file.name}
                 </p>
@@ -328,7 +324,7 @@ export default function Pattern({
                   alt="Preview"
                   onLoad={() => setIsPreviewLoading(false)}
                   className={cn(
-                    "style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-lg style-mira:rounded-lg h-full w-auto object-contain transition-opacity duration-300",
+                    "rounded-lg h-full w-auto object-contain transition-opacity duration-300",
                     isPreviewLoading ? "opacity-0" : "opacity-100"
                   )}
                 />

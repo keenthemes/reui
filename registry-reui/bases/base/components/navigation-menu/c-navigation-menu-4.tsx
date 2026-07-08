@@ -1,8 +1,3 @@
-// Description: Navigation menu with grid layout and learn more button.
-// Order: 4
-
-import Link from "next/link"
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   NavigationMenu,
@@ -142,7 +137,7 @@ export default function Pattern() {
                   {industries.map((item) => (
                     <li key={item.title}>
                       <NavigationMenuLink
-                        render={<Link href="#" />}
+                        render={<a href="#" />}
                         className="flex items-start gap-2 p-3"
                       >
                         {item.icon}
@@ -159,7 +154,7 @@ export default function Pattern() {
                   ))}
                 </ul>
                 <div className="mt-2 px-1 pb-1">
-                  <Button className="w-full" render={<Link href="#" />}>
+                  <Button className="w-full" render={<a href="#" />}>
                     Learn more
                   </Button>
                 </div>

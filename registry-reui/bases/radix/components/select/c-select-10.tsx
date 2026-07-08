@@ -1,6 +1,3 @@
-// Description: Select component in a disabled state
-// Order: 10
-
 import { Field } from "@/registry/bases/radix/ui/field"
 import {
   Select,

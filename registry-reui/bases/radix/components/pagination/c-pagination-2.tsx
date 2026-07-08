@@ -1,6 +1,3 @@
-// Description: Pagination without labels.
-// Order: 2
-
 import {
   Pagination,
   PaginationContent,

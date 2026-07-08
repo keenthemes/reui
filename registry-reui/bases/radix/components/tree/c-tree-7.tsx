@@ -1,6 +1,3 @@
-// Description: Permissions tree with checkboxes
-// Order: 7
-
 "use client"
 
 import { useState } from "react"

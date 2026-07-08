@@ -1,7 +1,3 @@
-// Description: Activity log table with user avatars and timestamps
-// Order: 9
-// GridSize: 1
-
 import { Badge } from "@/registry-reui/bases/base/reui/badge"
 import { Frame, FramePanel } from "@/registry-reui/bases/radix/reui/frame"
 

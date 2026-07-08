@@ -1,6 +1,3 @@
-// Description: Button group with select status addon
-// Order: 27
-
 import { cn } from "@/lib/utils"
 import { ButtonGroup } from "@/registry/bases/radix/ui/button-group"
 import { Input } from "@/registry/bases/radix/ui/input"

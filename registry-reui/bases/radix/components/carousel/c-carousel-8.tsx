@@ -1,8 +1,3 @@
-// Description: Carousel with images and overlays
-// Order: 8
-
-import Image from "next/image"
-
 import { Card } from "@/registry/bases/radix/ui/card"
 import {
   Carousel,
@@ -20,11 +15,12 @@ export default function Pattern() {
           <CarouselItem key={index}>
             <div className="p-1">
               <Card className="group/card relative aspect-video overflow-hidden border-0 p-0">
-                <Image
+                <img
                   src={`https://picsum.photos/1000/800?grayscale&random=${index + 10}`}
                   alt={`Slide ${index + 1}`}
-                  fill
-                  className="scale-100 object-cover transition-transform duration-500 ease-in-out group-hover/card:scale-105"
+                  width={1000}
+                  height={800}
+                  className="absolute inset-0 size-full scale-100 object-cover transition-transform duration-500 ease-in-out group-hover/card:scale-105"
                 />
                 {/* Background fade effects */}
                 <div className="absolute inset-x-0 bottom-0 h-1/2 bg-linear-to-t from-black/80 to-transparent" />

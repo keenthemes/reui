@@ -1,6 +1,3 @@
-// Description: Comments empty state with isometric board illustration
-// Order: 14
-
 import {
   Empty,
   EmptyDescription,

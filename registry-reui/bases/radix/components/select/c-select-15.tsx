@@ -1,6 +1,3 @@
-// Description: Select component with item alignment enabled
-// Order: 15
-
 import { Field } from "@/registry/bases/radix/ui/field"
 import {
   Select,

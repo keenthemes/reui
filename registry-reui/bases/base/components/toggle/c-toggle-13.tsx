@@ -1,6 +1,3 @@
-// Description: Disabled toggle states
-// Order: 13
-
 import { Toggle } from "@/registry/bases/base/ui/toggle"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 

@@ -1,6 +1,3 @@
-// Description: Input with time type
-// Order: 14
-
 import { Field, FieldLabel } from "@/registry/bases/base/ui/field"
 import { Input } from "@/registry/bases/base/ui/input"
 

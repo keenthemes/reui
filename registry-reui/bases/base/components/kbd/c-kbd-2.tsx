@@ -1,6 +1,3 @@
-// Description: Keyboard keys grouped together.
-// Order: 2
-
 import { Kbd, KbdGroup } from "@/registry/bases/base/ui/kbd"
 
 export default function Pattern() {

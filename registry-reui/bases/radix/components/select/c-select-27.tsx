@@ -1,6 +1,3 @@
-// Description: Select with description text per option
-// Order: 27
-
 import { Field } from "@/registry/bases/radix/ui/field"
 import {
   Select,

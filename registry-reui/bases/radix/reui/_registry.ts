@@ -105,86 +105,6 @@ export const reui: Registry["items"] = [
     }
   },
   {
-    "name": "data-grid",
-    "type": "registry:ui",
-    "title": "Data Grid",
-    "description": "",
-    "registryDependencies": [
-      "badge",
-      "button",
-      "checkbox",
-      "dropdown-menu",
-      "input",
-      "popover",
-      "select",
-      "separator",
-      "skeleton",
-      "spinner"
-    ],
-    "dependencies": [
-      "@dnd-kit/core",
-      "@dnd-kit/modifiers",
-      "@dnd-kit/sortable",
-      "@dnd-kit/utilities",
-      "@tanstack/react-table",
-      "@tanstack/react-virtual",
-      "class-variance-authority",
-      "radix-ui"
-    ],
-    "files": [
-      {
-        "path": "reui/data-grid/data-grid.tsx",
-        "type": "registry:ui",
-        "target": "components/reui/data-grid/data-grid.tsx"
-      },
-      {
-        "path": "reui/data-grid/data-grid-column-filter.tsx",
-        "type": "registry:ui",
-        "target": "components/reui/data-grid/data-grid-column-filter.tsx"
-      },
-      {
-        "path": "reui/data-grid/data-grid-column-header.tsx",
-        "type": "registry:ui",
-        "target": "components/reui/data-grid/data-grid-column-header.tsx"
-      },
-      {
-        "path": "reui/data-grid/data-grid-column-visibility.tsx",
-        "type": "registry:ui",
-        "target": "components/reui/data-grid/data-grid-column-visibility.tsx"
-      },
-      {
-        "path": "reui/data-grid/data-grid-pagination.tsx",
-        "type": "registry:ui",
-        "target": "components/reui/data-grid/data-grid-pagination.tsx"
-      },
-      {
-        "path": "reui/data-grid/data-grid-scroll-area.tsx",
-        "type": "registry:ui",
-        "target": "components/reui/data-grid/data-grid-scroll-area.tsx"
-      },
-      {
-        "path": "reui/data-grid/data-grid-table-dnd-rows.tsx",
-        "type": "registry:ui",
-        "target": "components/reui/data-grid/data-grid-table-dnd-rows.tsx"
-      },
-      {
-        "path": "reui/data-grid/data-grid-table-dnd.tsx",
-        "type": "registry:ui",
-        "target": "components/reui/data-grid/data-grid-table-dnd.tsx"
-      },
-      {
-        "path": "reui/data-grid/data-grid-table-virtual.tsx",
-        "type": "registry:ui",
-        "target": "components/reui/data-grid/data-grid-table-virtual.tsx"
-      },
-      {
-        "path": "reui/data-grid/data-grid-table.tsx",
-        "type": "registry:ui",
-        "target": "components/reui/data-grid/data-grid-table.tsx"
-      }
-    ]
-  },
-  {
     "name": "data-grid-column-filter",
     "type": "registry:ui",
     "title": "Data Grid Column Filter",
@@ -214,7 +134,6 @@ export const reui: Registry["items"] = [
     "description": "",
     "registryDependencies": [
       "button",
-      "data-grid",
       "dropdown-menu"
     ],
     "dependencies": [
@@ -234,7 +153,6 @@ export const reui: Registry["items"] = [
     "title": "Data Grid Column Visibility",
     "description": "",
     "registryDependencies": [
-      "data-grid",
       "dropdown-menu"
     ],
     "dependencies": [
@@ -255,7 +173,6 @@ export const reui: Registry["items"] = [
     "description": "",
     "registryDependencies": [
       "button",
-      "data-grid",
       "select",
       "skeleton"
     ],
@@ -273,11 +190,9 @@ export const reui: Registry["items"] = [
     "type": "registry:ui",
     "title": "Data Grid Scroll Area",
     "description": "",
-    "registryDependencies": [
-      "data-grid"
-    ],
+    "registryDependencies": [],
     "dependencies": [
-      "radix-ui"
+      "@base-ui/react"
     ],
     "files": [
       {
@@ -293,9 +208,7 @@ export const reui: Registry["items"] = [
     "title": "Data Grid Table Dnd Rows",
     "description": "",
     "registryDependencies": [
-      "button",
-      "data-grid",
-      "data-grid-table"
+      "button"
     ],
     "dependencies": [
       "@dnd-kit/core",
@@ -318,9 +231,7 @@ export const reui: Registry["items"] = [
     "title": "Data Grid Table Dnd",
     "description": "",
     "registryDependencies": [
-      "button",
-      "data-grid",
-      "data-grid-table"
+      "button"
     ],
     "dependencies": [
       "@dnd-kit/core",
@@ -342,8 +253,6 @@ export const reui: Registry["items"] = [
     "title": "Data Grid Table Virtual",
     "description": "",
     "registryDependencies": [
-      "data-grid",
-      "data-grid-table",
       "spinner"
     ],
     "dependencies": [
@@ -365,7 +274,6 @@ export const reui: Registry["items"] = [
     "description": "",
     "registryDependencies": [
       "checkbox",
-      "data-grid",
       "spinner"
     ],
     "dependencies": [
@@ -377,6 +285,86 @@ export const reui: Registry["items"] = [
         "path": "reui/data-grid/data-grid-table.tsx",
         "type": "registry:ui",
         "target": "components/reui/data-grid/data-grid-table.tsx"
+      }
+    ]
+  },
+  {
+    "name": "data-grid",
+    "type": "registry:ui",
+    "title": "Data Grid",
+    "description": "",
+    "registryDependencies": [
+      "badge",
+      "button",
+      "checkbox",
+      "dropdown-menu",
+      "input",
+      "popover",
+      "select",
+      "separator",
+      "skeleton",
+      "spinner"
+    ],
+    "dependencies": [
+      "@base-ui/react",
+      "@dnd-kit/core",
+      "@dnd-kit/modifiers",
+      "@dnd-kit/sortable",
+      "@dnd-kit/utilities",
+      "@tanstack/react-table",
+      "@tanstack/react-virtual",
+      "class-variance-authority"
+    ],
+    "files": [
+      {
+        "path": "reui/data-grid/data-grid-column-filter.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/data-grid/data-grid-column-filter.tsx"
+      },
+      {
+        "path": "reui/data-grid/data-grid-column-header.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/data-grid/data-grid-column-header.tsx"
+      },
+      {
+        "path": "reui/data-grid/data-grid-column-visibility.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/data-grid/data-grid-column-visibility.tsx"
+      },
+      {
+        "path": "reui/data-grid/data-grid-pagination.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/data-grid/data-grid-pagination.tsx"
+      },
+      {
+        "path": "reui/data-grid/data-grid-scroll-area.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/data-grid/data-grid-scroll-area.tsx"
+      },
+      {
+        "path": "reui/data-grid/data-grid-table-dnd-rows.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/data-grid/data-grid-table-dnd-rows.tsx"
+      },
+      {
+        "path": "reui/data-grid/data-grid-table-dnd.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/data-grid/data-grid-table-dnd.tsx"
+      },
+      {
+        "path": "reui/data-grid/data-grid-table-virtual.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/data-grid/data-grid-table-virtual.tsx"
+      },
+      {
+        "path": "reui/data-grid/data-grid-table.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/data-grid/data-grid-table.tsx"
+      },
+      {
+        "path": "reui/data-grid/data-grid.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/data-grid/data-grid.tsx"
       }
     ]
   },
@@ -465,6 +453,21 @@ export const reui: Registry["items"] = [
         "path": "reui/frame.tsx",
         "type": "registry:ui",
         "target": "components/reui/frame.tsx"
+      }
+    ]
+  },
+  {
+    "name": "icon-stack",
+    "type": "registry:ui",
+    "title": "Layered icon illustration container",
+    "description": "Layered icon illustration container",
+    "registryDependencies": [],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "reui/icon-stack.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/icon-stack.tsx"
       }
     ]
   },

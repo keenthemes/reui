@@ -1,6 +1,3 @@
-// Description: Team activity and collaboration group
-// Order: 5
-
 import {
   Avatar,
   AvatarFallback,

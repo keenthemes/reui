@@ -1,6 +1,3 @@
-// Description: Select component with a subscription plan style
-// Order: 6
-
 import { Field } from "@/registry/bases/radix/ui/field"
 import {
   Item,

@@ -1,6 +1,3 @@
-// Description: Social login buttons with Remix Icons
-// Order: 36
-
 import {
   RiFacebookFill,
   RiGithubFill,

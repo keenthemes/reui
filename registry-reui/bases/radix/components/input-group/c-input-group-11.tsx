@@ -1,6 +1,3 @@
-// Description: Input group with icon button action
-// Order: 11
-
 import { toast } from "sonner"
 
 import { Field } from "@/registry/bases/radix/ui/field"

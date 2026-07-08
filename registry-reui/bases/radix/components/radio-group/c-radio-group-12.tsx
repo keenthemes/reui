@@ -1,6 +1,3 @@
-// Description: Avatar based card radio group
-// Order: 12
-
 import {
   Avatar,
   AvatarFallback,

@@ -1,6 +1,3 @@
-// Description: Bookmarks empty state
-// Order: 11
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   Empty,

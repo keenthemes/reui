@@ -1,6 +1,3 @@
-// Description: Collapsible animated card
-// Order: 3
-
 import {
   Collapsible,
   CollapsibleContent,

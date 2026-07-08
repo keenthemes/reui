@@ -1,6 +1,3 @@
-// Description: No products empty state with stacked cards and blur effect
-// Order: 15
-
 import {
   Empty,
   EmptyDescription,

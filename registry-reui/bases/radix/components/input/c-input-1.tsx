@@ -1,6 +1,3 @@
-// Description: Basic input
-// Order: 1
-
 import { Field } from "@/registry/bases/radix/ui/field"
 import { Input } from "@/registry/bases/radix/ui/input"
 

@@ -1,6 +1,3 @@
-// Description: Rating with review text input
-// Order: 9
-
 "use client"
 
 import { useState } from "react"

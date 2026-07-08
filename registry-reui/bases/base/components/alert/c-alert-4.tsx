@@ -1,6 +1,3 @@
-// Description: Destructive alert with icon and action buttons
-// Order: 4
-
 import {
   Alert,
   AlertDescription,

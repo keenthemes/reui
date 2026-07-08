@@ -1,6 +1,3 @@
-// Description: Command with shortcuts
-// Order: 2
-
 "use client"
 
 import { useState } from "react"

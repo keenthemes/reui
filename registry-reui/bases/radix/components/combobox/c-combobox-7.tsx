@@ -1,6 +1,3 @@
-// Description: A combobox with grouped options and separators
-// Order: 7
-
 import {
   Combobox,
   ComboboxCollection,

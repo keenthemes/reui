@@ -1,6 +1,3 @@
-// Description: Gradient bar chart
-// Order: 7
-
 "use client"
 
 import { CSSProperties, SVGProps } from "react"
@@ -159,7 +156,7 @@ export default function Pattern() {
                         </span>
                       </div>
                       <span className="text-foreground font-semibold">
-                        {value.toLocaleString()}
+                        {Number(value).toLocaleString()}
                       </span>
                     </div>
                   )}

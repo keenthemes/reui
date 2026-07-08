@@ -1,6 +1,3 @@
-// Description: Card checkbox group with icons
-// Order: 11
-
 import { Card } from "@/registry/bases/base/ui/card"
 import { Checkbox } from "@/registry/bases/base/ui/checkbox"
 import {

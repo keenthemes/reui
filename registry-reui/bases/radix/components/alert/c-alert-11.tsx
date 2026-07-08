@@ -1,6 +1,3 @@
-// Description: Alert with description and action buttons
-// Order: 11
-
 import {
   Alert,
   AlertAction,

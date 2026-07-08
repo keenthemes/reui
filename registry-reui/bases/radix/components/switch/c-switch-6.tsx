@@ -1,6 +1,3 @@
-// Description: Switch list in card with separators
-// Order: 6
-
 import { Card } from "@/registry/bases/radix/ui/card"
 import {
   Field,

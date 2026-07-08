@@ -178,10 +178,10 @@ function TreeItemLabel<T = any>({
       data-slot="tree-item-label"
       className={cn(
         "in-focus-visible:ring-ring/50 bg-background hover:bg-accent in-data-[selected=true]:bg-accent in-data-[selected=true]:text-accent-foreground in-data-[drag-target=true]:bg-accent flex items-center gap-1 transition-colors not-in-data-[folder=true]:ps-7 in-focus-visible:ring-[3px] in-data-[search-match=true]:bg-blue-50! [&_svg]:pointer-events-none [&_svg]:shrink-0",
-        "style-vega:rounded-sm style-maia:rounded-sm style-nova:rounded-sm style-lyra:rounded-none style-mira:rounded-sm",
-        "style-vega:py-1.5 style-maia:py-1.5 style-nova:py-1.5 style-lyra:py-1.5 style-mira:py-1",
-        "style-vega:px-2 style-maia:px-2 style-nova:px-2 style-lyra:px-2 style-mira:px-1.5",
-        "style-vega:text-sm style-maia:text-sm style-nova:text-sm style-lyra:text-xs style-mira:text-xs/relaxed",
+        "style-vega:rounded-sm style-nova:rounded-md style-maia:rounded-xl style-lyra:rounded-none style-mira:rounded-md style-luma:rounded-2xl style-rhea:rounded-2xl style-sera:rounded-none",
+        "py-1.5",
+        "px-2",
+        "text-sm",
         className
       )}
       {...props}
@@ -245,7 +245,7 @@ function TreeDragLine({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
       style={dragLine}
       className={cn(
         "bg-primary before:bg-background before:border-primary absolute z-30 -mt-px h-0.5 w-[unset] before:absolute before:-top-[3px] before:left-0 before:size-2 before:border-2",
-        "style-vega:before:rounded-full style-maia:before:rounded-full style-nova:before:rounded-full style-lyra:before:rounded-none style-mira:before:rounded-full",
+        "before:rounded-full",
         className
       )}
       {...props}

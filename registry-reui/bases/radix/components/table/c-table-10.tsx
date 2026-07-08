@@ -1,7 +1,3 @@
-// Description: Subscriptions table with plan badges and billing info
-// Order: 10
-// GridSize: 1
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 import { Frame, FramePanel } from "@/registry-reui/bases/radix/reui/frame"
 

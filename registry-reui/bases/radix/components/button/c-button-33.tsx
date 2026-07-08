@@ -1,6 +1,3 @@
-// Description: Ghost button with an invalid state
-// Order: 33
-
 import { Button } from "@/registry/bases/radix/ui/button"
 
 export default function Pattern() {

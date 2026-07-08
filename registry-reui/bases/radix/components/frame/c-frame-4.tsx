@@ -1,6 +1,3 @@
-// Description: Frame with stacked panels and dense style
-// Order: 4
-
 import {
   Frame,
   FrameDescription,

@@ -1,10 +1,7 @@
-// Description: Active segment donut with center label
-// Order: 22
-
 "use client"
 
 import { CSSProperties } from "react"
-import { Label, Pie, PieChart } from "recharts"
+import { Label, Pie, PieChart, Sector, type PieSectorDataItem } from "recharts"
 
 import {
   Card,
@@ -97,8 +94,12 @@ export default function Pattern() {
               paddingAngle={3}
               stroke="var(--background)"
               strokeWidth={3}
-              activeIndex={2}
-              activeShape={{ outerRadius: 110 }}
+              activeShape={({
+                outerRadius = 0,
+                ...props
+              }: PieSectorDataItem) => (
+                <Sector {...props} outerRadius={outerRadius + 10} />
+              )}
             >
               <Label
                 content={({ viewBox }) => {

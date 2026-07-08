@@ -1,7 +1,3 @@
-// Description: Skeleton loader for a data table.
-// Order: 5
-// GridSize: 1
-
 import { Skeleton } from "@/registry/bases/radix/ui/skeleton"
 
 export default function Pattern() {

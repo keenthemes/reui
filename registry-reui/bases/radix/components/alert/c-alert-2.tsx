@@ -1,6 +1,3 @@
-// Description: Alert with icon
-// Order: 2
-
 import {
   Alert,
   AlertDescription,

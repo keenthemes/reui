@@ -1,7 +1,3 @@
-// Description: Vertical table with server configuration details
-// Order: 17
-// GridSize: 1
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 import {
   Frame,

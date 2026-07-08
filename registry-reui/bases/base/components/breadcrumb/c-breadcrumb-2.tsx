@@ -1,6 +1,3 @@
-// Description: Breadcrumb with dropdown menu
-// Order: 2
-
 import {
   Breadcrumb,
   BreadcrumbEllipsis,

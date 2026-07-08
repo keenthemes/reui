@@ -1,6 +1,3 @@
-// Description: Toast with custom close and cancel buttons
-// Order: 8
-
 import { toast } from "sonner"
 
 import { Button } from "@/registry/bases/base/ui/button"

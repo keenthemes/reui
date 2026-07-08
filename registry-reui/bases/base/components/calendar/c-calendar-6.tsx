@@ -1,6 +1,3 @@
-// Description: Custom select range style
-// Order: 6
-
 "use client"
 
 import { useState } from "react"

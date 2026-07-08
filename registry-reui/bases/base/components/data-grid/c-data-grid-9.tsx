@@ -1,7 +1,3 @@
-// Description: Data grid with sub table
-// GridSize: 1
-// Order: 9
-
 "use client"
 
 import { useMemo, useState } from "react"
@@ -33,6 +29,7 @@ import {
   AvatarImage,
 } from "@/registry/bases/base/ui/avatar"
 import { Button } from "@/registry/bases/base/ui/button"
+import { Card } from "@/registry/bases/base/ui/card"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 interface OrderItemData {
@@ -1794,23 +1791,22 @@ function OrderItemsSubTable({ items }: { items: OrderItemData[] }) {
   })
 
   return (
-    <div className="bg-background p-4">
+    <div className="bg-background min-w-0">
       <DataGrid
         table={table}
         recordCount={items.length}
         tableLayout={{
-          cellBorder: true,
           rowBorder: true,
-          headerBackground: true,
-          headerBorder: true,
         }}
       >
-        <div className="w-full space-y-2.5">
-          <DataGridContainer>
-            <DataGridScrollArea>
-              <DataGridTable />
-            </DataGridScrollArea>
-          </DataGridContainer>
+        <div className="w-full min-w-0 space-y-2.5 p-3 pl-12">
+          <Card className="p-0">
+            <DataGridContainer className="min-w-0">
+              <DataGridScrollArea className="min-w-0">
+                <DataGridTable />
+              </DataGridScrollArea>
+            </DataGridContainer>
+          </Card>
           <DataGridPagination className="pb-1.5" />
         </div>
       </DataGrid>
@@ -1842,27 +1838,32 @@ export default function Pattern() {
           return row.getCanExpand() ? (
             <Button
               onClick={row.getToggleExpandedHandler()}
-              size="icon-xs"
+              size="icon-sm"
               variant="ghost"
               className="opacity-70 hover:bg-transparent hover:opacity-100"
+              aria-label={
+                row.getIsExpanded()
+                  ? "Collapse order items"
+                  : "Expand order items"
+              }
             >
               {row.getIsExpanded() ? (
                 <IconPlaceholder
-                  lucide="SquareMinusIcon"
-                  tabler="IconSquareMinus"
-                  hugeicons="MinusSignSquareIcon"
-                  phosphor="MinusSquareIcon"
-                  remixicon="RiCheckboxIndeterminateLine"
-                  className="size-3.5"
+                  lucide="ChevronUpIcon"
+                  tabler="IconChevronUp"
+                  hugeicons="ArrowUp01Icon"
+                  phosphor="CaretUpIcon"
+                  remixicon="RiArrowUpSLine"
+                  aria-hidden="true"
                 />
               ) : (
                 <IconPlaceholder
-                  lucide="SquarePlusIcon"
-                  tabler="IconSquarePlus"
-                  hugeicons="AddSquareIcon"
-                  phosphor="PlusSquareIcon"
-                  remixicon="RiAddBoxLine"
-                  className="size-3.5"
+                  lucide="ChevronDownIcon"
+                  tabler="IconChevronDown"
+                  hugeicons="ArrowDown01Icon"
+                  phosphor="CaretDownIcon"
+                  remixicon="RiArrowDownSLine"
+                  aria-hidden="true"
                 />
               )}
             </Button>
@@ -2016,11 +2017,13 @@ export default function Pattern() {
       }}
     >
       <div className="w-full space-y-2.5">
-        <DataGridContainer>
-          <DataGridScrollArea>
-            <DataGridTable />
-          </DataGridScrollArea>
-        </DataGridContainer>
+        <Card className="p-0">
+          <DataGridContainer>
+            <DataGridScrollArea>
+              <DataGridTable />
+            </DataGridScrollArea>
+          </DataGridContainer>
+        </Card>
         <DataGridPagination />
       </div>
     </DataGrid>

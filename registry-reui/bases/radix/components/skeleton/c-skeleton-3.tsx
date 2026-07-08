@@ -1,7 +1,3 @@
-// Description: Skeleton loader for text and paragraphs.
-// Order: 3
-// GridSize: 1
-
 import { Skeleton } from "@/registry/bases/radix/ui/skeleton"
 
 export default function Pattern() {

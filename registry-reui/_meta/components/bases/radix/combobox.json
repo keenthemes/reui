@@ -1,0 +1,712 @@
+{
+  "items": [
+    {
+      "name": "c-combobox-1",
+      "type": "registry:block",
+      "title": "A basic combobox with a list of options",
+      "categories": [
+        "combobox"
+      ],
+      "description": "A basic combobox with a list of options",
+      "registryDependencies": [
+        "combobox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/combobox/c-combobox-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-combobox-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-combobox-2",
+      "type": "registry:block",
+      "title": "A disabled combobox",
+      "categories": [
+        "combobox"
+      ],
+      "description": "A disabled combobox",
+      "registryDependencies": [
+        "combobox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/combobox/c-combobox-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-combobox-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-combobox-3",
+      "type": "registry:block",
+      "title": "A combobox in an invalid state",
+      "categories": [
+        "combobox"
+      ],
+      "description": "A combobox in an invalid state",
+      "registryDependencies": [
+        "combobox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/combobox/c-combobox-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-combobox-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-combobox-4",
+      "type": "registry:block",
+      "title": "A combobox with a clear button",
+      "categories": [
+        "combobox"
+      ],
+      "description": "A combobox with a clear button",
+      "registryDependencies": [
+        "combobox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/combobox/c-combobox-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-combobox-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-combobox-5",
+      "type": "registry:block",
+      "title": "A combobox with auto-highlight enabled",
+      "categories": [
+        "combobox"
+      ],
+      "description": "A combobox with auto-highlight enabled",
+      "registryDependencies": [
+        "combobox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/combobox/c-combobox-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-combobox-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-combobox-6",
+      "type": "registry:block",
+      "title": "A combobox with grouped options",
+      "categories": [
+        "combobox"
+      ],
+      "description": "A combobox with grouped options",
+      "registryDependencies": [
+        "combobox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/combobox/c-combobox-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-combobox-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-combobox-7",
+      "type": "registry:block",
+      "title": "A combobox with grouped options and separators",
+      "categories": [
+        "combobox"
+      ],
+      "description": "A combobox with grouped options and separators",
+      "registryDependencies": [
+        "combobox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/combobox/c-combobox-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-combobox-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-combobox-8",
+      "type": "registry:block",
+      "title": "A combobox with a large list of options",
+      "categories": [
+        "combobox"
+      ],
+      "description": "A combobox with a large list of options",
+      "registryDependencies": [
+        "combobox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/combobox/c-combobox-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-combobox-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-combobox-9",
+      "type": "registry:block",
+      "title": "A combobox with an icon addon",
+      "categories": [
+        "combobox"
+      ],
+      "description": "A combobox with an icon addon",
+      "registryDependencies": [
+        "combobox",
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/combobox/c-combobox-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-combobox-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-combobox-10",
+      "type": "registry:block",
+      "title": "A combobox rendered inside a popup",
+      "categories": [
+        "combobox"
+      ],
+      "description": "A combobox rendered inside a popup",
+      "registryDependencies": [
+        "button",
+        "combobox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/combobox/c-combobox-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-combobox-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-combobox-11",
+      "type": "registry:block",
+      "title": "A combobox used within a form",
+      "categories": [
+        "combobox"
+      ],
+      "description": "A combobox used within a form",
+      "registryDependencies": [
+        "button",
+        "combobox",
+        "field"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/combobox/c-combobox-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-combobox-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    },
+    {
+      "name": "c-combobox-12",
+      "type": "registry:block",
+      "title": "A multi-select combobox",
+      "categories": [
+        "combobox"
+      ],
+      "description": "A multi-select combobox",
+      "registryDependencies": [
+        "combobox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/combobox/c-combobox-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-combobox-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12
+      }
+    },
+    {
+      "name": "c-combobox-13",
+      "type": "registry:block",
+      "title": "A disabled multi-select combobox",
+      "categories": [
+        "combobox"
+      ],
+      "description": "A disabled multi-select combobox",
+      "registryDependencies": [
+        "combobox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/combobox/c-combobox-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-combobox-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13
+      }
+    },
+    {
+      "name": "c-combobox-14",
+      "type": "registry:block",
+      "title": "A multi-select combobox in an invalid state",
+      "categories": [
+        "combobox"
+      ],
+      "description": "A multi-select combobox in an invalid state",
+      "registryDependencies": [
+        "combobox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/combobox/c-combobox-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-combobox-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14
+      }
+    },
+    {
+      "name": "c-combobox-15",
+      "type": "registry:block",
+      "title": "A multi-select with chips that cannot be removed",
+      "categories": [
+        "combobox"
+      ],
+      "description": "A multi-select with chips that cannot be removed",
+      "registryDependencies": [
+        "combobox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/combobox/c-combobox-15.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-combobox-15.tsx"
+        }
+      ],
+      "meta": {
+        "order": 15
+      }
+    },
+    {
+      "name": "c-combobox-16",
+      "type": "registry:block",
+      "title": "A combobox with custom item rendering",
+      "categories": [
+        "combobox"
+      ],
+      "description": "A combobox with custom item rendering",
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "combobox",
+        "field",
+        "item"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/combobox/c-combobox-16.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-combobox-16.tsx"
+        }
+      ],
+      "meta": {
+        "order": 16
+      }
+    },
+    {
+      "name": "c-combobox-17",
+      "type": "registry:block",
+      "title": "A combobox used within a dialog",
+      "categories": [
+        "combobox"
+      ],
+      "description": "A combobox used within a dialog",
+      "registryDependencies": [
+        "button",
+        "combobox",
+        "dialog",
+        "field"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/combobox/c-combobox-17.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-combobox-17.tsx"
+        }
+      ],
+      "meta": {
+        "order": 17
+      }
+    },
+    {
+      "name": "c-combobox-18",
+      "type": "registry:block",
+      "title": "A combobox with a custom trigger icon",
+      "categories": [
+        "combobox"
+      ],
+      "description": "A combobox with a custom trigger icon",
+      "registryDependencies": [
+        "combobox",
+        "field"
+      ],
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "files": [
+        {
+          "path": "components/combobox/c-combobox-18.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-combobox-18.tsx"
+        }
+      ],
+      "meta": {
+        "order": 18
+      }
+    },
+    {
+      "name": "c-combobox-19",
+      "type": "registry:block",
+      "title": "A multi-select combobox with user tags",
+      "categories": [
+        "combobox"
+      ],
+      "description": "A multi-select combobox with user tags",
+      "registryDependencies": [
+        "avatar",
+        "combobox",
+        "field",
+        "item"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/combobox/c-combobox-19.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-combobox-19.tsx"
+        }
+      ],
+      "meta": {
+        "order": 19
+      }
+    },
+    {
+      "name": "c-combobox-20",
+      "type": "registry:block",
+      "title": "Invisible combobox with member tags",
+      "categories": [
+        "combobox"
+      ],
+      "description": "Invisible combobox with member tags",
+      "registryDependencies": [
+        "avatar",
+        "combobox",
+        "field",
+        "item"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/combobox/c-combobox-20.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-combobox-20.tsx"
+        }
+      ],
+      "meta": {
+        "order": 20
+      }
+    },
+    {
+      "name": "c-combobox-21",
+      "type": "registry:block",
+      "title": "A status change combobox",
+      "categories": [
+        "combobox"
+      ],
+      "description": "A status change combobox",
+      "registryDependencies": [
+        "button",
+        "combobox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/combobox/c-combobox-21.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-combobox-21.tsx"
+        }
+      ],
+      "meta": {
+        "order": 21
+      }
+    },
+    {
+      "name": "c-combobox-22",
+      "type": "registry:block",
+      "title": "A priority change combobox",
+      "categories": [
+        "combobox"
+      ],
+      "description": "A priority change combobox",
+      "registryDependencies": [
+        "button",
+        "combobox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/combobox/c-combobox-22.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-combobox-22.tsx"
+        }
+      ],
+      "meta": {
+        "order": 22
+      }
+    },
+    {
+      "name": "c-combobox-23",
+      "type": "registry:block",
+      "title": "A lead selection combobox",
+      "categories": [
+        "combobox"
+      ],
+      "description": "A lead selection combobox",
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "combobox",
+        "field",
+        "item"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/combobox/c-combobox-23.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-combobox-23.tsx"
+        }
+      ],
+      "meta": {
+        "order": 23
+      }
+    },
+    {
+      "name": "c-combobox-24",
+      "type": "registry:block",
+      "title": "A multi-member selection combobox",
+      "categories": [
+        "combobox"
+      ],
+      "description": "A multi-member selection combobox",
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "combobox",
+        "field",
+        "item"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/combobox/c-combobox-24.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-combobox-24.tsx"
+        }
+      ],
+      "meta": {
+        "order": 24
+      }
+    },
+    {
+      "name": "c-combobox-25",
+      "type": "registry:block",
+      "title": "A date selection combobox with an optional custom picker dialog",
+      "categories": [
+        "combobox"
+      ],
+      "description": "A date selection combobox with an optional custom picker dialog",
+      "registryDependencies": [
+        "button",
+        "calendar",
+        "combobox",
+        "dialog",
+        "field"
+      ],
+      "dependencies": [
+        "date-fns"
+      ],
+      "files": [
+        {
+          "path": "components/combobox/c-combobox-25.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-combobox-25.tsx"
+        }
+      ],
+      "meta": {
+        "order": 25
+      }
+    },
+    {
+      "name": "c-combobox-26",
+      "type": "registry:block",
+      "title": "A multi-label selection combobox with a no-label mode",
+      "categories": [
+        "combobox"
+      ],
+      "description": "A multi-label selection combobox with a no-label mode",
+      "registryDependencies": [
+        "button",
+        "combobox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/combobox/c-combobox-26.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-combobox-26.tsx"
+        }
+      ],
+      "meta": {
+        "order": 26
+      }
+    },
+    {
+      "name": "c-combobox-27",
+      "type": "registry:block",
+      "title": "A team selection combobox",
+      "categories": [
+        "combobox"
+      ],
+      "description": "A team selection combobox",
+      "registryDependencies": [
+        "button",
+        "combobox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/combobox/c-combobox-27.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-combobox-27.tsx"
+        }
+      ],
+      "meta": {
+        "order": 27
+      }
+    },
+    {
+      "name": "c-combobox-28",
+      "type": "registry:block",
+      "title": "An assignee selection combobox",
+      "categories": [
+        "combobox"
+      ],
+      "description": "An assignee selection combobox",
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "combobox",
+        "field",
+        "item"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/combobox/c-combobox-28.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-combobox-28.tsx"
+        }
+      ],
+      "meta": {
+        "order": 28
+      }
+    }
+  ]
+}

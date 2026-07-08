@@ -3,6 +3,7 @@
 import {
   createContext,
   HTMLAttributes,
+  TimeHTMLAttributes,
   useCallback,
   useContext,
   useState,
@@ -95,7 +96,9 @@ function TimelineContent({
 }
 
 // TimelineDate
-interface TimelineDateProps extends HTMLAttributes<HTMLTimeElement> {
+// TimeHTMLAttributes (not the generic HTMLAttributes) so the <time>-specific `dateTime`
+// attribute is accepted — matches the base wrapper's useRender.ComponentProps<"time">.
+interface TimelineDateProps extends TimeHTMLAttributes<HTMLTimeElement> {
   asChild?: boolean
 }
 

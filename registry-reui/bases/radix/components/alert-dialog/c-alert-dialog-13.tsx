@@ -1,6 +1,3 @@
-// Description: Logout confirmation dialog
-// Order: 13
-
 import {
   AlertDialog,
   AlertDialogAction,
@@ -26,7 +23,7 @@ export default function Pattern() {
         className="gap-0 overflow-hidden p-0 sm:max-w-sm"
       >
         <div className="flex flex-col items-center justify-center gap-2 p-8">
-          <AlertDialogMedia className="style-vega:rounded-full style-nova:rounded-full style-lyra:rounded-none style-maia:rounded-full style-mira:rounded-full size-12 bg-violet-50 text-violet-500 dark:bg-violet-950 dark:text-violet-400">
+          <AlertDialogMedia className="rounded-full size-12 bg-violet-50 text-violet-500 dark:bg-violet-950 dark:text-violet-400">
             <IconPlaceholder
               lucide="ShieldQuestionMarkIcon"
               tabler="IconShieldQuestion"

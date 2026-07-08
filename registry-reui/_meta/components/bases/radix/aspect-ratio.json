@@ -1,0 +1,188 @@
+{
+  "items": [
+    {
+      "name": "c-aspect-ratio-1",
+      "type": "registry:block",
+      "title": "16:9 widescreen aspect ratio",
+      "categories": [
+        "aspect-ratio"
+      ],
+      "description": "16:9 widescreen aspect ratio",
+      "registryDependencies": [
+        "aspect-ratio"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/aspect-ratio/c-aspect-ratio-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-aspect-ratio-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-aspect-ratio-2",
+      "type": "registry:block",
+      "title": "4:3 standard aspect ratio",
+      "categories": [
+        "aspect-ratio"
+      ],
+      "description": "4:3 standard aspect ratio",
+      "registryDependencies": [
+        "aspect-ratio"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/aspect-ratio/c-aspect-ratio-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-aspect-ratio-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-aspect-ratio-3",
+      "type": "registry:block",
+      "title": "1:1 square aspect ratio",
+      "categories": [
+        "aspect-ratio"
+      ],
+      "description": "1:1 square aspect ratio",
+      "registryDependencies": [
+        "aspect-ratio"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/aspect-ratio/c-aspect-ratio-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-aspect-ratio-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-aspect-ratio-4",
+      "type": "registry:block",
+      "title": "21:9 ultrawide aspect ratio",
+      "categories": [
+        "aspect-ratio"
+      ],
+      "description": "21:9 ultrawide aspect ratio",
+      "registryDependencies": [
+        "aspect-ratio"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/aspect-ratio/c-aspect-ratio-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-aspect-ratio-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-aspect-ratio-5",
+      "type": "registry:block",
+      "title": "9:16 portrait aspect ratio",
+      "categories": [
+        "aspect-ratio"
+      ],
+      "description": "9:16 portrait aspect ratio",
+      "registryDependencies": [
+        "aspect-ratio"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/aspect-ratio/c-aspect-ratio-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-aspect-ratio-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-aspect-ratio-6",
+      "type": "registry:block",
+      "title": "3:2 classic photography aspect ratio",
+      "categories": [
+        "aspect-ratio"
+      ],
+      "description": "3:2 classic photography aspect ratio",
+      "registryDependencies": [
+        "aspect-ratio"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/aspect-ratio/c-aspect-ratio-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-aspect-ratio-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-aspect-ratio-7",
+      "type": "registry:block",
+      "title": "4:5 social media portrait aspect ratio",
+      "categories": [
+        "aspect-ratio"
+      ],
+      "description": "4:5 social media portrait aspect ratio",
+      "registryDependencies": [
+        "aspect-ratio"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/aspect-ratio/c-aspect-ratio-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-aspect-ratio-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-aspect-ratio-8",
+      "type": "registry:block",
+      "title": "16:10 computer monitor aspect ratio",
+      "categories": [
+        "aspect-ratio"
+      ],
+      "description": "16:10 computer monitor aspect ratio",
+      "registryDependencies": [
+        "aspect-ratio"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/aspect-ratio/c-aspect-ratio-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-aspect-ratio-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    }
+  ]
+}

@@ -1,6 +1,3 @@
-// Description: No integrations empty state with connected nodes illustration
-// Order: 19
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   Empty,

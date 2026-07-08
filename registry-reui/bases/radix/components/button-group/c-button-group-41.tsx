@@ -1,6 +1,3 @@
-// Description: Model selector with tier badges
-// Order: 41
-
 "use client"
 
 import { useState } from "react"

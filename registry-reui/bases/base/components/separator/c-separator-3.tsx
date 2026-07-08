@@ -1,6 +1,3 @@
-// Description: Vertical separator groups related menu items.
-// Order: 3
-
 import { Separator } from "@/registry/bases/base/ui/separator"
 
 export default function Pattern() {

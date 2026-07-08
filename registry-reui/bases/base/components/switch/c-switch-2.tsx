@@ -1,6 +1,3 @@
-// Description: Switch with description.
-// Order: 2
-
 import {
   Field,
   FieldContent,

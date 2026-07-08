@@ -1,6 +1,3 @@
-// Description: Switch list in card with icons
-// Order: 7
-
 import { Card } from "@/registry/bases/radix/ui/card"
 import {
   Field,

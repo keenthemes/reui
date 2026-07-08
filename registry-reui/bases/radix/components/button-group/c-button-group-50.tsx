@@ -1,6 +1,3 @@
-// Description: Toolbar filter sort and more
-// Order: 50
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   ButtonGroup,

@@ -1,6 +1,3 @@
-// Description: Basic radio group
-// Order: 1
-
 import { Field, FieldLabel } from "@/registry/bases/radix/ui/field"
 import {
   RadioGroup,

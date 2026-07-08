@@ -1,6 +1,3 @@
-// Description: Select component with a large list of options
-// Order: 4
-
 import { Field } from "@/registry/bases/base/ui/field"
 import {
   Select,

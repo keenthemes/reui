@@ -1,6 +1,3 @@
-// Description: Multi-dataset bar chart
-// Order: 2
-
 "use client"
 
 import { CSSProperties } from "react"
@@ -105,7 +102,7 @@ export default function ChartBar() {
                         </span>
                       </div>
                       <span className="text-foreground font-semibold">
-                        {value.toLocaleString()}
+                        {Number(value).toLocaleString()}
                       </span>
                     </div>
                   )}

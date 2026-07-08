@@ -1,6 +1,3 @@
-// Description: Separator with centered text label
-// Order: 5
-
 import { Separator } from "@/registry/bases/radix/ui/separator"
 
 export default function Pattern() {

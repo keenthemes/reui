@@ -1,6 +1,3 @@
-// Description: Basic toast notification.
-// Order: 1
-
 import { toast } from "sonner"
 
 import { Button } from "@/registry/bases/base/ui/button"

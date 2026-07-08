@@ -1,6 +1,3 @@
-// Description: Collapsible card with bottom trigger
-// Order: 4
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   Card,
@@ -31,7 +28,7 @@ export default function Pattern() {
             </CardAction>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="bg-muted/60 border-border style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-2xl style-mira:rounded-md space-y-2 border p-3">
+            <div className="bg-muted/60 border-border rounded-lg space-y-2 border p-3">
               <div className="flex justify-between text-sm font-medium">
                 <span>$18.08 / $20</span>
                 <span>$200</span>

@@ -1,6 +1,3 @@
-// Description: Large phone input
-// Order: 3
-
 import { PhoneInput } from "@/registry-reui/bases/radix/reui/phone-input"
 
 export default function Pattern() {

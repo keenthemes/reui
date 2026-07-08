@@ -1,6 +1,3 @@
-// Description: Dropdown menu with keyboard shortcuts
-// Order: 4
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   DropdownMenu,

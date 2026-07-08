@@ -1,6 +1,3 @@
-// Description: Dialog with custom close button
-// Order: 5
-
 import { cn } from "@/registry/bases/radix/lib/utils"
 import { Button } from "@/registry/bases/radix/ui/button"
 import {

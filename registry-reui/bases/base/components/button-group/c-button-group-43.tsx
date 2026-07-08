@@ -1,6 +1,3 @@
-// Description: Buy sell hold toggle group
-// Order: 43
-
 "use client"
 
 import { useState } from "react"

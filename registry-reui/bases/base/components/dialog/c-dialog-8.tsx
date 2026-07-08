@@ -1,6 +1,3 @@
-// Description: Cookie consent dialog
-// Order: 8
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   Dialog,

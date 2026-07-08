@@ -1,6 +1,3 @@
-// Description: A combobox with an icon addon
-// Order: 9
-
 import {
   Combobox,
   ComboboxContent,

@@ -1,6 +1,3 @@
-// Description: Radio group in frame
-// Order: 10
-
 import {
   Frame,
   FrameHeader,

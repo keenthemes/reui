@@ -1,6 +1,3 @@
-// Description: Full-screen fluid dialog with sticky header and footer
-// Order: 6
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   Dialog,

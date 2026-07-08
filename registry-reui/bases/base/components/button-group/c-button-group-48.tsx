@@ -1,6 +1,3 @@
-// Description: Toolbar filter with export and view toggle
-// Order: 48
-
 "use client"
 
 import { useState } from "react"

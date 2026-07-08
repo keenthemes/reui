@@ -1,6 +1,3 @@
-// Description: Spinner in input group.
-// Order: 4
-
 import { Field, FieldLabel } from "@/registry/bases/base/ui/field"
 import {
   InputGroup,

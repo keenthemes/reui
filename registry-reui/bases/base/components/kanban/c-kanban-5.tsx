@@ -1,7 +1,3 @@
-// Description: Feature roadmap kanban with progress
-// Order: 5
-// GridSize: 1
-
 "use client"
 
 import { ComponentProps, useState } from "react"

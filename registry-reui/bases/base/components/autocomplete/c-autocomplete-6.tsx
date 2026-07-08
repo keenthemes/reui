@@ -1,6 +1,3 @@
-// Description: With trigger button
-// Order: 6
-
 "use client"
 
 import { useState } from "react"

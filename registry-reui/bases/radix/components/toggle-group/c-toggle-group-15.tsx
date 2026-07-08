@@ -1,6 +1,3 @@
-// Description: Toggle group for sort direction
-// Order: 15
-
 import {
   ToggleGroup,
   ToggleGroupItem,

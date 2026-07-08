@@ -1,6 +1,3 @@
-// Description: Outline like button with count
-// Order: 37
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 

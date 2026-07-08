@@ -1,6 +1,3 @@
-// Description: Basic tree.
-// Order: 1
-
 "use client"
 
 import {

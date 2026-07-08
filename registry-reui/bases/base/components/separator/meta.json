@@ -1,0 +1,38 @@
+[
+  {
+    "name": "c-separator-1",
+    "title": "Horizontal separator for content sections.",
+    "description": "Horizontal separator for content sections.",
+    "order": 1
+  },
+  {
+    "name": "c-separator-2",
+    "title": "Vertical separator for inline elements.",
+    "description": "Vertical separator for inline elements.",
+    "order": 2
+  },
+  {
+    "name": "c-separator-3",
+    "title": "Vertical separator groups related menu items.",
+    "description": "Vertical separator groups related menu items.",
+    "order": 3
+  },
+  {
+    "name": "c-separator-4",
+    "title": "Horizontal separator between items in a list.",
+    "description": "Horizontal separator between items in a list.",
+    "order": 4
+  },
+  {
+    "name": "c-separator-5",
+    "title": "Separator with centered text label",
+    "description": "Separator with centered text label",
+    "order": 5
+  },
+  {
+    "name": "c-separator-6",
+    "title": "Order summary with separators",
+    "description": "Order summary with separators",
+    "order": 6
+  }
+]

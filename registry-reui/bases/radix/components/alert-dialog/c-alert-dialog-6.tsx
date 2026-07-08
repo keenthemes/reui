@@ -1,6 +1,3 @@
-// Description: Alert dialog nested within a standard Dialog component
-// Order: 6
-
 import {
   AlertDialog,
   AlertDialogAction,

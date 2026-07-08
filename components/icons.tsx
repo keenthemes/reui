@@ -302,13 +302,13 @@ export function getIconForLanguageExtension(
     case "json":
       return <Icons.json {...props} />
     case "css":
-      return <Icons.css className="fill-foreground" {...props} />
+      return <Icons.css className="fill-site-foreground" {...props} />
     case "js":
     case "jsx":
     case "ts":
     case "tsx":
     case "typescript":
-      return <Icons.ts className="fill-foreground" {...props} />
+      return <Icons.ts className="fill-site-foreground" {...props} />
     default:
       return <FileIcon {...(props as any)} />
   }

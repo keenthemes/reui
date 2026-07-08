@@ -1,6 +1,3 @@
-// Description: Compact settings table with switches
-// Order: 13
-
 import { Separator } from "@/registry/bases/base/ui/separator"
 import { Switch } from "@/registry/bases/base/ui/switch"
 

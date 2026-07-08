@@ -1,7 +1,3 @@
-// Description: Tabs with icons.
-// Order: 5
-// GridSize: 1
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   Card,

@@ -1,7 +1,3 @@
-// Description: Basic timeline.
-// Order: 1
-// GridSize: 1
-
 import {
   Timeline,
   TimelineContent,

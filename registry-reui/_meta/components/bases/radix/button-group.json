@@ -1,0 +1,1414 @@
+{
+  "items": [
+    {
+      "name": "c-button-group-1",
+      "type": "registry:block",
+      "title": "Basic button group with two buttons",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Basic button group with two buttons",
+      "registryDependencies": [
+        "button",
+        "button-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-button-group-2",
+      "type": "registry:block",
+      "title": "Button group with button followed by input",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Button group with button followed by input",
+      "registryDependencies": [
+        "button",
+        "button-group",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-button-group-3",
+      "type": "registry:block",
+      "title": "Button group with buttons and badge",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Button group with buttons and badge",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "button-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-button-group-4",
+      "type": "registry:block",
+      "title": "Button group with dropdown menu",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Button group with dropdown menu",
+      "registryDependencies": [
+        "button",
+        "button-group",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-button-group-5",
+      "type": "registry:block",
+      "title": "Team activity and collaboration group",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Team activity and collaboration group",
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "button-group",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-button-group-6",
+      "type": "registry:block",
+      "title": "Button group using icons for visual actions",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Button group using icons for visual actions",
+      "registryDependencies": [
+        "button",
+        "button-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-button-group-7",
+      "type": "registry:block",
+      "title": "Dropdown menu with status indicator",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Dropdown menu with status indicator",
+      "registryDependencies": [
+        "button",
+        "button-group",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-button-group-8",
+      "type": "registry:block",
+      "title": "Button group styled as a like button with a counter",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Button group styled as a like button with a counter",
+      "registryDependencies": [
+        "button",
+        "button-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-button-group-9",
+      "type": "registry:block",
+      "title": "Nested button groups for complex action sets",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Nested button groups for complex action sets",
+      "registryDependencies": [
+        "button",
+        "button-group",
+        "input-group",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-button-group-10",
+      "type": "registry:block",
+      "title": "Button group used for standard pagination",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Button group used for standard pagination",
+      "registryDependencies": [
+        "button",
+        "button-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-button-group-11",
+      "type": "registry:block",
+      "title": "Pagination split into page numbers and navigation arrows",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Pagination split into page numbers and navigation arrows",
+      "registryDependencies": [
+        "button",
+        "button-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    },
+    {
+      "name": "c-button-group-12",
+      "type": "registry:block",
+      "title": "Button group for editor text alignment controls",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Button group for editor text alignment controls",
+      "registryDependencies": [
+        "button",
+        "button-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12
+      }
+    },
+    {
+      "name": "c-button-group-13",
+      "type": "registry:block",
+      "title": "Vertical button group orientation",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Vertical button group orientation",
+      "registryDependencies": [
+        "button",
+        "button-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13
+      }
+    },
+    {
+      "name": "c-button-group-14",
+      "type": "registry:block",
+      "title": "Nested vertical button group for complex tool palettes",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Nested vertical button group for complex tool palettes",
+      "registryDependencies": [
+        "button",
+        "button-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14
+      }
+    },
+    {
+      "name": "c-button-group-15",
+      "type": "registry:block",
+      "title": "Star button group with count and dropdown",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Star button group with count and dropdown",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "button-group",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-15.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-15.tsx"
+        }
+      ],
+      "meta": {
+        "order": 15
+      }
+    },
+    {
+      "name": "c-button-group-16",
+      "type": "registry:block",
+      "title": "Search input with filter menu and clear button",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Search input with filter menu and clear button",
+      "registryDependencies": [
+        "button",
+        "button-group",
+        "dropdown-menu",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-16.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-16.tsx"
+        }
+      ],
+      "meta": {
+        "order": 16
+      }
+    },
+    {
+      "name": "c-button-group-17",
+      "type": "registry:block",
+      "title": "Button group with comprehensive action menu",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Button group with comprehensive action menu",
+      "registryDependencies": [
+        "button",
+        "button-group",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-17.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-17.tsx"
+        }
+      ],
+      "meta": {
+        "order": 17
+      }
+    },
+    {
+      "name": "c-button-group-18",
+      "type": "registry:block",
+      "title": "Advanced git toolbar with branch selection and split commit button",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Advanced git toolbar with branch selection and split commit button",
+      "registryDependencies": [
+        "button",
+        "button-group",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-18.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-18.tsx"
+        }
+      ],
+      "meta": {
+        "order": 18
+      }
+    },
+    {
+      "name": "c-button-group-19",
+      "type": "registry:block",
+      "title": "Button group with dropdown menu and input group",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Button group with dropdown menu and input group",
+      "registryDependencies": [
+        "button",
+        "button-group",
+        "dropdown-menu",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-19.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-19.tsx"
+        }
+      ],
+      "meta": {
+        "order": 19
+      }
+    },
+    {
+      "name": "c-button-group-20",
+      "type": "registry:block",
+      "title": "Button group with input group and button",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Button group with input group and button",
+      "registryDependencies": [
+        "button",
+        "button-group",
+        "dropdown-menu",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-20.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-20.tsx"
+        }
+      ],
+      "meta": {
+        "order": 20
+      }
+    },
+    {
+      "name": "c-button-group-21",
+      "type": "registry:block",
+      "title": "Button group with dropdown menu and input group",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Button group with dropdown menu and input group",
+      "registryDependencies": [
+        "button",
+        "button-group",
+        "dropdown-menu",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-21.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-21.tsx"
+        }
+      ],
+      "meta": {
+        "order": 21
+      }
+    },
+    {
+      "name": "c-button-group-22",
+      "type": "registry:block",
+      "title": "Basic button group with disabled button",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Basic button group with disabled button",
+      "registryDependencies": [
+        "button",
+        "button-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-22.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-22.tsx"
+        }
+      ],
+      "meta": {
+        "order": 22
+      }
+    },
+    {
+      "name": "c-button-group-23",
+      "type": "registry:block",
+      "title": "Button group buttons with separators",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Button group buttons with separators",
+      "registryDependencies": [
+        "button",
+        "button-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-23.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-23.tsx"
+        }
+      ],
+      "meta": {
+        "order": 23
+      }
+    },
+    {
+      "name": "c-button-group-24",
+      "type": "registry:block",
+      "title": "View switcher for dashboard layouts",
+      "categories": [
+        "button-group"
+      ],
+      "description": "View switcher for dashboard layouts",
+      "registryDependencies": [
+        "button",
+        "button-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-24.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-24.tsx"
+        }
+      ],
+      "meta": {
+        "order": 24
+      }
+    },
+    {
+      "name": "c-button-group-25",
+      "type": "registry:block",
+      "title": "Rating scale using numerical buttons",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Rating scale using numerical buttons",
+      "registryDependencies": [
+        "button",
+        "button-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-25.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-25.tsx"
+        }
+      ],
+      "meta": {
+        "order": 25
+      }
+    },
+    {
+      "name": "c-button-group-26",
+      "type": "registry:block",
+      "title": "Button group with user selection select",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Button group with user selection select",
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "button-group",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-26.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-26.tsx"
+        }
+      ],
+      "meta": {
+        "order": 26
+      }
+    },
+    {
+      "name": "c-button-group-27",
+      "type": "registry:block",
+      "title": "Button group with select status addon",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Button group with select status addon",
+      "registryDependencies": [
+        "button-group",
+        "input",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-27.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-27.tsx"
+        }
+      ],
+      "meta": {
+        "order": 27
+      }
+    },
+    {
+      "name": "c-button-group-28",
+      "type": "registry:block",
+      "title": "Volume controller with plus/minus actions",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Volume controller with plus/minus actions",
+      "registryDependencies": [
+        "button",
+        "button-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-28.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-28.tsx"
+        }
+      ],
+      "meta": {
+        "order": 28
+      }
+    },
+    {
+      "name": "c-button-group-29",
+      "type": "registry:block",
+      "title": "Button group with follower count",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Button group with follower count",
+      "registryDependencies": [
+        "button",
+        "button-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-29.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-29.tsx"
+        }
+      ],
+      "meta": {
+        "order": 29
+      }
+    },
+    {
+      "name": "c-button-group-30",
+      "type": "registry:block",
+      "title": "Active state button group with count",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Active state button group with count",
+      "registryDependencies": [
+        "button",
+        "button-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-30.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-30.tsx"
+        }
+      ],
+      "meta": {
+        "order": 30
+      }
+    },
+    {
+      "name": "c-button-group-31",
+      "type": "registry:block",
+      "title": "Horizontal button group with primary and secondary labels",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Horizontal button group with primary and secondary labels",
+      "registryDependencies": [
+        "button",
+        "button-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-31.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-31.tsx"
+        }
+      ],
+      "meta": {
+        "order": 31
+      }
+    },
+    {
+      "name": "c-button-group-32",
+      "type": "registry:block",
+      "title": "Button group with dropdown menu and view toggle",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Button group with dropdown menu and view toggle",
+      "registryDependencies": [
+        "button",
+        "button-group",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-32.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-32.tsx"
+        }
+      ],
+      "meta": {
+        "order": 32
+      }
+    },
+    {
+      "name": "c-button-group-33",
+      "type": "registry:block",
+      "title": "Button group with select controls",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Button group with select controls",
+      "registryDependencies": [
+        "button-group",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-33.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-33.tsx"
+        }
+      ],
+      "meta": {
+        "order": 33
+      }
+    },
+    {
+      "name": "c-button-group-34",
+      "type": "registry:block",
+      "title": "Segmented control with dropdown inside button group",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Segmented control with dropdown inside button group",
+      "registryDependencies": [
+        "button",
+        "button-group",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-34.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-34.tsx"
+        }
+      ],
+      "meta": {
+        "order": 34
+      }
+    },
+    {
+      "name": "c-button-group-35",
+      "type": "registry:block",
+      "title": "Pagination button group",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Pagination button group",
+      "registryDependencies": [
+        "button",
+        "button-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-35.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-35.tsx"
+        }
+      ],
+      "meta": {
+        "order": 35
+      }
+    },
+    {
+      "name": "c-button-group-36",
+      "type": "registry:block",
+      "title": "View switcher button group",
+      "categories": [
+        "button-group"
+      ],
+      "description": "View switcher button group",
+      "registryDependencies": [
+        "button",
+        "button-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-36.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-36.tsx"
+        }
+      ],
+      "meta": {
+        "order": 36
+      }
+    },
+    {
+      "name": "c-button-group-37",
+      "type": "registry:block",
+      "title": "Zoom controls button group",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Zoom controls button group",
+      "registryDependencies": [
+        "button",
+        "button-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-37.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-37.tsx"
+        }
+      ],
+      "meta": {
+        "order": 37
+      }
+    },
+    {
+      "name": "c-button-group-38",
+      "type": "registry:block",
+      "title": "Media player controls button group",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Media player controls button group",
+      "registryDependencies": [
+        "button",
+        "button-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-38.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-38.tsx"
+        }
+      ],
+      "meta": {
+        "order": 38
+      }
+    },
+    {
+      "name": "c-button-group-39",
+      "type": "registry:block",
+      "title": "Split button with dropdown trigger",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Split button with dropdown trigger",
+      "registryDependencies": [
+        "button",
+        "button-group",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-39.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-39.tsx"
+        }
+      ],
+      "meta": {
+        "order": 39
+      }
+    },
+    {
+      "name": "c-button-group-40",
+      "type": "registry:block",
+      "title": "Vertical button group",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Vertical button group",
+      "registryDependencies": [
+        "button",
+        "button-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-40.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-40.tsx"
+        }
+      ],
+      "meta": {
+        "order": 40
+      }
+    },
+    {
+      "name": "c-button-group-41",
+      "type": "registry:block",
+      "title": "Model selector with tier badges",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Model selector with tier badges",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "button-group",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-41.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-41.tsx"
+        }
+      ],
+      "meta": {
+        "order": 41
+      }
+    },
+    {
+      "name": "c-button-group-42",
+      "type": "registry:block",
+      "title": "Segmented order type selector",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Segmented order type selector",
+      "registryDependencies": [
+        "button",
+        "button-group",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-42.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-42.tsx"
+        }
+      ],
+      "meta": {
+        "order": 42
+      }
+    },
+    {
+      "name": "c-button-group-43",
+      "type": "registry:block",
+      "title": "Buy sell hold toggle group",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Buy sell hold toggle group",
+      "registryDependencies": [
+        "button",
+        "button-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-43.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-43.tsx"
+        }
+      ],
+      "meta": {
+        "order": 43
+      }
+    },
+    {
+      "name": "c-button-group-44",
+      "type": "registry:block",
+      "title": "Pipeline stage mover with dropdown",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Pipeline stage mover with dropdown",
+      "registryDependencies": [
+        "button",
+        "button-group",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-44.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-44.tsx"
+        }
+      ],
+      "meta": {
+        "order": 44
+      }
+    },
+    {
+      "name": "c-button-group-45",
+      "type": "registry:block",
+      "title": "Environment switcher with indicator",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Environment switcher with indicator",
+      "registryDependencies": [
+        "button",
+        "button-group",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-45.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-45.tsx"
+        }
+      ],
+      "meta": {
+        "order": 45
+      }
+    },
+    {
+      "name": "c-button-group-46",
+      "type": "registry:block",
+      "title": "Compact time interval selector",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Compact time interval selector",
+      "registryDependencies": [
+        "button",
+        "button-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-46.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-46.tsx"
+        }
+      ],
+      "meta": {
+        "order": 46
+      }
+    },
+    {
+      "name": "c-button-group-47",
+      "type": "registry:block",
+      "title": "Review actions split button",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Review actions split button",
+      "registryDependencies": [
+        "button",
+        "button-group",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-47.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-47.tsx"
+        }
+      ],
+      "meta": {
+        "order": 47
+      }
+    },
+    {
+      "name": "c-button-group-48",
+      "type": "registry:block",
+      "title": "Toolbar filter with export and view toggle",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Toolbar filter with export and view toggle",
+      "registryDependencies": [
+        "button",
+        "button-group",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-48.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-48.tsx"
+        }
+      ],
+      "meta": {
+        "order": 48
+      }
+    },
+    {
+      "name": "c-button-group-49",
+      "type": "registry:block",
+      "title": "Vertical nav links with icons",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Vertical nav links with icons",
+      "registryDependencies": [
+        "button",
+        "button-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-49.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-49.tsx"
+        }
+      ],
+      "meta": {
+        "order": 49
+      }
+    },
+    {
+      "name": "c-button-group-50",
+      "type": "registry:block",
+      "title": "Toolbar filter sort and more",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Toolbar filter sort and more",
+      "registryDependencies": [
+        "button",
+        "button-group",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-50.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-50.tsx"
+        }
+      ],
+      "meta": {
+        "order": 50
+      }
+    },
+    {
+      "name": "c-button-group-51",
+      "type": "registry:block",
+      "title": "New button with create dropdown",
+      "categories": [
+        "button-group"
+      ],
+      "description": "New button with create dropdown",
+      "registryDependencies": [
+        "button",
+        "button-group",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-51.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-51.tsx"
+        }
+      ],
+      "meta": {
+        "order": 51
+      }
+    },
+    {
+      "name": "c-button-group-52",
+      "type": "registry:block",
+      "title": "Refresh share and export dropdown",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Refresh share and export dropdown",
+      "registryDependencies": [
+        "button",
+        "button-group",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-52.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-52.tsx"
+        }
+      ],
+      "meta": {
+        "order": 52
+      }
+    },
+    {
+      "name": "c-button-group-53",
+      "type": "registry:block",
+      "title": "Publish controls with split button and overflow",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Publish controls with split button and overflow",
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "button-group",
+        "dropdown-menu",
+        "separator"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-53.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-53.tsx"
+        }
+      ],
+      "meta": {
+        "order": 53
+      }
+    },
+    {
+      "name": "c-button-group-54",
+      "type": "registry:block",
+      "title": "API service environment and version selectors",
+      "categories": [
+        "button-group"
+      ],
+      "description": "API service environment and version selectors",
+      "registryDependencies": [
+        "button",
+        "button-group",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-54.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-54.tsx"
+        }
+      ],
+      "meta": {
+        "order": 54
+      }
+    },
+    {
+      "name": "c-button-group-55",
+      "type": "registry:block",
+      "title": "Payout release controls with amount context",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Payout release controls with amount context",
+      "registryDependencies": [
+        "button",
+        "button-group",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-55.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-55.tsx"
+        }
+      ],
+      "meta": {
+        "order": 55
+      }
+    },
+    {
+      "name": "c-button-group-56",
+      "type": "registry:block",
+      "title": "Attachment button group with download action",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Attachment button group with download action",
+      "registryDependencies": [
+        "button",
+        "button-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-56.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-56.tsx"
+        }
+      ],
+      "meta": {
+        "order": 56
+      }
+    },
+    {
+      "name": "c-button-group-57",
+      "type": "registry:block",
+      "title": "Agent mode selector with credit cap dropdown",
+      "categories": [
+        "button-group"
+      ],
+      "description": "Agent mode selector with credit cap dropdown",
+      "registryDependencies": [
+        "button",
+        "button-group",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/button-group/c-button-group-57.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-button-group-57.tsx"
+        }
+      ],
+      "meta": {
+        "order": 57
+      }
+    }
+  ]
+}

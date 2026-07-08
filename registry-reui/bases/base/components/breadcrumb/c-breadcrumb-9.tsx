@@ -1,6 +1,3 @@
-// Description: Breadcrumb inside card
-// Order: 9
-
 import {
   Breadcrumb,
   BreadcrumbItem,

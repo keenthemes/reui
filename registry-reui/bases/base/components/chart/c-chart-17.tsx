@@ -1,6 +1,3 @@
-// Description: Forecast line chart with stripe pattern zone
-// Order: 17
-
 "use client"
 
 import { CSSProperties } from "react"
@@ -98,7 +95,7 @@ export default function Pattern() {
                     <div className="flex w-full items-center justify-between gap-2">
                       <div className="flex items-center gap-1.5">
                         <div
-                          className="style-vega:rounded-xs style-nova:rounded-xs style-lyra:rounded-none style-maia:rounded-xs style-mira:rounded-xs h-2.5 w-2.5 shrink-0 bg-(--color-bg)"
+                          className="rounded-xs h-2.5 w-2.5 shrink-0 bg-(--color-bg)"
                           style={
                             {
                               "--color-bg": `var(--color-${name})`,

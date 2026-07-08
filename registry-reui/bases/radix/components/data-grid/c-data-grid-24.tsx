@@ -1,7 +1,3 @@
-// Description: Data grid with column totals footer
-// GridSize: 1
-// Order: 24
-
 "use client"
 
 import { useMemo, useState } from "react"
@@ -235,7 +231,10 @@ export default function Pattern() {
             </div>
           </div>
         ),
-        size: 200,
+        minSize: 200,
+        meta: {
+          autoSize: true,
+        },
         enableSorting: true,
         enableHiding: false,
         enableResizing: true,
@@ -333,7 +332,7 @@ export default function Pattern() {
     <DataGridTableFootRow>
       {/* Label spans checkbox + user + role + status */}
       <DataGridTableFootRowCell colSpan={visibleCount - 2}>
-        <span className="text-muted-foreground text-xs">Total balance</span>
+        <span className="text-muted-foreground">Total balance</span>
       </DataGridTableFootRowCell>
       {/* Balance total */}
       <DataGridTableFootRowCell className="font-bold tabular-nums">

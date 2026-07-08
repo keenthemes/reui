@@ -1,6 +1,3 @@
-// Description: Stacked area chart with dashed strokes
-// Order: 14
-
 "use client"
 
 import { CSSProperties } from "react"

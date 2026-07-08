@@ -1,6 +1,3 @@
-// Description: A disabled multi-select combobox
-// Order: 13
-
 "use client"
 
 import { Fragment } from "react"

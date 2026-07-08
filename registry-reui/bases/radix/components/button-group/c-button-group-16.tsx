@@ -1,6 +1,3 @@
-// Description: Search input with filter menu and clear button
-// Order: 16
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import { ButtonGroup } from "@/registry/bases/radix/ui/button-group"
 import {

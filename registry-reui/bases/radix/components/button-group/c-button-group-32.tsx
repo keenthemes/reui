@@ -1,6 +1,3 @@
-// Description: Button group with dropdown menu and view toggle
-// Order: 32
-
 "use client"
 
 import { useState } from "react"

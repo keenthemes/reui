@@ -1,6 +1,3 @@
-// Description: Input group with suffix icon
-// Order: 5
-
 import { Field } from "@/registry/bases/base/ui/field"
 import {
   InputGroup,

@@ -1,6 +1,3 @@
-// Description: File items with icon media, size, and actions
-// Order: 6
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import { Button } from "@/registry/bases/radix/ui/button"

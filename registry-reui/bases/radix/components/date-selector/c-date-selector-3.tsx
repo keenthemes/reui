@@ -1,6 +1,3 @@
-// Description: Date selector with dialog
-// Order: 3
-
 "use client"
 
 import { useEffect, useState } from "react"

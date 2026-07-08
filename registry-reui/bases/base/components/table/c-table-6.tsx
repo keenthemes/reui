@@ -1,6 +1,3 @@
-// Description: Team members table with avatars, roles, and status
-// Order: 6
-
 import { Badge } from "@/registry-reui/bases/base/reui/badge"
 import { Frame, FramePanel } from "@/registry-reui/bases/base/reui/frame"
 

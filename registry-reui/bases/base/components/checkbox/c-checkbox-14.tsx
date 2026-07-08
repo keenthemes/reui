@@ -1,6 +1,3 @@
-// Description: Custom positioned checkbox
-// Order: 14
-
 import { Checkbox } from "@/registry/bases/base/ui/checkbox"
 import {
   Field,
@@ -88,7 +85,7 @@ export default function Pattern() {
               className="absolute top-3 right-3 size-5 rounded-full"
             />
             <FieldTitle className="flex flex-col items-start">
-              <div className="bg-background border-border style-vega:rounded-md style-lyra:rounded-lg style-maia:rounded-xl style-nova:rounded-2xl style-mira:rounded-3xl flex shrink-0 items-center justify-center border p-2 shadow-xs shadow-black/5">
+              <div className="bg-background border-border rounded-2xl flex shrink-0 items-center justify-center border p-2 shadow-xs shadow-black/5">
                 {item.icon}
               </div>
               <div className="flex flex-col items-start gap-0.5">

@@ -1,6 +1,3 @@
-// Description: Sliding Icon Button (Hover reveal)
-// Order: 53
-
 import { Button } from "@/registry/bases/base/ui/button"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 

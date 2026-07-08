@@ -1,6 +1,3 @@
-// Description: Card with header and footer
-// Order: 4
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   Card,

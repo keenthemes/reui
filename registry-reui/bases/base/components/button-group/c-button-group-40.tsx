@@ -1,6 +1,3 @@
-// Description: Vertical button group
-// Order: 40
-
 import { cn } from "@/registry/bases/base/lib/utils"
 import { Button } from "@/registry/bases/base/ui/button"
 import { ButtonGroup } from "@/registry/bases/base/ui/button-group"

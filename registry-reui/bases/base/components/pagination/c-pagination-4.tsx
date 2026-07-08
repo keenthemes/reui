@@ -1,6 +1,3 @@
-// Description: Pagination with circle buttons.
-// Order: 4
-
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/registry/bases/base/ui/button"
 import {

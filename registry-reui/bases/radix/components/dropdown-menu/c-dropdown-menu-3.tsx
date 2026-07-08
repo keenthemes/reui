@@ -1,6 +1,3 @@
-// Description: Dropdown menu with icons
-// Order: 3
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   DropdownMenu,

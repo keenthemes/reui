@@ -1,6 +1,3 @@
-// Description: Radio group with tooltip info
-// Order: 14
-
 import { Field, FieldLabel } from "@/registry/bases/radix/ui/field"
 import {
   RadioGroup,

@@ -1,6 +1,3 @@
-// Description: Search empty state with stacked file cards illustration
-// Order: 16
-
 import {
   Empty,
   EmptyDescription,

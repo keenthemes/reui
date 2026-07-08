@@ -1,6 +1,3 @@
-// Description: Stat card with trend and overflow menu
-// Order: 15
-
 import { Badge } from "@/registry-reui/bases/base/reui/badge"
 
 import { Button } from "@/registry/bases/base/ui/button"

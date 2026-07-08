@@ -1,6 +1,3 @@
-// Description: Avatar group with an icon count
-// Order: 12
-
 import {
   Avatar,
   AvatarFallback,

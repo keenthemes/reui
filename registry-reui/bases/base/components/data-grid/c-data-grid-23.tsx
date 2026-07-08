@@ -1,7 +1,3 @@
-// Description: Data grid with CRUD in frame container
-// GridSize: 1
-// Order: 23
-
 "use client"
 
 import { useMemo, useState } from "react"
@@ -399,7 +395,10 @@ export default function Pattern() {
             </div>
           )
         },
-        size: 200,
+        size: 260,
+        meta: {
+          autoSize: true,
+        },
         enableSorting: true,
         enableHiding: false,
         enableResizing: true,
@@ -422,7 +421,7 @@ export default function Pattern() {
                 alt={row.original.flag}
                 className="size-4 rounded-full object-cover"
               />
-              <div className="text-foreground font-medium">
+              <div className="text-foreground min-w-0 truncate font-medium">
                 {row.original.location}
               </div>
             </div>

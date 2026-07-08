@@ -1,6 +1,3 @@
-// Description: Input group demonstrating label usage
-// Order: 20
-
 import { Field, FieldLabel } from "@/registry/bases/radix/ui/field"
 import {
   InputGroup,

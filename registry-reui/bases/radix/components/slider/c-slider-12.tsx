@@ -1,6 +1,3 @@
-// Description: Rating slider with emoji feedback
-// Order: 12
-
 "use client"
 
 import { useState } from "react"

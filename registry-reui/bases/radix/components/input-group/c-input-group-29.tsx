@@ -1,6 +1,3 @@
-// Description: Pill-shaped input group with a category dropdown at the end
-// Order: 29
-
 "use client"
 
 import { useState } from "react"

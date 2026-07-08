@@ -1,6 +1,3 @@
-// Description: Dropdown menu with radio groups
-// Order: 7
-
 "use client"
 
 import { useState } from "react"

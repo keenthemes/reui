@@ -1,0 +1,32 @@
+[
+  {
+    "name": "c-menubar-1",
+    "title": "Basic menubar.",
+    "description": "Basic menubar.",
+    "order": 1
+  },
+  {
+    "name": "c-menubar-2",
+    "title": "Menubar with dropdown submenus.",
+    "description": "Menubar with dropdown submenus.",
+    "order": 2
+  },
+  {
+    "name": "c-menubar-3",
+    "title": "Menubar with checkbox & radio items.",
+    "description": "Menubar with checkbox & radio items.",
+    "order": 3
+  },
+  {
+    "name": "c-menubar-4",
+    "title": "Menubar with icons.",
+    "description": "Menubar with icons.",
+    "order": 4
+  },
+  {
+    "name": "c-menubar-5",
+    "title": "Menubar for formatting and media.",
+    "description": "Menubar for formatting and media.",
+    "order": 5
+  }
+]

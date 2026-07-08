@@ -1,6 +1,3 @@
-// Description: Compact avatar dropdown menu
-// Order: 35
-
 import {
   Avatar,
   AvatarFallback,
@@ -26,7 +23,7 @@ export default function Pattern() {
           <Button
             variant="outline"
             size="sm"
-            className="style-vega:rounded-full style-nova:rounded-full style-lyra:rounded-none style-maia:rounded-full style-mira:rounded-full h-8 gap-1.5 pr-2.5 pl-1"
+            className="rounded-full h-8 gap-1.5 pr-2.5 pl-1"
           >
             <Avatar className="border-background size-6 border">
               <AvatarImage

@@ -668,10 +668,16 @@ function KanbanColumnContent({
 }: KanbanColumnContentProps) {
   const { columns, getItemId } = useContext(KanbanContext)
 
-  const itemIds = useMemo(
-    () => columns[value].map(getItemId),
-    [columns, getItemId, value]
-  )
+  const itemIds = useMemo(() => {
+    const items = columns[value]
+    if (!items) {
+      throw new Error(
+        `KanbanColumnContent: column "${value}" was not found in the Kanban value. ` +
+          `Available columns: ${Object.keys(columns).join(", ") || "(none)"}.`
+      )
+    }
+    return items.map(getItemId)
+  }, [columns, getItemId, value])
 
   const Comp = asChild ? Slot.Root : "div"
 

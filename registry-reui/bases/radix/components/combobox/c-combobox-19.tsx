@@ -1,6 +1,3 @@
-// Description: A multi-select combobox with user tags
-// Order: 19
-
 "use client"
 
 import { Fragment } from "react"
@@ -146,7 +143,7 @@ export default function Pattern() {
                   <ComboboxChip
                     key={member.id}
                     showRemove={true}
-                    className="style-vega:rounded-full style-nova:rounded-full style-lyra:rounded-none style-maia:rounded-4xl style-mira:rounded-full gap-1.5"
+                    className="rounded-full gap-1.5"
                   >
                     <Avatar className="size-4">
                       <AvatarImage src={member.avatar} alt={member.name} />

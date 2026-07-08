@@ -1,7 +1,3 @@
-// Description: Basic stepper
-// Order: 1
-// GridSize: 1
-
 "use client"
 
 import {

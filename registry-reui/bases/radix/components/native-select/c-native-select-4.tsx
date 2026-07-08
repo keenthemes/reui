@@ -1,6 +1,3 @@
-// Description: Native select embedded within a field.
-// Order: 4
-
 import {
   Field,
   FieldDescription,

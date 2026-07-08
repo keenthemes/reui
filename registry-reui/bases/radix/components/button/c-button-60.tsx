@@ -1,6 +1,3 @@
-// Description: Social icon-only buttons with Remix icons
-// Order: 60
-
 import {
   RiFacebookFill,
   RiGithubFill,

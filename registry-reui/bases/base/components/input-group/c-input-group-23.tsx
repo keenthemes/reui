@@ -1,6 +1,3 @@
-// Description: Input group with Sparkles icon and complex Kbd shortcut
-// Order: 23
-
 import { Field } from "@/registry/bases/base/ui/field"
 import {
   InputGroup,

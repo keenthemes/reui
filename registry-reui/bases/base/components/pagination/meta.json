@@ -1,0 +1,93 @@
+[
+  {
+    "name": "c-pagination-1",
+    "title": "Basic pagination.",
+    "description": "Basic pagination.",
+    "order": 1
+  },
+  {
+    "name": "c-pagination-2",
+    "title": "Pagination without labels.",
+    "description": "Pagination without labels.",
+    "order": 2
+  },
+  {
+    "name": "c-pagination-3",
+    "title": "Pagination with hover effect.",
+    "description": "Pagination with hover effect.",
+    "order": 3
+  },
+  {
+    "name": "c-pagination-4",
+    "title": "Pagination with circle buttons.",
+    "description": "Pagination with circle buttons.",
+    "order": 4
+  },
+  {
+    "name": "c-pagination-5",
+    "title": "Pagination with go-to-page input",
+    "description": "Pagination with go-to-page input",
+    "order": 5
+  },
+  {
+    "name": "c-pagination-6",
+    "title": "Numbered pagination in card",
+    "description": "Numbered pagination in card",
+    "order": 6
+  },
+  {
+    "name": "c-pagination-7",
+    "title": "Pagination with arrows buttons",
+    "description": "Pagination with arrows buttons",
+    "order": 7
+  },
+  {
+    "name": "c-pagination-8",
+    "title": "Pagination with page info on center",
+    "description": "Pagination with page info on center",
+    "order": 8
+  },
+  {
+    "name": "c-pagination-9",
+    "title": "Pagination with page info on left",
+    "description": "Pagination with page info on left",
+    "order": 9
+  },
+  {
+    "name": "c-pagination-10",
+    "title": "Pagination with ellipsis indicator",
+    "description": "Pagination with ellipsis indicator",
+    "order": 10
+  },
+  {
+    "name": "c-pagination-11",
+    "title": "Pagination with outline style buttons",
+    "description": "Pagination with outline style buttons",
+    "order": 11
+  },
+  {
+    "name": "c-pagination-12",
+    "title": "Rows per page select with range info and first/prev/next/last icons",
+    "description": "Rows per page select with range info and first/prev/next/last icons",
+    "order": 12
+  },
+  {
+    "name": "c-pagination-13",
+    "title": "Pagination with page select dropdown and first/last navigation",
+    "description": "Pagination with page select dropdown and first/last navigation",
+    "order": 13
+  },
+  {
+    "name": "c-pagination-14",
+    "title": "Numbered pagination with go-to-page input",
+    "description": "Numbered pagination with go-to-page input",
+    "order": 14
+  },
+  {
+    "name": "c-pagination-15",
+    "title": "Pagination with page info, numbered pages, ellipsis, and per-page select",
+    "description": "Pagination with page info, numbered pages, ellipsis, and per-page select",
+    "order": 15,
+    "gridSize": 1
+  }
+]

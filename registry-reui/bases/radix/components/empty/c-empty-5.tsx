@@ -1,6 +1,3 @@
-// Description: Document empty state
-// Order: 5
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   Card,

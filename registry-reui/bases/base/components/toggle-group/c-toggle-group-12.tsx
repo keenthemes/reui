@@ -1,6 +1,3 @@
-// Description: Toggle group for time range filter
-// Order: 12
-
 import {
   ToggleGroup,
   ToggleGroupItem,

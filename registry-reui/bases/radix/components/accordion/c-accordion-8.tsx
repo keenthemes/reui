@@ -1,6 +1,3 @@
-// Description: Nested accordion example with bordered items
-// Order: 8
-
 import {
   Accordion,
   AccordionContent,
@@ -56,7 +53,7 @@ export default function Pattern() {
           <AccordionItem
             key={item.value}
             value={item.value}
-            className="border-border style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-4xl style-maia:px-0 style-mira:rounded-md border bg-transparent px-4"
+            className="border-border rounded-lg border bg-transparent px-4"
           >
             <AccordionTrigger className="items-center py-3 font-medium hover:no-underline">
               {item.trigger}
@@ -73,7 +70,7 @@ export default function Pattern() {
                     <AccordionItem
                       key={subItem.value}
                       value={subItem.value}
-                      className="border-border style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-4xl style-maia:px-0 style-mira:rounded-md border bg-transparent px-3"
+                      className="border-border rounded-lg border bg-transparent px-3"
                     >
                       <AccordionTrigger className="text-foreground items-center py-3 font-medium hover:no-underline">
                         {subItem.trigger}

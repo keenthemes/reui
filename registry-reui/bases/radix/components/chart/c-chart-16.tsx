@@ -1,6 +1,3 @@
-// Description: Area chart with glowing dot markers
-// Order: 16
-
 "use client"
 
 import { CSSProperties } from "react"

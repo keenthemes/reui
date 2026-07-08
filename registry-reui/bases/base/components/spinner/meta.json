@@ -1,0 +1,74 @@
+[
+  {
+    "name": "c-spinner-1",
+    "title": "Basic spinner.",
+    "description": "Basic spinner.",
+    "order": 1
+  },
+  {
+    "name": "c-spinner-2",
+    "title": "Spinners in buttons.",
+    "description": "Spinners in buttons.",
+    "order": 2
+  },
+  {
+    "name": "c-spinner-3",
+    "title": "Spinners in badges.",
+    "description": "Spinners in badges.",
+    "order": 3
+  },
+  {
+    "name": "c-spinner-4",
+    "title": "Spinner in input group.",
+    "description": "Spinner in input group.",
+    "order": 4
+  },
+  {
+    "name": "c-spinner-5",
+    "title": "Spinner in empty state.",
+    "description": "Spinner in empty state.",
+    "order": 5
+  },
+  {
+    "name": "c-spinner-6",
+    "title": "Button loading states",
+    "description": "Button loading states",
+    "order": 6
+  },
+  {
+    "name": "c-spinner-7",
+    "title": "Overlay loading spinner",
+    "description": "Overlay loading spinner",
+    "order": 7
+  },
+  {
+    "name": "c-spinner-8",
+    "title": "Full page loading state",
+    "description": "Full page loading state",
+    "order": 8
+  },
+  {
+    "name": "c-spinner-9",
+    "title": "Inline loading text with spinner",
+    "description": "Inline loading text with spinner",
+    "order": 9
+  },
+  {
+    "name": "c-spinner-10",
+    "title": "Animated loading dots",
+    "description": "Animated loading dots",
+    "order": 10
+  },
+  {
+    "name": "c-spinner-11",
+    "title": "Spinner overlay on card",
+    "description": "Spinner overlay on card",
+    "order": 11
+  },
+  {
+    "name": "c-spinner-12",
+    "title": "Spinner color variants",
+    "description": "Spinner color variants",
+    "order": 12
+  }
+]

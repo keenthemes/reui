@@ -1,6 +1,3 @@
-// Description: Basic keyboard keys.
-// Order: 1
-
 import { Kbd } from "@/registry/bases/radix/ui/kbd"
 
 export default function Pattern() {

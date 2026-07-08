@@ -1,6 +1,3 @@
-// Description: Avatars with different sizes
-// Order: 3
-
 import {
   Avatar,
   AvatarFallback,

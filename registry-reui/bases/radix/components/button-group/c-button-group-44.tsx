@@ -1,6 +1,3 @@
-// Description: Pipeline stage mover with dropdown
-// Order: 44
-
 "use client"
 
 import { useState } from "react"

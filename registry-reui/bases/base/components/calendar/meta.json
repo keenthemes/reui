@@ -1,0 +1,182 @@
+[
+  {
+    "name": "c-calendar-1",
+    "title": "Basic calendar",
+    "description": "Basic calendar",
+    "order": 1
+  },
+  {
+    "name": "c-calendar-2",
+    "title": "Range calendar",
+    "description": "Range calendar",
+    "order": 2
+  },
+  {
+    "name": "c-calendar-3",
+    "title": "Disabled dates",
+    "description": "Disabled dates",
+    "order": 3
+  },
+  {
+    "name": "c-calendar-4",
+    "title": "Multiple day selection",
+    "description": "Multiple day selection",
+    "order": 4
+  },
+  {
+    "name": "c-calendar-5",
+    "title": "Custom select day style",
+    "description": "Custom select day style",
+    "order": 5
+  },
+  {
+    "name": "c-calendar-6",
+    "title": "Custom select range style",
+    "description": "Custom select range style",
+    "order": 6
+  },
+  {
+    "name": "c-calendar-7",
+    "title": "Right navigation",
+    "description": "Right navigation",
+    "order": 7
+  },
+  {
+    "name": "c-calendar-8",
+    "title": "Month and year selection",
+    "description": "Month and year selection",
+    "order": 8
+  },
+  {
+    "name": "c-calendar-9",
+    "title": "Year select with navigation",
+    "description": "Year select with navigation",
+    "order": 9
+  },
+  {
+    "name": "c-calendar-10",
+    "title": "Display week numbers",
+    "description": "Display week numbers",
+    "order": 10
+  },
+  {
+    "name": "c-calendar-11",
+    "title": "Current month button",
+    "description": "Current month button",
+    "order": 11
+  },
+  {
+    "name": "c-calendar-12",
+    "title": "Today button",
+    "description": "Today button",
+    "order": 12
+  },
+  {
+    "name": "c-calendar-13",
+    "title": "Custom navigation with year view",
+    "description": "Custom navigation with year view",
+    "order": 13
+  },
+  {
+    "name": "c-calendar-14",
+    "title": "Preset time selection",
+    "description": "Preset time selection",
+    "order": 14
+  },
+  {
+    "name": "c-calendar-15",
+    "title": "Calendar with presets",
+    "description": "Calendar with presets",
+    "order": 15
+  },
+  {
+    "name": "c-calendar-16",
+    "title": "Range calendar with presets",
+    "description": "Range calendar with presets",
+    "order": 16
+  },
+  {
+    "name": "c-calendar-17",
+    "title": "Calendar with pricing",
+    "description": "Calendar with pricing",
+    "order": 17
+  },
+  {
+    "name": "c-calendar-18",
+    "title": "Calendar with presets",
+    "description": "Calendar with presets",
+    "order": 18
+  },
+  {
+    "name": "c-calendar-19",
+    "title": "Appointment calendar",
+    "description": "Appointment calendar",
+    "order": 19
+  },
+  {
+    "name": "c-calendar-20",
+    "title": "Display 2 months",
+    "description": "Display 2 months",
+    "order": 20
+  },
+  {
+    "name": "c-calendar-21",
+    "title": "Display 2 months with range picker",
+    "description": "Display 2 months with range picker",
+    "order": 21
+  },
+  {
+    "name": "c-calendar-22",
+    "title": "Calendar with event list",
+    "description": "Calendar with event list",
+    "order": 22
+  },
+  {
+    "name": "c-calendar-23",
+    "title": "Localize calendar",
+    "description": "Localize calendar",
+    "order": 23
+  },
+  {
+    "name": "c-calendar-24",
+    "title": "Calendar with date picker",
+    "description": "Calendar with date picker",
+    "order": 24
+  },
+  {
+    "name": "c-calendar-25",
+    "title": "Calendar with date range picker",
+    "description": "Calendar with date range picker",
+    "order": 25
+  },
+  {
+    "name": "c-calendar-26",
+    "title": "Calendar with date picker and year view",
+    "description": "Calendar with date picker and year view",
+    "order": 26
+  },
+  {
+    "name": "c-calendar-27",
+    "title": "Calendar with date and appointment picker",
+    "description": "Calendar with date and appointment picker",
+    "order": 27
+  },
+  {
+    "name": "c-calendar-28",
+    "title": "Calendar with date picker and presets",
+    "description": "Calendar with date picker and presets",
+    "order": 28
+  },
+  {
+    "name": "c-calendar-29",
+    "title": "Range calendar with date picker and presets",
+    "description": "Range calendar with date picker and presets",
+    "order": 29
+  },
+  {
+    "name": "c-calendar-30",
+    "title": "Calendar with date and time range picker",
+    "description": "Calendar with date and time range picker",
+    "order": 30
+  }
+]

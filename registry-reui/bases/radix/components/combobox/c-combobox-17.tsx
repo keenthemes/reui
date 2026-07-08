@@ -1,6 +1,3 @@
-// Description: A combobox used within a dialog
-// Order: 17
-
 "use client"
 
 import { useState } from "react"

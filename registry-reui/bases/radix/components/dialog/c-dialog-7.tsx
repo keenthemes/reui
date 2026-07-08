@@ -1,6 +1,3 @@
-// Description: Confirmation dialog with destructive action
-// Order: 7
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   Dialog,
@@ -24,7 +21,7 @@ export default function Pattern() {
         <DialogContent>
           <DialogHeader>
             <div className="flex items-start gap-3">
-              <div className="bg-destructive/10 text-destructive style-vega:rounded-full style-nova:rounded-full style-lyra:rounded-none style-maia:rounded-full style-mira:rounded-md flex size-10 shrink-0 items-center justify-center">
+              <div className="bg-destructive/10 text-destructive rounded-full flex size-10 shrink-0 items-center justify-center">
                 <IconPlaceholder
                   lucide="AlertTriangleIcon"
                   tabler="IconAlertTriangle"

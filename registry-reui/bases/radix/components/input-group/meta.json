@@ -1,0 +1,244 @@
+[
+  {
+    "name": "c-input-group-1",
+    "title": "Basic input group",
+    "description": "Basic input group",
+    "order": 1
+  },
+  {
+    "name": "c-input-group-2",
+    "title": "Input group in disabled state",
+    "description": "Input group in disabled state",
+    "order": 2
+  },
+  {
+    "name": "c-input-group-3",
+    "title": "Input group in invalid state",
+    "description": "Input group in invalid state",
+    "order": 3
+  },
+  {
+    "name": "c-input-group-4",
+    "title": "Input group with prefix icon",
+    "description": "Input group with prefix icon",
+    "order": 4
+  },
+  {
+    "name": "c-input-group-5",
+    "title": "Input group with suffix icon",
+    "description": "Input group with suffix icon",
+    "order": 5
+  },
+  {
+    "name": "c-input-group-6",
+    "title": "Input group with both prefix and suffix icons",
+    "description": "Input group with both prefix and suffix icons",
+    "order": 6
+  },
+  {
+    "name": "c-input-group-7",
+    "title": "Input group with prefix text addon",
+    "description": "Input group with prefix text addon",
+    "order": 7
+  },
+  {
+    "name": "c-input-group-8",
+    "title": "Input group with suffix text addon",
+    "description": "Input group with suffix text addon",
+    "order": 8
+  },
+  {
+    "name": "c-input-group-9",
+    "title": "Input group with both prefix and suffix text addons",
+    "description": "Input group with both prefix and suffix text addons",
+    "order": 9
+  },
+  {
+    "name": "c-input-group-10",
+    "title": "Input group with action button addon",
+    "description": "Input group with action button addon",
+    "order": 10
+  },
+  {
+    "name": "c-input-group-11",
+    "title": "Input group with icon button action",
+    "description": "Input group with icon button action",
+    "order": 11
+  },
+  {
+    "name": "c-input-group-12",
+    "title": "Input group with dropdown menu selection",
+    "description": "Input group with dropdown menu selection",
+    "order": 12
+  },
+  {
+    "name": "c-input-group-13",
+    "title": "Input group with keyboard shortcut (Kbd)",
+    "description": "Input group with keyboard shortcut (Kbd)",
+    "order": 13
+  },
+  {
+    "name": "c-input-group-14",
+    "title": "Input group with tooltip action",
+    "description": "Input group with tooltip action",
+    "order": 14
+  },
+  {
+    "name": "c-input-group-15",
+    "title": "Input group with loading spinner",
+    "description": "Input group with loading spinner",
+    "order": 15
+  },
+  {
+    "name": "c-input-group-16",
+    "title": "Input group with block-start addon",
+    "description": "Input group with block-start addon",
+    "order": 16
+  },
+  {
+    "name": "c-input-group-17",
+    "title": "Textarea input group with dynamic character limit",
+    "description": "Textarea input group with dynamic character limit",
+    "order": 17
+  },
+  {
+    "name": "c-input-group-18",
+    "title": "AI Chat textarea with rich toolbar actions",
+    "description": "AI Chat textarea with rich toolbar actions",
+    "order": 18
+  },
+  {
+    "name": "c-input-group-19",
+    "title": "AI Chat interface with file and context attachments",
+    "description": "AI Chat interface with file and context attachments",
+    "order": 19
+  },
+  {
+    "name": "c-input-group-20",
+    "title": "Input group demonstrating label usage",
+    "description": "Input group demonstrating label usage",
+    "order": 20
+  },
+  {
+    "name": "c-input-group-21",
+    "title": "Input group with multiple icons/buttons at the end",
+    "description": "Input group with multiple icons/buttons at the end",
+    "order": 21
+  },
+  {
+    "name": "c-input-group-22",
+    "title": "Input group with popover trigger addon",
+    "description": "Input group with popover trigger addon",
+    "order": 22
+  },
+  {
+    "name": "c-input-group-23",
+    "title": "Input group with Sparkles icon and complex Kbd shortcut",
+    "description": "Input group with Sparkles icon and complex Kbd shortcut",
+    "order": 23
+  },
+  {
+    "name": "c-input-group-24",
+    "title": "Input group with success indicator circle",
+    "description": "Input group with success indicator circle",
+    "order": 24
+  },
+  {
+    "name": "c-input-group-25",
+    "title": "Input group with search results count",
+    "description": "Input group with search results count",
+    "order": 25
+  },
+  {
+    "name": "c-input-group-26",
+    "title": "Textarea input group with action buttons",
+    "description": "Textarea input group with action buttons",
+    "order": 26
+  },
+  {
+    "name": "c-input-group-27",
+    "title": "Input group wrapped in a button group with text prefixes/suffixes",
+    "description": "Input group wrapped in a button group with text prefixes/suffixes",
+    "order": 27
+  },
+  {
+    "name": "c-input-group-28",
+    "title": "Input group with a menu button (three dots) at the end",
+    "description": "Input group with a menu button (three dots) at the end",
+    "order": 28
+  },
+  {
+    "name": "c-input-group-29",
+    "title": "Pill-shaped input group with a category dropdown at the end",
+    "description": "Pill-shaped input group with a category dropdown at the end",
+    "order": 29
+  },
+  {
+    "name": "c-input-group-30",
+    "title": "Input group with inline addons (no separating borders)",
+    "description": "Input group with inline addons (no separating borders)",
+    "order": 30
+  },
+  {
+    "name": "c-input-group-31",
+    "title": "Input group with inline start and block-end addon",
+    "description": "Input group with inline start and block-end addon",
+    "order": 31
+  },
+  {
+    "name": "c-input-group-32",
+    "title": "Member row with avatar, email and role selection",
+    "description": "Member row with avatar, email and role selection",
+    "order": 32
+  },
+  {
+    "name": "c-input-group-33",
+    "title": "Project save interface with status and action buttons",
+    "description": "Project save interface with status and action buttons",
+    "order": 33,
+    "gridSize": 1
+  },
+  {
+    "name": "c-input-group-34",
+    "title": "Pill-shaped AI prompt bar with voice and audio icons",
+    "description": "Pill-shaped AI prompt bar with voice and audio icons",
+    "order": 34,
+    "gridSize": 1
+  },
+  {
+    "name": "c-input-group-35",
+    "title": "Password input with visibility toggle",
+    "description": "Password input with visibility toggle",
+    "order": 35
+  },
+  {
+    "name": "c-input-group-36",
+    "title": "API request input with method selector and send action",
+    "description": "API request input with method selector and send action",
+    "order": 36
+  },
+  {
+    "name": "c-input-group-37",
+    "title": "Order search input with status filter",
+    "description": "Order search input with status filter",
+    "order": 37
+  },
+  {
+    "name": "c-input-group-38",
+    "title": "Company search input with region selector",
+    "description": "Company search input with region selector",
+    "order": 38
+  },
+  {
+    "name": "c-input-group-39",
+    "title": "Contact search input with filter and actions menu",
+    "description": "Contact search input with filter and actions menu",
+    "order": 39
+  },
+  {
+    "name": "c-input-group-40",
+    "title": "Share link input with visibility selector and copy action",
+    "description": "Share link input with visibility selector and copy action",
+    "order": 40
+  }
+]

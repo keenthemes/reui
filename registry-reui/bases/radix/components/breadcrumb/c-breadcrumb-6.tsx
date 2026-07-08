@@ -1,6 +1,3 @@
-// Description: Breadcrumb with ellipsis for long paths
-// Order: 6
-
 import {
   Breadcrumb,
   BreadcrumbEllipsis,

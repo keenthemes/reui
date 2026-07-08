@@ -1,6 +1,3 @@
-// Description: Menubar for formatting and media.
-// Order: 5
-
 import {
   Menubar,
   MenubarCheckboxItem,

@@ -1,6 +1,3 @@
-// Description: Font family select with preview
-// Order: 31
-
 import { Field } from "@/registry/bases/base/ui/field"
 import {
   Select,

@@ -1,6 +1,3 @@
-// Description: Alert dialog with icon
-// Order: 3
-
 import {
   AlertDialog,
   AlertDialogAction,

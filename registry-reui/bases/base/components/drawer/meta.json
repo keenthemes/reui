@@ -1,0 +1,32 @@
+[
+  {
+    "name": "c-drawer-1",
+    "title": "A basic drawer with scrollable content",
+    "description": "A basic drawer with scrollable content",
+    "order": 1
+  },
+  {
+    "name": "c-drawer-2",
+    "title": "A drawer that opens from the right side",
+    "description": "A drawer that opens from the right side",
+    "order": 2
+  },
+  {
+    "name": "c-drawer-3",
+    "title": "A drawer that opens from the left side",
+    "description": "A drawer that opens from the left side",
+    "order": 3
+  },
+  {
+    "name": "c-drawer-4",
+    "title": "A drawer that opens from the top side",
+    "description": "A drawer that opens from the top side",
+    "order": 4
+  },
+  {
+    "name": "c-drawer-5",
+    "title": "Drawers opening from different sides",
+    "description": "Drawers opening from different sides",
+    "order": 5
+  }
+]

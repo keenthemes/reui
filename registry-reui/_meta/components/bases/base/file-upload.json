@@ -1,0 +1,273 @@
+{
+  "items": [
+    {
+      "name": "c-file-upload-1",
+      "type": "registry:block",
+      "title": "Basic file upload",
+      "categories": [
+        "file-upload"
+      ],
+      "description": "Basic file upload",
+      "registryDependencies": [
+        "button",
+        "use-file-upload"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/file-upload/c-file-upload-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-file-upload-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-file-upload-2",
+      "type": "registry:block",
+      "title": "Avatar upload",
+      "categories": [
+        "file-upload"
+      ],
+      "description": "Avatar upload",
+      "registryDependencies": [
+        "alert",
+        "button",
+        "use-file-upload"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/file-upload/c-file-upload-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-file-upload-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-file-upload-3",
+      "type": "registry:block",
+      "title": "Basic drag and drop file upload",
+      "categories": [
+        "file-upload"
+      ],
+      "description": "Basic drag and drop file upload",
+      "registryDependencies": [
+        "alert",
+        "button",
+        "use-file-upload"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/file-upload/c-file-upload-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-file-upload-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-file-upload-4",
+      "type": "registry:block",
+      "title": "Gallery file upload",
+      "categories": [
+        "file-upload"
+      ],
+      "description": "Gallery file upload",
+      "registryDependencies": [
+        "alert",
+        "button",
+        "dialog",
+        "spinner",
+        "use-file-upload"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/file-upload/c-file-upload-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-file-upload-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-file-upload-5",
+      "type": "registry:block",
+      "title": "Progress file upload",
+      "categories": [
+        "file-upload"
+      ],
+      "description": "Progress file upload",
+      "registryDependencies": [
+        "alert",
+        "badge",
+        "button",
+        "progress",
+        "use-file-upload"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/file-upload/c-file-upload-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-file-upload-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-file-upload-6",
+      "type": "registry:block",
+      "title": "Table file upload",
+      "categories": [
+        "file-upload"
+      ],
+      "description": "Table file upload",
+      "registryDependencies": [
+        "alert",
+        "badge",
+        "button",
+        "table",
+        "use-file-upload"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/file-upload/c-file-upload-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-file-upload-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-file-upload-7",
+      "type": "registry:block",
+      "title": "Image upload",
+      "categories": [
+        "file-upload"
+      ],
+      "description": "Image upload",
+      "registryDependencies": [
+        "alert",
+        "button",
+        "card",
+        "progress"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/file-upload/c-file-upload-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-file-upload-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-file-upload-8",
+      "type": "registry:block",
+      "title": "Image upload with sorting.",
+      "categories": [
+        "file-upload"
+      ],
+      "description": "Image upload with sorting.",
+      "registryDependencies": [
+        "alert",
+        "button",
+        "card",
+        "progress",
+        "sortable"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/file-upload/c-file-upload-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-file-upload-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-file-upload-9",
+      "type": "registry:block",
+      "title": "Card file upload.",
+      "categories": [
+        "file-upload"
+      ],
+      "description": "Card file upload.",
+      "registryDependencies": [
+        "alert",
+        "button",
+        "tooltip",
+        "use-file-upload"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/file-upload/c-file-upload-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-file-upload-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-file-upload-10",
+      "type": "registry:block",
+      "title": "Cover image upload.",
+      "categories": [
+        "file-upload"
+      ],
+      "description": "Cover image upload.",
+      "registryDependencies": [
+        "alert",
+        "button",
+        "use-file-upload"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/file-upload/c-file-upload-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-file-upload-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10,
+        "gridSize": 1
+      }
+    }
+  ]
+}

@@ -1,6 +1,3 @@
-// Description: A multi-select combobox in an invalid state
-// Order: 14
-
 "use client"
 
 import { Fragment } from "react"

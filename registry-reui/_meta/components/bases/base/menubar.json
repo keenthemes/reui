@@ -1,0 +1,119 @@
+{
+  "items": [
+    {
+      "name": "c-menubar-1",
+      "type": "registry:block",
+      "title": "Basic menubar.",
+      "categories": [
+        "menubar"
+      ],
+      "description": "Basic menubar.",
+      "registryDependencies": [
+        "menubar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/menubar/c-menubar-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-menubar-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-menubar-2",
+      "type": "registry:block",
+      "title": "Menubar with dropdown submenus.",
+      "categories": [
+        "menubar"
+      ],
+      "description": "Menubar with dropdown submenus.",
+      "registryDependencies": [
+        "menubar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/menubar/c-menubar-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-menubar-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-menubar-3",
+      "type": "registry:block",
+      "title": "Menubar with checkbox & radio items.",
+      "categories": [
+        "menubar"
+      ],
+      "description": "Menubar with checkbox & radio items.",
+      "registryDependencies": [
+        "menubar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/menubar/c-menubar-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-menubar-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-menubar-4",
+      "type": "registry:block",
+      "title": "Menubar with icons.",
+      "categories": [
+        "menubar"
+      ],
+      "description": "Menubar with icons.",
+      "registryDependencies": [
+        "menubar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/menubar/c-menubar-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-menubar-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-menubar-5",
+      "type": "registry:block",
+      "title": "Menubar for formatting and media.",
+      "categories": [
+        "menubar"
+      ],
+      "description": "Menubar for formatting and media.",
+      "registryDependencies": [
+        "menubar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/menubar/c-menubar-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-menubar-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    }
+  ]
+}

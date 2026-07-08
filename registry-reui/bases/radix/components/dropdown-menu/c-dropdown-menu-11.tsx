@@ -1,6 +1,3 @@
-// Description: Notifications dropdown menu
-// Order: 11
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import {

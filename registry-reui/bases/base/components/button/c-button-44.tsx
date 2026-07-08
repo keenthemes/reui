@@ -1,6 +1,3 @@
-// Description: Async action button with loading and success states
-// Order: 44
-
 "use client"
 
 import { useEffect, useState } from "react"

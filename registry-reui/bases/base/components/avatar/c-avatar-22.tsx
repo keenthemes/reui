@@ -1,6 +1,3 @@
-// Description: Avatar group with hover tooltips and lift effect
-// Order: 22
-
 import {
   Avatar,
   AvatarFallback,

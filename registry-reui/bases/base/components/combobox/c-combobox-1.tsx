@@ -1,6 +1,3 @@
-// Description: A basic combobox with a list of options
-// Order: 1
-
 import {
   Combobox,
   ComboboxContent,

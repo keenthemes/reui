@@ -1,7 +1,3 @@
-// Description: Pill-shaped AI prompt bar with voice and audio icons
-// Order: 34
-// GridSize: 1
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -24,14 +20,14 @@ import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 export default function Pattern() {
   return (
     <Field className="max-w-3xl">
-      <InputGroup className="bg-background style-vega:rounded-full style-nova:rounded-full style-lyra:rounded-none style-maia:rounded-full style-mira:rounded-full h-14 border p-1.5">
+      <InputGroup className="bg-background rounded-full h-14 border p-1.5">
         <InputGroupAddon className="border-none pl-2">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <InputGroupButton
                 variant="ghost"
                 size="icon-sm"
-                className="text-muted-foreground hover:text-foreground style-vega:rounded-full style-nova:rounded-full style-lyra:rounded-none style-maia:rounded-full style-mira:rounded-full size-10"
+                className="text-muted-foreground hover:text-foreground rounded-full size-10"
               >
                 <IconPlaceholder
                   lucide="PlusIcon"
@@ -166,7 +162,7 @@ export default function Pattern() {
         <InputGroupAddon align="inline-end" className="gap-2 border-none pr-1">
           <InputGroupButton
             variant="ghost"
-            className="text-muted-foreground hover:text-foreground style-vega:rounded-full style-nova:rounded-full style-lyra:rounded-none style-maia:rounded-full style-mira:rounded-full size-11"
+            className="text-muted-foreground hover:text-foreground rounded-full size-11"
           >
             <IconPlaceholder
               lucide="MicIcon"
@@ -179,7 +175,7 @@ export default function Pattern() {
           </InputGroupButton>
           <InputGroupButton
             variant="default"
-            className="style-vega:rounded-full style-nova:rounded-full style-lyra:rounded-none style-maia:rounded-full style-mira:rounded-full size-11 bg-black text-white hover:bg-black/90"
+            className="rounded-full size-11 bg-black text-white hover:bg-black/90"
           >
             <IconPlaceholder
               lucide="AudioLinesIcon"

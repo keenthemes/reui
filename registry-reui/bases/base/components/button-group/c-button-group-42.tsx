@@ -1,6 +1,3 @@
-// Description: Segmented order type selector
-// Order: 42
-
 "use client"
 
 import { useState } from "react"

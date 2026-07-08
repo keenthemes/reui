@@ -1,0 +1,72 @@
+[
+  {
+    "name": "c-skeleton-1",
+    "title": "Skeleton loader for avatars and user info.",
+    "description": "Skeleton loader for avatars and user info.",
+    "order": 1,
+    "gridSize": 1
+  },
+  {
+    "name": "c-skeleton-2",
+    "title": "Skeleton loader for a card component.",
+    "description": "Skeleton loader for a card component.",
+    "order": 2,
+    "gridSize": 1
+  },
+  {
+    "name": "c-skeleton-3",
+    "title": "Skeleton loader for text and paragraphs.",
+    "description": "Skeleton loader for text and paragraphs.",
+    "order": 3,
+    "gridSize": 1
+  },
+  {
+    "name": "c-skeleton-4",
+    "title": "Skeleton loader for a form.",
+    "description": "Skeleton loader for a form.",
+    "order": 4,
+    "gridSize": 1
+  },
+  {
+    "name": "c-skeleton-5",
+    "title": "Skeleton loader for a data table.",
+    "description": "Skeleton loader for a data table.",
+    "order": 5,
+    "gridSize": 1
+  },
+  {
+    "name": "c-skeleton-6",
+    "title": "Skeleton loader for a dashboard stats row",
+    "description": "Skeleton loader for a dashboard stats row",
+    "order": 6,
+    "gridSize": 1
+  },
+  {
+    "name": "c-skeleton-7",
+    "title": "Skeleton loader for a list with actions",
+    "description": "Skeleton loader for a list with actions",
+    "order": 7,
+    "gridSize": 1
+  },
+  {
+    "name": "c-skeleton-8",
+    "title": "Skeleton loader for a card grid",
+    "description": "Skeleton loader for a card grid",
+    "order": 8,
+    "gridSize": 1
+  },
+  {
+    "name": "c-skeleton-9",
+    "title": "Skeleton loader for a full profile page",
+    "description": "Skeleton loader for a full profile page",
+    "order": 9,
+    "gridSize": 1
+  },
+  {
+    "name": "c-skeleton-10",
+    "title": "Skeleton loader for chat messages",
+    "description": "Skeleton loader for chat messages",
+    "order": 10,
+    "gridSize": 1
+  }
+]

@@ -311,7 +311,7 @@ function StepperTrigger({
       data-loading={isLoading}
       className={cn(
         "focus-visible:border-ring focus-visible:ring-ring/50 inline-flex cursor-pointer items-center outline-none focus-visible:z-10 focus-visible:ring-3 disabled:pointer-events-none disabled:opacity-60",
-        "style-vega:gap-3 style-vega:rounded-full style-maia:gap-3 style-maia:rounded-full style-nova:gap-2.5 style-nova:rounded-full style-lyra:gap-2.5 style-lyra:rounded-none style-mira:gap-2 style-mira:rounded-full",
+        "gap-2.5 rounded-full",
         className
       )}
       onClick={() => setActiveStep(step)}
@@ -337,7 +337,7 @@ function StepperIndicator({
       data-state={state}
       className={cn(
         "border-background bg-accent text-accent-foreground data-[state=completed]:bg-primary data-[state=completed]:text-primary-foreground data-[state=active]:bg-primary data-[state=active]:text-primary-foreground relative flex size-6 shrink-0 items-center justify-center overflow-hidden",
-        "style-vega:rounded-full style-vega:text-xs style-maia:rounded-full style-maia:text-xs style-nova:rounded-full style-nova:text-xs style-lyra:rounded-none style-lyra:text-[0.625rem] style-mira:rounded-sm style-mira:text-[0.625rem]",
+        "rounded-full text-xs",
         className
       )}
     >
@@ -365,7 +365,7 @@ function StepperSeparator({ className }: React.ComponentProps<"div">) {
       data-slot="stepper-separator"
       data-state={state}
       className={cn(
-        "bg-muted style-vega:rounded-full style-vega:group-data-[orientation=horizontal]/stepper-nav:h-0.5 style-vega:group-data-[orientation=vertical]/stepper-nav:h-12 style-vega:group-data-[orientation=vertical]/stepper-nav:w-0.5 style-maia:rounded-full style-maia:group-data-[orientation=horizontal]/stepper-nav:h-0.5 style-maia:group-data-[orientation=vertical]/stepper-nav:h-12 style-maia:group-data-[orientation=vertical]/stepper-nav:w-0.5 style-nova:rounded-sm style-nova:group-data-[orientation=horizontal]/stepper-nav:h-0.5 style-nova:group-data-[orientation=vertical]/stepper-nav:h-12 style-nova:group-data-[orientation=vertical]/stepper-nav:w-0.5 style-lyra:rounded-none style-lyra:group-data-[orientation=horizontal]/stepper-nav:h-px style-lyra:group-data-[orientation=vertical]/stepper-nav:h-12 style-lyra:group-data-[orientation=vertical]/stepper-nav:w-px style-mira:rounded-sm style-mira:group-data-[orientation=horizontal]/stepper-nav:h-0.5 style-mira:group-data-[orientation=vertical]/stepper-nav:h-12 style-mira:group-data-[orientation=vertical]/stepper-nav:w-0.5 m-0.5 group-data-[orientation=horizontal]/stepper-nav:flex-1",
+        "bg-muted style-vega:rounded-sm style-nova:rounded-sm style-maia:rounded-full style-lyra:rounded-none style-mira:rounded-sm style-luma:rounded-full style-rhea:rounded-full style-sera:rounded-none group-data-[orientation=horizontal]/stepper-nav:h-0.5 group-data-[orientation=vertical]/stepper-nav:h-12 group-data-[orientation=vertical]/stepper-nav:w-0.5 m-0.5 group-data-[orientation=horizontal]/stepper-nav:flex-1",
         className
       )}
     />
@@ -380,7 +380,7 @@ function StepperTitle({ children, className }: React.ComponentProps<"h3">) {
       data-slot="stepper-title"
       data-state={state}
       className={cn(
-        "style-vega:text-sm style-maia:text-sm style-nova:text-sm style-lyra:text-xs style-mira:text-xs leading-none font-medium",
+        "text-sm leading-none font-medium",
         className
       )}
     >
@@ -400,7 +400,7 @@ function StepperDescription({
       data-slot="stepper-description"
       data-state={state}
       className={cn(
-        "text-muted-foreground style-vega:text-sm style-maia:text-sm style-nova:text-sm style-lyra:text-xs style-mira:text-xs/relaxed",
+        "text-muted-foreground text-sm",
         className
       )}
     >

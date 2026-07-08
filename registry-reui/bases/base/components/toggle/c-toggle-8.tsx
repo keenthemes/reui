@@ -1,6 +1,3 @@
-// Description: Toggle size variants showcase
-// Order: 8
-
 import { Toggle } from "@/registry/bases/base/ui/toggle"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 

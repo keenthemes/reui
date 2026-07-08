@@ -1,6 +1,3 @@
-// Description: Custom invert info toast with avatar
-// Order: 15
-
 import { toast } from "sonner"
 
 import {
@@ -13,7 +10,7 @@ import { Button } from "@/registry/bases/radix/ui/button"
 export default function Pattern() {
   const showToast = () => {
     toast.custom(() => (
-      <div className="bg-invert text-invert-foreground style-vega:rounded-md style-nova:rounded-md style-lyra:rounded-none style-maia:rounded-3xl style-mira:rounded-md flex w-[356px] items-start gap-3 border border-transparent p-4 shadow-lg">
+      <div className="bg-invert text-invert-foreground rounded-md flex w-[356px] items-start gap-3 border border-transparent p-4 shadow-lg">
         <Avatar className="border-border/10 size-9 shrink-0 border">
           <AvatarImage
             src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=96&h=96&dpr=2&q=80"

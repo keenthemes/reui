@@ -1,7 +1,3 @@
-// Description: Stepper with vertical orientation
-// Order: 14
-// GridSize: 1
-
 "use client"
 
 import {

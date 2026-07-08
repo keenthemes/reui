@@ -1,6 +1,3 @@
-// Description: No automations empty state with toggle illustration
-// Order: 13
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   Empty,

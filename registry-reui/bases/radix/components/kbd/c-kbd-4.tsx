@@ -1,6 +1,3 @@
-// Description: Keyboard key within an input.
-// Order: 4
-
 import {
   InputGroup,
   InputGroupAddon,

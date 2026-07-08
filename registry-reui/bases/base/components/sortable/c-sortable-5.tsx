@@ -1,7 +1,3 @@
-// Description: Sortable settings priority with frame
-// Order: 5
-// GridSize: 1
-
 "use client"
 
 import { useState } from "react"

@@ -1,6 +1,3 @@
-// Description: Table with footer.
-// Order: 2
-
 import {
   Table,
   TableBody,

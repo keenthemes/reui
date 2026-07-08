@@ -1,6 +1,3 @@
-// Description: Tooltip with warning badge
-// Order: 9
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import { Button } from "@/registry/bases/radix/ui/button"

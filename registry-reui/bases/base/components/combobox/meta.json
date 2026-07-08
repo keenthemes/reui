@@ -1,0 +1,170 @@
+[
+  {
+    "name": "c-combobox-1",
+    "title": "A basic combobox with a list of options",
+    "description": "A basic combobox with a list of options",
+    "order": 1
+  },
+  {
+    "name": "c-combobox-2",
+    "title": "A disabled combobox",
+    "description": "A disabled combobox",
+    "order": 2
+  },
+  {
+    "name": "c-combobox-3",
+    "title": "A combobox in an invalid state",
+    "description": "A combobox in an invalid state",
+    "order": 3
+  },
+  {
+    "name": "c-combobox-4",
+    "title": "A combobox with a clear button",
+    "description": "A combobox with a clear button",
+    "order": 4
+  },
+  {
+    "name": "c-combobox-5",
+    "title": "A combobox with auto-highlight enabled",
+    "description": "A combobox with auto-highlight enabled",
+    "order": 5
+  },
+  {
+    "name": "c-combobox-6",
+    "title": "A combobox with grouped options",
+    "description": "A combobox with grouped options",
+    "order": 6
+  },
+  {
+    "name": "c-combobox-7",
+    "title": "A combobox with grouped options and separators",
+    "description": "A combobox with grouped options and separators",
+    "order": 7
+  },
+  {
+    "name": "c-combobox-8",
+    "title": "A combobox with a large list of options",
+    "description": "A combobox with a large list of options",
+    "order": 8
+  },
+  {
+    "name": "c-combobox-9",
+    "title": "A combobox with an icon addon",
+    "description": "A combobox with an icon addon",
+    "order": 9
+  },
+  {
+    "name": "c-combobox-10",
+    "title": "A combobox rendered inside a popup",
+    "description": "A combobox rendered inside a popup",
+    "order": 10
+  },
+  {
+    "name": "c-combobox-11",
+    "title": "A combobox used within a form",
+    "description": "A combobox used within a form",
+    "order": 11
+  },
+  {
+    "name": "c-combobox-12",
+    "title": "A multi-select combobox",
+    "description": "A multi-select combobox",
+    "order": 12
+  },
+  {
+    "name": "c-combobox-13",
+    "title": "A disabled multi-select combobox",
+    "description": "A disabled multi-select combobox",
+    "order": 13
+  },
+  {
+    "name": "c-combobox-14",
+    "title": "A multi-select combobox in an invalid state",
+    "description": "A multi-select combobox in an invalid state",
+    "order": 14
+  },
+  {
+    "name": "c-combobox-15",
+    "title": "A multi-select with chips that cannot be removed",
+    "description": "A multi-select with chips that cannot be removed",
+    "order": 15
+  },
+  {
+    "name": "c-combobox-16",
+    "title": "A combobox with custom item rendering",
+    "description": "A combobox with custom item rendering",
+    "order": 16
+  },
+  {
+    "name": "c-combobox-17",
+    "title": "A combobox used within a dialog",
+    "description": "A combobox used within a dialog",
+    "order": 17
+  },
+  {
+    "name": "c-combobox-18",
+    "title": "A combobox with a custom trigger icon",
+    "description": "A combobox with a custom trigger icon",
+    "order": 18
+  },
+  {
+    "name": "c-combobox-19",
+    "title": "A multi-select combobox with user tags",
+    "description": "A multi-select combobox with user tags",
+    "order": 19
+  },
+  {
+    "name": "c-combobox-20",
+    "title": "Invisible combobox with member tags",
+    "description": "Invisible combobox with member tags",
+    "order": 20
+  },
+  {
+    "name": "c-combobox-21",
+    "title": "A status change combobox",
+    "description": "A status change combobox",
+    "order": 21
+  },
+  {
+    "name": "c-combobox-22",
+    "title": "A priority change combobox",
+    "description": "A priority change combobox",
+    "order": 22
+  },
+  {
+    "name": "c-combobox-23",
+    "title": "A lead selection combobox",
+    "description": "A lead selection combobox",
+    "order": 23
+  },
+  {
+    "name": "c-combobox-24",
+    "title": "A multi-member selection combobox",
+    "description": "A multi-member selection combobox",
+    "order": 24
+  },
+  {
+    "name": "c-combobox-25",
+    "title": "A date selection combobox with an optional custom picker dialog",
+    "description": "A date selection combobox with an optional custom picker dialog",
+    "order": 25
+  },
+  {
+    "name": "c-combobox-26",
+    "title": "A multi-label selection combobox with a no-label mode",
+    "description": "A multi-label selection combobox with a no-label mode",
+    "order": 26
+  },
+  {
+    "name": "c-combobox-27",
+    "title": "A team selection combobox",
+    "description": "A team selection combobox",
+    "order": 27
+  },
+  {
+    "name": "c-combobox-28",
+    "title": "An assignee selection combobox",
+    "description": "An assignee selection combobox",
+    "order": 28
+  }
+]

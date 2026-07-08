@@ -1,6 +1,3 @@
-// Description: Accordion with borders and rounded corners
-// Order: 3
-
 import {
   Accordion,
   AccordionContent,
@@ -53,7 +50,7 @@ export default function Pattern() {
           <AccordionItem
             key={item.value}
             value={item.value}
-            className="border-border style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-4xl style-mira:rounded-md style-maia:px-0 border px-3 not-last:border-b"
+            className="border-border rounded-lg border px-3 not-last:border-b"
           >
             <AccordionTrigger className="items-center py-3 font-medium hover:no-underline">
               {item.trigger}

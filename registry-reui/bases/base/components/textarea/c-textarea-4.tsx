@@ -1,6 +1,3 @@
-// Description: Textarea with description.
-// Order: 4
-
 import {
   Field,
   FieldDescription,

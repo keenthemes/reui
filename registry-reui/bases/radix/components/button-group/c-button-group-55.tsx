@@ -1,6 +1,3 @@
-// Description: Payout release controls with amount context
-// Order: 55
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   ButtonGroup,

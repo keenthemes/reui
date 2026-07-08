@@ -1,6 +1,3 @@
-// Description: Input with subtle background
-// Order: 26
-
 import { Field, FieldLabel } from "@/registry/bases/radix/ui/field"
 import { Input } from "@/registry/bases/radix/ui/input"
 

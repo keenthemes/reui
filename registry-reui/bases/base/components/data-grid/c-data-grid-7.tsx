@@ -1,7 +1,3 @@
-// Description: Data grid with row selection
-// GridSize: 1
-// Order: 7
-
 "use client"
 
 import { useEffect, useMemo, useState } from "react"

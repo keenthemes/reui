@@ -1,0 +1,80 @@
+[
+  {
+    "name": "c-label-1",
+    "title": "Basic label.",
+    "description": "Basic label.",
+    "order": 1
+  },
+  {
+    "name": "c-label-2",
+    "title": "Label paired with a checkbox.",
+    "description": "Label paired with a checkbox.",
+    "order": 2
+  },
+  {
+    "name": "c-label-3",
+    "title": "Label for a textarea field.",
+    "description": "Label for a textarea field.",
+    "order": 3
+  },
+  {
+    "name": "c-label-4",
+    "title": "Label in a disabled state.",
+    "description": "Label in a disabled state.",
+    "order": 4
+  },
+  {
+    "name": "c-label-5",
+    "title": "Label with required indicator",
+    "description": "Label with required indicator",
+    "order": 5
+  },
+  {
+    "name": "c-label-6",
+    "title": "Label with optional indicator",
+    "description": "Label with optional indicator",
+    "order": 6
+  },
+  {
+    "name": "c-label-7",
+    "title": "Label with tooltip info icon",
+    "description": "Label with tooltip info icon",
+    "order": 7
+  },
+  {
+    "name": "c-label-8",
+    "title": "Label with badge indicator",
+    "description": "Label with badge indicator",
+    "order": 8
+  },
+  {
+    "name": "c-label-9",
+    "title": "Label with character counter",
+    "description": "Label with character counter",
+    "order": 9
+  },
+  {
+    "name": "c-label-10",
+    "title": "Label with helper description text",
+    "description": "Label with helper description text",
+    "order": 10
+  },
+  {
+    "name": "c-label-11",
+    "title": "Label with error state",
+    "description": "Label with error state",
+    "order": 11
+  },
+  {
+    "name": "c-label-12",
+    "title": "Label with inline edit toggle",
+    "description": "Label with inline edit toggle",
+    "order": 12
+  },
+  {
+    "name": "c-label-13",
+    "title": "Label with status indicator dot",
+    "description": "Label with status indicator dot",
+    "order": 13
+  }
+]

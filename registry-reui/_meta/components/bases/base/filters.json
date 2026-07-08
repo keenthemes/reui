@@ -1,0 +1,266 @@
+{
+  "items": [
+    {
+      "name": "c-filters-1",
+      "type": "registry:block",
+      "title": "Filters with various field types",
+      "categories": [
+        "filters"
+      ],
+      "description": "Filters with various field types",
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "filters"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/filters/c-filters-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-filters-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-filters-2",
+      "type": "registry:block",
+      "title": "Filters with input validation",
+      "categories": [
+        "filters"
+      ],
+      "description": "Filters with input validation",
+      "registryDependencies": [
+        "button",
+        "filters"
+      ],
+      "dependencies": [
+        "zod"
+      ],
+      "files": [
+        {
+          "path": "components/filters/c-filters-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-filters-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-filters-3",
+      "type": "registry:block",
+      "title": "Filters with custom trigger button",
+      "categories": [
+        "filters"
+      ],
+      "description": "Filters with custom trigger button",
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "filters"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/filters/c-filters-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-filters-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-filters-4",
+      "type": "registry:block",
+      "title": "Filters with small size controls",
+      "categories": [
+        "filters"
+      ],
+      "description": "Filters with small size controls",
+      "registryDependencies": [
+        "button",
+        "filters"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/filters/c-filters-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-filters-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-filters-5",
+      "type": "registry:block",
+      "title": "Filters with large size controls",
+      "categories": [
+        "filters"
+      ],
+      "description": "Filters with large size controls",
+      "registryDependencies": [
+        "button",
+        "filters"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/filters/c-filters-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-filters-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-filters-6",
+      "type": "registry:block",
+      "title": "Filters with custom controls",
+      "categories": [
+        "filters"
+      ],
+      "description": "Filters with custom controls",
+      "registryDependencies": [
+        "button",
+        "calendar",
+        "date-selector",
+        "dialog",
+        "filters",
+        "popover",
+        "scroll-area",
+        "slider"
+      ],
+      "dependencies": [
+        "date-fns",
+        "react-day-picker"
+      ],
+      "files": [
+        {
+          "path": "components/filters/c-filters-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-filters-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-filters-7",
+      "type": "registry:block",
+      "title": "Filters with data grid",
+      "categories": [
+        "filters"
+      ],
+      "description": "Filters with data grid",
+      "registryDependencies": [
+        "alert",
+        "avatar",
+        "badge",
+        "button",
+        "data-grid",
+        "data-grid-column-header",
+        "data-grid-pagination",
+        "data-grid-table",
+        "filters",
+        "scroll-area",
+        "skeleton"
+      ],
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "components/filters/c-filters-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-filters-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-filters-8",
+      "type": "registry:block",
+      "title": "Filters with data grid and async mode",
+      "categories": [
+        "filters"
+      ],
+      "description": "Filters with data grid and async mode",
+      "registryDependencies": [
+        "alert",
+        "avatar",
+        "badge",
+        "button",
+        "data-grid",
+        "data-grid-column-header",
+        "data-grid-pagination",
+        "data-grid-table",
+        "filters",
+        "scroll-area",
+        "skeleton"
+      ],
+      "dependencies": [
+        "@tanstack/react-table",
+        "nuqs"
+      ],
+      "files": [
+        {
+          "path": "components/filters/c-filters-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-filters-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-filters-9",
+      "type": "registry:block",
+      "title": "Filters with i18n support",
+      "categories": [
+        "filters"
+      ],
+      "description": "Filters with i18n support",
+      "registryDependencies": [
+        "button",
+        "dropdown-menu",
+        "filters"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/filters/c-filters-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-filters-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9,
+        "gridSize": 1
+      }
+    }
+  ]
+}

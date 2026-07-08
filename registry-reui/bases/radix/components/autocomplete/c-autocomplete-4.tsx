@@ -1,6 +1,3 @@
-// Description: Control with label
-// Order: 4
-
 import {
   Autocomplete,
   AutocompleteContent,

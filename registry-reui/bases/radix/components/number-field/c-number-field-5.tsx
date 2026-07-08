@@ -1,6 +1,3 @@
-// Description: Number field with spinner buttons
-// Order: 5
-
 import {
   NumberField,
   NumberFieldDecrement,
@@ -20,7 +17,7 @@ export default function Pattern() {
         <NumberFieldGroup>
           <NumberFieldInput className="text-start" />
 
-          <div className="border-input bg-muted/30 style-vega:rounded-md style-maia:rounded-4xl style-nova:rounded-lg style-lyra:rounded-none style-mira:rounded-md m-px flex shrink-0 flex-col overflow-hidden border">
+          <div className="border-input bg-muted/30 rounded-lg m-px flex shrink-0 flex-col overflow-hidden border">
             <NumberFieldIncrement className="border-input hover:bg-accent focus-visible:bg-accent flex h-3.5 w-full flex-1 shrink-0 items-center rounded-none! border-b px-1.5 leading-none">
               <IconPlaceholder
                 lucide="ChevronUpIcon"

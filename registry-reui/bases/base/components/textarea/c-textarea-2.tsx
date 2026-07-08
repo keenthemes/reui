@@ -1,6 +1,3 @@
-// Description: Invalid textarea.
-// Order: 2
-
 import { Textarea } from "@/registry/bases/base/ui/textarea"
 
 export default function Pattern() {

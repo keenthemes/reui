@@ -1,6 +1,3 @@
-// Description: Read-only phone input
-// Order: 8
-
 import { PhoneInput } from "@/registry-reui/bases/radix/reui/phone-input"
 
 export default function Pattern() {

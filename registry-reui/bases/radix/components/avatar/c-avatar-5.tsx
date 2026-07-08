@@ -1,6 +1,3 @@
-// Description: Avatars with custom sizes
-// Order: 5
-
 import {
   Avatar,
   AvatarFallback,

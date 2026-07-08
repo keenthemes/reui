@@ -1,6 +1,3 @@
-// Description: Invalid textarea.
-// Order: 2
-
 import { Textarea } from "@/registry/bases/radix/ui/textarea"
 
 export default function Pattern() {

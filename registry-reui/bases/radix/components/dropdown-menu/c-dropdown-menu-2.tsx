@@ -1,6 +1,3 @@
-// Description: Dropdown menus opening positions
-// Order: 2
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   DropdownMenu,

@@ -1,7 +1,3 @@
-// Description: Progress file upload
-// Order: 5
-// GridSize: 1
-
 "use client"
 
 import { useEffect, useState } from "react"
@@ -294,7 +290,7 @@ export default function Pattern({
       {/* Upload Area */}
       <div
         className={cn(
-          "style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-lg style-mira:rounded-lg relative border border-dashed p-8 text-center transition-colors",
+          "rounded-lg relative border border-dashed p-8 text-center transition-colors",
           isDragging
             ? "border-primary bg-primary/5"
             : "border-muted-foreground/25 hover:border-muted-foreground/50"
@@ -386,7 +382,7 @@ export default function Pattern({
           {uploadFiles.map((fileItem: FileUploadItem) => (
             <div
               key={fileItem.id}
-              className="border-border bg-card style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-lg style-mira:rounded-lg border p-2.5"
+              className="border-border bg-card rounded-lg border p-2.5"
             >
               <div className="flex items-start gap-2.5">
                 {/* File Icon */}
@@ -396,10 +392,10 @@ export default function Pattern({
                     <img
                       src={fileItem.preview}
                       alt={fileItem.file.name}
-                      className="style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-lg style-mira:rounded-lg h-12 w-12 border object-cover"
+                      className="rounded-lg h-12 w-12 border object-cover"
                     />
                   ) : (
-                    <div className="border-border text-muted-foreground style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-lg style-mira:rounded-lg flex h-12 w-12 items-center justify-center border">
+                    <div className="border-border text-muted-foreground rounded-lg flex h-12 w-12 items-center justify-center border">
                       {getFileIcon(fileItem.file)}
                     </div>
                   )}

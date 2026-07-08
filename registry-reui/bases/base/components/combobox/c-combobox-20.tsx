@@ -1,6 +1,3 @@
-// Description: Invisible combobox with member tags
-// Order: 20
-
 "use client"
 
 import { Fragment } from "react"
@@ -146,7 +143,7 @@ export default function Pattern() {
                   <ComboboxChip
                     key={member.id}
                     showRemove={true}
-                    className="bg-background style-vega:rounded-full style-nova:rounded-full style-lyra:rounded-none style-maia:rounded-4xl style-mira:rounded-full inline-flex h-auto items-center gap-1.5 border py-0.5 pl-2 shadow-xs **:data-[slot=combobox-chip-remove]:mr-0.5 **:data-[slot=combobox-chip-remove]:bg-transparent"
+                    className="bg-background rounded-full inline-flex h-auto items-center gap-1.5 border py-0.5 pl-2 shadow-xs **:data-[slot=combobox-chip-remove]:mr-0.5 **:data-[slot=combobox-chip-remove]:bg-transparent"
                   >
                     <Avatar className="size-4">
                       <AvatarImage src={member.avatar} alt={member.name} />

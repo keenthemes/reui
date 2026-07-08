@@ -1,6 +1,3 @@
-// Description: Label with helper description text
-// Order: 10
-
 import { Field, FieldDescription } from "@/registry/bases/radix/ui/field"
 import { Input } from "@/registry/bases/radix/ui/input"
 import { Label } from "@/registry/bases/radix/ui/label"

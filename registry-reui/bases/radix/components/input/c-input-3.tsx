@@ -1,6 +1,3 @@
-// Description: Input with description
-// Order: 3
-
 import {
   Field,
   FieldDescription,

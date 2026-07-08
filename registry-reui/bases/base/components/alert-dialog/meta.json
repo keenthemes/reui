@@ -1,0 +1,86 @@
+[
+  {
+    "name": "c-alert-dialog-1",
+    "title": "Basic alert dialog with title, description, and action buttons",
+    "description": "Basic alert dialog with title, description, and action buttons",
+    "order": 1
+  },
+  {
+    "name": "c-alert-dialog-2",
+    "title": "Small size alert dialog for quick confirmations",
+    "description": "Small size alert dialog for quick confirmations",
+    "order": 2
+  },
+  {
+    "name": "c-alert-dialog-3",
+    "title": "Alert dialog with icon",
+    "description": "Alert dialog with icon",
+    "order": 3
+  },
+  {
+    "name": "c-alert-dialog-4",
+    "title": "Small size alert dialog with media (icon)",
+    "description": "Small size alert dialog with media (icon)",
+    "order": 4
+  },
+  {
+    "name": "c-alert-dialog-5",
+    "title": "Destructive alert dialog for irreversible actions like deletion",
+    "description": "Destructive alert dialog for irreversible actions like deletion",
+    "order": 5
+  },
+  {
+    "name": "c-alert-dialog-6",
+    "title": "Alert dialog nested within a standard Dialog component",
+    "description": "Alert dialog nested within a standard Dialog component",
+    "order": 6
+  },
+  {
+    "name": "c-alert-dialog-7",
+    "title": "Task success confirmation",
+    "description": "Task success confirmation",
+    "order": 7
+  },
+  {
+    "name": "c-alert-dialog-8",
+    "title": "Account deactivation confirmation",
+    "description": "Account deactivation confirmation",
+    "order": 8
+  },
+  {
+    "name": "c-alert-dialog-9",
+    "title": "Warning for unsaved changes when navigating away",
+    "description": "Warning for unsaved changes when navigating away",
+    "order": 9
+  },
+  {
+    "name": "c-alert-dialog-10",
+    "title": "Confirmation for successful e-ticket registration",
+    "description": "Confirmation for successful e-ticket registration",
+    "order": 10
+  },
+  {
+    "name": "c-alert-dialog-11",
+    "title": "System update notification requiring application restart",
+    "description": "System update notification requiring application restart",
+    "order": 11
+  },
+  {
+    "name": "c-alert-dialog-12",
+    "title": "Billing warning for expired subscriptions or failed payments",
+    "description": "Billing warning for expired subscriptions or failed payments",
+    "order": 12
+  },
+  {
+    "name": "c-alert-dialog-13",
+    "title": "Logout confirmation dialog",
+    "description": "Logout confirmation dialog",
+    "order": 13
+  },
+  {
+    "name": "c-alert-dialog-14",
+    "title": "Advanced security audit confirmation",
+    "description": "Advanced security audit confirmation",
+    "order": 14
+  }
+]

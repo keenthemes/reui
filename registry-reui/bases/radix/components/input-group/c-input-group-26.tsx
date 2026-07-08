@@ -1,6 +1,3 @@
-// Description: Textarea input group with action buttons
-// Order: 26
-
 import { Field } from "@/registry/bases/radix/ui/field"
 import {
   InputGroup,

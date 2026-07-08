@@ -1,7 +1,3 @@
-// Description: Tabs with icons and line variant
-// Order: 8
-// GridSize: 1
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import { Card, CardContent } from "@/registry/bases/radix/ui/card"

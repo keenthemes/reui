@@ -1,6 +1,3 @@
-// Description: Basic item with title and description
-// Order: 1
-
 import {
   Item,
   ItemContent,

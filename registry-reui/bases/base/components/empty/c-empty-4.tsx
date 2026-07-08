@@ -1,6 +1,3 @@
-// Description: Empty state with add button
-// Order: 4
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   Empty,

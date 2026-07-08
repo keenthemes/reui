@@ -1,6 +1,3 @@
-// Description: Tasks empty state
-// Order: 12
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   Card,

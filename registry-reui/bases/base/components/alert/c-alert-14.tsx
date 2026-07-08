@@ -1,6 +1,3 @@
-// Description: Alert with actions integrated within a Frame
-// Order: 14
-
 import {
   Alert,
   AlertAction,

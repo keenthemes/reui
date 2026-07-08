@@ -2,27 +2,23 @@
 
 import * as React from "react"
 
-import { transformStyleClassNames } from "@/lib/code-utils"
-import { highlightCode } from "@/lib/highlight-code"
-import { getIconLibraryFromStyle, transformIcons } from "@/lib/icons"
-import { getRegistryDeploymentId, getRegistryJsonUrl } from "@/lib/registry"
+import { loadComponentSourcePayloadFromApi } from "@/lib/component-source-client-loader"
+import { type ComponentSourcePayload } from "@/lib/component-source-request"
+import {
+  DEFAULT_DOCS_STYLE_NAME,
+  resolveRegistryOptions,
+} from "@/lib/docs-registry-options"
+import { transformIcons } from "@/lib/icons"
 import { cn } from "@/lib/utils"
 import { useConfig } from "@/hooks/use-config"
 import { Spinner } from "@/components/ui/spinner"
 import { CodeCollapsibleWrapper } from "@/components/code-collapsible-wrapper"
 import { CopyButton } from "@/components/copy-button"
-import { getIconForLanguageExtension } from "@/components/icons"
+import { getIconForLanguageExtension } from "@/components/custom/icons"
 import { IconLibraryName } from "@/registry/config"
-
-// Default styleName - matches the API default
-const DEFAULT_STYLE_NAME = "radix-nova"
 
 const COLLAPSIBLE_COPY_BUTTON_CLASS_NAME =
   "pointer-events-none invisible opacity-0 transition-opacity group-data-[state=open]/collapsible:pointer-events-auto group-data-[state=open]/collapsible:visible group-data-[state=open]/collapsible:opacity-100"
-
-// Module-level cache: prevents duplicate /r/ fetches across renders and re-mounts.
-// Keyed by deployment + style + name so a fresh Vercel deploy does not reuse stale JSON.
-const clientCodeCache = new Map<string, string>()
 
 export interface ComponentSourceClientProps {
   name?: string
@@ -46,7 +42,7 @@ export function ComponentSourceClient({
   language,
   collapsible = true,
   className,
-  styleName = DEFAULT_STYLE_NAME,
+  styleName = DEFAULT_DOCS_STYLE_NAME,
   iconLibrary: _iconLibrary,
   maxLines,
   code: initialCode,
@@ -55,104 +51,74 @@ export function ComponentSourceClient({
 }: React.ComponentProps<"div"> & ComponentSourceClientProps) {
   const [config] = useConfig()
 
-  const [code, setCode] = React.useState<string | undefined>(initialCode)
-  const [highlightedCode, setHighlightedCode] = React.useState<string | null>(
+  const [payload, setPayload] = React.useState<ComponentSourcePayload | null>(
     null
   )
-  const [isLoading, setIsLoading] = React.useState(!initialCode)
-
-  const abortControllerRef = React.useRef<AbortController | null>(null)
+  const [isLoading, setIsLoading] = React.useState(true)
 
   React.useEffect(() => {
-    let isMounted = true
+    let cancelled = false
 
     async function loadCode() {
-      // Abort any previous request
-      abortControllerRef.current?.abort()
-      abortControllerRef.current = new AbortController()
-
       setIsLoading(true)
-      let currentCode = initialCode
-      let highlighted = null
+      const lang = language ?? title?.split(".").pop() ?? "tsx"
+      const resolvedRegistryOptions = resolveRegistryOptions({
+        styleName,
+        iconLibrary: _iconLibrary,
+      })
+      let nextPayload: ComponentSourcePayload | null = null
 
-      // Fetch from the /r/ API endpoint
-      if (name) {
-        // Guard: skip fetch if styleName contains "undefined" (config not yet loaded)
-        if (styleName.includes("undefined")) {
-          return
-        }
+      if (initialCode) {
+        let currentCode = initialCode
 
-        const cacheKey = `${getRegistryDeploymentId()}:${styleName}:${name}`
-
-        // Check module-level cache first to avoid duplicate network requests
-        if (clientCodeCache.has(cacheKey)) {
-          currentCode = clientCodeCache.get(cacheKey)
-        } else {
-          try {
-            const url = getRegistryJsonUrl(styleName, name)
-            const res = await fetch(url, {
-              signal: abortControllerRef.current.signal,
-            })
-
-            if (res.ok) {
-              const data = await res.json()
-              currentCode = data.files?.[0]?.content
-              if (currentCode) {
-                clientCodeCache.set(cacheKey, currentCode)
-              }
-            }
-          } catch (error) {
-            if (error instanceof Error && error.name === "AbortError") {
-              return
-            }
-            console.error("Error fetching registry item:", error)
-          }
-        }
-      }
-
-      if (!isMounted) return
-
-      if (!currentCode && src) {
-        // For src-based loading, we can't do this on the client
-        // This path should be handled by the server component
-        console.warn("src prop is not supported in client component")
-      }
-
-      if (!isMounted) return
-
-      if (currentCode) {
-        // Clean up any remaining artifacts
         currentCode = currentCode.replaceAll(
           "/* eslint-disable react/no-children-prop */\n",
           ""
         )
-
-        // Keep client-rendered source aligned with the selected docs style and icon set.
-        currentCode = transformStyleClassNames(currentCode, styleName)
-        const effectiveIconLibrary =
-          _iconLibrary ?? getIconLibraryFromStyle(styleName)
-        currentCode = transformIcons(currentCode, effectiveIconLibrary)
+        currentCode = transformIcons(
+          currentCode,
+          resolvedRegistryOptions.iconLibrary
+        )
 
         if (maxLines) {
           currentCode = currentCode.split("\n").slice(0, maxLines).join("\n")
         }
 
-        const lang = language ?? title?.split(".").pop() ?? "tsx"
-        highlighted = await highlightCode(currentCode, lang)
-
-        if (!isMounted) return
-
-        setCode(currentCode)
-        setHighlightedCode(highlighted)
+        const { highlightCode } = await import("@/lib/highlight-code")
+        nextPayload = {
+          code: currentCode,
+          highlightedCode: await highlightCode(currentCode, lang),
+          language: lang,
+        }
+      } else if (name) {
+        try {
+          nextPayload = await loadComponentSourcePayloadFromApi({
+            name,
+            styleName: resolvedRegistryOptions.styleName,
+            iconLibrary: resolvedRegistryOptions.iconLibrary,
+            maxLines,
+          })
+        } catch (error) {
+          console.error("Error fetching component source payload:", error)
+        }
+      } else if (src) {
+        // For src-based loading, we can't do this on the client
+        // This path should be handled by the server component
+        console.warn("src prop is not supported in client component")
       }
+
+      if (cancelled) {
+        return
+      }
+
+      setPayload(nextPayload)
       setIsLoading(false)
     }
 
     loadCode()
 
     return () => {
-      isMounted = false
-      abortControllerRef.current?.abort()
+      cancelled = true
     }
   }, [
     name,
@@ -175,21 +141,19 @@ export function ComponentSourceClient({
     )
   }
 
-  if (!code || !highlightedCode) {
+  if (!payload) {
     return null
   }
 
-  const lang = language ?? title?.split(".").pop() ?? "tsx"
-
-  const effectiveEventName = eventName ?? "copy_component_code"
+  const effectiveEventName = eventName || "copy_component_code"
 
   if (!collapsible) {
     return (
       <div className={cn("relative", className)}>
         <ComponentCode
-          code={code}
-          highlightedCode={highlightedCode}
-          language={lang}
+          code={payload.code}
+          highlightedCode={payload.highlightedCode}
+          language={payload.language}
           title={title}
           eventName={effectiveEventName}
           name={name}
@@ -203,9 +167,9 @@ export function ComponentSourceClient({
   return (
     <CodeCollapsibleWrapper className={className}>
       <ComponentCode
-        code={code}
-        highlightedCode={highlightedCode}
-        language={lang}
+        code={payload.code}
+        highlightedCode={payload.highlightedCode}
+        language={payload.language}
         title={title}
         eventName={effectiveEventName}
         name={name}

@@ -1,6 +1,3 @@
-// Description: Input with number type
-// Order: 10
-
 import { Field, FieldLabel } from "@/registry/bases/radix/ui/field"
 import { Input } from "@/registry/bases/radix/ui/input"
 

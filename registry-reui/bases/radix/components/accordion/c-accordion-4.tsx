@@ -1,6 +1,3 @@
-// Description: Accordion embedded within a Card
-// Order: 4
-
 import {
   Accordion,
   AccordionContent,

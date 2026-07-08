@@ -1,6 +1,3 @@
-// Description: Toast with action button
-// Order: 6
-
 import { toast } from "sonner"
 
 import { Button } from "@/registry/bases/base/ui/button"

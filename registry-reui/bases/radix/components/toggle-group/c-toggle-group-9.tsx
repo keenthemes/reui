@@ -1,6 +1,3 @@
-// Description: Vertical toggle group for settings
-// Order: 9
-
 import {
   ToggleGroup,
   ToggleGroupItem,

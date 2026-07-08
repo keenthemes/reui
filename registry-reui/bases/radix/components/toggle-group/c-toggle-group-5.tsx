@@ -1,6 +1,3 @@
-// Description: Toggle group with filter control.
-// Order: 5
-
 import {
   ToggleGroup,
   ToggleGroupItem,

@@ -1,0 +1,107 @@
+[
+  {
+    "name": "c-stepper-1",
+    "title": "Basic stepper",
+    "description": "Basic stepper",
+    "order": 1,
+    "gridSize": 1
+  },
+  {
+    "name": "c-stepper-2",
+    "title": "Stepper with completed state",
+    "description": "Stepper with completed state",
+    "order": 2,
+    "gridSize": 1
+  },
+  {
+    "name": "c-stepper-3",
+    "title": "Stepper with loading state",
+    "description": "Stepper with loading state",
+    "order": 3,
+    "gridSize": 1
+  },
+  {
+    "name": "c-stepper-4",
+    "title": "Controlled stepper",
+    "description": "Controlled stepper",
+    "order": 4,
+    "gridSize": 1
+  },
+  {
+    "name": "c-stepper-5",
+    "title": "Stepper with title and indicator",
+    "description": "Stepper with title and indicator",
+    "order": 5,
+    "gridSize": 1
+  },
+  {
+    "name": "c-stepper-6",
+    "title": "Stepper with progress bar indicator",
+    "description": "Stepper with progress bar indicator",
+    "order": 6,
+    "gridSize": 1
+  },
+  {
+    "name": "c-stepper-7",
+    "title": "Stepper with icons and badges",
+    "description": "Stepper with icons and badges",
+    "order": 7,
+    "gridSize": 1
+  },
+  {
+    "name": "c-stepper-8",
+    "title": "Stepper with descriptions",
+    "description": "Stepper with descriptions",
+    "order": 8,
+    "gridSize": 1
+  },
+  {
+    "name": "c-stepper-9",
+    "title": "Stepper with inline titles",
+    "description": "Stepper with inline titles",
+    "order": 9,
+    "gridSize": 1
+  },
+  {
+    "name": "c-stepper-10",
+    "title": "Stepper with content for each step",
+    "description": "Stepper with content for each step",
+    "order": 10,
+    "gridSize": 1
+  },
+  {
+    "name": "c-stepper-11",
+    "title": "Stepper with progress bar and titles",
+    "description": "Stepper with progress bar and titles",
+    "order": 11,
+    "gridSize": 1
+  },
+  {
+    "name": "c-stepper-12",
+    "title": "Stepper with segmented progress bar",
+    "description": "Stepper with segmented progress bar",
+    "order": 12,
+    "gridSize": 1
+  },
+  {
+    "name": "c-stepper-13",
+    "title": "Stepper with vertical orientation and descriptions",
+    "description": "Stepper with vertical orientation and descriptions",
+    "order": 13,
+    "gridSize": 1
+  },
+  {
+    "name": "c-stepper-14",
+    "title": "Stepper with vertical orientation",
+    "description": "Stepper with vertical orientation",
+    "order": 14,
+    "gridSize": 1
+  },
+  {
+    "name": "c-stepper-15",
+    "title": "Stepper with vertical orientation and titles",
+    "description": "Stepper with vertical orientation and titles",
+    "order": 15,
+    "gridSize": 1
+  }
+]

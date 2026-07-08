@@ -1,6 +1,3 @@
-// Description: Card with stacked depth effect
-// Order: 11
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   Card,
@@ -35,8 +32,8 @@ export default function Pattern() {
         </CardFooter>
       </Card>
       {/* Depth effect */}
-      <div className="bg-card style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-4xl style-mira:rounded-md absolute inset-4 -bottom-3 z-0 border shadow-md shadow-black/1" />
-      <div className="bg-card style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-4xl style-mira:rounded-md absolute inset-2 -bottom-1.5 z-0 border shadow-md shadow-black/1" />
+      <div className="bg-card rounded-lg absolute inset-4 -bottom-3 z-0 border shadow-md shadow-black/1" />
+      <div className="bg-card rounded-lg absolute inset-2 -bottom-1.5 z-0 border shadow-md shadow-black/1" />
     </div>
   )
 }

@@ -1,6 +1,3 @@
-// Description: Destructive switch with confirmation text
-// Order: 12
-
 import {
   Field,
   FieldContent,

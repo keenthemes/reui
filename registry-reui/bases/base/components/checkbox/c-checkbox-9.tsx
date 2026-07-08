@@ -1,6 +1,3 @@
-// Description: Card checkbox with group
-// Order: 9
-
 import { Checkbox } from "@/registry/bases/base/ui/checkbox"
 import {
   Field,

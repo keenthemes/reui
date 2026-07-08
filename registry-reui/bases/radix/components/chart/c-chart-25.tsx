@@ -1,6 +1,3 @@
-// Description: Lighthouse scores radial with labels
-// Order: 25
-
 "use client"
 
 import { CSSProperties } from "react"

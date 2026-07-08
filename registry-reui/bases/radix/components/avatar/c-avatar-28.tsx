@@ -1,6 +1,3 @@
-// Description: Avatar inside an empty state example
-// Order: 28
-
 import {
   Avatar,
   AvatarFallback,

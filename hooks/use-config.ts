@@ -1,76 +1,186 @@
 import { useAtom } from "jotai"
-import { atomWithStorage } from "jotai/utils"
+import { atomWithStorage, createJSONStorage } from "jotai/utils"
 
-import type {
-  BaseColorName,
-  BaseName,
-  ChartColorName,
-  FontHeadingValue,
-  FontValue,
-  IconLibraryName,
-  MenuAccentValue,
-  MenuColorValue,
-  RadiusValue,
-  StyleName,
-  ThemeName,
-} from "@/registry/config"
+import {
+  BLOCKS_STATE_STORAGE_KEY,
+  COMPONENTS_STATE_STORAGE_KEY,
+  CONFIG_STORAGE_KEY,
+  DEFAULT_BLOCKS_STATE,
+  DEFAULT_COMPONENTS_STATE,
+  DEFAULT_CONFIG,
+  getPreferenceCookieName,
+  PATTERNS_STATE_COOKIE_NAME,
+  PATTERNS_STATE_STORAGE_KEY,
+  PREFERENCE_COOKIE_MAX_AGE,
+  type BlockGridMode,
+  type BlocksState,
+  type ComponentGridMode,
+  type ComponentsLayoutState,
+  type Config,
+  type IconStyleName,
+  type IconTypeName,
+} from "@/lib/preferences"
 
-export type CatalogGridMode = 1 | 2
-
-export type Config = {
-  // App preferences (not synced with URL)
-  packageManager: "npm" | "yarn" | "pnpm" | "bun"
-  installationType: "cli" | "manual"
-  gridColumns: CatalogGridMode
-
-  // Design system params (synced with URL)
-  base: BaseName
-  style: StyleName
-  theme: ThemeName
-  baseColor: BaseColorName
-  chartColor: ChartColorName
-  font: FontValue
-  fontHeading: FontHeadingValue
-  iconLibrary: IconLibraryName
-  menuAccent: MenuAccentValue
-  menuColor: MenuColorValue
-  radius: RadiusValue
-  item: string
-  template: "next" | "start" | "vite"
-  size: number
-  custom: boolean
-  customizerOpen: boolean
+export {
+  type BlockGridMode,
+  DEFAULT_CONFIG,
+  type BlocksState,
+  type ComponentsLayoutState,
+  type Config,
+  type IconStyleName,
+  type IconTypeName,
+  type ComponentGridMode,
 }
 
-export const DEFAULT_CONFIG: Config = {
-  // App preferences
-  packageManager: "pnpm",
-  installationType: "cli",
-  gridColumns: 2,
-  customizerOpen: true,
+export type { PatternGridMode } from "@/lib/preferences"
 
-  // Design system defaults (matching DEFAULT_CONFIG from registry/config.ts)
-  base: "base",
-  style: "nova",
-  theme: "neutral",
-  baseColor: "neutral",
-  chartColor: "sky",
-  font: "inter",
-  fontHeading: "inherit",
-  iconLibrary: "lucide",
-  menuAccent: "subtle",
-  menuColor: "default",
-  radius: "default",
-  item: "preview",
-  template: "next",
-  size: 100,
-  custom: false,
+function readCookie(name: string) {
+  if (typeof document === "undefined") {
+    return null
+  }
+
+  const cookiePrefix = `${name}=`
+
+  for (const cookie of document.cookie.split(";")) {
+    const normalizedCookie = cookie.trim()
+
+    if (normalizedCookie.startsWith(cookiePrefix)) {
+      return decodeURIComponent(normalizedCookie.slice(cookiePrefix.length))
+    }
+  }
+
+  return null
 }
+
+function writeCookie(name: string, value: string) {
+  if (typeof document === "undefined") {
+    return
+  }
+
+  document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=${PREFERENCE_COOKIE_MAX_AGE}; samesite=lax`
+}
+
+function getLegacyPatternsValue() {
+  if (typeof window === "undefined") {
+    return null
+  }
+
+  try {
+    return window.localStorage.getItem(BLOCKS_STATE_STORAGE_KEY)
+  } catch {
+    return null
+  }
+}
+
+const preferenceStringStorage = {
+  getItem(key: string) {
+    if (typeof window === "undefined") {
+      return null
+    }
+
+    const cookieName = getPreferenceCookieName(key)
+    let cookieValue = readCookie(cookieName)
+    if (cookieValue === null && key === COMPONENTS_STATE_STORAGE_KEY) {
+      cookieValue = readCookie(PATTERNS_STATE_COOKIE_NAME)
+    }
+
+    if (cookieValue !== null) {
+      return cookieValue
+    }
+
+    try {
+      const localValue = window.localStorage.getItem(key)
+
+      if (localValue !== null) {
+        writeCookie(cookieName, localValue)
+        return localValue
+      }
+    } catch {
+      // Ignore localStorage errors and continue to migration fallback.
+    }
+
+    if (key === COMPONENTS_STATE_STORAGE_KEY) {
+      const fromLegacyPatterns = window.localStorage.getItem(
+        PATTERNS_STATE_STORAGE_KEY
+      )
+      if (fromLegacyPatterns !== null) {
+        try {
+          window.localStorage.setItem(key, fromLegacyPatterns)
+        } catch {
+          // Ignore storage failures during migration.
+        }
+        writeCookie(cookieName, fromLegacyPatterns)
+        return fromLegacyPatterns
+      }
+
+      const legacyValue = getLegacyPatternsValue()
+
+      if (legacyValue !== null) {
+        try {
+          window.localStorage.setItem(key, legacyValue)
+        } catch {
+          // Ignore storage failures during migration.
+        }
+
+        writeCookie(cookieName, legacyValue)
+        return legacyValue
+      }
+    }
+
+    return null
+  },
+  setItem(key: string, value: string) {
+    if (typeof window !== "undefined") {
+      try {
+        window.localStorage.setItem(key, value)
+      } catch {
+        // Ignore storage failures in private or unsupported contexts.
+      }
+    }
+
+    writeCookie(getPreferenceCookieName(key), value)
+  },
+  removeItem(key: string) {
+    if (typeof window !== "undefined") {
+      try {
+        window.localStorage.removeItem(key)
+      } catch {
+        // Ignore storage failures in private or unsupported contexts.
+      }
+    }
+
+    if (typeof document !== "undefined") {
+      document.cookie = `${getPreferenceCookieName(key)}=; path=/; max-age=0; samesite=lax`
+    }
+  },
+  subscribe(key: string, callback: (value: string | null) => void) {
+    if (typeof window === "undefined") {
+      return undefined
+    }
+
+    const handleStorage = (event: StorageEvent) => {
+      if (event.key === key) {
+        callback(event.newValue)
+      }
+    }
+
+    window.addEventListener("storage", handleStorage)
+    return () => window.removeEventListener("storage", handleStorage)
+  },
+}
+
+const configStorage = createJSONStorage<Config>(() => preferenceStringStorage)
+const componentsLayoutStateStorage = createJSONStorage<ComponentsLayoutState>(
+  () => preferenceStringStorage
+)
+const blocksStateStorage = createJSONStorage<BlocksState>(
+  () => preferenceStringStorage
+)
 
 export const configAtom = atomWithStorage<Config>(
-  "config",
+  CONFIG_STORAGE_KEY,
   DEFAULT_CONFIG,
-  undefined,
+  configStorage,
   { getOnInit: true }
 )
 
@@ -78,34 +188,33 @@ export function useConfig() {
   return useAtom(configAtom)
 }
 
-export interface ComponentsLayoutState {
-  sidebarOpen: boolean
-  activeCategory?: string
-  sidebarMenuView?: "menu" | "inline"
-}
-
 const componentsLayoutStateAtom = atomWithStorage<ComponentsLayoutState>(
-  "components-layout",
-  {
-    sidebarOpen: true,
-    sidebarMenuView: "menu",
-  }
+  COMPONENTS_STATE_STORAGE_KEY,
+  DEFAULT_COMPONENTS_STATE,
+  componentsLayoutStateStorage,
+  { getOnInit: true }
 )
 
 export function useComponentsLayoutState() {
   return useAtom(componentsLayoutStateAtom)
 }
 
-// Blocks states configuration
-export interface BlocksState {
-  sidebarOpen: boolean
-  activeCategory?: string
-}
-
-const blocksStateAtom = atomWithStorage<BlocksState>("blocks-state", {
-  sidebarOpen: true,
-})
+const blocksStateAtom = atomWithStorage<BlocksState>(
+  BLOCKS_STATE_STORAGE_KEY,
+  DEFAULT_BLOCKS_STATE,
+  blocksStateStorage,
+  { getOnInit: true }
+)
 
 export function useBlocksState() {
   return useAtom(blocksStateAtom)
+}
+
+const dismissedAnnouncementsAtom = atomWithStorage<string[]>(
+  "dismissed-announcements",
+  []
+)
+
+export function useDismissedAnnouncements() {
+  return useAtom(dismissedAnnouncementsAtom)
 }

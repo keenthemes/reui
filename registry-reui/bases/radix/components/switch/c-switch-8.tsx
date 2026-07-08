@@ -1,6 +1,3 @@
-// Description: Switch in frame
-// Order: 8
-
 import {
   Frame,
   FrameHeader,

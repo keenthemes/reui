@@ -1,6 +1,3 @@
-// Description: Form with validation errors
-// Order: 11
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   Field,

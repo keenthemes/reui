@@ -8,10 +8,10 @@ const alertVariants = cva(
     "has-[>[data-slot=alert-title]+[data-slot=alert-description]]:[&_[data-slot=alert-action]]:sm:row-end-3",
     "has-[>[data-slot=alert-title]+[data-slot=alert-description]]:items-start",
     "has-[>[data-slot=alert-title]+[data-slot=alert-description]]:[&_svg]:translate-y-0.5",
-    "style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-2xl style-mira:rounded-md",
-    "style-vega:px-4 style-nova:px-3 style-lyra:px-3 style-maia:px-3 style-mira:px-2",
-    "style-vega:py-3 style-nova:py-2.5 style-lyra:py-2 style-maia:py-3 style-mira:py-2",
-    "style-vega:has-[>svg]:gap-x-3 style-nova:has-[>svg]:gap-x-2.5 style-lyra:has-[>svg]:gap-x-2.5 style-maia:has-[>svg]:gap-x-2.5 style-mira:has-[>svg]:gap-x-2.5",
+    "style-vega:rounded-lg style-nova:rounded-lg style-maia:rounded-lg style-lyra:rounded-none style-mira:rounded-lg style-luma:rounded-2xl style-rhea:rounded-2xl style-sera:rounded-none",
+    "px-3",
+    "py-2.5",
+    "has-[>svg]:gap-x-2.5",
   ],
   {
     variants: {

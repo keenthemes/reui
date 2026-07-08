@@ -1,7 +1,3 @@
-// Description: API keys table with permission badges and actions
-// Order: 12
-// GridSize: 1
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import { Button } from "@/registry/bases/radix/ui/button"

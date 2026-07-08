@@ -1,7 +1,3 @@
-// Description: Minimal kanban with stacked frame
-// Order: 4
-// GridSize: 1
-
 "use client"
 
 import { ComponentProps, useState } from "react"

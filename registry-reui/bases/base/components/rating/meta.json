@@ -1,0 +1,56 @@
+[
+  {
+    "name": "c-rating-1",
+    "title": "Basic rating.",
+    "description": "Basic rating.",
+    "order": 1
+  },
+  {
+    "name": "c-rating-2",
+    "title": "Rating with decimal value.",
+    "description": "Rating with decimal value.",
+    "order": 2
+  },
+  {
+    "name": "c-rating-3",
+    "title": "Rating with show value.",
+    "description": "Rating with show value.",
+    "order": 3
+  },
+  {
+    "name": "c-rating-4",
+    "title": "Rating with editable.",
+    "description": "Rating with editable.",
+    "order": 4
+  },
+  {
+    "name": "c-rating-5",
+    "title": "Rating with size.",
+    "description": "Rating with size.",
+    "order": 5
+  },
+  {
+    "name": "c-rating-6",
+    "title": "Rating with review summary",
+    "description": "Rating with review summary",
+    "order": 6
+  },
+  {
+    "name": "c-rating-7",
+    "title": "Interactive half-star rating",
+    "description": "Interactive half-star rating",
+    "order": 7
+  },
+  {
+    "name": "c-rating-8",
+    "title": "Emoji reaction rating",
+    "description": "Emoji reaction rating",
+    "order": 8
+  },
+  {
+    "name": "c-rating-9",
+    "title": "Rating with review text input",
+    "description": "Rating with review text input",
+    "order": 9
+  }
+]

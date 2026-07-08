@@ -1,6 +1,3 @@
-// Description: Inbox empty state
-// Order: 7
-
 import {
   Empty,
   EmptyDescription,

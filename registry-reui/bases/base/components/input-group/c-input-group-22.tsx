@@ -1,6 +1,3 @@
-// Description: Input group with popover trigger addon
-// Order: 22
-
 import { Field } from "@/registry/bases/base/ui/field"
 import {
   InputGroup,

@@ -1,6 +1,3 @@
-// Description: 3D gradient bar chart
-// Order: 6
-
 "use client"
 
 import { SVGProps } from "react"
@@ -230,7 +227,7 @@ export default function Chart3D() {
                         </span>
                       </div>
                       <span className="text-foreground font-semibold">
-                        {value.toLocaleString()}
+                        {Number(value).toLocaleString()}
                       </span>
                     </div>
                   )}

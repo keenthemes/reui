@@ -1,6 +1,3 @@
-// Description: Menubar with dropdown submenus.
-// Order: 2
-
 import {
   Menubar,
   MenubarContent,

@@ -1,6 +1,3 @@
-// Description: Pricing plan radio cards
-// Order: 17
-
 import {
   Field,
   FieldContent,

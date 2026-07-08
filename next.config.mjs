@@ -3,7 +3,7 @@ import { createMDX } from "fumadocs-mdx/next"
 const registryDeploymentId =
   process.env.VERCEL_DEPLOYMENT_ID ??
   process.env.VERCEL_GIT_COMMIT_SHA ??
-  Date.now().toString(36)
+  "local"
 
 function versionedRegistryDestination(destination) {
   const separator = destination.includes("?") ? "&" : "?"
@@ -14,24 +14,13 @@ function createVersionedRegistryRedirects(source, destination) {
   return [
     {
       source,
-      missing: [
-        {
-          type: "query",
-          key: "v",
-        },
-      ],
+      missing: [{ type: "query", key: "v" }],
       destination: versionedRegistryDestination(destination),
       permanent: false,
     },
     {
       source,
-      has: [
-        {
-          type: "query",
-          key: "v",
-          value: "(?<registryVersion>.*)",
-        },
-      ],
+      has: [{ type: "query", key: "v", value: "(?<registryVersion>.*)" }],
       destination: `${destination}?v=:registryVersion`,
       permanent: true,
     },
@@ -41,62 +30,76 @@ function createVersionedRegistryRedirects(source, destination) {
 const canonicalComponentDocRedirectPattern =
   "alert|autocomplete|badge|data-grid|date-selector|file-upload|filters|frame|kanban|number-field|phone-input|rating|scrollspy|sortable|stepper|timeline|tree"
 
-const legacyPatternCategoryRedirectPattern =
+const legacyComponentCategoryRedirectPattern =
   "accordion|alert-dialog|aspect-ratio|avatar|breadcrumb|button|button-group|calendar|card|carousel|chart|checkbox|collapsible|combobox|command|context-menu|dialog|drawer|dropdown-menu|empty|field|hover-card|input|input-group|input-otp|item|kbd|label|menubar|native-select|navigation-menu|pagination|popover|progress|radio-group|resizable|scroll-area|select|separator|sheet|skeleton|slider|sonner|spinner|switch|table|tabs|textarea|toggle|toggle-group|tooltip"
+
+// Barrel packages worth optimizing (none are in Next's default list).
+const optimizePackageImports = [
+  "lucide-react",
+  "@tabler/icons-react",
+  "@phosphor-icons/react",
+  "@remixicon/react",
+  "@hugeicons/react",
+  "@base-ui/react",
+  "radix-ui",
+  "motion",
+  "jotai",
+]
+
+// Trace only the component registry metadata + generated component source that
+// runtime code actually reads (listing, search, docs source rendering).
+const componentMetadataTracingGlobs = [
+  "./registry-reui/_meta/components/**/*.json",
+]
+const docsTracingGlobs = [
+  "./content/docs/**/*",
+  ...componentMetadataTracingGlobs,
+  "./public/r/styles/base-nova/**/*.json",
+  "./public/r/styles/radix-nova/**/*.json",
+]
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  cacheComponents: true,
+  deploymentId:
+    registryDeploymentId === "local" ? undefined : registryDeploymentId,
+  // recharts 3.x renders empty under Next's production optimizer unless it is
+  // transpiled through Next's own pipeline. Do not remove.
+  transpilePackages: ["recharts"],
   devIndicators: false,
   skipTrailingSlashRedirect: true,
-  skipProxyUrlNormalize: true,
+  productionBrowserSourceMaps: false,
   env: {
-    // Shared with the browser so registry JSON URLs rotate on every deploy.
-    // Build timestamp is the last fallback so redeploys still invalidate caches
-    // even if Vercel system env exposure is disabled.
     NEXT_PUBLIC_VERCEL_DEPLOYMENT_ID: registryDeploymentId,
   },
   typescript: {
+    // The upstream source project also ships with this enabled; the app builds
+    // and runs, and the vendored component packages carry their own type setup.
     ignoreBuildErrors: true,
   },
   outputFileTracingIncludes: {
-    "/*": ["./registry/**/*", "./registry-reui/**/*", "./public/r/styles/**/*"],
+    "/": componentMetadataTracingGlobs,
+    "/docs": docsTracingGlobs,
+    "/docs/**/*": docsTracingGlobs,
+    "/components": componentMetadataTracingGlobs,
+    "/components/**/*": componentMetadataTracingGlobs,
   },
   experimental: {
-    // Enable file system cache for development
-    turbopackFileSystemCacheForDev: true,
-    optimizePackageImports: [
-      "lucide-react",
-      "@tabler/icons-react",
-      "@base-ui/react",
-      "radix-ui",
-      "motion",
-      "jotai",
-    ],
-  },
-  logging: {
-    fetches: {
-      fullUrl: true,
+    preloadEntriesOnStart: false,
+    staleTimes: {
+      dynamic: 30,
+      static: 180,
     },
+    serverSourceMaps: false,
+    optimizePackageImports,
   },
   images: {
-    minimumCacheTTL: 2592000, // 30 days - reduce image re-optimizations
+    minimumCacheTTL: 2592000,
     remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "avatars.githubusercontent.com",
-      },
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-      },
-      {
-        protocol: "https",
-        hostname: "avatar.vercel.sh",
-      },
-      {
-        protocol: "https",
-        hostname: "picsum.photos",
-      },
+      { protocol: "https", hostname: "avatars.githubusercontent.com" },
+      { protocol: "https", hostname: "images.unsplash.com" },
+      { protocol: "https", hostname: "avatar.vercel.sh" },
+      { protocol: "https", hostname: "picsum.photos" },
     ],
   },
   async headers() {
@@ -111,84 +114,61 @@ const nextConfig = {
         value:
           "public, max-age=31536000, s-maxage=31536000, stale-while-revalidate=86400",
       },
-      {
-        key: "Vercel-CDN-Cache-Control",
-        value:
-          "public, max-age=31536000, s-maxage=31536000, stale-while-revalidate=86400",
-      },
     ]
-    const redirectRegistryHeaders = [
-      {
-        key: "Cache-Control",
-        value: "no-store, max-age=0",
-      },
-      {
-        key: "CDN-Cache-Control",
-        value: "no-store",
-      },
-      {
-        key: "Vercel-CDN-Cache-Control",
-        value: "no-store",
-      },
-    ]
+    const isDev = process.env.NODE_ENV === "development"
+    const localConnect = isDev
+      ? " http://127.0.0.1:* http://localhost:* ws://127.0.0.1:* ws://localhost:*"
+      : ""
+    const localImg = isDev ? " http://127.0.0.1:* http://localhost:*" : ""
+
     const securityHeaders = [
+      { key: "X-Content-Type-Options", value: "nosniff" },
+      { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+      { key: "X-DNS-Prefetch-Control", value: "on" },
+      ...(isDev
+        ? []
+        : [
+            {
+              key: "Strict-Transport-Security",
+              value: "max-age=63072000; includeSubDomains; preload",
+            },
+          ]),
+      { key: "X-Frame-Options", value: "SAMEORIGIN" },
       {
-        key: "X-Content-Type-Options",
-        value: "nosniff",
+        key: "Permissions-Policy",
+        value:
+          "camera=(), microphone=(), geolocation=(), browsing-topics=(), interest-cohort=()",
       },
-      {
-        key: "Referrer-Policy",
-        value: "strict-origin-when-cross-origin",
-      },
-      {
-        key: "X-DNS-Prefetch-Control",
-        value: "on",
-      },
+      { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
     ]
 
     return [
       {
-        // Versioned registry assets are immutable for the lifetime of a deploy.
         source: "/r/styles/:path*",
-        has: [
-          {
-            type: "query",
-            key: "v",
-          },
-        ],
+        has: [{ type: "query", key: "v" }],
         headers: versionedRegistryHeaders,
       },
       {
-        // Bare registry URLs must not cache the redirect response, otherwise a
-        // client could stay pinned to an older deployment id.
-        source: "/r/:path*",
-        missing: [
-          {
-            type: "query",
-            key: "v",
-          },
-        ],
-        headers: redirectRegistryHeaders,
-      },
-      {
-        // All pages: allow same-origin + approved external sites to embed in iframes
         source: "/(.*)",
         headers: [
           ...securityHeaders,
           {
             key: "Content-Security-Policy",
-            value:
-              "frame-ancestors 'self' https://shoogle.dev https://*.shoogle.dev",
-          },
-        ],
-      },
-      {
-        // API routes: block iframes entirely
-        source: "/api/:path*",
-        headers: [
-          {
-            key: "Content-Security-Policy",
-            value: "frame-ancestors 'none'",
+            value: [
+              "default-src 'self'",
+              // Production only needs WASM compilation for the client-side
+              // shiki highlighter (code views); dev also needs 'unsafe-eval'.
+              `script-src 'self' 'unsafe-inline' ${isDev ? "'unsafe-eval'" : "'wasm-unsafe-eval'"} https://*.vercel-scripts.com https://vercel.live https://va.vercel-scripts.com`,
+              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+              `img-src 'self' data: blob: https:${localImg}`,
+              "font-src 'self' data: https://fonts.gstatic.com",
+              `connect-src 'self' https://vercel.live https://*.vercel-insights.com${localConnect}`,
+              "object-src 'none'",
+              "base-uri 'self'",
+              "form-action 'self'",
+              "frame-ancestors 'self'",
+              "upgrade-insecure-requests",
+            ].join("; "),
           },
         ],
       },
@@ -196,27 +176,18 @@ const nextConfig = {
   },
   redirects() {
     return [
+      // shadcn-muscle-memory + legacy docs URLs.
       {
-        source: "/patterns",
-        destination: "/components",
+        source: "/docs/installation",
+        destination: "/docs/get-started",
         permanent: true,
       },
-      {
-        source: "/patterns/:path*",
-        destination: "/components/:path*",
-        permanent: true,
-      },
-      {
-        source: "/view/styles/:style/:name",
-        destination: "/view/:name",
-        permanent: true,
-      },
+      { source: "/docs/cli", destination: "/docs/get-started", permanent: true },
       {
         source: "/docs/:path*.mdx",
         destination: "/docs/:path*.md",
         permanent: true,
       },
-      // Special case redirects (intentional renames, listed before catch-all)
       {
         source: "/docs/form",
         destination: "/components/field",
@@ -227,7 +198,16 @@ const nextConfig = {
         destination: "/components/sonner",
         permanent: true,
       },
-      // Legacy component doc paths (before /docs/components/{base}/…)
+      {
+        source: `/docs/:path(${canonicalComponentDocRedirectPattern})`,
+        destination: "/docs/components/base/:path",
+        permanent: true,
+      },
+      {
+        source: "/docs/components/:path",
+        destination: "/docs/components/base/:path",
+        permanent: true,
+      },
       {
         source: "/docs/base/:path*",
         destination: "/docs/components/base/:path*",
@@ -238,53 +218,33 @@ const nextConfig = {
         destination: "/docs/components/radix/:path*",
         permanent: true,
       },
-      // Old ReUI component doc URLs should resolve to the canonical Base UI docs.
       {
-        source: `/docs/:path(${canonicalComponentDocRedirectPattern})`,
-        destination: "/docs/components/base/:path",
-        permanent: true,
-      },
-      // Old pattern doc URLs → /components/:path
-      // Only matches known pattern categories, NOT real docs pages like /docs/get-started
-      {
-        source: `/docs/:path(${legacyPatternCategoryRedirectPattern})`,
+        source: `/docs/:path(${legacyComponentCategoryRedirectPattern})`,
         destination: "/components/:path",
         permanent: true,
       },
-      // Canonicalize registry URLs to a deploy-scoped cache key.
+      // Map the shadcn CLI style aliases onto the canonical base-nova style.
       ...createVersionedRegistryRedirects(
         "/r/styles/default/:path*",
-        "/r/styles/radix-nova/:path*"
+        "/r/styles/base-nova/:path*"
       ),
       ...createVersionedRegistryRedirects(
         "/r/default/:path*",
-        "/r/styles/radix-nova/:path*"
+        "/r/styles/base-nova/:path*"
       ),
       ...createVersionedRegistryRedirects(
         "/r/new-york/:path*",
-        "/r/styles/radix-nova/:path*"
-      ),
-      ...createVersionedRegistryRedirects(
-        "/r/new-york-v4/:path*",
-        "/r/styles/radix-nova/:path*"
+        "/r/styles/base-nova/:path*"
       ),
       ...createVersionedRegistryRedirects(
         "/r/:name.json",
-        "/r/styles/radix-nova/:name.json"
+        "/r/styles/base-nova/:name.json"
       ),
-      {
-        source: "/r/styles/:path*",
-        missing: [
-          {
-            type: "query",
-            key: "v",
-          },
-        ],
-        destination: versionedRegistryDestination("/r/styles/:path*"),
-        permanent: false,
-      },
+      // Map the shadcn CLI namespace form `/r/<style>/<name>.json` onto the
+      // canonical `/r/styles/<style>/<name>.json`. The `(?!styles/)` lookahead
+      // keeps already-canonical paths from doubling their segment.
       ...createVersionedRegistryRedirects(
-        "/r/:style/:name.json",
+        "/r/:style((?!styles/)[^/]+)/:name.json",
         "/r/styles/:style/:name.json"
       ),
     ]

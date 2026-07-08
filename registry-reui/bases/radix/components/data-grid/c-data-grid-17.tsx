@@ -1,7 +1,3 @@
-// Description: Data grid with sticky header
-// GridSize: 1
-// Order: 17
-
 "use client"
 
 import { useMemo, useState } from "react"

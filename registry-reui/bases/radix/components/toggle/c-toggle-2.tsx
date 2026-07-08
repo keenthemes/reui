@@ -1,6 +1,3 @@
-// Description: Toggle buttons with outline variant.
-// Order: 2
-
 import { Toggle } from "@/registry/bases/radix/ui/toggle"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 

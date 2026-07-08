@@ -1,11 +1,6 @@
-// Description: Data grid with column controls
-// GridSize: 1
-// Order: 18
-
 "use client"
 
 import { useMemo, useState } from "react"
-import Link from "next/link"
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 import {
   DataGrid,
@@ -31,6 +26,7 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/registry/bases/radix/ui/avatar"
+import { Card } from "@/registry/bases/radix/ui/card"
 
 interface IData {
   id: string
@@ -277,7 +273,10 @@ export default function Pattern() {
             </div>
           )
         },
-        size: 320,
+        minSize: 200,
+        meta: {
+          autoSize: true,
+        },
         enableSorting: true,
         enableHiding: false,
         enableResizing: true,
@@ -293,14 +292,14 @@ export default function Pattern() {
           />
         ),
         cell: (info) => (
-          <Link
+          <a
             href={`mailto:${info.getValue()}`}
             className="hover:text-primary hover:underline"
           >
             {info.getValue() as string}
-          </Link>
+          </a>
         ),
-        size: 280,
+        size: 150,
         enableSorting: true,
         enableHiding: true,
         enableResizing: true,
@@ -329,7 +328,7 @@ export default function Pattern() {
             </div>
           )
         },
-        size: 240,
+        size: 150,
         enableSorting: true,
         enableHiding: true,
         enableResizing: true,
@@ -353,7 +352,7 @@ export default function Pattern() {
             return <Badge variant="warning-outline">Pending</Badge>
           }
         },
-        size: 180,
+        size: 150,
         enableSorting: true,
         enableHiding: true,
         enableResizing: false,
@@ -398,11 +397,13 @@ export default function Pattern() {
       }}
     >
       <div className="w-full space-y-2.5">
-        <DataGridContainer>
-          <DataGridScrollArea className="w-full overflow-hidden">
-            <DataGridTable />
-          </DataGridScrollArea>
-        </DataGridContainer>
+        <Card className="p-0">
+          <DataGridContainer>
+            <DataGridScrollArea className="w-full overflow-hidden">
+              <DataGridTable />
+            </DataGridScrollArea>
+          </DataGridContainer>
+        </Card>
         <DataGridPagination />
       </div>
     </DataGrid>

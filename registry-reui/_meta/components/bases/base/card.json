@@ -1,0 +1,443 @@
+{
+  "items": [
+    {
+      "name": "c-card-1",
+      "type": "registry:block",
+      "title": "Basic card",
+      "categories": [
+        "card"
+      ],
+      "description": "Basic card",
+      "registryDependencies": [
+        "button",
+        "card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/card/c-card-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-card-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-card-2",
+      "type": "registry:block",
+      "title": "Card header with border",
+      "categories": [
+        "card"
+      ],
+      "description": "Card header with border",
+      "registryDependencies": [
+        "card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/card/c-card-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-card-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-card-3",
+      "type": "registry:block",
+      "title": "Card with border separation",
+      "categories": [
+        "card"
+      ],
+      "description": "Card with border separation",
+      "registryDependencies": [
+        "button",
+        "card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/card/c-card-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-card-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-card-4",
+      "type": "registry:block",
+      "title": "Card with header and footer",
+      "categories": [
+        "card"
+      ],
+      "description": "Card with header and footer",
+      "registryDependencies": [
+        "button",
+        "card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/card/c-card-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-card-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-card-5",
+      "type": "registry:block",
+      "title": "Card with link",
+      "categories": [
+        "card"
+      ],
+      "description": "Card with link",
+      "registryDependencies": [
+        "button",
+        "card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/card/c-card-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-card-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-card-6",
+      "type": "registry:block",
+      "title": "Card with dropdown menu",
+      "categories": [
+        "card"
+      ],
+      "description": "Card with dropdown menu",
+      "registryDependencies": [
+        "button",
+        "card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/card/c-card-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-card-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-card-7",
+      "type": "registry:block",
+      "title": "Card with image",
+      "categories": [
+        "card"
+      ],
+      "description": "Card with image",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/card/c-card-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-card-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-card-8",
+      "type": "registry:block",
+      "title": "Card with image scale hover effect",
+      "categories": [
+        "card"
+      ],
+      "description": "Card with image scale hover effect",
+      "registryDependencies": [
+        "card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/card/c-card-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-card-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-card-9",
+      "type": "registry:block",
+      "title": "Card with full image",
+      "categories": [
+        "card"
+      ],
+      "description": "Card with full image",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/card/c-card-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-card-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-card-10",
+      "type": "registry:block",
+      "title": "Full card with image and shadow fade effect",
+      "categories": [
+        "card"
+      ],
+      "description": "Full card with image and shadow fade effect",
+      "registryDependencies": [
+        "badge",
+        "card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/card/c-card-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-card-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-card-11",
+      "type": "registry:block",
+      "title": "Card with stacked depth effect",
+      "categories": [
+        "card"
+      ],
+      "description": "Card with stacked depth effect",
+      "registryDependencies": [
+        "button",
+        "card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/card/c-card-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-card-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    },
+    {
+      "name": "c-card-12",
+      "type": "registry:block",
+      "title": "Advanced clean login form card",
+      "categories": [
+        "card"
+      ],
+      "description": "Advanced clean login form card",
+      "registryDependencies": [
+        "button",
+        "card",
+        "field",
+        "input",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/card/c-card-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-card-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12
+      }
+    },
+    {
+      "name": "c-card-13",
+      "type": "registry:block",
+      "title": "Expandable billing usage card",
+      "categories": [
+        "card"
+      ],
+      "description": "Expandable billing usage card",
+      "registryDependencies": [
+        "button",
+        "card",
+        "progress"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/card/c-card-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-card-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13
+      }
+    },
+    {
+      "name": "c-card-14",
+      "type": "registry:block",
+      "title": "Deployment status summary card",
+      "categories": [
+        "card"
+      ],
+      "description": "Deployment status summary card",
+      "registryDependencies": [
+        "card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/card/c-card-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-card-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14
+      }
+    },
+    {
+      "name": "c-card-15",
+      "type": "registry:block",
+      "title": "Stat card with trend and overflow menu",
+      "categories": [
+        "card"
+      ],
+      "description": "Stat card with trend and overflow menu",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "card",
+        "dropdown-menu",
+        "separator"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/card/c-card-15.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-card-15.tsx"
+        }
+      ],
+      "meta": {
+        "order": 15
+      }
+    },
+    {
+      "name": "c-card-16",
+      "type": "registry:block",
+      "title": "Card with header badge and actions",
+      "categories": [
+        "card"
+      ],
+      "description": "Card with header badge and actions",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/card/c-card-16.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-card-16.tsx"
+        }
+      ],
+      "meta": {
+        "order": 16
+      }
+    },
+    {
+      "name": "c-card-17",
+      "type": "registry:block",
+      "title": "Card with icon, title and link",
+      "categories": [
+        "card"
+      ],
+      "description": "Card with icon, title and link",
+      "registryDependencies": [
+        "card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/card/c-card-17.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-card-17.tsx"
+        }
+      ],
+      "meta": {
+        "order": 17
+      }
+    },
+    {
+      "name": "c-card-18",
+      "type": "registry:block",
+      "title": "Card with header label and link",
+      "categories": [
+        "card"
+      ],
+      "description": "Card with header label and link",
+      "registryDependencies": [
+        "card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/card/c-card-18.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-card-18.tsx"
+        }
+      ],
+      "meta": {
+        "order": 18
+      }
+    }
+  ]
+}

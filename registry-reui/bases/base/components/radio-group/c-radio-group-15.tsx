@@ -1,6 +1,3 @@
-// Description: Radio group with badges
-// Order: 15
-
 import { Badge } from "@/registry/bases/base/ui/badge"
 import { Field, FieldLabel } from "@/registry/bases/base/ui/field"
 import {

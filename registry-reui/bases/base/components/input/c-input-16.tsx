@@ -1,6 +1,3 @@
-// Description: Input label with tooltip
-// Order: 16
-
 import {
   Field,
   FieldDescription,

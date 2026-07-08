@@ -1,0 +1,332 @@
+{
+  "items": [
+    {
+      "name": "c-label-1",
+      "type": "registry:block",
+      "title": "Basic label.",
+      "categories": [
+        "label"
+      ],
+      "description": "Basic label.",
+      "registryDependencies": [
+        "field",
+        "input",
+        "label"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/label/c-label-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-label-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-label-2",
+      "type": "registry:block",
+      "title": "Label paired with a checkbox.",
+      "categories": [
+        "label"
+      ],
+      "description": "Label paired with a checkbox.",
+      "registryDependencies": [
+        "checkbox",
+        "field",
+        "label"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/label/c-label-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-label-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-label-3",
+      "type": "registry:block",
+      "title": "Label for a textarea field.",
+      "categories": [
+        "label"
+      ],
+      "description": "Label for a textarea field.",
+      "registryDependencies": [
+        "field",
+        "label",
+        "textarea"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/label/c-label-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-label-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-label-4",
+      "type": "registry:block",
+      "title": "Label in a disabled state.",
+      "categories": [
+        "label"
+      ],
+      "description": "Label in a disabled state.",
+      "registryDependencies": [
+        "field",
+        "input",
+        "label"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/label/c-label-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-label-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-label-5",
+      "type": "registry:block",
+      "title": "Label with required indicator",
+      "categories": [
+        "label"
+      ],
+      "description": "Label with required indicator",
+      "registryDependencies": [
+        "field",
+        "input",
+        "label"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/label/c-label-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-label-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-label-6",
+      "type": "registry:block",
+      "title": "Label with optional indicator",
+      "categories": [
+        "label"
+      ],
+      "description": "Label with optional indicator",
+      "registryDependencies": [
+        "field",
+        "input",
+        "label"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/label/c-label-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-label-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-label-7",
+      "type": "registry:block",
+      "title": "Label with tooltip info icon",
+      "categories": [
+        "label"
+      ],
+      "description": "Label with tooltip info icon",
+      "registryDependencies": [
+        "field",
+        "input",
+        "label",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/label/c-label-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-label-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-label-8",
+      "type": "registry:block",
+      "title": "Label with badge indicator",
+      "categories": [
+        "label"
+      ],
+      "description": "Label with badge indicator",
+      "registryDependencies": [
+        "badge",
+        "field",
+        "input",
+        "label"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/label/c-label-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-label-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-label-9",
+      "type": "registry:block",
+      "title": "Label with character counter",
+      "categories": [
+        "label"
+      ],
+      "description": "Label with character counter",
+      "registryDependencies": [
+        "field",
+        "label",
+        "textarea"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/label/c-label-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-label-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-label-10",
+      "type": "registry:block",
+      "title": "Label with helper description text",
+      "categories": [
+        "label"
+      ],
+      "description": "Label with helper description text",
+      "registryDependencies": [
+        "field",
+        "input",
+        "label"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/label/c-label-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-label-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-label-11",
+      "type": "registry:block",
+      "title": "Label with error state",
+      "categories": [
+        "label"
+      ],
+      "description": "Label with error state",
+      "registryDependencies": [
+        "field",
+        "input",
+        "label"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/label/c-label-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-label-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    },
+    {
+      "name": "c-label-12",
+      "type": "registry:block",
+      "title": "Label with inline edit toggle",
+      "categories": [
+        "label"
+      ],
+      "description": "Label with inline edit toggle",
+      "registryDependencies": [
+        "button",
+        "field",
+        "input",
+        "label"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/label/c-label-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-label-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12
+      }
+    },
+    {
+      "name": "c-label-13",
+      "type": "registry:block",
+      "title": "Label with status indicator dot",
+      "categories": [
+        "label"
+      ],
+      "description": "Label with status indicator dot",
+      "registryDependencies": [
+        "field",
+        "input",
+        "label"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/label/c-label-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-label-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13
+      }
+    }
+  ]
+}

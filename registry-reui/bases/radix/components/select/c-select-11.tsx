@@ -1,6 +1,3 @@
-// Description: Select component inside a Dialog
-// Order: 11
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   Dialog,

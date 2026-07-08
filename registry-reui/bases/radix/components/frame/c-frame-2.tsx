@@ -1,6 +1,3 @@
-// Description: Frame with separated panels
-// Order: 2
-
 import {
   Frame,
   FrameDescription,

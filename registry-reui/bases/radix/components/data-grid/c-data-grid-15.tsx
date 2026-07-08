@@ -1,7 +1,3 @@
-// Description: Data grid with column resizing
-// GridSize: 1
-// Order: 15
-
 "use client"
 
 import { useMemo, useState } from "react"
@@ -30,6 +26,7 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/registry/bases/radix/ui/avatar"
+import { Card } from "@/registry/bases/radix/ui/card"
 
 interface IData {
   id: string
@@ -272,7 +269,10 @@ export default function Pattern() {
             </div>
           )
         },
-        size: 400,
+        minSize: 300,
+        meta: {
+          autoSize: true,
+        },
         enableSorting: true,
         enableHiding: false,
       },
@@ -294,7 +294,7 @@ export default function Pattern() {
             </div>
           )
         },
-        size: 400,
+        size: 200,
         enableSorting: true,
         enableHiding: false,
       },
@@ -345,11 +345,13 @@ export default function Pattern() {
       tableLayout={{ columnsResizable: true }}
     >
       <div className="w-full space-y-2.5">
-        <DataGridContainer>
-          <DataGridScrollArea>
-            <DataGridTable />
-          </DataGridScrollArea>
-        </DataGridContainer>
+        <Card className="p-0">
+          <DataGridContainer>
+            <DataGridScrollArea>
+              <DataGridTable />
+            </DataGridScrollArea>
+          </DataGridContainer>
+        </Card>
         <DataGridPagination />
       </div>
     </DataGrid>

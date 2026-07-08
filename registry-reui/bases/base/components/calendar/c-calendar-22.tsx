@@ -1,6 +1,3 @@
-// Description: Calendar with event list
-// Order: 22
-
 "use client"
 
 import { useState } from "react"
@@ -78,8 +75,8 @@ export default function Pattern() {
               key={event.title}
               className={cn(
                 "bg-muted relative p-2 pl-6 text-sm after:absolute after:inset-y-2 after:left-2 after:w-1",
-                "style-vega:rounded-md style-nova:rounded-md style-lyra:rounded-none style-maia:rounded-4xl style-mira:rounded-md",
-                "style-vega:after:rounded-full style-nova:after:rounded-full style-lyra:after:rounded-none style-maia:after:rounded-full style-mira:after:rounded-full",
+                "rounded-md",
+                "after:rounded-full",
                 event.colorful
               )}
             >

@@ -1,6 +1,3 @@
-// Description: Frame with default spacing
-// Order: 11
-
 import {
   Frame,
   FrameDescription,

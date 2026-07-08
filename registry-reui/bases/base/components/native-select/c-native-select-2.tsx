@@ -1,6 +1,3 @@
-// Description: Native select with options grouped.
-// Order: 2
-
 import {
   NativeSelect,
   NativeSelectOptGroup,

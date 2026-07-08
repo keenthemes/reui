@@ -1,6 +1,3 @@
-// Description: Success alert
-// Order: 6
-
 import {
   Alert,
   AlertDescription,

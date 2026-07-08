@@ -1,7 +1,3 @@
-// Description: Tabs with icons
-// Order: 6
-// GridSize: 1
-
 import { Card, CardContent } from "@/registry/bases/radix/ui/card"
 import {
   Tabs,

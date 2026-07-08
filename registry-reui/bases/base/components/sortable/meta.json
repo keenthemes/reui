@@ -1,0 +1,51 @@
+[
+  {
+    "name": "c-sortable-1",
+    "title": "Sortable list of items with drag-and-drop",
+    "description": "Sortable list of items with drag-and-drop",
+    "order": 1,
+    "gridSize": 1
+  },
+  {
+    "name": "c-sortable-2",
+    "title": "Sortable list of items with grid layout",
+    "description": "Sortable list of items with grid layout",
+    "order": 2,
+    "gridSize": 1
+  },
+  {
+    "name": "c-sortable-3",
+    "title": "Sortable list of items with nested layout",
+    "description": "Sortable list of items with nested layout",
+    "order": 3,
+    "gridSize": 1
+  },
+  {
+    "name": "c-sortable-4",
+    "title": "Sortable playlist with frame",
+    "description": "Sortable playlist with frame",
+    "order": 4,
+    "gridSize": 1
+  },
+  {
+    "name": "c-sortable-5",
+    "title": "Sortable settings priority with frame",
+    "description": "Sortable settings priority with frame",
+    "order": 5,
+    "gridSize": 1
+  },
+  {
+    "name": "c-sortable-6",
+    "title": "Sortable sidebar navigation with frame",
+    "description": "Sortable sidebar navigation with frame",
+    "order": 6,
+    "gridSize": 1
+  },
+  {
+    "name": "c-sortable-7",
+    "title": "Sortable image gallery grid with frame",
+    "description": "Sortable image gallery grid with frame",
+    "order": 7,
+    "gridSize": 1
+  }
+]

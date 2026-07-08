@@ -1,0 +1,966 @@
+{
+  "items": [
+    {
+      "name": "c-data-grid-1",
+      "type": "registry:block",
+      "title": "Data grid with pagination",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with pagination",
+      "registryDependencies": [
+        "data-grid",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table"
+      ],
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-data-grid-2",
+      "type": "registry:block",
+      "title": "Data grid with cell border",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with cell border",
+      "registryDependencies": [
+        "avatar",
+        "card",
+        "data-grid",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table"
+      ],
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-data-grid-3",
+      "type": "registry:block",
+      "title": "Data grid with dense layout",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with dense layout",
+      "registryDependencies": [
+        "avatar",
+        "data-grid",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table"
+      ],
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-data-grid-4",
+      "type": "registry:block",
+      "title": "Data grid without table borders",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid without table borders",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "data-grid",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table"
+      ],
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-data-grid-5",
+      "type": "registry:block",
+      "title": "Data grid with striped rows",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with striped rows",
+      "registryDependencies": [
+        "avatar",
+        "data-grid",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table"
+      ],
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-data-grid-6",
+      "type": "registry:block",
+      "title": "Data grid with auto width table layout",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with auto width table layout",
+      "registryDependencies": [
+        "avatar",
+        "data-grid",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table"
+      ],
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-data-grid-7",
+      "type": "registry:block",
+      "title": "Data grid with row selection",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with row selection",
+      "registryDependencies": [
+        "avatar",
+        "data-grid",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table"
+      ],
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-data-grid-8",
+      "type": "registry:block",
+      "title": "Data grid with expandable rows",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with expandable rows",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "data-grid",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table"
+      ],
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-data-grid-9",
+      "type": "registry:block",
+      "title": "Data grid with sub table",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with sub table",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "data-grid",
+        "data-grid-column-header",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table"
+      ],
+      "dependencies": [
+        "@tanstack/react-table",
+        "class-variance-authority"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-data-grid-10",
+      "type": "registry:block",
+      "title": "Data grid with column icons",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with column icons",
+      "registryDependencies": [
+        "avatar",
+        "data-grid",
+        "data-grid-column-header",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table"
+      ],
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-data-grid-11",
+      "type": "registry:block",
+      "title": "Data grid with sortable columns",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with sortable columns",
+      "registryDependencies": [
+        "avatar",
+        "data-grid",
+        "data-grid-column-header",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table"
+      ],
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-data-grid-12",
+      "type": "registry:block",
+      "title": "Data grid with movable columns",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with movable columns",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "data-grid",
+        "data-grid-column-header",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table"
+      ],
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-data-grid-13",
+      "type": "registry:block",
+      "title": "Data grid with draggable columns",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with draggable columns",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "data-grid",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table-dnd"
+      ],
+      "dependencies": [
+        "@dnd-kit/core",
+        "@dnd-kit/sortable",
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-data-grid-14",
+      "type": "registry:block",
+      "title": "Data grid with draggable rows",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with draggable rows",
+      "registryDependencies": [
+        "avatar",
+        "data-grid",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table-dnd-rows"
+      ],
+      "dependencies": [
+        "@dnd-kit/core",
+        "@dnd-kit/sortable",
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-data-grid-15",
+      "type": "registry:block",
+      "title": "Data grid with column resizing",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with column resizing",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "card",
+        "data-grid",
+        "data-grid-column-header",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table"
+      ],
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-15.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-15.tsx"
+        }
+      ],
+      "meta": {
+        "order": 15,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-data-grid-16",
+      "type": "registry:block",
+      "title": "Data grid with pinnable columns",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with pinnable columns",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "card",
+        "data-grid",
+        "data-grid-column-header",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table"
+      ],
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-16.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-16.tsx"
+        }
+      ],
+      "meta": {
+        "order": 16,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-data-grid-17",
+      "type": "registry:block",
+      "title": "Data grid with sticky header",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with sticky header",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "data-grid",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table"
+      ],
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-17.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-17.tsx"
+        }
+      ],
+      "meta": {
+        "order": 17,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-data-grid-18",
+      "type": "registry:block",
+      "title": "Data grid with column controls",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with column controls",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "card",
+        "data-grid",
+        "data-grid-column-header",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table"
+      ],
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-18.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-18.tsx"
+        }
+      ],
+      "meta": {
+        "order": 18,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-data-grid-19",
+      "type": "registry:block",
+      "title": "Data grid with card container",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with card container",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "data-grid",
+        "data-grid-column-header",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table"
+      ],
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-19.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-19.tsx"
+        }
+      ],
+      "meta": {
+        "order": 19,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-data-grid-20",
+      "type": "registry:block",
+      "title": "Data grid with column visibility controls",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with column visibility controls",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "data-grid",
+        "data-grid-column-header",
+        "data-grid-column-visibility",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table"
+      ],
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-20.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-20.tsx"
+        }
+      ],
+      "meta": {
+        "order": 20,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-data-grid-21",
+      "type": "registry:block",
+      "title": "Data grid with loading skeleton",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with loading skeleton",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "data-grid",
+        "data-grid-column-header",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table",
+        "skeleton"
+      ],
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-21.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-21.tsx"
+        }
+      ],
+      "meta": {
+        "order": 21,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-data-grid-22",
+      "type": "registry:block",
+      "title": "Data grid with CRUD features",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with CRUD features",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "checkbox",
+        "data-grid",
+        "data-grid-column-header",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table",
+        "dropdown-menu",
+        "input-group",
+        "label",
+        "popover",
+        "use-copy-to-clipboard"
+      ],
+      "dependencies": [
+        "@tanstack/react-table",
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-22.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-22.tsx"
+        }
+      ],
+      "meta": {
+        "order": 22,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-data-grid-23",
+      "type": "registry:block",
+      "title": "Data grid with CRUD in frame container",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with CRUD in frame container",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "checkbox",
+        "data-grid",
+        "data-grid-column-header",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table",
+        "dropdown-menu",
+        "frame",
+        "input-group",
+        "label",
+        "popover",
+        "use-copy-to-clipboard"
+      ],
+      "dependencies": [
+        "@tanstack/react-table",
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-23.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-23.tsx"
+        }
+      ],
+      "meta": {
+        "order": 23,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-data-grid-24",
+      "type": "registry:block",
+      "title": "Data grid with column totals footer",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with column totals footer",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "data-grid",
+        "data-grid-column-header",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table",
+        "dropdown-menu",
+        "separator",
+        "use-copy-to-clipboard"
+      ],
+      "dependencies": [
+        "@tanstack/react-table",
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-24.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-24.tsx"
+        }
+      ],
+      "meta": {
+        "order": 24,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-data-grid-25",
+      "type": "registry:block",
+      "title": "Data grid with summary stats footer",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with summary stats footer",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "data-grid",
+        "data-grid-column-header",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table"
+      ],
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-25.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-25.tsx"
+        }
+      ],
+      "meta": {
+        "order": 25,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-data-grid-26",
+      "type": "registry:block",
+      "title": "Data grid with per-column aggregate footer",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with per-column aggregate footer",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "data-grid",
+        "data-grid-column-header",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table"
+      ],
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-26.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-26.tsx"
+        }
+      ],
+      "meta": {
+        "order": 26,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-data-grid-27",
+      "type": "registry:block",
+      "title": "Data grid with local infinite scroll",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with local infinite scroll",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "data-grid",
+        "data-grid-column-header",
+        "data-grid-scroll-area",
+        "data-grid-table-virtual"
+      ],
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-27.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-27.tsx"
+        }
+      ],
+      "meta": {
+        "order": 27,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-data-grid-28",
+      "type": "registry:block",
+      "title": "Data grid with remote infinite scroll",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with remote infinite scroll",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "data-grid",
+        "data-grid-column-header",
+        "data-grid-scroll-area",
+        "data-grid-table-virtual"
+      ],
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-28.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-28.tsx"
+        }
+      ],
+      "meta": {
+        "order": 28,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-data-grid-29",
+      "type": "registry:block",
+      "title": "Data grid with row pinning support",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with row pinning support",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "data-grid",
+        "data-grid-column-header",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table",
+        "dropdown-menu",
+        "use-copy-to-clipboard"
+      ],
+      "dependencies": [
+        "@tanstack/react-table",
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-29.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-29.tsx"
+        }
+      ],
+      "meta": {
+        "order": 29,
+        "gridSize": 1
+      }
+    }
+  ]
+}

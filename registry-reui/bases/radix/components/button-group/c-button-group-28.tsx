@@ -1,6 +1,3 @@
-// Description: Volume controller with plus/minus actions
-// Order: 28
-
 "use client"
 
 import { useState } from "react"

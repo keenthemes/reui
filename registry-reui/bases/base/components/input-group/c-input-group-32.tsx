@@ -1,6 +1,3 @@
-// Description: Member row with avatar, email and role selection
-// Order: 32
-
 "use client"
 
 import { useState } from "react"

@@ -1,6 +1,3 @@
-// Description: Basic calendar
-// Order: 1
-
 "use client"
 
 import { useState } from "react"

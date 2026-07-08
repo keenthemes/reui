@@ -1,6 +1,3 @@
-// Description: Toggle groups in different sizes.
-// Order: 3
-
 import {
   ToggleGroup,
   ToggleGroupItem,

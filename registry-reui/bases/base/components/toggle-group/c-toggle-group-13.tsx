@@ -1,6 +1,3 @@
-// Description: Toggle group for notification channels
-// Order: 13
-
 import {
   ToggleGroup,
   ToggleGroupItem,

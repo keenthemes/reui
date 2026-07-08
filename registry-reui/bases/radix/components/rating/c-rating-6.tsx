@@ -1,6 +1,3 @@
-// Description: Rating with review summary
-// Order: 6
-
 import { Rating } from "@/registry-reui/bases/radix/reui/rating"
 
 import { Progress } from "@/registry/bases/radix/ui/progress"

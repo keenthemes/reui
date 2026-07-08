@@ -1,6 +1,3 @@
-// Description: A basic drawer with scrollable content
-// Order: 1
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   Drawer,

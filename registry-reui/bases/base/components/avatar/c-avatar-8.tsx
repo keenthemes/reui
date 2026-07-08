@@ -1,6 +1,3 @@
-// Description: Avatar with different badge positions
-// Order: 8
-
 import {
   Avatar,
   AvatarBadge,

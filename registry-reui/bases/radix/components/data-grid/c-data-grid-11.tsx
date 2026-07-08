@@ -1,7 +1,3 @@
-// Description: Data grid with sortable columns
-// GridSize: 1
-// Order: 11
-
 "use client"
 
 import { useMemo, useState } from "react"

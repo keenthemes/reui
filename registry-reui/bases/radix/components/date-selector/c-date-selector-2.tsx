@@ -1,6 +1,3 @@
-// Description: Date selector with popover
-// Order: 2
-
 "use client"
 
 import { useEffect, useState } from "react"

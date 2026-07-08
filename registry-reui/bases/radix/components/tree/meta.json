@@ -1,0 +1,44 @@
+[
+  {
+    "name": "c-tree-1",
+    "title": "Basic tree.",
+    "description": "Basic tree.",
+    "order": 1
+  },
+  {
+    "name": "c-tree-2",
+    "title": "Tree with indented lines.",
+    "description": "Tree with indented lines.",
+    "order": 2
+  },
+  {
+    "name": "c-tree-3",
+    "title": "Tree with custom indent.",
+    "description": "Tree with custom indent.",
+    "order": 3
+  },
+  {
+    "name": "c-tree-4",
+    "title": "Tree with custom indent.",
+    "description": "Tree with custom indent.",
+    "order": 4
+  },
+  {
+    "name": "c-tree-5",
+    "title": "File explorer tree with type icons",
+    "description": "File explorer tree with type icons",
+    "order": 5
+  },
+  {
+    "name": "c-tree-6",
+    "title": "Organization chart tree with avatars",
+    "description": "Organization chart tree with avatars",
+    "order": 6
+  },
+  {
+    "name": "c-tree-7",
+    "title": "Permissions tree with checkboxes",
+    "description": "Permissions tree with checkboxes",
+    "order": 7
+  }
+]

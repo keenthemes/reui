@@ -1,0 +1,62 @@
+[
+  {
+    "name": "c-context-menu-1",
+    "title": "Basic context menu.",
+    "description": "Basic context menu.",
+    "order": 1
+  },
+  {
+    "name": "c-context-menu-2",
+    "title": "Context menu with icons for common actions.",
+    "description": "Context menu with icons for common actions.",
+    "order": 2
+  },
+  {
+    "name": "c-context-menu-3",
+    "title": "Context menu with keyboard shortcuts.",
+    "description": "Context menu with keyboard shortcuts.",
+    "order": 3
+  },
+  {
+    "name": "c-context-menu-4",
+    "title": "Context menu with nested submenus.",
+    "description": "Context menu with nested submenus.",
+    "order": 4
+  },
+  {
+    "name": "c-context-menu-5",
+    "title": "Context menu labels and separators.",
+    "description": "Context menu labels and separators.",
+    "order": 5
+  },
+  {
+    "name": "c-context-menu-6",
+    "title": "Context menu with checkbox items.",
+    "description": "Context menu with checkbox items.",
+    "order": 6
+  },
+  {
+    "name": "c-context-menu-7",
+    "title": "Context menu with radio items.",
+    "description": "Context menu with radio items.",
+    "order": 7
+  },
+  {
+    "name": "c-context-menu-8",
+    "title": "Context menu with destructive actions.",
+    "description": "Context menu with destructive actions.",
+    "order": 8
+  },
+  {
+    "name": "c-context-menu-9",
+    "title": "Context menu with different alignment sides.",
+    "description": "Context menu with different alignment sides.",
+    "order": 9
+  },
+  {
+    "name": "c-context-menu-10",
+    "title": "Context menu used inside a dialog component.",
+    "description": "Context menu used inside a dialog component.",
+    "order": 10
+  }
+]

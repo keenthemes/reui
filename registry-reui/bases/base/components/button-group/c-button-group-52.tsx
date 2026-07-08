@@ -1,6 +1,3 @@
-// Description: Refresh share and export dropdown
-// Order: 52
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   ButtonGroup,

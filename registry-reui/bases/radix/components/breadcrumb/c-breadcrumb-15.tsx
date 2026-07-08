@@ -1,6 +1,3 @@
-// Description: Breadcrumb with project, user and document info
-// Order: 15
-
 import { Frame, FramePanel } from "@/registry-reui/bases/radix/reui/frame"
 
 import {

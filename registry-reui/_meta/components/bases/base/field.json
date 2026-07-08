@@ -1,0 +1,282 @@
+{
+  "items": [
+    {
+      "name": "c-field-1",
+      "type": "registry:block",
+      "title": "Fields with input groups",
+      "categories": [
+        "field"
+      ],
+      "description": "Fields with input groups",
+      "registryDependencies": [
+        "field",
+        "input",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/field/c-field-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-field-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-field-2",
+      "type": "registry:block",
+      "title": "Field with input and textarea",
+      "categories": [
+        "field"
+      ],
+      "description": "Field with input and textarea",
+      "registryDependencies": [
+        "field",
+        "input",
+        "textarea"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/field/c-field-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-field-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-field-3",
+      "type": "registry:block",
+      "title": "Field with select control",
+      "categories": [
+        "field"
+      ],
+      "description": "Field with select control",
+      "registryDependencies": [
+        "field",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/field/c-field-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-field-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-field-4",
+      "type": "registry:block",
+      "title": "Field with radio groups and checkboxes",
+      "categories": [
+        "field"
+      ],
+      "description": "Field with radio groups and checkboxes",
+      "registryDependencies": [
+        "checkbox",
+        "field",
+        "radio-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/field/c-field-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-field-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-field-5",
+      "type": "registry:block",
+      "title": "Filed with slider and switch",
+      "categories": [
+        "field"
+      ],
+      "description": "Filed with slider and switch",
+      "registryDependencies": [
+        "field",
+        "slider",
+        "switch"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/field/c-field-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-field-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-field-6",
+      "type": "registry:block",
+      "title": "Field with OTP input",
+      "categories": [
+        "field"
+      ],
+      "description": "Field with OTP input",
+      "registryDependencies": [
+        "field",
+        "input-otp",
+        "native-select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/field/c-field-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-field-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-field-7",
+      "type": "registry:block",
+      "title": "Settings form with validation",
+      "categories": [
+        "field"
+      ],
+      "description": "Settings form with validation",
+      "registryDependencies": [
+        "button",
+        "checkbox",
+        "field",
+        "input",
+        "switch",
+        "textarea"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/field/c-field-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-field-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-field-8",
+      "type": "registry:block",
+      "title": "Permission settings with checkboxes",
+      "categories": [
+        "field"
+      ],
+      "description": "Permission settings with checkboxes",
+      "registryDependencies": [
+        "checkbox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/field/c-field-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-field-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-field-9",
+      "type": "registry:block",
+      "title": "Responsive field layout",
+      "categories": [
+        "field"
+      ],
+      "description": "Responsive field layout",
+      "registryDependencies": [
+        "button",
+        "field",
+        "input",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/field/c-field-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-field-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-field-10",
+      "type": "registry:block",
+      "title": "Notification preferences form",
+      "categories": [
+        "field"
+      ],
+      "description": "Notification preferences form",
+      "registryDependencies": [
+        "checkbox",
+        "field",
+        "switch"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/field/c-field-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-field-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-field-11",
+      "type": "registry:block",
+      "title": "Form with validation errors",
+      "categories": [
+        "field"
+      ],
+      "description": "Form with validation errors",
+      "registryDependencies": [
+        "button",
+        "field",
+        "input",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/field/c-field-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-field-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    }
+  ]
+}

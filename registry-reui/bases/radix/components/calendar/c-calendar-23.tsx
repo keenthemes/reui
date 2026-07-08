@@ -1,6 +1,3 @@
-// Description: Localize calendar
-// Order: 23
-
 "use client"
 
 import { useState } from "react"

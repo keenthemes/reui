@@ -1,0 +1,372 @@
+{
+  "items": [
+    {
+      "name": "c-toggle-group-1",
+      "type": "registry:block",
+      "title": "Basic toggle group.",
+      "categories": [
+        "toggle-group"
+      ],
+      "description": "Basic toggle group.",
+      "registryDependencies": [
+        "toggle-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/toggle-group/c-toggle-group-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-toggle-group-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-toggle-group-2",
+      "type": "registry:block",
+      "title": "Toggle group with outline variant.",
+      "categories": [
+        "toggle-group"
+      ],
+      "description": "Toggle group with outline variant.",
+      "registryDependencies": [
+        "toggle-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/toggle-group/c-toggle-group-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-toggle-group-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-toggle-group-3",
+      "type": "registry:block",
+      "title": "Toggle groups in different sizes.",
+      "categories": [
+        "toggle-group"
+      ],
+      "description": "Toggle groups in different sizes.",
+      "registryDependencies": [
+        "toggle-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/toggle-group/c-toggle-group-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-toggle-group-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-toggle-group-4",
+      "type": "registry:block",
+      "title": "Toggle group with custom spacing.",
+      "categories": [
+        "toggle-group"
+      ],
+      "description": "Toggle group with custom spacing.",
+      "registryDependencies": [
+        "toggle-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/toggle-group/c-toggle-group-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-toggle-group-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-toggle-group-5",
+      "type": "registry:block",
+      "title": "Toggle group with filter control.",
+      "categories": [
+        "toggle-group"
+      ],
+      "description": "Toggle group with filter control.",
+      "registryDependencies": [
+        "toggle-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/toggle-group/c-toggle-group-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-toggle-group-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-toggle-group-6",
+      "type": "registry:block",
+      "title": "Toggle group with vertical orientation.",
+      "categories": [
+        "toggle-group"
+      ],
+      "description": "Toggle group with vertical orientation.",
+      "registryDependencies": [
+        "toggle-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/toggle-group/c-toggle-group-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-toggle-group-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-toggle-group-7",
+      "type": "registry:block",
+      "title": "Toggle group for text alignment",
+      "categories": [
+        "toggle-group"
+      ],
+      "description": "Toggle group for text alignment",
+      "registryDependencies": [
+        "toggle-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/toggle-group/c-toggle-group-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-toggle-group-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-toggle-group-8",
+      "type": "registry:block",
+      "title": "Toggle group for view mode switching",
+      "categories": [
+        "toggle-group"
+      ],
+      "description": "Toggle group for view mode switching",
+      "registryDependencies": [
+        "toggle-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/toggle-group/c-toggle-group-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-toggle-group-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-toggle-group-9",
+      "type": "registry:block",
+      "title": "Vertical toggle group for settings",
+      "categories": [
+        "toggle-group"
+      ],
+      "description": "Vertical toggle group for settings",
+      "registryDependencies": [
+        "toggle-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/toggle-group/c-toggle-group-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-toggle-group-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-toggle-group-10",
+      "type": "registry:block",
+      "title": "Toggle group for color theme",
+      "categories": [
+        "toggle-group"
+      ],
+      "description": "Toggle group for color theme",
+      "registryDependencies": [
+        "toggle-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/toggle-group/c-toggle-group-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-toggle-group-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-toggle-group-11",
+      "type": "registry:block",
+      "title": "Toggle group for font size",
+      "categories": [
+        "toggle-group"
+      ],
+      "description": "Toggle group for font size",
+      "registryDependencies": [
+        "toggle-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/toggle-group/c-toggle-group-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-toggle-group-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    },
+    {
+      "name": "c-toggle-group-12",
+      "type": "registry:block",
+      "title": "Toggle group for time range filter",
+      "categories": [
+        "toggle-group"
+      ],
+      "description": "Toggle group for time range filter",
+      "registryDependencies": [
+        "toggle-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/toggle-group/c-toggle-group-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-toggle-group-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12
+      }
+    },
+    {
+      "name": "c-toggle-group-13",
+      "type": "registry:block",
+      "title": "Toggle group for notification channels",
+      "categories": [
+        "toggle-group"
+      ],
+      "description": "Toggle group for notification channels",
+      "registryDependencies": [
+        "toggle-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/toggle-group/c-toggle-group-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-toggle-group-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13
+      }
+    },
+    {
+      "name": "c-toggle-group-14",
+      "type": "registry:block",
+      "title": "Toggle group for layout columns",
+      "categories": [
+        "toggle-group"
+      ],
+      "description": "Toggle group for layout columns",
+      "registryDependencies": [
+        "toggle-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/toggle-group/c-toggle-group-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-toggle-group-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14
+      }
+    },
+    {
+      "name": "c-toggle-group-15",
+      "type": "registry:block",
+      "title": "Toggle group for sort direction",
+      "categories": [
+        "toggle-group"
+      ],
+      "description": "Toggle group for sort direction",
+      "registryDependencies": [
+        "toggle-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/toggle-group/c-toggle-group-15.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-toggle-group-15.tsx"
+        }
+      ],
+      "meta": {
+        "order": 15
+      }
+    },
+    {
+      "name": "c-toggle-group-16",
+      "type": "registry:block",
+      "title": "Toggle group for pricing tier",
+      "categories": [
+        "toggle-group"
+      ],
+      "description": "Toggle group for pricing tier",
+      "registryDependencies": [
+        "toggle-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/toggle-group/c-toggle-group-16.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-toggle-group-16.tsx"
+        }
+      ],
+      "meta": {
+        "order": 16
+      }
+    }
+  ]
+}

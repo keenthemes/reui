@@ -1,6 +1,3 @@
-// Description: Popovers opening from different sides.
-// Order: 2
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   Popover,
@@ -8,18 +5,11 @@ import {
   PopoverTrigger,
 } from "@/registry/bases/radix/ui/popover"
 
-const sides = [
-  "inline-start",
-  "left",
-  "top",
-  "bottom",
-  "right",
-  "inline-end",
-] as const
+const sides = ["top", "right", "bottom", "left"] as const
 
 export default function Pattern() {
   return (
-    <div className="grid grid-cols-3 gap-2">
+    <div className="grid grid-cols-2 gap-2">
       {sides.map((side) => (
         <Popover key={side}>
           <PopoverTrigger asChild>

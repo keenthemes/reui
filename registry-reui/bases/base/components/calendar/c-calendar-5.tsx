@@ -1,6 +1,3 @@
-// Description: Custom select day style
-// Order: 5
-
 "use client"
 
 import { useState } from "react"

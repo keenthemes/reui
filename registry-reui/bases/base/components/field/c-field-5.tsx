@@ -1,6 +1,3 @@
-// Description: Filed with slider and switch
-// Order: 5
-
 "use client"
 
 import { useState } from "react"

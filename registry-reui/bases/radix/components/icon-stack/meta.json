@@ -1,0 +1,38 @@
+[
+  {
+    "name": "c-icon-stack-1",
+    "title": "Isometric icon stack",
+    "description": "Layered isometric icon",
+    "order": 1
+  },
+  {
+    "name": "c-icon-stack-2",
+    "title": "Icon stack sizes",
+    "description": "Responsive icon stack sizes",
+    "order": 2
+  },
+  {
+    "name": "c-icon-stack-3",
+    "title": "Icon stack colors",
+    "description": "Semantic icon stack colors",
+    "order": 3
+  },
+  {
+    "name": "c-icon-stack-4",
+    "title": "Icon badge stack",
+    "description": "Icon stack with badge overlay",
+    "order": 4
+  },
+  {
+    "name": "c-icon-stack-5",
+    "title": "Empty state illustration",
+    "description": "Shadcn empty state illustration",
+    "order": 5
+  },
+  {
+    "name": "c-icon-stack-6",
+    "title": "Item media stack",
+    "description": "Icon stack in shadcn item",
+    "order": 6
+  }
+]

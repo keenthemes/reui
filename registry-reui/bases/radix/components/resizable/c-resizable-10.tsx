@@ -1,7 +1,3 @@
-// Description: State-tracked resizable layout.
-// Order: 10
-// GridSize: 1
-
 "use client"
 
 import { useState } from "react"
@@ -22,7 +18,7 @@ export default function Pattern() {
     <div className="mx-auto w-full max-w-lg">
       <ResizablePanelGroup
         orientation="horizontal"
-        className="style-vega:rounded-lg style-lyra:rounded-none style-maia:rounded-2xl style-nova:rounded-2xl style-mira:rounded-md min-h-[200px] border"
+        className="rounded-2xl min-h-[200px] border"
         onLayoutChange={(layout) => {
           setSizes(layout)
         }}

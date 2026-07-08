@@ -1,0 +1,251 @@
+{
+  "items": [
+    {
+      "name": "c-skeleton-1",
+      "type": "registry:block",
+      "title": "Skeleton loader for avatars and user info.",
+      "categories": [
+        "skeleton"
+      ],
+      "description": "Skeleton loader for avatars and user info.",
+      "registryDependencies": [
+        "skeleton"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/skeleton/c-skeleton-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-skeleton-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-skeleton-2",
+      "type": "registry:block",
+      "title": "Skeleton loader for a card component.",
+      "categories": [
+        "skeleton"
+      ],
+      "description": "Skeleton loader for a card component.",
+      "registryDependencies": [
+        "card",
+        "skeleton"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/skeleton/c-skeleton-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-skeleton-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-skeleton-3",
+      "type": "registry:block",
+      "title": "Skeleton loader for text and paragraphs.",
+      "categories": [
+        "skeleton"
+      ],
+      "description": "Skeleton loader for text and paragraphs.",
+      "registryDependencies": [
+        "skeleton"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/skeleton/c-skeleton-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-skeleton-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-skeleton-4",
+      "type": "registry:block",
+      "title": "Skeleton loader for a form.",
+      "categories": [
+        "skeleton"
+      ],
+      "description": "Skeleton loader for a form.",
+      "registryDependencies": [
+        "skeleton"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/skeleton/c-skeleton-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-skeleton-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-skeleton-5",
+      "type": "registry:block",
+      "title": "Skeleton loader for a data table.",
+      "categories": [
+        "skeleton"
+      ],
+      "description": "Skeleton loader for a data table.",
+      "registryDependencies": [
+        "skeleton"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/skeleton/c-skeleton-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-skeleton-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-skeleton-6",
+      "type": "registry:block",
+      "title": "Skeleton loader for a dashboard stats row",
+      "categories": [
+        "skeleton"
+      ],
+      "description": "Skeleton loader for a dashboard stats row",
+      "registryDependencies": [
+        "card",
+        "skeleton"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/skeleton/c-skeleton-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-skeleton-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-skeleton-7",
+      "type": "registry:block",
+      "title": "Skeleton loader for a list with actions",
+      "categories": [
+        "skeleton"
+      ],
+      "description": "Skeleton loader for a list with actions",
+      "registryDependencies": [
+        "separator",
+        "skeleton"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/skeleton/c-skeleton-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-skeleton-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-skeleton-8",
+      "type": "registry:block",
+      "title": "Skeleton loader for a card grid",
+      "categories": [
+        "skeleton"
+      ],
+      "description": "Skeleton loader for a card grid",
+      "registryDependencies": [
+        "card",
+        "skeleton"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/skeleton/c-skeleton-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-skeleton-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-skeleton-9",
+      "type": "registry:block",
+      "title": "Skeleton loader for a full profile page",
+      "categories": [
+        "skeleton"
+      ],
+      "description": "Skeleton loader for a full profile page",
+      "registryDependencies": [
+        "card",
+        "separator",
+        "skeleton"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/skeleton/c-skeleton-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-skeleton-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-skeleton-10",
+      "type": "registry:block",
+      "title": "Skeleton loader for chat messages",
+      "categories": [
+        "skeleton"
+      ],
+      "description": "Skeleton loader for chat messages",
+      "registryDependencies": [
+        "card",
+        "skeleton"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/skeleton/c-skeleton-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-skeleton-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10,
+        "gridSize": 1
+      }
+    }
+  ]
+}

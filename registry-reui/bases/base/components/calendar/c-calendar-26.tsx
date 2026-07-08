@@ -1,6 +1,3 @@
-// Description: Calendar with date picker and year view
-// Order: 26
-
 "use client"
 
 import {

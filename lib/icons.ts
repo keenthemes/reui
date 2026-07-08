@@ -14,6 +14,8 @@ export function getIconLibraryFromStyle(styleName: string): IconLibraryName {
   )
     return "hugeicons"
   if (styleName.includes("lyra")) return "hugeicons"
+  if (styleName.includes("luma")) return "lucide"
+  if (styleName.includes("sera")) return "lucide"
   return "lucide"
 }
 
@@ -27,8 +29,6 @@ export function transformIcons(
   const iconPlaceholderRegex = /<IconPlaceholder\s+([^>]+)\/>/g
   const usedIcons = new Set<string>()
   const replacedIcons = new Set<string>()
-  const iconPlaceholderImportRegex =
-    /import\s+{\s*IconPlaceholder\s*}\s*from\s*["']@\/app\/\(create\)\/components\/icon-placeholder["'];?\n?/g
 
   let transformedCode = code.replace(iconPlaceholderRegex, (match, attrs) => {
     const attributes: Record<string, string> = {}
@@ -75,9 +75,6 @@ export function transformIcons(
     return usage
   })
 
-  // Remove IconPlaceholder import
-  transformedCode = transformedCode.replace(iconPlaceholderImportRegex, "")
-
   // Remove imports of replaced icons if they are no longer used
   if (replacedIcons.size > 0) {
     for (const icon of replacedIcons) {
@@ -118,6 +115,10 @@ export function transformIcons(
   }
 
   if (usedIcons.size > 0) {
+    // Remove IconPlaceholder import only when preview code actually converted
+    // placeholders into concrete icons. Raw registry source remains unchanged.
+    transformedCode = removeNamedImport(transformedCode, "IconPlaceholder")
+
     const iconsArray = Array.from(usedIcons).sort()
     const iconsList = iconsArray.join(", ")
 
@@ -160,4 +161,31 @@ export function transformIcons(
 
   // Final cleanup: remove triple newlines and trim
   return transformedCode.replace(/\n{3,}/g, "\n\n").trim() + "\n"
+}
+
+function removeNamedImport(code: string, identifier: string) {
+  const importRegex = new RegExp(
+    `import\\s+{[^}]*\\b${identifier}\\b[^}]*}\\s+from\\s+['"][^'"]+['"];?\\n?`,
+    "g"
+  )
+
+  return code.replace(importRegex, (match) => {
+    const namedMatch = match.match(/{([^}]+)}/)
+    if (!namedMatch) {
+      return match
+    }
+
+    const names = namedMatch[1]
+      .split(",")
+      .map((name) => name.trim())
+      .filter((name) => {
+        return name !== identifier && !name.startsWith(`${identifier} as `)
+      })
+
+    if (names.length === 0) {
+      return ""
+    }
+
+    return match.replace(namedMatch[1], ` ${names.join(", ")} `)
+  })
 }

@@ -1,6 +1,3 @@
-// Description: Numbered pagination in card
-// Order: 6
-
 import { Card, CardContent } from "@/registry/bases/radix/ui/card"
 import {
   Pagination,

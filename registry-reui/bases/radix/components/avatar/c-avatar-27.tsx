@@ -1,6 +1,3 @@
-// Description: Pilled small button with avatar
-// Order: 27
-
 import {
   Avatar,
   AvatarFallback,
@@ -12,7 +9,7 @@ export default function Pattern() {
   return (
     <Button
       size="sm"
-      className="style-vega:rounded-full style-nova:rounded-full style-lyra:rounded-none style-maia:rounded-full style-mira:rounded-full gap-1 pl-0.5"
+      className="rounded-full gap-1 pl-0.5"
     >
       <Avatar className="border-primary size-6 border">
         <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />

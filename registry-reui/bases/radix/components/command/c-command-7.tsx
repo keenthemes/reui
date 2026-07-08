@@ -1,6 +1,3 @@
-// Description: Action palette with keyboard shortcuts
-// Order: 7
-
 "use client"
 
 import { useState } from "react"

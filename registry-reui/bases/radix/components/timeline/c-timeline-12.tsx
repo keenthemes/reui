@@ -1,7 +1,3 @@
-// Description: Compact horizontal milestone timeline
-// Order: 12
-// GridSize: 1
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 import {
   Timeline,

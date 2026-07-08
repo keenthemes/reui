@@ -1,6 +1,3 @@
-// Description: Workspace switcher dropdown menu
-// Order: 10
-
 "use client"
 
 import { useState } from "react"
@@ -69,7 +66,7 @@ export default function Pattern() {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline" className="w-52">
-            <div className="style-vega:gap-2 style-nova:gap-1.5 style-lyra:gap-1.5 style-maia:gap-1.5 style-mira:gap-1.5 flex items-center">
+            <div className="gap-1.5 flex items-center">
               {activeWorkspace.logo}
               <span className="text-sm font-medium">
                 {activeWorkspace.name}

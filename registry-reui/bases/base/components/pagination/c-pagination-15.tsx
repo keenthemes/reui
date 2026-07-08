@@ -1,7 +1,3 @@
-// Description: Pagination with page info, numbered pages, ellipsis, and per-page select
-// Order: 15
-// GridSize: 1
-
 import {
   NativeSelect,
   NativeSelectOption,

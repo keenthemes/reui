@@ -1,8 +1,3 @@
-// Description: 21:9 ultrawide aspect ratio
-// Order: 4
-
-import Image from "next/image"
-
 import { AspectRatio } from "@/registry/bases/base/ui/aspect-ratio"
 
 export default function Pattern() {
@@ -10,13 +5,14 @@ export default function Pattern() {
     <div className="w-full max-w-md">
       <AspectRatio
         ratio={21 / 9}
-        className="bg-muted style-vega:rounded-xl style-nova:rounded-xl style-lyra:rounded-none style-maia:rounded-4xl style-mira:rounded-md overflow-hidden border"
+        className="bg-muted rounded-xl overflow-hidden border"
       >
-        <Image
+        <img
           src="https://picsum.photos/1000/800?grayscale&random=4"
           alt="21:9"
-          fill
-          className="object-cover"
+          width={1000}
+          height={800}
+          className="h-full w-full object-cover"
         />
       </AspectRatio>
     </div>

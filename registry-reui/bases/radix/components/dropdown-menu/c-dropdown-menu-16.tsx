@@ -1,6 +1,3 @@
-// Description: Quick action menu
-// Order: 16
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   DropdownMenu,

@@ -1,0 +1,97 @@
+{
+  "items": [
+    {
+      "name": "c-navigation-menu-1",
+      "type": "registry:block",
+      "title": "Basic navigation menu.",
+      "categories": [
+        "navigation-menu"
+      ],
+      "description": "Basic navigation menu.",
+      "registryDependencies": [
+        "navigation-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/navigation-menu/c-navigation-menu-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-navigation-menu-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-navigation-menu-2",
+      "type": "registry:block",
+      "title": "Navigation menu with grid layout.",
+      "categories": [
+        "navigation-menu"
+      ],
+      "description": "Navigation menu with grid layout.",
+      "registryDependencies": [
+        "navigation-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/navigation-menu/c-navigation-menu-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-navigation-menu-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-navigation-menu-3",
+      "type": "registry:block",
+      "title": "Navigation menu with icons.",
+      "categories": [
+        "navigation-menu"
+      ],
+      "description": "Navigation menu with icons.",
+      "registryDependencies": [
+        "navigation-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/navigation-menu/c-navigation-menu-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-navigation-menu-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-navigation-menu-4",
+      "type": "registry:block",
+      "title": "Navigation menu with grid layout and learn more button.",
+      "categories": [
+        "navigation-menu"
+      ],
+      "description": "Navigation menu with grid layout and learn more button.",
+      "registryDependencies": [
+        "button",
+        "navigation-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/navigation-menu/c-navigation-menu-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-navigation-menu-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    }
+  ]
+}

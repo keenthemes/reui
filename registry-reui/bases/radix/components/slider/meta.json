@@ -1,0 +1,74 @@
+[
+  {
+    "name": "c-slider-1",
+    "title": "Basic slider.",
+    "description": "Basic slider.",
+    "order": 1
+  },
+  {
+    "name": "c-slider-2",
+    "title": "Disabled slider",
+    "description": "Disabled slider",
+    "order": 2
+  },
+  {
+    "name": "c-slider-3",
+    "title": "Slider with multiple discrete values",
+    "description": "Slider with multiple discrete values",
+    "order": 3
+  },
+  {
+    "name": "c-slider-4",
+    "title": "Vertical slider with range selection",
+    "description": "Vertical slider with range selection",
+    "order": 4
+  },
+  {
+    "name": "c-slider-5",
+    "title": "Slider with controlled value tracking",
+    "description": "Slider with controlled value tracking",
+    "order": 5
+  },
+  {
+    "name": "c-slider-6",
+    "title": "Slider with range selection",
+    "description": "Slider with range selection",
+    "order": 6
+  },
+  {
+    "name": "c-slider-7",
+    "title": "Slider synced with number input",
+    "description": "Slider synced with number input",
+    "order": 7
+  },
+  {
+    "name": "c-slider-8",
+    "title": "Color temperature slider",
+    "description": "Color temperature slider",
+    "order": 8
+  },
+  {
+    "name": "c-slider-9",
+    "title": "Slider with reference labels",
+    "description": "Slider with reference labels",
+    "order": 9
+  },
+  {
+    "name": "c-slider-10",
+    "title": "Slider with tick marks",
+    "description": "Slider with tick marks",
+    "order": 10
+  },
+  {
+    "name": "c-slider-11",
+    "title": "Slider with dynamic tooltip indicator",
+    "description": "Slider with dynamic tooltip indicator",
+    "order": 11
+  },
+  {
+    "name": "c-slider-12",
+    "title": "Rating slider with emoji feedback",
+    "description": "Rating slider with emoji feedback",
+    "order": 12
+  }
+]

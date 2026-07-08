@@ -1,6 +1,3 @@
-// Description: A combobox with a large list of options
-// Order: 8
-
 import {
   Combobox,
   ComboboxContent,

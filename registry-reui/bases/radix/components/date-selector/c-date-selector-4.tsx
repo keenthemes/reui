@@ -1,6 +1,3 @@
-// Description: Date selector with dropdown menu
-// Order: 4
-
 "use client"
 
 import { useEffect, useMemo, useState } from "react"

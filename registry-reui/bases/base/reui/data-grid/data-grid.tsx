@@ -19,6 +19,7 @@ declare module "@tanstack/react-table" {
     cellClassName?: string
     skeleton?: ReactNode
     expandedContent?: (row: TData) => ReactNode
+    autoSize?: boolean
   }
 }
 
@@ -83,6 +84,7 @@ export interface DataGridProps<TData extends object> {
     rowRounded?: boolean
     stripped?: boolean
     headerBackground?: boolean
+    footerBackground?: boolean
     headerBorder?: boolean
     headerSticky?: boolean
     width?: "auto" | "fixed"
@@ -194,7 +196,8 @@ function DataGrid<TData extends object>({
       rowRounded: false,
       stripped: false,
       headerSticky: false,
-      headerBackground: true,
+      headerBackground: false,
+      footerBackground: false,
       headerBorder: true,
       width: "fixed",
       columnsVisibility: false,
@@ -255,12 +258,7 @@ function DataGridContainer({
   return (
     <div
       data-slot="data-grid"
-      className={cn(
-        "w-full overflow-hidden",
-        border &&
-          "border-border style-vega:rounded-lg style-maia:rounded-2xl style-nova:rounded-lg style-lyra:rounded-none style-mira:rounded-lg border",
-        className
-      )}
+      className={cn("w-full overflow-hidden", className)}
     >
       {children}
     </div>

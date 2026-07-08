@@ -1,6 +1,3 @@
-// Description: Select with indicator on the left side
-// Order: 20
-
 import { Field } from "@/registry/bases/radix/ui/field"
 import {
   Select,

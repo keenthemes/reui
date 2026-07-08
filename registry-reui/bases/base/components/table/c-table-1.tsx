@@ -1,6 +1,3 @@
-// Description: Basic table.
-// Order: 1
-
 import {
   Table,
   TableBody,

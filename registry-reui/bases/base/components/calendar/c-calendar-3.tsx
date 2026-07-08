@@ -1,6 +1,3 @@
-// Description: Disabled dates
-// Order: 3
-
 "use client"
 
 import { addDays } from "date-fns"

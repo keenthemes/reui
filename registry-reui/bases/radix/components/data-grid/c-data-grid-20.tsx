@@ -1,7 +1,3 @@
-// Description: Data grid with column visibility controls
-// GridSize: 1
-// Order: 20
-
 "use client"
 
 import { useMemo, useState } from "react"
@@ -283,7 +279,10 @@ export default function Pattern() {
             </div>
           )
         },
-        size: 200,
+        minSize: 200,
+        meta: {
+          autoSize: true,
+        },
         enableSorting: true,
         enableHiding: false,
         enableResizing: true,
@@ -312,7 +311,7 @@ export default function Pattern() {
             </div>
           )
         },
-        size: 160,
+        size: 200,
         enableSorting: true,
         enableHiding: true,
         enableResizing: true,
@@ -336,7 +335,7 @@ export default function Pattern() {
             return <Badge variant="destructive-outline">Pending</Badge>
           }
         },
-        size: 100,
+        size: 200,
         enableSorting: true,
         enableHiding: true,
         enableResizing: false,

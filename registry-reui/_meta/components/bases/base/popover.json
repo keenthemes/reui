@@ -1,0 +1,278 @@
+{
+  "items": [
+    {
+      "name": "c-popover-1",
+      "type": "registry:block",
+      "title": "Basic popover.",
+      "categories": [
+        "popover"
+      ],
+      "description": "Basic popover.",
+      "registryDependencies": [
+        "button",
+        "popover"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/popover/c-popover-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-popover-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-popover-2",
+      "type": "registry:block",
+      "title": "Popovers opening from different sides.",
+      "categories": [
+        "popover"
+      ],
+      "description": "Popovers opening from different sides.",
+      "registryDependencies": [
+        "button",
+        "popover"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/popover/c-popover-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-popover-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-popover-3",
+      "type": "registry:block",
+      "title": "Popover with form.",
+      "categories": [
+        "popover"
+      ],
+      "description": "Popover with form.",
+      "registryDependencies": [
+        "button",
+        "field",
+        "input",
+        "popover"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/popover/c-popover-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-popover-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-popover-4",
+      "type": "registry:block",
+      "title": "Popover alignment positions.",
+      "categories": [
+        "popover"
+      ],
+      "description": "Popover alignment positions.",
+      "registryDependencies": [
+        "button",
+        "popover"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/popover/c-popover-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-popover-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-popover-5",
+      "type": "registry:block",
+      "title": "Popover within a dialog.",
+      "categories": [
+        "popover"
+      ],
+      "description": "Popover within a dialog.",
+      "registryDependencies": [
+        "button",
+        "dialog",
+        "popover"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/popover/c-popover-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-popover-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-popover-6",
+      "type": "registry:block",
+      "title": "Popover with user profile details.",
+      "categories": [
+        "popover"
+      ],
+      "description": "Popover with user profile details.",
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "popover"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "components/popover/c-popover-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-popover-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-popover-7",
+      "type": "registry:block",
+      "title": "Popover with custom content",
+      "categories": [
+        "popover"
+      ],
+      "description": "Popover with custom content",
+      "registryDependencies": [
+        "button",
+        "popover"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/popover/c-popover-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-popover-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-popover-8",
+      "type": "registry:block",
+      "title": "Popover with media preview.",
+      "categories": [
+        "popover"
+      ],
+      "description": "Popover with media preview.",
+      "registryDependencies": [
+        "button",
+        "popover"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/popover/c-popover-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-popover-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-popover-9",
+      "type": "registry:block",
+      "title": "Relative time popover with timezone details",
+      "categories": [
+        "popover"
+      ],
+      "description": "Relative time popover with timezone details",
+      "registryDependencies": [
+        "badge",
+        "popover"
+      ],
+      "dependencies": [
+        "date-fns"
+      ],
+      "files": [
+        {
+          "path": "components/popover/c-popover-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-popover-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-popover-10",
+      "type": "registry:block",
+      "title": "Popover with controls",
+      "categories": [
+        "popover"
+      ],
+      "description": "Popover with controls",
+      "registryDependencies": [
+        "button",
+        "popover",
+        "slider",
+        "switch"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/popover/c-popover-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-popover-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-popover-11",
+      "type": "registry:block",
+      "title": "Popover with navigation",
+      "categories": [
+        "popover"
+      ],
+      "description": "Popover with navigation",
+      "registryDependencies": [
+        "button",
+        "popover"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/popover/c-popover-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-popover-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    }
+  ]
+}

@@ -1,6 +1,3 @@
-// Description: Input with error message
-// Order: 5
-
 import { Field, FieldError, FieldLabel } from "@/registry/bases/radix/ui/field"
 import { Input } from "@/registry/bases/radix/ui/input"
 

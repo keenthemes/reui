@@ -1,6 +1,3 @@
-// Description: Switch with descriptions in card grid
-// Order: 14
-
 import {
   Field,
   FieldContent,
@@ -90,7 +87,7 @@ export default function Pattern() {
         <FieldLabel key={feature.id} htmlFor={feature.id} className="p-0!">
           <Field orientation="horizontal">
             <FieldContent>
-              <FieldTitle className="flex items-center gap-2">
+              <FieldTitle className="flex items-start gap-2">
                 <div className="bg-background border-border flex shrink-0 items-center justify-center rounded-md border p-1.5 shadow-xs shadow-black/5">
                   {feature.icon}
                 </div>

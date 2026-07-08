@@ -1,6 +1,3 @@
-// Description: Accordion with rotating arrow indicator
-// Order: 10
-
 import {
   Accordion,
   AccordionContent,

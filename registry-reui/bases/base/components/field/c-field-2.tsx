@@ -1,6 +1,3 @@
-// Description: Field with input and textarea
-// Order: 2
-
 import {
   Field,
   FieldDescription,

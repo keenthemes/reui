@@ -1,6 +1,3 @@
-// Description: Items with icon media and action buttons
-// Order: 2
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   Item,

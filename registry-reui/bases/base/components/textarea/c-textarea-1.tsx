@@ -1,6 +1,3 @@
-// Description: Basic textarea.
-// Order: 1
-
 import { Textarea } from "@/registry/bases/base/ui/textarea"
 
 export default function Pattern() {

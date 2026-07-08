@@ -1,6 +1,3 @@
-// Description: Current month button
-// Order: 11
-
 "use client"
 
 import { useState } from "react"

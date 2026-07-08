@@ -1,6 +1,3 @@
-// Description: Slider with controlled value tracking
-// Order: 5
-
 "use client"
 
 import { useState } from "react"

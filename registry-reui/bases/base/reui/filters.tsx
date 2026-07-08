@@ -342,11 +342,11 @@ function FilterInput<T = unknown>({
       className={cn(
         "w-36",
         context.size == "sm" &&
-          "style-vega:h-8! style-nova:h-7! style-maia:h-8! style-lyra:h-7! style-mira:h-6!",
+          "h-7!",
         context.size == "default" &&
-          "style-vega:h-9! style-nova:h-8! style-maia:h-9! style-lyra:h-8! style-mira:h-7!",
+          "h-8!",
         context.size == "lg" &&
-          "style-vega:h-10! style-nova:h-9! style-maia:h-10! style-lyra:h-9! style-mira:h-8!",
+          "h-9!",
         className
       )}
     >
@@ -367,11 +367,11 @@ function FilterInput<T = unknown>({
         onKeyDown={handleKeyDown}
         className={cn(
           context.size == "sm" &&
-            "style-vega:h-8! style-nova:h-7! style-maia:h-8! style-lyra:h-7! style-mira:h-6! text-xs",
+            "h-7! text-xs",
           context.size == "default" &&
-            "style-vega:h-9! style-nova:h-8! style-maia:h-9! style-lyra:h-8! style-mira:h-7!",
+            "h-8!",
           context.size == "lg" &&
-            "style-vega:h-10! style-nova:h-9! style-maia:h-10! style-lyra:h-9! style-mira:h-8!"
+            "h-9!"
         )}
         {...props}
       />
@@ -423,12 +423,6 @@ function FilterRemoveButton({
 }: FilterRemoveButtonProps) {
   const context = useFilterContext()
 
-  const sizeMap = {
-    sm: "sm" as const,
-    default: "sm" as const,
-    lg: "default" as const,
-  }
-
   return (
     <Button
       variant="outline"
@@ -439,6 +433,7 @@ function FilterRemoveButton({
             ? "icon-lg"
             : "icon"
       }
+      className={className}
       {...props}
     >
       {icon}
@@ -1030,15 +1025,13 @@ function FilterValueSelector<T = unknown>({
   operator,
   autoFocus,
 }: FilterValueSelectorProps<T>) {
-  const context = useFilterContext()
-
   if (operator === "empty" || operator === "not_empty") {
     return null
   }
 
   if (field.customRenderer) {
     return (
-      <ButtonGroupText className="hover:bg-accent aria-expanded:bg-accent style-vega:bg-background style-vega:dark:bg-input/30 style-nova:bg-background style-nova:dark:bg-input/30 style-lyra:bg-background style-lyra:dark:bg-input/30 style-mira:bg-background style-mira:dark:bg-input/30 text-start whitespace-nowrap outline-hidden">
+      <ButtonGroupText className="hover:bg-accent aria-expanded:bg-accent bg-background dark:bg-input/30 text-start whitespace-nowrap outline-hidden">
         {field.customRenderer({ field, values, onChange, operator })}
       </ButtonGroupText>
     )
@@ -1903,7 +1896,7 @@ export function Filters<T = unknown>({
           if (!field) return null
           return (
             <ButtonGroup key={filter.id}>
-              <ButtonGroupText className="style-vega:bg-background style-vega:dark:bg-input/30 style-nova:bg-background style-nova:dark:bg-input/30 style-lyra:bg-background style-lyra:dark:bg-input/30 style-mira:bg-background style-mira:dark:bg-input/30">
+              <ButtonGroupText className="bg-background dark:bg-input/30">
                 {field.icon && field.icon}
                 {field.label}
               </ButtonGroupText>

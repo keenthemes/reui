@@ -1,0 +1,72 @@
+[
+  {
+    "name": "c-resizable-1",
+    "title": "Horizontal resizable layout",
+    "description": "Horizontal resizable layout",
+    "order": 1,
+    "gridSize": 1
+  },
+  {
+    "name": "c-resizable-2",
+    "title": "Vertical resizable layout.",
+    "description": "Vertical resizable layout.",
+    "order": 2,
+    "gridSize": 1
+  },
+  {
+    "name": "c-resizable-3",
+    "title": "Nested mixed-direction resizable layout.",
+    "description": "Nested mixed-direction resizable layout.",
+    "order": 3,
+    "gridSize": 1
+  },
+  {
+    "name": "c-resizable-4",
+    "title": "Nested resizable",
+    "description": "Nested resizable",
+    "order": 4,
+    "gridSize": 1
+  },
+  {
+    "name": "c-resizable-5",
+    "title": "Handle with animated pill indicator",
+    "description": "Handle with animated pill indicator",
+    "order": 5,
+    "gridSize": 1
+  },
+  {
+    "name": "c-resizable-6",
+    "title": "Handle pill with spring scale on drag",
+    "description": "Handle pill with spring scale on drag",
+    "order": 6,
+    "gridSize": 1
+  },
+  {
+    "name": "c-resizable-7",
+    "title": "Handle with large capsule expansion on drag",
+    "description": "Handle with large capsule expansion on drag",
+    "order": 7,
+    "gridSize": 1
+  },
+  {
+    "name": "c-resizable-8",
+    "title": "Nested layout with animated pill handles",
+    "description": "Nested layout with animated pill handles",
+    "order": 8,
+    "gridSize": 1
+  },
+  {
+    "name": "c-resizable-9",
+    "title": "Three-panel layout with animated pill handles",
+    "description": "Three-panel layout with animated pill handles",
+    "order": 9,
+    "gridSize": 1
+  },
+  {
+    "name": "c-resizable-10",
+    "title": "State-tracked resizable layout.",
+    "description": "State-tracked resizable layout.",
+    "order": 10,
+    "gridSize": 1
+  }
+]

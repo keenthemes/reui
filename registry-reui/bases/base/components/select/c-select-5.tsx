@@ -1,6 +1,3 @@
-// Description: Select component with small trigger size
-// Order: 5
-
 import { Field } from "@/registry/bases/base/ui/field"
 import {
   Select,

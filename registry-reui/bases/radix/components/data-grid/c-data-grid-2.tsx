@@ -1,7 +1,3 @@
-// Description: Data grid with cell border
-// GridSize: 1
-// Order: 2
-
 "use client"
 
 import { useMemo, useState } from "react"
@@ -29,6 +25,7 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/registry/bases/radix/ui/avatar"
+import { Card } from "@/registry/bases/radix/ui/card"
 
 interface IData {
   id: string
@@ -287,11 +284,13 @@ export default function Pattern() {
       }}
     >
       <div className="w-full space-y-2.5">
-        <DataGridContainer>
-          <DataGridScrollArea>
-            <DataGridTable />
-          </DataGridScrollArea>
-        </DataGridContainer>
+        <Card className="p-0">
+          <DataGridContainer>
+            <DataGridScrollArea>
+              <DataGridTable />
+            </DataGridScrollArea>
+          </DataGridContainer>
+        </Card>
         <DataGridPagination />
       </div>
     </DataGrid>

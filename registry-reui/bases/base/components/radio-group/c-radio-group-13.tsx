@@ -1,6 +1,3 @@
-// Description: Payment method radio cards
-// Order: 13
-
 import { SVGProps } from "react"
 
 import { Field, FieldLabel, FieldTitle } from "@/registry/bases/base/ui/field"
@@ -58,7 +55,7 @@ export default function Pattern() {
               <RadioGroupItem value="mastercard" id="pay-mc" />
             </div>
             <FieldTitle className="flex flex-col items-start gap-4!">
-              <div className="bg-background border-border style-vega:rounded-lg style-lyra:rounded-none style-maia:rounded-2xl style-nova:rounded-2xl style-mira:rounded-md flex size-10 items-center justify-center border p-1.5 shadow-xs shadow-black/5">
+              <div className="bg-background border-border rounded-2xl flex size-10 items-center justify-center border p-1.5 shadow-xs shadow-black/5">
                 <MastercardIcon className="size-full" />
               </div>
               <div className="flex flex-col items-start gap-0.5">

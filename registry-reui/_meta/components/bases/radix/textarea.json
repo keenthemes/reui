@@ -1,0 +1,146 @@
+{
+  "items": [
+    {
+      "name": "c-textarea-1",
+      "type": "registry:block",
+      "title": "Basic textarea.",
+      "categories": [
+        "textarea"
+      ],
+      "description": "Basic textarea.",
+      "registryDependencies": [
+        "textarea"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/textarea/c-textarea-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-textarea-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-textarea-2",
+      "type": "registry:block",
+      "title": "Invalid textarea.",
+      "categories": [
+        "textarea"
+      ],
+      "description": "Invalid textarea.",
+      "registryDependencies": [
+        "textarea"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/textarea/c-textarea-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-textarea-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-textarea-3",
+      "type": "registry:block",
+      "title": "Textarea with label.",
+      "categories": [
+        "textarea"
+      ],
+      "description": "Textarea with label.",
+      "registryDependencies": [
+        "field",
+        "textarea"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/textarea/c-textarea-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-textarea-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-textarea-4",
+      "type": "registry:block",
+      "title": "Textarea with description.",
+      "categories": [
+        "textarea"
+      ],
+      "description": "Textarea with description.",
+      "registryDependencies": [
+        "field",
+        "textarea"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/textarea/c-textarea-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-textarea-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-textarea-5",
+      "type": "registry:block",
+      "title": "Disabled textarea.",
+      "categories": [
+        "textarea"
+      ],
+      "description": "Disabled textarea.",
+      "registryDependencies": [
+        "field",
+        "textarea"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/textarea/c-textarea-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-textarea-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-textarea-6",
+      "type": "registry:block",
+      "title": "Auto-resize textarea with character count",
+      "categories": [
+        "textarea"
+      ],
+      "description": "Auto-resize textarea with character count",
+      "registryDependencies": [
+        "field",
+        "textarea"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/textarea/c-textarea-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-textarea-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    }
+  ]
+}

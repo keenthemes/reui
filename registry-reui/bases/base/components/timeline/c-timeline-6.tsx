@@ -1,7 +1,3 @@
-// Description: Timeline with pipeline steps.
-// Order: 6
-// GridSize: 1
-
 import { Badge } from "@/registry-reui/bases/base/reui/badge"
 import {
   Frame,

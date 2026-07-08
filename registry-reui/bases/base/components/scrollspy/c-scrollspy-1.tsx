@@ -1,7 +1,3 @@
-// Description: Basic scrollspy
-// Order: 1
-// GridSize: 1
-
 "use client"
 
 import { useRef } from "react"
@@ -64,7 +60,7 @@ export default function Pattern() {
             {nav.map((item) => (
               <div key={item.id} id={item.id} className="space-y-2.5">
                 <h3 className="text-foreground text-base">{item.label}</h3>
-                <div className="bg-muted style-vega:rounded-lg style-lyra:rounded-none style-maia:rounded-2xl style-nova:rounded-2xl style-mira:rounded-md h-[350px]"></div>
+                <div className="bg-muted rounded-2xl h-[350px]"></div>
               </div>
             ))}
           </div>

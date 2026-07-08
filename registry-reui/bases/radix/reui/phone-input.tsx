@@ -92,11 +92,11 @@ function InputComponent({ className, ...props }: ComponentProps<typeof Input>) {
   return (
     <Input
       className={cn(
-        "style-vega:rounded-s-none style-maia:rounded-s-none style-nova:rounded-s-none style-lyra:rounded-s-none style-mira:rounded-s-none focus:z-1",
+        "rounded-s-none focus:z-1",
         variant === "sm" &&
-          "style-vega:h-8 style-maia:h-8 style-nova:h-7 style-lyra:h-7 style-mira:h-6",
+          "h-7",
         variant === "lg" &&
-          "style-vega:h-10 style-maia:h-10 style-nova:h-9 style-lyra:h-9 style-mira:h-8",
+          "h-9",
         className
       )}
       {...props}
@@ -145,7 +145,7 @@ function CountrySelect({
             variant="outline"
             size={variant}
             className={cn(
-              "style-vega:rounded-s-md style-vega:rounded-e-none style-maia:rounded-s-4xl style-maia:rounded-e-none style-nova:rounded-s-lg style-nova:rounded-e-none style-lyra:rounded-s-none style-lyra:rounded-e-none style-mira:rounded-s-md style-mira:rounded-e-none style-vega:shadow-xs style-vega:shadow-black/5 flex gap-1 border-e-0 px-2.5 py-0 leading-none hover:bg-transparent focus:z-10 data-pressed:bg-transparent",
+              "style-vega:rounded-s-md style-nova:rounded-s-lg style-maia:rounded-s-4xl style-lyra:rounded-s-none style-mira:rounded-s-md style-luma:rounded-s-3xl style-rhea:rounded-s-2xl style-sera:rounded-s-none rounded-e-none flex gap-1 border-e-0 px-2.5 py-0 leading-none hover:bg-transparent focus:z-10 data-pressed:bg-transparent",
               disabled && "opacity-50"
             )}
             disabled={disabled}

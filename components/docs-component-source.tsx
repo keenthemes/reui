@@ -5,12 +5,16 @@ import {
   resolveRegistryStyleName,
 } from "@/lib/docs-registry-options"
 import { ComponentSource } from "@/components/component-source"
+import { type ComponentSourceClientProps } from "@/components/component-source-client"
+import { DocsComponentSourceSwitch } from "@/components/docs-mdx-components.client"
+import type { IconLibraryName } from "@/registry/config"
 
-import { DocsComponentSourceSwitch } from "./docs-mdx-components.client"
+type DocsComponentSourceProps = React.ComponentProps<"div"> &
+  ComponentSourceClientProps & {
+    iconLibrary?: IconLibraryName
+  }
 
-export function DocsComponentSource(
-  props: React.ComponentProps<typeof ComponentSource>
-) {
+export function DocsComponentSource(props: DocsComponentSourceProps) {
   const initialStyleName = resolveRegistryStyleName(props.styleName)
   const initialIconLibrary = resolveRegistryIconLibrary(
     props.iconLibrary,

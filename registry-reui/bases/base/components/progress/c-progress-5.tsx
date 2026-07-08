@@ -1,6 +1,3 @@
-// Description: File upload list with progress & status.
-// Order: 5
-
 "use client"
 
 import {

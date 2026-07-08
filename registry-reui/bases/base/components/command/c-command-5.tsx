@@ -1,6 +1,3 @@
-// Description: File search command palette
-// Order: 5
-
 "use client"
 
 import { useState } from "react"

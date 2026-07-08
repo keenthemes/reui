@@ -1,6 +1,3 @@
-// Description: Label with inline edit toggle
-// Order: 12
-
 "use client"
 
 import { useState } from "react"

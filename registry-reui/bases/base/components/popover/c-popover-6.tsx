@@ -1,6 +1,3 @@
-// Description: Popover with user profile details.
-// Order: 6
-
 import { MapPinIcon } from "lucide-react"
 
 import {

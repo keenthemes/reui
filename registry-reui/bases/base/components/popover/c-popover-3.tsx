@@ -1,6 +1,3 @@
-// Description: Popover with form.
-// Order: 3
-
 import { Button } from "@/registry/bases/base/ui/button"
 import { Field, FieldGroup, FieldLabel } from "@/registry/bases/base/ui/field"
 import { Input } from "@/registry/bases/base/ui/input"

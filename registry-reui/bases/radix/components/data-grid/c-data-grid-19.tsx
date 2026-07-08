@@ -1,12 +1,11 @@
-// Description: Data grid with card container
-// GridSize: 1
-// Order: 19
-
 "use client"
 
 import { useMemo, useState } from "react"
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
-import { DataGrid } from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
+import {
+  DataGrid,
+  DataGridContainer,
+} from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
 import { DataGridColumnHeader } from "@/registry-reui/bases/radix/reui/data-grid/data-grid-column-header"
 import { DataGridPagination } from "@/registry-reui/bases/radix/reui/data-grid/data-grid-pagination"
 import { DataGridScrollArea } from "@/registry-reui/bases/radix/reui/data-grid/data-grid-scroll-area"
@@ -282,7 +281,10 @@ export default function Pattern() {
             </div>
           )
         },
-        size: 480,
+        minSize: 200,
+        meta: {
+          autoSize: true,
+        },
         enableSorting: true,
         enableHiding: false,
         enableResizing: true,
@@ -311,7 +313,7 @@ export default function Pattern() {
             </div>
           )
         },
-        size: 360,
+        size: 200,
         enableSorting: true,
         enableHiding: true,
         enableResizing: true,
@@ -399,11 +401,11 @@ export default function Pattern() {
             </Button>
           </CardAction>
         </CardHeader>
-        <div className="w-full border-y">
+        <DataGridContainer className="border-y">
           <DataGridScrollArea>
             <DataGridTable />
           </DataGridScrollArea>
-        </div>
+        </DataGridContainer>
         <CardFooter className="border-none bg-transparent! px-3.5 py-0">
           <DataGridPagination />
         </CardFooter>

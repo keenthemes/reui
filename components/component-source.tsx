@@ -1,20 +1,18 @@
-import fs from "node:fs/promises"
-import path from "node:path"
 import * as React from "react"
 
-import { transformStyleClassNames } from "@/lib/code-utils"
+import { getComponentSourcePayload } from "@/lib/component-source-payload"
+import {
+  DEFAULT_DOCS_STYLE_NAME,
+  resolveRegistryOptions,
+} from "@/lib/docs-registry-options"
 import { highlightCode } from "@/lib/highlight-code"
-import { getIconLibraryFromStyle, transformIcons } from "@/lib/icons"
+import { transformIcons } from "@/lib/icons"
 import { cn } from "@/lib/utils"
 import { CodeCollapsibleWrapper } from "@/components/code-collapsible-wrapper"
+import { ComponentSourceClient } from "@/components/component-source-client"
 import { CopyButton } from "@/components/copy-button"
-import { getIconForLanguageExtension } from "@/components/icons"
+import { getIconForLanguageExtension } from "@/components/custom/icons"
 import { IconLibraryName } from "@/registry/config"
-
-import { ComponentSourceClient } from "./component-source-client"
-
-// Default styleName - matches the API default
-const DEFAULT_STYLE_NAME = "radix-nova"
 
 const COLLAPSIBLE_COPY_BUTTON_CLASS_NAME =
   "pointer-events-none invisible opacity-0 transition-opacity group-data-[state=open]/collapsible:pointer-events-auto group-data-[state=open]/collapsible:visible group-data-[state=open]/collapsible:opacity-100"
@@ -26,7 +24,7 @@ export async function ComponentSource({
   language,
   collapsible = true,
   className,
-  styleName = DEFAULT_STYLE_NAME,
+  styleName = DEFAULT_DOCS_STYLE_NAME,
   iconLibrary,
   maxLines,
   code: initialCode,
@@ -47,6 +45,11 @@ export async function ComponentSource({
   eventName?: "copy_component_code"
   showCopyButton?: boolean
 }) {
+  const resolvedRegistryOptions = resolveRegistryOptions({
+    styleName,
+    iconLibrary,
+  })
+
   if (async) {
     return (
       <ComponentSourceClient
@@ -56,8 +59,8 @@ export async function ComponentSource({
         language={language}
         collapsible={collapsible}
         className={className}
-        styleName={styleName}
-        iconLibrary={iconLibrary}
+        styleName={resolvedRegistryOptions.styleName}
+        iconLibrary={resolvedRegistryOptions.iconLibrary}
         maxLines={maxLines}
         code={initialCode}
         eventName={eventName}
@@ -67,76 +70,102 @@ export async function ComponentSource({
   }
 
   let code = initialCode
+  let highlightedCode: string | null = null
 
   if (code) {
-    // Transform classNames for display (code prop comes raw, not from static JSON)
-    code = transformStyleClassNames(code, styleName)
-
     // Transform icons for display if code is provided via prop (e.g. from rehype)
-    const effectiveIconLibrary =
-      iconLibrary ?? getIconLibraryFromStyle(styleName)
-    code = transformIcons(code, effectiveIconLibrary)
+    code = transformIcons(code, resolvedRegistryOptions.iconLibrary)
   }
 
   if (!code && name) {
-    // Read from pre-built static JSON (style classes already transformed at build time)
-    try {
-      const jsonPath = path.join(
-        process.cwd(),
-        "public",
-        "r",
-        "styles",
-        styleName,
-        `${name}.json`
+    // Server-render the source code instead of falling through to the
+    // browser-side `ComponentSourceClient` (which fetches
+    // `/api/components/source` and then re-runs Shiki on every preview).
+    //
+    // On docs pages with 20–30+ examples (e.g. data-grid) the API path
+    // turned into 30 cold-start serverless invocations per first visit
+    // — each ~1.4s — that hung the page on scroll. The server payload
+    // resolver below is `'use cache' + cacheLife("max")` so the result
+    // is shared across visitors and bakes into the docs page's own
+    // `'use cache'` HTML, so subsequent loads serve from CDN with zero
+    // function executions.
+    //
+    // Empty `registryOrigin` ("") is intentional: the resolver tries a
+    // local `public/r/styles/…json` read first and only falls back to
+    // HTTP if the file is missing. Local read works as long as the
+    // function bundle traces those JSONs (see `outputFileTracingIncludes`
+    // in `next.config.mjs`). If the local read fails AND there's no
+    // origin, we drop back to the legacy client-fetch path below so the
+    // page never breaks — same fail-open behaviour as before.
+    const serverPayload = await getComponentSourcePayload({
+      name,
+      registryOrigin: "",
+      styleName: resolvedRegistryOptions.styleName,
+      iconLibrary: resolvedRegistryOptions.iconLibrary,
+      maxLines,
+    }).catch(() => null)
+
+    if (serverPayload) {
+      const effectiveEventName = eventName || "copy_component_code"
+
+      if (!collapsible) {
+        return (
+          <div className={cn("relative", className)}>
+            <ComponentCode
+              code={serverPayload.code}
+              highlightedCode={serverPayload.highlightedCode}
+              language={serverPayload.language}
+              title={title}
+              eventName={effectiveEventName}
+              name={name}
+              styleName={resolvedRegistryOptions.styleName}
+              iconLibrary={resolvedRegistryOptions.iconLibrary}
+              showCopyButton={showCopyButton}
+            />
+          </div>
+        )
+      }
+
+      return (
+        <CodeCollapsibleWrapper className={className}>
+          <ComponentCode
+            code={serverPayload.code}
+            highlightedCode={serverPayload.highlightedCode}
+            language={serverPayload.language}
+            title={title}
+            eventName={effectiveEventName}
+            name={name}
+            styleName={resolvedRegistryOptions.styleName}
+            iconLibrary={resolvedRegistryOptions.iconLibrary}
+            showCopyButton={showCopyButton}
+            copyButtonClassName={COLLAPSIBLE_COPY_BUTTON_CLASS_NAME}
+          />
+        </CodeCollapsibleWrapper>
       )
-      const jsonContent = await fs.readFile(jsonPath, "utf-8")
-      const item = JSON.parse(jsonContent)
-      code = item?.files?.[0]?.content
-    } catch (error) {
-      console.error(`Error reading static registry: ${name}`, error)
     }
 
-    if (code) {
-      // Transform icons for display (not baked into static JSON)
-      const effectiveIconLibrary =
-        iconLibrary ?? getIconLibraryFromStyle(styleName)
-      code = transformIcons(code, effectiveIconLibrary)
-    }
+    // Fall back to the client loader only when the server resolver
+    // couldn't produce a payload (unknown component, missing registry
+    // bundle entry, etc.). Keeps existing behaviour for edge cases.
+    return (
+      <ComponentSourceClient
+        name={name}
+        src={src}
+        title={title}
+        language={language}
+        collapsible={collapsible}
+        className={className}
+        styleName={resolvedRegistryOptions.styleName}
+        iconLibrary={resolvedRegistryOptions.iconLibrary}
+        maxLines={maxLines}
+        eventName={eventName}
+        showCopyButton={showCopyButton}
+      />
+    )
   }
 
   if (!code && src) {
-    const projectRoot = process.cwd()
-    let absolutePath: string
-    if (src.startsWith("registry/")) {
-      absolutePath = path.join(projectRoot, "registry", src.slice(9))
-    } else if (src.startsWith("registry-reui/")) {
-      absolutePath = path.join(projectRoot, "registry-reui", src.slice(14))
-    } else {
-      absolutePath = path.join(projectRoot, src)
-    }
-
-    // Resolve and verify the path stays within the project directory
-    const resolvedPath = path.resolve(absolutePath)
-    if (
-      !resolvedPath.startsWith(projectRoot + path.sep) &&
-      resolvedPath !== projectRoot
-    ) {
-      console.error(`Path traversal blocked: ${src}`)
-    } else {
-      try {
-        code = await fs.readFile(resolvedPath, "utf-8")
-
-        // Transform classNames for display
-        code = transformStyleClassNames(code, styleName)
-
-        // Transform icons for file-based source
-        const effectiveIconLibrary =
-          iconLibrary ?? getIconLibraryFromStyle(styleName)
-        code = transformIcons(code, effectiveIconLibrary)
-      } catch (error) {
-        console.error("Error reading source file", error)
-      }
-    }
+    console.error(`Unsupported component source path: ${src}`)
   }
 
   if (!code) {
@@ -151,9 +180,11 @@ export async function ComponentSource({
   }
 
   const lang = language ?? title?.split(".").pop() ?? "tsx"
-  const highlightedCode = await highlightCode(code, lang)
+  if (!highlightedCode) {
+    highlightedCode = await highlightCode(code, lang)
+  }
 
-  const effectiveEventName = eventName ?? "copy_component_code"
+  const effectiveEventName = eventName || "copy_component_code"
 
   if (!collapsible) {
     return (
@@ -165,8 +196,8 @@ export async function ComponentSource({
           title={title}
           eventName={effectiveEventName}
           name={name}
-          styleName={styleName}
-          iconLibrary={iconLibrary}
+          styleName={resolvedRegistryOptions.styleName}
+          iconLibrary={resolvedRegistryOptions.iconLibrary}
           showCopyButton={showCopyButton}
         />
       </div>
@@ -182,8 +213,8 @@ export async function ComponentSource({
         title={title}
         eventName={effectiveEventName}
         name={name}
-        styleName={styleName}
-        iconLibrary={iconLibrary}
+        styleName={resolvedRegistryOptions.styleName}
+        iconLibrary={resolvedRegistryOptions.iconLibrary}
         showCopyButton={showCopyButton}
         copyButtonClassName={COLLAPSIBLE_COPY_BUTTON_CLASS_NAME}
       />

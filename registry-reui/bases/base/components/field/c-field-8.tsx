@@ -1,6 +1,3 @@
-// Description: Permission settings with checkboxes
-// Order: 8
-
 import { Checkbox } from "@/registry/bases/base/ui/checkbox"
 import {
   Field,

@@ -1,59 +1,72 @@
 import { Metadata } from "next"
 
-import { buildPageMetadata } from "@/lib/seo"
-import { SiteFooter } from "@/components/site-footer"
-import { SiteSubscribe } from "@/components/site-subscribe"
+import {
+  getComponentCategories,
+  getComponentsTotalCount,
+} from "@/lib/component-stats"
+import {
+  buildOrganizationJsonLd,
+  buildPageMetadata,
+  buildSoftwareApplicationJsonLd,
+  buildWebSiteJsonLd,
+} from "@/lib/seo"
+import { CTABlock } from "@/components/blocks/cta-block"
+import { FAQBlock } from "@/components/blocks/faq-block"
+import { HeroBlock } from "@/components/blocks/hero-block"
+import { HomeComponentsCategoriesBlock } from "@/components/blocks/home-components-categories-block"
+import { HomeSeoBlock } from "@/components/blocks/home-seo-block"
+import { ProofBlock } from "@/components/blocks/proof-block"
+import { WallOfLoveBlock } from "@/components/blocks/wall-of-love-block"
+import { JsonLd } from "@/components/json-ld"
 
-import { HomeComponents } from "./components/components"
-import { FAQSection } from "./components/faq-section"
-import Hero from "./components/hero"
-import { Stats } from "./components/stats"
-import { WallOfLove } from "./components/wall-of-love"
-
-const title = "ReUI – Shadcn UI Components and Blocks"
+const title = "Free Shadcn UI Components & Primitives"
 const description =
-  "Discover the 1000+ free shadcn/ui components and blocks for React and Tailwind CSS."
-
-export const dynamic = "force-static"
-export const revalidate = false
+  "Free, open-source shadcn/ui components and in-house primitives for React and Tailwind CSS. Copy-and-own the source, install via the shadcn CLI, and ship production apps faster."
 
 export const metadata: Metadata = buildPageMetadata({
   title,
   description,
   path: "/",
   keywords: [
-    "shadcn catalog",
-    "shadcn components",
-    "reui components",
-    "reui blocks",
-    "shadcn create",
-    "shadcn ui extensions",
-    "shadcn ui examples",
+    "shadcn ui",
     "shadcn ui components",
+    "shadcn components",
     "free shadcn components",
-    "open-source shadcn components",
-    "shadcn data grid",
-    "shadcn datagrid",
-    "shadcn filters",
-    "shadcn file upload",
-    "shadcn stepper",
-    "shadcn timeline",
-    "shadcn rating",
-    "shadcn sortable",
-    "shadcn kanban",
+    "react ui components",
+    "tailwind css components",
+    "component library",
+    "design system",
+    "reui",
   ],
 })
 
 export default function IndexPage() {
+  const componentsCount = getComponentsTotalCount()
+  const componentCategories = getComponentCategories()
+
   return (
-    <div className="homepage relative overflow-hidden bg-linear-to-b to-gray-100 to-35% dark:to-zinc-900">
-      <Hero />
-      <Stats />
-      <HomeComponents />
-      <WallOfLove />
-      <FAQSection />
-      <SiteSubscribe />
-      <SiteFooter />
-    </div>
+    <>
+      <JsonLd data={buildOrganizationJsonLd()} />
+      <JsonLd data={buildWebSiteJsonLd()} />
+      <JsonLd data={buildSoftwareApplicationJsonLd()} />
+      <div>
+        <HeroBlock />
+
+        <HomeComponentsCategoriesBlock
+          categories={componentCategories}
+          totalCount={componentsCount}
+        />
+
+        <ProofBlock />
+
+        <WallOfLoveBlock />
+
+        <FAQBlock />
+
+        <HomeSeoBlock />
+
+        <CTABlock />
+      </div>
+    </>
   )
 }

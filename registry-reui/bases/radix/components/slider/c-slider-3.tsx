@@ -1,6 +1,3 @@
-// Description: Slider with multiple discrete values
-// Order: 3
-
 import { Slider } from "@/registry/bases/radix/ui/slider"
 
 export default function Pattern() {

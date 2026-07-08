@@ -1,6 +1,3 @@
-// Description: Invalid radio group
-// Order: 4
-
 import { Field, FieldLabel } from "@/registry/bases/radix/ui/field"
 import {
   RadioGroup,

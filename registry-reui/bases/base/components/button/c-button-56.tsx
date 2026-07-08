@@ -1,6 +1,3 @@
-// Description: Outline button with avatar
-// Order: 56
-
 import {
   Avatar,
   AvatarFallback,

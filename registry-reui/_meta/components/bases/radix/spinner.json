@@ -1,0 +1,288 @@
+{
+  "items": [
+    {
+      "name": "c-spinner-1",
+      "type": "registry:block",
+      "title": "Basic spinner.",
+      "categories": [
+        "spinner"
+      ],
+      "description": "Basic spinner.",
+      "registryDependencies": [
+        "spinner"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/spinner/c-spinner-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-spinner-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-spinner-2",
+      "type": "registry:block",
+      "title": "Spinners in buttons.",
+      "categories": [
+        "spinner"
+      ],
+      "description": "Spinners in buttons.",
+      "registryDependencies": [
+        "button",
+        "spinner"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/spinner/c-spinner-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-spinner-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-spinner-3",
+      "type": "registry:block",
+      "title": "Spinners in badges.",
+      "categories": [
+        "spinner"
+      ],
+      "description": "Spinners in badges.",
+      "registryDependencies": [
+        "badge",
+        "spinner"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/spinner/c-spinner-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-spinner-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-spinner-4",
+      "type": "registry:block",
+      "title": "Spinner in input group.",
+      "categories": [
+        "spinner"
+      ],
+      "description": "Spinner in input group.",
+      "registryDependencies": [
+        "field",
+        "input-group",
+        "spinner"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/spinner/c-spinner-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-spinner-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-spinner-5",
+      "type": "registry:block",
+      "title": "Spinner in empty state.",
+      "categories": [
+        "spinner"
+      ],
+      "description": "Spinner in empty state.",
+      "registryDependencies": [
+        "button",
+        "empty",
+        "spinner"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/spinner/c-spinner-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-spinner-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-spinner-6",
+      "type": "registry:block",
+      "title": "Button loading states",
+      "categories": [
+        "spinner"
+      ],
+      "description": "Button loading states",
+      "registryDependencies": [
+        "button",
+        "spinner"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/spinner/c-spinner-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-spinner-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-spinner-7",
+      "type": "registry:block",
+      "title": "Overlay loading spinner",
+      "categories": [
+        "spinner"
+      ],
+      "description": "Overlay loading spinner",
+      "registryDependencies": [
+        "card",
+        "spinner"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/spinner/c-spinner-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-spinner-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-spinner-8",
+      "type": "registry:block",
+      "title": "Full page loading state",
+      "categories": [
+        "spinner"
+      ],
+      "description": "Full page loading state",
+      "registryDependencies": [
+        "card",
+        "spinner"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/spinner/c-spinner-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-spinner-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-spinner-9",
+      "type": "registry:block",
+      "title": "Inline loading text with spinner",
+      "categories": [
+        "spinner"
+      ],
+      "description": "Inline loading text with spinner",
+      "registryDependencies": [
+        "spinner"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/spinner/c-spinner-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-spinner-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-spinner-10",
+      "type": "registry:block",
+      "title": "Animated loading dots",
+      "categories": [
+        "spinner"
+      ],
+      "description": "Animated loading dots",
+      "registryDependencies": [],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/spinner/c-spinner-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-spinner-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-spinner-11",
+      "type": "registry:block",
+      "title": "Spinner overlay on card",
+      "categories": [
+        "spinner"
+      ],
+      "description": "Spinner overlay on card",
+      "registryDependencies": [
+        "card",
+        "spinner"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/spinner/c-spinner-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-spinner-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    },
+    {
+      "name": "c-spinner-12",
+      "type": "registry:block",
+      "title": "Spinner color variants",
+      "categories": [
+        "spinner"
+      ],
+      "description": "Spinner color variants",
+      "registryDependencies": [
+        "spinner"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/spinner/c-spinner-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-spinner-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12
+      }
+    }
+  ]
+}

@@ -1,6 +1,3 @@
-// Description: Notification preferences form
-// Order: 10
-
 import { Checkbox } from "@/registry/bases/base/ui/checkbox"
 import {
   Field,

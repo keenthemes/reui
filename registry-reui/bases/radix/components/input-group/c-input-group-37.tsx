@@ -1,6 +1,3 @@
-// Description: Order search input with status filter
-// Order: 37
-
 "use client"
 
 import { useState } from "react"

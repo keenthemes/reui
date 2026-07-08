@@ -1,6 +1,3 @@
-// Description: New button with create dropdown
-// Order: 51
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   ButtonGroup,

@@ -1,6 +1,3 @@
-// Description: Select with grouped options and separators
-// Order: 24
-
 import { Field } from "@/registry/bases/radix/ui/field"
 import {
   Select,

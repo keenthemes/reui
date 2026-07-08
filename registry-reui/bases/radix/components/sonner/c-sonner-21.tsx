@@ -1,6 +1,3 @@
-// Description: Updatable toast with ID
-// Order: 21
-
 "use client"
 
 import { useRef } from "react"
@@ -12,7 +9,7 @@ import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 function LoadingToast({ message }: { message: string }) {
   return (
-    <div className="bg-popover text-popover-foreground border-border style-vega:rounded-md style-nova:rounded-md style-lyra:rounded-none style-maia:rounded-3xl style-mira:rounded-md flex w-[356px] items-center gap-3 border p-4 shadow-lg">
+    <div className="bg-popover text-popover-foreground border-border rounded-md flex w-[356px] items-center gap-3 border p-4 shadow-lg">
       <Spinner className="size-4 opacity-60" />
       <p className="text-xs font-medium">{message}</p>
     </div>
@@ -21,7 +18,7 @@ function LoadingToast({ message }: { message: string }) {
 
 function SuccessToast() {
   return (
-    <div className="bg-popover text-popover-foreground border-border style-vega:rounded-md style-nova:rounded-md style-lyra:rounded-none style-maia:rounded-3xl style-mira:rounded-md flex w-[356px] items-start gap-3 border p-4 shadow-lg">
+    <div className="bg-popover text-popover-foreground border-border rounded-md flex w-[356px] items-start gap-3 border p-4 shadow-lg">
       <div className="flex size-4 shrink-0 items-center justify-center rounded-full bg-green-500 text-white">
         <IconPlaceholder
           lucide="CheckIcon"

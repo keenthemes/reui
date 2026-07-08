@@ -1,6 +1,3 @@
-// Description: Popovers opening from different sides.
-// Order: 2
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   Popover,

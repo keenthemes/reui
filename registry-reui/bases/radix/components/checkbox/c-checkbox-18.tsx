@@ -1,6 +1,3 @@
-// Description: Checkbox with label and tooltip info
-// Order: 18
-
 import { Checkbox } from "@/registry/bases/radix/ui/checkbox"
 import { Field, FieldLabel } from "@/registry/bases/radix/ui/field"
 import {

@@ -31,11 +31,19 @@ import {
   type StyleName,
   type ThemeName,
 } from "@/registry/config"
-import { FONTS } from "@/app/(create)/lib/fonts"
+import { FONT_DEFINITIONS } from "@/lib/font-definitions"
+
+// Pull the list of valid font names from the pure font-definitions
+// module rather than from `lib/fonts.ts` — the latter imports
+// `next/font/google`, which esbuild can't transform when bundling
+// block packages outside of Next.js's build.
+const FONT_NAME_LITERALS = FONT_DEFINITIONS.map(
+  (f) => f.name as FontValue
+)
 
 const fontHeadingLiterals = [
   "inherit",
-  ...FONTS.map((f) => f.value),
+  ...FONT_NAME_LITERALS,
 ] as const satisfies readonly FontHeadingValue[]
 
 const designSystemSearchParams = {
@@ -47,7 +55,7 @@ const designSystemSearchParams = {
   style: parseAsStringLiteral<StyleName>(STYLES.map((s) => s.name)),
   theme: parseAsStringLiteral<ThemeName>(THEMES.map((t) => t.name)),
   chartColor: parseAsStringLiteral<ChartColorName>(THEMES.map((t) => t.name)),
-  font: parseAsStringLiteral<FontValue>(FONTS.map((f) => f.value)),
+  font: parseAsStringLiteral<FontValue>(FONT_NAME_LITERALS),
   fontHeading: parseAsStringLiteral<FontHeadingValue>(fontHeadingLiterals),
   baseColor: parseAsStringLiteral<BaseColorName>(
     BASE_COLORS.map((b) => b.name)

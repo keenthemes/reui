@@ -1,0 +1,270 @@
+{
+  "items": [
+    {
+      "name": "c-carousel-1",
+      "type": "registry:block",
+      "title": "Basic carousel with single item",
+      "categories": [
+        "carousel"
+      ],
+      "description": "Basic carousel with single item",
+      "registryDependencies": [
+        "card",
+        "carousel"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/carousel/c-carousel-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-carousel-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-carousel-2",
+      "type": "registry:block",
+      "title": "Vertical carousel orientation",
+      "categories": [
+        "carousel"
+      ],
+      "description": "Vertical carousel orientation",
+      "registryDependencies": [
+        "card",
+        "carousel"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/carousel/c-carousel-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-carousel-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-carousel-3",
+      "type": "registry:block",
+      "title": "Carousel with multiple items visible",
+      "categories": [
+        "carousel"
+      ],
+      "description": "Carousel with multiple items visible",
+      "registryDependencies": [
+        "card",
+        "carousel"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/carousel/c-carousel-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-carousel-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-carousel-4",
+      "type": "registry:block",
+      "title": "Carousel with responsive basis",
+      "categories": [
+        "carousel"
+      ],
+      "description": "Carousel with responsive basis",
+      "registryDependencies": [
+        "card",
+        "carousel"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/carousel/c-carousel-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-carousel-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-carousel-5",
+      "type": "registry:block",
+      "title": "Carousel with autoplay plugin",
+      "categories": [
+        "carousel"
+      ],
+      "description": "Carousel with autoplay plugin",
+      "registryDependencies": [
+        "card",
+        "carousel"
+      ],
+      "dependencies": [
+        "embla-carousel-autoplay"
+      ],
+      "files": [
+        {
+          "path": "components/carousel/c-carousel-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-carousel-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-carousel-6",
+      "type": "registry:block",
+      "title": "Carousel with centered slide alignment",
+      "categories": [
+        "carousel"
+      ],
+      "description": "Carousel with centered slide alignment",
+      "registryDependencies": [
+        "card",
+        "carousel"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/carousel/c-carousel-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-carousel-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-carousel-7",
+      "type": "registry:block",
+      "title": "Carousel with custom spacing",
+      "categories": [
+        "carousel"
+      ],
+      "description": "Carousel with custom spacing",
+      "registryDependencies": [
+        "card",
+        "carousel"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/carousel/c-carousel-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-carousel-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-carousel-8",
+      "type": "registry:block",
+      "title": "Carousel with images and overlays",
+      "categories": [
+        "carousel"
+      ],
+      "description": "Carousel with images and overlays",
+      "registryDependencies": [
+        "card",
+        "carousel"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/carousel/c-carousel-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-carousel-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-carousel-9",
+      "type": "registry:block",
+      "title": "Carousel with thumbnail navigation",
+      "categories": [
+        "carousel"
+      ],
+      "description": "Carousel with thumbnail navigation",
+      "registryDependencies": [
+        "carousel"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/carousel/c-carousel-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-carousel-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-carousel-10",
+      "type": "registry:block",
+      "title": "Carousel with overlay thumbnail navigation",
+      "categories": [
+        "carousel"
+      ],
+      "description": "Carousel with overlay thumbnail navigation",
+      "registryDependencies": [
+        "carousel"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/carousel/c-carousel-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-carousel-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-carousel-11",
+      "type": "registry:block",
+      "title": "Carousel with dots navigation and content overlays",
+      "categories": [
+        "carousel"
+      ],
+      "description": "Carousel with dots navigation and content overlays",
+      "registryDependencies": [
+        "card",
+        "carousel"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/carousel/c-carousel-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-carousel-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    }
+  ]
+}

@@ -1,6 +1,3 @@
-// Description: Auto highlight option as you type
-// Order: 3
-
 import {
   Autocomplete,
   AutocompleteContent,

@@ -1,6 +1,3 @@
-// Description: User profile dropdown menu
-// Order: 9
-
 import {
   Avatar,
   AvatarFallback,
@@ -26,7 +23,7 @@ export default function Pattern() {
         <DropdownMenuTrigger
           render={<Button variant="outline" className="w-52" />}
         >
-          <div className="style-vega:gap-2 style-nova:gap-1.5 style-lyra:gap-1.5 style-maia:gap-1.5 style-mira:gap-1.5 flex items-center">
+          <div className="gap-1.5 flex items-center">
             <Avatar className="size-5">
               <AvatarImage
                 src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=96&h=96&dpr=2&q=80"

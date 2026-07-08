@@ -1,0 +1,188 @@
+{
+  "items": [
+    {
+      "name": "c-tree-1",
+      "type": "registry:block",
+      "title": "Basic tree.",
+      "categories": [
+        "tree"
+      ],
+      "description": "Basic tree.",
+      "registryDependencies": [
+        "tree"
+      ],
+      "dependencies": [
+        "@headless-tree/core",
+        "@headless-tree/react"
+      ],
+      "files": [
+        {
+          "path": "components/tree/c-tree-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-tree-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-tree-2",
+      "type": "registry:block",
+      "title": "Tree with indented lines.",
+      "categories": [
+        "tree"
+      ],
+      "description": "Tree with indented lines.",
+      "registryDependencies": [
+        "tree"
+      ],
+      "dependencies": [
+        "@headless-tree/core",
+        "@headless-tree/react"
+      ],
+      "files": [
+        {
+          "path": "components/tree/c-tree-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-tree-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-tree-3",
+      "type": "registry:block",
+      "title": "Tree with custom indent.",
+      "categories": [
+        "tree"
+      ],
+      "description": "Tree with custom indent.",
+      "registryDependencies": [
+        "tree"
+      ],
+      "dependencies": [
+        "@headless-tree/core",
+        "@headless-tree/react"
+      ],
+      "files": [
+        {
+          "path": "components/tree/c-tree-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-tree-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-tree-4",
+      "type": "registry:block",
+      "title": "Tree with custom indent.",
+      "categories": [
+        "tree"
+      ],
+      "description": "Tree with custom indent.",
+      "registryDependencies": [
+        "tree"
+      ],
+      "dependencies": [
+        "@headless-tree/core",
+        "@headless-tree/react"
+      ],
+      "files": [
+        {
+          "path": "components/tree/c-tree-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-tree-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-tree-5",
+      "type": "registry:block",
+      "title": "File explorer tree with type icons",
+      "categories": [
+        "tree"
+      ],
+      "description": "File explorer tree with type icons",
+      "registryDependencies": [
+        "tree"
+      ],
+      "dependencies": [
+        "@headless-tree/core",
+        "@headless-tree/react"
+      ],
+      "files": [
+        {
+          "path": "components/tree/c-tree-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-tree-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-tree-6",
+      "type": "registry:block",
+      "title": "Organization chart tree with avatars",
+      "categories": [
+        "tree"
+      ],
+      "description": "Organization chart tree with avatars",
+      "registryDependencies": [
+        "avatar",
+        "tree"
+      ],
+      "dependencies": [
+        "@headless-tree/core",
+        "@headless-tree/react"
+      ],
+      "files": [
+        {
+          "path": "components/tree/c-tree-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-tree-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-tree-7",
+      "type": "registry:block",
+      "title": "Permissions tree with checkboxes",
+      "categories": [
+        "tree"
+      ],
+      "description": "Permissions tree with checkboxes",
+      "registryDependencies": [
+        "checkbox",
+        "tree"
+      ],
+      "dependencies": [
+        "@headless-tree/core",
+        "@headless-tree/react"
+      ],
+      "files": [
+        {
+          "path": "components/tree/c-tree-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-tree-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    }
+  ]
+}

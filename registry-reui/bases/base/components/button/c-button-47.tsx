@@ -1,6 +1,3 @@
-// Description: Ghost button with a status badge
-// Order: 47
-
 import { Badge } from "@/registry-reui/bases/base/reui/badge"
 
 import { Button } from "@/registry/bases/base/ui/button"

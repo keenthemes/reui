@@ -1,6 +1,3 @@
-// Description: Button group using icons for visual actions
-// Order: 6
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import { ButtonGroup } from "@/registry/bases/radix/ui/button-group"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"

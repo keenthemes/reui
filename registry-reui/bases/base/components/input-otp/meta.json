@@ -1,0 +1,38 @@
+[
+  {
+    "name": "c-input-otp-1",
+    "title": "Basic OTP input.",
+    "description": "Basic OTP input.",
+    "order": 1
+  },
+  {
+    "name": "c-input-otp-2",
+    "title": "OTP input with numeric digits.",
+    "description": "OTP input with numeric digits.",
+    "order": 2
+  },
+  {
+    "name": "c-input-otp-3",
+    "title": "OTP input with multiple separators.",
+    "description": "OTP input with multiple separators.",
+    "order": 3
+  },
+  {
+    "name": "c-input-otp-4",
+    "title": "OTP input with letters and numbers.",
+    "description": "OTP input with letters and numbers.",
+    "order": 4
+  },
+  {
+    "name": "c-input-otp-5",
+    "title": "OTP input for PIN codes.",
+    "description": "OTP input for PIN codes.",
+    "order": 5
+  },
+  {
+    "name": "c-input-otp-6",
+    "title": "OTP input verification code.",
+    "description": "OTP input verification code.",
+    "order": 6
+  }
+]

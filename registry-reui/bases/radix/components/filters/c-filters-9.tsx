@@ -1,7 +1,3 @@
-// Description: Filters with i18n support
-// Order: 9
-// GridSize: 1
-
 "use client"
 
 import { useCallback, useMemo, useState } from "react"

@@ -1,0 +1,70 @@
+[
+  {
+    "name": "c-file-upload-1",
+    "title": "Basic file upload",
+    "description": "Basic file upload",
+    "order": 1
+  },
+  {
+    "name": "c-file-upload-2",
+    "title": "Avatar upload",
+    "description": "Avatar upload",
+    "order": 2
+  },
+  {
+    "name": "c-file-upload-3",
+    "title": "Basic drag and drop file upload",
+    "description": "Basic drag and drop file upload",
+    "order": 3,
+    "gridSize": 1
+  },
+  {
+    "name": "c-file-upload-4",
+    "title": "Gallery file upload",
+    "description": "Gallery file upload",
+    "order": 4,
+    "gridSize": 1
+  },
+  {
+    "name": "c-file-upload-5",
+    "title": "Progress file upload",
+    "description": "Progress file upload",
+    "order": 5,
+    "gridSize": 1
+  },
+  {
+    "name": "c-file-upload-6",
+    "title": "Table file upload",
+    "description": "Table file upload",
+    "order": 6,
+    "gridSize": 1
+  },
+  {
+    "name": "c-file-upload-7",
+    "title": "Image upload",
+    "description": "Image upload",
+    "order": 7,
+    "gridSize": 1
+  },
+  {
+    "name": "c-file-upload-8",
+    "title": "Image upload with sorting.",
+    "description": "Image upload with sorting.",
+    "order": 8,
+    "gridSize": 1
+  },
+  {
+    "name": "c-file-upload-9",
+    "title": "Card file upload.",
+    "description": "Card file upload.",
+    "order": 9,
+    "gridSize": 1
+  },
+  {
+    "name": "c-file-upload-10",
+    "title": "Cover image upload.",
+    "description": "Cover image upload.",
+    "order": 10,
+    "gridSize": 1
+  }
+]

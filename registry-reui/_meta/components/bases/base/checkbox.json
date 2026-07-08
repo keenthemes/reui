@@ -1,0 +1,543 @@
+{
+  "items": [
+    {
+      "name": "c-checkbox-1",
+      "type": "registry:block",
+      "title": "Basic checkbox with label",
+      "categories": [
+        "checkbox"
+      ],
+      "description": "Basic checkbox with label",
+      "registryDependencies": [
+        "checkbox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/checkbox/c-checkbox-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-checkbox-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-checkbox-2",
+      "type": "registry:block",
+      "title": "Disabled checkbox",
+      "categories": [
+        "checkbox"
+      ],
+      "description": "Disabled checkbox",
+      "registryDependencies": [
+        "checkbox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/checkbox/c-checkbox-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-checkbox-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-checkbox-3",
+      "type": "registry:block",
+      "title": "Invalid checkbox",
+      "categories": [
+        "checkbox"
+      ],
+      "description": "Invalid checkbox",
+      "registryDependencies": [
+        "checkbox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/checkbox/c-checkbox-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-checkbox-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-checkbox-4",
+      "type": "registry:block",
+      "title": "Indeterminate checkbox",
+      "categories": [
+        "checkbox"
+      ],
+      "description": "Indeterminate checkbox",
+      "registryDependencies": [
+        "checkbox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/checkbox/c-checkbox-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-checkbox-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-checkbox-5",
+      "type": "registry:block",
+      "title": "Checkbox with label and description",
+      "categories": [
+        "checkbox"
+      ],
+      "description": "Checkbox with label and description",
+      "registryDependencies": [
+        "checkbox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/checkbox/c-checkbox-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-checkbox-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-checkbox-6",
+      "type": "registry:block",
+      "title": "Colored checkbox",
+      "categories": [
+        "checkbox"
+      ],
+      "description": "Colored checkbox",
+      "registryDependencies": [
+        "checkbox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/checkbox/c-checkbox-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-checkbox-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-checkbox-7",
+      "type": "registry:block",
+      "title": "Circle checkbox",
+      "categories": [
+        "checkbox"
+      ],
+      "description": "Circle checkbox",
+      "registryDependencies": [
+        "checkbox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/checkbox/c-checkbox-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-checkbox-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-checkbox-8",
+      "type": "registry:block",
+      "title": "Checkbox group",
+      "categories": [
+        "checkbox"
+      ],
+      "description": "Checkbox group",
+      "registryDependencies": [
+        "checkbox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/checkbox/c-checkbox-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-checkbox-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-checkbox-9",
+      "type": "registry:block",
+      "title": "Card checkbox with group",
+      "categories": [
+        "checkbox"
+      ],
+      "description": "Card checkbox with group",
+      "registryDependencies": [
+        "checkbox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/checkbox/c-checkbox-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-checkbox-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-checkbox-10",
+      "type": "registry:block",
+      "title": "Checkbox group in a frame",
+      "categories": [
+        "checkbox"
+      ],
+      "description": "Checkbox group in a frame",
+      "registryDependencies": [
+        "checkbox",
+        "field",
+        "frame",
+        "separator"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/checkbox/c-checkbox-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-checkbox-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-checkbox-11",
+      "type": "registry:block",
+      "title": "Card checkbox group with icons",
+      "categories": [
+        "checkbox"
+      ],
+      "description": "Card checkbox group with icons",
+      "registryDependencies": [
+        "card",
+        "checkbox",
+        "field",
+        "separator"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/checkbox/c-checkbox-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-checkbox-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    },
+    {
+      "name": "c-checkbox-12",
+      "type": "registry:block",
+      "title": "Card checkbox group with icons",
+      "categories": [
+        "checkbox"
+      ],
+      "description": "Card checkbox group with icons",
+      "registryDependencies": [
+        "card",
+        "checkbox",
+        "field",
+        "separator"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/checkbox/c-checkbox-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-checkbox-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12
+      }
+    },
+    {
+      "name": "c-checkbox-13",
+      "type": "registry:block",
+      "title": "Custom positioned checkbox",
+      "categories": [
+        "checkbox"
+      ],
+      "description": "Custom positioned checkbox",
+      "registryDependencies": [
+        "checkbox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/checkbox/c-checkbox-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-checkbox-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13
+      }
+    },
+    {
+      "name": "c-checkbox-14",
+      "type": "registry:block",
+      "title": "Custom positioned checkbox",
+      "categories": [
+        "checkbox"
+      ],
+      "description": "Custom positioned checkbox",
+      "registryDependencies": [
+        "checkbox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/checkbox/c-checkbox-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-checkbox-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14
+      }
+    },
+    {
+      "name": "c-checkbox-15",
+      "type": "registry:block",
+      "title": "Avatar based card checkbox",
+      "categories": [
+        "checkbox"
+      ],
+      "description": "Avatar based card checkbox",
+      "registryDependencies": [
+        "avatar",
+        "checkbox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/checkbox/c-checkbox-15.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-checkbox-15.tsx"
+        }
+      ],
+      "meta": {
+        "order": 15
+      }
+    },
+    {
+      "name": "c-checkbox-16",
+      "type": "registry:block",
+      "title": "Nested checkbox group",
+      "categories": [
+        "checkbox"
+      ],
+      "description": "Nested checkbox group",
+      "registryDependencies": [
+        "checkbox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/checkbox/c-checkbox-16.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-checkbox-16.tsx"
+        }
+      ],
+      "meta": {
+        "order": 16
+      }
+    },
+    {
+      "name": "c-checkbox-17",
+      "type": "registry:block",
+      "title": "Payment method card checkbox",
+      "categories": [
+        "checkbox"
+      ],
+      "description": "Payment method card checkbox",
+      "registryDependencies": [
+        "checkbox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/checkbox/c-checkbox-17.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-checkbox-17.tsx"
+        }
+      ],
+      "meta": {
+        "order": 17
+      }
+    },
+    {
+      "name": "c-checkbox-18",
+      "type": "registry:block",
+      "title": "Checkbox with label and tooltip info",
+      "categories": [
+        "checkbox"
+      ],
+      "description": "Checkbox with label and tooltip info",
+      "registryDependencies": [
+        "checkbox",
+        "field",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/checkbox/c-checkbox-18.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-checkbox-18.tsx"
+        }
+      ],
+      "meta": {
+        "order": 18
+      }
+    },
+    {
+      "name": "c-checkbox-19",
+      "type": "registry:block",
+      "title": "Checkbox group with badge",
+      "categories": [
+        "checkbox"
+      ],
+      "description": "Checkbox group with badge",
+      "registryDependencies": [
+        "badge",
+        "checkbox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/checkbox/c-checkbox-19.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-checkbox-19.tsx"
+        }
+      ],
+      "meta": {
+        "order": 19
+      }
+    },
+    {
+      "name": "c-checkbox-20",
+      "type": "registry:block",
+      "title": "Checkbox with label and tooltip info",
+      "categories": [
+        "checkbox"
+      ],
+      "description": "Checkbox with label and tooltip info",
+      "registryDependencies": [
+        "checkbox",
+        "field",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/checkbox/c-checkbox-20.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-checkbox-20.tsx"
+        }
+      ],
+      "meta": {
+        "order": 20
+      }
+    },
+    {
+      "name": "c-checkbox-21",
+      "type": "registry:block",
+      "title": "Inline horizontal checkbox group",
+      "categories": [
+        "checkbox"
+      ],
+      "description": "Inline horizontal checkbox group",
+      "registryDependencies": [
+        "checkbox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/checkbox/c-checkbox-21.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-checkbox-21.tsx"
+        }
+      ],
+      "meta": {
+        "order": 21
+      }
+    },
+    {
+      "name": "c-checkbox-22",
+      "type": "registry:block",
+      "title": "Checkbox with feature badge",
+      "categories": [
+        "checkbox"
+      ],
+      "description": "Checkbox with feature badge",
+      "registryDependencies": [
+        "badge",
+        "checkbox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/checkbox/c-checkbox-22.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-checkbox-22.tsx"
+        }
+      ],
+      "meta": {
+        "order": 22
+      }
+    }
+  ]
+}

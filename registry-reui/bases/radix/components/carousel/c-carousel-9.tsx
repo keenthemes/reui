@@ -1,10 +1,6 @@
-// Description: Carousel with thumbnail navigation
-// Order: 9
-
 "use client"
 
 import { useCallback, useEffect, useState } from "react"
-import Image from "next/image"
 
 import { cn } from "@/lib/utils"
 import {
@@ -53,13 +49,13 @@ export default function Pattern() {
         <CarouselContent>
           {Array.from({ length: ITEMS_COUNT }).map((_, index) => (
             <CarouselItem key={index}>
-              <div className="bg-muted style-vega:rounded-xl style-nova:rounded-xl style-lyra:rounded-none style-maia:rounded-4xl style-mira:rounded-md relative aspect-video overflow-hidden">
-                <Image
+              <div className="bg-muted relative aspect-video overflow-hidden rounded-xl">
+                <img
                   src={`https://picsum.photos/1000/800?grayscale&random=${index + 20}`}
                   alt={`Slide ${index + 1}`}
-                  fill
-                  className="object-cover"
-                  priority={index === 0}
+                  width={1000}
+                  height={800}
+                  className="h-full w-full object-cover"
                 />
               </div>
             </CarouselItem>
@@ -84,17 +80,18 @@ export default function Pattern() {
             >
               <div
                 className={cn(
-                  "style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-4xl style-mira:rounded-md relative aspect-square overflow-hidden border-2 transition-all",
+                  "relative aspect-square overflow-hidden rounded-lg border-2 transition-all",
                   index === selectedIndex
                     ? "border-primary opacity-100"
                     : "border-transparent opacity-40 hover:opacity-70"
                 )}
               >
-                <Image
+                <img
                   src={`https://picsum.photos/400/400?grayscale&random=${index + 20}`}
                   alt={`Thumb ${index + 1}`}
-                  fill
-                  className="object-cover"
+                  width={400}
+                  height={400}
+                  className="h-full w-full object-cover"
                 />
               </div>
             </CarouselItem>

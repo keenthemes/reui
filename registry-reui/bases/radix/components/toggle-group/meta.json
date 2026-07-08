@@ -1,0 +1,98 @@
+[
+  {
+    "name": "c-toggle-group-1",
+    "title": "Basic toggle group.",
+    "description": "Basic toggle group.",
+    "order": 1
+  },
+  {
+    "name": "c-toggle-group-2",
+    "title": "Toggle group with outline variant.",
+    "description": "Toggle group with outline variant.",
+    "order": 2
+  },
+  {
+    "name": "c-toggle-group-3",
+    "title": "Toggle groups in different sizes.",
+    "description": "Toggle groups in different sizes.",
+    "order": 3
+  },
+  {
+    "name": "c-toggle-group-4",
+    "title": "Toggle group with custom spacing.",
+    "description": "Toggle group with custom spacing.",
+    "order": 4
+  },
+  {
+    "name": "c-toggle-group-5",
+    "title": "Toggle group with filter control.",
+    "description": "Toggle group with filter control.",
+    "order": 5
+  },
+  {
+    "name": "c-toggle-group-6",
+    "title": "Toggle group with vertical orientation.",
+    "description": "Toggle group with vertical orientation.",
+    "order": 6
+  },
+  {
+    "name": "c-toggle-group-7",
+    "title": "Toggle group for text alignment",
+    "description": "Toggle group for text alignment",
+    "order": 7
+  },
+  {
+    "name": "c-toggle-group-8",
+    "title": "Toggle group for view mode switching",
+    "description": "Toggle group for view mode switching",
+    "order": 8
+  },
+  {
+    "name": "c-toggle-group-9",
+    "title": "Vertical toggle group for settings",
+    "description": "Vertical toggle group for settings",
+    "order": 9
+  },
+  {
+    "name": "c-toggle-group-10",
+    "title": "Toggle group for color theme",
+    "description": "Toggle group for color theme",
+    "order": 10
+  },
+  {
+    "name": "c-toggle-group-11",
+    "title": "Toggle group for font size",
+    "description": "Toggle group for font size",
+    "order": 11
+  },
+  {
+    "name": "c-toggle-group-12",
+    "title": "Toggle group for time range filter",
+    "description": "Toggle group for time range filter",
+    "order": 12
+  },
+  {
+    "name": "c-toggle-group-13",
+    "title": "Toggle group for notification channels",
+    "description": "Toggle group for notification channels",
+    "order": 13
+  },
+  {
+    "name": "c-toggle-group-14",
+    "title": "Toggle group for layout columns",
+    "description": "Toggle group for layout columns",
+    "order": 14
+  },
+  {
+    "name": "c-toggle-group-15",
+    "title": "Toggle group for sort direction",
+    "description": "Toggle group for sort direction",
+    "order": 15
+  },
+  {
+    "name": "c-toggle-group-16",
+    "title": "Toggle group for pricing tier",
+    "description": "Toggle group for pricing tier",
+    "order": 16
+  }
+]

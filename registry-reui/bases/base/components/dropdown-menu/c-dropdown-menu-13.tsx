@@ -1,6 +1,3 @@
-// Description: Share and export dropdown menu
-// Order: 13
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   DropdownMenu,

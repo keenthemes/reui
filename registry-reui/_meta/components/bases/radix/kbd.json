@@ -1,0 +1,146 @@
+{
+  "items": [
+    {
+      "name": "c-kbd-1",
+      "type": "registry:block",
+      "title": "Basic keyboard keys.",
+      "categories": [
+        "kbd"
+      ],
+      "description": "Basic keyboard keys.",
+      "registryDependencies": [
+        "kbd"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/kbd/c-kbd-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-kbd-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-kbd-2",
+      "type": "registry:block",
+      "title": "Keyboard keys grouped together.",
+      "categories": [
+        "kbd"
+      ],
+      "description": "Keyboard keys grouped together.",
+      "registryDependencies": [
+        "kbd"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/kbd/c-kbd-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-kbd-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-kbd-3",
+      "type": "registry:block",
+      "title": "Keyboard keys combined with icons.",
+      "categories": [
+        "kbd"
+      ],
+      "description": "Keyboard keys combined with icons.",
+      "registryDependencies": [
+        "kbd"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/kbd/c-kbd-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-kbd-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-kbd-4",
+      "type": "registry:block",
+      "title": "Keyboard key within an input.",
+      "categories": [
+        "kbd"
+      ],
+      "description": "Keyboard key within an input.",
+      "registryDependencies": [
+        "input-group",
+        "kbd"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/kbd/c-kbd-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-kbd-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-kbd-5",
+      "type": "registry:block",
+      "title": "Keyboard shortcut in a tooltip.",
+      "categories": [
+        "kbd"
+      ],
+      "description": "Keyboard shortcut in a tooltip.",
+      "registryDependencies": [
+        "button",
+        "kbd",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/kbd/c-kbd-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-kbd-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-kbd-6",
+      "type": "registry:block",
+      "title": "Keyboard shortcuts reference list",
+      "categories": [
+        "kbd"
+      ],
+      "description": "Keyboard shortcuts reference list",
+      "registryDependencies": [
+        "kbd",
+        "separator"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/kbd/c-kbd-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-kbd-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    }
+  ]
+}

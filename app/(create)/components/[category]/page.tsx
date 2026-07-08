@@ -1,47 +1,42 @@
-import { Suspense } from "react"
 import type { Metadata } from "next"
+import { cacheLife } from "next/cache"
+import Link from "next/link"
 import { notFound } from "next/navigation"
 
-import { siteConfig } from "@/lib/config"
+import { isCanonicalComponentDoc } from "@/lib/component-doc-paths"
 import {
-  getCategoryInfo,
-  getCategoryNames,
-  getComponentsByCategory,
-} from "@/lib/registry"
+  getComponentCategoryInfo,
+  getComponentCategoryNames,
+} from "@/lib/component-stats"
+import { getCategoryComponentItems } from "@/lib/components-browse.server"
+import { siteConfig } from "@/lib/config"
 import { getComponentCategorySeo } from "@/lib/registry-seo-cache"
 import { buildBreadcrumbJsonLd, buildPageMetadata } from "@/lib/seo"
 import { normalizeSlug } from "@/lib/utils"
-import { Spinner } from "@/components/ui/spinner"
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
 import { JsonLd } from "@/components/json-ld"
 
+import { ComponentCategoryDocsButton } from "../components/component-category-docs-button"
 import { ComponentCategoryPager } from "../components/component-category-pager"
 import {
   ComponentCategoryHeroIntro,
   ComponentCategorySeoContent,
 } from "../components/component-category-seo-content"
-import { ComponentDocsLink } from "../components/component-docs-link"
 import { CategoryPageContent } from "./category-page-content"
 
-function ComponentPreviewSkeleton() {
-  return (
-    <div className="flex min-h-[60svh] items-center justify-center">
-      <Spinner className="size-5 opacity-60" />
-    </div>
-  )
-}
-
-// Fully static — search filtering happens client-side in ComponentGrid
-export const dynamic = "force-static"
-export const revalidate = false
-
-// Generate static params for all valid component categories
-export async function generateStaticParams() {
-  return getCategoryNames().map((category) => ({
-    category: normalizeSlug(category),
+export function generateStaticParams() {
+  return getComponentCategoryNames().map((category) => ({
+    category,
   }))
 }
 
-// Generate metadata for category page
 export async function generateMetadata({
   params,
 }: {
@@ -53,17 +48,17 @@ export async function generateMetadata({
     return {
       title: "Components",
       description:
-        "Browse composed shadcn/ui examples by category and tags to find the right component for your project.",
+        "Components are composed examples showing real-world usage. Filter by category and tags to find the right component for your project.",
     }
   }
 
   const normalized = normalizeSlug(category)
-  const categoryInfo = getCategoryInfo(normalized)
+  const categoryInfo = getComponentCategoryInfo(normalized)
 
   if (!categoryInfo) {
     return {
       title: "Components",
-      description: "Category not found",
+      description: "Component not found",
     }
   }
 
@@ -71,8 +66,9 @@ export async function generateMetadata({
   const seo = getComponentCategorySeo(normalized)
 
   return buildPageMetadata({
-    title: seo.title,
-    titleSuffix: siteConfig.metadata.titleSuffixes.componentCategory,
+    // Keep the "UI Components" descriptor inline (it's a descriptor, not
+    // the brand); the root `%s - ReUI` template still appends the brand.
+    title: `${seo.title} - ${siteConfig.metadata.titleSuffixes.componentCategory}`,
     description: seo.description,
     path: `/components/${normalized}`,
     keywords: [
@@ -81,26 +77,24 @@ export async function generateMetadata({
       `shadcn ${categoryLabel.toLowerCase()} components`,
       `${categoryLabel} React examples`,
       "open source shadcn components",
+      "reui components",
       ...seo.keywords,
     ],
   })
 }
 
-export default async function CategoryComponentsPage({
-  params,
-}: {
-  params: Promise<{ category: string }>
-}) {
-  const { category } = await params
-  const normalized = normalizeSlug(category)
-  const categoryInfo = getCategoryInfo(normalized)
-
-  if (!categoryInfo) {
-    return notFound()
-  }
+/**
+ * Cache per-category resolution. `getCategoryComponentItems` does the
+ * heaviest registry walk on this route; sharing the result across visitors
+ * of the same category is the biggest single win.
+ */
+async function loadCategoryComponentsPageData(normalized: string) {
+  "use cache"
+  cacheLife("max")
 
   const seo = getComponentCategorySeo(normalized)
-  const catalogItems = getComponentsByCategory(normalized)
+  const components = getCategoryComponentItems(normalized)
+  const hasDocs = isCanonicalComponentDoc(normalized)
   const faqJsonLd = seo.content?.faqs?.length
     ? {
         "@context": "https://schema.org",
@@ -115,6 +109,26 @@ export default async function CategoryComponentsPage({
         })),
       }
     : null
+
+  return { seo, components, hasDocs, faqJsonLd }
+}
+
+export default async function CategoryComponentsPage({
+  params,
+}: {
+  params: Promise<{ category: string }>
+}) {
+  const { category } = await params
+  const normalized = normalizeSlug(category)
+  const categoryInfo = getComponentCategoryInfo(normalized)
+
+  if (!categoryInfo) {
+    return notFound()
+  }
+
+  const { seo, components, hasDocs, faqJsonLd } =
+    await loadCategoryComponentsPageData(normalized)
+
   return (
     <>
       <JsonLd
@@ -127,18 +141,44 @@ export default async function CategoryComponentsPage({
       {faqJsonLd ? <JsonLd data={faqJsonLd} /> : null}
       <section>
         <div className="w-full px-6 pt-8 pb-6 sm:px-8 xl:px-10">
+          {/* Browsing breadcrumb, mirroring the blocks listing
+              (Blocks > Group > Category): Components > {Category}. */}
+          <Breadcrumb className="mb-1">
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link href="/components" prefetch={false}>
+                    Components
+                  </Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>{categoryInfo.label}</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
           <div className="flex w-full flex-wrap items-end justify-between gap-3">
             <h1 className="text-balanc mt-3 min-w-0 flex-1 text-xl font-bold sm:text-3xl">
               {seo.title}
             </h1>
-            <ComponentDocsLink slug={normalized} />
+            {hasDocs ? (
+              <ComponentCategoryDocsButton category={normalized} />
+            ) : null}
           </div>
           {seo.intro ? <ComponentCategoryHeroIntro intro={seo.intro} /> : null}
         </div>
       </section>
-      <Suspense fallback={<ComponentPreviewSkeleton />}>
-        <CategoryPageContent catalogItems={catalogItems} />
-      </Suspense>
+      {/* `CategoryPageContent` is a Client Component that doesn't use any
+          Suspense-triggering hook (it reads `window.location.search` in a
+          `useEffect`). The previous outer `<Suspense>` boundary made the
+          shell prerender with a spinner fallback under `cacheComponents:
+          true` and stream the actual grid in afterwards — causing a
+          visible blank-flash on first paint. With the boundary removed,
+          the cached page now ships the fully rendered grid in its
+          initial HTML. The inner `<Suspense>` inside `ComponentsGrid`
+          still handles the URL-search-reading path used elsewhere. */}
+      <CategoryPageContent components={components} />
       <ComponentCategorySeoContent seo={seo} />
       <ComponentCategoryPager currentCategory={normalized} />
     </>

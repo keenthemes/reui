@@ -1,6 +1,3 @@
-// Description: Organization chart tree with avatars
-// Order: 6
-
 "use client"
 
 import {

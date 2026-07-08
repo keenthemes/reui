@@ -1,6 +1,3 @@
-// Description: Badge with a dismiss button
-// Order: 21
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import { Button } from "@/registry/bases/radix/ui/button"

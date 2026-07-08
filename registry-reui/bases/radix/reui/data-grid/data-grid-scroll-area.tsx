@@ -1,7 +1,6 @@
 "use client"
 
 import {
-  ComponentProps,
   PointerEvent,
   ReactNode,
   useCallback,
@@ -10,7 +9,7 @@ import {
   useState,
 } from "react"
 import { useDataGrid } from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
-import { ScrollArea as ScrollAreaPrimitive } from "radix-ui"
+import { ScrollArea as ScrollAreaPrimitive } from "@base-ui/react/scroll-area"
 
 import { cn } from "@/registry/bases/radix/lib/utils"
 
@@ -25,6 +24,11 @@ const INITIAL_METRICS = {
   thumbTop: 0,
   trackHeight: 0,
 } as const
+
+const SCROLLBAR_CLASSNAME =
+  "flex touch-none p-px transition-colors select-none data-[orientation=horizontal]:h-2.5 data-[orientation=horizontal]:flex-col data-[orientation=horizontal]:border-t data-[orientation=horizontal]:border-t-transparent data-[orientation=vertical]:h-full data-[orientation=vertical]:w-2 data-[orientation=vertical]:border-s data-[orientation=vertical]:border-s-transparent"
+
+const SCROLLBAR_THUMB_CLASSNAME = "bg-border rounded-full relative flex-1"
 
 type DataGridScrollAreaOrientation = "horizontal" | "vertical" | "both"
 
@@ -45,7 +49,7 @@ type ObservedElements = {
 }
 
 type DataGridScrollAreaProps = Omit<
-  ComponentProps<typeof ScrollAreaPrimitive.Root>,
+  ScrollAreaPrimitive.Root.Props,
   "children"
 > & {
   children: ReactNode
@@ -354,40 +358,39 @@ function DataGridScrollArea({
         <ScrollAreaPrimitive.Viewport
           ref={viewportRef}
           data-slot="scroll-area-viewport"
-          className="focus-visible:ring-ring/50 style-vega:rounded-lg style-maia:rounded-2xl style-nova:rounded-lg style-lyra:rounded-none style-mira:rounded-lg size-full transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:outline-1"
+          className="size-full"
         >
-          <div data-slot="scroll-area-content">{children}</div>
+          <ScrollAreaPrimitive.Content data-slot="scroll-area-content">
+            {children}
+          </ScrollAreaPrimitive.Content>
         </ScrollAreaPrimitive.Viewport>
 
         {showHorizontal && (
-          <ScrollAreaPrimitive.ScrollAreaScrollbar
+          <ScrollAreaPrimitive.Scrollbar
             data-slot="data-grid-scrollbar"
             data-orientation="horizontal"
             orientation="horizontal"
-            className="flex touch-none p-px transition-colors select-none data-[orientation=horizontal]:h-2.5 data-[orientation=horizontal]:flex-col data-[orientation=horizontal]:border-t data-[orientation=horizontal]:border-t-transparent data-[orientation=vertical]:h-full data-[orientation=vertical]:w-2.5 data-[orientation=vertical]:border-s data-[orientation=vertical]:border-s-transparent"
+            className={SCROLLBAR_CLASSNAME}
           >
-            <ScrollAreaPrimitive.ScrollAreaThumb
+            <ScrollAreaPrimitive.Thumb
               data-slot="data-grid-thumb"
-              className="bg-border style-vega:rounded-full style-maia:rounded-full style-nova:rounded-full style-lyra:rounded-none style-mira:rounded-full relative flex-1"
+              className={SCROLLBAR_THUMB_CLASSNAME}
             />
-          </ScrollAreaPrimitive.ScrollAreaScrollbar>
+          </ScrollAreaPrimitive.Scrollbar>
         )}
 
-        {showVertical && (
-          <ScrollAreaPrimitive.ScrollAreaScrollbar
+        {showVertical && !usesCustomVerticalScrollbar && (
+          <ScrollAreaPrimitive.Scrollbar
             data-slot="data-grid-scrollbar"
             data-orientation="vertical"
             orientation="vertical"
-            className={cn(
-              "flex touch-none p-px transition-colors select-none data-[orientation=horizontal]:h-2.5 data-[orientation=horizontal]:flex-col data-[orientation=horizontal]:border-t data-[orientation=horizontal]:border-t-transparent data-[orientation=vertical]:h-full data-[orientation=vertical]:w-2.5 data-[orientation=vertical]:border-s data-[orientation=vertical]:border-s-transparent",
-              usesCustomVerticalScrollbar && "pointer-events-none opacity-0"
-            )}
+            className={SCROLLBAR_CLASSNAME}
           >
-            <ScrollAreaPrimitive.ScrollAreaThumb
+            <ScrollAreaPrimitive.Thumb
               data-slot="data-grid-thumb"
-              className="bg-border style-vega:rounded-full style-maia:rounded-full style-nova:rounded-full style-lyra:rounded-none style-mira:rounded-full relative flex-1"
+              className={SCROLLBAR_THUMB_CLASSNAME}
             />
-          </ScrollAreaPrimitive.ScrollAreaScrollbar>
+          </ScrollAreaPrimitive.Scrollbar>
         )}
       </ScrollAreaPrimitive.Root>
 
@@ -397,14 +400,14 @@ function DataGridScrollArea({
           className="pointer-events-none absolute inset-e-0 top-(--data-grid-scrollbar-header-height) z-20 h-(--data-grid-scrollbar-track-height)"
         >
           <div
-            className="pointer-events-auto relative h-full w-3 touch-none p-px"
+            className="pointer-events-auto relative h-full w-2 touch-none p-px"
             onPointerDown={handleTrackPointerDown}
           >
             <div
               className={cn(
                 "bg-border absolute end-px w-2",
                 "top-(--data-grid-scrollbar-thumb-top) h-(--data-grid-scrollbar-thumb-height)",
-                "style-vega:rounded-full style-maia:rounded-full style-nova:rounded-full style-lyra:rounded-none style-mira:rounded-full"
+                "rounded-full"
               )}
               onLostPointerCapture={clearDragState}
               onPointerCancel={handleThumbPointerUp}

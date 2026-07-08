@@ -1,6 +1,3 @@
-// Description: Breadcrumb with icons for each item
-// Order: 5
-
 import {
   Breadcrumb,
   BreadcrumbItem,

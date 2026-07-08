@@ -4,17 +4,19 @@ import * as React from "react"
 import Link from "next/link"
 
 import { siteConfig } from "@/lib/config"
-import { getRegistryJsonAbsoluteUrl } from "@/lib/registry"
+import { getComponentRegistryJsonAbsoluteUrl } from "@/lib/registry-urls"
 import { useConfig } from "@/hooks/use-config"
 import { Button } from "@/components/ui/button"
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { CodeBlockCommand } from "@/components/code-block-command"
-import { ComponentSourceClient } from "@/components/component-source-client"
 import { Icons } from "@/components/icons"
 import {
   serializeDesignSystemSearchParams,
   useDesignSystemSearchParams,
 } from "@/app/(create)/lib/search-params"
+
+import { ComponentSourceSheetCode } from "./component-source-sheet-code"
 
 interface ComponentSourceSheetContentProps {
   name: string
@@ -23,8 +25,9 @@ interface ComponentSourceSheetContentProps {
 
 export function ComponentSourceSheetContent({
   name,
-  base,
+  base: _base,
 }: ComponentSourceSheetContentProps) {
+  void _base
   const [config] = useConfig()
   const [params] = useDesignSystemSearchParams()
 
@@ -32,8 +35,10 @@ export function ComponentSourceSheetContent({
 
   const v0Url = React.useMemo(() => {
     const registryUrl = new URL(
-      getRegistryJsonAbsoluteUrl(
-        process.env.NEXT_PUBLIC_APP_URL || siteConfig.url,
+      getComponentRegistryJsonAbsoluteUrl(
+        process.env.NEXT_PUBLIC_WEB_URL ||
+          process.env.NEXT_PUBLIC_APP_URL ||
+          siteConfig.url,
         styleName,
         name
       )
@@ -56,11 +61,11 @@ export function ComponentSourceSheetContent({
       overlay={false}
       className="bg-site-sidebar flex flex-col gap-0 duration-200 data-ending-style:translate-x-8 data-ending-style:opacity-0 data-starting-style:translate-x-8 data-starting-style:opacity-0 sm:max-w-2xl [&_button.ring-offset-site-background]:hidden"
     >
-      <SheetHeader className="p-6">
+      <SheetHeader className="border-site-border border-b px-6 py-4">
         <SheetTitle>Installation</SheetTitle>
       </SheetHeader>
-      <div className="flex flex-1 flex-col overflow-hidden px-6 pb-6">
-        <div className="border-site-border site-rounded-lg relative border">
+      <div className="flex min-h-0 flex-1 flex-col overflow-hidden px-6 py-6">
+        <div className="border-site-border site-rounded-lg relative overflow-hidden border">
           <CodeBlockCommand
             __bun__={`bunx --bun shadcn@latest add @reui/${name}`}
             __npm__={`npx shadcn@latest add @reui/${name}`}
@@ -68,9 +73,11 @@ export function ComponentSourceSheetContent({
             __yarn__={`yarn dlx shadcn@latest add @reui/${name}`}
           />
         </div>
-        <div className="flex h-full flex-1 flex-col overflow-hidden">
-          <div className="flex items-center justify-between gap-2">
-            <h2 className="mt-6 mb-4 text-base font-semibold">Code</h2>
+        <div className="mt-6 flex min-h-0 flex-1 flex-col">
+          <div className="mb-3 flex items-center justify-between gap-3 px-1">
+            <h2 className="text-site-foreground text-base font-semibold tracking-tight">
+              Code
+            </h2>
             <Button asChild variant="outline" size="sm">
               <Link href={v0Url} rel="noopener noreferrer" target="_blank">
                 Open in<span className="sr-only">v0</span>
@@ -78,15 +85,16 @@ export function ComponentSourceSheetContent({
               </Link>
             </Button>
           </div>
-          <div className="bg-site-code border-site-border site-rounded-md relative flex-1 grow overflow-hidden border">
-            <ComponentSourceClient
-              className="*:data-rehype-pretty-code-figure:no-scrollbar no-scrollbar h-full overflow-auto *:data-rehype-pretty-code-figure:mt-0 *:data-rehype-pretty-code-figure:max-h-full *:data-rehype-pretty-code-figure:overflow-y-auto"
-              collapsible={false}
-              styleName={styleName}
-              iconLibrary={config.iconLibrary}
-              name={name}
-              eventName="copy_component_code"
-            />
+          <div className="bg-site-code border-site-border site-rounded-lg relative flex min-h-0 flex-1 flex-col overflow-hidden border shadow-sm shadow-black/5">
+            <ScrollArea className="min-h-0 flex-1">
+              <ComponentSourceSheetCode
+                className="min-h-full *:data-rehype-pretty-code-figure:mx-0 *:data-rehype-pretty-code-figure:mt-0 *:data-rehype-pretty-code-figure:max-h-none *:data-rehype-pretty-code-figure:rounded-none *:data-rehype-pretty-code-figure:border-0 *:data-rehype-pretty-code-figure:bg-transparent"
+                styleName={styleName}
+                iconLibrary={config.iconLibrary}
+                name={name}
+              />
+              <ScrollBar orientation="horizontal" />
+            </ScrollArea>
           </div>
         </div>
       </div>

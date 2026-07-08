@@ -1,6 +1,3 @@
-// Description: A combobox used within a form
-// Order: 11
-
 "use client"
 
 import { FormEvent } from "react"

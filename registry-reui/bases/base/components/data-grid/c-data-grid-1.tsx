@@ -1,11 +1,6 @@
-// Description: Data grid with pagination
-// GridSize: 1
-// Order: 1
-
 "use client"
 
 import { useMemo, useState } from "react"
-import Link from "next/link"
 import {
   DataGrid,
   DataGridContainer,
@@ -189,9 +184,7 @@ export default function Pattern() {
       {
         accessorKey: "name",
         header: "Name",
-        cell: (info) => (
-          <span className="font-medium">{info.getValue() as string}</span>
-        ),
+        cell: (info) => <>{info.getValue() as string}</>,
         size: 150,
         meta: {
           headerClassName: "",
@@ -203,12 +196,12 @@ export default function Pattern() {
         header: "Email",
         cell: (info) => (
           <div className="truncate">
-            <Link
+            <a
               href={`mailto:${info.getValue()}`}
               className="hover:text-primary truncate hover:underline"
             >
               {info.getValue() as string}
-            </Link>
+            </a>
           </div>
         ),
         size: 150,
@@ -227,9 +220,7 @@ export default function Pattern() {
               alt={row.original.flag}
               className="size-4 rounded-full object-cover"
             />
-            <div className="text-foreground font-medium">
-              {row.original.location}
-            </div>
+            <div className="text-foreground">{row.original.location}</div>
           </div>
         ),
         size: 175,
@@ -241,12 +232,8 @@ export default function Pattern() {
       {
         accessorKey: "balance",
         header: "Balance ($)",
-        cell: (info) => (
-          <span className="font-semibold">
-            ${(info.getValue() as number).toFixed(2)}
-          </span>
-        ),
-        size: 120,
+        cell: (info) => <>${(info.getValue() as number).toFixed(2)}</>,
+        size: 100,
         meta: {
           headerClassName: "text-right rtl:text-left",
           cellClassName: "text-right rtl:text-left",

@@ -1,8 +1,3 @@
-// Description: A combobox rendered inside a popup
-// Order: 10
-
-import Image from "next/image"
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   Combobox,
@@ -41,7 +36,7 @@ export default function Pattern() {
           <ComboboxValue>
             {(item: (typeof countries)[number]) => (
               <span className="flex items-center gap-2">
-                <Image
+                <img
                   src={`https://flagcdn.com/${item.code.toLowerCase()}.svg`}
                   alt=""
                   width={16}
@@ -59,7 +54,7 @@ export default function Pattern() {
           <ComboboxList>
             {(item) => (
               <ComboboxItem key={item.code} value={item}>
-                <Image
+                <img
                   src={`https://flagcdn.com/${item.code.toLowerCase()}.svg`}
                   alt=""
                   width={16}

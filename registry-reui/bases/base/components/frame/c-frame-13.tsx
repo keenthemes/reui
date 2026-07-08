@@ -1,6 +1,3 @@
-// Description: Frame with small border radius
-// Order: 13
-
 import {
   Frame,
   FrameDescription,

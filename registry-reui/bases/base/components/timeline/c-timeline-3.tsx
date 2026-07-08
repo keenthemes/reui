@@ -1,7 +1,3 @@
-// Description: Timeline with order status.
-// Order: 3
-// GridSize: 1
-
 import {
   Timeline,
   TimelineContent,

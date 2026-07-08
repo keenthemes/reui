@@ -1,6 +1,3 @@
-// Description: Toggle group for font size
-// Order: 11
-
 import {
   ToggleGroup,
   ToggleGroupItem,

@@ -1,6 +1,3 @@
-// Description: Basic tooltip.
-// Order: 1
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   Tooltip,

@@ -1,7 +1,3 @@
-// Description: Sortable image gallery grid with frame
-// Order: 7
-// GridSize: 1
-
 "use client"
 
 import { useState } from "react"
@@ -56,7 +52,7 @@ export default function Pattern() {
           >
             {images.map((image) => (
               <SortableItem key={image.id} value={image.id}>
-                <div className="bg-muted group style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-3xl style-mira:rounded-lg relative flex flex-col items-center justify-center gap-2 border p-4">
+                <div className="bg-muted group rounded-lg relative flex flex-col items-center justify-center gap-2 border p-4">
                   <SortableItemHandle className="text-muted-foreground hover:text-foreground absolute top-1.5 right-1.5 opacity-0 transition-opacity group-hover:opacity-100">
                     <IconPlaceholder
                       lucide="GripVerticalIcon"

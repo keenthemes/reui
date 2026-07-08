@@ -1,7 +1,3 @@
-// Description: Timeline with milestones.
-// Order: 5
-// GridSize: 1
-
 import {
   Timeline,
   TimelineDate,

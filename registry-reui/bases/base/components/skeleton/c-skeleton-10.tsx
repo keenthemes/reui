@@ -1,7 +1,3 @@
-// Description: Skeleton loader for chat messages
-// Order: 10
-// GridSize: 1
-
 import { Card, CardContent } from "@/registry/bases/base/ui/card"
 import { Skeleton } from "@/registry/bases/base/ui/skeleton"
 

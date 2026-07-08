@@ -1,6 +1,3 @@
-// Description: Emoji reaction rating
-// Order: 8
-
 "use client"
 
 import { useState } from "react"
@@ -28,7 +25,7 @@ export default function Pattern() {
             type="button"
             onClick={() => setSelected(item.value)}
             className={cn(
-              "style-vega:rounded-lg style-lyra:rounded-none style-maia:rounded-lg style-nova:rounded-lg style-mira:rounded-md flex size-10 items-center justify-center border-2 text-2xl transition-all",
+              "rounded-lg flex size-10 items-center justify-center border-2 text-2xl transition-all",
               selected === item.value
                 ? "border-border bg-muted scale-110"
                 : "hover:bg-muted border-transparent"

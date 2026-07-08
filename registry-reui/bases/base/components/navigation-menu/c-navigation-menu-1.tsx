@@ -1,8 +1,3 @@
-// Description: Basic navigation menu.
-// Order: 1
-
-import Link from "next/link"
-
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -23,7 +18,7 @@ export default function Pattern() {
             <NavigationMenuContent>
               <ul className="w-80">
                 <li>
-                  <NavigationMenuLink render={<Link href="#" />}>
+                  <NavigationMenuLink render={<a href="#" />}>
                     <div className="flex flex-col gap-1 px-1">
                       <div className="font-medium">Introduction</div>
                       <div className="text-muted-foreground line-clamp-2 text-sm">
@@ -33,7 +28,7 @@ export default function Pattern() {
                   </NavigationMenuLink>
                 </li>
                 <li>
-                  <NavigationMenuLink render={<Link href="#" />}>
+                  <NavigationMenuLink render={<a href="#" />}>
                     <div className="flex flex-col gap-1 px-1">
                       <div className="font-medium">Installation</div>
                       <div className="text-muted-foreground line-clamp-2 text-sm">
@@ -47,7 +42,7 @@ export default function Pattern() {
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuLink
-              render={<Link href="#" />}
+              render={<a href="#" />}
               className={navigationMenuTriggerStyle()}
             >
               Documentation

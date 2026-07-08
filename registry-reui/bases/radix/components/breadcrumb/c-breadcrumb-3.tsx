@@ -1,8 +1,3 @@
-// Description: Breadcrumb with Next.js link
-// Order: 3
-
-import Link from "next/link"
-
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -18,13 +13,13 @@ export default function Pattern() {
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <Link href="#">Home</Link>
+            <a href="#">Home</a>
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <Link href="#">Components</Link>
+            <a href="#">Components</a>
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />

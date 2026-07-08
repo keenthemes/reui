@@ -1,6 +1,3 @@
-// Description: Bug priority pie with stripe patterns
-// Order: 21
-
 "use client"
 
 import { CSSProperties } from "react"

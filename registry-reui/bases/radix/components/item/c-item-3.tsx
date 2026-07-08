@@ -1,6 +1,3 @@
-// Description: User item with avatar, info, and follow button
-// Order: 3
-
 import {
   Avatar,
   AvatarFallback,

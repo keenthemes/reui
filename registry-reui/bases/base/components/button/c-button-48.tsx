@@ -1,6 +1,3 @@
-// Description: Icon button with notification badge
-// Order: 48
-
 import { Badge } from "@/registry-reui/bases/base/reui/badge"
 
 import { Button } from "@/registry/bases/base/ui/button"

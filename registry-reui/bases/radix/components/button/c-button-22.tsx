@@ -1,6 +1,3 @@
-// Description: Destructive button with an icon on the left
-// Order: 22
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 

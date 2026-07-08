@@ -1,6 +1,3 @@
-// Description: Dialog with custom close button
-// Order: 5
-
 import { cn } from "@/registry/bases/base/lib/utils"
 import { Button } from "@/registry/bases/base/ui/button"
 import {

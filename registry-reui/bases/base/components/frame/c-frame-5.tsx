@@ -1,6 +1,3 @@
-// Description: Frame with collapsible panels
-// Order: 5
-
 import {
   Frame,
   FrameHeader,

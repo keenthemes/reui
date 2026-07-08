@@ -1,6 +1,3 @@
-// Description: Dialog with scrollable content and sticky footer.
-// Order: 3
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   Dialog,
@@ -27,11 +24,11 @@ export default function Pattern() {
               This is a dialog with scrollable content.
             </DialogDescription>
           </DialogHeader>
-          <div className="style-nova:-mx-4 style-nova:px-4 no-scrollbar style-vega:px-6 style-mira:px-4 style-maia:px-6 style-vega:-mx-6 style-maia:-mx-6 style-mira:-mx-4 style-lyra:-mx-4 style-lyra:px-4 max-h-[70vh] overflow-y-auto">
+          <div className="-mx-4 px-4 no-scrollbar max-h-[70vh] overflow-y-auto">
             {Array.from({ length: 10 }).map((_, index) => (
               <p
                 key={index}
-                className="style-lyra:mb-2 style-lyra:leading-relaxed mb-4 leading-normal"
+                className="mb-4 leading-normal"
               >
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut

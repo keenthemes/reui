@@ -1,0 +1,86 @@
+[
+  {
+    "name": "c-switch-1",
+    "title": "Basic switch.",
+    "description": "Basic switch.",
+    "order": 1
+  },
+  {
+    "name": "c-switch-2",
+    "title": "Switch with description.",
+    "description": "Switch with description.",
+    "order": 2
+  },
+  {
+    "name": "c-switch-3",
+    "title": "Disabled switch.",
+    "description": "Disabled switch.",
+    "order": 3
+  },
+  {
+    "name": "c-switch-4",
+    "title": "Switch in different sizes.",
+    "description": "Switch in different sizes.",
+    "order": 4
+  },
+  {
+    "name": "c-switch-5",
+    "title": "Switch group",
+    "description": "Switch group",
+    "order": 5
+  },
+  {
+    "name": "c-switch-6",
+    "title": "Switch list in card with separators",
+    "description": "Switch list in card with separators",
+    "order": 6
+  },
+  {
+    "name": "c-switch-7",
+    "title": "Switch list in card with icons",
+    "description": "Switch list in card with icons",
+    "order": 7
+  },
+  {
+    "name": "c-switch-8",
+    "title": "Switch in frame",
+    "description": "Switch in frame",
+    "order": 8
+  },
+  {
+    "name": "c-switch-9",
+    "title": "Switch with tooltip info",
+    "description": "Switch with tooltip info",
+    "order": 9
+  },
+  {
+    "name": "c-switch-10",
+    "title": "Switch with badges",
+    "description": "Switch with badges",
+    "order": 10
+  },
+  {
+    "name": "c-switch-11",
+    "title": "Colored switches",
+    "description": "Colored switches",
+    "order": 11
+  },
+  {
+    "name": "c-switch-12",
+    "title": "Destructive switch with confirmation text",
+    "description": "Destructive switch with confirmation text",
+    "order": 12
+  },
+  {
+    "name": "c-switch-13",
+    "title": "Compact settings table with switches",
+    "description": "Compact settings table with switches",
+    "order": 13
+  },
+  {
+    "name": "c-switch-14",
+    "title": "Switch with descriptions in card grid",
+    "description": "Switch with descriptions in card grid",
+    "order": 14
+  }
+]

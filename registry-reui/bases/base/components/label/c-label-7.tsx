@@ -1,6 +1,3 @@
-// Description: Label with tooltip info icon
-// Order: 7
-
 import { Field } from "@/registry/bases/base/ui/field"
 import { Input } from "@/registry/bases/base/ui/input"
 import { Label } from "@/registry/bases/base/ui/label"

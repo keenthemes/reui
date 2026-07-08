@@ -1,6 +1,3 @@
-// Description: Agent mode selector with credit cap dropdown
-// Order: 57
-
 "use client"
 
 import { useState } from "react"

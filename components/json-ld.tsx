@@ -1,17 +1,10 @@
 import { stringifyJsonLd } from "@/lib/json-ld"
 
-interface JsonLdProps {
-  data: Record<string, unknown>
-}
-
-export function JsonLd({ data }: JsonLdProps) {
+export function JsonLd({ data }: { data: Record<string, unknown> }) {
   return (
-    <div
-      hidden
-      suppressHydrationWarning
-      dangerouslySetInnerHTML={{
-        __html: `<script type="application/ld+json">${stringifyJsonLd(data)}</script>`,
-      }}
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: stringifyJsonLd(data) }}
     />
   )
 }

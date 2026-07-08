@@ -1,5 +1,6 @@
 import type { source } from "@/lib/source"
 import { DEFAULT_CONFIG } from "@/hooks/use-config"
+import type { BaseName } from "@/registry/config"
 
 export type PageTreeNode = (typeof source.pageTree)["children"][number]
 export type PageTreeFolder = Extract<PageTreeNode, { type: "folder" }>
@@ -56,11 +57,11 @@ export function getPagesFromFolder(
   )
 }
 
-// Get current base (radix or base) from pathname.
-// Component docs: /docs/components/radix/alert | /docs/components/base/alert
-export function getCurrentBase(pathname: string): string {
-  const baseMatch =
-    pathname.match(/\/docs\/components\/(radix|base)(?:\/|$)/) ??
-    pathname.match(/\/docs\/(radix|base)(?:\/|$)/)
-  return baseMatch ? baseMatch[1] : DEFAULT_CONFIG.base
+// Get current base (radix or base) from pathname, with config fallback.
+export function getCurrentBase(
+  pathname: string,
+  fallbackBase: BaseName = DEFAULT_CONFIG.base
+): BaseName {
+  const baseMatch = pathname.match(/\/docs\/components\/(radix|base)\//)
+  return (baseMatch ? baseMatch[1] : fallbackBase) as BaseName
 }

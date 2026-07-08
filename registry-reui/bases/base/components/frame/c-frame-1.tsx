@@ -1,6 +1,3 @@
-// Description: Basic frame
-// Order: 1
-
 import {
   Frame,
   FrameDescription,

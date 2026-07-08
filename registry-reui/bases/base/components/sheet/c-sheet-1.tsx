@@ -1,6 +1,3 @@
-// Description: Sheet containing a form for editing profile information.
-// Order: 1
-
 import { Button } from "@/registry/bases/base/ui/button"
 import { Field, FieldGroup, FieldLabel } from "@/registry/bases/base/ui/field"
 import { Input } from "@/registry/bases/base/ui/input"

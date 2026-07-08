@@ -1,6 +1,3 @@
-// Description: Select component with grouped options and labels
-// Order: 3
-
 import { Field } from "@/registry/bases/base/ui/field"
 import {
   Select,

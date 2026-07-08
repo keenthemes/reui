@@ -1,6 +1,3 @@
-// Description: Avatar with a distinct border ring
-// Order: 13
-
 import {
   Avatar,
   AvatarFallback,

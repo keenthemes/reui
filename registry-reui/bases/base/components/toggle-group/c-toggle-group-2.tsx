@@ -1,6 +1,3 @@
-// Description: Toggle group with outline variant.
-// Order: 2
-
 import {
   ToggleGroup,
   ToggleGroupItem,

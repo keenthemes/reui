@@ -1,6 +1,3 @@
-// Description: User profile dropdown menu with theme toggle and status selector
-// Order: 14
-
 "use client"
 
 import { useState } from "react"

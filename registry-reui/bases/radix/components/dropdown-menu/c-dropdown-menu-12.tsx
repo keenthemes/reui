@@ -1,6 +1,3 @@
-// Description: Actions dropdown menu
-// Order: 12
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   DropdownMenu,

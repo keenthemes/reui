@@ -1,6 +1,3 @@
-// Description: Frame with ghost variant
-// Order: 6
-
 import {
   Frame,
   FrameDescription,

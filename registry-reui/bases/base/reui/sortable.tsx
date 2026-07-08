@@ -287,52 +287,42 @@ function SortableItem({
     animateLayoutChanges,
   })
 
-  if (isOverlay) {
-    const defaultProps = {
-      "data-slot": "sortable-item",
-      "data-value": value,
-      "data-dragging": true,
-      className: cn(className),
-      children: props.children,
-    }
-
-    return (
-      <SortableItemContext.Provider
-        value={{ listeners: undefined, isDragging: true, disabled: false }}
-      >
-        {useRender({
-          defaultTagName: "div",
-          render,
-          props: mergeProps<"div">(defaultProps, props),
-        })}
-      </SortableItemContext.Provider>
-    )
-  }
-
   const style = {
     transition,
     transform: CSS.Transform.toString(transform),
   } as CSSProperties
 
-  const defaultProps = {
-    "data-slot": "sortable-item",
-    "data-value": value,
-    "data-dragging": isSortableDragging,
-    "data-disabled": disabled,
-    ref: setNodeRef,
-    style,
-    ...attributes,
-    className: cn(
-      isSortableDragging && "opacity-50 z-50",
-      disabled && "opacity-50",
-      className
-    ),
-    children: props.children,
-  }
+  const defaultProps = isOverlay
+    ? {
+        "data-slot": "sortable-item",
+        "data-value": value,
+        "data-dragging": true,
+        className: cn(className),
+        children: props.children,
+      }
+    : {
+        "data-slot": "sortable-item",
+        "data-value": value,
+        "data-dragging": isSortableDragging,
+        "data-disabled": disabled,
+        ref: setNodeRef,
+        style,
+        ...attributes,
+        className: cn(
+          isSortableDragging && "opacity-50 z-50",
+          disabled && "opacity-50",
+          className
+        ),
+        children: props.children,
+      }
 
   return (
     <SortableItemContext.Provider
-      value={{ listeners, isDragging: isSortableDragging, disabled }}
+      value={
+        isOverlay
+          ? { listeners: undefined, isDragging: true, disabled: false }
+          : { listeners, isDragging: isSortableDragging, disabled }
+      }
     >
       {useRender({
         defaultTagName: "div",

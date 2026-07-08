@@ -1,0 +1,122 @@
+[
+  {
+    "name": "c-empty-1",
+    "title": "Basic empty state",
+    "description": "Basic empty state",
+    "order": 1
+  },
+  {
+    "name": "c-empty-2",
+    "title": "Search empty state",
+    "description": "Search empty state",
+    "order": 2
+  },
+  {
+    "name": "c-empty-3",
+    "title": "Empty state with search input",
+    "description": "Empty state with search input",
+    "order": 3
+  },
+  {
+    "name": "c-empty-4",
+    "title": "Empty state with add button",
+    "description": "Empty state with add button",
+    "order": 4
+  },
+  {
+    "name": "c-empty-5",
+    "title": "Document empty state",
+    "description": "Document empty state",
+    "order": 5
+  },
+  {
+    "name": "c-empty-6",
+    "title": "Dashed upload empty state",
+    "description": "Dashed upload empty state",
+    "order": 6
+  },
+  {
+    "name": "c-empty-7",
+    "title": "Inbox empty state",
+    "description": "Inbox empty state",
+    "order": 7
+  },
+  {
+    "name": "c-empty-8",
+    "title": "Team members empty state",
+    "description": "Team members empty state",
+    "order": 8
+  },
+  {
+    "name": "c-empty-9",
+    "title": "No notifications empty state",
+    "description": "No notifications empty state",
+    "order": 9
+  },
+  {
+    "name": "c-empty-10",
+    "title": "No data analytics empty state",
+    "description": "No data analytics empty state",
+    "order": 10
+  },
+  {
+    "name": "c-empty-11",
+    "title": "Bookmarks empty state",
+    "description": "Bookmarks empty state",
+    "order": 11
+  },
+  {
+    "name": "c-empty-12",
+    "title": "Tasks empty state",
+    "description": "Tasks empty state",
+    "order": 12
+  },
+  {
+    "name": "c-empty-13",
+    "title": "No automations empty state with toggle illustration",
+    "description": "No automations empty state with toggle illustration",
+    "order": 13
+  },
+  {
+    "name": "c-empty-14",
+    "title": "Comments empty state with isometric board illustration",
+    "description": "Comments empty state with isometric board illustration",
+    "order": 14
+  },
+  {
+    "name": "c-empty-15",
+    "title": "No products empty state with stacked cards and blur effect",
+    "description": "No products empty state with stacked cards and blur effect",
+    "order": 15
+  },
+  {
+    "name": "c-empty-16",
+    "title": "Search empty state with stacked file cards illustration",
+    "description": "Search empty state with stacked file cards illustration",
+    "order": 16
+  },
+  {
+    "name": "c-empty-17",
+    "title": "No messages empty state with chat bubbles illustration",
+    "description": "No messages empty state with chat bubbles illustration",
+    "order": 17
+  },
+  {
+    "name": "c-empty-18",
+    "title": "No payments empty state with credit card illustration",
+    "description": "No payments empty state with credit card illustration",
+    "order": 18
+  },
+  {
+    "name": "c-empty-19",
+    "title": "No integrations empty state with connected nodes illustration",
+    "description": "No integrations empty state with connected nodes illustration",
+    "order": 19
+  },
+  {
+    "name": "c-empty-20",
+    "title": "No events empty state with calendar illustration",
+    "description": "No events empty state with calendar illustration",
+    "order": 20
+  }
+]

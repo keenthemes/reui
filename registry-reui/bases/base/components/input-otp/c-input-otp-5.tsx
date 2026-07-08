@@ -1,6 +1,3 @@
-// Description: OTP input for PIN codes.
-// Order: 5
-
 import { REGEXP_ONLY_DIGITS } from "input-otp"
 
 import {

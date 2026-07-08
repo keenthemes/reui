@@ -1,6 +1,3 @@
-// Description: Frame with default border radius
-// Order: 16
-
 import {
   Frame,
   FrameDescription,

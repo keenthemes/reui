@@ -1,6 +1,3 @@
-// Description: Input group with block-start addon
-// Order: 16
-
 import { Field } from "@/registry/bases/base/ui/field"
 import {
   InputGroup,

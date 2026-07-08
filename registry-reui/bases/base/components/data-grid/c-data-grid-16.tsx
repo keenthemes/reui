@@ -1,11 +1,6 @@
-// Description: Data grid with pinnable columns
-// GridSize: 1
-// Order: 16
-
 "use client"
 
 import { useMemo, useState } from "react"
-import Link from "next/link"
 import { Badge } from "@/registry-reui/bases/base/reui/badge"
 import {
   DataGrid,
@@ -31,6 +26,7 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/registry/bases/base/ui/avatar"
+import { Card } from "@/registry/bases/base/ui/card"
 
 interface IData {
   id: string
@@ -262,18 +258,21 @@ export default function Pattern() {
                     .join("")}
                 </AvatarFallback>
               </Avatar>
-              <Link
+              <a
                 href="#"
                 className="text-foreground hover:text-primary font-medium"
               >
                 {row.original.name}
-              </Link>
+              </a>
             </div>
           )
         },
-        size: 400,
+        minSize: 200,
         enableSorting: true,
         enableHiding: false,
+        meta: {
+          autoSize: true,
+        },
       },
       {
         accessorKey: "email",
@@ -281,14 +280,14 @@ export default function Pattern() {
           <DataGridColumnHeader title="Email" column={column} />
         ),
         cell: (info) => (
-          <Link
+          <a
             href={`mailto:${info.getValue()}`}
             className="hover:text-primary hover:underline"
           >
             {info.getValue() as string}
-          </Link>
+          </a>
         ),
-        size: 400,
+        size: 200,
       },
       {
         accessorKey: "location",
@@ -312,6 +311,38 @@ export default function Pattern() {
         size: 200,
       },
       {
+        accessorKey: "company",
+        header: ({ column }) => (
+          <DataGridColumnHeader title="Company" column={column} />
+        ),
+        cell: ({ row }) => (
+          <div className="text-foreground font-medium">
+            {row.original.company}
+          </div>
+        ),
+        size: 220,
+      },
+      {
+        accessorKey: "role",
+        header: ({ column }) => (
+          <DataGridColumnHeader title="Role" column={column} />
+        ),
+        cell: ({ row }) => (
+          <div className="text-muted-foreground">{row.original.role}</div>
+        ),
+        size: 220,
+      },
+      {
+        accessorKey: "joined",
+        header: ({ column }) => (
+          <DataGridColumnHeader title="Joined" column={column} />
+        ),
+        cell: ({ row }) => (
+          <div className="text-muted-foreground">{row.original.joined}</div>
+        ),
+        size: 160,
+      },
+      {
         accessorKey: "status",
         id: "status",
         header: ({ column }) => (
@@ -326,8 +357,23 @@ export default function Pattern() {
             return <Badge variant="warning-outline">Pending</Badge>
           }
         },
-        size: 200,
-        enableResizing: false,
+        size: 180,
+      },
+      {
+        accessorKey: "balance",
+        header: ({ column }) => (
+          <DataGridColumnHeader title="Balance" column={column} />
+        ),
+        cell: ({ row }) => (
+          <div className="text-right font-medium tabular-nums">
+            {new Intl.NumberFormat("en-US", {
+              style: "currency",
+              currency: "USD",
+              maximumFractionDigits: 2,
+            }).format(row.original.balance)}
+          </div>
+        ),
+        size: 160,
       },
     ],
     []
@@ -366,11 +412,13 @@ export default function Pattern() {
       }}
     >
       <div className="w-full space-y-2.5">
-        <DataGridContainer>
-          <DataGridScrollArea>
-            <DataGridTable />
-          </DataGridScrollArea>
-        </DataGridContainer>
+        <Card className="p-0">
+          <DataGridContainer>
+            <DataGridScrollArea>
+              <DataGridTable />
+            </DataGridScrollArea>
+          </DataGridContainer>
+        </Card>
         <DataGridPagination />
       </div>
     </DataGrid>

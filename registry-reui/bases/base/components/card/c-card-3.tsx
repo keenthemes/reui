@@ -1,6 +1,3 @@
-// Description: Card with border separation
-// Order: 3
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   Card,

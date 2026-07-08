@@ -1,6 +1,3 @@
-// Description: Calendar with date picker
-// Order: 24
-
 "use client"
 
 import { useId, useState } from "react"

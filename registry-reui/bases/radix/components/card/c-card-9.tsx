@@ -1,7 +1,3 @@
-// Description: Card with full image
-// Order: 9
-
-import Image from "next/image"
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import { Button } from "@/registry/bases/radix/ui/button"
@@ -13,11 +9,12 @@ export default function Pattern() {
     <Card className="w-full max-w-xs p-0">
       <CardContent className="flex flex-col gap-5 p-0">
         <div className="relative h-48 w-full overflow-hidden">
-          <Image
+          <img
             src="https://picsum.photos/1000/800?grayscale&random=52"
             alt="16:9"
-            fill
-            className="object-cover"
+            width={1000}
+            height={800}
+            className="h-full w-full object-cover"
           />
         </div>
 

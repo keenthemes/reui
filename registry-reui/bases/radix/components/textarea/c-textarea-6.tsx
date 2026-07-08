@@ -1,6 +1,3 @@
-// Description: Auto-resize textarea with character count
-// Order: 6
-
 "use client"
 
 import { useCallback, useRef, useState } from "react"

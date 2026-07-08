@@ -1,6 +1,3 @@
-// Description: Large progress.
-// Order: 3
-
 import {
   Progress,
   ProgressLabel,

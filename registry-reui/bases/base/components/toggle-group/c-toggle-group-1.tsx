@@ -1,6 +1,3 @@
-// Description: Basic toggle group.
-// Order: 1
-
 import {
   ToggleGroup,
   ToggleGroupItem,

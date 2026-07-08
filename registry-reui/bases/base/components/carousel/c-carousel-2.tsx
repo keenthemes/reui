@@ -1,8 +1,3 @@
-// Description: Vertical carousel orientation
-// Order: 2
-
-import Image from "next/image"
-
 import { Card } from "@/registry/bases/base/ui/card"
 import {
   Carousel,
@@ -27,11 +22,12 @@ export default function Pattern() {
             <CarouselItem key={index} className="basis-1/2 pt-1">
               <div className="p-1">
                 <Card className="relative h-[145px] overflow-hidden border-0 p-0">
-                  <Image
+                  <img
                     src={`https://picsum.photos/600/300?grayscale&random=${index + 10}`}
                     alt={`Slide ${index + 1}`}
-                    fill
-                    className="object-cover"
+                    width={600}
+                    height={300}
+                    className="h-full w-full object-cover"
                   />
                 </Card>
               </div>

@@ -1,6 +1,3 @@
-// Description: Confirmation for successful e-ticket registration
-// Order: 10
-
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -22,7 +19,7 @@ export default function Pattern() {
       />
       <AlertDialogContent className="gap-8 p-8 sm:max-w-sm">
         <div className="mx-auto flex flex-col items-center justify-center gap-2">
-          <AlertDialogMedia className="bg-info/10 text-info dark:bg-info/20 style-vega:rounded-full style-nova:rounded-full style-lyra:rounded-none style-maia:rounded-full style-mira:rounded-full size-16">
+          <AlertDialogMedia className="bg-info/10 text-info dark:bg-info/20 rounded-full size-16">
             <IconPlaceholder
               lucide="CheckIcon"
               tabler="IconCheck"
@@ -41,7 +38,7 @@ export default function Pattern() {
           </AlertDialogDescription>
         </div>
 
-        <div className="bg-muted/60 style-vega:rounded-xl style-nova:rounded-xl style-lyra:rounded-none style-maia:rounded-4xl style-mira:rounded-md grid gap-4 p-4">
+        <div className="bg-muted/60 rounded-xl grid gap-4 p-4">
           {[
             ["Order Number", "GBD99763JS"],
             ["Order Date", "7 September 2024"],

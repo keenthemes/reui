@@ -1,8 +1,7 @@
 "use client"
 
-import { PanelRightClose } from "lucide-react"
+import { PanelLeftClose } from "lucide-react"
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Kbd } from "@/components/ui/kbd"
 import {
@@ -19,31 +18,27 @@ export function CustomizerSidebarHeader() {
   return (
     <div className="border-site-border/80 flex h-[51px] shrink-0 items-center justify-between overflow-hidden border-b px-4">
       <div className="min-w-0 flex-1 whitespace-nowrap">
-        <h2 className="text-site-foreground inline-flex items-center gap-1 font-medium">
-          <Avatar className="size-4">
-            <AvatarImage src="https://github.com/shadcn.png" />
-            <AvatarFallback>CN</AvatarFallback>
-          </Avatar>
-          <span className="text-xs leading-none">/</span>
-          <span className="text-sm leading-none">create</span>
+        <h2 className="text-site-foreground text-sm font-semibold leading-none">
+          Customize
         </h2>
-        <p className="text-site-muted-foreground text-xs leading-none">
-          Adjust shadcn styles
-        </p>
       </div>
-      <Tooltip>
+      {/* `delayDuration={700}` + `sideOffset={8}` match the blocks
+          customizer header — see that file for rationale. */}
+      <Tooltip delayDuration={700}>
         <TooltipTrigger asChild>
           <Button
             variant="ghost"
             size="icon-sm"
             onClick={toggleCustomizer}
+            aria-label="Close customizer"
             className="shrink-0 opacity-60 hover:bg-transparent hover:opacity-100"
           >
-            <PanelRightClose />
+            <PanelLeftClose />
           </Button>
         </TooltipTrigger>
-        <TooltipContent className="flex items-center gap-2 pr-1">
-          Close sidebar <Kbd>C</Kbd>
+        <TooltipContent side="right" sideOffset={8}>
+          Close customizer
+          <Kbd className="ml-2">C</Kbd>
         </TooltipContent>
       </Tooltip>
     </div>

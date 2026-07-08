@@ -1,0 +1,37 @@
+[
+  {
+    "name": "c-kanban-1",
+    "title": "Kanban board with placeholder overlay",
+    "description": "Kanban board with placeholder overlay",
+    "order": 1,
+    "gridSize": 1
+  },
+  {
+    "name": "c-kanban-2",
+    "title": "Kanban board with dynamic overlay",
+    "description": "Kanban board with dynamic overlay",
+    "order": 2,
+    "gridSize": 1
+  },
+  {
+    "name": "c-kanban-3",
+    "title": "Kanban board with frame columns",
+    "description": "Kanban board with frame columns",
+    "order": 3,
+    "gridSize": 1
+  },
+  {
+    "name": "c-kanban-4",
+    "title": "Minimal kanban with stacked frame",
+    "description": "Minimal kanban with stacked frame",
+    "order": 4,
+    "gridSize": 1
+  },
+  {
+    "name": "c-kanban-5",
+    "title": "Feature roadmap kanban with progress",
+    "description": "Feature roadmap kanban with progress",
+    "order": 5,
+    "gridSize": 1
+  }
+]

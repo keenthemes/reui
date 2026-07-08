@@ -1,0 +1,348 @@
+{
+  "items": [
+    {
+      "name": "c-switch-1",
+      "type": "registry:block",
+      "title": "Basic switch.",
+      "categories": [
+        "switch"
+      ],
+      "description": "Basic switch.",
+      "registryDependencies": [
+        "field",
+        "switch"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/switch/c-switch-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-switch-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-switch-2",
+      "type": "registry:block",
+      "title": "Switch with description.",
+      "categories": [
+        "switch"
+      ],
+      "description": "Switch with description.",
+      "registryDependencies": [
+        "field",
+        "switch"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/switch/c-switch-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-switch-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-switch-3",
+      "type": "registry:block",
+      "title": "Disabled switch.",
+      "categories": [
+        "switch"
+      ],
+      "description": "Disabled switch.",
+      "registryDependencies": [
+        "label",
+        "switch"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/switch/c-switch-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-switch-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-switch-4",
+      "type": "registry:block",
+      "title": "Switch in different sizes.",
+      "categories": [
+        "switch"
+      ],
+      "description": "Switch in different sizes.",
+      "registryDependencies": [
+        "label",
+        "switch"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/switch/c-switch-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-switch-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-switch-5",
+      "type": "registry:block",
+      "title": "Switch group",
+      "categories": [
+        "switch"
+      ],
+      "description": "Switch group",
+      "registryDependencies": [
+        "field",
+        "switch"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/switch/c-switch-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-switch-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-switch-6",
+      "type": "registry:block",
+      "title": "Switch list in card with separators",
+      "categories": [
+        "switch"
+      ],
+      "description": "Switch list in card with separators",
+      "registryDependencies": [
+        "card",
+        "field",
+        "separator",
+        "switch"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/switch/c-switch-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-switch-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-switch-7",
+      "type": "registry:block",
+      "title": "Switch list in card with icons",
+      "categories": [
+        "switch"
+      ],
+      "description": "Switch list in card with icons",
+      "registryDependencies": [
+        "card",
+        "field",
+        "separator",
+        "switch"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/switch/c-switch-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-switch-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-switch-8",
+      "type": "registry:block",
+      "title": "Switch in frame",
+      "categories": [
+        "switch"
+      ],
+      "description": "Switch in frame",
+      "registryDependencies": [
+        "field",
+        "frame",
+        "separator",
+        "switch"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/switch/c-switch-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-switch-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-switch-9",
+      "type": "registry:block",
+      "title": "Switch with tooltip info",
+      "categories": [
+        "switch"
+      ],
+      "description": "Switch with tooltip info",
+      "registryDependencies": [
+        "field",
+        "switch",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/switch/c-switch-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-switch-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-switch-10",
+      "type": "registry:block",
+      "title": "Switch with badges",
+      "categories": [
+        "switch"
+      ],
+      "description": "Switch with badges",
+      "registryDependencies": [
+        "badge",
+        "field",
+        "switch"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/switch/c-switch-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-switch-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-switch-11",
+      "type": "registry:block",
+      "title": "Colored switches",
+      "categories": [
+        "switch"
+      ],
+      "description": "Colored switches",
+      "registryDependencies": [
+        "field",
+        "switch"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/switch/c-switch-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-switch-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    },
+    {
+      "name": "c-switch-12",
+      "type": "registry:block",
+      "title": "Destructive switch with confirmation text",
+      "categories": [
+        "switch"
+      ],
+      "description": "Destructive switch with confirmation text",
+      "registryDependencies": [
+        "field",
+        "switch"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/switch/c-switch-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-switch-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12
+      }
+    },
+    {
+      "name": "c-switch-13",
+      "type": "registry:block",
+      "title": "Compact settings table with switches",
+      "categories": [
+        "switch"
+      ],
+      "description": "Compact settings table with switches",
+      "registryDependencies": [
+        "separator",
+        "switch"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/switch/c-switch-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-switch-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13
+      }
+    },
+    {
+      "name": "c-switch-14",
+      "type": "registry:block",
+      "title": "Switch with descriptions in card grid",
+      "categories": [
+        "switch"
+      ],
+      "description": "Switch with descriptions in card grid",
+      "registryDependencies": [
+        "field",
+        "switch"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/switch/c-switch-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-switch-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14
+      }
+    }
+  ]
+}

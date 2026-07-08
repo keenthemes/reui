@@ -1,6 +1,3 @@
-// Description: Select with custom access level descriptions
-// Order: 16
-
 import { Field } from "@/registry/bases/base/ui/field"
 import {
   Select,

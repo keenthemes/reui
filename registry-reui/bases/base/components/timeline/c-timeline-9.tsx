@@ -1,7 +1,3 @@
-// Description: Horizontal timeline with leading labels
-// Order: 9
-// GridSize: 1
-
 "use client"
 
 import {

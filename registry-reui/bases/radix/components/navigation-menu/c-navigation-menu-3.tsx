@@ -1,8 +1,3 @@
-// Description: Navigation menu with icons.
-// Order: 3
-
-import Link from "next/link"
-
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -24,7 +19,7 @@ export default function Pattern() {
               <ul className="grid w-[200px] gap-2">
                 <li>
                   <NavigationMenuLink asChild>
-                    <Link href="#" className="flex items-center gap-2">
+                    <a href="#" className="flex items-center gap-2">
                       <IconPlaceholder
                         lucide="CircleAlertIcon"
                         tabler="IconAlertCircle"
@@ -33,12 +28,12 @@ export default function Pattern() {
                         remixicon="RiErrorWarningLine"
                       />
                       Backlog
-                    </Link>
+                    </a>
                   </NavigationMenuLink>
                 </li>
                 <li>
                   <NavigationMenuLink asChild>
-                    <Link href="#" className="flex items-center gap-2">
+                    <a href="#" className="flex items-center gap-2">
                       <IconPlaceholder
                         lucide="CircleCheckIcon"
                         tabler="IconCircleCheck"
@@ -47,7 +42,7 @@ export default function Pattern() {
                         remixicon="RiCheckboxCircleLine"
                       />
                       Done
-                    </Link>
+                    </a>
                   </NavigationMenuLink>
                 </li>
               </ul>

@@ -1,8 +1,3 @@
-// Description: Carousel with centered slide alignment
-// Order: 6
-
-import Image from "next/image"
-
 import { Card } from "@/registry/bases/base/ui/card"
 import {
   Carousel,
@@ -26,11 +21,12 @@ export default function Pattern() {
           <CarouselItem key={index} className="basis-[70%]">
             <div className="p-1">
               <Card className="relative aspect-video overflow-hidden border-0 p-0">
-                <Image
+                <img
                   src={`https://picsum.photos/800/450?grayscale&random=${index + 30}`}
                   alt={`Slide ${index + 1}`}
-                  fill
-                  className="object-cover"
+                  width={800}
+                  height={450}
+                  className="h-full w-full object-cover"
                 />
               </Card>
             </div>

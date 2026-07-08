@@ -1,6 +1,3 @@
-// Description: Select with status badges
-// Order: 19
-
 import { Badge, BadgeProps } from "@/registry-reui/bases/radix/reui/badge"
 
 import { Field } from "@/registry/bases/radix/ui/field"

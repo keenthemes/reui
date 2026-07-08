@@ -1,6 +1,3 @@
-// Description: Toggle group with custom spacing.
-// Order: 4
-
 import {
   ToggleGroup,
   ToggleGroupItem,

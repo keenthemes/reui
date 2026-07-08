@@ -1,7 +1,3 @@
-// Description: Stepper with title and indicator
-// Order: 5
-// GridSize: 1
-
 "use client"
 
 import {

@@ -1,6 +1,3 @@
-// Description: Radio group in card with icons
-// Order: 9
-
 import { Card } from "@/registry/bases/radix/ui/card"
 import {
   Field,

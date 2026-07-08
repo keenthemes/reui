@@ -1,0 +1,537 @@
+{
+  "items": [
+    {
+      "name": "c-sonner-1",
+      "type": "registry:block",
+      "title": "Basic toast notification.",
+      "categories": [
+        "sonner"
+      ],
+      "description": "Basic toast notification.",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/sonner/c-sonner-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sonner-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-sonner-2",
+      "type": "registry:block",
+      "title": "Toast notification with description.",
+      "categories": [
+        "sonner"
+      ],
+      "description": "Toast notification with description.",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/sonner/c-sonner-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sonner-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-sonner-3",
+      "type": "registry:block",
+      "title": "Toast positions",
+      "categories": [
+        "sonner"
+      ],
+      "description": "Toast positions",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/sonner/c-sonner-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sonner-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-sonner-4",
+      "type": "registry:block",
+      "title": "Toast variants with colored icons",
+      "categories": [
+        "sonner"
+      ],
+      "description": "Toast variants with colored icons",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/sonner/c-sonner-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sonner-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-sonner-5",
+      "type": "registry:block",
+      "title": "Toast duration options",
+      "categories": [
+        "sonner"
+      ],
+      "description": "Toast duration options",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/sonner/c-sonner-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sonner-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-sonner-6",
+      "type": "registry:block",
+      "title": "Toast with action button",
+      "categories": [
+        "sonner"
+      ],
+      "description": "Toast with action button",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/sonner/c-sonner-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sonner-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-sonner-7",
+      "type": "registry:block",
+      "title": "Promise toast with loading state",
+      "categories": [
+        "sonner"
+      ],
+      "description": "Promise toast with loading state",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/sonner/c-sonner-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sonner-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-sonner-8",
+      "type": "registry:block",
+      "title": "Toast with custom close and cancel buttons",
+      "categories": [
+        "sonner"
+      ],
+      "description": "Toast with custom close and cancel buttons",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/sonner/c-sonner-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sonner-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-sonner-9",
+      "type": "registry:block",
+      "title": "Toast with custom rich content",
+      "categories": [
+        "sonner"
+      ],
+      "description": "Toast with custom rich content",
+      "registryDependencies": [
+        "avatar",
+        "button"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/sonner/c-sonner-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sonner-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-sonner-10",
+      "type": "registry:block",
+      "title": "Toast with upload progress simulation",
+      "categories": [
+        "sonner"
+      ],
+      "description": "Toast with upload progress simulation",
+      "registryDependencies": [
+        "button",
+        "progress"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/sonner/c-sonner-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sonner-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-sonner-11",
+      "type": "registry:block",
+      "title": "Toast with status alert markup",
+      "categories": [
+        "sonner"
+      ],
+      "description": "Toast with status alert markup",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/sonner/c-sonner-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sonner-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    },
+    {
+      "name": "c-sonner-12",
+      "type": "registry:block",
+      "title": "Custom accent border toast",
+      "categories": [
+        "sonner"
+      ],
+      "description": "Custom accent border toast",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/sonner/c-sonner-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sonner-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12
+      }
+    },
+    {
+      "name": "c-sonner-13",
+      "type": "registry:block",
+      "title": "Custom invert success toast",
+      "categories": [
+        "sonner"
+      ],
+      "description": "Custom invert success toast",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/sonner/c-sonner-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sonner-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13
+      }
+    },
+    {
+      "name": "c-sonner-14",
+      "type": "registry:block",
+      "title": "Custom invert error toast with details",
+      "categories": [
+        "sonner"
+      ],
+      "description": "Custom invert error toast with details",
+      "registryDependencies": [
+        "button",
+        "separator"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/sonner/c-sonner-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sonner-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14
+      }
+    },
+    {
+      "name": "c-sonner-15",
+      "type": "registry:block",
+      "title": "Custom invert info toast with avatar",
+      "categories": [
+        "sonner"
+      ],
+      "description": "Custom invert info toast with avatar",
+      "registryDependencies": [
+        "avatar",
+        "button"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/sonner/c-sonner-15.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sonner-15.tsx"
+        }
+      ],
+      "meta": {
+        "order": 15
+      }
+    },
+    {
+      "name": "c-sonner-16",
+      "type": "registry:block",
+      "title": "Custom invert warning toast with countdown",
+      "categories": [
+        "sonner"
+      ],
+      "description": "Custom invert warning toast with countdown",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/sonner/c-sonner-16.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sonner-16.tsx"
+        }
+      ],
+      "meta": {
+        "order": 16
+      }
+    },
+    {
+      "name": "c-sonner-17",
+      "type": "registry:block",
+      "title": "Multi-action invert toast with avatar group",
+      "categories": [
+        "sonner"
+      ],
+      "description": "Multi-action invert toast with avatar group",
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "separator"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/sonner/c-sonner-17.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sonner-17.tsx"
+        }
+      ],
+      "meta": {
+        "order": 17
+      }
+    },
+    {
+      "name": "c-sonner-18",
+      "type": "registry:block",
+      "title": "Toast with close button on top-right",
+      "categories": [
+        "sonner"
+      ],
+      "description": "Toast with close button on top-right",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/sonner/c-sonner-18.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sonner-18.tsx"
+        }
+      ],
+      "meta": {
+        "order": 18
+      }
+    },
+    {
+      "name": "c-sonner-19",
+      "type": "registry:block",
+      "title": "Toast with custom icon",
+      "categories": [
+        "sonner"
+      ],
+      "description": "Toast with custom icon",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/sonner/c-sonner-19.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sonner-19.tsx"
+        }
+      ],
+      "meta": {
+        "order": 19
+      }
+    },
+    {
+      "name": "c-sonner-20",
+      "type": "registry:block",
+      "title": "Custom integration toast",
+      "categories": [
+        "sonner"
+      ],
+      "description": "Custom integration toast",
+      "registryDependencies": [
+        "button",
+        "separator"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/sonner/c-sonner-20.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sonner-20.tsx"
+        }
+      ],
+      "meta": {
+        "order": 20
+      }
+    },
+    {
+      "name": "c-sonner-21",
+      "type": "registry:block",
+      "title": "Updatable toast with ID",
+      "categories": [
+        "sonner"
+      ],
+      "description": "Updatable toast with ID",
+      "registryDependencies": [
+        "button",
+        "spinner"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/sonner/c-sonner-21.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sonner-21.tsx"
+        }
+      ],
+      "meta": {
+        "order": 21
+      }
+    }
+  ]
+}

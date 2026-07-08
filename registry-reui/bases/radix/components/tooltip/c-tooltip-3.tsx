@@ -1,6 +1,3 @@
-// Description: Tooltip with icon trigger.
-// Order: 3
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   Tooltip,

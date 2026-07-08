@@ -1,6 +1,3 @@
-// Description: Input with phone type
-// Order: 8
-
 import { Field, FieldLabel } from "@/registry/bases/radix/ui/field"
 import { Input } from "@/registry/bases/radix/ui/input"
 

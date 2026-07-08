@@ -1,6 +1,3 @@
-// Description: Display 2 months with range picker
-// Order: 21
-
 "use client"
 
 import { useState } from "react"

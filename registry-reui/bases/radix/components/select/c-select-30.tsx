@@ -1,6 +1,3 @@
-// Description: Priority select with colored badges
-// Order: 30
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import { Field } from "@/registry/bases/radix/ui/field"

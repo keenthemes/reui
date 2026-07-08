@@ -1,7 +1,3 @@
-// Description: Basic tabs.
-// Order: 1
-// GridSize: 1
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   Card,

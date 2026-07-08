@@ -1,6 +1,3 @@
-// Description: Avatar group with hover effect and tooltips
-// Order: 24
-
 import { cn } from "@/lib/utils"
 import {
   Avatar,

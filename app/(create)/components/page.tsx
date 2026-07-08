@@ -1,29 +1,23 @@
-import { Suspense } from "react"
 import type { Metadata } from "next"
+import { cacheLife } from "next/cache"
 import Link from "next/link"
 
 import {
-  getCategories,
-  getTotalComponentCount,
-  searchCatalog,
-} from "@/lib/registry"
+  getComponentCategories,
+  getComponentsTotalCount,
+} from "@/lib/component-stats"
 import { getComponentIndexSeo } from "@/lib/registry-seo-cache"
 import { buildBreadcrumbJsonLd, buildPageMetadata } from "@/lib/seo"
-import { GridSkeleton } from "@/components/grid-skeleton"
+import { CatalogPageHero } from "@/components/catalog-page-hero"
 import { JsonLd } from "@/components/json-ld"
 
-import { ComponentCategoryGrid } from "./components/component-category-grid"
 import { ComponentCategorySeoContent } from "./components/component-category-seo-content"
-import { ComponentPageContent } from "./components/component-page-content"
+import { ComponentsBrowseSearch } from "./components/components-browse-search"
+import { ComponentsPageContent } from "./components/components-page-content"
 
-// Fully static — view switching (category grid vs inline preview) happens client-side
-export const dynamic = "force-static"
-export const revalidate = false
-
-const totalComponentCount = getTotalComponentCount()
-const allCatalogItems = searchCatalog("")
-const title = "Shadcn UI Components"
-const description = `Browse ${totalComponentCount}+ free shadcn/ui components for React and Tailwind CSS`
+const totalComponentCount = getComponentsTotalCount()
+const title = "Free Shadcn UI Components"
+const description = `Browse ${totalComponentCount}+ free open-source shadcn/ui components and React examples for Tailwind CSS, including alerts, data grids, filters, file uploads, and more.`
 const featuredCategories = [
   {
     href: "/components/data-grid",
@@ -42,37 +36,36 @@ const featuredCategories = [
     label: "File Upload",
   },
   {
-    href: "/components/stepper",
-    label: "Stepper",
-  },
-  {
     href: "/components/combobox",
     label: "Combobox",
   },
   {
-    href: "/components/sortable",
-    label: "Sortable",
+    href: "/components/chart",
+    label: "Chart",
   },
   {
-    href: "/components/timeline",
-    label: "Timeline",
+    href: "/components/dialog",
+    label: "Dialog",
   },
   {
-    href: "/components/tree",
-    label: "Tree",
+    href: "/components/command",
+    label: "Command",
+  },
+  {
+    href: "/components/accordion",
+    label: "Accordion",
   },
 ] as const
 
 export const metadata: Metadata = buildPageMetadata({
-  title: title + " - ReUI",
+  // Clean title — the root `%s - ReUI` template adds the brand. The
+  // manual `+ " - ReUI"` here doubled it to "… - ReUI - ReUI".
+  title,
   description,
   path: "/components",
   keywords: [
     "shadcn components",
     "reui components",
-    "reui components",
-    "shadcn components",
-    "shadcn ui components",
     "shadcn ui component",
     "open source shadcn component",
     "React components",
@@ -81,9 +74,22 @@ export const metadata: Metadata = buildPageMetadata({
   ],
 })
 
-export default function ComponentsPage() {
-  const categories = getCategories()
-  const indexSeo = getComponentIndexSeo()
+/**
+ * Cache the registry walk + SEO build so every visitor shares the same
+ * computed payload until the next deploy.
+ */
+async function loadComponentsPageData() {
+  "use cache"
+  cacheLife("max")
+
+  return {
+    categories: getComponentCategories(),
+    indexSeo: getComponentIndexSeo(),
+  }
+}
+
+export default async function ComponentsPage() {
+  const { categories, indexSeo } = await loadComponentsPageData()
 
   return (
     <>
@@ -93,46 +99,39 @@ export default function ComponentsPage() {
           { name: "Components", path: "/components" },
         ])}
       />
-      <section>
-        <div className="w-full px-6 pt-8 pb-6 sm:px-8 xl:px-10">
-          <h1 className="text-balanc mt-3 max-w-4xl min-w-0 text-xl font-bold sm:text-3xl">
-            Shadcn UI Components
-          </h1>
-          <p className="text-site-muted-foreground mt-4 text-base leading-7 text-pretty">
+      <CatalogPageHero
+        badge="Components"
+        title={title}
+        count={totalComponentCount}
+        description={
+          <>
             Browse {totalComponentCount}+ free open-source shadcn/ui components
             for React and Tailwind CSS. ReUI helps you move from primitives to
             polished product UI with real examples for alerts, data grids,
             filters, file uploads, forms, navigation, and more.
-          </p>
-          <div className="mt-5 flex flex-wrap gap-2">
+          </>
+        }
+        titleId="components-page-title"
+      >
+        <div className="grid grid-cols-1 items-center gap-3 sm:grid-cols-[1fr_auto]">
+          <div className="flex flex-wrap items-center gap-2">
             {featuredCategories.map((category) => (
               <Link
                 key={category.href}
                 href={category.href}
+                prefetch={false}
                 className="border-site-border bg-site-background hover:bg-site-muted site-rounded-full border px-3 py-1.5 text-sm transition-colors"
               >
                 {category.label}
               </Link>
             ))}
           </div>
+          <div className="w-full sm:w-72">
+            <ComponentsBrowseSearch placeholder="Search..." />
+          </div>
         </div>
-      </section>
-      <Suspense
-        fallback={
-          <GridSkeleton
-            count={categories.length}
-            showHeader={false}
-            className="px-6 py-6 sm:px-8 xl:px-10"
-          />
-        }
-      >
-        <ComponentPageContent
-          categoryGridFallback={
-            <ComponentCategoryGrid categories={categories} />
-          }
-          catalogItems={allCatalogItems}
-        />
-      </Suspense>
+      </CatalogPageHero>
+      <ComponentsPageContent categories={categories} />
       <ComponentCategorySeoContent seo={indexSeo} />
     </>
   )

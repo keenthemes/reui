@@ -1,6 +1,3 @@
-// Description: Invalid native select.
-// Order: 6
-
 import {
   NativeSelect,
   NativeSelectOption,

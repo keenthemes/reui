@@ -1,6 +1,3 @@
-// Description: Input group with prefix icon
-// Order: 4
-
 import { Field } from "@/registry/bases/radix/ui/field"
 import {
   InputGroup,

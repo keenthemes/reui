@@ -1,6 +1,3 @@
-// Description: Toggle with icon.
-// Order: 6
-
 import { Toggle } from "@/registry/bases/base/ui/toggle"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 

@@ -1,6 +1,3 @@
-// Description: Multi-level collapsible menu
-// Order: 9
-
 "use client"
 
 import { ReactElement, useState } from "react"

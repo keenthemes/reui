@@ -1,6 +1,3 @@
-// Description: Collapsible User profile
-// Order: 8
-
 import {
   Frame,
   FrameHeader,

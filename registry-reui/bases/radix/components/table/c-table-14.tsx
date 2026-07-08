@@ -1,7 +1,3 @@
-// Description: Issues table with priority, assignee, and labels
-// Order: 14
-// GridSize: 1
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import {

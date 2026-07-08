@@ -1,6 +1,3 @@
-// Description: Basic autocomplete control
-// Order: 1
-
 import {
   Autocomplete,
   AutocompleteContent,

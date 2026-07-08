@@ -1,6 +1,3 @@
-// Description: Range calendar with presets
-// Order: 16
-
 "use client"
 
 import { useState } from "react"

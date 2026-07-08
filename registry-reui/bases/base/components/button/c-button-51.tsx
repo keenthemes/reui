@@ -1,6 +1,3 @@
-// Description: Expanding button from icon to label
-// Order: 51
-
 import { Button } from "@/registry/bases/base/ui/button"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 

@@ -1,6 +1,3 @@
-// Description: AI model selector with provider icons
-// Order: 18
-
 "use client"
 
 import type { ReactNode } from "react"

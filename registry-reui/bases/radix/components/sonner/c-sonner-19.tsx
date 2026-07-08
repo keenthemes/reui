@@ -1,6 +1,3 @@
-// Description: Toast with custom icon
-// Order: 19
-
 import { toast } from "sonner"
 
 import { Button } from "@/registry/bases/radix/ui/button"

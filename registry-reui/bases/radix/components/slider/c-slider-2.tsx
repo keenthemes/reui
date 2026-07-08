@@ -1,6 +1,3 @@
-// Description: Disabled slider
-// Order: 2
-
 import { Slider } from "@/registry/bases/radix/ui/slider"
 
 export default function Pattern() {

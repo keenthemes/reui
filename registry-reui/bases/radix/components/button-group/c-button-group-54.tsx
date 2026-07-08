@@ -1,6 +1,3 @@
-// Description: API service environment and version selectors
-// Order: 54
-
 "use client"
 
 import { useState } from "react"

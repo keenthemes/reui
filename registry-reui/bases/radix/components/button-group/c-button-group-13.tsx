@@ -1,6 +1,3 @@
-// Description: Vertical button group orientation
-// Order: 13
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import { ButtonGroup } from "@/registry/bases/radix/ui/button-group"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"

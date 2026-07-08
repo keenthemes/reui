@@ -1,7 +1,3 @@
-// Description: Image upload
-// Order: 7
-// GridSize: 1
-
 "use client"
 
 import { useCallback, useState } from "react"
@@ -238,11 +234,11 @@ export default function Pattern({
           {visibleDefaultImages.map((defaultImg) => (
             <Card
               key={defaultImg.id}
-              className="bg-accent/50 group/item style-vega:rounded-md style-nova:rounded-md style-lyra:rounded-none style-maia:rounded-md style-mira:rounded-md relative flex shrink-0 items-center justify-center p-0 shadow-none"
+              className="bg-accent/50 group/item rounded-md relative flex shrink-0 items-center justify-center p-0 shadow-none"
             >
               <img
                 src={defaultImg.src}
-                className="style-vega:rounded-md style-nova:rounded-md style-lyra:rounded-none style-maia:rounded-md style-mira:rounded-md h-[120px] w-full object-cover"
+                className="rounded-md h-[120px] w-full object-cover"
                 alt={defaultImg.alt}
               />
 
@@ -305,7 +301,7 @@ export default function Pattern({
       {/* Upload Area */}
       <Card
         className={cn(
-          "style-vega:rounded-md style-nova:rounded-md style-lyra:rounded-none style-maia:rounded-md style-mira:rounded-md border-dashed shadow-none transition-colors",
+          "rounded-md border-dashed shadow-none transition-colors",
           isDragging
             ? "border-primary bg-primary/5"
             : "border-muted-foreground/25 hover:border-muted-foreground/50"
@@ -344,10 +340,10 @@ export default function Pattern({
           {images.map((imageFile) => (
             <Card
               key={imageFile.id}
-              className="style-vega:rounded-md style-nova:rounded-md style-lyra:rounded-none style-maia:rounded-md style-mira:rounded-md p-0 shadow-none"
+              className="rounded-md p-0 shadow-none"
             >
               <CardContent className="flex items-center gap-2 p-3">
-                <div className="border-border style-vega:rounded-md style-nova:rounded-md style-lyra:rounded-none style-maia:rounded-md style-mira:rounded-md flex size-[32px] shrink-0 items-center justify-center border">
+                <div className="border-border rounded-md flex size-[32px] shrink-0 items-center justify-center border">
                   <IconPlaceholder
                     lucide="ImageIcon"
                     tabler="IconPhoto"

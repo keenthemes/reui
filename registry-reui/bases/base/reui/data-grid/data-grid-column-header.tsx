@@ -32,6 +32,7 @@ interface DataGridColumnHeaderProps<
   /** When omitted, uses `column.columnDef.meta.headerTitle`, then a string `columnDef.header`, then `column.id`. */
   title?: string
   icon?: ReactNode
+  /** Reserved; pin controls are gated by tableLayout.columnsPinnable + column.getCanPin(). */
   pinnable?: boolean
   filter?: ReactNode
   visibility?: boolean
@@ -49,7 +50,10 @@ function DataGridColumnHeaderInner<TData, TValue>({
   const resolvedTitle = title ?? getColumnHeaderLabel(column)
 
   const columnOrder = table.getState().columnOrder
-  const columnVisibilityKey = JSON.stringify(table.getState().columnVisibility)
+  const columnVisibilityKey =
+    props.tableLayout?.columnsVisibility && visibility
+      ? JSON.stringify(table.getState().columnVisibility)
+      : ""
   const isSorted = column.getIsSorted()
   const isPinned = column.getIsPinned()
   const canSort = column.getCanSort()
@@ -71,12 +75,12 @@ function DataGridColumnHeaderInner<TData, TValue>({
   }
 
   const headerLabelClassName = cn(
-    "text-secondary-foreground/80 inline-flex h-full items-center gap-1.5 font-normal [&_svg]:opacity-60 style-vega:text-[0.8125rem] style-vega:leading-[calc(1.125/0.8125)] style-vega:[&_svg]:size-3.5 style-maia:text-[0.8125rem] style-maia:leading-[calc(1.125/0.8125)] style-maia:[&_svg]:size-3.5 style-nova:text-[0.8125rem] style-nova:leading-[calc(1.125/0.8125)] style-nova:[&_svg]:size-3.5 style-lyra:text-xs style-lyra:[&_svg]:size-3 style-mira:text-xs/relaxed style-mira:[&_svg]:size-3",
+    "text-secondary-foreground/80 inline-flex h-full items-center gap-1.5 font-normal [&_svg]:opacity-60 text-[0.8125rem] leading-[calc(1.125/0.8125)] [&_svg]:size-3.5",
     className
   )
 
   const headerButtonClassName = cn(
-    "text-secondary-foreground/80 hover:bg-secondary data-[state=open]:bg-secondary hover:text-foreground data-[state=open]:text-foreground -ms-2 px-2 font-normal style-vega:h-7 style-vega:rounded-md style-maia:h-7 style-maia:rounded-4xl style-nova:h-6 style-nova:rounded-lg style-lyra:h-6 style-lyra:rounded-none style-mira:h-6 style-mira:rounded-md",
+    "text-secondary-foreground/80 hover:bg-secondary data-[state=open]:bg-secondary hover:text-foreground data-[state=open]:text-foreground px-2 font-normal h-6 style-vega:rounded-md style-nova:rounded-lg style-maia:rounded-full style-lyra:rounded-none style-mira:rounded-md style-luma:rounded-full style-sera:rounded-none style-rhea:rounded-full",
     className
   )
 
@@ -90,6 +94,7 @@ function DataGridColumnHeaderInner<TData, TValue>({
         phosphor="ArrowDownIcon"
         remixicon="RiArrowDownLine"
         className="size-3.25"
+        aria-hidden="true"
       />
     ) : isSorted === "asc" ? (
       <IconPlaceholder
@@ -99,6 +104,7 @@ function DataGridColumnHeaderInner<TData, TValue>({
         phosphor="ArrowUpIcon"
         remixicon="RiArrowUpLine"
         className="size-3.25"
+        aria-hidden="true"
       />
     ) : (
       <IconPlaceholder
@@ -108,6 +114,7 @@ function DataGridColumnHeaderInner<TData, TValue>({
         phosphor="CaretUpDownIcon"
         remixicon="RiExpandUpDownLine"
         className="mt-px size-3.25"
+        aria-hidden="true"
       />
     ))
 
@@ -380,7 +387,7 @@ function DataGridColumnHeaderInner<TData, TValue>({
 
   if (hasControls) {
     return (
-      <div className="flex h-full items-center justify-between gap-1.5">
+      <div className="-ms-2 flex h-full items-center justify-between gap-1.5">
         <DropdownMenu>
           <DropdownMenuTrigger
             render={
@@ -403,7 +410,7 @@ function DataGridColumnHeaderInner<TData, TValue>({
           <Button
             size="icon-sm"
             variant="ghost"
-            className="-me-1 size-7 rounded-md"
+            className="style-vega:rounded-md style-nova:rounded-lg style-maia:rounded-full style-lyra:rounded-none style-mira:rounded-md style-luma:rounded-full style-sera:rounded-none style-rhea:rounded-full -me-1 size-7"
             onClick={() => column.pin(false)}
             aria-label={`Unpin ${resolvedTitle} column`}
             title={`Unpin ${resolvedTitle} column`}
@@ -425,7 +432,7 @@ function DataGridColumnHeaderInner<TData, TValue>({
 
   if (canSort || (props.tableLayout?.columnsResizable && canResize)) {
     return (
-      <div className="flex h-full items-center">
+      <div className="-ms-2 flex h-full items-center">
         <Button
           variant="ghost"
           className={headerButtonClassName}

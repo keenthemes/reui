@@ -1,6 +1,3 @@
-// Description: Hover card with an image and text content.
-// Order: 5
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   HoverCard,

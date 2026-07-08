@@ -1,8 +1,3 @@
-// Description: Basic carousel with single item
-// Order: 1
-
-import Image from "next/image"
-
 import { Card } from "@/registry/bases/base/ui/card"
 import {
   Carousel,
@@ -20,11 +15,12 @@ export default function Pattern() {
           <CarouselItem key={index}>
             <div className="p-1">
               <Card className="relative aspect-square overflow-hidden border-0 p-0">
-                <Image
+                <img
                   src={`https://picsum.photos/800/800?grayscale&random=${index + 1}`}
                   alt={`Slide ${index + 1}`}
-                  fill
-                  className="object-cover"
+                  width={800}
+                  height={800}
+                  className="h-full w-full object-cover"
                 />
               </Card>
             </div>

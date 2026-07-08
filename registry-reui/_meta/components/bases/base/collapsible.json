@@ -1,0 +1,260 @@
+{
+  "items": [
+    {
+      "name": "c-collapsible-1",
+      "type": "registry:block",
+      "title": "Basic collapsible",
+      "categories": [
+        "collapsible"
+      ],
+      "description": "Basic collapsible",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "collapsible"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/collapsible/c-collapsible-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-collapsible-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-collapsible-2",
+      "type": "registry:block",
+      "title": "Collapsible with checkbox settings",
+      "categories": [
+        "collapsible"
+      ],
+      "description": "Collapsible with checkbox settings",
+      "registryDependencies": [
+        "button",
+        "card",
+        "checkbox",
+        "collapsible",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/collapsible/c-collapsible-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-collapsible-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-collapsible-3",
+      "type": "registry:block",
+      "title": "Collapsible animated card",
+      "categories": [
+        "collapsible"
+      ],
+      "description": "Collapsible animated card",
+      "registryDependencies": [
+        "card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/collapsible/c-collapsible-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-collapsible-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-collapsible-4",
+      "type": "registry:block",
+      "title": "Collapsible card with bottom trigger",
+      "categories": [
+        "collapsible"
+      ],
+      "description": "Collapsible card with bottom trigger",
+      "registryDependencies": [
+        "button",
+        "card",
+        "collapsible",
+        "progress"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/collapsible/c-collapsible-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-collapsible-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-collapsible-5",
+      "type": "registry:block",
+      "title": "Collapsible form fields",
+      "categories": [
+        "collapsible"
+      ],
+      "description": "Collapsible form fields",
+      "registryDependencies": [
+        "button",
+        "card",
+        "collapsible",
+        "field",
+        "input-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/collapsible/c-collapsible-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-collapsible-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-collapsible-6",
+      "type": "registry:block",
+      "title": "Collapsible frame",
+      "categories": [
+        "collapsible"
+      ],
+      "description": "Collapsible frame",
+      "registryDependencies": [
+        "collapsible",
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/collapsible/c-collapsible-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-collapsible-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-collapsible-7",
+      "type": "registry:block",
+      "title": "Nested collapsible list with actions",
+      "categories": [
+        "collapsible"
+      ],
+      "description": "Nested collapsible list with actions",
+      "registryDependencies": [
+        "button",
+        "collapsible",
+        "dropdown-menu",
+        "frame",
+        "use-copy-to-clipboard"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/collapsible/c-collapsible-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-collapsible-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-collapsible-8",
+      "type": "registry:block",
+      "title": "Collapsible User profile",
+      "categories": [
+        "collapsible"
+      ],
+      "description": "Collapsible User profile",
+      "registryDependencies": [
+        "avatar",
+        "collapsible",
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/collapsible/c-collapsible-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-collapsible-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-collapsible-9",
+      "type": "registry:block",
+      "title": "Multi-level collapsible menu",
+      "categories": [
+        "collapsible"
+      ],
+      "description": "Multi-level collapsible menu",
+      "registryDependencies": [
+        "card",
+        "collapsible",
+        "item"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/collapsible/c-collapsible-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-collapsible-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-collapsible-10",
+      "type": "registry:block",
+      "title": "Tree view with file actions",
+      "categories": [
+        "collapsible"
+      ],
+      "description": "Tree view with file actions",
+      "registryDependencies": [
+        "button",
+        "card",
+        "collapsible",
+        "item",
+        "tabs"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/collapsible/c-collapsible-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-collapsible-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    }
+  ]
+}

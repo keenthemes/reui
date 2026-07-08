@@ -1,0 +1,105 @@
+{
+  "items": [
+    {
+      "name": "c-sheet-1",
+      "type": "registry:block",
+      "title": "Sheet containing a form for editing profile information.",
+      "categories": [
+        "sheet"
+      ],
+      "description": "Sheet containing a form for editing profile information.",
+      "registryDependencies": [
+        "button",
+        "field",
+        "input",
+        "sheet"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/sheet/c-sheet-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sheet-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-sheet-2",
+      "type": "registry:block",
+      "title": "Sheet containing a form for editing profile information.",
+      "categories": [
+        "sheet"
+      ],
+      "description": "Sheet containing a form for editing profile information.",
+      "registryDependencies": [
+        "button",
+        "field",
+        "input",
+        "sheet"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/sheet/c-sheet-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sheet-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-sheet-3",
+      "type": "registry:block",
+      "title": "Sheets that open from any side.",
+      "categories": [
+        "sheet"
+      ],
+      "description": "Sheets that open from any side.",
+      "registryDependencies": [
+        "button",
+        "sheet"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/sheet/c-sheet-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sheet-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-sheet-4",
+      "type": "registry:block",
+      "title": "Sheet with scrollable content",
+      "categories": [
+        "sheet"
+      ],
+      "description": "Sheet with scrollable content",
+      "registryDependencies": [
+        "button",
+        "scroll-area",
+        "sheet"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/sheet/c-sheet-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sheet-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    }
+  ]
+}

@@ -1,6 +1,3 @@
-// Description: Toggle group for layout columns
-// Order: 14
-
 import {
   ToggleGroup,
   ToggleGroupItem,

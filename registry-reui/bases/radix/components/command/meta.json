@@ -1,0 +1,50 @@
+[
+  {
+    "name": "c-command-1",
+    "title": "Basic command",
+    "description": "Basic command",
+    "order": 1
+  },
+  {
+    "name": "c-command-2",
+    "title": "Command with shortcuts",
+    "description": "Command with shortcuts",
+    "order": 2
+  },
+  {
+    "name": "c-command-3",
+    "title": "Command with groups",
+    "description": "Command with groups",
+    "order": 3
+  },
+  {
+    "name": "c-command-4",
+    "title": "Command with many groups",
+    "description": "Command with many groups",
+    "order": 4
+  },
+  {
+    "name": "c-command-5",
+    "title": "File search command palette",
+    "description": "File search command palette",
+    "order": 5
+  },
+  {
+    "name": "c-command-6",
+    "title": "User search command with avatars",
+    "description": "User search command with avatars",
+    "order": 6
+  },
+  {
+    "name": "c-command-7",
+    "title": "Action palette with keyboard shortcuts",
+    "description": "Action palette with keyboard shortcuts",
+    "order": 7
+  },
+  {
+    "name": "c-command-8",
+    "title": "Command with recent and favorites sections",
+    "description": "Command with recent and favorites sections",
+    "order": 8
+  }
+]

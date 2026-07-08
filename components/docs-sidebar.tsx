@@ -3,10 +3,11 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
+import { canonicalizeComponentDocUrl } from "@/lib/component-doc-paths"
 import { getDocsPageUpdateHint } from "@/lib/docs"
-import { showMcpDocs } from "@/lib/flags"
 import { getCurrentBase, getPagesFromFolder } from "@/lib/page-tree"
 import type { source } from "@/lib/source"
+import { useConfig } from "@/hooks/use-config"
 import {
   Sidebar,
   SidebarContent,
@@ -58,7 +59,8 @@ export function DocsSidebar({
   tree: ReturnType<typeof source.getPageTree>
 }) {
   const pathname = usePathname()
-  const currentBase = getCurrentBase(pathname)
+  const [config] = useConfig()
+  const currentBase = getCurrentBase(pathname, config.base)
 
   return (
     <Sidebar
@@ -81,33 +83,38 @@ export function DocsSidebar({
               <SidebarGroupContent>
                 {item.type === "folder" && (
                   <SidebarMenu className="gap-0.5">
-                    {getPagesFromFolder(item, currentBase).map((page) => {
-                      if (!showMcpDocs && page.url.includes("/mcp")) {
-                        return null
-                      }
-
-                      if (EXCLUDED_PAGES.includes(page.url)) {
-                        return null
-                      }
-
-                      return (
-                        <SidebarMenuItem key={page.url}>
-                          <SidebarMenuButton
-                            asChild
-                            isActive={page.url === pathname}
-                            className="data-[active=true]:bg-site-accent data-[active=true]:border-site-accent 3xl:fixed:w-full 3xl:fixed:max-w-48 after:site-rounded-md relative h-[30px] w-fit overflow-visible border border-transparent text-[0.8rem] font-medium after:absolute after:inset-x-0 after:-inset-y-1 after:z-0"
-                          >
-                            <Link href={page.url} prefetch={false}>
-                              <span className="pointer-events-none absolute inset-0 flex w-(--sidebar-width) bg-transparent" />
-                              <span className="relative z-10 inline-flex items-center gap-2">
-                                <span>{page.name}</span>
-                                <DocsUpdateIndicator path={page.url} />
-                              </span>
-                            </Link>
-                          </SidebarMenuButton>
-                        </SidebarMenuItem>
+                    {getPagesFromFolder(item, currentBase)
+                      .filter(
+                        (page) =>
+                          !page.url.startsWith("https://v1.reui.io") &&
+                          page.url !== "/llms.txt"
                       )
-                    })}
+                      .map((page) => {
+                        if (EXCLUDED_PAGES.includes(page.url)) {
+                          return null
+                        }
+
+                        const pageUrl = canonicalizeComponentDocUrl(page.url)
+                        const activePath = canonicalizeComponentDocUrl(pathname)
+
+                        return (
+                          <SidebarMenuItem key={page.url}>
+                            <SidebarMenuButton
+                              asChild
+                              isActive={pageUrl === activePath}
+                              className="data-[active=true]:bg-site-accent data-[active=true]:border-site-border data-[active=true]:text-site-foreground 3xl:fixed:w-full 3xl:fixed:max-w-48 after:site-rounded-md relative h-[30px] w-fit overflow-visible border border-transparent text-[0.8rem] font-medium after:absolute after:inset-x-0 after:-inset-y-1 after:z-0"
+                            >
+                              <Link href={pageUrl} prefetch={false}>
+                                <span className="pointer-events-none absolute inset-0 flex w-(--sidebar-width) bg-transparent" />
+                                <span className="relative z-10 inline-flex items-center gap-2">
+                                  <span>{page.name}</span>
+                                  <DocsUpdateIndicator path={pageUrl} />
+                                </span>
+                              </Link>
+                            </SidebarMenuButton>
+                          </SidebarMenuItem>
+                        )
+                      })}
                   </SidebarMenu>
                 )}
               </SidebarGroupContent>

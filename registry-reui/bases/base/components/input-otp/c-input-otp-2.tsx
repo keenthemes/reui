@@ -1,6 +1,3 @@
-// Description: OTP input with numeric digits.
-// Order: 2
-
 import { REGEXP_ONLY_DIGITS } from "input-otp"
 
 import { Field, FieldLabel } from "@/registry/bases/base/ui/field"

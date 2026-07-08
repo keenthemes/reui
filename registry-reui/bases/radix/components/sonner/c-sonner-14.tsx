@@ -1,6 +1,3 @@
-// Description: Custom invert error toast with details
-// Order: 14
-
 import { toast } from "sonner"
 
 import { Button } from "@/registry/bases/radix/ui/button"
@@ -10,7 +7,7 @@ import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 export default function Pattern() {
   const showToast = () => {
     toast.custom(() => (
-      <div className="bg-invert text-invert-foreground style-vega:rounded-md style-nova:rounded-md style-lyra:rounded-none style-maia:rounded-3xl style-mira:rounded-md flex w-[356px] flex-col gap-3 border border-transparent p-4 shadow-lg">
+      <div className="bg-invert text-invert-foreground rounded-md flex w-[356px] flex-col gap-3 border border-transparent p-4 shadow-lg">
         <div className="flex items-start gap-3">
           <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-red-500 text-white">
             <IconPlaceholder

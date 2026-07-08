@@ -1,11 +1,6 @@
-// Description: Data grid with dense layout
-// GridSize: 1
-// Order: 3
-
 "use client"
 
 import { useMemo, useState } from "react"
-import Link from "next/link"
 import {
   DataGrid,
   DataGridContainer,
@@ -212,12 +207,12 @@ export default function Pattern() {
                     .join("")}
                 </AvatarFallback>
               </Avatar>
-              <Link
+              <a
                 href="#"
                 className="text-foreground hover:text-primary font-medium"
               >
                 {row.original.name}
-              </Link>
+              </a>
             </div>
           )
         },
@@ -229,12 +224,12 @@ export default function Pattern() {
         accessorKey: "email",
         header: "Email",
         cell: (info) => (
-          <Link
+          <a
             href={`mailto:${info.getValue()}`}
             className="hover:text-primary hover:underline"
           >
             {info.getValue() as string}
-          </Link>
+          </a>
         ),
         size: 175,
         meta: {

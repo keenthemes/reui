@@ -1,6 +1,3 @@
-// Description: Breadcrumb with a custom slash separator
-// Order: 4
-
 import {
   Breadcrumb,
   BreadcrumbItem,

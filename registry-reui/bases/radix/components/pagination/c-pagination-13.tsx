@@ -1,6 +1,3 @@
-// Description: Pagination with page select dropdown and first/last navigation
-// Order: 13
-
 import {
   NativeSelect,
   NativeSelectOption,

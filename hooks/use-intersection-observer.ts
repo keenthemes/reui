@@ -8,7 +8,7 @@ interface IntersectionObserverOptions extends IntersectionObserverInit {
 
 /**
  * A shared intersection observer to manage multiple targets with a single observer instance.
- * Optimized for high-density lists (like the patterns grid).
+ * Optimized for high-density lists like the components grid.
  */
 class SharedObserver {
   private observer: IntersectionObserver | null = null

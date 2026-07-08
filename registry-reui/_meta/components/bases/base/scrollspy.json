@@ -1,0 +1,56 @@
+{
+  "items": [
+    {
+      "name": "c-scrollspy-1",
+      "type": "registry:block",
+      "title": "Basic scrollspy",
+      "categories": [
+        "scrollspy"
+      ],
+      "description": "Basic scrollspy",
+      "registryDependencies": [
+        "button",
+        "scroll-area",
+        "scrollspy"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/scrollspy/c-scrollspy-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-scrollspy-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-scrollspy-2",
+      "type": "registry:block",
+      "title": "Basic scroll area",
+      "categories": [
+        "scrollspy"
+      ],
+      "description": "Basic scroll area",
+      "registryDependencies": [
+        "button",
+        "scroll-area",
+        "scrollspy"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/scrollspy/c-scrollspy-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-scrollspy-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2,
+        "gridSize": 1
+      }
+    }
+  ]
+}

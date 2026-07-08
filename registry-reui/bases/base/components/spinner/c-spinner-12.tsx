@@ -1,6 +1,3 @@
-// Description: Spinner color variants
-// Order: 12
-
 import { Spinner } from "@/registry/bases/base/ui/spinner"
 
 export default function Pattern() {

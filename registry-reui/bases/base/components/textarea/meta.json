@@ -1,0 +1,38 @@
+[
+  {
+    "name": "c-textarea-1",
+    "title": "Basic textarea.",
+    "description": "Basic textarea.",
+    "order": 1
+  },
+  {
+    "name": "c-textarea-2",
+    "title": "Invalid textarea.",
+    "description": "Invalid textarea.",
+    "order": 2
+  },
+  {
+    "name": "c-textarea-3",
+    "title": "Textarea with label.",
+    "description": "Textarea with label.",
+    "order": 3
+  },
+  {
+    "name": "c-textarea-4",
+    "title": "Textarea with description.",
+    "description": "Textarea with description.",
+    "order": 4
+  },
+  {
+    "name": "c-textarea-5",
+    "title": "Disabled textarea.",
+    "description": "Disabled textarea.",
+    "order": 5
+  },
+  {
+    "name": "c-textarea-6",
+    "title": "Auto-resize textarea with character count",
+    "description": "Auto-resize textarea with character count",
+    "order": 6
+  }
+]

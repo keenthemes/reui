@@ -1,6 +1,3 @@
-// Description: Toggle group with vertical orientation.
-// Order: 6
-
 import {
   ToggleGroup,
   ToggleGroupItem,

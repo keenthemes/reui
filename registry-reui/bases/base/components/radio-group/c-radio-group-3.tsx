@@ -1,6 +1,3 @@
-// Description: Radio with description
-// Order: 3
-
 import {
   Field,
   FieldContent,

@@ -1,0 +1,201 @@
+{
+  "items": [
+    {
+      "name": "c-hover-card-1",
+      "type": "registry:block",
+      "title": "Basic hover card.",
+      "categories": [
+        "hover-card"
+      ],
+      "description": "Basic hover card.",
+      "registryDependencies": [
+        "button",
+        "hover-card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/hover-card/c-hover-card-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-hover-card-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-hover-card-2",
+      "type": "registry:block",
+      "title": "Hover card with positions.",
+      "categories": [
+        "hover-card"
+      ],
+      "description": "Hover card with positions.",
+      "registryDependencies": [
+        "button",
+        "hover-card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/hover-card/c-hover-card-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-hover-card-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-hover-card-3",
+      "type": "registry:block",
+      "title": "Hover card with profile information.",
+      "categories": [
+        "hover-card"
+      ],
+      "description": "Hover card with profile information.",
+      "registryDependencies": [
+        "avatar",
+        "hover-card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/hover-card/c-hover-card-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-hover-card-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-hover-card-4",
+      "type": "registry:block",
+      "title": "Hover card with icon",
+      "categories": [
+        "hover-card"
+      ],
+      "description": "Hover card with icon",
+      "registryDependencies": [
+        "button",
+        "hover-card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/hover-card/c-hover-card-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-hover-card-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-hover-card-5",
+      "type": "registry:block",
+      "title": "Hover card with an image and text content.",
+      "categories": [
+        "hover-card"
+      ],
+      "description": "Hover card with an image and text content.",
+      "registryDependencies": [
+        "button",
+        "hover-card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/hover-card/c-hover-card-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-hover-card-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-hover-card-6",
+      "type": "registry:block",
+      "title": "Hover card inside a dialog.",
+      "categories": [
+        "hover-card"
+      ],
+      "description": "Hover card inside a dialog.",
+      "registryDependencies": [
+        "button",
+        "dialog",
+        "hover-card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/hover-card/c-hover-card-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-hover-card-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-hover-card-7",
+      "type": "registry:block",
+      "title": "Timestamp hover card with active relative time",
+      "categories": [
+        "hover-card"
+      ],
+      "description": "Timestamp hover card with active relative time",
+      "registryDependencies": [
+        "badge",
+        "hover-card",
+        "separator"
+      ],
+      "dependencies": [
+        "date-fns"
+      ],
+      "files": [
+        {
+          "path": "components/hover-card/c-hover-card-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-hover-card-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-hover-card-8",
+      "type": "registry:block",
+      "title": "Hover card with paginated release notes",
+      "categories": [
+        "hover-card"
+      ],
+      "description": "Hover card with paginated release notes",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "hover-card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/hover-card/c-hover-card-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-hover-card-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    }
+  ]
+}

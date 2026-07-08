@@ -1,6 +1,3 @@
-// Description: Donut chart with center stats
-// Order: 20
-
 "use client"
 
 import { CSSProperties } from "react"

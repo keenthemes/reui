@@ -1,6 +1,3 @@
-// Description: User search command with avatars
-// Order: 6
-
 "use client"
 
 import { useState } from "react"

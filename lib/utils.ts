@@ -1,7 +1,7 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
-import { absoluteUrl as buildAbsoluteUrl } from "@/lib/seo"
+import { absoluteUrl as getAbsoluteUrl } from "@/lib/site-url"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -17,7 +17,7 @@ export function isActive(pathname: string, href: string) {
 }
 
 export function absoluteUrl(path: string) {
-  return buildAbsoluteUrl(path)
+  return getAbsoluteUrl(path)
 }
 
 export function formatLabel(value: string): string {

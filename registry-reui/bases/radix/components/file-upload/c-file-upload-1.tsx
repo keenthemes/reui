@@ -1,9 +1,4 @@
-// Description: Basic file upload
-// Order: 1
-
 "use client"
-
-import Image from "next/image"
 import { useFileUpload } from "@/registry-reui/bases/radix/hooks/use-file-upload"
 
 import { Button } from "@/registry/bases/radix/ui/button"
@@ -22,13 +17,13 @@ export default function Pattern() {
     <div className="flex flex-col items-center gap-2">
       <div className="inline-flex items-center gap-2 align-top">
         <div
-          className="border-input style-vega:rounded-md style-nova:rounded-md style-lyra:rounded-none style-maia:rounded-md style-mira:rounded-md relative flex size-9 shrink-0 items-center justify-center overflow-hidden border"
+          className="border-input rounded-md relative flex size-9 shrink-0 items-center justify-center overflow-hidden border"
           aria-label={
             previewUrl ? "Preview of uploaded image" : "Default user avatar"
           }
         >
           {previewUrl ? (
-            <Image
+            <img
               className="size-full object-cover"
               src={previewUrl}
               alt="Preview of uploaded image"

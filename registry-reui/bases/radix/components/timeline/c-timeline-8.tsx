@@ -1,7 +1,3 @@
-// Description: Vertical timeline
-// Order: 8
-// GridSize: 1
-
 import {
   Timeline,
   TimelineContent,

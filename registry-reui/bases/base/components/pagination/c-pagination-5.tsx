@@ -1,6 +1,3 @@
-// Description: Pagination with go-to-page input
-// Order: 5
-
 import { Input } from "@/registry/bases/base/ui/input"
 import {
   Pagination,

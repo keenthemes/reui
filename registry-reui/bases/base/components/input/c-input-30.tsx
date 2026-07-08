@@ -1,6 +1,3 @@
-// Description: Pill-shaped input
-// Order: 30
-
 import { Field, FieldLabel } from "@/registry/bases/base/ui/field"
 import { Input } from "@/registry/bases/base/ui/input"
 

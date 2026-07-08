@@ -1,6 +1,3 @@
-// Description: Basic alert dialog with title, description, and action buttons
-// Order: 1
-
 import {
   AlertDialog,
   AlertDialogAction,

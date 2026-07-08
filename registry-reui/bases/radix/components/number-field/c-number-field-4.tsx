@@ -1,6 +1,3 @@
-// Description: Number filed wiith buttons on right
-// Order: 4
-
 import {
   NumberField,
   NumberFieldDecrement,

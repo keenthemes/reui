@@ -1,6 +1,3 @@
-// Description: Input group with success indicator circle
-// Order: 24
-
 import { Field } from "@/registry/bases/base/ui/field"
 import {
   InputGroup,

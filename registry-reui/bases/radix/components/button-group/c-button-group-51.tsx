@@ -1,6 +1,3 @@
-// Description: New button with create dropdown
-// Order: 51
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import { ButtonGroup } from "@/registry/bases/radix/ui/button-group"
 import {

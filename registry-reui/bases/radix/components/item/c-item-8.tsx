@@ -1,6 +1,3 @@
-// Description: Small-size items with badges
-// Order: 8
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import {

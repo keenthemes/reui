@@ -1,6 +1,3 @@
-// Description: Items with keyboard shortcuts
-// Order: 7
-
 import {
   Item,
   ItemActions,

@@ -1,6 +1,3 @@
-// Description: Pagination with page info on center
-// Order: 8
-
 import {
   Pagination,
   PaginationContent,
@@ -26,7 +23,7 @@ export default function Pattern() {
           </PaginationLink>
         </PaginationItem>
         <PaginationItem>
-          <span className="text-muted-foreground style-vega:text-sm style-nova:text-xs style-lyra:text-xs style-maia:text-sm style-mira:text-xs">
+          <span className="text-muted-foreground text-xs">
             Page <span className="text-foreground font-medium">1</span> of{" "}
             <span className="text-foreground font-medium">10</span>
           </span>

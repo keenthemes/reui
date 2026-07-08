@@ -1,6 +1,3 @@
-// Description: Horizontal separator for content sections.
-// Order: 1
-
 import { Separator } from "@/registry/bases/radix/ui/separator"
 
 export default function Pattern() {

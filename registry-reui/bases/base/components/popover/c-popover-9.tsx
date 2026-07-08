@@ -1,6 +1,3 @@
-// Description: Relative time popover with timezone details
-// Order: 9
-
 "use client"
 
 import { useEffect, useState } from "react"

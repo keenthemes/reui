@@ -1,7 +1,3 @@
-// Description: Vertical table with employee profile details
-// Order: 16
-// GridSize: 1
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import {

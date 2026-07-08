@@ -1,6 +1,3 @@
-// Description: Input with custom focus ring
-// Order: 25
-
 import { Field, FieldLabel } from "@/registry/bases/radix/ui/field"
 import { Input } from "@/registry/bases/radix/ui/input"
 

@@ -1,6 +1,3 @@
-// Description: Badge with an icon
-// Order: 20
-
 import { Badge } from "@/registry-reui/bases/base/reui/badge"
 
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"

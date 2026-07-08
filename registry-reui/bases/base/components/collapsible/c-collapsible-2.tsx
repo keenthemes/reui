@@ -1,6 +1,3 @@
-// Description: Collapsible with checkbox settings
-// Order: 2
-
 import { Button } from "@/registry/bases/base/ui/button"
 import { Card } from "@/registry/bases/base/ui/card"
 import { Checkbox } from "@/registry/bases/base/ui/checkbox"

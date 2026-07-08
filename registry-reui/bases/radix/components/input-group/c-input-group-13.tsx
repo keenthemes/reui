@@ -1,6 +1,3 @@
-// Description: Input group with keyboard shortcut (Kbd)
-// Order: 13
-
 import { Field } from "@/registry/bases/radix/ui/field"
 import {
   InputGroup,

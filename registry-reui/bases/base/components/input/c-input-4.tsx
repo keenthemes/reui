@@ -1,6 +1,3 @@
-// Description: Disabled input
-// Order: 4
-
 import { Field, FieldLabel } from "@/registry/bases/base/ui/field"
 import { Input } from "@/registry/bases/base/ui/input"
 

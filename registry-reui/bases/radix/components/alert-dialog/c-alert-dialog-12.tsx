@@ -1,6 +1,3 @@
-// Description: Billing warning for expired subscriptions or failed payments
-// Order: 12
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import {
@@ -25,7 +22,7 @@ export default function Pattern() {
       </AlertDialogTrigger>
       <AlertDialogContent className="gap-0 p-0 sm:max-w-sm">
         <div className="mx-auto flex flex-col items-center justify-center gap-2 p-8">
-          <AlertDialogMedia className="bg-destructive/10 text-destructive dark:bg-destructive/20 style-vega:rounded-full style-nova:rounded-full style-lyra:rounded-none style-maia:rounded-full style-mira:rounded-full size-12">
+          <AlertDialogMedia className="bg-destructive/10 text-destructive dark:bg-destructive/20 rounded-full size-12">
             <IconPlaceholder
               lucide="BellIcon"
               tabler="IconBell"
@@ -43,7 +40,7 @@ export default function Pattern() {
           </Badge>
         </div>
 
-        <div className="bg-muted/60 style-vega:rounded-b-2xl style-nova:rounded-b-2xl style-lyra:rounded-b-none style-maia:rounded-b-2xl style-mira:rounded-b-2xl flex flex-col items-center justify-center gap-5 p-6">
+        <div className="bg-muted/60 rounded-b-2xl flex flex-col items-center justify-center gap-5 p-6">
           <AlertDialogDescription className="text-muted-foreground text-center">
             Your current plan will expire in 2 days. Update your payment method
             now to ensure uninterrupted access to your Pro features.

@@ -1,6 +1,3 @@
-// Description: Warning badge
-// Order: 6
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 export default function Pattern() {

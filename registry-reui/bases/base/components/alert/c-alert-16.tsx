@@ -1,6 +1,3 @@
-// Description: Urgent billing notice
-// Order: 16
-
 import {
   Alert,
   AlertAction,

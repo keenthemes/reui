@@ -1,6 +1,3 @@
-// Description: Custom invert warning toast with countdown
-// Order: 16
-
 import { toast } from "sonner"
 
 import { Button } from "@/registry/bases/base/ui/button"
@@ -10,7 +7,7 @@ export default function Pattern() {
   const showToast = () => {
     toast.custom(
       () => (
-        <div className="bg-invert text-invert-foreground style-vega:rounded-md style-nova:rounded-md style-lyra:rounded-none style-maia:rounded-3xl style-mira:rounded-md flex w-[356px] items-start gap-3 border border-transparent p-4 shadow-lg">
+        <div className="bg-invert text-invert-foreground rounded-md flex w-[356px] items-start gap-3 border border-transparent p-4 shadow-lg">
           <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-amber-500 text-white">
             <IconPlaceholder
               lucide="AlertTriangleIcon"

@@ -1,7 +1,3 @@
-// Description: File manager table with owners and sharing badges
-// Order: 13
-// GridSize: 1
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import {

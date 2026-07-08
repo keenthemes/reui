@@ -1,6 +1,3 @@
-// Description: Alert integrated within a Frame with reset borders
-// Order: 12
-
 import {
   Alert,
   AlertDescription,

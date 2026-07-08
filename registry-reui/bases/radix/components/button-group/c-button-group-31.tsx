@@ -1,6 +1,3 @@
-// Description: Horizontal button group with primary and secondary labels
-// Order: 31
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   ButtonGroup,

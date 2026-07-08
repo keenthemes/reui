@@ -1,0 +1,486 @@
+{
+  "items": [
+    {
+      "name": "c-alert-1",
+      "type": "registry:block",
+      "title": "Basic alert",
+      "categories": [
+        "alert"
+      ],
+      "description": "Basic alert",
+      "registryDependencies": [
+        "alert"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert/c-alert-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-alert-2",
+      "type": "registry:block",
+      "title": "Alert with icon",
+      "categories": [
+        "alert"
+      ],
+      "description": "Alert with icon",
+      "registryDependencies": [
+        "alert"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert/c-alert-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-alert-3",
+      "type": "registry:block",
+      "title": "Alert with icon and action buttons",
+      "categories": [
+        "alert"
+      ],
+      "description": "Alert with icon and action buttons",
+      "registryDependencies": [
+        "alert",
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert/c-alert-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-alert-4",
+      "type": "registry:block",
+      "title": "Destructive alert with icon and action buttons",
+      "categories": [
+        "alert"
+      ],
+      "description": "Destructive alert with icon and action buttons",
+      "registryDependencies": [
+        "alert"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert/c-alert-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-alert-5",
+      "type": "registry:block",
+      "title": "Info alert with icon and action buttons",
+      "categories": [
+        "alert"
+      ],
+      "description": "Info alert with icon and action buttons",
+      "registryDependencies": [
+        "alert"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert/c-alert-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-alert-6",
+      "type": "registry:block",
+      "title": "Success alert",
+      "categories": [
+        "alert"
+      ],
+      "description": "Success alert",
+      "registryDependencies": [
+        "alert"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert/c-alert-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-alert-7",
+      "type": "registry:block",
+      "title": "Warning alert",
+      "categories": [
+        "alert"
+      ],
+      "description": "Warning alert",
+      "registryDependencies": [
+        "alert"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert/c-alert-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-alert-8",
+      "type": "registry:block",
+      "title": "Error alert",
+      "categories": [
+        "alert"
+      ],
+      "description": "Error alert",
+      "registryDependencies": [
+        "alert"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert/c-alert-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-alert-9",
+      "type": "registry:block",
+      "title": "Invert alert",
+      "categories": [
+        "alert"
+      ],
+      "description": "Invert alert",
+      "registryDependencies": [
+        "alert"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert/c-alert-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-alert-10",
+      "type": "registry:block",
+      "title": "Alert with icon and action buttons",
+      "categories": [
+        "alert"
+      ],
+      "description": "Alert with icon and action buttons",
+      "registryDependencies": [
+        "alert",
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert/c-alert-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-alert-11",
+      "type": "registry:block",
+      "title": "Alert with description and action buttons",
+      "categories": [
+        "alert"
+      ],
+      "description": "Alert with description and action buttons",
+      "registryDependencies": [
+        "alert",
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert/c-alert-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    },
+    {
+      "name": "c-alert-12",
+      "type": "registry:block",
+      "title": "Alert integrated within a Frame with reset borders",
+      "categories": [
+        "alert"
+      ],
+      "description": "Alert integrated within a Frame with reset borders",
+      "registryDependencies": [
+        "alert",
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert/c-alert-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12
+      }
+    },
+    {
+      "name": "c-alert-13",
+      "type": "registry:block",
+      "title": "Stacked alerts within a Frame",
+      "categories": [
+        "alert"
+      ],
+      "description": "Stacked alerts within a Frame",
+      "registryDependencies": [
+        "alert",
+        "button",
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert/c-alert-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13
+      }
+    },
+    {
+      "name": "c-alert-14",
+      "type": "registry:block",
+      "title": "Alert with actions integrated within a Frame",
+      "categories": [
+        "alert"
+      ],
+      "description": "Alert with actions integrated within a Frame",
+      "registryDependencies": [
+        "alert",
+        "button",
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert/c-alert-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14
+      }
+    },
+    {
+      "name": "c-alert-15",
+      "type": "registry:block",
+      "title": "Inverted alert variant",
+      "categories": [
+        "alert"
+      ],
+      "description": "Inverted alert variant",
+      "registryDependencies": [
+        "alert",
+        "button",
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert/c-alert-15.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-15.tsx"
+        }
+      ],
+      "meta": {
+        "order": 15
+      }
+    },
+    {
+      "name": "c-alert-16",
+      "type": "registry:block",
+      "title": "Urgent billing notice",
+      "categories": [
+        "alert"
+      ],
+      "description": "Urgent billing notice",
+      "registryDependencies": [
+        "alert",
+        "button",
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert/c-alert-16.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-16.tsx"
+        }
+      ],
+      "meta": {
+        "order": 16
+      }
+    },
+    {
+      "name": "c-alert-17",
+      "type": "registry:block",
+      "title": "Service status summary stacked within a frame",
+      "categories": [
+        "alert"
+      ],
+      "description": "Service status summary stacked within a frame",
+      "registryDependencies": [
+        "alert",
+        "button",
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert/c-alert-17.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-17.tsx"
+        }
+      ],
+      "meta": {
+        "order": 17
+      }
+    },
+    {
+      "name": "c-alert-18",
+      "type": "registry:block",
+      "title": "Feature discovery alert",
+      "categories": [
+        "alert"
+      ],
+      "description": "Feature discovery alert",
+      "registryDependencies": [
+        "alert",
+        "button",
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert/c-alert-18.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-18.tsx"
+        }
+      ],
+      "meta": {
+        "order": 18
+      }
+    },
+    {
+      "name": "c-alert-19",
+      "type": "registry:block",
+      "title": "User message notification alert",
+      "categories": [
+        "alert"
+      ],
+      "description": "User message notification alert",
+      "registryDependencies": [
+        "alert",
+        "avatar",
+        "button",
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert/c-alert-19.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-19.tsx"
+        }
+      ],
+      "meta": {
+        "order": 19
+      }
+    },
+    {
+      "name": "c-alert-20",
+      "type": "registry:block",
+      "title": "User message notification alert",
+      "categories": [
+        "alert"
+      ],
+      "description": "User message notification alert",
+      "registryDependencies": [
+        "alert",
+        "avatar",
+        "button",
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/alert/c-alert-20.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-alert-20.tsx"
+        }
+      ],
+      "meta": {
+        "order": 20
+      }
+    }
+  ]
+}

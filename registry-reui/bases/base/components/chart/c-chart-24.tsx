@@ -1,6 +1,3 @@
-// Description: Filled radar with glowing stroke
-// Order: 24
-
 "use client"
 
 import {

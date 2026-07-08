@@ -1,6 +1,3 @@
-// Description: Input group with both prefix and suffix text addons
-// Order: 9
-
 import { Field } from "@/registry/bases/base/ui/field"
 import {
   InputGroup,

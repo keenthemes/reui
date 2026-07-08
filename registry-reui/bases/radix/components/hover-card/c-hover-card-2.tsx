@@ -1,6 +1,3 @@
-// Description: Hover card with positions.
-// Order: 2
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   HoverCard,
@@ -8,18 +5,11 @@ import {
   HoverCardTrigger,
 } from "@/registry/bases/radix/ui/hover-card"
 
-const sides = [
-  "inline-start",
-  "left",
-  "top",
-  "bottom",
-  "right",
-  "inline-end",
-] as const
+const sides = ["top", "right", "bottom", "left"] as const
 
 export default function Pattern() {
   return (
-    <div className="grid grid-cols-3 gap-2">
+    <div className="grid grid-cols-2 gap-2">
       {sides.map((side) => (
         <HoverCard key={side} openDelay={100} closeDelay={100}>
           <HoverCardTrigger asChild>

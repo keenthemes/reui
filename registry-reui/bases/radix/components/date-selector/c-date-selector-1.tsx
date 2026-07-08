@@ -1,7 +1,3 @@
-// Description: Basic date selector
-// Order: 1
-// GridSize: 1
-
 "use client"
 
 import { useState } from "react"

@@ -1,6 +1,3 @@
-// Description: Select with avatar items for team member assignment
-// Order: 29
-
 import {
   Avatar,
   AvatarFallback,

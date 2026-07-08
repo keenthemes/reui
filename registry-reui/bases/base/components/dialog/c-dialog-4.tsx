@@ -1,6 +1,3 @@
-// Description: Dialog without a close button.
-// Order: 4
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   Dialog,

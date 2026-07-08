@@ -1,6 +1,3 @@
-// Description: Basic breadcrumb
-// Order: 1
-
 import {
   Breadcrumb,
   BreadcrumbItem,

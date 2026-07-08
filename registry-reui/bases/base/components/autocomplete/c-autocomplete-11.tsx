@@ -1,6 +1,3 @@
-// Description: Large autocomplete
-// Order: 11
-
 import {
   Autocomplete,
   AutocompleteContent,

@@ -1,6 +1,3 @@
-// Description: Range calendar with date picker and presets
-// Order: 29
-
 "use client"
 
 import { useId, useState } from "react"

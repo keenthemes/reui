@@ -1,0 +1,820 @@
+{
+  "items": [
+    {
+      "name": "c-avatar-1",
+      "type": "registry:block",
+      "title": "Basic avatar",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Basic avatar",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-avatar-2",
+      "type": "registry:block",
+      "title": "Avatar with fallback",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Avatar with fallback",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-avatar-3",
+      "type": "registry:block",
+      "title": "Avatars with different sizes",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Avatars with different sizes",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-avatar-4",
+      "type": "registry:block",
+      "title": "Avatars with different border radiuses",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Avatars with different border radiuses",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-avatar-5",
+      "type": "registry:block",
+      "title": "Avatars with custom sizes",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Avatars with custom sizes",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-avatar-6",
+      "type": "registry:block",
+      "title": "Avatar with an online status badge",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Avatar with an online status badge",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-avatar-7",
+      "type": "registry:block",
+      "title": "Avatar with badge icon",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Avatar with badge icon",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-avatar-8",
+      "type": "registry:block",
+      "title": "Avatar with different badge positions",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Avatar with different badge positions",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-avatar-9",
+      "type": "registry:block",
+      "title": "Avatar with different badge positions",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Avatar with different badge positions",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-avatar-10",
+      "type": "registry:block",
+      "title": "Basic avatar group",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Basic avatar group",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-avatar-11",
+      "type": "registry:block",
+      "title": "Avatar group with numerical count",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Avatar group with numerical count",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    },
+    {
+      "name": "c-avatar-12",
+      "type": "registry:block",
+      "title": "Avatar group with an icon count",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Avatar group with an icon count",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12
+      }
+    },
+    {
+      "name": "c-avatar-13",
+      "type": "registry:block",
+      "title": "Avatar with a distinct border ring",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Avatar with a distinct border ring",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13
+      }
+    },
+    {
+      "name": "c-avatar-14",
+      "type": "registry:block",
+      "title": "Avatar with light background color fallback",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Avatar with light background color fallback",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14
+      }
+    },
+    {
+      "name": "c-avatar-15",
+      "type": "registry:block",
+      "title": "Avatar with a solid background color fallback",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Avatar with a solid background color fallback",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-15.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-15.tsx"
+        }
+      ],
+      "meta": {
+        "order": 15
+      }
+    },
+    {
+      "name": "c-avatar-16",
+      "type": "registry:block",
+      "title": "Avatar with user details and badge",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Avatar with user details and badge",
+      "registryDependencies": [
+        "avatar",
+        "badge"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-16.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-16.tsx"
+        }
+      ],
+      "meta": {
+        "order": 16
+      }
+    },
+    {
+      "name": "c-avatar-17",
+      "type": "registry:block",
+      "title": "Avatar with grayscale image filter",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Avatar with grayscale image filter",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-17.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-17.tsx"
+        }
+      ],
+      "meta": {
+        "order": 17
+      }
+    },
+    {
+      "name": "c-avatar-18",
+      "type": "registry:block",
+      "title": "Avatar group with online status on one",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Avatar group with online status on one",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-18.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-18.tsx"
+        }
+      ],
+      "meta": {
+        "order": 18
+      }
+    },
+    {
+      "name": "c-avatar-19",
+      "type": "registry:block",
+      "title": "Avatar inside small outline button",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Avatar inside small outline button",
+      "registryDependencies": [
+        "avatar",
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-19.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-19.tsx"
+        }
+      ],
+      "meta": {
+        "order": 19
+      }
+    },
+    {
+      "name": "c-avatar-20",
+      "type": "registry:block",
+      "title": "Avatar social proof with text label",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Avatar social proof with text label",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-20.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-20.tsx"
+        }
+      ],
+      "meta": {
+        "order": 20
+      }
+    },
+    {
+      "name": "c-avatar-21",
+      "type": "registry:block",
+      "title": "Compact social proof with initials",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Compact social proof with initials",
+      "registryDependencies": [
+        "avatar",
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-21.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-21.tsx"
+        }
+      ],
+      "meta": {
+        "order": 21
+      }
+    },
+    {
+      "name": "c-avatar-22",
+      "type": "registry:block",
+      "title": "Avatar group with hover tooltips and lift effect",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Avatar group with hover tooltips and lift effect",
+      "registryDependencies": [
+        "avatar",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-22.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-22.tsx"
+        }
+      ],
+      "meta": {
+        "order": 22
+      }
+    },
+    {
+      "name": "c-avatar-23",
+      "type": "registry:block",
+      "title": "Avatar group with hover effect",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Avatar group with hover effect",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-23.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-23.tsx"
+        }
+      ],
+      "meta": {
+        "order": 23
+      }
+    },
+    {
+      "name": "c-avatar-24",
+      "type": "registry:block",
+      "title": "Avatar group with hover effect and tooltips",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Avatar group with hover effect and tooltips",
+      "registryDependencies": [
+        "avatar",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-24.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-24.tsx"
+        }
+      ],
+      "meta": {
+        "order": 24
+      }
+    },
+    {
+      "name": "c-avatar-25",
+      "type": "registry:block",
+      "title": "Avatar group with numerical count",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Avatar group with numerical count",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-25.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-25.tsx"
+        }
+      ],
+      "meta": {
+        "order": 25
+      }
+    },
+    {
+      "name": "c-avatar-26",
+      "type": "registry:block",
+      "title": "Pilled small outline button with avatar",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Pilled small outline button with avatar",
+      "registryDependencies": [
+        "avatar",
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-26.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-26.tsx"
+        }
+      ],
+      "meta": {
+        "order": 26
+      }
+    },
+    {
+      "name": "c-avatar-27",
+      "type": "registry:block",
+      "title": "Pilled small button with avatar",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Pilled small button with avatar",
+      "registryDependencies": [
+        "avatar",
+        "button"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-27.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-27.tsx"
+        }
+      ],
+      "meta": {
+        "order": 27
+      }
+    },
+    {
+      "name": "c-avatar-28",
+      "type": "registry:block",
+      "title": "Avatar inside an empty state example",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Avatar inside an empty state example",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-28.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-28.tsx"
+        }
+      ],
+      "meta": {
+        "order": 28
+      }
+    },
+    {
+      "name": "c-avatar-29",
+      "type": "registry:block",
+      "title": "Avatar group with icon count and button",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Avatar group with icon count and button",
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-29.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-29.tsx"
+        }
+      ],
+      "meta": {
+        "order": 29
+      }
+    },
+    {
+      "name": "c-avatar-30",
+      "type": "registry:block",
+      "title": "Avatar with loading state demonstration",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Avatar with loading state demonstration",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-30.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-30.tsx"
+        }
+      ],
+      "meta": {
+        "order": 30
+      }
+    },
+    {
+      "name": "c-avatar-31",
+      "type": "registry:block",
+      "title": "Avatar with custom badge",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Avatar with custom badge",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-31.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-31.tsx"
+        }
+      ],
+      "meta": {
+        "order": 31
+      }
+    },
+    {
+      "name": "c-avatar-32",
+      "type": "registry:block",
+      "title": "Avatar with ring animation",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Avatar with ring animation",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-32.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-32.tsx"
+        }
+      ],
+      "meta": {
+        "order": 32
+      }
+    },
+    {
+      "name": "c-avatar-33",
+      "type": "registry:block",
+      "title": "Avatar with gradient animated ring",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Avatar with gradient animated ring",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-33.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-33.tsx"
+        }
+      ],
+      "meta": {
+        "order": 33
+      }
+    },
+    {
+      "name": "c-avatar-34",
+      "type": "registry:block",
+      "title": "Avatar with multiple badges",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Avatar with multiple badges",
+      "registryDependencies": [
+        "avatar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-34.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-34.tsx"
+        }
+      ],
+      "meta": {
+        "order": 34
+      }
+    },
+    {
+      "name": "c-avatar-35",
+      "type": "registry:block",
+      "title": "Compact avatar dropdown menu",
+      "categories": [
+        "avatar"
+      ],
+      "description": "Compact avatar dropdown menu",
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/avatar/c-avatar-35.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-avatar-35.tsx"
+        }
+      ],
+      "meta": {
+        "order": 35
+      }
+    }
+  ]
+}

@@ -1,0 +1,295 @@
+{
+  "items": [
+    {
+      "name": "c-autocomplete-1",
+      "type": "registry:block",
+      "title": "Basic autocomplete control",
+      "categories": [
+        "autocomplete"
+      ],
+      "description": "Basic autocomplete control",
+      "registryDependencies": [
+        "autocomplete"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/autocomplete/c-autocomplete-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-autocomplete-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-autocomplete-2",
+      "type": "registry:block",
+      "title": "Disabled state",
+      "categories": [
+        "autocomplete"
+      ],
+      "description": "Disabled state",
+      "registryDependencies": [
+        "autocomplete"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/autocomplete/c-autocomplete-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-autocomplete-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-autocomplete-3",
+      "type": "registry:block",
+      "title": "Auto highlight option as you type",
+      "categories": [
+        "autocomplete"
+      ],
+      "description": "Auto highlight option as you type",
+      "registryDependencies": [
+        "autocomplete"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/autocomplete/c-autocomplete-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-autocomplete-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-autocomplete-4",
+      "type": "registry:block",
+      "title": "Control with label",
+      "categories": [
+        "autocomplete"
+      ],
+      "description": "Control with label",
+      "registryDependencies": [
+        "autocomplete",
+        "label"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/autocomplete/c-autocomplete-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-autocomplete-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-autocomplete-5",
+      "type": "registry:block",
+      "title": "With clear button",
+      "categories": [
+        "autocomplete"
+      ],
+      "description": "With clear button",
+      "registryDependencies": [
+        "autocomplete"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/autocomplete/c-autocomplete-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-autocomplete-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-autocomplete-6",
+      "type": "registry:block",
+      "title": "With trigger button",
+      "categories": [
+        "autocomplete"
+      ],
+      "description": "With trigger button",
+      "registryDependencies": [
+        "autocomplete"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/autocomplete/c-autocomplete-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-autocomplete-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-autocomplete-7",
+      "type": "registry:block",
+      "title": "With clear and trigger buttons",
+      "categories": [
+        "autocomplete"
+      ],
+      "description": "With clear and trigger buttons",
+      "registryDependencies": [
+        "autocomplete"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/autocomplete/c-autocomplete-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-autocomplete-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-autocomplete-8",
+      "type": "registry:block",
+      "title": "With groups and labels",
+      "categories": [
+        "autocomplete"
+      ],
+      "description": "With groups and labels",
+      "registryDependencies": [
+        "autocomplete",
+        "avatar"
+      ],
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "files": [
+        {
+          "path": "components/autocomplete/c-autocomplete-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-autocomplete-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-autocomplete-9",
+      "type": "registry:block",
+      "title": "With search results",
+      "categories": [
+        "autocomplete"
+      ],
+      "description": "With search results",
+      "registryDependencies": [
+        "autocomplete",
+        "avatar"
+      ],
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "files": [
+        {
+          "path": "components/autocomplete/c-autocomplete-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-autocomplete-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-autocomplete-10",
+      "type": "registry:block",
+      "title": "Small autocomplete",
+      "categories": [
+        "autocomplete"
+      ],
+      "description": "Small autocomplete",
+      "registryDependencies": [
+        "autocomplete"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/autocomplete/c-autocomplete-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-autocomplete-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-autocomplete-11",
+      "type": "registry:block",
+      "title": "Large autocomplete",
+      "categories": [
+        "autocomplete"
+      ],
+      "description": "Large autocomplete",
+      "registryDependencies": [
+        "autocomplete"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/autocomplete/c-autocomplete-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-autocomplete-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    },
+    {
+      "name": "c-autocomplete-12",
+      "type": "registry:block",
+      "title": "Form integration",
+      "categories": [
+        "autocomplete"
+      ],
+      "description": "Form integration",
+      "registryDependencies": [
+        "alert",
+        "autocomplete",
+        "button",
+        "field"
+      ],
+      "dependencies": [
+        "@hookform/resolvers",
+        "react-hook-form",
+        "sonner",
+        "zod"
+      ],
+      "files": [
+        {
+          "path": "components/autocomplete/c-autocomplete-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-autocomplete-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12
+      }
+    }
+  ]
+}

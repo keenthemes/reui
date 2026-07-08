@@ -1,7 +1,3 @@
-// Description: Stepper with icons and badges
-// Order: 7
-// GridSize: 1
-
 "use client"
 
 import { useState } from "react"

@@ -1,6 +1,3 @@
-// Description: Search empty state
-// Order: 2
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   Empty,

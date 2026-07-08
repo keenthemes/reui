@@ -1,7 +1,3 @@
-// Description: Tabs with vertical orientation and line variant.
-// Order: 4
-// GridSize: 1
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   Card,

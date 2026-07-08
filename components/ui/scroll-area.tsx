@@ -7,9 +7,20 @@ import { cn } from "@/lib/utils"
 
 function ScrollArea({
   className,
+  viewportClassName,
   children,
   ...props
-}: React.ComponentProps<typeof ScrollAreaPrimitive.Root>) {
+}: React.ComponentProps<typeof ScrollAreaPrimitive.Root> & {
+  /**
+   * Extra classes for the inner Viewport (the actual scroll container).
+   * Use this for `max-h-*` on-demand scrolling: a `max-h` on the Root
+   * alone does NOT scroll because the `size-full` viewport's `height:100%`
+   * doesn't resolve against a `max-height`-only parent, so content
+   * overflows (and is clipped) instead of scrolling. Capping the
+   * viewport here makes it the bounded scroll container.
+   */
+  viewportClassName?: string
+}) {
   return (
     <ScrollAreaPrimitive.Root
       data-slot="scroll-area"
@@ -18,7 +29,10 @@ function ScrollArea({
     >
       <ScrollAreaPrimitive.Viewport
         data-slot="scroll-area-viewport"
-        className="focus-visible:ring-site-ring/50 size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:outline-1"
+        className={cn(
+          "focus-visible:ring-site-ring/50 size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:outline-1",
+          viewportClassName
+        )}
       >
         {children}
       </ScrollAreaPrimitive.Viewport>

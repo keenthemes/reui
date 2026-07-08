@@ -1,0 +1,32 @@
+[
+  {
+    "name": "c-scroll-area-1",
+    "title": "Basic scroll area",
+    "description": "Basic scroll area",
+    "order": 1
+  },
+  {
+    "name": "c-scroll-area-2",
+    "title": "Scroll area with horizontal scrollbar",
+    "description": "Scroll area with horizontal scrollbar",
+    "order": 2
+  },
+  {
+    "name": "c-scroll-area-3",
+    "title": "Scroll area with both scrollbars",
+    "description": "Scroll area with both scrollbars",
+    "order": 3
+  },
+  {
+    "name": "c-scroll-area-4",
+    "title": "Scroll area with fade effect",
+    "description": "Scroll area with fade effect",
+    "order": 4
+  },
+  {
+    "name": "c-scroll-area-5",
+    "title": "Scroll area with scrollbar gutter",
+    "description": "Scroll area with scrollbar gutter",
+    "order": 5
+  }
+]

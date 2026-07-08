@@ -1,0 +1,147 @@
+{
+  "items": [
+    {
+      "name": "c-icon-stack-1",
+      "type": "registry:block",
+      "title": "Isometric icon stack",
+      "categories": [
+        "icon-stack"
+      ],
+      "description": "Layered isometric icon",
+      "registryDependencies": [
+        "icon-stack"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/icon-stack/c-icon-stack-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-icon-stack-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-icon-stack-2",
+      "type": "registry:block",
+      "title": "Icon stack sizes",
+      "categories": [
+        "icon-stack"
+      ],
+      "description": "Responsive icon stack sizes",
+      "registryDependencies": [
+        "icon-stack"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/icon-stack/c-icon-stack-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-icon-stack-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-icon-stack-3",
+      "type": "registry:block",
+      "title": "Icon stack colors",
+      "categories": [
+        "icon-stack"
+      ],
+      "description": "Semantic icon stack colors",
+      "registryDependencies": [
+        "icon-stack"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/icon-stack/c-icon-stack-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-icon-stack-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-icon-stack-4",
+      "type": "registry:block",
+      "title": "Icon badge stack",
+      "categories": [
+        "icon-stack"
+      ],
+      "description": "Icon stack with badge overlay",
+      "registryDependencies": [
+        "icon-stack"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/icon-stack/c-icon-stack-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-icon-stack-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-icon-stack-5",
+      "type": "registry:block",
+      "title": "Empty state illustration",
+      "categories": [
+        "icon-stack"
+      ],
+      "description": "Shadcn empty state illustration",
+      "registryDependencies": [
+        "button",
+        "empty",
+        "icon-stack"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/icon-stack/c-icon-stack-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-icon-stack-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-icon-stack-6",
+      "type": "registry:block",
+      "title": "Item media stack",
+      "categories": [
+        "icon-stack"
+      ],
+      "description": "Icon stack in shadcn item",
+      "registryDependencies": [
+        "icon-stack",
+        "item"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/icon-stack/c-icon-stack-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-icon-stack-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6,
+        "gridSize": 1
+      }
+    }
+  ]
+}

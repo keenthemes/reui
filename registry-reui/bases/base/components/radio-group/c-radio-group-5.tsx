@@ -1,6 +1,3 @@
-// Description: Colored radio group
-// Order: 5
-
 import { Field, FieldLabel } from "@/registry/bases/base/ui/field"
 import {
   RadioGroup,

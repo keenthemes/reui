@@ -1,0 +1,68 @@
+[
+  {
+    "name": "c-accordion-1",
+    "title": "A basic single-expand accordion",
+    "description": "A basic single-expand accordion",
+    "order": 1
+  },
+  {
+    "name": "c-accordion-2",
+    "title": "Accordion with plus/minus indicators",
+    "description": "Accordion with plus/minus indicators",
+    "order": 2
+  },
+  {
+    "name": "c-accordion-3",
+    "title": "Accordion with borders and rounded corners",
+    "description": "Accordion with borders and rounded corners",
+    "order": 3
+  },
+  {
+    "name": "c-accordion-4",
+    "title": "Accordion embedded within a Card",
+    "description": "Accordion embedded within a Card",
+    "order": 4
+  },
+  {
+    "name": "c-accordion-5",
+    "title": "Accordion with disabled items and highlighted state",
+    "description": "Accordion with disabled items and highlighted state",
+    "order": 5
+  },
+  {
+    "name": "c-accordion-6",
+    "title": "Advanced accordion with custom icons and badges",
+    "description": "Advanced accordion with custom icons and badges",
+    "order": 6
+  },
+  {
+    "name": "c-accordion-7",
+    "title": "Accordion items integrated within Frame and FramePanel",
+    "description": "Accordion items integrated within Frame and FramePanel",
+    "order": 7
+  },
+  {
+    "name": "c-accordion-8",
+    "title": "Nested accordion example with bordered items",
+    "description": "Nested accordion example with bordered items",
+    "order": 8
+  },
+  {
+    "name": "c-accordion-9",
+    "title": "User list accordion with avatars and role indicators",
+    "description": "User list accordion with avatars and role indicators",
+    "order": 9
+  },
+  {
+    "name": "c-accordion-10",
+    "title": "Accordion with rotating arrow indicator",
+    "description": "Accordion with rotating arrow indicator",
+    "order": 10
+  },
+  {
+    "name": "c-accordion-11",
+    "title": "Accordion pattern for onboarding or setup steps with icons, badges, and QR codes",
+    "description": "Accordion pattern for onboarding or setup steps with icons, badges, and QR codes",
+    "order": 11
+  }
+]

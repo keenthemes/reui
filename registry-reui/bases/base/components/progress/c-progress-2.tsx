@@ -1,6 +1,3 @@
-// Description: Small progress.
-// Order: 2
-
 import {
   Progress,
   ProgressLabel,

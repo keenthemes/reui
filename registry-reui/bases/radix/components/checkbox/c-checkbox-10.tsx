@@ -1,6 +1,3 @@
-// Description: Checkbox group in a frame
-// Order: 10
-
 import {
   Frame,
   FrameHeader,

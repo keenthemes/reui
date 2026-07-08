@@ -1,6 +1,3 @@
-// Description: Large (lg) icon-only button
-// Order: 26
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 

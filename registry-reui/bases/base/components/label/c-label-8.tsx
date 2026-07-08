@@ -1,6 +1,3 @@
-// Description: Label with badge indicator
-// Order: 8
-
 import { Badge } from "@/registry-reui/bases/base/reui/badge"
 
 import { Field } from "@/registry/bases/base/ui/field"

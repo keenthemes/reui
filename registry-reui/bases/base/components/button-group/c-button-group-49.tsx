@@ -1,6 +1,3 @@
-// Description: Vertical nav links with icons
-// Order: 49
-
 "use client"
 
 import { useState } from "react"

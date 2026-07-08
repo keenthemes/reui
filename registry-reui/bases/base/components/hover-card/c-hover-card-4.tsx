@@ -1,8 +1,3 @@
-// Description: Hover card with icon
-// Order: 4
-
-import { ZapIcon } from "lucide-react"
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   HoverCard,

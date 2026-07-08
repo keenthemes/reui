@@ -1,7 +1,3 @@
-// Description: Sortable playlist with frame
-// Order: 4
-// GridSize: 1
-
 "use client"
 
 import { useState } from "react"

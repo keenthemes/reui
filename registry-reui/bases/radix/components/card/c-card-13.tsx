@@ -1,6 +1,3 @@
-// Description: Expandable billing usage card
-// Order: 13
-
 "use client"
 
 import { useState } from "react"
@@ -37,7 +34,7 @@ export default function Pattern() {
         )}
       >
         {/* Usage Details */}
-        <div className="bg-muted/60 style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-2xl style-mira:rounded-md space-y-3 p-4">
+        <div className="bg-muted/60 rounded-lg space-y-3 p-4">
           <div className="text-muted-foreground flex justify-between text-xs font-medium">
             <span>Included Credit</span>
             <span>On-Demand Charges</span>

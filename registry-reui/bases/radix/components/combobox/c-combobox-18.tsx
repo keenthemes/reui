@@ -1,6 +1,3 @@
-// Description: A combobox with a custom trigger icon
-// Order: 18
-
 "use client"
 
 import { useState } from "react"

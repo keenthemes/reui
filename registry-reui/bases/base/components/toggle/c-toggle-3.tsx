@@ -1,6 +1,3 @@
-// Description: Toggle buttons in different sizes.
-// Order: 3
-
 import { Toggle } from "@/registry/bases/base/ui/toggle"
 
 export default function Pattern() {

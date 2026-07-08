@@ -1,6 +1,3 @@
-// Description: Accordion with plus/minus indicators
-// Order: 2
-
 import {
   Accordion,
   AccordionContent,

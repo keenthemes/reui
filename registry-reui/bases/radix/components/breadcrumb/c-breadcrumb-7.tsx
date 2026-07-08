@@ -1,6 +1,3 @@
-// Description: Breadcrumb items with avatars
-// Order: 7
-
 import {
   Avatar,
   AvatarFallback,

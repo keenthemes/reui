@@ -3,7 +3,7 @@
 import * as React from "react"
 import { CheckIcon, Copy, Terminal } from "lucide-react"
 
-import { DEFAULT_CONFIG, useConfig } from "@/hooks/use-config"
+import { useConfig } from "@/hooks/use-config"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
@@ -26,11 +26,6 @@ export function CodeBlockCommand({
 }) {
   const [config, setConfig] = useConfig()
   const [hasCopied, setHasCopied] = React.useState(false)
-  const [mounted, setMounted] = React.useState(false)
-
-  React.useEffect(() => {
-    setMounted(true)
-  }, [])
 
   React.useEffect(() => {
     if (hasCopied) {
@@ -39,9 +34,7 @@ export function CodeBlockCommand({
     }
   }, [hasCopied])
 
-  const packageManager = mounted
-    ? (config.packageManager ?? DEFAULT_CONFIG.packageManager)
-    : DEFAULT_CONFIG.packageManager
+  const packageManager = config.packageManager || "pnpm"
 
   const tabs = React.useMemo(() => {
     return {
@@ -84,9 +77,9 @@ export function CodeBlockCommand({
           })
         }}
       >
-        <div className="border-site-border/50 flex items-center justify-between gap-2 border-b px-3 py-1">
+        <div className="border-site-border flex items-center justify-between gap-2 border-b px-3 py-1">
           <div className="flex items-center gap-2">
-            <div className="flex size-4 items-center justify-center rounded-[1px] opacity-70">
+            <div className="site-rounded-xs flex size-4 items-center justify-center opacity-70">
               <Terminal className="text-site-foreground size-4" />
             </div>
             <TabsList className="site-rounded-none bg-transparent p-0">
@@ -110,7 +103,7 @@ export function CodeBlockCommand({
               <TabsContent key={key} value={key} className="mt-0 px-4 py-3.5">
                 <pre>
                   <code
-                    className="relative font-mono text-sm leading-none"
+                    className="font-site-mono relative text-sm leading-none"
                     data-language="bash"
                   >
                     {value}

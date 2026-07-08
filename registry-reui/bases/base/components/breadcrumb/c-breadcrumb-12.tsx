@@ -1,6 +1,3 @@
-// Description: Breadcrumb starting with home icon item
-// Order: 12
-
 import {
   Breadcrumb,
   BreadcrumbItem,

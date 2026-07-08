@@ -1,6 +1,3 @@
-// Description: Card with header badge and actions
-// Order: 16
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import {

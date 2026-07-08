@@ -1,6 +1,3 @@
-// Description: Input group with dropdown menu selection
-// Order: 12
-
 "use client"
 
 import { useState } from "react"

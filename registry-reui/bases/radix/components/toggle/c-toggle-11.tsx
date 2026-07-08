@@ -1,6 +1,3 @@
-// Description: Social media reaction toggles
-// Order: 11
-
 "use client"
 
 import { useState } from "react"

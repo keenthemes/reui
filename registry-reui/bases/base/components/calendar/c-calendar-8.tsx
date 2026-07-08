@@ -1,6 +1,3 @@
-// Description: Month and year selection
-// Order: 8
-
 "use client"
 
 import { ChangeEvent, ChangeEventHandler, useState } from "react"

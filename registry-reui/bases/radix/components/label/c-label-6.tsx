@@ -1,6 +1,3 @@
-// Description: Label with optional indicator
-// Order: 6
-
 import { Field } from "@/registry/bases/radix/ui/field"
 import { Input } from "@/registry/bases/radix/ui/input"
 import { Label } from "@/registry/bases/radix/ui/label"

@@ -1,6 +1,3 @@
-// Description: Textarea input group with dynamic character limit
-// Order: 17
-
 "use client"
 
 import { useState } from "react"

@@ -1,11 +1,6 @@
-// Description: Table file upload
-// Order: 6
-// GridSize: 1
-
 "use client"
 
 import { useEffect, useState } from "react"
-import Link from "next/link"
 import {
   formatBytes,
   useFileUpload,
@@ -396,7 +391,7 @@ export default function Pattern({
             </div>
           </div>
 
-          <div className="style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-lg style-mira:rounded-lg border">
+          <div className="rounded-lg border">
             <Table>
               <TableHeader>
                 <TableRow className="text-xs">

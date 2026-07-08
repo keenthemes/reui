@@ -1,6 +1,3 @@
-// Description: Button with an unread badge
-// Order: 39
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import { Button } from "@/registry/bases/radix/ui/button"

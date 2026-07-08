@@ -1,6 +1,3 @@
-// Description: Popover with navigation
-// Order: 11
-
 "use client"
 
 import { useState } from "react"

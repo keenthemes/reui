@@ -1,6 +1,3 @@
-// Description: Custom positioned checkbox
-// Order: 13
-
 import { Checkbox } from "@/registry/bases/radix/ui/checkbox"
 import {
   Field,

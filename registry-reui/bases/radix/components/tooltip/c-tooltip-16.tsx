@@ -1,6 +1,3 @@
-// Description: Tooltip with action button inside
-// Order: 16
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   Tooltip,

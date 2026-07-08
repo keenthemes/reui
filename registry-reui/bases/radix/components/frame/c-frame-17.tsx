@@ -1,6 +1,3 @@
-// Description: Frame with extra large border radius
-// Order: 17
-
 import {
   Frame,
   FrameDescription,

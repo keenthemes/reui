@@ -1,6 +1,3 @@
-// Description: Copy button with feedback
-// Order: 41
-
 "use client"
 
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"

@@ -1,6 +1,3 @@
-// Description: Collapsible frame
-// Order: 6
-
 import {
   Frame,
   FrameHeader,

@@ -1,6 +1,3 @@
-// Description: Colored switches
-// Order: 11
-
 import { Field, FieldLabel } from "@/registry/bases/radix/ui/field"
 import { Switch } from "@/registry/bases/radix/ui/switch"
 

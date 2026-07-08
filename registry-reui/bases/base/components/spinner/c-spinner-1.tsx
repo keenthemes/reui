@@ -1,6 +1,3 @@
-// Description: Basic spinner.
-// Order: 1
-
 import { Spinner } from "@/registry/bases/base/ui/spinner"
 
 export default function Pattern() {

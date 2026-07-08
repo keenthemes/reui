@@ -1,0 +1,142 @@
+{
+  "items": [
+    {
+      "name": "c-separator-1",
+      "type": "registry:block",
+      "title": "Horizontal separator for content sections.",
+      "categories": [
+        "separator"
+      ],
+      "description": "Horizontal separator for content sections.",
+      "registryDependencies": [
+        "separator"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/separator/c-separator-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-separator-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-separator-2",
+      "type": "registry:block",
+      "title": "Vertical separator for inline elements.",
+      "categories": [
+        "separator"
+      ],
+      "description": "Vertical separator for inline elements.",
+      "registryDependencies": [
+        "separator"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/separator/c-separator-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-separator-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-separator-3",
+      "type": "registry:block",
+      "title": "Vertical separator groups related menu items.",
+      "categories": [
+        "separator"
+      ],
+      "description": "Vertical separator groups related menu items.",
+      "registryDependencies": [
+        "separator"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/separator/c-separator-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-separator-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-separator-4",
+      "type": "registry:block",
+      "title": "Horizontal separator between items in a list.",
+      "categories": [
+        "separator"
+      ],
+      "description": "Horizontal separator between items in a list.",
+      "registryDependencies": [
+        "separator"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/separator/c-separator-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-separator-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-separator-5",
+      "type": "registry:block",
+      "title": "Separator with centered text label",
+      "categories": [
+        "separator"
+      ],
+      "description": "Separator with centered text label",
+      "registryDependencies": [
+        "separator"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/separator/c-separator-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-separator-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-separator-6",
+      "type": "registry:block",
+      "title": "Order summary with separators",
+      "categories": [
+        "separator"
+      ],
+      "description": "Order summary with separators",
+      "registryDependencies": [
+        "separator"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/separator/c-separator-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-separator-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    }
+  ]
+}

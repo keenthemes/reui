@@ -1,6 +1,3 @@
-// Description: Compact time interval selector
-// Order: 46
-
 "use client"
 
 import { useState } from "react"

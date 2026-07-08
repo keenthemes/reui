@@ -1,6 +1,3 @@
-// Description: Stacked area chart with crosshatch pattern fill
-// Order: 18
-
 "use client"
 
 import { CSSProperties } from "react"

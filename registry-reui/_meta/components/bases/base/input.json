@@ -1,0 +1,753 @@
+{
+  "items": [
+    {
+      "name": "c-input-1",
+      "type": "registry:block",
+      "title": "Basic input",
+      "categories": [
+        "input"
+      ],
+      "description": "Basic input",
+      "registryDependencies": [
+        "field",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input/c-input-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-input-2",
+      "type": "registry:block",
+      "title": "Input with label",
+      "categories": [
+        "input"
+      ],
+      "description": "Input with label",
+      "registryDependencies": [
+        "field",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input/c-input-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-input-3",
+      "type": "registry:block",
+      "title": "Input with description",
+      "categories": [
+        "input"
+      ],
+      "description": "Input with description",
+      "registryDependencies": [
+        "field",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input/c-input-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-input-4",
+      "type": "registry:block",
+      "title": "Disabled input",
+      "categories": [
+        "input"
+      ],
+      "description": "Disabled input",
+      "registryDependencies": [
+        "field",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input/c-input-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-input-5",
+      "type": "registry:block",
+      "title": "Input with error message",
+      "categories": [
+        "input"
+      ],
+      "description": "Input with error message",
+      "registryDependencies": [
+        "field",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input/c-input-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-input-6",
+      "type": "registry:block",
+      "title": "Input with character counter",
+      "categories": [
+        "input"
+      ],
+      "description": "Input with character counter",
+      "registryDependencies": [
+        "field",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input/c-input-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-input-7",
+      "type": "registry:block",
+      "title": "Input with password type",
+      "categories": [
+        "input"
+      ],
+      "description": "Input with password type",
+      "registryDependencies": [
+        "field",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input/c-input-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-input-8",
+      "type": "registry:block",
+      "title": "Input with phone type",
+      "categories": [
+        "input"
+      ],
+      "description": "Input with phone type",
+      "registryDependencies": [
+        "field",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input/c-input-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-input-9",
+      "type": "registry:block",
+      "title": "Input with URL type",
+      "categories": [
+        "input"
+      ],
+      "description": "Input with URL type",
+      "registryDependencies": [
+        "field",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input/c-input-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-input-10",
+      "type": "registry:block",
+      "title": "Input with number type",
+      "categories": [
+        "input"
+      ],
+      "description": "Input with number type",
+      "registryDependencies": [
+        "field",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input/c-input-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-input-11",
+      "type": "registry:block",
+      "title": "Input with date type",
+      "categories": [
+        "input"
+      ],
+      "description": "Input with date type",
+      "registryDependencies": [
+        "field",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input/c-input-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    },
+    {
+      "name": "c-input-12",
+      "type": "registry:block",
+      "title": "Input with file type",
+      "categories": [
+        "input"
+      ],
+      "description": "Input with file type",
+      "registryDependencies": [
+        "field",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input/c-input-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12
+      }
+    },
+    {
+      "name": "c-input-13",
+      "type": "registry:block",
+      "title": "Input with required indicator",
+      "categories": [
+        "input"
+      ],
+      "description": "Input with required indicator",
+      "registryDependencies": [
+        "field",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input/c-input-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13
+      }
+    },
+    {
+      "name": "c-input-14",
+      "type": "registry:block",
+      "title": "Input with time type",
+      "categories": [
+        "input"
+      ],
+      "description": "Input with time type",
+      "registryDependencies": [
+        "field",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input/c-input-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14
+      }
+    },
+    {
+      "name": "c-input-15",
+      "type": "registry:block",
+      "title": "Complex input form with multiple fields",
+      "categories": [
+        "input"
+      ],
+      "description": "Complex input form with multiple fields",
+      "registryDependencies": [
+        "button",
+        "field",
+        "input",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input/c-input-15.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-15.tsx"
+        }
+      ],
+      "meta": {
+        "order": 15
+      }
+    },
+    {
+      "name": "c-input-16",
+      "type": "registry:block",
+      "title": "Input label with tooltip",
+      "categories": [
+        "input"
+      ],
+      "description": "Input label with tooltip",
+      "registryDependencies": [
+        "field",
+        "input",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input/c-input-16.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-16.tsx"
+        }
+      ],
+      "meta": {
+        "order": 16
+      }
+    },
+    {
+      "name": "c-input-17",
+      "type": "registry:block",
+      "title": "Input label with badge",
+      "categories": [
+        "input"
+      ],
+      "description": "Input label with badge",
+      "registryDependencies": [
+        "badge",
+        "field",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input/c-input-17.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-17.tsx"
+        }
+      ],
+      "meta": {
+        "order": 17
+      }
+    },
+    {
+      "name": "c-input-18",
+      "type": "registry:block",
+      "title": "Input label with optional badge",
+      "categories": [
+        "input"
+      ],
+      "description": "Input label with optional badge",
+      "registryDependencies": [
+        "badge",
+        "field",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input/c-input-18.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-18.tsx"
+        }
+      ],
+      "meta": {
+        "order": 18
+      }
+    },
+    {
+      "name": "c-input-19",
+      "type": "registry:block",
+      "title": "Input label with link and visibility toggle",
+      "categories": [
+        "input"
+      ],
+      "description": "Input label with link and visibility toggle",
+      "registryDependencies": [
+        "field",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input/c-input-19.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-19.tsx"
+        }
+      ],
+      "meta": {
+        "order": 19
+      }
+    },
+    {
+      "name": "c-input-20",
+      "type": "registry:block",
+      "title": "Input with horizontal orientation",
+      "categories": [
+        "input"
+      ],
+      "description": "Input with horizontal orientation",
+      "registryDependencies": [
+        "field",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input/c-input-20.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-20.tsx"
+        }
+      ],
+      "meta": {
+        "order": 20
+      }
+    },
+    {
+      "name": "c-input-21",
+      "type": "registry:block",
+      "title": "Input with multiple error messages",
+      "categories": [
+        "input"
+      ],
+      "description": "Input with multiple error messages",
+      "registryDependencies": [
+        "field",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input/c-input-21.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-21.tsx"
+        }
+      ],
+      "meta": {
+        "order": 21
+      }
+    },
+    {
+      "name": "c-input-22",
+      "type": "registry:block",
+      "title": "Basic password strength with dynamic hint and icons",
+      "categories": [
+        "input"
+      ],
+      "description": "Basic password strength with dynamic hint and icons",
+      "registryDependencies": [
+        "field",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input/c-input-22.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-22.tsx"
+        }
+      ],
+      "meta": {
+        "order": 22
+      }
+    },
+    {
+      "name": "c-input-23",
+      "type": "registry:block",
+      "title": "Advanced password strength indicator with progress",
+      "categories": [
+        "input"
+      ],
+      "description": "Advanced password strength indicator with progress",
+      "registryDependencies": [
+        "field",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input/c-input-23.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-23.tsx"
+        }
+      ],
+      "meta": {
+        "order": 23
+      }
+    },
+    {
+      "name": "c-input-24",
+      "type": "registry:block",
+      "title": "Input with pulsed background animation",
+      "categories": [
+        "input"
+      ],
+      "description": "Input with pulsed background animation",
+      "registryDependencies": [
+        "field",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input/c-input-24.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-24.tsx"
+        }
+      ],
+      "meta": {
+        "order": 24
+      }
+    },
+    {
+      "name": "c-input-25",
+      "type": "registry:block",
+      "title": "Input with custom focus ring",
+      "categories": [
+        "input"
+      ],
+      "description": "Input with custom focus ring",
+      "registryDependencies": [
+        "field",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input/c-input-25.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-25.tsx"
+        }
+      ],
+      "meta": {
+        "order": 25
+      }
+    },
+    {
+      "name": "c-input-26",
+      "type": "registry:block",
+      "title": "Input with subtle background",
+      "categories": [
+        "input"
+      ],
+      "description": "Input with subtle background",
+      "registryDependencies": [
+        "field",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input/c-input-26.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-26.tsx"
+        }
+      ],
+      "meta": {
+        "order": 26
+      }
+    },
+    {
+      "name": "c-input-27",
+      "type": "registry:block",
+      "title": "Input with bottom border only",
+      "categories": [
+        "input"
+      ],
+      "description": "Input with bottom border only",
+      "registryDependencies": [
+        "field",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input/c-input-27.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-27.tsx"
+        }
+      ],
+      "meta": {
+        "order": 27
+      }
+    },
+    {
+      "name": "c-input-28",
+      "type": "registry:block",
+      "title": "Color input",
+      "categories": [
+        "input"
+      ],
+      "description": "Color input",
+      "registryDependencies": [
+        "field",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input/c-input-28.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-28.tsx"
+        }
+      ],
+      "meta": {
+        "order": 28
+      }
+    },
+    {
+      "name": "c-input-29",
+      "type": "registry:block",
+      "title": "Range input with value indicator",
+      "categories": [
+        "input"
+      ],
+      "description": "Range input with value indicator",
+      "registryDependencies": [
+        "field",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input/c-input-29.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-29.tsx"
+        }
+      ],
+      "meta": {
+        "order": 29
+      }
+    },
+    {
+      "name": "c-input-30",
+      "type": "registry:block",
+      "title": "Pill-shaped input",
+      "categories": [
+        "input"
+      ],
+      "description": "Pill-shaped input",
+      "registryDependencies": [
+        "field",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input/c-input-30.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-30.tsx"
+        }
+      ],
+      "meta": {
+        "order": 30
+      }
+    },
+    {
+      "name": "c-input-31",
+      "type": "registry:block",
+      "title": "Minimal input without borders or background",
+      "categories": [
+        "input"
+      ],
+      "description": "Minimal input without borders or background",
+      "registryDependencies": [
+        "field",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/input/c-input-31.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-31.tsx"
+        }
+      ],
+      "meta": {
+        "order": 31
+      }
+    }
+  ]
+}

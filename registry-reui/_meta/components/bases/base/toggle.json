@@ -1,0 +1,329 @@
+{
+  "items": [
+    {
+      "name": "c-toggle-1",
+      "type": "registry:block",
+      "title": "Basic toggle.",
+      "categories": [
+        "toggle"
+      ],
+      "description": "Basic toggle.",
+      "registryDependencies": [
+        "toggle"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/toggle/c-toggle-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-toggle-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-toggle-2",
+      "type": "registry:block",
+      "title": "Toggle buttons with outline variant.",
+      "categories": [
+        "toggle"
+      ],
+      "description": "Toggle buttons with outline variant.",
+      "registryDependencies": [
+        "toggle"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/toggle/c-toggle-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-toggle-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-toggle-3",
+      "type": "registry:block",
+      "title": "Toggle buttons in different sizes.",
+      "categories": [
+        "toggle"
+      ],
+      "description": "Toggle buttons in different sizes.",
+      "registryDependencies": [
+        "toggle"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/toggle/c-toggle-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-toggle-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-toggle-4",
+      "type": "registry:block",
+      "title": "Toggle with button and icon.",
+      "categories": [
+        "toggle"
+      ],
+      "description": "Toggle with button and icon.",
+      "registryDependencies": [
+        "button",
+        "toggle"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/toggle/c-toggle-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-toggle-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-toggle-5",
+      "type": "registry:block",
+      "title": "Disabled toggle.",
+      "categories": [
+        "toggle"
+      ],
+      "description": "Disabled toggle.",
+      "registryDependencies": [
+        "toggle"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/toggle/c-toggle-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-toggle-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-toggle-6",
+      "type": "registry:block",
+      "title": "Toggle with icon.",
+      "categories": [
+        "toggle"
+      ],
+      "description": "Toggle with icon.",
+      "registryDependencies": [
+        "toggle"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/toggle/c-toggle-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-toggle-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-toggle-7",
+      "type": "registry:block",
+      "title": "Toggle with notification count badge",
+      "categories": [
+        "toggle"
+      ],
+      "description": "Toggle with notification count badge",
+      "registryDependencies": [
+        "badge",
+        "toggle"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/toggle/c-toggle-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-toggle-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-toggle-8",
+      "type": "registry:block",
+      "title": "Toggle size variants showcase",
+      "categories": [
+        "toggle"
+      ],
+      "description": "Toggle size variants showcase",
+      "registryDependencies": [
+        "toggle"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/toggle/c-toggle-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-toggle-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-toggle-9",
+      "type": "registry:block",
+      "title": "Toggle with icon swap on press",
+      "categories": [
+        "toggle"
+      ],
+      "description": "Toggle with icon swap on press",
+      "registryDependencies": [
+        "toggle"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/toggle/c-toggle-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-toggle-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-toggle-10",
+      "type": "registry:block",
+      "title": "Toggle with text label that changes",
+      "categories": [
+        "toggle"
+      ],
+      "description": "Toggle with text label that changes",
+      "registryDependencies": [
+        "toggle"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/toggle/c-toggle-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-toggle-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-toggle-11",
+      "type": "registry:block",
+      "title": "Social media reaction toggles",
+      "categories": [
+        "toggle"
+      ],
+      "description": "Social media reaction toggles",
+      "registryDependencies": [
+        "toggle"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/toggle/c-toggle-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-toggle-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    },
+    {
+      "name": "c-toggle-12",
+      "type": "registry:block",
+      "title": "Toggle with tooltip",
+      "categories": [
+        "toggle"
+      ],
+      "description": "Toggle with tooltip",
+      "registryDependencies": [
+        "toggle",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/toggle/c-toggle-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-toggle-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12
+      }
+    },
+    {
+      "name": "c-toggle-13",
+      "type": "registry:block",
+      "title": "Disabled toggle states",
+      "categories": [
+        "toggle"
+      ],
+      "description": "Disabled toggle states",
+      "registryDependencies": [
+        "toggle"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/toggle/c-toggle-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-toggle-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13
+      }
+    },
+    {
+      "name": "c-toggle-14",
+      "type": "registry:block",
+      "title": "Toggle as mute/unmute button",
+      "categories": [
+        "toggle"
+      ],
+      "description": "Toggle as mute/unmute button",
+      "registryDependencies": [
+        "toggle"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/toggle/c-toggle-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-toggle-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14
+      }
+    }
+  ]
+}

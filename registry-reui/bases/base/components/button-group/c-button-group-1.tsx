@@ -1,6 +1,3 @@
-// Description: Basic button group with two buttons
-// Order: 1
-
 import { Button } from "@/registry/bases/base/ui/button"
 import { ButtonGroup } from "@/registry/bases/base/ui/button-group"
 

@@ -1,6 +1,3 @@
-// Description: Disabled state
-// Order: 2
-
 import {
   Autocomplete,
   AutocompleteContent,

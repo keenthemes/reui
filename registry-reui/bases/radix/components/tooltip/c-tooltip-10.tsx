@@ -1,6 +1,3 @@
-// Description: Tooltip with feature badge and upgrade link
-// Order: 10
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import { Button } from "@/registry/bases/radix/ui/button"

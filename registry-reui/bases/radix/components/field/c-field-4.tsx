@@ -1,6 +1,3 @@
-// Description: Field with radio groups and checkboxes
-// Order: 4
-
 import { Checkbox } from "@/registry/bases/radix/ui/checkbox"
 import {
   Field,

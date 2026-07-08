@@ -1,0 +1,152 @@
+[
+  {
+    "name": "c-badge-1",
+    "title": "Default badge",
+    "description": "Default badge",
+    "order": 1
+  },
+  {
+    "name": "c-badge-2",
+    "title": "Secondary badge",
+    "description": "Secondary badge",
+    "order": 2
+  },
+  {
+    "name": "c-badge-3",
+    "title": "Destructive badge",
+    "description": "Destructive badge",
+    "order": 3
+  },
+  {
+    "name": "c-badge-4",
+    "title": "Success badge",
+    "description": "Success badge",
+    "order": 4
+  },
+  {
+    "name": "c-badge-5",
+    "title": "Info badge",
+    "description": "Info badge",
+    "order": 5
+  },
+  {
+    "name": "c-badge-6",
+    "title": "Warning badge",
+    "description": "Warning badge",
+    "order": 6
+  },
+  {
+    "name": "c-badge-7",
+    "title": "Outline badge",
+    "description": "Outline badge",
+    "order": 7
+  },
+  {
+    "name": "c-badge-8",
+    "title": "Primary outline badge",
+    "description": "Primary outline badge",
+    "order": 8
+  },
+  {
+    "name": "c-badge-9",
+    "title": "Destructive outline badge",
+    "description": "Destructive outline badge",
+    "order": 9
+  },
+  {
+    "name": "c-badge-10",
+    "title": "Info outline badge",
+    "description": "Info outline badge",
+    "order": 10
+  },
+  {
+    "name": "c-badge-11",
+    "title": "Success outline badge",
+    "description": "Success outline badge",
+    "order": 11
+  },
+  {
+    "name": "c-badge-12",
+    "title": "Warning outline badge",
+    "description": "Warning outline badge",
+    "order": 12
+  },
+  {
+    "name": "c-badge-13",
+    "title": "Primary light badge",
+    "description": "Primary light badge",
+    "order": 13
+  },
+  {
+    "name": "c-badge-14",
+    "title": "Destructive light badge",
+    "description": "Destructive light badge",
+    "order": 14
+  },
+  {
+    "name": "c-badge-15",
+    "title": "Success light badge",
+    "description": "Success light badge",
+    "order": 15
+  },
+  {
+    "name": "c-badge-16",
+    "title": "Info light badge",
+    "description": "Info light badge",
+    "order": 16
+  },
+  {
+    "name": "c-badge-17",
+    "title": "Warning light badge",
+    "description": "Warning light badge",
+    "order": 17
+  },
+  {
+    "name": "c-badge-18",
+    "title": "Badge size variations",
+    "description": "Badge size variations",
+    "order": 18
+  },
+  {
+    "name": "c-badge-19",
+    "title": "Badge with full radius (radius=\"full\")",
+    "description": "Badge with full radius (radius=\"full\")",
+    "order": 19
+  },
+  {
+    "name": "c-badge-20",
+    "title": "Badge with an icon",
+    "description": "Badge with an icon",
+    "order": 20
+  },
+  {
+    "name": "c-badge-21",
+    "title": "Badge with a dismiss button",
+    "description": "Badge with a dismiss button",
+    "order": 21
+  },
+  {
+    "name": "c-badge-22",
+    "title": "Badge with a status dot",
+    "description": "Badge with a status dot",
+    "order": 22
+  },
+  {
+    "name": "c-badge-23",
+    "title": "Badge rendered as a link",
+    "description": "Badge rendered as a link",
+    "order": 23
+  },
+  {
+    "name": "c-badge-24",
+    "title": "Badge with avatar",
+    "description": "Badge with avatar",
+    "order": 24
+  },
+  {
+    "name": "c-badge-25",
+    "title": "Badge with flag image",
+    "description": "Badge with flag image",
+    "order": 25
+  }
+]

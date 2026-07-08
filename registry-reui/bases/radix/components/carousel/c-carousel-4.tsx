@@ -1,9 +1,3 @@
-// Description: Carousel with responsive basis
-// GridSize: 1
-// Order: 4
-
-import Image from "next/image"
-
 import { Card } from "@/registry/bases/radix/ui/card"
 import {
   Carousel,
@@ -29,11 +23,12 @@ export default function Pattern() {
           >
             <div className="p-1">
               <Card className="relative aspect-3/4 overflow-hidden border-0 p-0">
-                <Image
+                <img
                   src={`https://picsum.photos/600/800?grayscale&random=${index + 15}`}
                   alt={`Slide ${index + 1}`}
-                  fill
-                  className="object-cover"
+                  width={600}
+                  height={800}
+                  className="h-full w-full object-cover"
                 />
               </Card>
             </div>

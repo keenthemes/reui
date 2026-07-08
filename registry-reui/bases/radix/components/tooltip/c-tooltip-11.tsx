@@ -1,6 +1,3 @@
-// Description: Tooltip with avatar and role badge
-// Order: 11
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import {

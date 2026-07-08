@@ -1,6 +1,3 @@
-// Description: Review actions split button
-// Order: 47
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   ButtonGroup,

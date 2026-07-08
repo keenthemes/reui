@@ -1,6 +1,3 @@
-// Description: Input group with tooltip action
-// Order: 14
-
 import { Field } from "@/registry/bases/base/ui/field"
 import {
   InputGroup,

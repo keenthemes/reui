@@ -1,6 +1,3 @@
-// Description: Select component in an invalid state
-// Order: 9
-
 import { Field, FieldError, FieldLabel } from "@/registry/bases/radix/ui/field"
 import {
   Select,

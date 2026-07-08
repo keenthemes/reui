@@ -1,6 +1,3 @@
-// Description: Advanced security audit confirmation
-// Order: 14
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import {
@@ -74,7 +71,7 @@ export default function Pattern() {
       <AlertDialogContent className="max-w-sm! gap-0 overflow-hidden p-0">
         {/* Header */}
         <div className="flex flex-col items-center justify-center gap-1.5 px-4 pt-6 pb-5 text-center">
-          <AlertDialogMedia className="style-vega:rounded-full style-nova:rounded-full style-lyra:rounded-none style-maia:rounded-full style-mira:rounded-full size-12 bg-green-50 text-green-500 dark:bg-green-950 dark:text-green-400">
+          <AlertDialogMedia className="rounded-full size-12 bg-green-50 text-green-500 dark:bg-green-950 dark:text-green-400">
             <IconPlaceholder
               lucide="ShieldAlertIcon"
               tabler="IconShieldExclamation"
@@ -97,10 +94,10 @@ export default function Pattern() {
           {SECURITY_ITEMS.map((item) => (
             <div
               key={item.title}
-              className="border-border style-vega:rounded-md style-nova:rounded-md style-lyra:rounded-none style-maia:rounded-4xl style-mira:rounded-md flex items-center justify-between border border-dashed px-3 py-2.5"
+              className="border-border rounded-md flex items-center justify-between border border-dashed px-3 py-2.5"
             >
               <div className="flex items-center gap-2.5">
-                <div className="bg-background border-border/80 style-vega:rounded-md style-nova:rounded-md style-lyra:rounded-none style-maia:rounded-4xl style-mira:rounded-md flex size-8 items-center justify-center border shadow-xs">
+                <div className="bg-background border-border/80 rounded-md flex size-8 items-center justify-center border shadow-xs">
                   {item.icon}
                 </div>
                 <div className="flex flex-col gap-0.25">

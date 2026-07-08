@@ -1,0 +1,190 @@
+{
+  "items": [
+    {
+      "name": "c-progress-1",
+      "type": "registry:block",
+      "title": "Basic progress.",
+      "categories": [
+        "progress"
+      ],
+      "description": "Basic progress.",
+      "registryDependencies": [
+        "progress"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/progress/c-progress-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-progress-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-progress-2",
+      "type": "registry:block",
+      "title": "Small progress.",
+      "categories": [
+        "progress"
+      ],
+      "description": "Small progress.",
+      "registryDependencies": [
+        "progress"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/progress/c-progress-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-progress-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-progress-3",
+      "type": "registry:block",
+      "title": "Large progress.",
+      "categories": [
+        "progress"
+      ],
+      "description": "Large progress.",
+      "registryDependencies": [
+        "progress"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/progress/c-progress-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-progress-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-progress-4",
+      "type": "registry:block",
+      "title": "Progress bar with status messages.",
+      "categories": [
+        "progress"
+      ],
+      "description": "Progress bar with status messages.",
+      "registryDependencies": [
+        "progress"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/progress/c-progress-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-progress-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-progress-5",
+      "type": "registry:block",
+      "title": "File upload list with progress & status.",
+      "categories": [
+        "progress"
+      ],
+      "description": "File upload list with progress & status.",
+      "registryDependencies": [
+        "item",
+        "progress"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/progress/c-progress-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-progress-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-progress-6",
+      "type": "registry:block",
+      "title": "Progress bar with slider.",
+      "categories": [
+        "progress"
+      ],
+      "description": "Progress bar with slider.",
+      "registryDependencies": [
+        "progress",
+        "slider"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/progress/c-progress-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-progress-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-progress-7",
+      "type": "registry:block",
+      "title": "Multi-step progress indicator",
+      "categories": [
+        "progress"
+      ],
+      "description": "Multi-step progress indicator",
+      "registryDependencies": [
+        "progress"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/progress/c-progress-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-progress-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-progress-8",
+      "type": "registry:block",
+      "title": "Progress bar with custom colors.",
+      "categories": [
+        "progress"
+      ],
+      "description": "Progress bar with custom colors.",
+      "registryDependencies": [
+        "progress"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/progress/c-progress-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-progress-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    }
+  ]
+}

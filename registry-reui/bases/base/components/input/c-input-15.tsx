@@ -1,6 +1,3 @@
-// Description: Complex input form with multiple fields
-// Order: 15
-
 import { Button } from "@/registry/bases/base/ui/button"
 import { Field, FieldGroup, FieldLabel } from "@/registry/bases/base/ui/field"
 import { Input } from "@/registry/bases/base/ui/input"

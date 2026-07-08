@@ -1,6 +1,3 @@
-// Description: Avatar inside small outline button
-// Order: 19
-
 import {
   Avatar,
   AvatarFallback,

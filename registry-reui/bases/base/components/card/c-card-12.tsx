@@ -1,6 +1,3 @@
-// Description: Advanced clean login form card
-// Order: 12
-
 "use client"
 
 import { useState } from "react"

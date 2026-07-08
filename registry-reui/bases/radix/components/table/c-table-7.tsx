@@ -1,7 +1,3 @@
-// Description: Orders table with customer info and payment status
-// Order: 7
-// GridSize: 1
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import {

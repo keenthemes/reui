@@ -1,6 +1,3 @@
-// Description: Toast with custom rich content
-// Order: 9
-
 import { toast } from "sonner"
 
 import {
@@ -13,7 +10,7 @@ import { Button } from "@/registry/bases/base/ui/button"
 export default function Pattern() {
   const showUserToast = () => {
     toast.custom(() => (
-      <div className="bg-popover text-popover-foreground border-border style-vega:rounded-md style-nova:rounded-md style-lyra:rounded-none style-maia:rounded-4xl style-mira:rounded-md flex w-[356px] items-start gap-3 border p-4 shadow-lg">
+      <div className="bg-popover text-popover-foreground border-border rounded-md flex w-[356px] items-start gap-3 border p-4 shadow-lg">
         <Avatar className="size-9 shrink-0">
           <AvatarImage
             src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=96&h=96&dpr=2&q=80"

@@ -1,6 +1,3 @@
-// Description: Label with error state
-// Order: 11
-
 import { Field, FieldError } from "@/registry/bases/radix/ui/field"
 import { Input } from "@/registry/bases/radix/ui/input"
 import { Label } from "@/registry/bases/radix/ui/label"

@@ -1,0 +1,70 @@
+[
+  {
+    "name": "c-carousel-1",
+    "title": "Basic carousel with single item",
+    "description": "Basic carousel with single item",
+    "order": 1
+  },
+  {
+    "name": "c-carousel-2",
+    "title": "Vertical carousel orientation",
+    "description": "Vertical carousel orientation",
+    "order": 2
+  },
+  {
+    "name": "c-carousel-3",
+    "title": "Carousel with multiple items visible",
+    "description": "Carousel with multiple items visible",
+    "order": 3,
+    "gridSize": 1
+  },
+  {
+    "name": "c-carousel-4",
+    "title": "Carousel with responsive basis",
+    "description": "Carousel with responsive basis",
+    "order": 4,
+    "gridSize": 1
+  },
+  {
+    "name": "c-carousel-5",
+    "title": "Carousel with autoplay plugin",
+    "description": "Carousel with autoplay plugin",
+    "order": 5
+  },
+  {
+    "name": "c-carousel-6",
+    "title": "Carousel with centered slide alignment",
+    "description": "Carousel with centered slide alignment",
+    "order": 6
+  },
+  {
+    "name": "c-carousel-7",
+    "title": "Carousel with custom spacing",
+    "description": "Carousel with custom spacing",
+    "order": 7
+  },
+  {
+    "name": "c-carousel-8",
+    "title": "Carousel with images and overlays",
+    "description": "Carousel with images and overlays",
+    "order": 8
+  },
+  {
+    "name": "c-carousel-9",
+    "title": "Carousel with thumbnail navigation",
+    "description": "Carousel with thumbnail navigation",
+    "order": 9
+  },
+  {
+    "name": "c-carousel-10",
+    "title": "Carousel with overlay thumbnail navigation",
+    "description": "Carousel with overlay thumbnail navigation",
+    "order": 10
+  },
+  {
+    "name": "c-carousel-11",
+    "title": "Carousel with dots navigation and content overlays",
+    "description": "Carousel with dots navigation and content overlays",
+    "order": 11
+  }
+]

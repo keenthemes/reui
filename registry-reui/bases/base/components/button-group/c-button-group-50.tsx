@@ -1,6 +1,3 @@
-// Description: Toolbar filter sort and more
-// Order: 50
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   ButtonGroup,

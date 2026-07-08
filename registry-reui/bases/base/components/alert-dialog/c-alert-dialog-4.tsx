@@ -1,6 +1,3 @@
-// Description: Small size alert dialog with media (icon)
-// Order: 4
-
 import {
   AlertDialog,
   AlertDialogAction,

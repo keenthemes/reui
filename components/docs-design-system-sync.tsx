@@ -3,7 +3,7 @@
 import * as React from "react"
 
 import { useConfig } from "@/hooks/use-config"
-import { ensurePreviewFontsLoaded, FONTS } from "@/app/(create)/lib/fonts"
+import { FONTS } from "@/app/(create)/lib/fonts"
 
 function syncBodyStyleClass(styleClass: string) {
   const body = document.body
@@ -76,8 +76,6 @@ export function DocsDesignSystemSync({
     }
 
     syncBodyStyleClass(styleClass)
-
-    ensurePreviewFontsLoaded([config.font, config.fontHeading])
 
     if (selectedFont) {
       root.style.setProperty("--font-sans", selectedFont.font.style.fontFamily)

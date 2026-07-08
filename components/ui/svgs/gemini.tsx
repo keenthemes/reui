@@ -1,4 +1,4 @@
-import type { SVGProps } from "react"
+import type { SVGProps } from "react";
 
 const Gemini = (props: SVGProps<SVGSVGElement>) => (
   <svg {...props} viewBox="0 0 296 298" fill="none">
@@ -61,7 +61,7 @@ const Gemini = (props: SVGProps<SVGSVGElement>) => (
         colorInterpolationFilters="sRGB"
         filterUnits="userSpaceOnUse"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
         <feGaussianBlur
           result="effect1_foregroundBlur_69_17998"
@@ -77,7 +77,7 @@ const Gemini = (props: SVGProps<SVGSVGElement>) => (
         colorInterpolationFilters="sRGB"
         filterUnits="userSpaceOnUse"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
         <feGaussianBlur
           result="effect1_foregroundBlur_69_17998"
@@ -93,7 +93,7 @@ const Gemini = (props: SVGProps<SVGSVGElement>) => (
         colorInterpolationFilters="sRGB"
         filterUnits="userSpaceOnUse"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
         <feGaussianBlur
           result="effect1_foregroundBlur_69_17998"
@@ -109,7 +109,7 @@ const Gemini = (props: SVGProps<SVGSVGElement>) => (
         colorInterpolationFilters="sRGB"
         filterUnits="userSpaceOnUse"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
         <feGaussianBlur
           result="effect1_foregroundBlur_69_17998"
@@ -125,7 +125,7 @@ const Gemini = (props: SVGProps<SVGSVGElement>) => (
         colorInterpolationFilters="sRGB"
         filterUnits="userSpaceOnUse"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
         <feGaussianBlur
           result="effect1_foregroundBlur_69_17998"
@@ -141,7 +141,7 @@ const Gemini = (props: SVGProps<SVGSVGElement>) => (
         colorInterpolationFilters="sRGB"
         filterUnits="userSpaceOnUse"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
         <feGaussianBlur
           result="effect1_foregroundBlur_69_17998"
@@ -157,7 +157,7 @@ const Gemini = (props: SVGProps<SVGSVGElement>) => (
         colorInterpolationFilters="sRGB"
         filterUnits="userSpaceOnUse"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
         <feGaussianBlur
           result="effect1_foregroundBlur_69_17998"
@@ -166,6 +166,6 @@ const Gemini = (props: SVGProps<SVGSVGElement>) => (
       </filter>
     </defs>
   </svg>
-)
+);
 
-export { Gemini }
+export { Gemini };

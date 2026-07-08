@@ -1,6 +1,3 @@
-// Description: Sheet with scrollable content
-// Order: 4
-
 import { Button } from "@/registry/bases/base/ui/button"
 import { ScrollArea } from "@/registry/bases/base/ui/scroll-area"
 import {

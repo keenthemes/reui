@@ -1,6 +1,3 @@
-// Description: Toggle as mute/unmute button
-// Order: 14
-
 "use client"
 
 import { useState } from "react"

@@ -1,8 +1,3 @@
-// Description: 9:16 portrait aspect ratio
-// Order: 5
-
-import Image from "next/image"
-
 import { AspectRatio } from "@/registry/bases/base/ui/aspect-ratio"
 
 export default function Pattern() {
@@ -10,13 +5,14 @@ export default function Pattern() {
     <div className="w-full max-w-xs">
       <AspectRatio
         ratio={9 / 16}
-        className="bg-muted style-vega:rounded-xl style-nova:rounded-xl style-lyra:rounded-none style-maia:rounded-4xl style-mira:rounded-md overflow-hidden border"
+        className="bg-muted rounded-xl overflow-hidden border"
       >
-        <Image
+        <img
           src="https://picsum.photos/1000/800?grayscale&random=5"
           alt="9:16"
-          fill
-          className="object-cover"
+          width={1000}
+          height={800}
+          className="h-full w-full object-cover"
         />
       </AspectRatio>
     </div>

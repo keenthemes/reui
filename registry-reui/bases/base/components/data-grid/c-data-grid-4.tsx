@@ -1,7 +1,3 @@
-// Description: Data grid without table borders
-// GridSize: 1
-// Order: 4
-
 "use client"
 
 import { useMemo, useState } from "react"

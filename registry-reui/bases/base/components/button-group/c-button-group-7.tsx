@@ -1,6 +1,3 @@
-// Description: Dropdown menu with status indicator
-// Order: 7
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   ButtonGroup,

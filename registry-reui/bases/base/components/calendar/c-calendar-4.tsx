@@ -1,6 +1,3 @@
-// Description: Multiple day selection
-// Order: 4
-
 "use client"
 
 import { useState } from "react"

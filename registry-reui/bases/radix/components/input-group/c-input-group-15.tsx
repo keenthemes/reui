@@ -1,6 +1,3 @@
-// Description: Input group with loading spinner
-// Order: 15
-
 import { Field } from "@/registry/bases/radix/ui/field"
 import {
   InputGroup,

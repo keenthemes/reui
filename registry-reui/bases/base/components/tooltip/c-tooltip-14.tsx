@@ -1,6 +1,3 @@
-// Description: Tooltip with file info and badges
-// Order: 14
-
 import { Badge } from "@/registry-reui/bases/base/reui/badge"
 
 import {
@@ -33,7 +30,7 @@ export default function Pattern() {
           <TooltipContent className="p-3">
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-2">
-                <div className="bg-muted style-vega:rounded-md style-nova:rounded-md style-lyra:rounded-none style-maia:rounded-md style-mira:rounded-md flex size-8 shrink-0 items-center justify-center">
+                <div className="bg-muted rounded-md flex size-8 shrink-0 items-center justify-center">
                   <IconPlaceholder
                     lucide="FileTextIcon"
                     tabler="IconFileText"

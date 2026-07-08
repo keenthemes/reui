@@ -1,6 +1,3 @@
-// Description: Small phone input
-// Order: 2
-
 import { PhoneInput } from "@/registry-reui/bases/base/reui/phone-input"
 
 export default function Pattern() {

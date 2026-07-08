@@ -1,6 +1,3 @@
-// Description: Tree view with file actions
-// Order: 10
-
 "use client"
 
 import { useState } from "react"

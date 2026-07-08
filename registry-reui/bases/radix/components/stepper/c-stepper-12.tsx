@@ -1,7 +1,3 @@
-// Description: Stepper with segmented progress bar
-// Order: 12
-// GridSize: 1
-
 "use client"
 
 import { useState } from "react"
@@ -32,7 +28,7 @@ export default function Pattern() {
             <StepperItem
               key={step}
               step={step}
-              className="style-vega:first:rounded-s-full style-vega:last:rounded-e-full style-maia:first:rounded-s-full style-maia:last:rounded-e-full style-nova:first:rounded-s-full style-nova:last:rounded-e-full style-lyra:first:rounded-s-none style-lyra:last:rounded-e-none style-mira:first:rounded-s-full style-mira:last:rounded-e-full flex-1 overflow-hidden transition-all duration-300"
+              className="first:rounded-s-full last:rounded-e-full flex-1 overflow-hidden transition-all duration-300"
             >
               <StepperTrigger
                 className="w-full flex-col items-start gap-2"

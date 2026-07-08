@@ -1,6 +1,3 @@
-// Description: Checkbox with label and description
-// Order: 5
-
 import { Checkbox } from "@/registry/bases/base/ui/checkbox"
 import {
   Field,

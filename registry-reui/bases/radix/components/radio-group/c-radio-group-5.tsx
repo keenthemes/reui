@@ -1,6 +1,3 @@
-// Description: Colored radio group
-// Order: 5
-
 import { Field, FieldLabel } from "@/registry/bases/radix/ui/field"
 import {
   RadioGroup,

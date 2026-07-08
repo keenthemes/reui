@@ -1,0 +1,65 @@
+[
+  {
+    "name": "c-tabs-1",
+    "title": "Basic tabs.",
+    "description": "Basic tabs.",
+    "order": 1,
+    "gridSize": 1
+  },
+  {
+    "name": "c-tabs-2",
+    "title": "Tabs with line variant.",
+    "description": "Tabs with line variant.",
+    "order": 2,
+    "gridSize": 1
+  },
+  {
+    "name": "c-tabs-3",
+    "title": "Tabs with vertical orientation.",
+    "description": "Tabs with vertical orientation.",
+    "order": 3,
+    "gridSize": 1
+  },
+  {
+    "name": "c-tabs-4",
+    "title": "Tabs with vertical orientation and line variant.",
+    "description": "Tabs with vertical orientation and line variant.",
+    "order": 4,
+    "gridSize": 1
+  },
+  {
+    "name": "c-tabs-5",
+    "title": "Tabs with icons.",
+    "description": "Tabs with icons.",
+    "order": 5,
+    "gridSize": 1
+  },
+  {
+    "name": "c-tabs-6",
+    "title": "Tabs with icons",
+    "description": "Tabs with icons",
+    "order": 6,
+    "gridSize": 1
+  },
+  {
+    "name": "c-tabs-7",
+    "title": "Tabs with badge counts",
+    "description": "Tabs with badge counts",
+    "order": 7,
+    "gridSize": 1
+  },
+  {
+    "name": "c-tabs-8",
+    "title": "Tabs with icons and line variant",
+    "description": "Tabs with icons and line variant",
+    "order": 8,
+    "gridSize": 1
+  },
+  {
+    "name": "c-tabs-9",
+    "title": "Segmented control tabs",
+    "description": "Segmented control tabs",
+    "order": 9,
+    "gridSize": 1
+  }
+]

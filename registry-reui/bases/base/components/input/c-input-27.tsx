@@ -1,6 +1,3 @@
-// Description: Input with bottom border only
-// Order: 27
-
 import { Field, FieldLabel } from "@/registry/bases/base/ui/field"
 import { Input } from "@/registry/bases/base/ui/input"
 

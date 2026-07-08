@@ -1,6 +1,3 @@
-// Description: Large button with an icon on the right
-// Order: 31
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 

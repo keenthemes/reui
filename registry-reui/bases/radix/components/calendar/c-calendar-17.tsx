@@ -1,6 +1,3 @@
-// Description: Calendar with pricing
-// Order: 17
-
 "use client"
 
 import { useState } from "react"

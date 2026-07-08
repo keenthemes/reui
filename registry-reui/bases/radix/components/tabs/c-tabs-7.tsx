@@ -1,7 +1,3 @@
-// Description: Tabs with badge counts
-// Order: 7
-// GridSize: 1
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import { Card, CardContent } from "@/registry/bases/radix/ui/card"

@@ -1,0 +1,65 @@
+[
+  {
+    "name": "c-filters-1",
+    "title": "Filters with various field types",
+    "description": "Filters with various field types",
+    "order": 1,
+    "gridSize": 1
+  },
+  {
+    "name": "c-filters-2",
+    "title": "Filters with input validation",
+    "description": "Filters with input validation",
+    "order": 2,
+    "gridSize": 1
+  },
+  {
+    "name": "c-filters-3",
+    "title": "Filters with custom trigger button",
+    "description": "Filters with custom trigger button",
+    "order": 3,
+    "gridSize": 1
+  },
+  {
+    "name": "c-filters-4",
+    "title": "Filters with small size controls",
+    "description": "Filters with small size controls",
+    "order": 4,
+    "gridSize": 1
+  },
+  {
+    "name": "c-filters-5",
+    "title": "Filters with large size controls",
+    "description": "Filters with large size controls",
+    "order": 5,
+    "gridSize": 1
+  },
+  {
+    "name": "c-filters-6",
+    "title": "Filters with custom controls",
+    "description": "Filters with custom controls",
+    "order": 6,
+    "gridSize": 1
+  },
+  {
+    "name": "c-filters-7",
+    "title": "Filters with data grid",
+    "description": "Filters with data grid",
+    "order": 7,
+    "gridSize": 1
+  },
+  {
+    "name": "c-filters-8",
+    "title": "Filters with data grid and async mode",
+    "description": "Filters with data grid and async mode",
+    "order": 8,
+    "gridSize": 1
+  },
+  {
+    "name": "c-filters-9",
+    "title": "Filters with i18n support",
+    "description": "Filters with i18n support",
+    "order": 9,
+    "gridSize": 1
+  }
+]

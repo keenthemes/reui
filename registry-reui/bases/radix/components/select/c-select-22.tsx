@@ -1,6 +1,3 @@
-// Description: Select with custom chevrons up down icon
-// Order: 22
-
 "use client"
 
 import { useState } from "react"

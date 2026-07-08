@@ -1,6 +1,3 @@
-// Description: Year select with navigation
-// Order: 9
-
 "use client"
 
 import { ChangeEvent, ChangeEventHandler, useState } from "react"

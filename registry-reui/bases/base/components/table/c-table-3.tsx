@@ -1,6 +1,3 @@
-// Description: Table in card with status badges.
-// Order: 3
-
 import { Card, CardContent } from "@/registry/bases/base/ui/card"
 import {
   Table,

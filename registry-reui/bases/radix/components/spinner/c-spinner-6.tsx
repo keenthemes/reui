@@ -1,6 +1,3 @@
-// Description: Button loading states
-// Order: 6
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import { Spinner } from "@/registry/bases/radix/ui/spinner"
 

@@ -1,6 +1,3 @@
-// Description: Keyboard keys combined with icons.
-// Order: 3
-
 import { Kbd, KbdGroup } from "@/registry/bases/radix/ui/kbd"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 

@@ -1,6 +1,3 @@
-// Description: Scroll area with both scrollbars
-// Order: 3
-
 import { ScrollArea, ScrollBar } from "@/registry/bases/radix/ui/scroll-area"
 
 const products = [
@@ -97,7 +94,7 @@ const features = [
 
 export default function Pattern() {
   return (
-    <ScrollArea className="style-vega:rounded-lg style-lyra:rounded-none style-maia:rounded-2xl style-nova:rounded-2xl style-mira:rounded-md h-76 max-w-96 border">
+    <ScrollArea className="rounded-2xl h-76 max-w-96 border">
       <div className="min-w-[600px]">
         <table className="w-full">
           <thead>

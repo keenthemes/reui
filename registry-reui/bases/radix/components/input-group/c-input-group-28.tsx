@@ -1,6 +1,3 @@
-// Description: Input group with a menu button (three dots) at the end
-// Order: 28
-
 import {
   DropdownMenu,
   DropdownMenuContent,

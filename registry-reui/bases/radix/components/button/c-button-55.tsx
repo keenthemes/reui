@@ -1,6 +1,3 @@
-// Description: Button with avatar
-// Order: 55
-
 import {
   Avatar,
   AvatarFallback,

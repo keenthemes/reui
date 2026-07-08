@@ -1,6 +1,3 @@
-// Description: Publish controls with split button and overflow
-// Order: 53
-
 import {
   Avatar,
   AvatarFallback,

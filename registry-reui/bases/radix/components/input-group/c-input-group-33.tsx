@@ -1,7 +1,3 @@
-// Description: Project save interface with status and action buttons
-// Order: 33
-// GridSize: 1
-
 "use client"
 
 import { useState } from "react"

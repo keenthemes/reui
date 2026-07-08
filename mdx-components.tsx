@@ -20,10 +20,9 @@ import { Callout } from "@/components/callout"
 import { CodeBlockCommand } from "@/components/code-block-command"
 import { CodeCollapsibleWrapper } from "@/components/code-collapsible-wrapper"
 import { CodeTabs } from "@/components/code-tabs"
-import { CopyButton } from "@/components/copy-button"
-import { DocsComponentPreview } from "@/components/docs-component-preview"
-import { DocsComponentSource } from "@/components/docs-component-source"
+import { CopyCodeButton } from "@/components/copy-code-button"
 import { getIconForLanguageExtension } from "@/components/icons"
+import { CodeBlock } from "@/app/docs/components/code-block"
 
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
   return {
@@ -160,7 +159,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
       return (
         <pre
           className={cn(
-            "no-scrollbar min-w-0 overflow-x-auto px-4 py-3.5 outline-none has-[[data-highlighted-line]]:px-0 has-[[data-line-numbers]]:px-0 has-[[data-slot=tabs]]:p-0",
+            "scrollbar min-w-0 overflow-x-auto px-4 py-3.5 outline-none has-[[data-highlighted-line]]:px-0 has-[[data-line-numbers]]:px-0 has-[[data-slot=tabs]]:p-0",
             className
           )}
           {...props}
@@ -169,8 +168,26 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
         </pre>
       )
     },
-    figure: ({ className, ...props }: React.ComponentProps<"figure">) => {
-      return <figure className={cn(className)} {...props} />
+    figure: ({
+      className,
+      children,
+      ...props
+    }: React.ComponentProps<"figure">) => {
+      // rehype-pretty-code wraps every code block in a figure carrying this
+      // data attribute. Only those get the copy button (real image figures do
+      // not). The figure is `position: relative` (globals.css), so the button
+      // anchors to the top-right - into the title header when there is one.
+      const isCode = "data-rehype-pretty-code-figure" in props
+      return (
+        <figure className={cn(className)} {...props}>
+          {/* Single copy button for every code block. It anchors top-right of
+              the (relative) figure - into the title header when there is one,
+              over the code when there is not - so titled and untitled blocks
+              share one affordance (no duplicate button). */}
+          {isCode && <CopyCodeButton className="absolute top-2 right-2" />}
+          {children}
+        </figure>
+      )
     },
     figcaption: ({
       className,
@@ -185,7 +202,11 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
       return (
         <figcaption
           className={cn(
-            "text-site-code-foreground [&_svg]:text-site-code-foreground flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70",
+            // Header bar (padding, divider, mono) styling lives in globals.css
+            // [data-rehype-pretty-code-title]. It is a flex row, so the icon,
+            // title, and copy button all vertically center; `ml-auto` on the
+            // button pushes it to the right.
+            "text-site-code-foreground [&_svg]:text-site-code-foreground flex items-center gap-2 font-medium [&_svg]:size-3.5 [&_svg]:opacity-70",
             className
           )}
           {...props}
@@ -239,13 +260,9 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
         )
       }
 
-      // Default codeblock.
-      return (
-        <>
-          {__raw__ && <CopyButton value={__raw__} src={__src__} />}
-          <code {...props} />
-        </>
-      )
+      // Default codeblock. The copy button is rendered by the `figure`
+      // override (CopyCodeButton), so nothing to add here.
+      return <code {...props} />
     },
     Step: ({ className, ...props }: React.ComponentProps<"h3">) => (
       <h3
@@ -256,6 +273,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
         {...props}
       />
     ),
+    CodeBlock,
     CodeBlockCommand,
     Steps: ({ className, ...props }: React.ComponentProps<"div">) => (
       <div
@@ -341,8 +359,6 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     AlertDescription,
     AspectRatio,
     CodeTabs,
-    ComponentPreview: DocsComponentPreview,
-    ComponentSource: DocsComponentSource,
     CodeCollapsibleWrapper,
     Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
       <Link

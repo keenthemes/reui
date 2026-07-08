@@ -1,6 +1,3 @@
-// Description: Frame with dense layout
-// Order: 7
-
 import {
   Frame,
   FrameDescription,

@@ -1,18 +1,14 @@
-// Description: Card with image scale hover effect
-// Order: 8
-
-import Image from "next/image"
-
 import { Card } from "@/registry/bases/radix/ui/card"
 
 export default function Pattern() {
   return (
     <Card className="group/card relative h-96 w-full max-w-xs overflow-hidden border-0 p-0">
-      <Image
+      <img
         src="https://picsum.photos/1000/800?grayscale&random=62"
         alt="Background"
-        fill
-        className="object-cover transition-transform duration-500 group-hover/card:scale-110"
+        width={1000}
+        height={800}
+        className="absolute inset-0 size-full object-cover transition-transform duration-500 group-hover/card:scale-110"
       />
 
       {/* Background fade effects */}

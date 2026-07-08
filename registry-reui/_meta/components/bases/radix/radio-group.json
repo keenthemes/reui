@@ -1,0 +1,421 @@
+{
+  "items": [
+    {
+      "name": "c-radio-group-1",
+      "type": "registry:block",
+      "title": "Basic radio group",
+      "categories": [
+        "radio-group"
+      ],
+      "description": "Basic radio group",
+      "registryDependencies": [
+        "field",
+        "radio-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/radio-group/c-radio-group-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-radio-group-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-radio-group-2",
+      "type": "registry:block",
+      "title": "Disabled radio group",
+      "categories": [
+        "radio-group"
+      ],
+      "description": "Disabled radio group",
+      "registryDependencies": [
+        "field",
+        "radio-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/radio-group/c-radio-group-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-radio-group-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-radio-group-3",
+      "type": "registry:block",
+      "title": "Radio with description",
+      "categories": [
+        "radio-group"
+      ],
+      "description": "Radio with description",
+      "registryDependencies": [
+        "field",
+        "radio-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/radio-group/c-radio-group-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-radio-group-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-radio-group-4",
+      "type": "registry:block",
+      "title": "Invalid radio group",
+      "categories": [
+        "radio-group"
+      ],
+      "description": "Invalid radio group",
+      "registryDependencies": [
+        "field",
+        "radio-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/radio-group/c-radio-group-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-radio-group-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-radio-group-5",
+      "type": "registry:block",
+      "title": "Colored radio group",
+      "categories": [
+        "radio-group"
+      ],
+      "description": "Colored radio group",
+      "registryDependencies": [
+        "field",
+        "radio-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/radio-group/c-radio-group-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-radio-group-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-radio-group-6",
+      "type": "registry:block",
+      "title": "Radio group with legend and description",
+      "categories": [
+        "radio-group"
+      ],
+      "description": "Radio group with legend and description",
+      "registryDependencies": [
+        "field",
+        "radio-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/radio-group/c-radio-group-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-radio-group-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-radio-group-7",
+      "type": "registry:block",
+      "title": "Card radio group with descriptions",
+      "categories": [
+        "radio-group"
+      ],
+      "description": "Card radio group with descriptions",
+      "registryDependencies": [
+        "field",
+        "radio-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/radio-group/c-radio-group-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-radio-group-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-radio-group-8",
+      "type": "registry:block",
+      "title": "Radio group in card with separators",
+      "categories": [
+        "radio-group"
+      ],
+      "description": "Radio group in card with separators",
+      "registryDependencies": [
+        "card",
+        "field",
+        "radio-group",
+        "separator"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/radio-group/c-radio-group-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-radio-group-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-radio-group-9",
+      "type": "registry:block",
+      "title": "Radio group in card with icons",
+      "categories": [
+        "radio-group"
+      ],
+      "description": "Radio group in card with icons",
+      "registryDependencies": [
+        "card",
+        "field",
+        "radio-group",
+        "separator"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/radio-group/c-radio-group-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-radio-group-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-radio-group-10",
+      "type": "registry:block",
+      "title": "Radio group in frame",
+      "categories": [
+        "radio-group"
+      ],
+      "description": "Radio group in frame",
+      "registryDependencies": [
+        "field",
+        "frame",
+        "radio-group",
+        "separator"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/radio-group/c-radio-group-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-radio-group-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-radio-group-11",
+      "type": "registry:block",
+      "title": "Radio group with grid layout",
+      "categories": [
+        "radio-group"
+      ],
+      "description": "Radio group with grid layout",
+      "registryDependencies": [
+        "field",
+        "radio-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/radio-group/c-radio-group-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-radio-group-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    },
+    {
+      "name": "c-radio-group-12",
+      "type": "registry:block",
+      "title": "Avatar based card radio group",
+      "categories": [
+        "radio-group"
+      ],
+      "description": "Avatar based card radio group",
+      "registryDependencies": [
+        "avatar",
+        "field",
+        "radio-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/radio-group/c-radio-group-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-radio-group-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12
+      }
+    },
+    {
+      "name": "c-radio-group-13",
+      "type": "registry:block",
+      "title": "Payment method radio cards",
+      "categories": [
+        "radio-group"
+      ],
+      "description": "Payment method radio cards",
+      "registryDependencies": [
+        "field",
+        "radio-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/radio-group/c-radio-group-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-radio-group-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13
+      }
+    },
+    {
+      "name": "c-radio-group-14",
+      "type": "registry:block",
+      "title": "Radio group with tooltip info",
+      "categories": [
+        "radio-group"
+      ],
+      "description": "Radio group with tooltip info",
+      "registryDependencies": [
+        "field",
+        "radio-group",
+        "tooltip"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/radio-group/c-radio-group-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-radio-group-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14
+      }
+    },
+    {
+      "name": "c-radio-group-15",
+      "type": "registry:block",
+      "title": "Radio group with badges",
+      "categories": [
+        "radio-group"
+      ],
+      "description": "Radio group with badges",
+      "registryDependencies": [
+        "badge",
+        "field",
+        "radio-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/radio-group/c-radio-group-15.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-radio-group-15.tsx"
+        }
+      ],
+      "meta": {
+        "order": 15
+      }
+    },
+    {
+      "name": "c-radio-group-16",
+      "type": "registry:block",
+      "title": "Inline horizontal radio group",
+      "categories": [
+        "radio-group"
+      ],
+      "description": "Inline horizontal radio group",
+      "registryDependencies": [
+        "field",
+        "radio-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/radio-group/c-radio-group-16.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-radio-group-16.tsx"
+        }
+      ],
+      "meta": {
+        "order": 16
+      }
+    },
+    {
+      "name": "c-radio-group-17",
+      "type": "registry:block",
+      "title": "Pricing plan radio cards",
+      "categories": [
+        "radio-group"
+      ],
+      "description": "Pricing plan radio cards",
+      "registryDependencies": [
+        "field",
+        "radio-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/radio-group/c-radio-group-17.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-radio-group-17.tsx"
+        }
+      ],
+      "meta": {
+        "order": 17
+      }
+    }
+  ]
+}

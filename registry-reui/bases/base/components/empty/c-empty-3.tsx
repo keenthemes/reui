@@ -1,6 +1,3 @@
-// Description: Empty state with search input
-// Order: 3
-
 import {
   Empty,
   EmptyContent,

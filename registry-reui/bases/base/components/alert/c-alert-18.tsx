@@ -1,6 +1,3 @@
-// Description: Feature discovery alert
-// Order: 18
-
 import {
   Alert,
   AlertAction,

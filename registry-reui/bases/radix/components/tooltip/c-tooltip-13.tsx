@@ -1,6 +1,3 @@
-// Description: Tooltip with online status indicator
-// Order: 13
-
 import {
   Avatar,
   AvatarFallback,

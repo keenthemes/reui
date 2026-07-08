@@ -1,6 +1,3 @@
-// Description: Card header with border
-// Order: 2
-
 import {
   Card,
   CardContent,

@@ -1,6 +1,3 @@
-// Description: Accordion items integrated within Frame and FramePanel
-// Order: 7
-
 import { Badge } from "@/registry-reui/bases/base/reui/badge"
 import { Frame, FramePanel } from "@/registry-reui/bases/base/reui/frame"
 
@@ -81,7 +78,7 @@ export default function Pattern() {
               >
                 <AccordionTrigger className="items-center px-1 py-1 font-semibold hover:no-underline">
                   <div className="flex items-center gap-3">
-                    <div className="bg-muted style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-4xl style-mira:rounded-md flex size-8 items-center justify-center">
+                    <div className="bg-muted rounded-lg flex size-8 items-center justify-center">
                       {item.icon}
                     </div>
                     <span>{item.trigger}</span>

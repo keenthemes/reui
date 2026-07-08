@@ -1,6 +1,3 @@
-// Description: Toggle with icon swap on press
-// Order: 9
-
 "use client"
 
 import { useState } from "react"

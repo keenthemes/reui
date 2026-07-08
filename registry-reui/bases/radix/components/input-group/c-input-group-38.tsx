@@ -1,6 +1,3 @@
-// Description: Company search input with region selector
-// Order: 38
-
 "use client"
 
 import { useState } from "react"

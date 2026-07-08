@@ -1,6 +1,3 @@
-// Description: Switch in different sizes.
-// Order: 4
-
 import { Label } from "@/registry/bases/base/ui/label"
 import { Switch } from "@/registry/bases/base/ui/switch"
 

@@ -41,8 +41,13 @@ function AvatarFallback({
   return (
     <AvatarPrimitive.Fallback
       data-slot="avatar-fallback"
+      // Explicit foreground colour + medium weight so the initial
+      // reads clearly against the muted background. Previously the
+      // text inherited the parent context, which on white-on-white
+      // surfaces (header user menu, account chrome) rendered the
+      // initial almost invisible.
       className={cn(
-        "bg-site-muted site-rounded-full flex size-full items-center justify-center",
+        "bg-site-muted text-site-foreground site-rounded-full flex size-full items-center justify-center font-medium",
         className
       )}
       {...props}

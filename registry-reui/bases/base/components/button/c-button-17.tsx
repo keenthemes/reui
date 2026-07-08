@@ -1,6 +1,3 @@
-// Description: Secondary button with an icon on the right
-// Order: 17
-
 import { Button } from "@/registry/bases/base/ui/button"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 

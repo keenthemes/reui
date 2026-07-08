@@ -1,7 +1,3 @@
-// Description: Data grid with summary stats footer
-// GridSize: 1
-// Order: 25
-
 "use client"
 
 import { useMemo, useState } from "react"
@@ -200,7 +196,10 @@ export default function Pattern() {
             </div>
           </div>
         ),
-        size: 150,
+        size: 220,
+        meta: {
+          autoSize: true,
+        },
         enableSorting: true,
         enableHiding: false,
         enableResizing: true,
@@ -315,13 +314,13 @@ export default function Pattern() {
       <DataGridTableFootRow>
         <DataGridTableFootRowCell colSpan={visibleCount - 2}>
           <div className="flex items-center gap-1.5">
-            <span className="text-muted-foreground text-xs">Avg balance</span>
+            <span className="text-muted-foreground">Avg balance</span>
             <span className="tabular-nums">{fmt(stats.avgBalance)}</span>
           </div>
         </DataGridTableFootRowCell>
         <DataGridTableFootRowCell colSpan={2}>
           <div className="flex items-center gap-1.5">
-            <span className="text-muted-foreground text-xs">Active</span>
+            <span className="text-muted-foreground">Active</span>
             <Badge variant="success" size="sm">
               {stats.activeCount}
             </Badge>

@@ -1,6 +1,3 @@
-// Description: Avatar with badge icon
-// Order: 7
-
 import {
   Avatar,
   AvatarBadge,

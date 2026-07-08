@@ -1,6 +1,3 @@
-// Description: Theme toggle button with animated moon and sun icons
-// Order: 61
-
 "use client"
 
 import { useState } from "react"

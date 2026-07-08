@@ -1,6 +1,3 @@
-// Description: Custom navigation with year view
-// Order: 13
-
 "use client"
 
 import {

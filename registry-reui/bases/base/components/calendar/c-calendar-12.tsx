@@ -1,6 +1,3 @@
-// Description: Today button
-// Order: 12
-
 "use client"
 
 import { useState } from "react"

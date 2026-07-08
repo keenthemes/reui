@@ -1,6 +1,3 @@
-// Description: No events empty state with calendar illustration
-// Order: 20
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   Empty,

@@ -1,88 +1,68 @@
 # Contributing to ReUI
 
-Thank you for considering contributing to reui! Your contributions help improve the project for everyone.
-Please follow these guidelines to ensure a smooth collaboration. 
-If you need any help, feel free to reach out us via [@reui_io](https://x.com/reui_io).
+Thanks for your interest in improving ReUI! This repository hosts the public,
+open-source ReUI site and the free component catalog.
 
-## Getting Started
+## Getting started
 
-1. **Fork the Repository**: Click the 'Fork' button on the top right of the repository page.
-2. **Clone Your Fork**:
-   ```sh
-   git clone https://github.com/keenthemes/reui.git
-   cd reui
-   ```
-3. **Set Up Upstream Remote**:
-   ```sh
-   git remote add upstream https://github.com/keenthemes/reui.git
-   ```
+1. Fork and clone the repository.
+2. Install dependencies with `pnpm install`.
+   (`postinstall` runs `fumadocs-mdx` and `components:build`, which generate the
+   registry metadata + preview loaders — no extra setup needed.)
+3. Start the dev server with `pnpm dev` and open http://localhost:3000.
 
-## Setting Up the Development Environment
+Everything the site needs is built from source inside this repository — there
+are no external services or private packages to fetch.
 
-1. Install dependencies:
-   ```sh
-   npm install
-   ```
-2. Run format:
-   ```sh
-   npm run format
-   ```
-3. Lint your code:
-   ```sh
-   npm run lint
-   ```
+## How the registry is built
 
-## Format and lint your code
+The free ReUI surface is a shadcn-compatible registry generated entirely from
+sources in this repo by four scripts in [`scripts/`](./scripts):
 
-Ensure your code is formatted and linted before submitting any changes. Run the following commands:
+| Source you edit | Script | Generates |
+| --- | --- | --- |
+| `registry/bases/<base>/{ui,hooks,lib}`, `registry-reui/bases/<base>/reui` — **reui primitives** | `build-registry.mts` | `public/r/styles/**` (style-aware) |
+| `registry-reui/bases/<base>/components/<category>/c-*.tsx` + `meta.json` — **examples** | `build-components.mts` → `build-component-packages.mts` | `registry-reui/_meta/**`, `lib/generated/component-preview-loaders/**`, `packages/registry/**`, `public/r/styles/**` |
 
-```sh
-npm run format
-npm run lint
-```
+`base` and `radix` are the two design bases; styles come from
+`registry/styles.tsx`. Scripts only ever read/write paths inside this repo.
 
-## Commit Convention
+Useful commands:
 
-Please follow the commit message format below:
+- `pnpm dev` — dev server. Edits to any primitive or `c-*` example are compiled
+  by Next directly, so changes show up instantly (no rebuild step).
+- `pnpm dev:packages` — dev with the workspace component packages rebuilt on
+  change via esbuild (`--watch`), matching the production bundling path.
+- `pnpm registry:build` — regenerate `public/r/styles/**`.
+- `pnpm registry:all` — full regenerate + `registry:verify` production gate.
+- `pnpm components:packages` — (re)build the `@reui/components-*` workspace
+  packages the live previews import (`dist/` is git-ignored and rebuilt).
+- `pnpm build` — production build. `prebuild` runs `registry:prod`
+  (`components:build` → `components:packages` → `registry:build`) first, so a
+  deploy always ships a freshly generated registry.
 
-- **feat:** All changes that introduce completely new code or new features.
-- **fix:** Changes that fix a bug (ideally, reference an issue if present).
-- **refactor:** Any code-related change that is not a fix nor a feature.
-- **docs:** Changing existing or creating new documentation (e.g., README, usage docs).
-- **build:** Changes regarding the build of the software, dependencies, or adding new dependencies.
-- **ci:** Changes regarding the configuration of continuous integration (e.g., GitHub Actions, CI systems).
-- **chore:** Repository changes that do not fit into any of the above categories.
+### Adding a new example or component category
 
-**Example commit message:**
+Add your `c-*.tsx` under `registry-reui/bases/<base>/components/<category>/`
+(and a `meta.json` entry), then run `pnpm registry:all`. If you introduce a
+brand-new category, also run `pnpm install` once so pnpm links the new
+`@reui/components-<base>-<category>` workspace package.
 
-```sh
-feat(components): add new prop to the avatar component
-```
+## Before you open a pull request
 
-## Submitting a Pull Request
+- Run `pnpm lint` and `pnpm typecheck`.
+- Run `pnpm build` to confirm the production build passes.
+- If you changed the registry, run `pnpm registry:all` and commit the
+  regenerated `public/r/styles/**` and `registry-reui/_meta/**`.
+- Keep changes focused and describe the motivation in your PR.
 
-1. Create a new branch:
-   ```sh
-   git checkout -b feature-branch
-   ```
-2. Make changes and commit:
-   ```sh
-   git add .
-   git commit -m "Add new feature"
-   ```
-3. Push to your fork:
-   ```sh
-   git push origin feature-branch
-   ```
-4. Open a pull request:
-   - Go to the [ReUI GitHub repository](https://github.com/keenthemes/reui.git).
-   - Click on 'New Pull Request'.
-   - Select your branch and submit the PR.
+## Reporting issues
 
-## Code Review
+Open an issue on [GitHub](https://github.com/keenthemes/reui/issues) with clear
+reproduction steps. For questions, reach us at
+[@reui_io](https://x.com/reui_io) or [hello@reui.io](mailto:hello@reui.io).
 
-Code is reviewed under strict terms to make sure it matches ReUI code standards and design guidelines.
+## License
 
----
-
-Thank you for contributing! 🚀
+By contributing, you agree that your contributions are licensed under the
+[MIT License](./LICENSE.md).

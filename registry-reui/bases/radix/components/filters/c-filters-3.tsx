@@ -1,7 +1,3 @@
-// Description: Filters with custom trigger button
-// Order: 3
-// GridSize: 1
-
 "use client"
 
 import { useCallback, useState } from "react"

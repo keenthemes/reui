@@ -1,6 +1,3 @@
-// Description: Toggle with text label that changes
-// Order: 10
-
 "use client"
 
 import { useState } from "react"

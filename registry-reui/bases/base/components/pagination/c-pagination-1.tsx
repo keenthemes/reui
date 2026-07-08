@@ -1,6 +1,3 @@
-// Description: Basic pagination.
-// Order: 1
-
 import {
   Pagination,
   PaginationContent,

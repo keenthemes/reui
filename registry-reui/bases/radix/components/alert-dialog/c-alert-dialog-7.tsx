@@ -1,6 +1,3 @@
-// Description: Task success confirmation
-// Order: 7
-
 import {
   AlertDialog,
   AlertDialogAction,
@@ -24,7 +21,7 @@ export default function Pattern() {
       </AlertDialogTrigger>
       <AlertDialogContent>
         <div className="flex items-center gap-3 py-1">
-          <div className="style-vega:rounded-full style-nova:rounded-full style-lyra:rounded-none style-maia:rounded-full style-mira:rounded-full flex size-10 items-center justify-center bg-emerald-50 text-emerald-500 dark:bg-emerald-950 dark:text-emerald-300">
+          <div className="rounded-full flex size-10 items-center justify-center bg-emerald-50 text-emerald-500 dark:bg-emerald-950 dark:text-emerald-300">
             <IconPlaceholder
               lucide="CheckIcon"
               tabler="IconCheck"

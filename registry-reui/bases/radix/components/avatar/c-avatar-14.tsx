@@ -1,6 +1,3 @@
-// Description: Avatar with light background color fallback
-// Order: 14
-
 import { Avatar, AvatarFallback } from "@/registry/bases/radix/ui/avatar"
 
 export default function Pattern() {

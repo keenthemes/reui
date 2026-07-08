@@ -1,0 +1,217 @@
+{
+  "items": [
+    {
+      "name": "c-rating-1",
+      "type": "registry:block",
+      "title": "Basic rating.",
+      "categories": [
+        "rating"
+      ],
+      "description": "Basic rating.",
+      "registryDependencies": [
+        "rating"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/rating/c-rating-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-rating-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-rating-2",
+      "type": "registry:block",
+      "title": "Rating with decimal value.",
+      "categories": [
+        "rating"
+      ],
+      "description": "Rating with decimal value.",
+      "registryDependencies": [
+        "rating"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/rating/c-rating-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-rating-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-rating-3",
+      "type": "registry:block",
+      "title": "Rating with show value.",
+      "categories": [
+        "rating"
+      ],
+      "description": "Rating with show value.",
+      "registryDependencies": [
+        "rating"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/rating/c-rating-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-rating-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-rating-4",
+      "type": "registry:block",
+      "title": "Rating with editable.",
+      "categories": [
+        "rating"
+      ],
+      "description": "Rating with editable.",
+      "registryDependencies": [
+        "rating"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/rating/c-rating-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-rating-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-rating-5",
+      "type": "registry:block",
+      "title": "Rating with size.",
+      "categories": [
+        "rating"
+      ],
+      "description": "Rating with size.",
+      "registryDependencies": [
+        "rating"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/rating/c-rating-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-rating-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-rating-6",
+      "type": "registry:block",
+      "title": "Rating with review summary",
+      "categories": [
+        "rating"
+      ],
+      "description": "Rating with review summary",
+      "registryDependencies": [
+        "progress",
+        "rating",
+        "separator"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/rating/c-rating-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-rating-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-rating-7",
+      "type": "registry:block",
+      "title": "Interactive half-star rating",
+      "categories": [
+        "rating"
+      ],
+      "description": "Interactive half-star rating",
+      "registryDependencies": [
+        "rating"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/rating/c-rating-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-rating-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-rating-8",
+      "type": "registry:block",
+      "title": "Emoji reaction rating",
+      "categories": [
+        "rating"
+      ],
+      "description": "Emoji reaction rating",
+      "registryDependencies": [],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/rating/c-rating-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-rating-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-rating-9",
+      "type": "registry:block",
+      "title": "Rating with review text input",
+      "categories": [
+        "rating"
+      ],
+      "description": "Rating with review text input",
+      "registryDependencies": [
+        "button",
+        "card",
+        "label",
+        "rating",
+        "textarea"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/rating/c-rating-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-rating-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    }
+  ]
+}

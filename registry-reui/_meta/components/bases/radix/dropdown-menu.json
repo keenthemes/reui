@@ -1,0 +1,465 @@
+{
+  "items": [
+    {
+      "name": "c-dropdown-menu-1",
+      "type": "registry:block",
+      "title": "Basic dropdown menu",
+      "categories": [
+        "dropdown-menu"
+      ],
+      "description": "Basic dropdown menu",
+      "registryDependencies": [
+        "button",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/dropdown-menu/c-dropdown-menu-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-dropdown-menu-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-dropdown-menu-2",
+      "type": "registry:block",
+      "title": "Dropdown menus opening positions",
+      "categories": [
+        "dropdown-menu"
+      ],
+      "description": "Dropdown menus opening positions",
+      "registryDependencies": [
+        "button",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/dropdown-menu/c-dropdown-menu-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-dropdown-menu-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-dropdown-menu-3",
+      "type": "registry:block",
+      "title": "Dropdown menu with icons",
+      "categories": [
+        "dropdown-menu"
+      ],
+      "description": "Dropdown menu with icons",
+      "registryDependencies": [
+        "button",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/dropdown-menu/c-dropdown-menu-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-dropdown-menu-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-dropdown-menu-4",
+      "type": "registry:block",
+      "title": "Dropdown menu with keyboard shortcuts",
+      "categories": [
+        "dropdown-menu"
+      ],
+      "description": "Dropdown menu with keyboard shortcuts",
+      "registryDependencies": [
+        "button",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/dropdown-menu/c-dropdown-menu-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-dropdown-menu-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-dropdown-menu-5",
+      "type": "registry:block",
+      "title": "Dropdown menu with nested submenus",
+      "categories": [
+        "dropdown-menu"
+      ],
+      "description": "Dropdown menu with nested submenus",
+      "registryDependencies": [
+        "button",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/dropdown-menu/c-dropdown-menu-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-dropdown-menu-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-dropdown-menu-6",
+      "type": "registry:block",
+      "title": "Dropdown menu with checkboxes",
+      "categories": [
+        "dropdown-menu"
+      ],
+      "description": "Dropdown menu with checkboxes",
+      "registryDependencies": [
+        "button",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/dropdown-menu/c-dropdown-menu-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-dropdown-menu-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-dropdown-menu-7",
+      "type": "registry:block",
+      "title": "Dropdown menu with radio groups",
+      "categories": [
+        "dropdown-menu"
+      ],
+      "description": "Dropdown menu with radio groups",
+      "registryDependencies": [
+        "button",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/dropdown-menu/c-dropdown-menu-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-dropdown-menu-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-dropdown-menu-8",
+      "type": "registry:block",
+      "title": "Advance dropdown menu",
+      "categories": [
+        "dropdown-menu"
+      ],
+      "description": "Advance dropdown menu",
+      "registryDependencies": [
+        "button",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/dropdown-menu/c-dropdown-menu-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-dropdown-menu-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-dropdown-menu-9",
+      "type": "registry:block",
+      "title": "User profile dropdown menu",
+      "categories": [
+        "dropdown-menu"
+      ],
+      "description": "User profile dropdown menu",
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/dropdown-menu/c-dropdown-menu-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-dropdown-menu-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-dropdown-menu-10",
+      "type": "registry:block",
+      "title": "Workspace switcher dropdown menu",
+      "categories": [
+        "dropdown-menu"
+      ],
+      "description": "Workspace switcher dropdown menu",
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/dropdown-menu/c-dropdown-menu-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-dropdown-menu-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-dropdown-menu-11",
+      "type": "registry:block",
+      "title": "Notifications dropdown menu",
+      "categories": [
+        "dropdown-menu"
+      ],
+      "description": "Notifications dropdown menu",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/dropdown-menu/c-dropdown-menu-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-dropdown-menu-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    },
+    {
+      "name": "c-dropdown-menu-12",
+      "type": "registry:block",
+      "title": "Actions dropdown menu",
+      "categories": [
+        "dropdown-menu"
+      ],
+      "description": "Actions dropdown menu",
+      "registryDependencies": [
+        "button",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/dropdown-menu/c-dropdown-menu-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-dropdown-menu-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12
+      }
+    },
+    {
+      "name": "c-dropdown-menu-13",
+      "type": "registry:block",
+      "title": "Share and export dropdown menu",
+      "categories": [
+        "dropdown-menu"
+      ],
+      "description": "Share and export dropdown menu",
+      "registryDependencies": [
+        "button",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/dropdown-menu/c-dropdown-menu-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-dropdown-menu-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13
+      }
+    },
+    {
+      "name": "c-dropdown-menu-14",
+      "type": "registry:block",
+      "title": "User profile dropdown menu with theme toggle and status selector",
+      "categories": [
+        "dropdown-menu"
+      ],
+      "description": "User profile dropdown menu with theme toggle and status selector",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "dropdown-menu",
+        "tabs"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/dropdown-menu/c-dropdown-menu-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-dropdown-menu-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14
+      }
+    },
+    {
+      "name": "c-dropdown-menu-15",
+      "type": "registry:block",
+      "title": "User and create menu",
+      "categories": [
+        "dropdown-menu"
+      ],
+      "description": "User and create menu",
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "dropdown-menu",
+        "separator"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/dropdown-menu/c-dropdown-menu-15.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-dropdown-menu-15.tsx"
+        }
+      ],
+      "meta": {
+        "order": 15
+      }
+    },
+    {
+      "name": "c-dropdown-menu-16",
+      "type": "registry:block",
+      "title": "Quick action menu",
+      "categories": [
+        "dropdown-menu"
+      ],
+      "description": "Quick action menu",
+      "registryDependencies": [
+        "button",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/dropdown-menu/c-dropdown-menu-16.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-dropdown-menu-16.tsx"
+        }
+      ],
+      "meta": {
+        "order": 16
+      }
+    },
+    {
+      "name": "c-dropdown-menu-17",
+      "type": "registry:block",
+      "title": "Notifications dropdown with items",
+      "categories": [
+        "dropdown-menu"
+      ],
+      "description": "Notifications dropdown with items",
+      "registryDependencies": [
+        "button",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/dropdown-menu/c-dropdown-menu-17.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-dropdown-menu-17.tsx"
+        }
+      ],
+      "meta": {
+        "order": 17
+      }
+    },
+    {
+      "name": "c-dropdown-menu-18",
+      "type": "registry:block",
+      "title": "AI model selector with provider icons",
+      "categories": [
+        "dropdown-menu"
+      ],
+      "description": "AI model selector with provider icons",
+      "registryDependencies": [
+        "button",
+        "dropdown-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/dropdown-menu/c-dropdown-menu-18.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-dropdown-menu-18.tsx"
+        },
+        {
+          "path": "../../../components/ui/svgs/claudeAiIcon.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/svgs/claudeAiIcon.tsx"
+        },
+        {
+          "path": "../../../components/ui/svgs/gemini.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/svgs/gemini.tsx"
+        },
+        {
+          "path": "../../../components/ui/svgs/openai.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/svgs/openai.tsx"
+        },
+        {
+          "path": "../../../components/ui/svgs/openaiDark.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/svgs/openaiDark.tsx"
+        }
+      ],
+      "meta": {
+        "order": 18
+      }
+    }
+  ]
+}

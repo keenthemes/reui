@@ -1,6 +1,3 @@
-// Description: Progress bar with slider.
-// Order: 6
-
 "use client"
 
 import { useState } from "react"

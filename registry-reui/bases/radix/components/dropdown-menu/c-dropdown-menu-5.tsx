@@ -1,6 +1,3 @@
-// Description: Dropdown menu with nested submenus
-// Order: 5
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   DropdownMenu,

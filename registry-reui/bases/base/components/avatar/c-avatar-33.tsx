@@ -1,6 +1,3 @@
-// Description: Avatar with gradient animated ring
-// Order: 33
-
 import {
   Avatar,
   AvatarFallback,

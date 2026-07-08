@@ -1,10 +1,6 @@
-// Description: Carousel with overlay thumbnail navigation
-// Order: 10
-
 "use client"
 
 import { useCallback, useEffect, useState } from "react"
-import Image from "next/image"
 
 import { cn } from "@/lib/utils"
 import {
@@ -49,19 +45,19 @@ export default function Pattern() {
 
   return (
     <div className="flex w-full max-w-2xl items-center justify-center p-4">
-      <div className="group style-vega:rounded-xl style-nova:rounded-xl style-lyra:rounded-none style-maia:rounded-4xl style-mira:rounded-md relative w-full overflow-hidden">
+      <div className="group relative w-full overflow-hidden rounded-xl">
         {/* Main Carousel */}
         <Carousel setApi={setMainApi} className="w-full">
           <CarouselContent>
             {Array.from({ length: ITEMS_COUNT }).map((_, index) => (
               <CarouselItem key={index}>
                 <div className="bg-muted relative aspect-video w-full overflow-hidden">
-                  <Image
+                  <img
                     src={`https://picsum.photos/1200/675?grayscale&random=${index + 60}`}
                     alt={`Slide ${index + 1}`}
-                    fill
-                    className="object-cover"
-                    priority={index === 0}
+                    width={1200}
+                    height={675}
+                    className="h-full w-full object-cover"
                   />
                 </div>
               </CarouselItem>
@@ -89,17 +85,18 @@ export default function Pattern() {
                   >
                     <div
                       className={cn(
-                        "style-vega:rounded-md style-nova:rounded-md style-lyra:rounded-none style-maia:rounded-4xl style-mira:rounded-md relative aspect-square overflow-hidden border-2 transition-all duration-300",
+                        "relative aspect-square overflow-hidden rounded-md border-2 transition-all duration-300",
                         index === selectedIndex
                           ? "border-white opacity-100 ring-2 ring-black/20"
                           : "border-white/40 opacity-50 hover:opacity-80"
                       )}
                     >
-                      <Image
+                      <img
                         src={`https://picsum.photos/200/200?grayscale&random=${index + 60}`}
                         alt={`Thumb ${index + 1}`}
-                        fill
-                        className="object-cover"
+                        width={200}
+                        height={200}
+                        className="h-full w-full object-cover"
                       />
                     </div>
                   </CarouselItem>

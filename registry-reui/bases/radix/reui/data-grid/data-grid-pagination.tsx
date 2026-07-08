@@ -37,11 +37,8 @@ function DataGridPagination(props: DataGridPaginationProps): React.JSX.Element {
 
   const defaultProps: Partial<DataGridPaginationProps> = {
     sizes: [5, 10, 25, 50, 100],
-    sizesLabel: "Show",
-    sizesDescription: "per page",
     sizesSkeleton: <Skeleton className="h-8 w-44" />,
     moreLimit: 5,
-    more: false,
     info: "{from} - {to} of {count}",
     infoSkeleton: <Skeleton className="h-8 w-60" />,
     rowsPerPageLabel: "Rows per page",
@@ -52,24 +49,24 @@ function DataGridPagination(props: DataGridPaginationProps): React.JSX.Element {
 
   const mergedProps: DataGridPaginationProps = { ...defaultProps, ...props }
 
-  const btnBaseClasses = "size-7 p-0 text-sm"
+  const btnBaseClasses = "p-0 text-sm"
   const btnArrowClasses = btnBaseClasses + " rtl:transform rtl:rotate-180"
   const pageIndex = table.getState().pagination.pageIndex
   const pageSize = table.getState().pagination.pageSize
-  const from = pageIndex * pageSize + 1
+  const from = recordCount === 0 ? 0 : pageIndex * pageSize + 1
   const to = Math.min((pageIndex + 1) * pageSize, recordCount)
   const pageCount = table.getPageCount()
 
   // Replace placeholders in paginationInfo
-  const paginationInfo = mergedProps?.info
+  const paginationInfo = mergedProps.info
     ? mergedProps.info
-        .replace("{from}", from.toString())
-        .replace("{to}", to.toString())
-        .replace("{count}", recordCount.toString())
+        .replaceAll("{from}", from.toString())
+        .replaceAll("{to}", to.toString())
+        .replaceAll("{count}", recordCount.toString())
     : `${from} - ${to} of ${recordCount}`
 
   // Pagination limit logic
-  const paginationMoreLimit = mergedProps?.moreLimit || 5
+  const paginationMoreLimit = mergedProps.moreLimit || 5
 
   // Determine the start and end of the pagination group
   const currentGroupStart =
@@ -143,15 +140,15 @@ function DataGridPagination(props: DataGridPaginationProps): React.JSX.Element {
       data-slot="data-grid-pagination"
       className={cn(
         "flex grow flex-col flex-wrap items-center justify-between gap-2.5 py-2.5 sm:flex-row sm:py-0",
-        mergedProps?.className
+        mergedProps.className
       )}
     >
       <div className="order-2 flex flex-wrap items-center space-x-2.5 pb-2.5 sm:order-1 sm:pb-0">
         {isLoading ? (
-          mergedProps?.sizesSkeleton
+          mergedProps.sizesSkeleton
         ) : (
           <>
-            <div className="text-muted-foreground style-vega:text-sm style-maia:text-sm style-nova:text-sm style-lyra:text-xs style-mira:text-xs/relaxed">
+            <div className="text-muted-foreground text-sm">
               {mergedProps.rowsPerPageLabel}
             </div>
             <Select
@@ -161,11 +158,11 @@ function DataGridPagination(props: DataGridPaginationProps): React.JSX.Element {
                 table.setPageSize(newPageSize)
               }}
             >
-              <SelectTrigger className="w-14" size="sm">
+              <SelectTrigger className="w-16" size="sm">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent side="top" className="min-w-18">
-                {mergedProps?.sizes?.map((size: number) => (
+                {mergedProps.sizes?.map((size: number) => (
                   <SelectItem key={size} value={`${size}`}>
                     {size}
                   </SelectItem>
@@ -177,14 +174,14 @@ function DataGridPagination(props: DataGridPaginationProps): React.JSX.Element {
       </div>
       <div className="order-1 flex flex-col items-center justify-center gap-2.5 pt-2.5 sm:order-2 sm:flex-row sm:justify-end sm:pt-0">
         {isLoading ? (
-          mergedProps?.infoSkeleton
+          mergedProps.infoSkeleton
         ) : (
           <>
-            <div className="text-muted-foreground style-vega:text-sm style-maia:text-sm style-nova:text-sm style-lyra:text-xs style-mira:text-xs/relaxed order-2 text-nowrap sm:order-1">
+            <div className="text-muted-foreground order-2 text-sm text-nowrap sm:order-1">
               {paginationInfo}
             </div>
             {pageCount > 1 && (
-              <div className="order-1 flex items-center space-x-1 sm:order-2">
+              <div className="order-1 flex items-center space-x-1">
                 <Button
                   size="icon-sm"
                   variant="ghost"

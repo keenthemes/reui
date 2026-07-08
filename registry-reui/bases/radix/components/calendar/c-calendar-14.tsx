@@ -1,6 +1,3 @@
-// Description: Preset time selection
-// Order: 14
-
 "use client"
 
 import { useState } from "react"

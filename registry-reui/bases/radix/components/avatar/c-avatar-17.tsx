@@ -1,6 +1,3 @@
-// Description: Avatar with grayscale image filter
-// Order: 17
-
 import {
   Avatar,
   AvatarFallback,

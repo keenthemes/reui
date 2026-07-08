@@ -1,6 +1,3 @@
-// Description: Nested checkbox group
-// Order: 16
-
 "use client"
 
 import { useCallback, useState } from "react"

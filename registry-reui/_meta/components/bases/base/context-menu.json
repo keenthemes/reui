@@ -1,0 +1,236 @@
+{
+  "items": [
+    {
+      "name": "c-context-menu-1",
+      "type": "registry:block",
+      "title": "Basic context menu.",
+      "categories": [
+        "context-menu"
+      ],
+      "description": "Basic context menu.",
+      "registryDependencies": [
+        "context-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/context-menu/c-context-menu-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-context-menu-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-context-menu-2",
+      "type": "registry:block",
+      "title": "Context menu with icons for common actions.",
+      "categories": [
+        "context-menu"
+      ],
+      "description": "Context menu with icons for common actions.",
+      "registryDependencies": [
+        "context-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/context-menu/c-context-menu-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-context-menu-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-context-menu-3",
+      "type": "registry:block",
+      "title": "Context menu with keyboard shortcuts.",
+      "categories": [
+        "context-menu"
+      ],
+      "description": "Context menu with keyboard shortcuts.",
+      "registryDependencies": [
+        "context-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/context-menu/c-context-menu-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-context-menu-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-context-menu-4",
+      "type": "registry:block",
+      "title": "Context menu with nested submenus.",
+      "categories": [
+        "context-menu"
+      ],
+      "description": "Context menu with nested submenus.",
+      "registryDependencies": [
+        "context-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/context-menu/c-context-menu-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-context-menu-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-context-menu-5",
+      "type": "registry:block",
+      "title": "Context menu labels and separators.",
+      "categories": [
+        "context-menu"
+      ],
+      "description": "Context menu labels and separators.",
+      "registryDependencies": [
+        "context-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/context-menu/c-context-menu-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-context-menu-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-context-menu-6",
+      "type": "registry:block",
+      "title": "Context menu with checkbox items.",
+      "categories": [
+        "context-menu"
+      ],
+      "description": "Context menu with checkbox items.",
+      "registryDependencies": [
+        "context-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/context-menu/c-context-menu-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-context-menu-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-context-menu-7",
+      "type": "registry:block",
+      "title": "Context menu with radio items.",
+      "categories": [
+        "context-menu"
+      ],
+      "description": "Context menu with radio items.",
+      "registryDependencies": [
+        "context-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/context-menu/c-context-menu-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-context-menu-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-context-menu-8",
+      "type": "registry:block",
+      "title": "Context menu with destructive actions.",
+      "categories": [
+        "context-menu"
+      ],
+      "description": "Context menu with destructive actions.",
+      "registryDependencies": [
+        "context-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/context-menu/c-context-menu-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-context-menu-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-context-menu-9",
+      "type": "registry:block",
+      "title": "Context menu with different alignment sides.",
+      "categories": [
+        "context-menu"
+      ],
+      "description": "Context menu with different alignment sides.",
+      "registryDependencies": [
+        "context-menu"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/context-menu/c-context-menu-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-context-menu-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-context-menu-10",
+      "type": "registry:block",
+      "title": "Context menu used inside a dialog component.",
+      "categories": [
+        "context-menu"
+      ],
+      "description": "Context menu used inside a dialog component.",
+      "registryDependencies": [
+        "button",
+        "context-menu",
+        "dialog"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/context-menu/c-context-menu-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-context-menu-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    }
+  ]
+}

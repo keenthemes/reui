@@ -1,6 +1,3 @@
-// Description: Tooltip with keyboard shortcut.
-// Order: 4
-
 import { Button } from "@/registry/bases/base/ui/button"
 import { Kbd } from "@/registry/bases/base/ui/kbd"
 import {

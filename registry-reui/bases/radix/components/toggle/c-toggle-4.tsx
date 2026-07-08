@@ -1,6 +1,3 @@
-// Description: Toggle with button and icon.
-// Order: 4
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import { Toggle } from "@/registry/bases/radix/ui/toggle"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"

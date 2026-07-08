@@ -1,6 +1,3 @@
-// Description: Payment method card checkbox
-// Order: 17
-
 "use client"
 
 import { SVGProps } from "react"
@@ -35,7 +32,7 @@ export default function Pattern() {
             className="absolute top-3 right-3 size-5 rounded-full"
           />
           <FieldTitle className="flex flex-col items-start gap-4!">
-            <div className="bg-background border-border style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-2xl style-mira:rounded-md flex size-10 items-center justify-center border p-1.5 shadow-xs shadow-black/5">
+            <div className="bg-background border-border rounded-lg flex size-10 items-center justify-center border p-1.5 shadow-xs shadow-black/5">
               <MastercardIcon className="size-full" />
             </div>
             <div className="flex flex-col items-start gap-0.5">

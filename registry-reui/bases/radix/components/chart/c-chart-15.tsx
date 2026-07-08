@@ -1,6 +1,3 @@
-// Description: Step area chart with dotted pattern fill
-// Order: 15
-
 "use client"
 
 import { CSSProperties } from "react"

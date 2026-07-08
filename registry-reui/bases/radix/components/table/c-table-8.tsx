@@ -1,7 +1,3 @@
-// Description: Projects table with team avatars and status
-// Order: 8
-// GridSize: 1
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import {
@@ -117,7 +113,7 @@ export default function Pattern() {
             <TableRow key={project.name}>
               <TableCell>
                 <div className="flex items-center gap-3">
-                  <div className="bg-muted style-vega:rounded-md style-maia:rounded-md style-nova:rounded-sm style-lyra:rounded-none style-mira:rounded-sm flex size-8 shrink-0 items-center justify-center">
+                  <div className="bg-muted rounded-sm flex size-8 shrink-0 items-center justify-center">
                     <IconPlaceholder
                       lucide="FolderIcon"
                       tabler="IconFolder"

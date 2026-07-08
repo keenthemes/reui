@@ -1,6 +1,3 @@
-// Description: Animated loading dots
-// Order: 10
-
 export default function Pattern() {
   return (
     <div className="flex items-center justify-center gap-1.5">

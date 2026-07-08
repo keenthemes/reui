@@ -1,6 +1,3 @@
-// Description: A basic single-expand accordion
-// Order: 1
-
 import {
   Accordion,
   AccordionContent,

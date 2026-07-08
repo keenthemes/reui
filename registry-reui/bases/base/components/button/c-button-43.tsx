@@ -1,6 +1,3 @@
-// Description: Animated hamburger / close toggle button
-// Order: 43
-
 "use client"
 
 import { useState } from "react"

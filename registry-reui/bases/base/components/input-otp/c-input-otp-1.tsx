@@ -1,6 +1,3 @@
-// Description: Basic OTP input.
-// Order: 1
-
 import { Field, FieldLabel } from "@/registry/bases/base/ui/field"
 import {
   InputOTP,

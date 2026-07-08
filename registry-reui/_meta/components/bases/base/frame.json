@@ -1,0 +1,442 @@
+{
+  "items": [
+    {
+      "name": "c-frame-1",
+      "type": "registry:block",
+      "title": "Basic frame",
+      "categories": [
+        "frame"
+      ],
+      "description": "Basic frame",
+      "registryDependencies": [
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/frame/c-frame-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-frame-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-frame-2",
+      "type": "registry:block",
+      "title": "Frame with separated panels",
+      "categories": [
+        "frame"
+      ],
+      "description": "Frame with separated panels",
+      "registryDependencies": [
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/frame/c-frame-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-frame-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-frame-3",
+      "type": "registry:block",
+      "title": "Frame with stacked panels",
+      "categories": [
+        "frame"
+      ],
+      "description": "Frame with stacked panels",
+      "registryDependencies": [
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/frame/c-frame-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-frame-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-frame-4",
+      "type": "registry:block",
+      "title": "Frame with stacked panels and dense style",
+      "categories": [
+        "frame"
+      ],
+      "description": "Frame with stacked panels and dense style",
+      "registryDependencies": [
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/frame/c-frame-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-frame-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-frame-5",
+      "type": "registry:block",
+      "title": "Frame with collapsible panels",
+      "categories": [
+        "frame"
+      ],
+      "description": "Frame with collapsible panels",
+      "registryDependencies": [
+        "collapsible",
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/frame/c-frame-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-frame-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-frame-6",
+      "type": "registry:block",
+      "title": "Frame with ghost variant",
+      "categories": [
+        "frame"
+      ],
+      "description": "Frame with ghost variant",
+      "registryDependencies": [
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/frame/c-frame-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-frame-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-frame-7",
+      "type": "registry:block",
+      "title": "Frame with dense layout",
+      "categories": [
+        "frame"
+      ],
+      "description": "Frame with dense layout",
+      "registryDependencies": [
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/frame/c-frame-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-frame-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-frame-8",
+      "type": "registry:block",
+      "title": "Frame with stacked panels",
+      "categories": [
+        "frame"
+      ],
+      "description": "Frame with stacked panels",
+      "registryDependencies": [
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/frame/c-frame-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-frame-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-frame-9",
+      "type": "registry:block",
+      "title": "Frame with extra small spacing",
+      "categories": [
+        "frame"
+      ],
+      "description": "Frame with extra small spacing",
+      "registryDependencies": [
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/frame/c-frame-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-frame-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-frame-10",
+      "type": "registry:block",
+      "title": "Frame with small spacing",
+      "categories": [
+        "frame"
+      ],
+      "description": "Frame with small spacing",
+      "registryDependencies": [
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/frame/c-frame-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-frame-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-frame-11",
+      "type": "registry:block",
+      "title": "Frame with default spacing",
+      "categories": [
+        "frame"
+      ],
+      "description": "Frame with default spacing",
+      "registryDependencies": [
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/frame/c-frame-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-frame-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    },
+    {
+      "name": "c-frame-12",
+      "type": "registry:block",
+      "title": "Frame with large spacing",
+      "categories": [
+        "frame"
+      ],
+      "description": "Frame with large spacing",
+      "registryDependencies": [
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/frame/c-frame-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-frame-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12
+      }
+    },
+    {
+      "name": "c-frame-13",
+      "type": "registry:block",
+      "title": "Frame with small border radius",
+      "categories": [
+        "frame"
+      ],
+      "description": "Frame with small border radius",
+      "registryDependencies": [
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/frame/c-frame-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-frame-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13
+      }
+    },
+    {
+      "name": "c-frame-14",
+      "type": "registry:block",
+      "title": "Frame with medium border radius",
+      "categories": [
+        "frame"
+      ],
+      "description": "Frame with medium border radius",
+      "registryDependencies": [
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/frame/c-frame-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-frame-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14
+      }
+    },
+    {
+      "name": "c-frame-15",
+      "type": "registry:block",
+      "title": "Frame with large border radius",
+      "categories": [
+        "frame"
+      ],
+      "description": "Frame with large border radius",
+      "registryDependencies": [
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/frame/c-frame-15.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-frame-15.tsx"
+        }
+      ],
+      "meta": {
+        "order": 15
+      }
+    },
+    {
+      "name": "c-frame-16",
+      "type": "registry:block",
+      "title": "Frame with default border radius",
+      "categories": [
+        "frame"
+      ],
+      "description": "Frame with default border radius",
+      "registryDependencies": [
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/frame/c-frame-16.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-frame-16.tsx"
+        }
+      ],
+      "meta": {
+        "order": 16
+      }
+    },
+    {
+      "name": "c-frame-17",
+      "type": "registry:block",
+      "title": "Frame with extra large border radius",
+      "categories": [
+        "frame"
+      ],
+      "description": "Frame with extra large border radius",
+      "registryDependencies": [
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/frame/c-frame-17.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-frame-17.tsx"
+        }
+      ],
+      "meta": {
+        "order": 17
+      }
+    },
+    {
+      "name": "c-frame-18",
+      "type": "registry:block",
+      "title": "Frame with content-only panels",
+      "categories": [
+        "frame"
+      ],
+      "description": "Frame with content-only panels",
+      "registryDependencies": [
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/frame/c-frame-18.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-frame-18.tsx"
+        }
+      ],
+      "meta": {
+        "order": 18
+      }
+    },
+    {
+      "name": "c-frame-19",
+      "type": "registry:block",
+      "title": "Frame with stacked content-only panels",
+      "categories": [
+        "frame"
+      ],
+      "description": "Frame with stacked content-only panels",
+      "registryDependencies": [
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/frame/c-frame-19.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-frame-19.tsx"
+        }
+      ],
+      "meta": {
+        "order": 19
+      }
+    }
+  ]
+}

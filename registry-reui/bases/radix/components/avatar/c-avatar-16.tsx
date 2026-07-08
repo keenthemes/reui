@@ -1,6 +1,3 @@
-// Description: Avatar with user details and badge
-// Order: 16
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import {

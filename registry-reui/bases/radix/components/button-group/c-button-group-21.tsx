@@ -1,6 +1,3 @@
-// Description: Button group with dropdown menu and input group
-// Order: 21
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import { ButtonGroup } from "@/registry/bases/radix/ui/button-group"
 import {

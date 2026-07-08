@@ -1,6 +1,3 @@
-// Description: Multi-line button with icon, title & description
-// Order: 52
-
 import { Button } from "@/registry/bases/base/ui/button"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
@@ -10,7 +7,7 @@ export default function Pattern() {
       variant="outline"
       className="group/button h-auto justify-start gap-3 px-4 py-3 text-left"
     >
-      <div className="bg-muted text-accent-foreground group-hover/button:bg-background style-vega:rounded-md style-nova:rounded-md style-lyra:rounded-none style-maia:rounded-full style-mira:rounded-md flex size-10 items-center justify-center">
+      <div className="bg-muted text-accent-foreground group-hover/button:bg-background rounded-md flex size-10 items-center justify-center">
         <IconPlaceholder
           lucide="CreditCardIcon"
           tabler="IconCreditCard"

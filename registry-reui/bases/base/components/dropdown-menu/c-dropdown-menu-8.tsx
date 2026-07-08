@@ -1,6 +1,3 @@
-// Description: Advance dropdown menu
-// Order: 8
-
 "use client"
 
 import { useState } from "react"

@@ -1,7 +1,3 @@
-// Description: Sortable list of items with grid layout
-// Order: 2
-// GridSize: 1
-
 "use client"
 
 import { useState } from "react"
@@ -157,7 +153,7 @@ export default function Pattern() {
           <SortableItem key={item.id} value={item.id}>
             <div
               className={cn(
-                "group bg-background border-border hover:bg-accent/50 style-vega:rounded-md style-nova:rounded-md style-lyra:rounded-none style-maia:rounded-3xl style-mira:rounded-md relative cursor-pointer border p-3 transition-colors",
+                "group bg-background border-border hover:bg-accent/50 rounded-md relative cursor-pointer border p-3 transition-colors",
                 getItemSize(item.type),
                 "flex min-h-[100px] flex-col"
               )}

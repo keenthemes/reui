@@ -1,6 +1,3 @@
-// Description: Slider with reference labels
-// Order: 9
-
 import { Label } from "@/registry/bases/base/ui/label"
 import { Slider } from "@/registry/bases/base/ui/slider"
 

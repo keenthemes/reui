@@ -1,6 +1,3 @@
-// Description: Basic number field
-// Order: 1
-
 import {
   NumberField,
   NumberFieldDecrement,

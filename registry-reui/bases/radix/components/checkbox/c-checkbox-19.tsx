@@ -1,6 +1,3 @@
-// Description: Checkbox group with badge
-// Order: 19
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import { Checkbox } from "@/registry/bases/radix/ui/checkbox"

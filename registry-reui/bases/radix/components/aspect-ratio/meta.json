@@ -1,0 +1,50 @@
+[
+  {
+    "name": "c-aspect-ratio-1",
+    "title": "16:9 widescreen aspect ratio",
+    "description": "16:9 widescreen aspect ratio",
+    "order": 1
+  },
+  {
+    "name": "c-aspect-ratio-2",
+    "title": "4:3 standard aspect ratio",
+    "description": "4:3 standard aspect ratio",
+    "order": 2
+  },
+  {
+    "name": "c-aspect-ratio-3",
+    "title": "1:1 square aspect ratio",
+    "description": "1:1 square aspect ratio",
+    "order": 3
+  },
+  {
+    "name": "c-aspect-ratio-4",
+    "title": "21:9 ultrawide aspect ratio",
+    "description": "21:9 ultrawide aspect ratio",
+    "order": 4
+  },
+  {
+    "name": "c-aspect-ratio-5",
+    "title": "9:16 portrait aspect ratio",
+    "description": "9:16 portrait aspect ratio",
+    "order": 5
+  },
+  {
+    "name": "c-aspect-ratio-6",
+    "title": "3:2 classic photography aspect ratio",
+    "description": "3:2 classic photography aspect ratio",
+    "order": 6
+  },
+  {
+    "name": "c-aspect-ratio-7",
+    "title": "4:5 social media portrait aspect ratio",
+    "description": "4:5 social media portrait aspect ratio",
+    "order": 7
+  },
+  {
+    "name": "c-aspect-ratio-8",
+    "title": "16:10 computer monitor aspect ratio",
+    "description": "16:10 computer monitor aspect ratio",
+    "order": 8
+  }
+]

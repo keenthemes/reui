@@ -1,6 +1,3 @@
-// Description: Hover card with profile information.
-// Order: 3
-
 import { CalendarDays } from "lucide-react"
 
 import {

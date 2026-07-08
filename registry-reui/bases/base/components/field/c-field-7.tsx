@@ -1,6 +1,3 @@
-// Description: Settings form with validation
-// Order: 7
-
 import { Button } from "@/registry/bases/base/ui/button"
 import { Checkbox } from "@/registry/bases/base/ui/checkbox"
 import {

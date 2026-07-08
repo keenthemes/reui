@@ -1,6 +1,3 @@
-// Description: Inverted alert variant
-// Order: 15
-
 import {
   Alert,
   AlertAction,

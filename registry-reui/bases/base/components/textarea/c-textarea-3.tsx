@@ -1,6 +1,3 @@
-// Description: Textarea with label.
-// Order: 3
-
 import { Field, FieldLabel } from "@/registry/bases/base/ui/field"
 import { Textarea } from "@/registry/bases/base/ui/textarea"
 

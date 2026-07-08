@@ -1,6 +1,3 @@
-// Description: Disabled textarea.
-// Order: 5
-
 import { Field, FieldLabel } from "@/registry/bases/radix/ui/field"
 import { Textarea } from "@/registry/bases/radix/ui/textarea"
 

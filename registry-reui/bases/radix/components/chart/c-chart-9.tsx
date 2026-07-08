@@ -1,6 +1,3 @@
-// Description: Dotted and solid bar chart
-// Order: 9
-
 "use client"
 
 import { CSSProperties } from "react"
@@ -136,7 +133,7 @@ export default function ChartBarPattern() {
                         </span>
                       </div>
                       <span className="text-foreground font-semibold">
-                        {value.toLocaleString()}
+                        {Number(value).toLocaleString()}
                       </span>
                     </div>
                   )}

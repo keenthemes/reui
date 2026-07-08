@@ -1,6 +1,3 @@
-// Description: Basic command
-// Order: 1
-
 import { Card, CardContent } from "@/registry/bases/base/ui/card"
 import {
   Command,

@@ -1,13 +1,11 @@
-"use client"
-
 import * as React from "react"
 import Link from "next/link"
 
+import { isCanonicalComponentDoc } from "@/lib/component-doc-paths"
 import type {
   ComponentCategorySeo,
   RelatedComponentsBlock,
-} from "@/lib/registry"
-import { isCanonicalComponentDoc } from "@/lib/seo"
+} from "@/lib/components"
 import { cn } from "@/lib/utils"
 import {
   Accordion,
@@ -38,7 +36,7 @@ function SeoInlineLink({
     )
   }
   return (
-    <Link href={href} className={cls}>
+    <Link href={href} prefetch={false} className={cls}>
       {children}
     </Link>
   )
@@ -70,6 +68,15 @@ function hrefForCategorySlug(slug: string) {
     : `/components/${slug}`
 }
 
+function componentizeSeoText(text: string) {
+  return text
+    .replace(/\/components\//g, "/components/")
+    .replace(/\bPatterns\b/g, "Components")
+    .replace(/\bPattern\b/g, "Component")
+    .replace(/\bpatterns\b/g, "components")
+    .replace(/\bpattern\b/g, "component")
+}
+
 function isInternalAppPath(href: string) {
   return (
     href.startsWith("/components/") ||
@@ -78,7 +85,7 @@ function isInternalAppPath(href: string) {
   )
 }
 
-/** Popular items (root): `title` is `[Component](/components/...)` then `: description`. */
+/** Popular Components (root): `title` is `[Component](/components/...)` then `: description`. */
 function isFeatureItemLinkColonTitle(title: string) {
   return /^\[[^\]]+\]\([^)]+\)/.test(title.trimStart())
 }
@@ -109,7 +116,7 @@ function renderBacktickContent(content: string, key: string): React.ReactNode {
 
 /**
  * Inline SEO mini-markdown:
- * - `[label](url)` → internal or external link (same text-link style as category cards)
+ * - `[label](url)` → internal or external link (same text-link style as component category cards)
  * - `` `…` `` → `SeoInlineBadge` (same style for all chips)
  * - `**…**` and `*…*` → strong
  * - `{{count}}` / `[[count]]` stay literal until `applySeoCountPlaceholder`
@@ -119,6 +126,7 @@ export function renderSeoLinkedText(
   text: string,
   keyPrefix: string
 ): React.ReactNode {
+  const normalizedText = componentizeSeoText(text)
   const parts: React.ReactNode[] = []
   let pos = 0
   let k = 0
@@ -127,8 +135,8 @@ export function renderSeoLinkedText(
     if (s) parts.push(s)
   }
 
-  while (pos < text.length) {
-    const rest = text.slice(pos)
+  while (pos < normalizedText.length) {
+    const rest = normalizedText.slice(pos)
 
     if (rest.startsWith("{{count}}")) {
       pushText("{{count}}")
@@ -208,7 +216,7 @@ export function renderSeoLinkedText(
       parts.push(
         <strong
           key={`${keyPrefix}-${k++}`}
-          className="text-foreground font-semibold"
+          className="text-site-foreground font-semibold"
         >
           {strongDouble[1]}
         </strong>
@@ -222,7 +230,7 @@ export function renderSeoLinkedText(
       parts.push(
         <strong
           key={`${keyPrefix}-${k++}`}
-          className="text-foreground font-semibold"
+          className="text-site-foreground font-semibold"
         >
           {strong[1]}
         </strong>
@@ -235,7 +243,7 @@ export function renderSeoLinkedText(
     pos += 1
   }
 
-  return parts.length ? parts : [text]
+  return parts.length ? parts : [normalizedText]
 }
 
 /**
@@ -250,9 +258,9 @@ export function ComponentCategoryHeroIntro({ intro }: { intro: string }) {
   )
 }
 
-/** Unified section title style (matches category SEO guide headings). */
+/** Unified section title style (matches component SEO guide headings). */
 export const SEO_BLOCK_TITLE_CLASS =
-  "text-foreground text-xl font-semibold tracking-tight text-balance sm:text-2xl"
+  "text-site-foreground text-xl font-semibold tracking-tight text-balance sm:text-2xl"
 
 export function ComponentCategoryRelatedComponents({
   block,
@@ -293,7 +301,7 @@ export function ComponentCategoryRelatedComponents({
           id="seo-related-components-heading"
           className={SEO_BLOCK_TITLE_CLASS}
         >
-          {block.title}
+          {componentizeSeoText(block.title)}
         </h2>
 
         <ul className="text-site-muted-foreground grid gap-2 text-sm leading-7 sm:grid-cols-2 sm:text-base">
@@ -378,15 +386,15 @@ export function ComponentCategorySeoContent({
       }
       className="bg-site-muted/15"
     >
-      <div className="w-full px-6 py-10 sm:px-8 sm:py-14 xl:px-10">
-        <div className="w-full space-y-12">
+      <div className="container-wrapper py-10 sm:py-14">
+        <div className="container space-y-12">
           {content ? (
             <header className="w-full space-y-4">
               <h2
                 id="component-category-guide-title"
                 className={SEO_BLOCK_TITLE_CLASS}
               >
-                {content.title}
+                {componentizeSeoText(content.title)}
               </h2>
               <div className="w-full space-y-3">
                 {content.summary.map((paragraph, i) => (
@@ -405,7 +413,9 @@ export function ComponentCategorySeoContent({
             <div className="w-full space-y-12">
               {content.sections.map((section, si) => (
                 <section key={section.title} className="w-full space-y-4">
-                  <h3 className={SEO_BLOCK_TITLE_CLASS}>{section.title}</h3>
+                  <h3 className={SEO_BLOCK_TITLE_CLASS}>
+                    {componentizeSeoText(section.title)}
+                  </h3>
 
                   {section.intro ? (
                     <p className="text-site-muted-foreground w-full text-sm leading-7 text-pretty sm:text-base">
@@ -498,8 +508,8 @@ export function ComponentCategorySeoContent({
                             key={`sec-${si}-feat-${fi}`}
                             className="text-pretty"
                           >
-                            <span className="text-foreground font-medium">
-                              {item.title}
+                            <span className="text-site-foreground font-medium">
+                              {componentizeSeoText(item.title)}
                             </span>{" "}
                             {renderSeoLinkedText(item.description, keyD)}
                           </li>
@@ -545,8 +555,8 @@ export function ComponentCategorySeoContent({
                     value={`faq-${index}`}
                     className="border-site-border/80"
                   >
-                    <AccordionTrigger className="text-foreground [&[data-state=open]>svg]:text-site-primary py-3 text-left text-sm leading-snug font-medium hover:no-underline sm:text-base">
-                      {faq.question}
+                    <AccordionTrigger className="text-site-foreground [&[data-state=open]>svg]:text-site-primary py-3 text-left text-sm leading-snug font-medium hover:no-underline sm:text-base">
+                      {componentizeSeoText(faq.question)}
                     </AccordionTrigger>
                     <AccordionContent className="text-site-muted-foreground text-sm leading-7 text-pretty sm:text-base">
                       {renderSeoLinkedText(faq.answer, `faq-${index}`)}

@@ -1,6 +1,3 @@
-// Description: Basic avatar
-// Order: 1
-
 import {
   Avatar,
   AvatarFallback,

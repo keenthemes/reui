@@ -1,8 +1,3 @@
-// Description: Navigation menu with grid layout.
-// Order: 2
-
-import Link from "next/link"
-
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -50,7 +45,7 @@ export default function Pattern() {
                 {components.map((component) => (
                   <li key={component.title}>
                     <NavigationMenuLink
-                      render={<Link href={component.href} />}
+                      render={<a href={component.href} />}
                       className="flex flex-col items-start gap-2 p-3"
                     >
                       <div className="text-sm leading-none font-medium">

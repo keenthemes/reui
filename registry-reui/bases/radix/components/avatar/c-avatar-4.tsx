@@ -1,6 +1,3 @@
-// Description: Avatars with different border radiuses
-// Order: 4
-
 import {
   Avatar,
   AvatarFallback,

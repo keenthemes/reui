@@ -1,6 +1,3 @@
-// Description: Input label with link and visibility toggle
-// Order: 19
-
 "use client"
 
 import { useState } from "react"

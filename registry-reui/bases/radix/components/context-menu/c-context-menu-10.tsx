@@ -1,6 +1,3 @@
-// Description: Context menu used inside a dialog component.
-// Order: 10
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   ContextMenu,
@@ -38,7 +35,7 @@ export default function Pattern() {
             </DialogDescription>
           </DialogHeader>
           <ContextMenu>
-            <ContextMenuTrigger className="text-muted-foreground style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-4xl style-mira:rounded-md flex aspect-[2/0.5] w-full items-center justify-center border border-dashed text-sm">
+            <ContextMenuTrigger className="text-muted-foreground rounded-lg flex aspect-[2/0.5] w-full items-center justify-center border border-dashed text-sm">
               Right click here
             </ContextMenuTrigger>
             <ContextMenuContent>

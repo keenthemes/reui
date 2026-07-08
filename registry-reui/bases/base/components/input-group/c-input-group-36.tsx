@@ -1,6 +1,3 @@
-// Description: API request input with method selector and send action
-// Order: 36
-
 "use client"
 
 import { useState } from "react"

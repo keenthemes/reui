@@ -1,7 +1,3 @@
-// Description: Product inventory table with stock badges and prices
-// Order: 11
-// GridSize: 1
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import { Button } from "@/registry/bases/radix/ui/button"
@@ -88,7 +84,7 @@ export default function Pattern() {
             <TableRow key={product.sku}>
               <TableCell>
                 <div className="flex items-center gap-3">
-                  <div className="bg-muted style-vega:rounded-md style-maia:rounded-md style-nova:rounded-sm style-lyra:rounded-none style-mira:rounded-sm flex size-9 shrink-0 items-center justify-center">
+                  <div className="bg-muted rounded-sm flex size-9 shrink-0 items-center justify-center">
                     <IconPlaceholder
                       lucide="PackageIcon"
                       tabler="IconPackage"

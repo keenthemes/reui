@@ -1,6 +1,3 @@
-// Description: Active state button group with count
-// Order: 30
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   ButtonGroup,

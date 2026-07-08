@@ -49,7 +49,7 @@ import {
 import { CSS } from "@dnd-kit/utilities"
 import { Cell, flexRender, HeaderGroup, Row } from "@tanstack/react-table"
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/registry/bases/radix/lib/utils"
 import { Button } from "@/registry/bases/radix/ui/button"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
@@ -73,6 +73,7 @@ function DataGridTableDndRowHandle({ className }: { className?: string }) {
           "size-7 cursor-grab opacity-70 hover:bg-transparent hover:opacity-100 active:cursor-grabbing",
           className
         )}
+        aria-label="Drag to reorder row"
         disabled
       >
         <IconPlaceholder
@@ -81,6 +82,7 @@ function DataGridTableDndRowHandle({ className }: { className?: string }) {
           hugeicons="DragDropHorizontalIcon"
           phosphor="DotsSixIcon"
           remixicon="RiDraggable"
+          aria-hidden="true"
         />
       </Button>
     )
@@ -94,6 +96,7 @@ function DataGridTableDndRowHandle({ className }: { className?: string }) {
         "size-7 cursor-grab opacity-70 hover:bg-transparent hover:opacity-100 active:cursor-grabbing",
         className
       )}
+      aria-label="Drag to reorder row"
       {...context.attributes}
       {...context.listeners}
     >
@@ -103,6 +106,7 @@ function DataGridTableDndRowHandle({ className }: { className?: string }) {
         hugeicons="DragDropHorizontalIcon"
         phosphor="DotsSixIcon"
         remixicon="RiDraggable"
+        aria-hidden="true"
       />
     </Button>
   )
@@ -131,15 +135,10 @@ function DataGridTableDndRow<TData>({ row }: { row: Row<TData> }) {
 
   return (
     <SortableRowContext.Provider value={{ attributes, listeners }}>
-      <DataGridTableBodyRow
-        row={row}
-        dndRef={setNodeRef}
-        dndStyle={style}
-        key={row.id}
-      >
-        {row.getVisibleCells().map((cell: Cell<TData, unknown>, colIndex) => {
+      <DataGridTableBodyRow row={row} dndRef={setNodeRef} dndStyle={style}>
+        {row.getVisibleCells().map((cell: Cell<TData, unknown>) => {
           return (
-            <DataGridTableBodyRowCell cell={cell} key={colIndex}>
+            <DataGridTableBodyRowCell cell={cell} key={cell.id}>
               {flexRender(cell.column.columnDef.cell, cell.getContext())}
             </DataGridTableBodyRowCell>
           )
@@ -239,7 +238,7 @@ function DataGridTableDndRows<TData>({
               .getHeaderGroups()
               .map((headerGroup: HeaderGroup<TData>, index) => {
                 return (
-                  <DataGridTableHeadRow headerGroup={headerGroup} key={index}>
+                  <DataGridTableHeadRow key={index} rowId={headerGroup.id}>
                     {headerGroup.headers.map((header, index) => {
                       const { column } = header
 

@@ -1,6 +1,3 @@
-// Description: Avatar with ring animation
-// Order: 32
-
 import {
   Avatar,
   AvatarFallback,

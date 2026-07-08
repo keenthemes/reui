@@ -1,0 +1,188 @@
+{
+  "items": [
+    {
+      "name": "c-phone-input-1",
+      "type": "registry:block",
+      "title": "Basic phone input",
+      "categories": [
+        "phone-input"
+      ],
+      "description": "Basic phone input",
+      "registryDependencies": [
+        "phone-input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/phone-input/c-phone-input-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-phone-input-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-phone-input-2",
+      "type": "registry:block",
+      "title": "Small phone input",
+      "categories": [
+        "phone-input"
+      ],
+      "description": "Small phone input",
+      "registryDependencies": [
+        "phone-input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/phone-input/c-phone-input-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-phone-input-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-phone-input-3",
+      "type": "registry:block",
+      "title": "Large phone input",
+      "categories": [
+        "phone-input"
+      ],
+      "description": "Large phone input",
+      "registryDependencies": [
+        "phone-input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/phone-input/c-phone-input-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-phone-input-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-phone-input-4",
+      "type": "registry:block",
+      "title": "Disabled phone input",
+      "categories": [
+        "phone-input"
+      ],
+      "description": "Disabled phone input",
+      "registryDependencies": [
+        "phone-input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/phone-input/c-phone-input-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-phone-input-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-phone-input-5",
+      "type": "registry:block",
+      "title": "Phone input with preset value",
+      "categories": [
+        "phone-input"
+      ],
+      "description": "Phone input with preset value",
+      "registryDependencies": [
+        "phone-input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/phone-input/c-phone-input-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-phone-input-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-phone-input-6",
+      "type": "registry:block",
+      "title": "Phone input with error state",
+      "categories": [
+        "phone-input"
+      ],
+      "description": "Phone input with error state",
+      "registryDependencies": [
+        "phone-input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/phone-input/c-phone-input-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-phone-input-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-phone-input-7",
+      "type": "registry:block",
+      "title": "Phone input with specific default country",
+      "categories": [
+        "phone-input"
+      ],
+      "description": "Phone input with specific default country",
+      "registryDependencies": [
+        "phone-input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/phone-input/c-phone-input-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-phone-input-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-phone-input-8",
+      "type": "registry:block",
+      "title": "Read-only phone input",
+      "categories": [
+        "phone-input"
+      ],
+      "description": "Read-only phone input",
+      "registryDependencies": [
+        "phone-input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/phone-input/c-phone-input-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-phone-input-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    }
+  ]
+}

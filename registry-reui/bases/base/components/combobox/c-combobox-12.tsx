@@ -1,6 +1,3 @@
-// Description: A multi-select combobox
-// Order: 12
-
 "use client"
 
 import { Fragment } from "react"

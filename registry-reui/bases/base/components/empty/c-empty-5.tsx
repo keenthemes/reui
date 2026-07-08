@@ -1,6 +1,3 @@
-// Description: Document empty state
-// Order: 5
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   Card,

@@ -6,6 +6,7 @@ import {
   ReactNode,
   useEffect,
   useId,
+  useMemo,
   useRef,
   useState,
 } from "react"
@@ -119,11 +120,11 @@ function DataGridTableDndHeader<TData>({
             />
           </Button>
         )}
-        <span className="grow truncate">
+        <div className="grow">
           {header.isPlaceholder
             ? null
             : flexRender(header.column.columnDef.header, header.getContext())}
-        </span>
+        </div>
         {props.tableLayout?.columnsResizable && column.getCanResize() && (
           <DataGridTableHeadRowCellResize header={header} />
         )}
@@ -192,33 +193,40 @@ function DataGridTableDnd<TData>({
   }, [isDraggingColumn])
 
   // Custom modifier to restrict dragging within table bounds with edge offset
-  const restrictToTableBounds: Modifier = ({ draggingNodeRect, transform }) => {
-    if (!draggingNodeRect || !containerRef.current) {
-      return { ...transform, y: 0 }
+  const modifiers = useMemo(() => {
+    const restrictToTableBounds: Modifier = ({
+      draggingNodeRect,
+      transform,
+    }) => {
+      if (!draggingNodeRect || !containerRef.current) {
+        return { ...transform, y: 0 }
+      }
+
+      const containerRect = containerRef.current.getBoundingClientRect()
+      const edgeOffset = 0
+
+      const minX = containerRect.left - draggingNodeRect.left - edgeOffset
+      const maxX =
+        containerRect.right -
+        draggingNodeRect.left -
+        draggingNodeRect.width +
+        edgeOffset
+
+      return {
+        ...transform,
+        x: Math.min(Math.max(transform.x, minX), maxX),
+        y: 0, // Lock vertical movement
+      }
     }
 
-    const containerRect = containerRef.current.getBoundingClientRect()
-    const edgeOffset = 0
-
-    const minX = containerRect.left - draggingNodeRect.left - edgeOffset
-    const maxX =
-      containerRect.right -
-      draggingNodeRect.left -
-      draggingNodeRect.width +
-      edgeOffset
-
-    return {
-      ...transform,
-      x: Math.min(Math.max(transform.x, minX), maxX),
-      y: 0, // Lock vertical movement
-    }
-  }
+    return [restrictToTableBounds]
+  }, [])
 
   return (
     <DndContext
       collisionDetection={closestCenter}
       id={useId()}
-      modifiers={[restrictToTableBounds]}
+      modifiers={modifiers}
       onDragCancel={() => setIsDraggingColumn(false)}
       onDragEnd={(event) => {
         setIsDraggingColumn(false)
@@ -241,7 +249,7 @@ function DataGridTableDnd<TData>({
               .getHeaderGroups()
               .map((headerGroup: HeaderGroup<TData>, index) => {
                 return (
-                  <DataGridTableHeadRow headerGroup={headerGroup} key={index}>
+                  <DataGridTableHeadRow key={index} rowId={headerGroup.id}>
                     <SortableContext
                       items={table.getState().columnOrder}
                       strategy={horizontalListSortingStrategy}
@@ -285,19 +293,16 @@ function DataGridTableDnd<TData>({
                 return (
                   <Fragment key={row.id}>
                     <DataGridTableBodyRow row={row}>
-                      {row
-                        .getVisibleCells()
-                        .map((cell: Cell<TData, unknown>) => {
-                          return (
-                            <SortableContext
-                              key={cell.id}
-                              items={table.getState().columnOrder}
-                              strategy={horizontalListSortingStrategy}
-                            >
-                              <DataGridTableDndCell cell={cell} />
-                            </SortableContext>
-                          )
-                        })}
+                      <SortableContext
+                        items={table.getState().columnOrder}
+                        strategy={horizontalListSortingStrategy}
+                      >
+                        {row
+                          .getVisibleCells()
+                          .map((cell: Cell<TData, unknown>) => (
+                            <DataGridTableDndCell cell={cell} key={cell.id} />
+                          ))}
+                      </SortableContext>
                     </DataGridTableBodyRow>
                     {row.getIsExpanded() && (
                       <DataGridTableBodyRowExpandded row={row} />

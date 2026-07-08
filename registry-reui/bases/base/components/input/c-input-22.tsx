@@ -1,6 +1,3 @@
-// Description: Basic password strength with dynamic hint and icons
-// Order: 22
-
 "use client"
 
 import { useId, useState } from "react"

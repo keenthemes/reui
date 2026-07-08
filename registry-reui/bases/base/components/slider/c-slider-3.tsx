@@ -1,6 +1,3 @@
-// Description: Slider with multiple discrete values
-// Order: 3
-
 import { Slider } from "@/registry/bases/base/ui/slider"
 
 export default function Pattern() {

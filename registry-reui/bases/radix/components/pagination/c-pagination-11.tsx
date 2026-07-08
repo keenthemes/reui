@@ -1,6 +1,3 @@
-// Description: Pagination with outline style buttons
-// Order: 11
-
 import {
   Pagination,
   PaginationContent,
@@ -13,7 +10,7 @@ import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 export default function Pattern() {
   return (
     <Pagination>
-      <PaginationContent className="style-vera:rounded-lg style-nova:rounded-md style-lyra:rounded-none style-maia:rounded-lg style-mira:rounded-md gap-0 overflow-hidden border">
+      <PaginationContent className="rounded-md gap-0 overflow-hidden border">
         <PaginationItem>
           <PaginationLink
             href="#"

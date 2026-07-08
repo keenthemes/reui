@@ -1,0 +1,188 @@
+{
+  "items": [
+    {
+      "name": "c-sortable-1",
+      "type": "registry:block",
+      "title": "Sortable list of items with drag-and-drop",
+      "categories": [
+        "sortable"
+      ],
+      "description": "Sortable list of items with drag-and-drop",
+      "registryDependencies": [
+        "badge",
+        "sortable"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/sortable/c-sortable-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sortable-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-sortable-2",
+      "type": "registry:block",
+      "title": "Sortable list of items with grid layout",
+      "categories": [
+        "sortable"
+      ],
+      "description": "Sortable list of items with grid layout",
+      "registryDependencies": [
+        "badge",
+        "sortable"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/sortable/c-sortable-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sortable-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-sortable-3",
+      "type": "registry:block",
+      "title": "Sortable list of items with nested layout",
+      "categories": [
+        "sortable"
+      ],
+      "description": "Sortable list of items with nested layout",
+      "registryDependencies": [
+        "card",
+        "sortable"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/sortable/c-sortable-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sortable-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-sortable-4",
+      "type": "registry:block",
+      "title": "Sortable playlist with frame",
+      "categories": [
+        "sortable"
+      ],
+      "description": "Sortable playlist with frame",
+      "registryDependencies": [
+        "badge",
+        "frame",
+        "sortable"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/sortable/c-sortable-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sortable-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-sortable-5",
+      "type": "registry:block",
+      "title": "Sortable settings priority with frame",
+      "categories": [
+        "sortable"
+      ],
+      "description": "Sortable settings priority with frame",
+      "registryDependencies": [
+        "frame",
+        "sortable",
+        "switch"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/sortable/c-sortable-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sortable-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-sortable-6",
+      "type": "registry:block",
+      "title": "Sortable sidebar navigation with frame",
+      "categories": [
+        "sortable"
+      ],
+      "description": "Sortable sidebar navigation with frame",
+      "registryDependencies": [
+        "badge",
+        "frame",
+        "sortable"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/sortable/c-sortable-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sortable-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-sortable-7",
+      "type": "registry:block",
+      "title": "Sortable image gallery grid with frame",
+      "categories": [
+        "sortable"
+      ],
+      "description": "Sortable image gallery grid with frame",
+      "registryDependencies": [
+        "frame",
+        "sortable"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/sortable/c-sortable-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sortable-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7,
+        "gridSize": 1
+      }
+    }
+  ]
+}

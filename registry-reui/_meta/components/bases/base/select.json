@@ -1,0 +1,804 @@
+{
+  "items": [
+    {
+      "name": "c-select-1",
+      "type": "registry:block",
+      "title": "A basic select component with a list of options",
+      "categories": [
+        "select"
+      ],
+      "description": "A basic select component with a list of options",
+      "registryDependencies": [
+        "field",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-select-2",
+      "type": "registry:block",
+      "title": "Select with icons and placeholder state",
+      "categories": [
+        "select"
+      ],
+      "description": "Select with icons and placeholder state",
+      "registryDependencies": [
+        "field",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-select-3",
+      "type": "registry:block",
+      "title": "Select component with grouped options and labels",
+      "categories": [
+        "select"
+      ],
+      "description": "Select component with grouped options and labels",
+      "registryDependencies": [
+        "field",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-select-4",
+      "type": "registry:block",
+      "title": "Select component with a large list of options",
+      "categories": [
+        "select"
+      ],
+      "description": "Select component with a large list of options",
+      "registryDependencies": [
+        "field",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-select-5",
+      "type": "registry:block",
+      "title": "Select component with small trigger size",
+      "categories": [
+        "select"
+      ],
+      "description": "Select component with small trigger size",
+      "registryDependencies": [
+        "field",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-select-6",
+      "type": "registry:block",
+      "title": "Select component with a subscription plan style",
+      "categories": [
+        "select"
+      ],
+      "description": "Select component with a subscription plan style",
+      "registryDependencies": [
+        "field",
+        "item",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-select-7",
+      "type": "registry:block",
+      "title": "Select component with item alignment disabled",
+      "categories": [
+        "select"
+      ],
+      "description": "Select component with item alignment disabled",
+      "registryDependencies": [
+        "field",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-select-8",
+      "type": "registry:block",
+      "title": "Select component within a Field with label and description",
+      "categories": [
+        "select"
+      ],
+      "description": "Select component within a Field with label and description",
+      "registryDependencies": [
+        "field",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-select-9",
+      "type": "registry:block",
+      "title": "Select component in an invalid state",
+      "categories": [
+        "select"
+      ],
+      "description": "Select component in an invalid state",
+      "registryDependencies": [
+        "field",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-select-10",
+      "type": "registry:block",
+      "title": "Select component in a disabled state",
+      "categories": [
+        "select"
+      ],
+      "description": "Select component in a disabled state",
+      "registryDependencies": [
+        "field",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-select-11",
+      "type": "registry:block",
+      "title": "Select component inside a Dialog",
+      "categories": [
+        "select"
+      ],
+      "description": "Select component inside a Dialog",
+      "registryDependencies": [
+        "button",
+        "dialog",
+        "field",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    },
+    {
+      "name": "c-select-12",
+      "type": "registry:block",
+      "title": "Select component with multiple selection",
+      "categories": [
+        "select"
+      ],
+      "description": "Select component with multiple selection",
+      "registryDependencies": [
+        "field",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12
+      }
+    },
+    {
+      "name": "c-select-13",
+      "type": "registry:block",
+      "title": "Select component inline with Input",
+      "categories": [
+        "select"
+      ],
+      "description": "Select component inline with Input",
+      "registryDependencies": [
+        "input",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13
+      }
+    },
+    {
+      "name": "c-select-14",
+      "type": "registry:block",
+      "title": "Select component with Button side by side",
+      "categories": [
+        "select"
+      ],
+      "description": "Select component with Button side by side",
+      "registryDependencies": [
+        "button",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14
+      }
+    },
+    {
+      "name": "c-select-15",
+      "type": "registry:block",
+      "title": "Select component with item alignment enabled",
+      "categories": [
+        "select"
+      ],
+      "description": "Select component with item alignment enabled",
+      "registryDependencies": [
+        "field",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-15.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-15.tsx"
+        }
+      ],
+      "meta": {
+        "order": 15
+      }
+    },
+    {
+      "name": "c-select-16",
+      "type": "registry:block",
+      "title": "Select with custom access level descriptions",
+      "categories": [
+        "select"
+      ],
+      "description": "Select with custom access level descriptions",
+      "registryDependencies": [
+        "field",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-16.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-16.tsx"
+        }
+      ],
+      "meta": {
+        "order": 16
+      }
+    },
+    {
+      "name": "c-select-17",
+      "type": "registry:block",
+      "title": "Select with colored bullets for status",
+      "categories": [
+        "select"
+      ],
+      "description": "Select with colored bullets for status",
+      "registryDependencies": [
+        "field",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-17.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-17.tsx"
+        }
+      ],
+      "meta": {
+        "order": 17
+      }
+    },
+    {
+      "name": "c-select-18",
+      "type": "registry:block",
+      "title": "Select with user avatars",
+      "categories": [
+        "select"
+      ],
+      "description": "Select with user avatars",
+      "registryDependencies": [
+        "avatar",
+        "field",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-18.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-18.tsx"
+        }
+      ],
+      "meta": {
+        "order": 18
+      }
+    },
+    {
+      "name": "c-select-19",
+      "type": "registry:block",
+      "title": "Select with status badges",
+      "categories": [
+        "select"
+      ],
+      "description": "Select with status badges",
+      "registryDependencies": [
+        "badge",
+        "field",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-19.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-19.tsx"
+        }
+      ],
+      "meta": {
+        "order": 19
+      }
+    },
+    {
+      "name": "c-select-20",
+      "type": "registry:block",
+      "title": "Select with indicator on the left side",
+      "categories": [
+        "select"
+      ],
+      "description": "Select with indicator on the left side",
+      "registryDependencies": [
+        "field",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-20.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-20.tsx"
+        }
+      ],
+      "meta": {
+        "order": 20
+      }
+    },
+    {
+      "name": "c-select-21",
+      "type": "registry:block",
+      "title": "Select with clear button",
+      "categories": [
+        "select"
+      ],
+      "description": "Select with clear button",
+      "registryDependencies": [
+        "field",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-21.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-21.tsx"
+        }
+      ],
+      "meta": {
+        "order": 21
+      }
+    },
+    {
+      "name": "c-select-22",
+      "type": "registry:block",
+      "title": "Select with custom chevrons up down icon",
+      "categories": [
+        "select"
+      ],
+      "description": "Select with custom chevrons up down icon",
+      "registryDependencies": [
+        "field",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-22.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-22.tsx"
+        }
+      ],
+      "meta": {
+        "order": 22
+      }
+    },
+    {
+      "name": "c-select-23",
+      "type": "registry:block",
+      "title": "Multi-select with overlapping dots",
+      "categories": [
+        "select"
+      ],
+      "description": "Multi-select with overlapping dots",
+      "registryDependencies": [
+        "badge",
+        "field",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-23.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-23.tsx"
+        }
+      ],
+      "meta": {
+        "order": 23
+      }
+    },
+    {
+      "name": "c-select-24",
+      "type": "registry:block",
+      "title": "Select with grouped options and separators",
+      "categories": [
+        "select"
+      ],
+      "description": "Select with grouped options and separators",
+      "registryDependencies": [
+        "field",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-24.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-24.tsx"
+        }
+      ],
+      "meta": {
+        "order": 24
+      }
+    },
+    {
+      "name": "c-select-25",
+      "type": "registry:block",
+      "title": "Country picker select with flag emojis",
+      "categories": [
+        "select"
+      ],
+      "description": "Country picker select with flag emojis",
+      "registryDependencies": [
+        "field",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-25.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-25.tsx"
+        }
+      ],
+      "meta": {
+        "order": 25
+      }
+    },
+    {
+      "name": "c-select-26",
+      "type": "registry:block",
+      "title": "Status filter select with colored dots",
+      "categories": [
+        "select"
+      ],
+      "description": "Status filter select with colored dots",
+      "registryDependencies": [
+        "field",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-26.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-26.tsx"
+        }
+      ],
+      "meta": {
+        "order": 26
+      }
+    },
+    {
+      "name": "c-select-27",
+      "type": "registry:block",
+      "title": "Select with description text per option",
+      "categories": [
+        "select"
+      ],
+      "description": "Select with description text per option",
+      "registryDependencies": [
+        "field",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-27.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-27.tsx"
+        }
+      ],
+      "meta": {
+        "order": 27
+      }
+    },
+    {
+      "name": "c-select-28",
+      "type": "registry:block",
+      "title": "Timezone select with UTC offsets",
+      "categories": [
+        "select"
+      ],
+      "description": "Timezone select with UTC offsets",
+      "registryDependencies": [
+        "field",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-28.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-28.tsx"
+        }
+      ],
+      "meta": {
+        "order": 28
+      }
+    },
+    {
+      "name": "c-select-29",
+      "type": "registry:block",
+      "title": "Select with avatar items for team member assignment",
+      "categories": [
+        "select"
+      ],
+      "description": "Select with avatar items for team member assignment",
+      "registryDependencies": [
+        "avatar",
+        "field",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-29.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-29.tsx"
+        }
+      ],
+      "meta": {
+        "order": 29
+      }
+    },
+    {
+      "name": "c-select-30",
+      "type": "registry:block",
+      "title": "Priority select with colored badges",
+      "categories": [
+        "select"
+      ],
+      "description": "Priority select with colored badges",
+      "registryDependencies": [
+        "badge",
+        "field",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-30.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-30.tsx"
+        }
+      ],
+      "meta": {
+        "order": 30
+      }
+    },
+    {
+      "name": "c-select-31",
+      "type": "registry:block",
+      "title": "Font family select with preview",
+      "categories": [
+        "select"
+      ],
+      "description": "Font family select with preview",
+      "registryDependencies": [
+        "field",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-31.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-31.tsx"
+        }
+      ],
+      "meta": {
+        "order": 31
+      }
+    },
+    {
+      "name": "c-select-32",
+      "type": "registry:block",
+      "title": "Select with icon-labeled categories",
+      "categories": [
+        "select"
+      ],
+      "description": "Select with icon-labeled categories",
+      "registryDependencies": [
+        "field",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-32.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-32.tsx"
+        }
+      ],
+      "meta": {
+        "order": 32
+      }
+    },
+    {
+      "name": "c-select-33",
+      "type": "registry:block",
+      "title": "Size variant select with small trigger",
+      "categories": [
+        "select"
+      ],
+      "description": "Size variant select with small trigger",
+      "registryDependencies": [
+        "field",
+        "select"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/select/c-select-33.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-select-33.tsx"
+        }
+      ],
+      "meta": {
+        "order": 33
+      }
+    }
+  ]
+}

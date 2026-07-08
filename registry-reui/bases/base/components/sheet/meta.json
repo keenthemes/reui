@@ -1,0 +1,26 @@
+[
+  {
+    "name": "c-sheet-1",
+    "title": "Sheet containing a form for editing profile information.",
+    "description": "Sheet containing a form for editing profile information.",
+    "order": 1
+  },
+  {
+    "name": "c-sheet-2",
+    "title": "Sheet containing a form for editing profile information.",
+    "description": "Sheet containing a form for editing profile information.",
+    "order": 2
+  },
+  {
+    "name": "c-sheet-3",
+    "title": "Sheets that open from any side.",
+    "description": "Sheets that open from any side.",
+    "order": 3
+  },
+  {
+    "name": "c-sheet-4",
+    "title": "Sheet with scrollable content",
+    "description": "Sheet with scrollable content",
+    "order": 4
+  }
+]

@@ -1,15 +1,10 @@
-// Description: Go back link button with animation
-// Order: 50
-
-import Link from "next/link"
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function Pattern() {
   return (
     <Button variant="link" className="group/back-button" asChild>
-      <Link href="#">
+      <a href="#">
         <IconPlaceholder
           lucide="ChevronLeftIcon"
           tabler="IconChevronLeft"
@@ -21,7 +16,7 @@ export default function Pattern() {
           className="transition-transform duration-200 group-hover/back-button:-translate-x-1"
         />
         Go back
-      </Link>
+      </a>
     </Button>
   )
 }

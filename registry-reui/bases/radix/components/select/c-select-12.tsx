@@ -1,6 +1,3 @@
-// Description: Select component with single selection
-// Order: 12
-
 import { Field } from "@/registry/bases/radix/ui/field"
 import {
   Select,

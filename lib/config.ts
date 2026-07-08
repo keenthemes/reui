@@ -1,53 +1,25 @@
-const siteName = "ReUI"
-const siteUrl = "https://reui.io"
-const siteTwitterUrl = "https://x.com/reui_io"
-const reuiProWaitlistUrl = "https://pro.reui.io"
-
 export const siteConfig = {
-  name: siteName,
-  url: siteUrl,
+  name: "ReUI",
+  url: "https://reui.io",
   description:
-    "Free & open-source library of 1,000+ shadcn components to 10x your productivity in shadcn projects.",
+    "Free, open-source shadcn/ui components and in-house primitives for building production-ready React apps faster.",
   metadata: {
     locale: "en_US",
     titleTemplate: "%s",
     titleSuffixes: {
-      site: siteName,
+      site: "ReUI",
       componentCategory: "UI Components",
     },
   },
   links: {
-    twitter: siteTwitterUrl,
+    twitter: "https://x.com/reui_io",
     github: "https://github.com/keenthemes/reui",
-    pro: reuiProWaitlistUrl,
   },
-  announcementBar: {
-    enabled: true,
-    homeOnly: true,
-    badgeText: "ReUI Pro",
-    title: "Join the waitlist and lock in an exclusive 40% launch discount.",
-    linkUrl: reuiProWaitlistUrl,
-    linkText: "Join waitlist",
-  },
-  navItems: [
-    {
-      href: "/components",
-      label: "Components",
-    },
-    {
-      href: "/docs",
-      label: "Docs",
-    },
-    {
-      href: "/built-with-reui",
-      label: "Built with ReUI",
-    },
-    {
-      href: "https://pro.reui.io",
-      pro: true,
-      label: "Pro",
-    },
-  ],
+  /**
+   * GitHub star count shown in the header + footer. Maintained by hand (no
+   * live GitHub API call) - update this string when the real count moves.
+   */
+  githubStars: "3.1k",
 }
 
 export const META_THEME_COLORS = {

@@ -1,6 +1,3 @@
-// Description: Input group with inline addons (no separating borders)
-// Order: 30
-
 import { Field } from "@/registry/bases/radix/ui/field"
 import {
   InputGroup,

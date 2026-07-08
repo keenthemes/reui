@@ -1,7 +1,3 @@
-// Description: Sortable sidebar navigation with frame
-// Order: 6
-// GridSize: 1
-
 "use client"
 
 import { ReactNode, useState } from "react"

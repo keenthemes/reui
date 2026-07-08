@@ -1,6 +1,3 @@
-// Description: Avatar social proof with text label
-// Order: 20
-
 import {
   Avatar,
   AvatarFallback,
@@ -10,7 +7,7 @@ import {
 
 export default function Pattern() {
   return (
-    <div className="border-border style-vega:rounded-full style-nova:rounded-full style-lyra:rounded-none style-maia:rounded-full style-mira:rounded-full flex items-center gap-1.5 border p-1 shadow-sm shadow-black/5">
+    <div className="border-border rounded-full flex items-center gap-1.5 border p-1 shadow-sm shadow-black/5">
       <AvatarGroup>
         <Avatar className="size-7">
           <AvatarImage

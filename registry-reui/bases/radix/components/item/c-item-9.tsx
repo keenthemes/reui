@@ -1,6 +1,3 @@
-// Description: Team members with roles and multiple actions
-// Order: 9
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import {

@@ -1,6 +1,3 @@
-// Description: Advanced git toolbar with branch selection and split commit button
-// Order: 18
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   ButtonGroup,

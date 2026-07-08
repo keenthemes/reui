@@ -1,6 +1,3 @@
-// Description: Basic alert
-// Order: 1
-
 import {
   Alert,
   AlertDescription,

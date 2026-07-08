@@ -1,9 +1,3 @@
-// Description: Carousel with multiple items visible
-// GridSize: 1
-// Order: 3
-
-import Image from "next/image"
-
 import { Card } from "@/registry/bases/base/ui/card"
 import {
   Carousel,
@@ -26,11 +20,12 @@ export default function Pattern() {
           <CarouselItem key={index} className="basis-1/3">
             <div className="p-1">
               <Card className="relative aspect-square overflow-hidden border-0 p-0">
-                <Image
+                <img
                   src={`https://picsum.photos/400/400?grayscale&random=${index + 5}`}
                   alt={`Slide ${index + 1}`}
-                  fill
-                  className="object-cover"
+                  width={400}
+                  height={400}
+                  className="h-full w-full object-cover"
                 />
               </Card>
             </div>

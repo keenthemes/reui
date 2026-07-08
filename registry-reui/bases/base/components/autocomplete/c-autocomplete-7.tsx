@@ -1,6 +1,3 @@
-// Description: With clear and trigger buttons
-// Order: 7
-
 "use client"
 
 import { useState } from "react"

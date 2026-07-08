@@ -1,6 +1,3 @@
-// Description: Input with pulsed background animation
-// Order: 24
-
 "use client"
 
 import { useState } from "react"

@@ -1,6 +1,3 @@
-// Description: Alert with icon and action buttons
-// Order: 3
-
 import {
   Alert,
   AlertAction,

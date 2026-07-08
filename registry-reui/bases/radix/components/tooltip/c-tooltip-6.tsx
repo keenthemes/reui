@@ -1,6 +1,3 @@
-// Description: Tooltip with status badge
-// Order: 6
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import { Button } from "@/registry/bases/radix/ui/button"

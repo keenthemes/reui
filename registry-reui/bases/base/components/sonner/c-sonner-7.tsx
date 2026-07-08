@@ -1,6 +1,3 @@
-// Description: Promise toast with loading state
-// Order: 7
-
 import { toast } from "sonner"
 
 import { Button } from "@/registry/bases/base/ui/button"

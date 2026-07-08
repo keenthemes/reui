@@ -1,6 +1,3 @@
-// Description: Toast positions
-// Order: 3
-
 import { toast } from "sonner"
 
 import { Button } from "@/registry/bases/base/ui/button"

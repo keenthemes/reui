@@ -1,6 +1,3 @@
-// Description: Custom integration toast
-// Order: 20
-
 import { toast } from "sonner"
 
 import { Button } from "@/registry/bases/base/ui/button"
@@ -10,9 +7,9 @@ import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 export default function Pattern() {
   const showToast = () => {
     toast.custom(() => (
-      <div className="bg-popover text-popover-foreground border-border style-vega:rounded-md style-nova:rounded-md style-lyra:rounded-none style-maia:rounded-3xl style-mira:rounded-md flex w-[356px] flex-col gap-3 border p-4 shadow-lg">
+      <div className="bg-popover text-popover-foreground border-border rounded-md flex w-[356px] flex-col gap-3 border p-4 shadow-lg">
         <div className="flex items-center gap-3">
-          <div className="style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-3xl style-mira:rounded-lg flex size-10 shrink-0 items-center justify-center bg-linear-to-br from-violet-500 to-purple-600 text-white shadow-sm">
+          <div className="rounded-lg flex size-10 shrink-0 items-center justify-center bg-linear-to-br from-violet-500 to-purple-600 text-white shadow-sm">
             <IconPlaceholder
               lucide="LinkIcon"
               tabler="IconLink"

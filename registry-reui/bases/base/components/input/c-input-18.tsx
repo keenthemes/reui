@@ -1,6 +1,3 @@
-// Description: Input label with optional badge
-// Order: 18
-
 import { Badge } from "@/registry-reui/bases/base/reui/badge"
 
 import { Field, FieldLabel } from "@/registry/bases/base/ui/field"

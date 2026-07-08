@@ -1,0 +1,251 @@
+{
+  "items": [
+    {
+      "name": "c-dialog-1",
+      "type": "registry:block",
+      "title": "Basic dialog",
+      "categories": [
+        "dialog"
+      ],
+      "description": "Basic dialog",
+      "registryDependencies": [
+        "button",
+        "dialog",
+        "field",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/dialog/c-dialog-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-dialog-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-dialog-2",
+      "type": "registry:block",
+      "title": "Dialog with scrollable content",
+      "categories": [
+        "dialog"
+      ],
+      "description": "Dialog with scrollable content",
+      "registryDependencies": [
+        "button",
+        "dialog"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/dialog/c-dialog-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-dialog-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-dialog-3",
+      "type": "registry:block",
+      "title": "Dialog with scrollable content and sticky footer.",
+      "categories": [
+        "dialog"
+      ],
+      "description": "Dialog with scrollable content and sticky footer.",
+      "registryDependencies": [
+        "button",
+        "dialog"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/dialog/c-dialog-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-dialog-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-dialog-4",
+      "type": "registry:block",
+      "title": "Dialog without a close button.",
+      "categories": [
+        "dialog"
+      ],
+      "description": "Dialog without a close button.",
+      "registryDependencies": [
+        "button",
+        "dialog"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/dialog/c-dialog-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-dialog-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-dialog-5",
+      "type": "registry:block",
+      "title": "Dialog with custom close button",
+      "categories": [
+        "dialog"
+      ],
+      "description": "Dialog with custom close button",
+      "registryDependencies": [
+        "button",
+        "dialog",
+        "field",
+        "input"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/dialog/c-dialog-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-dialog-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-dialog-6",
+      "type": "registry:block",
+      "title": "Full-screen fluid dialog with sticky header and footer",
+      "categories": [
+        "dialog"
+      ],
+      "description": "Full-screen fluid dialog with sticky header and footer",
+      "registryDependencies": [
+        "button",
+        "dialog"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/dialog/c-dialog-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-dialog-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-dialog-7",
+      "type": "registry:block",
+      "title": "Confirmation dialog with destructive action",
+      "categories": [
+        "dialog"
+      ],
+      "description": "Confirmation dialog with destructive action",
+      "registryDependencies": [
+        "button",
+        "dialog"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/dialog/c-dialog-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-dialog-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-dialog-8",
+      "type": "registry:block",
+      "title": "Cookie consent dialog",
+      "categories": [
+        "dialog"
+      ],
+      "description": "Cookie consent dialog",
+      "registryDependencies": [
+        "button",
+        "dialog",
+        "label",
+        "switch"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/dialog/c-dialog-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-dialog-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-dialog-9",
+      "type": "registry:block",
+      "title": "Dialog with keyboard shortcuts list",
+      "categories": [
+        "dialog"
+      ],
+      "description": "Dialog with keyboard shortcuts list",
+      "registryDependencies": [
+        "button",
+        "dialog",
+        "kbd"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/dialog/c-dialog-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-dialog-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-dialog-10",
+      "type": "registry:block",
+      "title": "Dialog with full width button",
+      "categories": [
+        "dialog"
+      ],
+      "description": "Dialog with full width button",
+      "registryDependencies": [
+        "button",
+        "dialog"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/dialog/c-dialog-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-dialog-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    }
+  ]
+}

@@ -1,0 +1,270 @@
+{
+  "items": [
+    {
+      "name": "c-accordion-1",
+      "type": "registry:block",
+      "title": "A basic single-expand accordion",
+      "categories": [
+        "accordion"
+      ],
+      "description": "A basic single-expand accordion",
+      "registryDependencies": [
+        "accordion"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/accordion/c-accordion-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-accordion-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-accordion-2",
+      "type": "registry:block",
+      "title": "Accordion with plus/minus indicators",
+      "categories": [
+        "accordion"
+      ],
+      "description": "Accordion with plus/minus indicators",
+      "registryDependencies": [
+        "accordion"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/accordion/c-accordion-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-accordion-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-accordion-3",
+      "type": "registry:block",
+      "title": "Accordion with borders and rounded corners",
+      "categories": [
+        "accordion"
+      ],
+      "description": "Accordion with borders and rounded corners",
+      "registryDependencies": [
+        "accordion"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/accordion/c-accordion-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-accordion-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-accordion-4",
+      "type": "registry:block",
+      "title": "Accordion embedded within a Card",
+      "categories": [
+        "accordion"
+      ],
+      "description": "Accordion embedded within a Card",
+      "registryDependencies": [
+        "accordion",
+        "button",
+        "card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/accordion/c-accordion-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-accordion-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-accordion-5",
+      "type": "registry:block",
+      "title": "Accordion with disabled items and highlighted state",
+      "categories": [
+        "accordion"
+      ],
+      "description": "Accordion with disabled items and highlighted state",
+      "registryDependencies": [
+        "accordion"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/accordion/c-accordion-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-accordion-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-accordion-6",
+      "type": "registry:block",
+      "title": "Advanced accordion with custom icons and badges",
+      "categories": [
+        "accordion"
+      ],
+      "description": "Advanced accordion with custom icons and badges",
+      "registryDependencies": [
+        "accordion",
+        "badge"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/accordion/c-accordion-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-accordion-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-accordion-7",
+      "type": "registry:block",
+      "title": "Accordion items integrated within Frame and FramePanel",
+      "categories": [
+        "accordion"
+      ],
+      "description": "Accordion items integrated within Frame and FramePanel",
+      "registryDependencies": [
+        "accordion",
+        "badge",
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/accordion/c-accordion-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-accordion-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-accordion-8",
+      "type": "registry:block",
+      "title": "Nested accordion example with bordered items",
+      "categories": [
+        "accordion"
+      ],
+      "description": "Nested accordion example with bordered items",
+      "registryDependencies": [
+        "accordion"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/accordion/c-accordion-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-accordion-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-accordion-9",
+      "type": "registry:block",
+      "title": "User list accordion with avatars and role indicators",
+      "categories": [
+        "accordion"
+      ],
+      "description": "User list accordion with avatars and role indicators",
+      "registryDependencies": [
+        "accordion",
+        "avatar",
+        "badge",
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/accordion/c-accordion-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-accordion-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-accordion-10",
+      "type": "registry:block",
+      "title": "Accordion with rotating arrow indicator",
+      "categories": [
+        "accordion"
+      ],
+      "description": "Accordion with rotating arrow indicator",
+      "registryDependencies": [
+        "accordion"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/accordion/c-accordion-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-accordion-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-accordion-11",
+      "type": "registry:block",
+      "title": "Accordion component for onboarding or setup steps with icons, badges, and QR codes",
+      "categories": [
+        "accordion"
+      ],
+      "description": "Accordion component for onboarding or setup steps with icons, badges, and QR codes",
+      "registryDependencies": [
+        "accordion",
+        "badge",
+        "button",
+        "button-group",
+        "input",
+        "spinner"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/accordion/c-accordion-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-accordion-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    }
+  ]
+}

@@ -1,6 +1,3 @@
-// Description: With clear button
-// Order: 5
-
 "use client"
 
 import { useState } from "react"

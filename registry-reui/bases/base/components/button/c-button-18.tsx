@@ -1,6 +1,3 @@
-// Description: Outline button with an icon on the left
-// Order: 18
-
 import { Button } from "@/registry/bases/base/ui/button"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 

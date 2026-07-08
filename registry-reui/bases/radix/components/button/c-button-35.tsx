@@ -1,6 +1,3 @@
-// Description: Ghost button with more/less toggle
-// Order: 35
-
 "use client"
 
 import { useState } from "react"

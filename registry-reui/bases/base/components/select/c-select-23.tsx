@@ -1,6 +1,3 @@
-// Description: Multi-select with overlapping dots
-// Order: 23
-
 "use client"
 
 import { useState } from "react"

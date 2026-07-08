@@ -1,6 +1,3 @@
-// Description: Avatar based card checkbox
-// Order: 15
-
 import {
   Avatar,
   AvatarFallback,

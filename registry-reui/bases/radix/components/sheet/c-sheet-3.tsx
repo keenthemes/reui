@@ -1,6 +1,3 @@
-// Description: Sheets that open from any side.
-// Order: 3
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   Sheet,

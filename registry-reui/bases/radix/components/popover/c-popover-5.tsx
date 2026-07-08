@@ -1,6 +1,3 @@
-// Description: Popover within a dialog.
-// Order: 5
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   Dialog,

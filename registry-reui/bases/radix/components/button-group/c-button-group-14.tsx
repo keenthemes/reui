@@ -1,6 +1,3 @@
-// Description: Nested vertical button group for complex tool palettes
-// Order: 14
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import { ButtonGroup } from "@/registry/bases/radix/ui/button-group"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"

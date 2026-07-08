@@ -1,0 +1,301 @@
+{
+  "items": [
+    {
+      "name": "c-item-1",
+      "type": "registry:block",
+      "title": "Basic item with title and description",
+      "categories": [
+        "item"
+      ],
+      "description": "Basic item with title and description",
+      "registryDependencies": [
+        "item"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/item/c-item-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-item-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-item-2",
+      "type": "registry:block",
+      "title": "Items with icon media and action buttons",
+      "categories": [
+        "item"
+      ],
+      "description": "Items with icon media and action buttons",
+      "registryDependencies": [
+        "button",
+        "item"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/item/c-item-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-item-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-item-3",
+      "type": "registry:block",
+      "title": "User item with avatar, info, and follow button",
+      "categories": [
+        "item"
+      ],
+      "description": "User item with avatar, info, and follow button",
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "item"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/item/c-item-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-item-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-item-4",
+      "type": "registry:block",
+      "title": "Clickable navigation items with icons and chevron",
+      "categories": [
+        "item"
+      ],
+      "description": "Clickable navigation items with icons and chevron",
+      "registryDependencies": [
+        "item"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/item/c-item-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-item-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-item-5",
+      "type": "registry:block",
+      "title": "Item group with status badges",
+      "categories": [
+        "item"
+      ],
+      "description": "Item group with status badges",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "item"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/item/c-item-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-item-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-item-6",
+      "type": "registry:block",
+      "title": "File items with icon media, size, and actions",
+      "categories": [
+        "item"
+      ],
+      "description": "File items with icon media, size, and actions",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "item"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/item/c-item-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-item-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-item-7",
+      "type": "registry:block",
+      "title": "Items with keyboard shortcuts",
+      "categories": [
+        "item"
+      ],
+      "description": "Items with keyboard shortcuts",
+      "registryDependencies": [
+        "item",
+        "kbd"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/item/c-item-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-item-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-item-8",
+      "type": "registry:block",
+      "title": "Small-size items with badges",
+      "categories": [
+        "item"
+      ],
+      "description": "Small-size items with badges",
+      "registryDependencies": [
+        "badge",
+        "item"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/item/c-item-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-item-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-item-9",
+      "type": "registry:block",
+      "title": "Team members with roles and multiple actions",
+      "categories": [
+        "item"
+      ],
+      "description": "Team members with roles and multiple actions",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "dropdown-menu",
+        "item"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/item/c-item-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-item-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-item-10",
+      "type": "registry:block",
+      "title": "Item with header and footer sections",
+      "categories": [
+        "item"
+      ],
+      "description": "Item with header and footer sections",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "item",
+        "progress"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/item/c-item-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-item-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-item-11",
+      "type": "registry:block",
+      "title": "Integration items with connect actions",
+      "categories": [
+        "item"
+      ],
+      "description": "Integration items with connect actions",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "item"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/item/c-item-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-item-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    },
+    {
+      "name": "c-item-12",
+      "type": "registry:block",
+      "title": "Activity feed items with avatars and actions",
+      "categories": [
+        "item"
+      ],
+      "description": "Activity feed items with avatars and actions",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "item"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/item/c-item-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-item-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12
+      }
+    }
+  ]
+}

@@ -1,6 +1,3 @@
-// Description: Basic popover.
-// Order: 1
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   Popover,

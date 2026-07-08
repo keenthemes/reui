@@ -1,6 +1,3 @@
-// Description: A disabled combobox
-// Order: 2
-
 import {
   Combobox,
   ComboboxContent,

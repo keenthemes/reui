@@ -1,6 +1,3 @@
-// Description: Input group with multiple icons/buttons at the end
-// Order: 21
-
 import { toast } from "sonner"
 
 import { Field } from "@/registry/bases/base/ui/field"

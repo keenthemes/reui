@@ -1,0 +1,212 @@
+[
+  {
+    "name": "c-avatar-1",
+    "title": "Basic avatar",
+    "description": "Basic avatar",
+    "order": 1
+  },
+  {
+    "name": "c-avatar-2",
+    "title": "Avatar with fallback",
+    "description": "Avatar with fallback",
+    "order": 2
+  },
+  {
+    "name": "c-avatar-3",
+    "title": "Avatars with different sizes",
+    "description": "Avatars with different sizes",
+    "order": 3
+  },
+  {
+    "name": "c-avatar-4",
+    "title": "Avatars with different border radiuses",
+    "description": "Avatars with different border radiuses",
+    "order": 4
+  },
+  {
+    "name": "c-avatar-5",
+    "title": "Avatars with custom sizes",
+    "description": "Avatars with custom sizes",
+    "order": 5
+  },
+  {
+    "name": "c-avatar-6",
+    "title": "Avatar with an online status badge",
+    "description": "Avatar with an online status badge",
+    "order": 6
+  },
+  {
+    "name": "c-avatar-7",
+    "title": "Avatar with badge icon",
+    "description": "Avatar with badge icon",
+    "order": 7
+  },
+  {
+    "name": "c-avatar-8",
+    "title": "Avatar with different badge positions",
+    "description": "Avatar with different badge positions",
+    "order": 8
+  },
+  {
+    "name": "c-avatar-9",
+    "title": "Avatar with different badge positions",
+    "description": "Avatar with different badge positions",
+    "order": 9
+  },
+  {
+    "name": "c-avatar-10",
+    "title": "Basic avatar group",
+    "description": "Basic avatar group",
+    "order": 10
+  },
+  {
+    "name": "c-avatar-11",
+    "title": "Avatar group with numerical count",
+    "description": "Avatar group with numerical count",
+    "order": 11
+  },
+  {
+    "name": "c-avatar-12",
+    "title": "Avatar group with an icon count",
+    "description": "Avatar group with an icon count",
+    "order": 12
+  },
+  {
+    "name": "c-avatar-13",
+    "title": "Avatar with a distinct border ring",
+    "description": "Avatar with a distinct border ring",
+    "order": 13
+  },
+  {
+    "name": "c-avatar-14",
+    "title": "Avatar with light background color fallback",
+    "description": "Avatar with light background color fallback",
+    "order": 14
+  },
+  {
+    "name": "c-avatar-15",
+    "title": "Avatar with a solid background color fallback",
+    "description": "Avatar with a solid background color fallback",
+    "order": 15
+  },
+  {
+    "name": "c-avatar-16",
+    "title": "Avatar with user details and badge",
+    "description": "Avatar with user details and badge",
+    "order": 16
+  },
+  {
+    "name": "c-avatar-17",
+    "title": "Avatar with grayscale image filter",
+    "description": "Avatar with grayscale image filter",
+    "order": 17
+  },
+  {
+    "name": "c-avatar-18",
+    "title": "Avatar group with online status on one",
+    "description": "Avatar group with online status on one",
+    "order": 18
+  },
+  {
+    "name": "c-avatar-19",
+    "title": "Avatar inside small outline button",
+    "description": "Avatar inside small outline button",
+    "order": 19
+  },
+  {
+    "name": "c-avatar-20",
+    "title": "Avatar social proof with text label",
+    "description": "Avatar social proof with text label",
+    "order": 20
+  },
+  {
+    "name": "c-avatar-21",
+    "title": "Compact social proof with initials",
+    "description": "Compact social proof with initials",
+    "order": 21
+  },
+  {
+    "name": "c-avatar-22",
+    "title": "Avatar group with hover tooltips and lift effect",
+    "description": "Avatar group with hover tooltips and lift effect",
+    "order": 22
+  },
+  {
+    "name": "c-avatar-23",
+    "title": "Avatar group with hover effect",
+    "description": "Avatar group with hover effect",
+    "order": 23
+  },
+  {
+    "name": "c-avatar-24",
+    "title": "Avatar group with hover effect and tooltips",
+    "description": "Avatar group with hover effect and tooltips",
+    "order": 24
+  },
+  {
+    "name": "c-avatar-25",
+    "title": "Avatar group with numerical count",
+    "description": "Avatar group with numerical count",
+    "order": 25
+  },
+  {
+    "name": "c-avatar-26",
+    "title": "Pilled small outline button with avatar",
+    "description": "Pilled small outline button with avatar",
+    "order": 26
+  },
+  {
+    "name": "c-avatar-27",
+    "title": "Pilled small button with avatar",
+    "description": "Pilled small button with avatar",
+    "order": 27
+  },
+  {
+    "name": "c-avatar-28",
+    "title": "Avatar inside an empty state example",
+    "description": "Avatar inside an empty state example",
+    "order": 28
+  },
+  {
+    "name": "c-avatar-29",
+    "title": "Avatar group with icon count and button",
+    "description": "Avatar group with icon count and button",
+    "order": 29
+  },
+  {
+    "name": "c-avatar-30",
+    "title": "Avatar with loading state demonstration",
+    "description": "Avatar with loading state demonstration",
+    "order": 30
+  },
+  {
+    "name": "c-avatar-31",
+    "title": "Avatar with custom badge",
+    "description": "Avatar with custom badge",
+    "order": 31
+  },
+  {
+    "name": "c-avatar-32",
+    "title": "Avatar with ring animation",
+    "description": "Avatar with ring animation",
+    "order": 32
+  },
+  {
+    "name": "c-avatar-33",
+    "title": "Avatar with gradient animated ring",
+    "description": "Avatar with gradient animated ring",
+    "order": 33
+  },
+  {
+    "name": "c-avatar-34",
+    "title": "Avatar with multiple badges",
+    "description": "Avatar with multiple badges",
+    "order": 34
+  },
+  {
+    "name": "c-avatar-35",
+    "title": "Compact avatar dropdown menu",
+    "description": "Compact avatar dropdown menu",
+    "order": 35
+  }
+]

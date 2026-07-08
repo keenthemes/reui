@@ -1,6 +1,3 @@
-// Description: Horizontal button group with primary and secondary labels
-// Order: 31
-
 import { Button } from "@/registry/bases/base/ui/button"
 import {
   ButtonGroup,

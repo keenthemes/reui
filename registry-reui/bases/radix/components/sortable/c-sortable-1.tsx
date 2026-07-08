@@ -1,7 +1,3 @@
-// Description: Sortable list of items with drag-and-drop
-// Order: 1
-// GridSize: 1
-
 "use client"
 
 import { useState } from "react"
@@ -151,7 +147,7 @@ export default function Pattern() {
         {items.map((item) => (
           <SortableItem key={item.id} value={item.id}>
             <div
-              className="bg-background border-border hover:bg-accent/50 style-vega:rounded-md style-nova:rounded-md style-lyra:rounded-none style-maia:rounded-3xl style-mira:rounded-md flex cursor-pointer items-center gap-3 border p-3 transition-colors"
+              className="bg-background border-border hover:bg-accent/50 rounded-md flex cursor-pointer items-center gap-3 border p-3 transition-colors"
               onClick={() => {}}
             >
               <SortableItemHandle className="text-muted-foreground hover:text-foreground">

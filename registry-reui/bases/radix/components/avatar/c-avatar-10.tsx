@@ -1,6 +1,3 @@
-// Description: Basic avatar group
-// Order: 10
-
 import {
   Avatar,
   AvatarFallback,

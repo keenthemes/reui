@@ -1,0 +1,672 @@
+{
+  "items": [
+    {
+      "name": "c-chart-1",
+      "type": "registry:block",
+      "title": "Basic bar chart",
+      "categories": [
+        "chart"
+      ],
+      "description": "Basic bar chart",
+      "registryDependencies": [
+        "badge",
+        "card",
+        "chart"
+      ],
+      "dependencies": [
+        "recharts"
+      ],
+      "files": [
+        {
+          "path": "components/chart/c-chart-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-chart-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-chart-2",
+      "type": "registry:block",
+      "title": "Multi-dataset bar chart",
+      "categories": [
+        "chart"
+      ],
+      "description": "Multi-dataset bar chart",
+      "registryDependencies": [
+        "badge",
+        "card",
+        "chart"
+      ],
+      "dependencies": [
+        "recharts"
+      ],
+      "files": [
+        {
+          "path": "components/chart/c-chart-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-chart-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-chart-3",
+      "type": "registry:block",
+      "title": "Diagonal stripe bar chart",
+      "categories": [
+        "chart"
+      ],
+      "description": "Diagonal stripe bar chart",
+      "registryDependencies": [
+        "badge",
+        "card",
+        "chart"
+      ],
+      "dependencies": [
+        "recharts"
+      ],
+      "files": [
+        {
+          "path": "components/chart/c-chart-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-chart-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-chart-4",
+      "type": "registry:block",
+      "title": "Dotted pattern bar chart",
+      "categories": [
+        "chart"
+      ],
+      "description": "Dotted pattern bar chart",
+      "registryDependencies": [
+        "badge",
+        "card",
+        "chart"
+      ],
+      "dependencies": [
+        "recharts"
+      ],
+      "files": [
+        {
+          "path": "components/chart/c-chart-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-chart-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-chart-5",
+      "type": "registry:block",
+      "title": "Striped and solid bar chart",
+      "categories": [
+        "chart"
+      ],
+      "description": "Striped and solid bar chart",
+      "registryDependencies": [
+        "badge",
+        "card",
+        "chart"
+      ],
+      "dependencies": [
+        "recharts"
+      ],
+      "files": [
+        {
+          "path": "components/chart/c-chart-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-chart-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-chart-6",
+      "type": "registry:block",
+      "title": "3D gradient bar chart",
+      "categories": [
+        "chart"
+      ],
+      "description": "3D gradient bar chart",
+      "registryDependencies": [
+        "badge",
+        "card",
+        "chart"
+      ],
+      "dependencies": [
+        "recharts"
+      ],
+      "files": [
+        {
+          "path": "components/chart/c-chart-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-chart-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-chart-7",
+      "type": "registry:block",
+      "title": "Gradient bar chart",
+      "categories": [
+        "chart"
+      ],
+      "description": "Gradient bar chart",
+      "registryDependencies": [
+        "badge",
+        "card",
+        "chart"
+      ],
+      "dependencies": [
+        "recharts"
+      ],
+      "files": [
+        {
+          "path": "components/chart/c-chart-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-chart-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-chart-8",
+      "type": "registry:block",
+      "title": "3D isometric bar chart",
+      "categories": [
+        "chart"
+      ],
+      "description": "3D isometric bar chart",
+      "registryDependencies": [
+        "badge",
+        "card",
+        "chart"
+      ],
+      "dependencies": [
+        "recharts"
+      ],
+      "files": [
+        {
+          "path": "components/chart/c-chart-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-chart-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-chart-9",
+      "type": "registry:block",
+      "title": "Dotted and solid bar chart",
+      "categories": [
+        "chart"
+      ],
+      "description": "Dotted and solid bar chart",
+      "registryDependencies": [
+        "badge",
+        "card",
+        "chart"
+      ],
+      "dependencies": [
+        "recharts"
+      ],
+      "files": [
+        {
+          "path": "components/chart/c-chart-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-chart-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-chart-10",
+      "type": "registry:block",
+      "title": "Duotone gradient bar chart",
+      "categories": [
+        "chart"
+      ],
+      "description": "Duotone gradient bar chart",
+      "registryDependencies": [
+        "badge",
+        "card",
+        "chart"
+      ],
+      "dependencies": [
+        "recharts"
+      ],
+      "files": [
+        {
+          "path": "components/chart/c-chart-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-chart-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-chart-11",
+      "type": "registry:block",
+      "title": "Animated monochrome bar chart",
+      "categories": [
+        "chart"
+      ],
+      "description": "Animated monochrome bar chart",
+      "registryDependencies": [
+        "badge",
+        "card",
+        "chart"
+      ],
+      "dependencies": [
+        "motion",
+        "recharts"
+      ],
+      "files": [
+        {
+          "path": "components/chart/c-chart-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-chart-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    },
+    {
+      "name": "c-chart-12",
+      "type": "registry:block",
+      "title": "Vertical bar chart",
+      "categories": [
+        "chart"
+      ],
+      "description": "Vertical bar chart",
+      "registryDependencies": [
+        "badge",
+        "card",
+        "chart"
+      ],
+      "dependencies": [
+        "recharts"
+      ],
+      "files": [
+        {
+          "path": "components/chart/c-chart-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-chart-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12
+      }
+    },
+    {
+      "name": "c-chart-13",
+      "type": "registry:block",
+      "title": "Gradient area chart with stripe overlay",
+      "categories": [
+        "chart"
+      ],
+      "description": "Gradient area chart with stripe overlay",
+      "registryDependencies": [
+        "badge",
+        "card",
+        "chart"
+      ],
+      "dependencies": [
+        "recharts"
+      ],
+      "files": [
+        {
+          "path": "components/chart/c-chart-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-chart-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13
+      }
+    },
+    {
+      "name": "c-chart-14",
+      "type": "registry:block",
+      "title": "Stacked area chart with dashed strokes",
+      "categories": [
+        "chart"
+      ],
+      "description": "Stacked area chart with dashed strokes",
+      "registryDependencies": [
+        "badge",
+        "card",
+        "chart"
+      ],
+      "dependencies": [
+        "recharts"
+      ],
+      "files": [
+        {
+          "path": "components/chart/c-chart-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-chart-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14
+      }
+    },
+    {
+      "name": "c-chart-15",
+      "type": "registry:block",
+      "title": "Step area chart with dotted pattern fill",
+      "categories": [
+        "chart"
+      ],
+      "description": "Step area chart with dotted pattern fill",
+      "registryDependencies": [
+        "badge",
+        "card",
+        "chart"
+      ],
+      "dependencies": [
+        "recharts"
+      ],
+      "files": [
+        {
+          "path": "components/chart/c-chart-15.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-chart-15.tsx"
+        }
+      ],
+      "meta": {
+        "order": 15
+      }
+    },
+    {
+      "name": "c-chart-16",
+      "type": "registry:block",
+      "title": "Area chart with glowing dot markers",
+      "categories": [
+        "chart"
+      ],
+      "description": "Area chart with glowing dot markers",
+      "registryDependencies": [
+        "badge",
+        "card",
+        "chart"
+      ],
+      "dependencies": [
+        "recharts"
+      ],
+      "files": [
+        {
+          "path": "components/chart/c-chart-16.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-chart-16.tsx"
+        }
+      ],
+      "meta": {
+        "order": 16
+      }
+    },
+    {
+      "name": "c-chart-17",
+      "type": "registry:block",
+      "title": "Forecast line chart with stripe pattern zone",
+      "categories": [
+        "chart"
+      ],
+      "description": "Forecast line chart with stripe pattern zone",
+      "registryDependencies": [
+        "card",
+        "chart"
+      ],
+      "dependencies": [
+        "recharts"
+      ],
+      "files": [
+        {
+          "path": "components/chart/c-chart-17.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-chart-17.tsx"
+        }
+      ],
+      "meta": {
+        "order": 17
+      }
+    },
+    {
+      "name": "c-chart-18",
+      "type": "registry:block",
+      "title": "Stacked area chart with crosshatch pattern fill",
+      "categories": [
+        "chart"
+      ],
+      "description": "Stacked area chart with crosshatch pattern fill",
+      "registryDependencies": [
+        "badge",
+        "card",
+        "chart"
+      ],
+      "dependencies": [
+        "recharts"
+      ],
+      "files": [
+        {
+          "path": "components/chart/c-chart-18.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-chart-18.tsx"
+        }
+      ],
+      "meta": {
+        "order": 18
+      }
+    },
+    {
+      "name": "c-chart-19",
+      "type": "registry:block",
+      "title": "Donut chart with center total",
+      "categories": [
+        "chart"
+      ],
+      "description": "Donut chart with center total",
+      "registryDependencies": [
+        "card",
+        "chart"
+      ],
+      "dependencies": [
+        "recharts"
+      ],
+      "files": [
+        {
+          "path": "components/chart/c-chart-19.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-chart-19.tsx"
+        }
+      ],
+      "meta": {
+        "order": 19
+      }
+    },
+    {
+      "name": "c-chart-20",
+      "type": "registry:block",
+      "title": "Donut chart with center stats",
+      "categories": [
+        "chart"
+      ],
+      "description": "Donut chart with center stats",
+      "registryDependencies": [
+        "card",
+        "chart"
+      ],
+      "dependencies": [
+        "recharts"
+      ],
+      "files": [
+        {
+          "path": "components/chart/c-chart-20.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-chart-20.tsx"
+        }
+      ],
+      "meta": {
+        "order": 20
+      }
+    },
+    {
+      "name": "c-chart-21",
+      "type": "registry:block",
+      "title": "Bug priority pie with stripe patterns",
+      "categories": [
+        "chart"
+      ],
+      "description": "Bug priority pie with stripe patterns",
+      "registryDependencies": [
+        "card",
+        "chart"
+      ],
+      "dependencies": [
+        "recharts"
+      ],
+      "files": [
+        {
+          "path": "components/chart/c-chart-21.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-chart-21.tsx"
+        }
+      ],
+      "meta": {
+        "order": 21
+      }
+    },
+    {
+      "name": "c-chart-22",
+      "type": "registry:block",
+      "title": "Active segment donut with center label",
+      "categories": [
+        "chart"
+      ],
+      "description": "Active segment donut with center label",
+      "registryDependencies": [
+        "card",
+        "chart"
+      ],
+      "dependencies": [
+        "recharts"
+      ],
+      "files": [
+        {
+          "path": "components/chart/c-chart-22.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-chart-22.tsx"
+        }
+      ],
+      "meta": {
+        "order": 22
+      }
+    },
+    {
+      "name": "c-chart-23",
+      "type": "registry:block",
+      "title": "Radar chart with gradient fill",
+      "categories": [
+        "chart"
+      ],
+      "description": "Radar chart with gradient fill",
+      "registryDependencies": [
+        "card",
+        "chart"
+      ],
+      "dependencies": [
+        "recharts"
+      ],
+      "files": [
+        {
+          "path": "components/chart/c-chart-23.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-chart-23.tsx"
+        }
+      ],
+      "meta": {
+        "order": 23
+      }
+    },
+    {
+      "name": "c-chart-24",
+      "type": "registry:block",
+      "title": "Filled radar with glowing stroke",
+      "categories": [
+        "chart"
+      ],
+      "description": "Filled radar with glowing stroke",
+      "registryDependencies": [
+        "card",
+        "chart"
+      ],
+      "dependencies": [
+        "recharts"
+      ],
+      "files": [
+        {
+          "path": "components/chart/c-chart-24.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-chart-24.tsx"
+        }
+      ],
+      "meta": {
+        "order": 24
+      }
+    },
+    {
+      "name": "c-chart-25",
+      "type": "registry:block",
+      "title": "Lighthouse scores radial with labels",
+      "categories": [
+        "chart"
+      ],
+      "description": "Lighthouse scores radial with labels",
+      "registryDependencies": [
+        "card",
+        "chart"
+      ],
+      "dependencies": [
+        "recharts"
+      ],
+      "files": [
+        {
+          "path": "components/chart/c-chart-25.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-chart-25.tsx"
+        }
+      ],
+      "meta": {
+        "order": 25
+      }
+    }
+  ]
+}

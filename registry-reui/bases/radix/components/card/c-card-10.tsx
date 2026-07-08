@@ -1,8 +1,3 @@
-// Description: Full card with image and shadow fade effect
-// Order: 10
-
-import Image from "next/image"
-import Link from "next/link"
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -28,11 +23,12 @@ export default function Pattern() {
     <Card className="w-full max-w-xs p-0">
       <CardContent className="flex items-center gap-5 p-0">
         <div className="group/card relative flex h-96 w-full flex-col justify-end overflow-hidden">
-          <Image
+          <img
             src="https://picsum.photos/1000/800?grayscale&random=76"
             alt="16:9"
-            fill
-            className="object-cover transition-transform duration-500 group-hover/card:scale-110"
+            width={1000}
+            height={800}
+            className="absolute inset-0 size-full object-cover transition-transform duration-500 group-hover/card:scale-110"
           />
 
           {/* Background fade effects */}
@@ -54,9 +50,9 @@ export default function Pattern() {
               </span>
             </div>
             <div className="flex-1 space-y-px">
-              <Link href="#" className="font-medium text-white">
+              <a href="#" className="font-medium text-white">
                 Nick Johnson
-              </Link>
+              </a>
               <div className="text-white/80">nick@example.com</div>
             </div>
 

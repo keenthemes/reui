@@ -1,0 +1,38 @@
+[
+  {
+    "name": "c-number-field-1",
+    "title": "Basic number field",
+    "description": "Basic number field",
+    "order": 1
+  },
+  {
+    "name": "c-number-field-2",
+    "title": "Basic number field",
+    "description": "Basic number field",
+    "order": 2
+  },
+  {
+    "name": "c-number-field-3",
+    "title": "Basic number field",
+    "description": "Basic number field",
+    "order": 3
+  },
+  {
+    "name": "c-number-field-4",
+    "title": "Number filed with buttons on right",
+    "description": "Number filed with buttons on right",
+    "order": 4
+  },
+  {
+    "name": "c-number-field-5",
+    "title": "Number field with spinner buttons",
+    "description": "Number field with spinner buttons",
+    "order": 5
+  },
+  {
+    "name": "c-number-field-6",
+    "title": "Number field in form",
+    "description": "Number field in form",
+    "order": 6
+  }
+]

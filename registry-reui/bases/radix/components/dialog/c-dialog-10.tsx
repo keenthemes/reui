@@ -1,6 +1,3 @@
-// Description: Dialog with full width button
-// Order: 10
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   Dialog,

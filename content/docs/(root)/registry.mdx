@@ -3,7 +3,7 @@ title: Registry
 description: Learn how to use the ReUI Registry with shadcn/ui.
 ---
 
-The ReUI Registry gives you instant access to production-ready components. Add it once, then pull in flexible, composable blocks on demand.
+The ReUI Registry uses a single `@reui` namespace. The shadcn CLI resolves the full alias suffix into the registry URL, so you can install everything from one namespace.
 
 ## Setup ReUI Registry
 
@@ -17,16 +17,16 @@ Add the ReUI registry namespace to your `components.json`. Learn more about regi
 }
 ```
 
-## Usage
+## Installing Components
 
-Install blocks via the shadcn CLI using the `@reui/{name}` syntax.
-
-```bash
-npx dlx shadcn@latest add @reui/c-accordion-1
-```
-
-Install components via the shadcn CLI using the `@reui/{name}` syntax.
+Component examples use the `c-*` naming pattern and install with no license key or account:
 
 ```bash
-npx dlx shadcn@latest add @reui/filters
+npx shadcn@latest add @reui/c-alert-1
 ```
+
+Some `c-*` items pull shared `@reui/*` primitives such as `@reui/alert` or `@reui/data-grid` as registry dependencies. Those supporting files are resolved automatically, so installs keep working out of the box.
+
+## Styles
+
+The registry ships every component in multiple styles. Set your preferred style in `components.json` (for example `base-nova` or `radix-nova`) and the CLI pulls the matching source.

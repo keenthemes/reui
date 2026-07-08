@@ -1,6 +1,3 @@
-// Description: Spinner color variants
-// Order: 12
-
 import { Spinner } from "@/registry/bases/radix/ui/spinner"
 
 export default function Pattern() {

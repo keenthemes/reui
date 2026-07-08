@@ -1,0 +1,442 @@
+{
+  "items": [
+    {
+      "name": "c-table-1",
+      "type": "registry:block",
+      "title": "Basic table.",
+      "categories": [
+        "table"
+      ],
+      "description": "Basic table.",
+      "registryDependencies": [
+        "table"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/table/c-table-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-table-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-table-2",
+      "type": "registry:block",
+      "title": "Table with footer.",
+      "categories": [
+        "table"
+      ],
+      "description": "Table with footer.",
+      "registryDependencies": [
+        "table"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/table/c-table-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-table-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-table-3",
+      "type": "registry:block",
+      "title": "Table in card with status badges.",
+      "categories": [
+        "table"
+      ],
+      "description": "Table in card with status badges.",
+      "registryDependencies": [
+        "card",
+        "table"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/table/c-table-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-table-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-table-4",
+      "type": "registry:block",
+      "title": "Table card with actions column.",
+      "categories": [
+        "table"
+      ],
+      "description": "Table card with actions column.",
+      "registryDependencies": [
+        "button",
+        "card",
+        "dropdown-menu",
+        "table"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/table/c-table-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-table-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-table-5",
+      "type": "registry:block",
+      "title": "Table with interactive elements.",
+      "categories": [
+        "table"
+      ],
+      "description": "Table with interactive elements.",
+      "registryDependencies": [
+        "card",
+        "input",
+        "table"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/table/c-table-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-table-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-table-6",
+      "type": "registry:block",
+      "title": "Team members table with avatars, roles, and status",
+      "categories": [
+        "table"
+      ],
+      "description": "Team members table with avatars, roles, and status",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "frame",
+        "table"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/table/c-table-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-table-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-table-7",
+      "type": "registry:block",
+      "title": "Orders table with customer info and payment status",
+      "categories": [
+        "table"
+      ],
+      "description": "Orders table with customer info and payment status",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "table"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/table/c-table-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-table-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-table-8",
+      "type": "registry:block",
+      "title": "Projects table with team avatars and status",
+      "categories": [
+        "table"
+      ],
+      "description": "Projects table with team avatars and status",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "table"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/table/c-table-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-table-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-table-9",
+      "type": "registry:block",
+      "title": "Activity log table with user avatars and timestamps",
+      "categories": [
+        "table"
+      ],
+      "description": "Activity log table with user avatars and timestamps",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "frame",
+        "table"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/table/c-table-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-table-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-table-10",
+      "type": "registry:block",
+      "title": "Subscriptions table with plan badges and billing info",
+      "categories": [
+        "table"
+      ],
+      "description": "Subscriptions table with plan badges and billing info",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "frame",
+        "table"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/table/c-table-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-table-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-table-11",
+      "type": "registry:block",
+      "title": "Product inventory table with stock badges and prices",
+      "categories": [
+        "table"
+      ],
+      "description": "Product inventory table with stock badges and prices",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "dropdown-menu",
+        "table"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/table/c-table-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-table-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-table-12",
+      "type": "registry:block",
+      "title": "API keys table with permission badges and actions",
+      "categories": [
+        "table"
+      ],
+      "description": "API keys table with permission badges and actions",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "card",
+        "table"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/table/c-table-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-table-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-table-13",
+      "type": "registry:block",
+      "title": "File manager table with owners and sharing badges",
+      "categories": [
+        "table"
+      ],
+      "description": "File manager table with owners and sharing badges",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "table"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/table/c-table-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-table-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-table-14",
+      "type": "registry:block",
+      "title": "Issues table with priority, assignee, and labels",
+      "categories": [
+        "table"
+      ],
+      "description": "Issues table with priority, assignee, and labels",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "card",
+        "table"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/table/c-table-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-table-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-table-15",
+      "type": "registry:block",
+      "title": "Leaderboard table with rank, score, and level badges",
+      "categories": [
+        "table"
+      ],
+      "description": "Leaderboard table with rank, score, and level badges",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "table"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/table/c-table-15.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-table-15.tsx"
+        }
+      ],
+      "meta": {
+        "order": 15,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-table-16",
+      "type": "registry:block",
+      "title": "Vertical table with employee profile details",
+      "categories": [
+        "table"
+      ],
+      "description": "Vertical table with employee profile details",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "table"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/table/c-table-16.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-table-16.tsx"
+        }
+      ],
+      "meta": {
+        "order": 16,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-table-17",
+      "type": "registry:block",
+      "title": "Vertical table with server configuration details",
+      "categories": [
+        "table"
+      ],
+      "description": "Vertical table with server configuration details",
+      "registryDependencies": [
+        "badge",
+        "frame",
+        "table"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/table/c-table-17.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-table-17.tsx"
+        }
+      ],
+      "meta": {
+        "order": 17,
+        "gridSize": 1
+      }
+    }
+  ]
+}

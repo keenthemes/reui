@@ -1,6 +1,3 @@
-// Description: Slider with tick marks
-// Order: 10
-
 import { cn } from "@/registry/bases/radix/lib/utils"
 import { Label } from "@/registry/bases/radix/ui/label"
 import { Slider } from "@/registry/bases/radix/ui/slider"

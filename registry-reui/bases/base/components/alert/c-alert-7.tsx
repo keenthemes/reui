@@ -1,6 +1,3 @@
-// Description: Warning alert
-// Order: 7
-
 import {
   Alert,
   AlertDescription,

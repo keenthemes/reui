@@ -1,6 +1,3 @@
-// Description: Avatar with multiple badges
-// Order: 34
-
 import {
   Avatar,
   AvatarBadge,

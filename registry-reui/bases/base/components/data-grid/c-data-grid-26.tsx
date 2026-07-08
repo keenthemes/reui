@@ -1,7 +1,3 @@
-// Description: Data grid with per-column aggregate footer
-// GridSize: 1
-// Order: 26
-
 "use client"
 
 import { useMemo, useState } from "react"
@@ -195,7 +191,10 @@ export default function Pattern() {
             </div>
           </div>
         ),
-        size: 200,
+        minSize: 200,
+        meta: {
+          autoSize: true,
+        },
         enableSorting: true,
         enableHiding: false,
         enableResizing: true,
@@ -216,7 +215,7 @@ export default function Pattern() {
             return <Badge variant="info-outline">Inactive</Badge>
           return <Badge variant="warning-outline">Pending</Badge>
         },
-        size: 110,
+        size: 150,
         enableSorting: true,
         enableHiding: true,
         enableResizing: true,
@@ -232,7 +231,7 @@ export default function Pattern() {
             {fmt(row.original.balance)}
           </div>
         ),
-        size: 130,
+        size: 150,
         enableSorting: true,
         enableHiding: true,
         enableResizing: true,
@@ -252,7 +251,7 @@ export default function Pattern() {
             {row.original.transactions}
           </div>
         ),
-        size: 120,
+        size: 150,
         enableSorting: true,
         enableHiding: true,
         enableResizing: true,
@@ -285,20 +284,20 @@ export default function Pattern() {
     <DataGridTableFootRow>
       <DataGridTableFootRowCell colSpan={2}>
         <div className="flex flex-col gap-0.5">
-          <span className="text-muted-foreground text-xs">Summary</span>
+          <span className="text-muted-foreground">Summary</span>
           <span className="text-foreground font-medium">
             Across all members
           </span>
-          <span className="text-muted-foreground text-xs tabular-nums">
+          <span className="text-muted-foreground tabular-nums">
             {demoData.length} members
           </span>
         </div>
       </DataGridTableFootRowCell>
       <DataGridTableFootRowCell>
         <div className="flex flex-col gap-0.5">
-          <span className="text-muted-foreground text-xs">Avg</span>
+          <span className="text-muted-foreground">Avg</span>
           <span className="tabular-nums">{fmt(aggregates.avgBalance)}</span>
-          <span className="text-muted-foreground text-xs tabular-nums">
+          <span className="text-muted-foreground tabular-nums">
             {fmt(aggregates.minBalance)} – {fmt(aggregates.maxBalance)}
           </span>
         </div>
@@ -306,9 +305,9 @@ export default function Pattern() {
       {/* Transactions aggregate */}
       <DataGridTableFootRowCell>
         <div className="flex flex-col gap-0.5">
-          <span className="text-muted-foreground text-xs">Avg</span>
+          <span className="text-muted-foreground">Avg</span>
           <span className="tabular-nums">{aggregates.avgTxns}</span>
-          <span className="text-muted-foreground text-xs tabular-nums">
+          <span className="text-muted-foreground tabular-nums">
             {aggregates.minTxns} – {aggregates.maxTxns}
           </span>
         </div>

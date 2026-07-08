@@ -1,6 +1,3 @@
-// Description: Tree with custom indent.
-// Order: 3
-
 "use client"
 
 import {

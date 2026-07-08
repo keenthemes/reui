@@ -1,6 +1,3 @@
-// Description: Status filter select with colored dots
-// Order: 26
-
 import { Field } from "@/registry/bases/base/ui/field"
 import {
   Select,

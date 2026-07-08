@@ -1,6 +1,3 @@
-// Description: Vertical slider with range selection
-// Order: 4
-
 import { Slider } from "@/registry/bases/base/ui/slider"
 
 export default function Pattern() {

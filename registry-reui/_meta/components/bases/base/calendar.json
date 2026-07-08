@@ -1,0 +1,810 @@
+{
+  "items": [
+    {
+      "name": "c-calendar-1",
+      "type": "registry:block",
+      "title": "Basic calendar",
+      "categories": [
+        "calendar"
+      ],
+      "description": "Basic calendar",
+      "registryDependencies": [
+        "calendar",
+        "card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/calendar/c-calendar-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-calendar-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-calendar-2",
+      "type": "registry:block",
+      "title": "Range calendar",
+      "categories": [
+        "calendar"
+      ],
+      "description": "Range calendar",
+      "registryDependencies": [
+        "calendar",
+        "card"
+      ],
+      "dependencies": [
+        "date-fns",
+        "react-day-picker"
+      ],
+      "files": [
+        {
+          "path": "components/calendar/c-calendar-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-calendar-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-calendar-3",
+      "type": "registry:block",
+      "title": "Disabled dates",
+      "categories": [
+        "calendar"
+      ],
+      "description": "Disabled dates",
+      "registryDependencies": [
+        "calendar",
+        "card"
+      ],
+      "dependencies": [
+        "date-fns"
+      ],
+      "files": [
+        {
+          "path": "components/calendar/c-calendar-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-calendar-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-calendar-4",
+      "type": "registry:block",
+      "title": "Multiple day selection",
+      "categories": [
+        "calendar"
+      ],
+      "description": "Multiple day selection",
+      "registryDependencies": [
+        "calendar",
+        "card"
+      ],
+      "dependencies": [
+        "date-fns"
+      ],
+      "files": [
+        {
+          "path": "components/calendar/c-calendar-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-calendar-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-calendar-5",
+      "type": "registry:block",
+      "title": "Custom select day style",
+      "categories": [
+        "calendar"
+      ],
+      "description": "Custom select day style",
+      "registryDependencies": [
+        "calendar",
+        "card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/calendar/c-calendar-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-calendar-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-calendar-6",
+      "type": "registry:block",
+      "title": "Custom select range style",
+      "categories": [
+        "calendar"
+      ],
+      "description": "Custom select range style",
+      "registryDependencies": [
+        "calendar",
+        "card"
+      ],
+      "dependencies": [
+        "date-fns",
+        "react-day-picker"
+      ],
+      "files": [
+        {
+          "path": "components/calendar/c-calendar-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-calendar-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-calendar-7",
+      "type": "registry:block",
+      "title": "Right navigation",
+      "categories": [
+        "calendar"
+      ],
+      "description": "Right navigation",
+      "registryDependencies": [
+        "calendar",
+        "card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/calendar/c-calendar-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-calendar-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-calendar-8",
+      "type": "registry:block",
+      "title": "Month and year selection",
+      "categories": [
+        "calendar"
+      ],
+      "description": "Month and year selection",
+      "registryDependencies": [
+        "calendar",
+        "card",
+        "select"
+      ],
+      "dependencies": [
+        "react-day-picker"
+      ],
+      "files": [
+        {
+          "path": "components/calendar/c-calendar-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-calendar-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-calendar-9",
+      "type": "registry:block",
+      "title": "Year select with navigation",
+      "categories": [
+        "calendar"
+      ],
+      "description": "Year select with navigation",
+      "registryDependencies": [
+        "calendar",
+        "card",
+        "select"
+      ],
+      "dependencies": [
+        "react-day-picker"
+      ],
+      "files": [
+        {
+          "path": "components/calendar/c-calendar-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-calendar-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-calendar-10",
+      "type": "registry:block",
+      "title": "Display week numbers",
+      "categories": [
+        "calendar"
+      ],
+      "description": "Display week numbers",
+      "registryDependencies": [
+        "calendar",
+        "card"
+      ],
+      "dependencies": [
+        "react-day-picker"
+      ],
+      "files": [
+        {
+          "path": "components/calendar/c-calendar-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-calendar-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-calendar-11",
+      "type": "registry:block",
+      "title": "Current month button",
+      "categories": [
+        "calendar"
+      ],
+      "description": "Current month button",
+      "registryDependencies": [
+        "button",
+        "calendar",
+        "card"
+      ],
+      "dependencies": [
+        "date-fns"
+      ],
+      "files": [
+        {
+          "path": "components/calendar/c-calendar-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-calendar-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    },
+    {
+      "name": "c-calendar-12",
+      "type": "registry:block",
+      "title": "Today button",
+      "categories": [
+        "calendar"
+      ],
+      "description": "Today button",
+      "registryDependencies": [
+        "button",
+        "calendar",
+        "card"
+      ],
+      "dependencies": [
+        "date-fns"
+      ],
+      "files": [
+        {
+          "path": "components/calendar/c-calendar-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-calendar-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12
+      }
+    },
+    {
+      "name": "c-calendar-13",
+      "type": "registry:block",
+      "title": "Custom navigation with year view",
+      "categories": [
+        "calendar"
+      ],
+      "description": "Custom navigation with year view",
+      "registryDependencies": [
+        "button",
+        "calendar",
+        "card",
+        "scroll-area"
+      ],
+      "dependencies": [
+        "date-fns",
+        "react-day-picker"
+      ],
+      "files": [
+        {
+          "path": "components/calendar/c-calendar-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-calendar-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13
+      }
+    },
+    {
+      "name": "c-calendar-14",
+      "type": "registry:block",
+      "title": "Preset time selection",
+      "categories": [
+        "calendar"
+      ],
+      "description": "Preset time selection",
+      "registryDependencies": [
+        "button",
+        "calendar",
+        "card",
+        "scroll-area"
+      ],
+      "dependencies": [
+        "date-fns"
+      ],
+      "files": [
+        {
+          "path": "components/calendar/c-calendar-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-calendar-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14
+      }
+    },
+    {
+      "name": "c-calendar-15",
+      "type": "registry:block",
+      "title": "Calendar with presets",
+      "categories": [
+        "calendar"
+      ],
+      "description": "Calendar with presets",
+      "registryDependencies": [
+        "button",
+        "calendar",
+        "card"
+      ],
+      "dependencies": [
+        "date-fns"
+      ],
+      "files": [
+        {
+          "path": "components/calendar/c-calendar-15.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-calendar-15.tsx"
+        }
+      ],
+      "meta": {
+        "order": 15
+      }
+    },
+    {
+      "name": "c-calendar-16",
+      "type": "registry:block",
+      "title": "Range calendar with presets",
+      "categories": [
+        "calendar"
+      ],
+      "description": "Range calendar with presets",
+      "registryDependencies": [
+        "button",
+        "calendar",
+        "card"
+      ],
+      "dependencies": [
+        "date-fns",
+        "react-day-picker"
+      ],
+      "files": [
+        {
+          "path": "components/calendar/c-calendar-16.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-calendar-16.tsx"
+        }
+      ],
+      "meta": {
+        "order": 16
+      }
+    },
+    {
+      "name": "c-calendar-17",
+      "type": "registry:block",
+      "title": "Calendar with pricing",
+      "categories": [
+        "calendar"
+      ],
+      "description": "Calendar with pricing",
+      "registryDependencies": [
+        "calendar"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/calendar/c-calendar-17.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-calendar-17.tsx"
+        }
+      ],
+      "meta": {
+        "order": 17
+      }
+    },
+    {
+      "name": "c-calendar-18",
+      "type": "registry:block",
+      "title": "Calendar with presets",
+      "categories": [
+        "calendar"
+      ],
+      "description": "Calendar with presets",
+      "registryDependencies": [
+        "button",
+        "calendar",
+        "card"
+      ],
+      "dependencies": [
+        "date-fns"
+      ],
+      "files": [
+        {
+          "path": "components/calendar/c-calendar-18.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-calendar-18.tsx"
+        }
+      ],
+      "meta": {
+        "order": 18
+      }
+    },
+    {
+      "name": "c-calendar-19",
+      "type": "registry:block",
+      "title": "Appointment calendar",
+      "categories": [
+        "calendar"
+      ],
+      "description": "Appointment calendar",
+      "registryDependencies": [
+        "button",
+        "calendar",
+        "card",
+        "scroll-area"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/calendar/c-calendar-19.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-calendar-19.tsx"
+        }
+      ],
+      "meta": {
+        "order": 19
+      }
+    },
+    {
+      "name": "c-calendar-20",
+      "type": "registry:block",
+      "title": "Display 2 months",
+      "categories": [
+        "calendar"
+      ],
+      "description": "Display 2 months",
+      "registryDependencies": [
+        "calendar",
+        "card"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/calendar/c-calendar-20.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-calendar-20.tsx"
+        }
+      ],
+      "meta": {
+        "order": 20
+      }
+    },
+    {
+      "name": "c-calendar-21",
+      "type": "registry:block",
+      "title": "Display 2 months with range picker",
+      "categories": [
+        "calendar"
+      ],
+      "description": "Display 2 months with range picker",
+      "registryDependencies": [
+        "calendar",
+        "card"
+      ],
+      "dependencies": [
+        "react-day-picker"
+      ],
+      "files": [
+        {
+          "path": "components/calendar/c-calendar-21.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-calendar-21.tsx"
+        }
+      ],
+      "meta": {
+        "order": 21
+      }
+    },
+    {
+      "name": "c-calendar-22",
+      "type": "registry:block",
+      "title": "Calendar with event list",
+      "categories": [
+        "calendar"
+      ],
+      "description": "Calendar with event list",
+      "registryDependencies": [
+        "button",
+        "calendar",
+        "card"
+      ],
+      "dependencies": [
+        "little-date"
+      ],
+      "files": [
+        {
+          "path": "components/calendar/c-calendar-22.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-calendar-22.tsx"
+        }
+      ],
+      "meta": {
+        "order": 22
+      }
+    },
+    {
+      "name": "c-calendar-23",
+      "type": "registry:block",
+      "title": "Localize calendar",
+      "categories": [
+        "calendar"
+      ],
+      "description": "Localize calendar",
+      "registryDependencies": [
+        "calendar",
+        "card",
+        "select"
+      ],
+      "dependencies": [
+        "react-day-picker"
+      ],
+      "files": [
+        {
+          "path": "components/calendar/c-calendar-23.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-calendar-23.tsx"
+        }
+      ],
+      "meta": {
+        "order": 23
+      }
+    },
+    {
+      "name": "c-calendar-24",
+      "type": "registry:block",
+      "title": "Calendar with date picker",
+      "categories": [
+        "calendar"
+      ],
+      "description": "Calendar with date picker",
+      "registryDependencies": [
+        "button",
+        "calendar",
+        "popover"
+      ],
+      "dependencies": [
+        "date-fns"
+      ],
+      "files": [
+        {
+          "path": "components/calendar/c-calendar-24.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-calendar-24.tsx"
+        }
+      ],
+      "meta": {
+        "order": 24
+      }
+    },
+    {
+      "name": "c-calendar-25",
+      "type": "registry:block",
+      "title": "Calendar with date range picker",
+      "categories": [
+        "calendar"
+      ],
+      "description": "Calendar with date range picker",
+      "registryDependencies": [
+        "button",
+        "calendar",
+        "card",
+        "popover"
+      ],
+      "dependencies": [
+        "date-fns",
+        "react-day-picker"
+      ],
+      "files": [
+        {
+          "path": "components/calendar/c-calendar-25.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-calendar-25.tsx"
+        }
+      ],
+      "meta": {
+        "order": 25
+      }
+    },
+    {
+      "name": "c-calendar-26",
+      "type": "registry:block",
+      "title": "Calendar with date picker and year view",
+      "categories": [
+        "calendar"
+      ],
+      "description": "Calendar with date picker and year view",
+      "registryDependencies": [
+        "button",
+        "calendar",
+        "card",
+        "popover",
+        "scroll-area"
+      ],
+      "dependencies": [
+        "date-fns",
+        "react-day-picker"
+      ],
+      "files": [
+        {
+          "path": "components/calendar/c-calendar-26.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-calendar-26.tsx"
+        }
+      ],
+      "meta": {
+        "order": 26
+      }
+    },
+    {
+      "name": "c-calendar-27",
+      "type": "registry:block",
+      "title": "Calendar with date and appointment picker",
+      "categories": [
+        "calendar"
+      ],
+      "description": "Calendar with date and appointment picker",
+      "registryDependencies": [
+        "button",
+        "calendar",
+        "card",
+        "popover",
+        "scroll-area"
+      ],
+      "dependencies": [
+        "date-fns"
+      ],
+      "files": [
+        {
+          "path": "components/calendar/c-calendar-27.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-calendar-27.tsx"
+        }
+      ],
+      "meta": {
+        "order": 27
+      }
+    },
+    {
+      "name": "c-calendar-28",
+      "type": "registry:block",
+      "title": "Calendar with date picker and presets",
+      "categories": [
+        "calendar"
+      ],
+      "description": "Calendar with date picker and presets",
+      "registryDependencies": [
+        "button",
+        "calendar",
+        "card",
+        "popover"
+      ],
+      "dependencies": [
+        "date-fns"
+      ],
+      "files": [
+        {
+          "path": "components/calendar/c-calendar-28.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-calendar-28.tsx"
+        }
+      ],
+      "meta": {
+        "order": 28
+      }
+    },
+    {
+      "name": "c-calendar-29",
+      "type": "registry:block",
+      "title": "Range calendar with date picker and presets",
+      "categories": [
+        "calendar"
+      ],
+      "description": "Range calendar with date picker and presets",
+      "registryDependencies": [
+        "button",
+        "calendar",
+        "card",
+        "popover"
+      ],
+      "dependencies": [
+        "date-fns",
+        "react-day-picker"
+      ],
+      "files": [
+        {
+          "path": "components/calendar/c-calendar-29.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-calendar-29.tsx"
+        }
+      ],
+      "meta": {
+        "order": 29
+      }
+    },
+    {
+      "name": "c-calendar-30",
+      "type": "registry:block",
+      "title": "Calendar with date and time range picker",
+      "categories": [
+        "calendar"
+      ],
+      "description": "Calendar with date and time range picker",
+      "registryDependencies": [
+        "button",
+        "calendar",
+        "field",
+        "input-group",
+        "popover",
+        "separator"
+      ],
+      "dependencies": [
+        "date-fns"
+      ],
+      "files": [
+        {
+          "path": "components/calendar/c-calendar-30.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-calendar-30.tsx"
+        }
+      ],
+      "meta": {
+        "order": 30
+      }
+    }
+  ]
+}

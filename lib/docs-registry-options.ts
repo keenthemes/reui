@@ -1,25 +1,45 @@
 import { getIconLibraryFromStyle } from "@/lib/icons"
-import type { BaseName, IconLibraryName, StyleName } from "@/registry/config"
+import {
+  BASES,
+  iconLibraries,
+  STYLES,
+  type BaseName,
+  type IconLibraryName,
+  type StyleName,
+} from "@/registry/config"
 
-export const DEFAULT_DOCS_STYLE_NAME = "radix-nova"
+export const DEFAULT_DOCS_STYLE_NAME = "base-nova"
 
-function parseRegistryStyleName(styleName: string) {
+const VALID_BASE_NAMES = new Set<string>(BASES.map((base) => base.name))
+const VALID_STYLE_NAMES = new Set<string>(STYLES.map((style) => style.name))
+const VALID_ICON_LIBRARY_NAMES = new Set<string>(Object.keys(iconLibraries))
+
+function parseRegistryStyleName(styleName?: string | null) {
   const [defaultBase, ...defaultStyleParts] = DEFAULT_DOCS_STYLE_NAME.split("-")
-  const [base, ...styleParts] = styleName.split("-")
+  const [base, ...styleParts] = (
+    typeof styleName === "string" && styleName.trim()
+      ? styleName.trim()
+      : DEFAULT_DOCS_STYLE_NAME
+  ).split("-")
+  const style = styleParts.join("-")
 
-  const resolvedBase = base || defaultBase
-  const fallbackStyle = styleParts.join("-") || defaultStyleParts.join("-")
+  const resolvedBase = VALID_BASE_NAMES.has(base) ? base : defaultBase
+  const resolvedStyle = VALID_STYLE_NAMES.has(style)
+    ? style
+    : defaultStyleParts.join("-")
 
   return {
     base: resolvedBase,
-    style: fallbackStyle,
+    style: resolvedStyle,
   }
 }
 
-export function resolveRegistryStyleName(styleName?: string) {
-  const { base, style } = parseRegistryStyleName(
-    styleName ?? DEFAULT_DOCS_STYLE_NAME
-  )
+export function getRegistryBaseName(styleName?: string): BaseName {
+  return parseRegistryStyleName(styleName).base as BaseName
+}
+
+export function resolveRegistryStyleName(styleName?: string | null) {
+  const { base, style } = parseRegistryStyleName(styleName)
 
   return `${base}-${style}`
 }
@@ -29,13 +49,35 @@ export function getSelectedRegistryStyleName(
   style?: StyleName
 ) {
   const fallback = parseRegistryStyleName(DEFAULT_DOCS_STYLE_NAME)
+  const resolvedBase = base && VALID_BASE_NAMES.has(base) ? base : fallback.base
+  const resolvedStyle =
+    style && VALID_STYLE_NAMES.has(style) ? style : fallback.style
 
-  return `${base ?? fallback.base}-${style ?? fallback.style}`
+  return `${resolvedBase}-${resolvedStyle}`
 }
 
 export function resolveRegistryIconLibrary(
-  iconLibrary: IconLibraryName | undefined,
-  styleName: string
+  iconLibrary: IconLibraryName | string | null | undefined,
+  styleName?: string | null
 ) {
-  return iconLibrary ?? getIconLibraryFromStyle(styleName)
+  if (iconLibrary && VALID_ICON_LIBRARY_NAMES.has(iconLibrary)) {
+    return iconLibrary as IconLibraryName
+  }
+
+  return getIconLibraryFromStyle(resolveRegistryStyleName(styleName))
+}
+
+export function resolveRegistryOptions({
+  styleName,
+  iconLibrary,
+}: {
+  styleName?: string | null
+  iconLibrary?: IconLibraryName | string | null
+}) {
+  const resolvedStyleName = resolveRegistryStyleName(styleName)
+
+  return {
+    styleName: resolvedStyleName,
+    iconLibrary: resolveRegistryIconLibrary(iconLibrary, resolvedStyleName),
+  }
 }

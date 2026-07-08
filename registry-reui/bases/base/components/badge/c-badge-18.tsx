@@ -1,6 +1,3 @@
-// Description: Badge size variations
-// Order: 18
-
 import { Badge } from "@/registry-reui/bases/base/reui/badge"
 
 export default function Pattern() {

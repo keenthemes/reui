@@ -1,6 +1,3 @@
-// Description: Toggle with notification count badge
-// Order: 7
-
 "use client"
 
 import { useState } from "react"

@@ -1,6 +1,3 @@
-// Description: Input group with search results count
-// Order: 25
-
 import { Field } from "@/registry/bases/base/ui/field"
 import {
   InputGroup,

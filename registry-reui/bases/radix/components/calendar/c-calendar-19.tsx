@@ -1,6 +1,3 @@
-// Description: Appointment calendar
-// Order: 19
-
 "use client"
 
 import { useState } from "react"

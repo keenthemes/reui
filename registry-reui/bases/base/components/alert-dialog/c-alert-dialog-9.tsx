@@ -1,6 +1,3 @@
-// Description: Warning for unsaved changes when navigating away
-// Order: 9
-
 import { Frame, FramePanel } from "@/registry-reui/bases/base/reui/frame"
 
 import {
@@ -28,7 +25,7 @@ export default function Pattern() {
         <Frame className="p-px">
           <FramePanel>
             <div className="flex items-start gap-3">
-              <div className="style-vega:rounded-full style-nova:rounded-full style-lyra:rounded-none style-maia:rounded-full style-mira:rounded-full flex size-10 shrink-0 items-center justify-center border border-amber-100 bg-amber-50 text-amber-500 dark:bg-amber-950 dark:text-amber-300">
+              <div className="rounded-full flex size-10 shrink-0 items-center justify-center border border-amber-100 bg-amber-50 text-amber-500 dark:bg-amber-950 dark:text-amber-300">
                 <IconPlaceholder
                   lucide="CardSimIcon"
                   tabler="IconDeviceSdCard"

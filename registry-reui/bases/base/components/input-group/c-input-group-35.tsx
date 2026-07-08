@@ -1,6 +1,3 @@
-// Description: Password input with visibility toggle
-// Order: 35
-
 "use client"
 
 import { useState } from "react"

@@ -1,7 +1,3 @@
-// Description: Data grid with local infinite scroll
-// GridSize: 1
-// Order: 27
-
 "use client"
 
 import { useMemo, useState } from "react"
@@ -107,8 +103,8 @@ export default function Pattern() {
             {row.original.id}
           </span>
         ),
-        size: 40,
-        enableSorting: true,
+        size: 70,
+        enableSorting: false,
       },
       {
         accessorKey: "name",
@@ -132,7 +128,10 @@ export default function Pattern() {
             </span>
           </div>
         ),
-        size: 240,
+        minSize: 150,
+        meta: {
+          autoSize: true,
+        },
         enableSorting: true,
       },
       {

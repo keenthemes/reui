@@ -1,6 +1,3 @@
-// Description: Label with character counter
-// Order: 9
-
 "use client"
 
 import { useState } from "react"

@@ -1,6 +1,3 @@
-// Description: A combobox with custom item rendering
-// Order: 16
-
 import {
   Avatar,
   AvatarFallback,

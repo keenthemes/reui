@@ -1,6 +1,3 @@
-// Description: Progress bar with status messages.
-// Order: 4
-
 "use client"
 
 import { useEffect, useState } from "react"
@@ -52,7 +49,7 @@ export default function BaseProgressStatus() {
         </span>
       </div>
       <Progress value={downloadProgress} />
-      <div className="text-muted-foreground style-vega:text-sm style-lyra:text-xs style-maia:text-xs style-nova:text-xs style-mira:text-xs">
+      <div className="text-muted-foreground text-xs">
         {getStatusMessage(downloadProgress)}
       </div>
     </div>

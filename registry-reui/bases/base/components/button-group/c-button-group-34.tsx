@@ -1,6 +1,3 @@
-// Description: Segmented control with dropdown inside button group
-// Order: 34
-
 "use client"
 
 import { useState } from "react"

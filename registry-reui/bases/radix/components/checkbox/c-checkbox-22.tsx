@@ -1,6 +1,3 @@
-// Description: Checkbox with feature badge
-// Order: 22
-
 import { Badge } from "@/registry/bases/radix/ui/badge"
 import { Checkbox } from "@/registry/bases/radix/ui/checkbox"
 import { Field, FieldLabel } from "@/registry/bases/radix/ui/field"

@@ -1,6 +1,3 @@
-// Description: Button group with select controls
-// Order: 33
-
 "use client"
 
 import { useState } from "react"

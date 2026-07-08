@@ -1,6 +1,3 @@
-// Description: Contact search input with filter and actions menu
-// Order: 39
-
 "use client"
 
 import { useState } from "react"

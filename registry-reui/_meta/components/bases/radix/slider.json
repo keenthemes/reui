@@ -1,0 +1,288 @@
+{
+  "items": [
+    {
+      "name": "c-slider-1",
+      "type": "registry:block",
+      "title": "Basic slider.",
+      "categories": [
+        "slider"
+      ],
+      "description": "Basic slider.",
+      "registryDependencies": [
+        "slider"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/slider/c-slider-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-slider-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-slider-2",
+      "type": "registry:block",
+      "title": "Disabled slider",
+      "categories": [
+        "slider"
+      ],
+      "description": "Disabled slider",
+      "registryDependencies": [
+        "slider"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/slider/c-slider-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-slider-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-slider-3",
+      "type": "registry:block",
+      "title": "Slider with multiple discrete values",
+      "categories": [
+        "slider"
+      ],
+      "description": "Slider with multiple discrete values",
+      "registryDependencies": [
+        "slider"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/slider/c-slider-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-slider-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-slider-4",
+      "type": "registry:block",
+      "title": "Vertical slider with range selection",
+      "categories": [
+        "slider"
+      ],
+      "description": "Vertical slider with range selection",
+      "registryDependencies": [
+        "slider"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/slider/c-slider-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-slider-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-slider-5",
+      "type": "registry:block",
+      "title": "Slider with controlled value tracking",
+      "categories": [
+        "slider"
+      ],
+      "description": "Slider with controlled value tracking",
+      "registryDependencies": [
+        "label",
+        "slider"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/slider/c-slider-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-slider-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-slider-6",
+      "type": "registry:block",
+      "title": "Slider with range selection",
+      "categories": [
+        "slider"
+      ],
+      "description": "Slider with range selection",
+      "registryDependencies": [
+        "slider"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/slider/c-slider-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-slider-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-slider-7",
+      "type": "registry:block",
+      "title": "Slider synced with number input",
+      "categories": [
+        "slider"
+      ],
+      "description": "Slider synced with number input",
+      "registryDependencies": [
+        "input",
+        "label",
+        "slider"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/slider/c-slider-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-slider-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-slider-8",
+      "type": "registry:block",
+      "title": "Color temperature slider",
+      "categories": [
+        "slider"
+      ],
+      "description": "Color temperature slider",
+      "registryDependencies": [
+        "label",
+        "slider"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/slider/c-slider-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-slider-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-slider-9",
+      "type": "registry:block",
+      "title": "Slider with reference labels",
+      "categories": [
+        "slider"
+      ],
+      "description": "Slider with reference labels",
+      "registryDependencies": [
+        "label",
+        "slider"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/slider/c-slider-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-slider-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-slider-10",
+      "type": "registry:block",
+      "title": "Slider with tick marks",
+      "categories": [
+        "slider"
+      ],
+      "description": "Slider with tick marks",
+      "registryDependencies": [
+        "label",
+        "slider"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/slider/c-slider-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-slider-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-slider-11",
+      "type": "registry:block",
+      "title": "Slider with dynamic tooltip indicator",
+      "categories": [
+        "slider"
+      ],
+      "description": "Slider with dynamic tooltip indicator",
+      "registryDependencies": [
+        "label",
+        "slider"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/slider/c-slider-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-slider-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    },
+    {
+      "name": "c-slider-12",
+      "type": "registry:block",
+      "title": "Rating slider with emoji feedback",
+      "categories": [
+        "slider"
+      ],
+      "description": "Rating slider with emoji feedback",
+      "registryDependencies": [
+        "label",
+        "slider"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/slider/c-slider-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-slider-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12
+      }
+    }
+  ]
+}

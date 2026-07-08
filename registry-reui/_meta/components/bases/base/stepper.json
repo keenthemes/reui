@@ -1,0 +1,368 @@
+{
+  "items": [
+    {
+      "name": "c-stepper-1",
+      "type": "registry:block",
+      "title": "Basic stepper",
+      "categories": [
+        "stepper"
+      ],
+      "description": "Basic stepper",
+      "registryDependencies": [
+        "stepper"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/stepper/c-stepper-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-stepper-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-stepper-2",
+      "type": "registry:block",
+      "title": "Stepper with completed state",
+      "categories": [
+        "stepper"
+      ],
+      "description": "Stepper with completed state",
+      "registryDependencies": [
+        "stepper"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/stepper/c-stepper-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-stepper-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-stepper-3",
+      "type": "registry:block",
+      "title": "Stepper with loading state",
+      "categories": [
+        "stepper"
+      ],
+      "description": "Stepper with loading state",
+      "registryDependencies": [
+        "stepper"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/stepper/c-stepper-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-stepper-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-stepper-4",
+      "type": "registry:block",
+      "title": "Controlled stepper",
+      "categories": [
+        "stepper"
+      ],
+      "description": "Controlled stepper",
+      "registryDependencies": [
+        "button",
+        "stepper"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/stepper/c-stepper-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-stepper-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-stepper-5",
+      "type": "registry:block",
+      "title": "Stepper with title and indicator",
+      "categories": [
+        "stepper"
+      ],
+      "description": "Stepper with title and indicator",
+      "registryDependencies": [
+        "stepper"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/stepper/c-stepper-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-stepper-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-stepper-6",
+      "type": "registry:block",
+      "title": "Stepper with progress bar indicator",
+      "categories": [
+        "stepper"
+      ],
+      "description": "Stepper with progress bar indicator",
+      "registryDependencies": [
+        "stepper"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/stepper/c-stepper-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-stepper-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-stepper-7",
+      "type": "registry:block",
+      "title": "Stepper with icons and badges",
+      "categories": [
+        "stepper"
+      ],
+      "description": "Stepper with icons and badges",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "stepper"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/stepper/c-stepper-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-stepper-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-stepper-8",
+      "type": "registry:block",
+      "title": "Stepper with descriptions",
+      "categories": [
+        "stepper"
+      ],
+      "description": "Stepper with descriptions",
+      "registryDependencies": [
+        "stepper"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/stepper/c-stepper-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-stepper-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-stepper-9",
+      "type": "registry:block",
+      "title": "Stepper with inline titles",
+      "categories": [
+        "stepper"
+      ],
+      "description": "Stepper with inline titles",
+      "registryDependencies": [
+        "stepper"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/stepper/c-stepper-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-stepper-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-stepper-10",
+      "type": "registry:block",
+      "title": "Stepper with content for each step",
+      "categories": [
+        "stepper"
+      ],
+      "description": "Stepper with content for each step",
+      "registryDependencies": [
+        "stepper"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/stepper/c-stepper-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-stepper-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-stepper-11",
+      "type": "registry:block",
+      "title": "Stepper with progress bar and titles",
+      "categories": [
+        "stepper"
+      ],
+      "description": "Stepper with progress bar and titles",
+      "registryDependencies": [
+        "stepper"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/stepper/c-stepper-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-stepper-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-stepper-12",
+      "type": "registry:block",
+      "title": "Stepper with segmented progress bar",
+      "categories": [
+        "stepper"
+      ],
+      "description": "Stepper with segmented progress bar",
+      "registryDependencies": [
+        "button",
+        "stepper"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/stepper/c-stepper-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-stepper-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-stepper-13",
+      "type": "registry:block",
+      "title": "Stepper with vertical orientation and descriptions",
+      "categories": [
+        "stepper"
+      ],
+      "description": "Stepper with vertical orientation and descriptions",
+      "registryDependencies": [
+        "stepper"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/stepper/c-stepper-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-stepper-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-stepper-14",
+      "type": "registry:block",
+      "title": "Stepper with vertical orientation",
+      "categories": [
+        "stepper"
+      ],
+      "description": "Stepper with vertical orientation",
+      "registryDependencies": [
+        "stepper"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/stepper/c-stepper-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-stepper-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-stepper-15",
+      "type": "registry:block",
+      "title": "Stepper with vertical orientation and titles",
+      "categories": [
+        "stepper"
+      ],
+      "description": "Stepper with vertical orientation and titles",
+      "registryDependencies": [
+        "stepper"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/stepper/c-stepper-15.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-stepper-15.tsx"
+        }
+      ],
+      "meta": {
+        "order": 15,
+        "gridSize": 1
+      }
+    }
+  ]
+}

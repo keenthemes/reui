@@ -1,6 +1,3 @@
-// Description: Tooltip on notification bell with badge count
-// Order: 5
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import { Button } from "@/registry/bases/radix/ui/button"

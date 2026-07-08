@@ -1,0 +1,244 @@
+{
+  "items": [
+    {
+      "name": "c-resizable-1",
+      "type": "registry:block",
+      "title": "Horizontal resizable layout",
+      "categories": [
+        "resizable"
+      ],
+      "description": "Horizontal resizable layout",
+      "registryDependencies": [
+        "resizable"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/resizable/c-resizable-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-resizable-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-resizable-2",
+      "type": "registry:block",
+      "title": "Vertical resizable layout.",
+      "categories": [
+        "resizable"
+      ],
+      "description": "Vertical resizable layout.",
+      "registryDependencies": [
+        "resizable"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/resizable/c-resizable-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-resizable-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-resizable-3",
+      "type": "registry:block",
+      "title": "Nested mixed-direction resizable layout.",
+      "categories": [
+        "resizable"
+      ],
+      "description": "Nested mixed-direction resizable layout.",
+      "registryDependencies": [
+        "resizable"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/resizable/c-resizable-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-resizable-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-resizable-4",
+      "type": "registry:block",
+      "title": "Nested resizable",
+      "categories": [
+        "resizable"
+      ],
+      "description": "Nested resizable",
+      "registryDependencies": [
+        "resizable"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/resizable/c-resizable-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-resizable-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-resizable-5",
+      "type": "registry:block",
+      "title": "Handle with animated pill indicator",
+      "categories": [
+        "resizable"
+      ],
+      "description": "Handle with animated pill indicator",
+      "registryDependencies": [
+        "resizable"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/resizable/c-resizable-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-resizable-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-resizable-6",
+      "type": "registry:block",
+      "title": "Handle pill with spring scale on drag",
+      "categories": [
+        "resizable"
+      ],
+      "description": "Handle pill with spring scale on drag",
+      "registryDependencies": [
+        "resizable"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/resizable/c-resizable-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-resizable-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-resizable-7",
+      "type": "registry:block",
+      "title": "Handle with large capsule expansion on drag",
+      "categories": [
+        "resizable"
+      ],
+      "description": "Handle with large capsule expansion on drag",
+      "registryDependencies": [
+        "resizable"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/resizable/c-resizable-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-resizable-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-resizable-8",
+      "type": "registry:block",
+      "title": "Nested layout with animated pill handles",
+      "categories": [
+        "resizable"
+      ],
+      "description": "Nested layout with animated pill handles",
+      "registryDependencies": [
+        "resizable"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/resizable/c-resizable-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-resizable-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-resizable-9",
+      "type": "registry:block",
+      "title": "Three-panel layout with animated pill handles",
+      "categories": [
+        "resizable"
+      ],
+      "description": "Three-panel layout with animated pill handles",
+      "registryDependencies": [
+        "resizable"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/resizable/c-resizable-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-resizable-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-resizable-10",
+      "type": "registry:block",
+      "title": "State-tracked resizable layout.",
+      "categories": [
+        "resizable"
+      ],
+      "description": "State-tracked resizable layout.",
+      "registryDependencies": [
+        "resizable"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/resizable/c-resizable-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-resizable-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10,
+        "gridSize": 1
+      }
+    }
+  ]
+}

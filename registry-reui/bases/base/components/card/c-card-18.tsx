@@ -1,6 +1,3 @@
-// Description: Card with header label and link
-// Order: 18
-
 import { Card, CardContent } from "@/registry/bases/base/ui/card"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 

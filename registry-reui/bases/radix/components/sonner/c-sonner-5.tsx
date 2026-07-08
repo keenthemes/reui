@@ -1,6 +1,3 @@
-// Description: Toast duration options
-// Order: 5
-
 import { toast } from "sonner"
 
 import { Button } from "@/registry/bases/radix/ui/button"

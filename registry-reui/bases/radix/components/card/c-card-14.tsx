@@ -1,6 +1,3 @@
-// Description: Deployment status summary card
-// Order: 14
-
 import { cn } from "@/lib/utils"
 import { Card, CardContent } from "@/registry/bases/radix/ui/card"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
@@ -43,7 +40,7 @@ export default function Pattern() {
             <div
               key={item.label}
               className={cn(
-                "style-vega:rounded-lg style-nova:rounded-lg style-lyra:rounded-none style-maia:rounded-4xl style-mira:rounded-md flex items-center justify-between px-3 py-2.5",
+                "rounded-lg flex items-center justify-between px-3 py-2.5",
                 index % 2 === 0 && "bg-muted/40"
               )}
             >

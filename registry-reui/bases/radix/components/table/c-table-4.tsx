@@ -1,6 +1,3 @@
-// Description: Table card with actions column.
-// Order: 4
-
 import { Button } from "@/registry/bases/radix/ui/button"
 import { Card, CardContent } from "@/registry/bases/radix/ui/card"
 import {

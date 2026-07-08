@@ -1,13 +1,12 @@
-// Description: Data grid with row pinning support
-// GridSize: 1
-// Order: 29
-
 "use client"
 
 import { useMemo, useState } from "react"
 import { useCopyToClipboard } from "@/registry-reui/bases/base/hooks/use-copy-to-clipboard"
 import { Badge } from "@/registry-reui/bases/base/reui/badge"
-import { DataGrid } from "@/registry-reui/bases/base/reui/data-grid/data-grid"
+import {
+  DataGrid,
+  DataGridContainer,
+} from "@/registry-reui/bases/base/reui/data-grid/data-grid"
 import { DataGridColumnHeader } from "@/registry-reui/bases/base/reui/data-grid/data-grid-column-header"
 import { DataGridPagination } from "@/registry-reui/bases/base/reui/data-grid/data-grid-pagination"
 import { DataGridScrollArea } from "@/registry-reui/bases/base/reui/data-grid/data-grid-scroll-area"
@@ -255,7 +254,7 @@ export default function Pattern() {
         id: "pin",
         header: "",
         cell: ({ row }) => <DataGridTableRowPin row={row} />,
-        size: 30,
+        size: 40,
         enableSorting: false,
         enableHiding: false,
         enableResizing: false,
@@ -277,12 +276,15 @@ export default function Pattern() {
                   .join("")}
               </AvatarFallback>
             </Avatar>
-            <div className="text-foreground font-medium">
+            <div className="text-foreground min-w-0 truncate font-medium">
               {row.original.name}
             </div>
           </div>
         ),
-        size: 250,
+        minSize: 150,
+        meta: {
+          autoSize: true,
+        },
         enableSorting: true,
         enableHiding: false,
       },
@@ -408,10 +410,14 @@ export default function Pattern() {
             </Button>
           </div>
         </CardHeader>
-        <CardContent className="border-y px-0">
-          <DataGridScrollArea>
-            <DataGridTable />
-          </DataGridScrollArea>
+        <CardContent className="p-0">
+          <Card className="p-0">
+            <DataGridContainer>
+              <DataGridScrollArea>
+                <DataGridTable />
+              </DataGridScrollArea>
+            </DataGridContainer>
+          </Card>
         </CardContent>
         <CardFooter className="border-none bg-transparent! px-3 py-2">
           <DataGridPagination />

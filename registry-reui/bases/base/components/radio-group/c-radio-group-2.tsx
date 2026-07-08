@@ -1,6 +1,3 @@
-// Description: Disabled radio group
-// Order: 2
-
 import { Field, FieldLabel } from "@/registry/bases/base/ui/field"
 import {
   RadioGroup,

@@ -1,6 +1,3 @@
-// Description: Item group with status badges
-// Order: 5
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import {

@@ -1,6 +1,3 @@
-// Description: Toggle group for text alignment
-// Order: 7
-
 import {
   ToggleGroup,
   ToggleGroupItem,

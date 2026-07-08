@@ -1,6 +1,3 @@
-// Description: Disabled switch.
-// Order: 3
-
 import { Label } from "@/registry/bases/base/ui/label"
 import { Switch } from "@/registry/bases/base/ui/switch"
 

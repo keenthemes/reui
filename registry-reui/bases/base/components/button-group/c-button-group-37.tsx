@@ -1,6 +1,3 @@
-// Description: Zoom controls button group
-// Order: 37
-
 "use client"
 
 import { useState } from "react"

@@ -1,6 +1,3 @@
-// Description: Spinners in badges.
-// Order: 3
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import { Spinner } from "@/registry/bases/radix/ui/spinner"

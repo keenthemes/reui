@@ -1,6 +1,3 @@
-// Description: Item with header and footer sections
-// Order: 10
-
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
 import {
