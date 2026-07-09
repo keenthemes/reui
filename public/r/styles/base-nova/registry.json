@@ -14303,6 +14303,29 @@
       }
     },
     {
+      "name": "c-input-otp-7",
+      "type": "registry:block",
+      "title": "Masked OTP input with render function.",
+      "description": "Masked OTP input with render function.",
+      "dependencies": [
+        "input-otp"
+      ],
+      "registryDependencies": [
+        "field",
+        "input-otp"
+      ],
+      "files": [
+        {
+          "path": "c-input-otp-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-input-otp-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
       "name": "c-item-1",
       "type": "registry:block",
       "title": "Basic item with title and description",

@@ -202,7 +202,7 @@
       "name": "input-otp",
       "label": "Input Otp",
       "description": "Open-source shadcn OTP input components for verification codes, 2FA flows, and secure confirmation screens.",
-      "count": 6
+      "count": 7
     },
     {
       "name": "item",
@@ -415,5 +415,5 @@
       "count": 7
     }
   ],
-  "totalComponents": 1019
+  "totalComponents": 1020
 }

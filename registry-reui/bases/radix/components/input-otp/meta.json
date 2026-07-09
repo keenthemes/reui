@@ -34,5 +34,11 @@
     "title": "OTP input verification code.",
     "description": "OTP input verification code.",
     "order": 6
+  },
+  {
+    "name": "c-input-otp-7",
+    "title": "Masked OTP input with render function.",
+    "description": "Masked OTP input with render function.",
+    "order": 7
   }
 ]
