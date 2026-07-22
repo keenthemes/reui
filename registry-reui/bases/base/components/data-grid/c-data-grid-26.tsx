@@ -1,4 +1,5 @@
 "use client"
+"use no memo"
 
 import { useMemo, useState } from "react"
 import { Badge } from "@/registry-reui/bases/base/reui/badge"
@@ -270,7 +271,6 @@ export default function Pattern() {
     pageCount: Math.ceil(demoData.length / pagination.pageSize),
     getRowId: (row: IData) => row.id,
     state: { pagination, sorting, columnOrder },
-    columnResizeMode: "onChange",
     onColumnOrderChange: setColumnOrder,
     onPaginationChange: setPagination,
     onSortingChange: setSorting,
@@ -298,7 +298,7 @@ export default function Pattern() {
           <span className="text-muted-foreground">Avg</span>
           <span className="tabular-nums">{fmt(aggregates.avgBalance)}</span>
           <span className="text-muted-foreground tabular-nums">
-            {fmt(aggregates.minBalance)} – {fmt(aggregates.maxBalance)}
+            {fmt(aggregates.minBalance)} - {fmt(aggregates.maxBalance)}
           </span>
         </div>
       </DataGridTableFootRowCell>
@@ -308,7 +308,7 @@ export default function Pattern() {
           <span className="text-muted-foreground">Avg</span>
           <span className="tabular-nums">{aggregates.avgTxns}</span>
           <span className="text-muted-foreground tabular-nums">
-            {aggregates.minTxns} – {aggregates.maxTxns}
+            {aggregates.minTxns} - {aggregates.maxTxns}
           </span>
         </div>
       </DataGridTableFootRowCell>

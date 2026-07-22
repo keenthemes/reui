@@ -61,5 +61,26 @@
     "description": "Filters with i18n support",
     "order": 9,
     "gridSize": 1
+  },
+  {
+    "name": "c-filters-10",
+    "title": "Filters with virtualized large lists",
+    "description": "Filters with virtualized large lists",
+    "order": 10,
+    "gridSize": 1
+  },
+  {
+    "name": "c-filters-11",
+    "title": "Filters with prefetched async options",
+    "description": "Filters with prefetched async options",
+    "order": 11,
+    "gridSize": 1
+  },
+  {
+    "name": "c-filters-12",
+    "title": "Filters with async server-side search",
+    "description": "Filters with async server-side search",
+    "order": 12,
+    "gridSize": 1
   }
 ]

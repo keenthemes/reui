@@ -33,5 +33,12 @@
     "description": "Feature roadmap kanban with progress",
     "order": 5,
     "gridSize": 1
+  },
+  {
+    "name": "c-kanban-6",
+    "title": "Kanban board persisted to a backend",
+    "description": "Persist moves with onValueCommit, optimistic updates, and Sonner rollback",
+    "order": 6,
+    "gridSize": 1
   }
 ]

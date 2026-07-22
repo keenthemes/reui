@@ -11,6 +11,9 @@ importers:
       '@base-ui/react':
         specifier: 1.5.0
         version: 1.5.0(@date-fns/tz@1.5.0)(@types/react@19.2.17)(date-fns@4.4.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@date-fns/tz':
+        specifier: ^1.5.0
+        version: 1.5.0
       '@dnd-kit/core':
         specifier: ^6.3.1
         version: 6.3.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
@@ -155,6 +158,9 @@ importers:
       '@reui/components-base-empty':
         specifier: workspace:*
         version: link:packages/registry/bases/base/components/empty
+      '@reui/components-base-event-calendar':
+        specifier: workspace:*
+        version: link:packages/registry/bases/base/components/event-calendar
       '@reui/components-base-field':
         specifier: workspace:*
         version: link:packages/registry/bases/base/components/field
@@ -167,6 +173,9 @@ importers:
       '@reui/components-base-frame':
         specifier: workspace:*
         version: link:packages/registry/bases/base/components/frame
+      '@reui/components-base-gantt':
+        specifier: workspace:*
+        version: link:packages/registry/bases/base/components/gantt
       '@reui/components-base-hover-card':
         specifier: workspace:*
         version: link:packages/registry/bases/base/components/hover-card
@@ -362,6 +371,9 @@ importers:
       '@reui/components-radix-empty':
         specifier: workspace:*
         version: link:packages/registry/bases/radix/components/empty
+      '@reui/components-radix-event-calendar':
+        specifier: workspace:*
+        version: link:packages/registry/bases/radix/components/event-calendar
       '@reui/components-radix-field':
         specifier: workspace:*
         version: link:packages/registry/bases/radix/components/field
@@ -374,6 +386,9 @@ importers:
       '@reui/components-radix-frame':
         specifier: workspace:*
         version: link:packages/registry/bases/radix/components/frame
+      '@reui/components-radix-gantt':
+        specifier: workspace:*
+        version: link:packages/registry/bases/radix/components/gantt
       '@reui/components-radix-hover-card':
         specifier: workspace:*
         version: link:packages/registry/bases/radix/components/hover-card
@@ -1075,6 +1090,24 @@ importers:
         specifier: '>=18'
         version: 19.2.7(react@19.2.7)
 
+  packages/registry/bases/base/components/event-calendar:
+    dependencies:
+      '@base-ui/react':
+        specifier: 1.5.0
+        version: 1.5.0(@date-fns/tz@1.5.0)(@types/react@19.2.17)(date-fns@4.4.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@date-fns/tz':
+        specifier: ^1.5.0
+        version: 1.5.0
+      date-fns:
+        specifier: ^4.1.0
+        version: 4.4.0
+      react:
+        specifier: '>=18'
+        version: 19.2.7
+      react-dom:
+        specifier: '>=18'
+        version: 19.2.7(react@19.2.7)
+
   packages/registry/bases/base/components/field:
     dependencies:
       react:
@@ -1119,6 +1152,9 @@ importers:
       '@tanstack/react-table':
         specifier: ^8.21.3
         version: 8.21.3(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@tanstack/react-virtual':
+        specifier: ^3.14.3
+        version: 3.14.5(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -1143,6 +1179,27 @@ importers:
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
+      react:
+        specifier: '>=18'
+        version: 19.2.7
+      react-dom:
+        specifier: '>=18'
+        version: 19.2.7(react@19.2.7)
+
+  packages/registry/bases/base/components/gantt:
+    dependencies:
+      '@base-ui/react':
+        specifier: 1.5.0
+        version: 1.5.0(@date-fns/tz@1.5.0)(@types/react@19.2.17)(date-fns@4.4.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@date-fns/tz':
+        specifier: ^1.5.0
+        version: 1.5.0
+      class-variance-authority:
+        specifier: ^0.7.1
+        version: 0.7.1
+      date-fns:
+        specifier: ^4.1.0
+        version: 4.4.0
       react:
         specifier: '>=18'
         version: 19.2.7
@@ -1257,6 +1314,9 @@ importers:
       react-dom:
         specifier: '>=18'
         version: 19.2.7(react@19.2.7)
+      sonner:
+        specifier: ^2.0.7
+        version: 2.0.7(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
 
   packages/registry/bases/base/components/kbd:
     dependencies:
@@ -2068,6 +2128,24 @@ importers:
         specifier: '>=18'
         version: 19.2.7(react@19.2.7)
 
+  packages/registry/bases/radix/components/event-calendar:
+    dependencies:
+      '@date-fns/tz':
+        specifier: ^1.5.0
+        version: 1.5.0
+      date-fns:
+        specifier: ^4.1.0
+        version: 4.4.0
+      radix-ui:
+        specifier: ^1.4.3
+        version: 1.6.2(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react:
+        specifier: '>=18'
+        version: 19.2.7
+      react-dom:
+        specifier: '>=18'
+        version: 19.2.7(react@19.2.7)
+
   packages/registry/bases/radix/components/field:
     dependencies:
       react:
@@ -2109,6 +2187,9 @@ importers:
       '@tanstack/react-table':
         specifier: ^8.21.3
         version: 8.21.3(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@tanstack/react-virtual':
+        specifier: ^3.14.3
+        version: 3.14.5(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -2136,6 +2217,27 @@ importers:
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
+      react:
+        specifier: '>=18'
+        version: 19.2.7
+      react-dom:
+        specifier: '>=18'
+        version: 19.2.7(react@19.2.7)
+
+  packages/registry/bases/radix/components/gantt:
+    dependencies:
+      '@date-fns/tz':
+        specifier: ^1.5.0
+        version: 1.5.0
+      class-variance-authority:
+        specifier: ^0.7.1
+        version: 0.7.1
+      date-fns:
+        specifier: ^4.1.0
+        version: 4.4.0
+      radix-ui:
+        specifier: ^1.4.3
+        version: 1.6.2(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react:
         specifier: '>=18'
         version: 19.2.7
@@ -2247,6 +2349,9 @@ importers:
       react-dom:
         specifier: '>=18'
         version: 19.2.7(react@19.2.7)
+      sonner:
+        specifier: ^2.0.7
+        version: 2.0.7(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
 
   packages/registry/bases/radix/components/kbd:
     dependencies:

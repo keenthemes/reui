@@ -1,4 +1,5 @@
 "use client"
+"use no memo"
 
 import { ReactElement } from "react"
 import { getColumnHeaderLabel } from "@/registry-reui/bases/base/reui/data-grid/data-grid"

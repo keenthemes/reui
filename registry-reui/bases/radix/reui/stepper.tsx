@@ -15,6 +15,7 @@ import {
   useRef,
   useState,
 } from "react"
+import { Slot } from "radix-ui"
 
 import { cn } from "@/registry/bases/radix/lib/utils"
 
@@ -286,20 +287,12 @@ function StepperTrigger({
     }
   }
 
-  if (asChild) {
-    return (
-      <span
-        data-slot="stepper-trigger"
-        data-state={state}
-        className={className}
-      >
-        {children}
-      </span>
-    )
-  }
+  // `asChild` composes onto the consumer's element via Slot, so the trigger
+  // keeps its ref, tab semantics, and keyboard handlers either way.
+  const Comp = asChild ? Slot.Root : "button"
 
   return (
-    <button
+    <Comp
       ref={btnRef}
       role="tab"
       id={id}
@@ -320,7 +313,7 @@ function StepperTrigger({
       {...props}
     >
       {children}
-    </button>
+    </Comp>
   )
 }
 

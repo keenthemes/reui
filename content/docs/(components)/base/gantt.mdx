@@ -1,0 +1,896 @@
+---
+title: Gantt
+description: A headless-first gantt with split tree and timeline panes, day to year scales, zoom, drag and resize scheduling, progress, summary rollups, and an external CRUD contract.
+component: true
+base: base
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="c-gantt-1"
+  align="start"
+  previewClassName="h-auto p-0"
+/>
+
+The `gantt` package ships a subscribable headless engine (`useGanttState`) and a composable view layer on top of it: a resizable tree pane for the resource hierarchy, a horizontal timeline with day, week, month, quarter, and year scales, zoom, infinite scrolling, drag and resize scheduling with live validation, per-bar progress fills, and duration-weighted summary rollups on parent rows. The engine never mutates your data on its own; every timing change flows through one proposal funnel (`onEventUpdate`, `canDropEvent`) so external CRUD stays in your hands.
+
+The composition contract is `<Gantt><GanttNav /><GanttView /></Gantt>`. The root provides the calendar instance and the view configuration through context; the nav family, the view, and `GanttBar` all read from it, so any piece can be replaced with your own markup driven by the same hooks.
+
+## Installation
+
+```bash
+npx shadcn@latest add @reui/gantt
+```
+
+## Usage
+
+```tsx
+import { Gantt } from "@/components/reui/gantt/gantt"
+import { GanttNav, GanttToolbar } from "@/components/reui/gantt/gantt-nav"
+import type {
+  GanttEvent,
+  GanttResource,
+} from "@/components/reui/gantt/gantt-types"
+import { GanttView } from "@/components/reui/gantt/gantt-view"
+```
+
+```tsx
+const resources: GanttResource[] = [
+  {
+    id: "design",
+    title: "Design",
+    children: [
+      { id: "wireframes", title: "Wireframes" },
+      { id: "visual-design", title: "Visual design" },
+    ],
+  },
+]
+
+const events: GanttEvent[] = [
+  {
+    id: "1",
+    title: "Wireframes",
+    start: new Date("2026-07-06"),
+    end: new Date("2026-07-10"),
+    allDay: true,
+    resourceId: "wireframes",
+    progress: 60,
+  },
+]
+
+return (
+  <Gantt
+    defaultEvents={events}
+    resources={resources}
+    defaultScale="month"
+    className="h-[480px]"
+  >
+    <GanttNav />
+    <GanttView />
+  </Gantt>
+)
+```
+
+Give the root an explicit height (`className="h-[480px]"` or a flex parent): the root is a min-height-zero flex column and the view fills whatever it gets. The root also owns the type scale: every gantt label inherits its text size (`text-xs` by default), so `className="text-sm"` scales the whole component up in one place. Events work controlled (`events` + `onEventsChange`) or uncontrolled (`defaultEvents`); the same pairs exist for `scale`, `date`, `selection`, and `interactions`. Every drag, resize, and API timing change is proposed through `onEventUpdate` before it commits, `canDropEvent` validates live during the gesture, and a `false` return reverts the bar with no cleanup on your side, which makes persisting to a backend a matter of handling one callback.
+
+The demo at the top of this page is the full composition: its settings menu drives every view configuration and interaction flag as controlled props from consumer state, and the unscheduled Launch tasks show the slot-selection contract - hover an empty row and click the hint tile (or drag a range) to schedule it through `onSelectSlot`. For the full set of variations, browse the [Gantt components](/components/gantt).
+
+## Examples
+
+### Annual Product Roadmap
+
+<ComponentPreview
+  styleName="base-nova"
+  name="c-gantt-3"
+  align="start"
+  previewClassName="h-auto p-0"
+/>
+
+A long-horizon plan on the quarter scale. Workstreams are swimlane groups whose multi-month initiatives roll up into automatic summary bars, so leadership reads the whole year at a glance and navigates a quarter at a time. The toolbar button schedules the next backlog initiative onto its empty row through the `addEvent` API.
+
+### Team Capacity Schedule
+
+<ComponentPreview
+  styleName="base-nova"
+  name="c-gantt-4"
+  align="start"
+  previewClassName="h-auto p-0"
+/>
+
+A people-centric weekly view. Each row is a teammate rendered with an avatar label via `renderResourceLabel`, their bars are the week's assignments, and weekends are shaded with `offDays` so real working-day capacity is obvious. The toolbar drops a fresh assignment onto the next teammate, so one person can hold several bars at once.
+
+### Project Status Report
+
+<ComponentPreview
+  styleName="base-nova"
+  name="c-gantt-5"
+  align="start"
+  previewClassName="h-auto p-0"
+/>
+
+A report on the month scale. Owner and Status columns sit beside each phase in the tree panel via the `columns` prop and every bar carries a progress fill. Drag, resize, and slot-select are disabled so the plan can't be shifted by dragging, while the toolbar appends new tasks as their own rows with controlled `resources`.
+
+## API Reference
+
+### Gantt
+
+The root provider and container. It creates (or adopts) the calendar instance, provides it through context, and renders a `div` shell with an `aria-live` announcer. Besides the props below, it accepts every state option (see [State options](#state-options)), every callback (see [Callbacks and validators](#callbacks-and-validators)), and every view configuration key (see [View configuration](#view-configuration)) as flat props.
+
+| Prop        | Type                                 | Default | Description                                                              |
+| :---------- | :----------------------------------- | :------ | :----------------------------------------------------------------------- |
+| `calendar`  | `GanttInstance<TData>`               | -       | Adopt a hoisted `useGanttState` instance; option props are then ignored. |
+| `apiRef`    | `RefObject<GanttApi<TData> \| null>` | -       | Imperative escape hatch usable from outside the tree.                    |
+| `render`    | `useRender.RenderProp`               | -       | Base UI render prop to replace the root element.                         |
+| `className` | `string`                             | -       | Additional CSS classes for the root container.                           |
+| `children`  | `ReactNode`                          | -       | The gantt composition (`GanttNav`, `GanttToolbar`, `GanttView`).         |
+
+---
+
+### GanttNav
+
+The composed navigation bar: Today, scale switcher, prev/next, and the period title with a trailing spacer. Pass `children` to use it as a pure layout shell instead. The title follows the viewport center while scrolling so the header always names what you are looking at.
+
+| Prop        | Type                   | Default | Description                                           |
+| :---------- | :--------------------- | :------ | :---------------------------------------------------- |
+| `children`  | `ReactNode`            | -       | Custom nav content; replaces the default composition. |
+| `render`    | `useRender.RenderProp` | -       | Base UI render prop to replace the element.           |
+| `className` | `string`               | -       | Additional CSS classes.                               |
+
+---
+
+### GanttNavToday
+
+Button that navigates to today. Renders the `today` i18n label by default and marks itself with `data-active` while the anchor period contains now.
+
+| Prop        | Type                   | Default          | Description                                                                              |
+| :---------- | :--------------------- | :--------------- | :--------------------------------------------------------------------------------------- |
+| `children`  | `ReactNode`            | i18n `today`     | Custom button content.                                                                   |
+| `tooltip`   | `ReactNode \| null`    | the current date | Hover/focus-visible tooltip; `null` disables it. Never re-triggers from a pointer click. |
+| `render`    | `useRender.RenderProp` | -                | Base UI render prop to replace the button.                                               |
+| `className` | `string`               | -                | Additional CSS classes.                                                                  |
+
+---
+
+### GanttNavPrev
+
+Icon button that steps the anchor date one period back at the current scale.
+
+| Prop        | Type                   | Default         | Description                                   |
+| :---------- | :--------------------- | :-------------- | :-------------------------------------------- |
+| `children`  | `ReactNode`            | chevron icon    | Custom button content.                        |
+| `tooltip`   | `ReactNode \| null`    | i18n `previous` | Hover/focus-visible tooltip; `null` disables. |
+| `render`    | `useRender.RenderProp` | -               | Base UI render prop to replace the button.    |
+| `className` | `string`               | -               | Additional CSS classes.                       |
+
+---
+
+### GanttNavNext
+
+Icon button that steps the anchor date one period forward at the current scale.
+
+| Prop        | Type                   | Default      | Description                                   |
+| :---------- | :--------------------- | :----------- | :-------------------------------------------- |
+| `children`  | `ReactNode`            | chevron icon | Custom button content.                        |
+| `tooltip`   | `ReactNode \| null`    | i18n `next`  | Hover/focus-visible tooltip; `null` disables. |
+| `render`    | `useRender.RenderProp` | -            | Base UI render prop to replace the button.    |
+| `className` | `string`               | -            | Additional CSS classes.                       |
+
+---
+
+### GanttTitle
+
+The current period title, formatted by `i18n.functions.formatTitle` and announced politely on change.
+
+| Prop        | Type                                    | Default | Description                                 |
+| :---------- | :-------------------------------------- | :------ | :------------------------------------------ |
+| `format`    | `(ctx: { title: string }) => ReactNode` | -       | Wraps or replaces the formatted title text. |
+| `render`    | `useRender.RenderProp`                  | -       | Base UI render prop to replace the element. |
+| `className` | `string`                                | -       | Additional CSS classes.                     |
+
+---
+
+### GanttScaleSwitcher
+
+Dropdown that switches between the Day, Week, Month, Quarter, and Year scales. Tooltips on this overlay-opener are hover-only so nothing flashes when focus returns after the menu closes.
+
+| Prop        | Type                   | Default             | Description                                 |
+| :---------- | :--------------------- | :------------------ | :------------------------------------------ |
+| `scales`    | `GanttScale[]`         | all five            | The offered scales, in menu order.          |
+| `children`  | `ReactNode`            | current scale label | Custom trigger content.                     |
+| `tooltip`   | `ReactNode \| null`    | i18n `selectView`   | Hover-only tooltip; `null` disables.        |
+| `render`    | `useRender.RenderProp` | -                   | Base UI render prop to replace the trigger. |
+| `className` | `string`               | -                   | Additional CSS classes.                     |
+
+---
+
+### GanttDatePicker
+
+Compact go-to-date picker (shadcn `Calendar` in a popover). Not part of the default `GanttNav` composition; add it to a custom nav when needed. It has no tooltip by design because it opens an overlay.
+
+| Prop        | Type     | Default | Description             |
+| :---------- | :------- | :------ | :---------------------- |
+| `className` | `string` | -       | Additional CSS classes. |
+
+---
+
+### GanttToolbar
+
+Free slot for consumer toolbar buttons; a pure layout shell that also picks up `classNames.toolbar` from the view configuration.
+
+| Prop        | Type                   | Default | Description                                 |
+| :---------- | :--------------------- | :------ | :------------------------------------------ |
+| `children`  | `ReactNode`            | -       | Toolbar content.                            |
+| `render`    | `useRender.RenderProp` | -       | Base UI render prop to replace the element. |
+| `className` | `string`               | -       | Additional CSS classes.                     |
+
+---
+
+### GanttView
+
+The gantt body: split resizable tree and timeline panes with synced scrolling, the grouped two-row header, lanes, bars, summary rollups, off-screen chips, the zoom control, and all pointer interactions. Display behavior comes from the view configuration on the root.
+
+| Prop        | Type                   | Default           | Description                                                     |
+| :---------- | :--------------------- | :---------------- | :-------------------------------------------------------------- |
+| `interval`  | `number`               | `interval` config | Day-scale unit interval in minutes; clamped between 15 and 240. |
+| `render`    | `useRender.RenderProp` | -                 | Base UI render prop to replace the element.                     |
+| `className` | `string`               | -                 | Additional CSS classes.                                         |
+
+---
+
+### GanttBar
+
+The one interactive bar element, rendered by the view for every visible segment. The wrapper owns positioning hooks, a11y, selection, drag and resize listeners, the range tooltip, the optional right-click menu, and data attributes (`data-selected`, `data-dragging`, `data-progress`, `data-completed`, `data-past`, `data-recurring`); content comes from `children`, the root `renderEvent` override, or the built-in default. Exported for fully custom view compositions.
+
+| Prop           | Type                   | Default | Description                                                                                |
+| :------------- | :--------------------- | :------ | :----------------------------------------------------------------------------------------- |
+| `segment`      | `GanttSegment<TData>`  | -       | `Required`. The timeline segment this bar renders.                                         |
+| `children`     | `ReactNode`            | -       | Replaces the default bar content; the interactive wrapper stays gantt-owned.               |
+| `labelOutside` | `boolean`              | -       | The title renders beside the bar (view-owned), so the default inner content is suppressed. |
+| `rowTitle`     | `string`               | -       | The owning row's title for the aria-label; omitting falls back to a memoized tree lookup.  |
+| `render`       | `useRender.RenderProp` | -       | Base UI render prop to replace the button element.                                         |
+| `className`    | `string`               | -       | Additional CSS classes.                                                                    |
+
+---
+
+### GanttEvent
+
+One schedulable bar. `TData` is a fully generic consumer payload.
+
+| Property           | Type                            | Default | Description                                                          |
+| :----------------- | :------------------------------ | :------ | :------------------------------------------------------------------- |
+| `id`               | `string`                        | -       | `Required`. Stable event id.                                         |
+| `title`            | `string`                        | -       | `Required`. Bar title.                                               |
+| `start`            | `Date`                          | -       | `Required`. Plain instant; consumers parse ISO strings themselves.   |
+| `end`              | `Date`                          | -       | `Required`. Exclusive; must be greater than or equal to `start`.     |
+| `allDay`           | `boolean`                       | -       | Whether the event is date-based rather than timed.                   |
+| `recurrence`       | `GanttRecurrenceRule \| string` | -       | Structured rule or a raw `"RRULE:..."` line.                         |
+| `recurringEventId` | `string`                        | -       | This event is an edited single occurrence of that series.            |
+| `originalStart`    | `Date`                          | -       | Which occurrence it replaces (RECURRENCE-ID semantics).              |
+| `color`            | `string`                        | -       | Token or CSS color; flows to the `--gantt-event-color` CSS variable. |
+| `readOnly`         | `boolean`                       | -       | Excluded from drag and resize regardless of interactions state.      |
+| `draggable`        | `boolean`                       | -       | Per-event override; default comes from `interactions.drag`.          |
+| `resizable`        | `boolean`                       | -       | Per-event override; default comes from `interactions.resize`.        |
+| `priority`         | `number`                        | -       | Packing prominence; feeds `getEventPriority` ordering.               |
+| `progress`         | `number`                        | -       | Completion 0-100; renders as a subtle fill inside the bar.           |
+| `zIndex`           | `number`                        | -       | Explicit stacking override; wins over the computed z.                |
+| `resourceId`       | `string`                        | -       | Resource row this bar belongs to.                                    |
+| `data`             | `TData`                         | -       | Consumer payload, fully generic.                                     |
+
+---
+
+### GanttResource
+
+A row of the gantt tree (task, person, equipment). Nesting via `children` renders as collapsible groups.
+
+| Property   | Type              | Default | Description                                     |
+| :--------- | :---------------- | :------ | :---------------------------------------------- |
+| `id`       | `string`          | -       | `Required`. Stable resource id.                 |
+| `title`    | `string`          | -       | `Required`. Row title.                          |
+| `color`    | `string`          | -       | Token or CSS color used for subtle row accents. |
+| `children` | `GanttResource[]` | -       | Child rows; presence makes this row a group.    |
+
+---
+
+### GanttOccurrence
+
+One expanded instance of an event within the visible range (recurring events expand to many).
+
+| Property          | Type                | Description                                            |
+| :---------------- | :------------------ | :----------------------------------------------------- |
+| `key`             | `string`            | Stable per instance: `` `${event.id}::${startISO}` ``. |
+| `eventId`         | `string`            | The source event id.                                   |
+| `event`           | `GanttEvent<TData>` | The source event.                                      |
+| `start`           | `Date`              | Occurrence start.                                      |
+| `end`             | `Date`              | Occurrence end (exclusive).                            |
+| `allDay`          | `boolean`           | Whether the occurrence is date-based.                  |
+| `isRecurring`     | `boolean`           | Whether it came from a recurrence expansion.           |
+| `recurrenceIndex` | `number`            | Index within the series, when recurring.               |
+
+---
+
+### GanttSegment
+
+The slice of an occurrence rendered inside one timeline range, with lane packing metadata. Passed to `GanttBar` and every render override.
+
+| Property          | Type                     | Description                                                 |
+| :---------------- | :----------------------- | :---------------------------------------------------------- |
+| `occurrence`      | `GanttOccurrence<TData>` | The occurrence this segment slices.                         |
+| `day`             | `Date`                   | Range-start reference instant of the segment's slice.       |
+| `isStart`         | `boolean`                | Whether the segment contains the occurrence start.          |
+| `isEnd`           | `boolean`                | Whether the segment contains the occurrence end.            |
+| `continuesBefore` | `boolean`                | The occurrence continues before this segment.               |
+| `continuesAfter`  | `boolean`                | The occurrence continues after this segment.                |
+| `startMin`        | `number`                 | Minutes from the visible range start, clamped to the range. |
+| `endMin`          | `number`                 | Minutes from the visible range start, clamped to the range. |
+| `column`          | `number`                 | Lane assigned by overlap packing.                           |
+| `columnCount`     | `number`                 | Total lanes in the overlap cluster.                         |
+| `columnSpan`      | `number`                 | Lanes this segment may widen into.                          |
+
+---
+
+### GanttRecurrenceRule
+
+Structured RFC 5545 subset. The built-in expander supports `freq` daily/weekly/monthly/yearly, `interval`, `count`, `until`, and weekly `byWeekday` without ordinals; `byMonthDay`, `byMonth`, and `byWeekday` outside weekly parse but throw a `GanttRecurrenceError` on expansion instead of silently mis-expanding. Plug the `getOccurrences` option for a full engine.
+
+| Property     | Type                                                            | Default | Description                                                                                  |
+| :----------- | :-------------------------------------------------------------- | :------ | :------------------------------------------------------------------------------------------- |
+| `freq`       | `"daily" \| "weekly" \| "monthly" \| "yearly"`                  | -       | `Required`. Recurrence frequency.                                                            |
+| `interval`   | `number`                                                        | `1`     | Period multiplier.                                                                           |
+| `count`      | `number`                                                        | -       | Total occurrence cap.                                                                        |
+| `until`      | `Date`                                                          | -       | Inclusive series end instant.                                                                |
+| `byWeekday`  | `Array<GanttWeekday \| { day: GanttWeekday; ordinal: number }>` | -       | Weekday filter (weekly only, no ordinals).                                                   |
+| `byMonthDay` | `number[]`                                                      | -       | Parsed but not expanded (throws on expansion).                                               |
+| `byMonth`    | `number[]`                                                      | -       | Parsed but not expanded (throws on expansion).                                               |
+| `weekStart`  | `GanttWeekday`                                                  | -       | WKST; parses and round-trips.                                                                |
+| `exDates`    | `Date[]`                                                        | -       | Excluded instants; matching occurrences are removed (they still consume their `count` slot). |
+| `rDates`     | `Date[]`                                                        | -       | Extra instants added to the series, each with the event's own duration.                      |
+
+`GanttWeekday` is `"MO" \| "TU" \| "WE" \| "TH" \| "FR" \| "SA" \| "SU"`.
+
+---
+
+### GanttProposedUpdate
+
+The proposal handed to `onEventUpdate` and `canDropEvent` for every timing change.
+
+| Property     | Type                                                              | Description                                                    |
+| :----------- | :---------------------------------------------------------------- | :------------------------------------------------------------- |
+| `event`      | `GanttEvent<TData>`                                               | The event being updated.                                       |
+| `occurrence` | `GanttOccurrence<TData> \| null`                                  | The gestured occurrence; `null` when `source` is `"api"`.      |
+| `start`      | `Date`                                                            | Proposed start.                                                |
+| `end`        | `Date`                                                            | Proposed end.                                                  |
+| `allDay`     | `boolean`                                                         | Proposed all-day flag.                                         |
+| `resourceId` | `string`                                                          | The bar's own resource (moves stay in-row); set on create/api. |
+| `source`     | `"drag" \| "resize-start" \| "resize-end" \| "keyboard" \| "api"` | What produced the proposal.                                    |
+
+---
+
+### GanttUpdateResult
+
+Return type of `onEventUpdate`: `false` rejects and reverts; `void` or `true` accepts; `{ start?: Date; end?: Date; allDay?: boolean }` accepts with an adjustment.
+
+---
+
+### GanttSlotInfo
+
+Payload of `onSlotClick`. A click is a point, not a range; `end` is reserved for future gestures.
+
+| Property     | Type      | Description                                            |
+| :----------- | :-------- | :----------------------------------------------------- |
+| `date`       | `Date`    | The clicked instant.                                   |
+| `end`        | `Date`    | Reserved for future gestures.                          |
+| `allDay`     | `boolean` | Whether the click landed on a date-based surface.      |
+| `resourceId` | `string`  | Present when the click happened inside a resource row. |
+
+---
+
+### GanttSlotDraft
+
+The in-progress drag-create rectangle only, cleared on commit or cancel; the committed slot selection lives in `GanttSelection.slot`. Payload of `onSelectSlot` and `canSelectSlot`.
+
+| Property     | Type      | Description                                               |
+| :----------- | :-------- | :-------------------------------------------------------- |
+| `start`      | `Date`    | Draft start.                                              |
+| `end`        | `Date`    | Draft end.                                                |
+| `allDay`     | `boolean` | Whether the draft is date-based.                          |
+| `resourceId` | `string`  | Present when the slot was selected inside a resource row. |
+
+---
+
+### GanttSelection
+
+The committed selection state.
+
+| Property    | Type                                                  | Description                                                 |
+| :---------- | :---------------------------------------------------- | :---------------------------------------------------------- |
+| `eventKeys` | `string[]`                                            | Selected occurrence keys.                                   |
+| `slot`      | `{ start: Date; end: Date; allDay: boolean } \| null` | Committed slot selection (drafts live in `GanttSlotDraft`). |
+
+---
+
+### GanttResourceReorder
+
+Proposal emitted when a timeline resource row is drag-reordered. Payload of `onResourceReorder`, `canReorderResource`, and `onResourceReorderReject`.
+
+| Property     | Type              | Description                                                 |
+| :----------- | :---------------- | :---------------------------------------------------------- |
+| `resourceId` | `string`          | The dragged resource id.                                    |
+| `parentId`   | `string \| null`  | New parent id, or `null` for the root level.                |
+| `index`      | `number`          | Insertion index among the new parent's children.            |
+| `resources`  | `GanttResource[]` | The full resource tree with the move applied (convenience). |
+
+---
+
+### GanttRangeInfo
+
+Payload of `onRangeChange`; fires once on mount and whenever the rendered range changes. Fetch remote data for `range`.
+
+| Property      | Type             | Description                                 |
+| :------------ | :--------------- | :------------------------------------------ |
+| `range`       | `GanttDateRange` | Full rendered axis range.                   |
+| `activeRange` | `GanttDateRange` | The logical period (the month/week itself). |
+| `scale`       | `GanttScale`     | Current scale.                              |
+| `date`        | `Date`           | Anchor date.                                |
+| `timeZone`    | `string`         | Display time zone.                          |
+
+`GanttDateRange` is `{ start: Date; end: Date }` with an inclusive start and exclusive end. `GanttScale` is `"day" \| "week" \| "month" \| "quarter" \| "year"`.
+
+---
+
+### GanttState
+
+The full engine snapshot, readable via `instance.getState()` or a `useGanttSelector` selector.
+
+| Property         | Type                            | Description                                                               |
+| :--------------- | :------------------------------ | :------------------------------------------------------------------------ |
+| `scale`          | `GanttScale`                    | Horizontal axis scale.                                                    |
+| `date`           | `Date`                          | Anchor date.                                                              |
+| `visibleRange`   | `GanttDateRange`                | Full rendered axis range - fetch remote data for this.                    |
+| `activeRange`    | `GanttDateRange`                | The logical period (the month/week itself).                               |
+| `events`         | `GanttEvent<TData>[]`           | Current events.                                                           |
+| `selection`      | `GanttSelection`                | Committed selection.                                                      |
+| `interactions`   | `GanttInteractions`             | Effective interaction switches.                                           |
+| `loading`        | `boolean`                       | Mirrors the `loading` option.                                             |
+| `drag`           | `GanttDragState<TData> \| null` | In-flight drag/resize gesture, or `null`.                                 |
+| `slotDraft`      | `GanttSlotDraft \| null`        | In-flight drag-create rectangle, or `null`.                               |
+| `viewportCenter` | `Date \| null`                  | Instant at the center of the scrolled viewport; the nav title follows it. |
+
+---
+
+### GanttDragState
+
+The in-flight gesture stored in `state.drag`.
+
+| Property             | Type                                       | Description                                                         |
+| :------------------- | :----------------------------------------- | :------------------------------------------------------------------ |
+| `kind`               | `"move" \| "resize-start" \| "resize-end"` | Gesture kind.                                                       |
+| `occurrence`         | `GanttOccurrence<TData>`                   | The gestured occurrence.                                            |
+| `proposedStart`      | `Date`                                     | Current snapped proposal start.                                     |
+| `proposedEnd`        | `Date`                                     | Current snapped proposal end.                                       |
+| `proposedAllDay`     | `boolean`                                  | Current proposal all-day flag.                                      |
+| `proposedResourceId` | `string`                                   | The bar's own resource; moves are x-axis only and never cross rows. |
+| `valid`              | `boolean`                                  | Last `canDropEvent` verdict; drives `data-drop-invalid` styling.    |
+
+---
+
+### GanttDataAdapter
+
+External-data contract: `getEvents(range, signal?) => Promise<GanttEvent<TData>[]>`. The type ships for adapter recipes (Google `events.list` and MS Graph `calendarView` map to `GanttEvent` in about 15 lines); OAuth, tokens, and sync loops are application backend territory.
+
+---
+
+### GanttRenderEventProps
+
+Payload of `renderEvent` and `renderEventMenu`.
+
+| Property     | Type                     | Description                      |
+| :----------- | :----------------------- | :------------------------------- |
+| `occurrence` | `GanttOccurrence<TData>` | The bar's occurrence.            |
+| `segment`    | `GanttSegment<TData>`    | The rendered segment.            |
+| `isDragging` | `boolean`                | Whether a gesture owns this bar. |
+| `isSelected` | `boolean`                | Whether the bar is selected.     |
+
+---
+
+### GanttColumnContext
+
+Row context handed to tree-panel column renderers, `renderResourceLabel`, `renderResourceMenu`, and the resource click callbacks.
+
+| Property    | Type            | Description                               |
+| :---------- | :-------------- | :---------------------------------------- |
+| `resource`  | `GanttResource` | The row's resource.                       |
+| `depth`     | `number`        | Nesting depth (root = 0).                 |
+| `isGroup`   | `boolean`       | Whether the row has children.             |
+| `collapsed` | `boolean`       | Whether the group is currently collapsed. |
+
+---
+
+### GanttDragIndicatorProps
+
+Live gesture snapshot handed to `renderDragPreview` and `renderResizeIndicator`; content re-renders per snap step while the gantt writes the wrapper position imperatively.
+
+| Property     | Type                                       | Description                                   |
+| :----------- | :----------------------------------------- | :-------------------------------------------- |
+| `occurrence` | `GanttOccurrence<TData>`                   | The gestured occurrence.                      |
+| `kind`       | `"move" \| "resize-start" \| "resize-end"` | Gesture kind.                                 |
+| `start`      | `Date`                                     | Proposed (snapped) start of the current step. |
+| `end`        | `Date`                                     | Proposed (snapped) end of the current step.   |
+| `valid`      | `boolean`                                  | Last `canDropEvent` verdict.                  |
+
+---
+
+### GanttScheduleHintProps
+
+Slot handed to a custom `renderScheduleHint` renderer.
+
+| Property   | Type            | Description                 |
+| :--------- | :-------------- | :-------------------------- |
+| `start`    | `Date`          | Snapped hint start.         |
+| `end`      | `Date`          | Snapped hint end.           |
+| `resource` | `GanttResource` | The hovered row's resource. |
+
+---
+
+### GanttSummaryProps
+
+Parent rollup handed to a custom `renderSummary` renderer.
+
+| Property   | Type             | Description                                    |
+| :--------- | :--------------- | :--------------------------------------------- |
+| `resource` | `GanttResource`  | The group row's resource.                      |
+| `start`    | `Date`           | Envelope start of the descendant bars.         |
+| `end`      | `Date`           | Envelope end of the descendant bars.           |
+| `progress` | `number \| null` | Duration-weighted progress, or `null` to hide. |
+
+---
+
+### GanttApi
+
+The imperative surface, available as `instance.api` from `useGantt`/`useGanttState` or through the root `apiRef`.
+
+| Method            | Signature                                                                                      | Description                                                                       |
+| :---------------- | :--------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------- |
+| `next`            | `() => void`                                                                                   | Step one period forward (clamped to `rangeBounds`).                               |
+| `prev`            | `() => void`                                                                                   | Step one period back (clamped to `rangeBounds`).                                  |
+| `today`           | `() => void`                                                                                   | Jump to today.                                                                    |
+| `goTo`            | `(date: Date) => void`                                                                         | Jump to a date.                                                                   |
+| `setScale`        | `(scale: GanttScale) => void`                                                                  | Switch the axis scale.                                                            |
+| `getEvents`       | `() => GanttEvent<TData>[]`                                                                    | Current events.                                                                   |
+| `getEvent`        | `(id: string) => GanttEvent<TData> \| undefined`                                               | Find one event by id.                                                             |
+| `setEvents`       | `(events: GanttEvent<TData>[]) => void`                                                        | Replace all events.                                                               |
+| `addEvent`        | `(event: GanttEvent<TData>) => void`                                                           | Append an event.                                                                  |
+| `updateEvent`     | `(id: string, patch: Partial<GanttEvent<TData>>) => void`                                      | Patch an event; timing changes route through `onEventUpdate` with source `"api"`. |
+| `removeEvent`     | `(id: string) => void`                                                                         | Remove an event.                                                                  |
+| `getOccurrences`  | `(range?: GanttDateRange) => GanttOccurrence<TData>[]`                                         | Expanded, sorted occurrences; defaults to the visible range.                      |
+| `findOverlapping` | `(candidate: { start: Date; end: Date; excludeEventId?: string }) => GanttOccurrence<TData>[]` | Occurrences overlapping a candidate range.                                        |
+| `select`          | `(selection: Partial<GanttSelection>) => void`                                                 | Merge into the selection.                                                         |
+| `selectEvent`     | `(key: string, opts?: { additive?: boolean }) => void`                                         | Select one occurrence key; `additive` toggles.                                    |
+| `clearSelection`  | `() => void`                                                                                   | Clear the selection.                                                              |
+| `setInteractions` | `(patch: Partial<GanttInteractions>) => void`                                                  | Patch the interaction switches.                                                   |
+| `getVisibleRange` | `() => GanttDateRange`                                                                         | Full rendered axis range.                                                         |
+| `getActiveRange`  | `() => GanttDateRange`                                                                         | The logical period range.                                                         |
+| `toZoned`         | `(date: Date) => Date`                                                                         | TZDate in the gantt's display time zone.                                          |
+
+## Hooks
+
+Most hooks must run under a `<Gantt>` ancestor. The exceptions: `useGanttState` creates the instance itself, `useGanttSelector` accepts an explicit instance, `useGanttSettingsVersion` takes the instance as an argument, and `useGanttViewConfig` falls back to the default view configuration outside the tree.
+
+| Hook                      | Signature                                                                             | Description                                                                                                                     |
+| :------------------------ | :------------------------------------------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------ |
+| `useGanttState`           | `(options?: UseGanttStateOptions<TData>) => GanttInstance<TData>`                     | Headless root hook: the full engine without any markup. Pass the instance to `<Gantt calendar={...}>` or drive fully custom UI. |
+| `useGantt`                | `() => GanttInstance<TData>`                                                          | The stable calendar instance; throws outside `<Gantt>`.                                                                         |
+| `useGanttSelector`        | `(selector: (state: GanttState<TData>) => T, options?: { calendar?, isEqual? }) => T` | Fine-grained subscription with equality memoization (`Object.is` default).                                                      |
+| `useGanttScale`           | `() => { scale, setScale }`                                                           | Current scale and setter.                                                                                                       |
+| `useGanttNavigation`      | `() => { date, title, visibleRange, activeRange, next, prev, today, goTo, isToday }`  | Navigation state and actions; `title` follows the viewport center.                                                              |
+| `useGanttSelection`       | `() => { selection, select, selectEvent, clearSelection }`                            | Selection state and actions.                                                                                                    |
+| `useGanttInteractions`    | `() => { interactions, setInteractions }`                                             | Interaction switches and setter.                                                                                                |
+| `useGanttOccurrences`     | `(range?: GanttDateRange) => GanttOccurrence<TData>[]`                                | Expanded, sorted occurrences; defaults to the visible range.                                                                    |
+| `useGanttSettings`        | `() => GanttSettings<TData>`                                                          | Resolved settings including merged i18n; re-renders only when settings change.                                                  |
+| `useGanttSettingsVersion` | `(instance: GanttInstance<TData>) => number`                                          | Subscribes to settings changes only (version counter, not state).                                                               |
+| `useGanttViewConfig`      | `() => GanttViewConfig<TData>`                                                        | Root-level display props and render overrides, for view components.                                                             |
+| `useGanttBarContext`      | `() => GanttBarContextValue<TData>`                                                   | The bar's subject (`occurrence`, `segment`, `isDragging`, `isSelected`); throws outside `<GanttBar>`.                           |
+| `useGanttGestures`        | `() => { beginMove, beginResize, beginCreate, canDrag, canResize }`                   | Per-bar and per-row pointer gesture wiring, for custom view compositions.                                                       |
+
+## Helpers
+
+Pure, React-free helpers exported from `gantt-lib.tsx`, the gesture utilities from `gantt-dnd.tsx`, and `mergeGanttI18n` from `gantt-i18n.tsx`. `gantt-lib.tsx` also exports the advanced types `GanttIndex`, `BuildIndexOptions`, `ViewRangeOptions`, `ViewDateRanges`, and `WeekStartsOn` used in these signatures, and `gantt.tsx` exports the `GanttContext` and `GanttViewConfigContext` context objects for advanced composition.
+
+| Function             | Signature                                                                                           | Description                                                                                  |
+| :------------------- | :-------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------- |
+| `flattenResources`   | `(resources: GanttResource[], depth?: number) => Array<{ resource: GanttResource; depth: number }>` | Depth-first flatten of the resource tree (parents included).                                 |
+| `reorderResources`   | `(resources, resourceId, parentId, index) => GanttResource[] \| null`                               | Pure tree move; returns a new tree, or `null` for impossible moves.                          |
+| `resolveOffDay`      | `(day: Date, timeZone: string, config: boolean \| GanttOffDaysConfig \| undefined) => boolean`      | Resolves whether a day is an off day in the display zone.                                    |
+| `getGanttDateRange`  | `(scale, date, opts: { timeZone, weekStartsOn }) => { visibleRange, activeRange }`                  | Axis range for the anchor date at the given scale.                                           |
+| `stepGanttDate`      | `(scale, date, direction: 1 \| -1, opts: { timeZone }) => Date`                                     | The anchor date stepped one period.                                                          |
+| `buildEventIndex`    | `(events, visibleRange, opts: { timeZone, eventOrder?, getOccurrences? }) => { occurrences }`       | Expands and sorts all occurrences for a range.                                               |
+| `defaultEventOrder`  | `(a: GanttOccurrence, b: GanttOccurrence) => number`                                                | Start ascending, longer first, then key.                                                     |
+| `packTimedSegments`  | `(segments: GanttSegment[]) => void`                                                                | Overlap packing for one row's timed segments; mutates `column`/`columnCount`/`columnSpan`.   |
+| `eventsOverlap`      | `(a: { start, end }, b: { start, end }) => boolean`                                                 | Half-open range overlap test.                                                                |
+| `rangesIntersect`    | `(a: GanttDateRange, b: GanttDateRange) => boolean`                                                 | Half-open range intersection test.                                                           |
+| `spansMultipleDays`  | `(occ: { start, end }) => boolean`                                                                  | True past 24h (an event ending exactly at the next midnight is single-day).                  |
+| `getDayKey`          | `(date: Date, timeZone: string) => string`                                                          | Stable per-day key in the display time zone.                                                 |
+| `getDayTotalMinutes` | `(dayStart: Date, timeZone: string) => number`                                                      | Day length in minutes; 1380/1500 on DST transition days.                                     |
+| `getRangeKey`        | `(range: GanttDateRange) => string`                                                                 | Cheap cache key for a range.                                                                 |
+| `snapMinutes`        | `(minutes: number, snap: number) => number`                                                         | Rounds minutes to the snap grid.                                                             |
+| `toZoned`            | `(date: Date, timeZone: string) => TZDate`                                                          | The instant re-expressed in the display time zone.                                           |
+| `zonedStartOfDay`    | `(date: Date, timeZone: string) => TZDate`                                                          | Zoned midnight of the day containing the instant.                                            |
+| `mergeGanttI18n`     | `(overrides?: GanttI18nOverrides) => GanttI18nConfig`                                               | Deep-partial i18n merge; replaces individual keys, never sections.                           |
+| `wasRecentDrag`      | `() => boolean`                                                                                     | True within 250ms of a gesture end, so click handlers can ignore the click that ends a drag. |
+| `markGestureEnd`     | `() => void`                                                                                        | Mark a non-dnd gesture (e.g. a timeline pan) so the click it ends is ignored.                |
+
+Exported constants: `GANTT_SCALES` (the five scales in menu order), `GANTT_COLORS` (ten named Tailwind palette presets for bar colors), `GANTT_ACTIVATION` (the default activation thresholds), `MIN_PACK_SLOT` (`30`, packing-effective minimum minutes), `MAX_OCCURRENCES` (`1000`, recurrence expansion cap per event), `DEFAULT_GANTT_I18N` (the default i18n config), and `DEFAULT_VIEW_CONFIG` (the default view configuration).
+
+---
+
+### Recurrence
+
+Exported from `gantt-recurrence.tsx`. The built-in expander covers the RFC 5545 subset described under [GanttRecurrenceRule](#ganttrecurrencerule); unsupported parts throw `GanttRecurrenceError` instead of silently mis-expanding, and expansion caps at `MAX_OCCURRENCES` (1000) per event.
+
+| Function               | Signature                                                                                                  | Description                                                                                                   |
+| :--------------------- | :--------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------ |
+| `parseRRuleString`     | `(input: string, timeZone?: string) => GanttRecurrenceRule`                                                | Parses a raw RRULE line (with or without the `RRULE:` prefix); floating `UNTIL` resolves in the display zone. |
+| `formatRRuleString`    | `(rule: GanttRecurrenceRule) => string`                                                                    | Serializes the structured subset back to an RRULE line (without prefix).                                      |
+| `expandRecurrence`     | `(event: GanttEvent<TData>, range: GanttDateRange, ctx: { timeZone: string }) => GanttOccurrence<TData>[]` | Expands one event into its occurrences intersecting the range; DST-safe wall-time iteration.                  |
+| `GanttRecurrenceError` | `class extends Error`                                                                                      | Thrown for unsupported or invalid rules; catch it to fall back or surface a message.                          |
+
+## Config
+
+### State options
+
+State and configuration options accepted by `useGanttState` and, as flat props, by `<Gantt>`. Every controlled prop has an uncontrolled `default*` twin.
+
+| Prop                  | Type                                                                                     | Default               | Description                                                                                       |
+| :-------------------- | :--------------------------------------------------------------------------------------- | :-------------------- | :------------------------------------------------------------------------------------------------ |
+| `events`              | `GanttEvent<TData>[]`                                                                    | -                     | Controlled events; pairs with `onEventsChange`.                                                   |
+| `defaultEvents`       | `GanttEvent<TData>[]`                                                                    | `[]`                  | Initial events (uncontrolled).                                                                    |
+| `scale`               | `GanttScale`                                                                             | -                     | Controlled scale; pairs with `onScaleChange`.                                                     |
+| `defaultScale`        | `GanttScale`                                                                             | `"day"`               | Initial scale (uncontrolled).                                                                     |
+| `date`                | `Date`                                                                                   | -                     | Controlled anchor date; pairs with `onDateChange`.                                                |
+| `defaultDate`         | `Date`                                                                                   | `new Date()`          | Initial anchor date (uncontrolled).                                                               |
+| `selection`           | `GanttSelection`                                                                         | -                     | Controlled selection; pairs with `onSelectionChange`.                                             |
+| `defaultSelection`    | `GanttSelection`                                                                         | empty                 | Initial selection (uncontrolled).                                                                 |
+| `interactions`        | `Partial<GanttInteractions>`                                                             | -                     | Controlled interaction switches; pairs with `onInteractionsChange`.                               |
+| `defaultInteractions` | `Partial<GanttInteractions>`                                                             | all `true`            | Initial interaction switches (uncontrolled).                                                      |
+| `loading`             | `boolean`                                                                                | `false`               | Loading flag mirrored into state.                                                                 |
+| `timeZone`            | `string`                                                                                 | system zone           | IANA display time zone.                                                                           |
+| `locale`              | `Locale`                                                                                 | -                     | date-fns locale for all formatting.                                                               |
+| `weekStartsOn`        | `0 \| 1 \| 2 \| 3 \| 4 \| 5 \| 6`                                                        | locale's, else `0`    | First day of the week; defaults from `locale` when one is set.                                    |
+| `slotDuration`        | `number`                                                                                 | `30`                  | Minimum created-slot length in minutes for a bare create click.                                   |
+| `snapDuration`        | `number`                                                                                 | `15`                  | Minute snapping on the day scale; other scales snap to whole zoned days.                          |
+| `i18n`                | `GanttI18nOverrides`                                                                     | -                     | Deep-partial label/format/function overrides (see [Internationalization](#internationalization)). |
+| `rangeBounds`         | `{ min?: Date; max?: Date }`                                                             | -                     | Hard travel bounds for navigation and infinite scrolling; either side may be omitted.             |
+| `activation`          | `GanttActivationConfig`                                                                  | -                     | Pointer-activation threshold overrides for drag/resize/create.                                    |
+| `maxRangeWindow`      | `number`                                                                                 | `12`                  | Infinite-scroll growth cap in whole periods per side; past it the anchor slides instead.          |
+| `resources`           | `GanttResource[]`                                                                        | `[]`                  | Resource rows of the gantt tree.                                                                  |
+| `getEventPriority`    | `(event: GanttEvent<TData>) => number`                                                   | `event.priority ?? 0` | Packing prominence per event.                                                                     |
+| `eventOrder`          | `(a: GanttOccurrence<TData>, b: GanttOccurrence<TData>) => number`                       | priority-aware        | Occurrence sort; the default orders higher `getEventPriority` first, then start/duration/key.     |
+| `getOccurrences`      | `(event, range, ctx: { timeZone: string }) => Array<{ start: Date; end: Date }> \| null` | -                     | Escape hatch for exotic recurrence: return the expanded occurrences yourself.                     |
+
+---
+
+### Callbacks and validators
+
+All callbacks live beside the state options on `useGanttState` and `<Gantt>`.
+
+| Prop                      | Type                                                         | Description                                                                                                              |
+| :------------------------ | :----------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------- |
+| `onEventClick`            | `(occurrence, e: React.MouseEvent) => void`                  | Bar click (the click that ends a drag is ignored).                                                                       |
+| `onEventDoubleClick`      | `(occurrence, e: React.MouseEvent) => void`                  | Bar double click.                                                                                                        |
+| `onEventUpdate`           | `(update: GanttProposedUpdate<TData>) => GanttUpdateResult`  | Commit gate for every timing change; return `false` to reject, an object to adjust.                                      |
+| `canDropEvent`            | `(update: GanttProposedUpdate<TData>) => boolean`            | Live validity predicate while dragging or resizing; drives the destructive indicator.                                    |
+| `onSlotClick`             | `(slot: GanttSlotInfo, e: React.MouseEvent) => void`         | Click on empty schedulable track (also the schedule-hint activation).                                                    |
+| `onSelectSlot`            | `(slot: GanttSlotDraft) => void`                             | Drag-create commit.                                                                                                      |
+| `canSelectSlot`           | `(slot: GanttSlotDraft) => boolean`                          | Live validity predicate for the drag-create rectangle.                                                                   |
+| `onCreateTask`            | `(ctx: { parentId: string \| null; index: number }) => void` | Fires when the "add task" hint is activated; create a new tree row.                                                      |
+| `canCreateTask`           | `(ctx: { parentId: string \| null }) => boolean`             | Gates the "add task" hint; the shipped view offers root-level creation only (`parentId = null`).                         |
+| `onResourceClick`         | `(ctx: GanttColumnContext, e: React.MouseEvent) => void`     | Click on a tree row's surface (chevron/checkbox/grip clicks excluded).                                                   |
+| `onResourceDoubleClick`   | `(ctx: GanttColumnContext, e: React.MouseEvent) => void`     | Double click on a tree row's surface.                                                                                    |
+| `onRangeChange`           | `(info: GanttRangeInfo) => void`                             | Rendered range changed (fires once on mount); fetch remote data here.                                                    |
+| `onScaleChange`           | `(scale: GanttScale) => void`                                | Scale changed.                                                                                                           |
+| `onDateChange`            | `(date: Date) => void`                                       | Anchor date changed (navigation or an infinite-scroll anchor slide).                                                     |
+| `onSelectionChange`       | `(selection: GanttSelection) => void`                        | Selection changed.                                                                                                       |
+| `onInteractionsChange`    | `(interactions: GanttInteractions) => void`                  | Interaction switches changed.                                                                                            |
+| `onEventsChange`          | `(events: GanttEvent<TData>[]) => void`                      | Events changed (accepted updates, api mutations).                                                                        |
+| `onResourceReorder`       | `(proposal: GanttResourceReorder) => void \| false`          | Commit gate for tree-row drag reorder; adopt `proposal.resources` into your `resources` state, return `false` to reject. |
+| `canReorderResource`      | `(proposal: GanttResourceReorder) => boolean`                | Live validity predicate while a resource row is being dragged.                                                           |
+| `onResourceReorderReject` | `(proposal: GanttResourceReorder) => void`                   | Fires when a reorder gesture is released on a rejected position; explain the rejection (a toast).                        |
+
+---
+
+### View configuration
+
+Display props and render overrides. These live on `<Gantt>` as flat props (and `GanttView` accepts `interval` directly), never in the headless options; view components read them via `useGanttViewConfig`.
+
+| Prop                      | Type                                                                                | Default                | Description                                                                                                            |
+| :------------------------ | :---------------------------------------------------------------------------------- | :--------------------- | :--------------------------------------------------------------------------------------------------------------------- |
+| `nowIndicator`            | `boolean`                                                                           | `true`                 | Red now-line on the axis.                                                                                              |
+| `interval`                | `number`                                                                            | `60`                   | Day-scale unit interval in minutes; axis units and gridlines follow it.                                                |
+| `scrollbars`              | `"custom" \| "native"`                                                              | `"custom"`             | Scroll implementation for the gantt body: shadcn ScrollArea or browser scrollbars.                                     |
+| `displayScheduleHint`     | `boolean`                                                                           | `false`                | Placement hint over empty timeline track: a validated, snapped tile that opens the schedule flow.                      |
+| `dragCreate`              | `boolean`                                                                           | `false`                | Empty-track presses start a drag-create gesture committing through `onSelectSlot`; off means the panel drags-to-pan.   |
+| `displayCreateTaskHint`   | `boolean`                                                                           | `false`                | "Add task" affordance at the foot of the tree; shown only when `canCreateTask` allows it.                              |
+| `zoomControl`             | `boolean`                                                                           | `true`                 | Floating zoom in/out control over the track.                                                                           |
+| `navButtonVariant`        | `"ghost" \| "outline" \| "secondary" \| "default"`                                  | `"ghost"`              | Nav button variant; all nav buttons follow it.                                                                         |
+| `navButtonSize`           | `"sm" \| "default"`                                                                 | `"sm"`                 | Nav button size; icon buttons use the icon twin.                                                                       |
+| `offDays`                 | `boolean \| GanttOffDaysConfig`                                                     | `true`                 | Off-day marking on day/week/month scales; `true` = weekends with a muted background, an object customizes it.          |
+| `columns`                 | `GanttColumn[]`                                                                     | -                      | Extra tree-panel columns after the built-in name column; the panel scrolls horizontally, the name column stays pinned. |
+| `columnsMenu`             | `ReactNode`                                                                         | -                      | Consumer slot pinned at the end of the tree-panel header, the intended home for a columns dropdown.                    |
+| `treePanel`               | `GanttTreePanelConfig`                                                              | -                      | Tree-panel width, splitter bounds, and resizability.                                                                   |
+| `timelineLines`           | `"vertical" \| "both" \| "none"`                                                    | `"vertical"`           | Timeline gridlines: unit boundaries only, plus row borders, or bare.                                                   |
+| `barLabel`                | `"inside" \| "outside" \| "auto"`                                                   | `"inside"`             | Bar title placement; `"auto"` moves it outside only when the bar is too short.                                         |
+| `offscreenIndicators`     | `boolean`                                                                           | `true`                 | Edge chips that scroll to bars outside the visible timeline.                                                           |
+| `infiniteScroll`          | `boolean`                                                                           | `true`                 | Extend the timeline into the past/future while scrolling near an edge (the anchor period stays the nav title).         |
+| `zoomRange`               | `{ min?: number; max?: number; step?: number }`                                     | `0.5 - 3`, step `0.25` | Zoom bounds and button step for the floating control.                                                                  |
+| `metrics`                 | `GanttMetrics`                                                                      | -                      | Layout metric overrides (row/lane/unit geometry, fades, thresholds).                                                   |
+| `stickyNav`               | `boolean`                                                                           | `false`                | Sticky nav bar.                                                                                                        |
+| `rowCheckboxes`           | `boolean`                                                                           | `true`                 | Leaf-row selection checkboxes in the tree panel; uncontrolled unless `selectedRows` is passed.                         |
+| `selectedRows`            | `string[]`                                                                          | -                      | Controlled selected row ids; pairs with `onSelectedRowsChange`.                                                        |
+| `onSelectedRowsChange`    | `(ids: string[]) => void`                                                           | -                      | Selected rows changed.                                                                                                 |
+| `collapsedGroups`         | `string[]`                                                                          | -                      | Controlled collapsed group ids; pairs with `onCollapsedGroupsChange`.                                                  |
+| `defaultCollapsedGroups`  | `string[]`                                                                          | -                      | Initial collapsed group ids (uncontrolled).                                                                            |
+| `onCollapsedGroupsChange` | `(ids: string[]) => void`                                                           | -                      | Collapsed groups changed.                                                                                              |
+| `zoom`                    | `number`                                                                            | -                      | Controlled zoom multiplier; pairs with `onZoomChange`.                                                                 |
+| `defaultZoom`             | `number`                                                                            | `1`                    | Initial zoom multiplier (uncontrolled).                                                                                |
+| `onZoomChange`            | `(zoom: number) => void`                                                            | -                      | Zoom changed.                                                                                                          |
+| `parentScheduling`        | `boolean`                                                                           | `false`                | Allow drag-create and slot clicks on rows that have children; off means parents aggregate their subtree.               |
+| `summaryBars`             | `boolean`                                                                           | `true`                 | Rollup strips on parent rows without bars of their own: descendant envelope with duration-weighted progress.           |
+| `classNames`              | `GanttClassNames`                                                                   | -                      | Class overrides for nav, toolbar, view, and event.                                                                     |
+| `renderEvent`             | `(props: GanttRenderEventProps<TData>) => ReactNode`                                | -                      | Replaces the default bar content; the interactive wrapper stays gantt-owned.                                           |
+| `renderEventMenu`         | `(props: GanttRenderEventProps<TData>) => ReactNode`                                | -                      | Right-click menu for a bar: return shadcn ContextMenu items; omit for no menu.                                         |
+| `renderResourceLabel`     | `(props: GanttColumnContext) => ReactNode`                                          | -                      | Tree-node label; return any rich content (icons, badges). Default is the plain title.                                  |
+| `renderResourceMenu`      | `(ctx: GanttColumnContext) => ReactNode`                                            | -                      | Right-click menu for a tree row (same contract as `renderEventMenu`).                                                  |
+| `renderNoResources`       | `() => ReactNode`                                                                   | -                      | Rendered in the timeline body when there are no resources.                                                             |
+| `renderDragPreview`       | `(props: GanttDragIndicatorProps<TData>) => ReactNode`                              | -                      | Replaces the smooth cursor-following move clone; the gantt owns the wrapper and positions it per pointermove.          |
+| `renderResizeIndicator`   | `(props: GanttDragIndicatorProps<TData>) => ReactNode`                              | -                      | Replaces the resize edge line and status chip; same positioning contract as `renderDragPreview`.                       |
+| `renderScheduleHint`      | `(props: GanttScheduleHintProps) => ReactNode`                                      | -                      | Replaces the schedule-hint tile and bubble inside the snapped, validated, pointer-transparent wrapper.                 |
+| `renderSummary`           | `(props: GanttSummaryProps) => ReactNode`                                           | -                      | Replaces the parent rollup strip (the positioned wrapper stays gantt-owned).                                           |
+| `getSummaryProgress`      | `(ctx: { resource: GanttResource; events: GanttEvent<TData>[] }) => number \| null` | -                      | Replaces the rollup math: return 0-100 (or `null` to hide). Default: duration-weighted mean progress.                  |
+
+---
+
+### GanttInteractions
+
+Global interaction switches; per-event `readOnly`, `draggable`, and `resizable` override them.
+
+| Property     | Type      | Default | Description                                                  |
+| :----------- | :-------- | :------ | :----------------------------------------------------------- |
+| `drag`       | `boolean` | `true`  | Horizontal move within the bar's own row; never across rows. |
+| `resize`     | `boolean` | `true`  | Edge resize on bar segments.                                 |
+| `selectSlot` | `boolean` | `true`  | Slot selection (drag-create and slot clicks).                |
+
+---
+
+### GanttOffDaysConfig
+
+Off-day (non-working day) marking. `true` uses the defaults: weekends with a muted background. Marked cells carry `data-off` for CSS-selector customization.
+
+| Property      | Type                     | Default         | Description                                                          |
+| :------------ | :----------------------- | :-------------- | :------------------------------------------------------------------- |
+| `weekendDays` | `number[]`               | `[0, 6]`        | Weekday numbers treated as off (0 = Sunday).                         |
+| `dates`       | `Date[]`                 | -               | Additional explicit off dates (compared by day in the display zone). |
+| `isOffDay`    | `(day: Date) => boolean` | -               | Full custom predicate; runs in addition to `weekendDays`/`dates`.    |
+| `className`   | `string`                 | `"bg-muted/40"` | Marker classes.                                                      |
+
+---
+
+### GanttTreePanelConfig
+
+Left tree-panel sizing and splitter behavior.
+
+| Property          | Type                      | Default | Description                                                               |
+| :---------------- | :------------------------ | :------ | :------------------------------------------------------------------------ |
+| `width`           | `number`                  | `288`   | Initial panel width in px.                                                |
+| `minWidth`        | `number`                  | `180`   | Splitter lower bound in px.                                               |
+| `maxWidth`        | `number`                  | `640`   | Splitter upper bound in px.                                               |
+| `resizable`       | `boolean`                 | `true`  | Drag/keyboard splitter between the panels.                                |
+| `nameColumnWidth` | `number`                  | `208`   | Width of the sticky name column in px.                                    |
+| `onWidthChange`   | `(width: number) => void` | -       | Fires after any user resize (drag release, keyboard, double-click reset). |
+
+---
+
+### GanttColumn
+
+One extra tree-panel column after the built-in name column.
+
+| Property    | Type                                     | Default   | Description                                                    |
+| :---------- | :--------------------------------------- | :-------- | :------------------------------------------------------------- |
+| `id`        | `string`                                 | -         | `Required`. Stable id; doubles as the default header label.    |
+| `title`     | `ReactNode`                              | -         | Header label.                                                  |
+| `width`     | `number`                                 | `96`      | Fixed column width in px.                                      |
+| `align`     | `"start" \| "center" \| "end"`           | `"start"` | Cell content alignment.                                        |
+| `render`    | `(ctx: GanttColumnContext) => ReactNode` | -         | Cell content per row; omit or return `null` for an empty cell. |
+| `className` | `string`                                 | -         | Extra classes on every cell of this column (header included).  |
+
+---
+
+### GanttMetrics
+
+Layout metrics (rem unless noted); every knob falls back to its default.
+
+| Property             | Type                                  | Default | Description                                                                                                                                          |
+| :------------------- | :------------------------------------ | :------ | :--------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `laneHeight`         | `number`                              | `1.75`  | Bar lane height.                                                                                                                                     |
+| `rowPadding`         | `number`                              | `0.5`   | Vertical padding around a row's lane block.                                                                                                          |
+| `minRowHeight`       | `number`                              | `2.5`   | Minimum row height.                                                                                                                                  |
+| `autoLabelMin`       | `number`                              | `7`     | `barLabel` `"auto"` flips the title outside below this bar width.                                                                                    |
+| `unitWidths`         | `Partial<Record<GanttScale, number>>` | -       | Unit width at zoom 1 per scale (day scale = width per interval unit; defaults: day 5 at a 60-minute interval, week 10, month 4, quarter 8, year 10). |
+| `minTimelineWidth`   | `number`                              | `200`   | Minimum timeline pane width in px.                                                                                                                   |
+| `infiniteScrollEdge` | `number`                              | `160`   | Scroll distance (px) from an edge that grows the range.                                                                                              |
+
+---
+
+### GanttActivationConfig
+
+Pointer-activation thresholds; unset keys keep the dnd-kit parity defaults.
+
+| Property           | Type     | Default | Description                                          |
+| :----------------- | :------- | :------ | :--------------------------------------------------- |
+| `moveDistancePx`   | `number` | `5`     | Mouse travel (px) before a bar move starts.          |
+| `createDistancePx` | `number` | `4`     | Mouse travel (px) before a drag-create starts.       |
+| `touchDelayMs`     | `number` | `250`   | Touch long-press delay in ms.                        |
+| `touchTolerancePx` | `number` | `5`     | Touch movement tolerance (px) during the long-press. |
+
+---
+
+### GanttClassNames
+
+Class overrides for the composed parts.
+
+| Property  | Type     | Default | Description                                |
+| :-------- | :------- | :------ | :----------------------------------------- |
+| `nav`     | `string` | -       | Classes for `GanttNav`.                    |
+| `toolbar` | `string` | -       | Classes for `GanttToolbar`.                |
+| `view`    | `string` | -       | Classes for the gantt body (tree + track). |
+| `event`   | `string` | -       | Classes for every bar.                     |
+
+---
+
+### Internationalization
+
+The `i18n` option takes a `GanttI18nOverrides` object: a deep-partial of `GanttI18nConfig` where a partial override replaces individual keys, never whole sections (merged by `mergeGanttI18n`, defaults in `DEFAULT_GANTT_I18N`).
+
+`labels` keys and defaults:
+
+| Property       | Type                             | Default                                   |
+| :------------- | :------------------------------- | :---------------------------------------- |
+| `today`        | `string`                         | `"Today"`                                 |
+| `previous`     | `string`                         | `"Previous"`                              |
+| `next`         | `string`                         | `"Next"`                                  |
+| `addEvent`     | `string`                         | `"Add event"`                             |
+| `addTask`      | `string`                         | `"Add task"`                              |
+| `allDay`       | `string`                         | `"All day"`                               |
+| `loading`      | `string`                         | `"Loading events"`                        |
+| `event`        | `string`                         | `"event"`                                 |
+| `events`       | `(count: number) => string`      | `"1 event"` / `` `${count} events` ``     |
+| `week`         | `(weekNumber: number) => string` | `` `W${weekNumber}` ``                    |
+| `resources`    | `string`                         | `"Resources"`                             |
+| `goToDate`     | `string`                         | `"Go to date"`                            |
+| `scheduleHint` | `string`                         | `"Click to add a schedule"`               |
+| `reorder`      | `string`                         | `"Reorder"`                               |
+| `selectView`   | `string`                         | `"Select view"`                           |
+| `zoomIn`       | `string`                         | `"Zoom in"`                               |
+| `zoomOut`      | `string`                         | `"Zoom out"`                              |
+| `resizePanel`  | `string`                         | `"Resize panel"`                          |
+| `jumpToBar`    | `(title: string) => string`      | `` `Scroll to "${title}"` ``              |
+| `progress`     | `(percent: number) => string`    | `` `${percent}% complete` ``              |
+| `durationDays` | `(days: number) => string`       | `"1 day"` / `` `${days} days` ``          |
+| `continues`    | `string`                         | `"continues"`                             |
+| `scales`       | `Record<GanttScale, string>`     | `Day`, `Week`, `Month`, `Quarter`, `Year` |
+
+`formats` are date-fns format strings, applied with the gantt `locale`:
+
+| Property     | Default                | Description                        |
+| :----------- | :--------------------- | :--------------------------------- |
+| `monthTitle` | `"MMMM yyyy"`          | Month-scale title.                 |
+| `dayTitle`   | `"EEEE, MMMM d, yyyy"` | Day-scale title and Today tooltip. |
+| `timeGutter` | `"h a"`                | Day-scale axis unit labels.        |
+| `eventTime`  | `"h:mm a"`             | Timed event time labels.           |
+
+`functions` are the composed formatters. The defaults are re-bound to the merged `labels`/`formats` on every merge, so overriding a format string (for example `formats.eventTime`) reaches the default renderers without also replacing the function:
+
+| Property               | Signature                                                                                | Description                                                                    |
+| :--------------------- | :--------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------- |
+| `formatTitle`          | `(scale, ctx: { date, activeRange, visibleRange, locale? }) => string`                   | The nav title per scale (week gets a smart range label).                       |
+| `formatEventTime`      | `(start: Date, end: Date, allDay: boolean, locale?: Locale) => string`                   | Bar time/range labels; all-day bars show their date range.                     |
+| `formatDayRange`       | `(range: GanttDateRange, locale?: Locale) => string`                                     | Compact day-range label.                                                       |
+| `formatEventAriaLabel` | `(parts: { title, timeLabel, rowTitle?, progressLabel?, continues: boolean }) => string` | Composes the bar screen-reader label; appends `labels.continues` when clipped. |

@@ -1,0 +1,168 @@
+{
+  "items": [
+    {
+      "name": "c-gantt-1",
+      "type": "registry:block",
+      "title": "Gantt chart with settings menu and schedulable rows",
+      "categories": [
+        "gantt"
+      ],
+      "description": "Gantt chart with settings menu and schedulable rows",
+      "registryDependencies": [
+        "button",
+        "card",
+        "gantt",
+        "gantt-i18n",
+        "gantt-nav",
+        "gantt-types",
+        "gantt-view",
+        "label",
+        "popover",
+        "radio-group",
+        "select",
+        "switch",
+        "tabs"
+      ],
+      "dependencies": [
+        "date-fns"
+      ],
+      "files": [
+        {
+          "path": "components/gantt/c-gantt-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-gantt-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-gantt-2",
+      "type": "registry:block",
+      "title": "Gantt chart with drag-to-reorder tree rows",
+      "categories": [
+        "gantt"
+      ],
+      "description": "Gantt chart with drag-to-reorder tree rows",
+      "registryDependencies": [
+        "card",
+        "gantt",
+        "gantt-nav",
+        "gantt-types",
+        "gantt-view"
+      ],
+      "dependencies": [
+        "date-fns"
+      ],
+      "files": [
+        {
+          "path": "components/gantt/c-gantt-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-gantt-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-gantt-3",
+      "type": "registry:block",
+      "title": "Gantt chart with quarter roadmap and rollups",
+      "categories": [
+        "gantt"
+      ],
+      "description": "Gantt chart with quarter roadmap and rollups",
+      "registryDependencies": [
+        "button",
+        "card",
+        "gantt",
+        "gantt-nav",
+        "gantt-types",
+        "gantt-view"
+      ],
+      "dependencies": [
+        "date-fns"
+      ],
+      "files": [
+        {
+          "path": "components/gantt/c-gantt-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-gantt-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-gantt-4",
+      "type": "registry:block",
+      "title": "Gantt chart with weekly capacity board",
+      "categories": [
+        "gantt"
+      ],
+      "description": "Gantt chart with weekly capacity board",
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "card",
+        "gantt",
+        "gantt-nav",
+        "gantt-types",
+        "gantt-view"
+      ],
+      "dependencies": [
+        "date-fns"
+      ],
+      "files": [
+        {
+          "path": "components/gantt/c-gantt-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-gantt-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-gantt-5",
+      "type": "registry:block",
+      "title": "Gantt chart with task table and progress",
+      "categories": [
+        "gantt"
+      ],
+      "description": "Gantt chart with task table and progress",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "gantt",
+        "gantt-nav",
+        "gantt-types",
+        "gantt-view"
+      ],
+      "dependencies": [
+        "date-fns"
+      ],
+      "files": [
+        {
+          "path": "components/gantt/c-gantt-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-gantt-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5,
+        "gridSize": 1
+      }
+    }
+  ]
+}

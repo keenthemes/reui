@@ -1,4 +1,5 @@
 "use client"
+"use no memo"
 
 import { useMemo, useState } from "react"
 import { useCopyToClipboard } from "@/registry-reui/bases/radix/hooks/use-copy-to-clipboard"
@@ -535,7 +536,6 @@ export default function Pattern() {
       sorting,
       columnOrder,
     },
-    columnResizeMode: "onChange",
     onColumnOrderChange: setColumnOrder,
     onPaginationChange: setPagination,
     onSortingChange: setSorting,

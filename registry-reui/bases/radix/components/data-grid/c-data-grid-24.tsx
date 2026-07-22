@@ -1,4 +1,5 @@
 "use client"
+"use no memo"
 
 import { useMemo, useState } from "react"
 import { useCopyToClipboard } from "@/registry-reui/bases/radix/hooks/use-copy-to-clipboard"
@@ -316,7 +317,6 @@ export default function Pattern() {
     pageCount: Math.ceil(demoData.length / pagination.pageSize),
     getRowId: (row: IData) => row.id,
     state: { pagination, sorting, columnOrder },
-    columnResizeMode: "onChange",
     onColumnOrderChange: setColumnOrder,
     onPaginationChange: setPagination,
     onSortingChange: setSorting,
@@ -338,7 +338,7 @@ export default function Pattern() {
       <DataGridTableFootRowCell className="font-bold tabular-nums">
         ${totalBalance.toLocaleString("en-US", { minimumFractionDigits: 2 })}
       </DataGridTableFootRowCell>
-      {/* Actions column — empty */}
+      {/* Actions column - empty */}
       <DataGridTableFootRowCell />
     </DataGridTableFootRow>
   )

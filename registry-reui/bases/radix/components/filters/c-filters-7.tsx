@@ -1,4 +1,5 @@
 "use client"
+"use no memo"
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { Alert, AlertTitle } from "@/registry-reui/bases/radix/reui/alert"

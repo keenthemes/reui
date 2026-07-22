@@ -1,4 +1,5 @@
 "use client"
+"use no memo"
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
@@ -223,7 +224,6 @@ export default function Pattern() {
     data,
     getRowId: (row: IData) => row.id,
     state: { sorting },
-    columnResizeMode: "onChange",
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),

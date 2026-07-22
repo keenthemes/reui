@@ -1,4 +1,5 @@
 "use client"
+"use no memo"
 
 import { useEffect, useMemo, useState } from "react"
 import {

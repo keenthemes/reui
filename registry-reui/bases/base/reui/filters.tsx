@@ -1,4 +1,5 @@
 "use client"
+"use no memo"
 
 import type React from "react"
 import {
@@ -69,6 +70,9 @@ export interface FilterI18nConfig {
   defaultCurrency: string
   defaultColor: string
   addFilterTitle: string
+  // Async option loading states (optional; fall back to sensible defaults)
+  loadingOptions?: string
+  errorLoadingOptions?: string
 
   // Operators
   operators: {
@@ -143,6 +147,8 @@ export const DEFAULT_I18N: FilterI18nConfig = {
   defaultCurrency: "$",
   defaultColor: "#000000",
   addFilterTitle: "Add filter",
+  loadingOptions: "Loading...",
+  errorLoadingOptions: "Failed to load options.",
 
   // Operators
   operators: {
@@ -341,12 +347,18 @@ function FilterInput<T = unknown>({
     <InputGroup
       className={cn(
         "w-36",
+        // Height follows each style's own control ladder. `default` sets no
+        // height on purpose so the style's `.cn-input-group` applies (h-8 nova,
+        // h-9 maia/luma, h-7 mira, h-10 sera); sm/lg step down/up from it.
+        // Base covers nova/lyra/rhea/vega; only deviating styles are listed.
         context.size == "sm" &&
-          "h-7!",
-        context.size == "default" &&
-          "h-8!",
+          "h-7! style-maia:h-8! style-luma:h-8! style-mira:h-6! style-sera:h-9!",
         context.size == "lg" &&
-          "h-9!",
+          "h-9! style-maia:h-10! style-luma:h-10! style-mira:h-8! style-sera:h-11!",
+        // Sera's `.cn-input` is `px-0` (underline inputs sit flush); inside a
+        // segmented chip that collides with the neighbouring segment, so give
+        // the value input the same inline padding sera uses elsewhere.
+        "style-sera:px-2.5",
         className
       )}
     >
@@ -367,11 +379,9 @@ function FilterInput<T = unknown>({
         onKeyDown={handleKeyDown}
         className={cn(
           context.size == "sm" &&
-            "h-7! text-xs",
-          context.size == "default" &&
-            "h-8!",
+            "h-7! text-xs style-maia:h-8! style-luma:h-8! style-mira:h-6! style-sera:h-9!",
           context.size == "lg" &&
-            "h-9!"
+            "h-9! style-maia:h-10! style-luma:h-10! style-mira:h-8! style-sera:h-11!"
         )}
         {...props}
       />
@@ -464,6 +474,22 @@ export interface CustomRendererProps<T = unknown> {
   operator: string
 }
 
+// Props passed to a field's `renderOptionList` slot. Lets a consumer render the
+// options list however they like (e.g. windowing / virtualization with a
+// library of their choice) while staying bound to the primitive's selection and
+// keyboard behavior.
+export interface FilterOptionListRenderProps<T = unknown> {
+  // Options to render: already resolved, query-filtered, and selected-first.
+  options: FilterOption<T>[]
+  // Index into `options` of the keyboard-highlighted row (-1 if none). A
+  // virtualized implementation should scroll this row into view and keep it
+  // mounted so the combobox's aria-activedescendant stays valid.
+  highlightedIndex: number
+  // Renders one option row with the correct id, selection state, highlight, and
+  // toggle handler wired to the primitive. Call it for each row you render.
+  renderOption: (option: FilterOption<T>, index: number) => React.ReactNode
+}
+
 // Grouped field configuration interface
 export interface FilterFieldGroup<T = unknown> {
   group?: string
@@ -485,6 +511,19 @@ export interface FilterFieldConfig<T = unknown> {
   fields?: FilterFieldConfig<T>[]
   // Field-specific options
   options?: FilterOption<T>[]
+  // Async / large-list options loader. Receives the current search query and
+  // may return a Promise. Use it to prefetch a remote list once (ignore the
+  // query) or to run server-side search (filter by the query). When both
+  // `options` and `loadOptions` are provided, `options` seeds the initial view
+  // and the value->label cache while `loadOptions` supplies live results.
+  loadOptions?: (
+    query: string
+  ) => FilterOption<T>[] | Promise<FilterOption<T>[]>
+  // Bring-your-own rendering for the options list (e.g. virtualization with a
+  // windowing library of your choice). Return the full scrollable list, call
+  // `renderOption` for each row, and scroll `highlightedIndex` into view. When
+  // omitted, the options render as a plain scrollable list.
+  renderOptionList?: (props: FilterOptionListRenderProps<T>) => React.ReactNode
   operators?: FilterOperator[]
   customRenderer?: (props: CustomRendererProps<T>) => React.ReactNode
   customValueRenderer?: (
@@ -565,6 +604,138 @@ const getFieldsMap = <T = unknown,>(
   )
 }
 
+// Whether a field exposes any option source (a static list or an async loader).
+// IMPORTANT: never gate on `field.options?.length` once `loadOptions` exists —
+// a function's `.length` is its arity, not an option count, which silently
+// breaks the submenu gate for async fields.
+const fieldHasOptions = <T = unknown,>(field: FilterFieldConfig<T>): boolean =>
+  (field.options?.length ?? 0) > 0 || typeof field.loadOptions === "function"
+
+interface ResolvedFieldOptions<T = unknown> {
+  isAsync: boolean
+  options: FilterOption<T>[]
+  loading: boolean
+  error: boolean
+  // Resolve selected values to full options using an accumulating value->option
+  // cache, so async/controlled selections keep their label and icon even when
+  // absent from the latest result page.
+  resolveSelected: (values: T[]) => FilterOption<T>[]
+}
+
+// Value->option cache shared across every component instance rendering the
+// SAME field object (the Add Filter submenu and the active-filter chip both
+// receive the same config reference from the fields map). Keyed by the field
+// object so it is shared when fields are memoized and garbage-collected
+// otherwise. This keeps a value selected in the submenu labelled in the chip.
+const fieldOptionCaches = new WeakMap<object, Map<unknown, FilterOption>>()
+
+const getFieldOptionCache = <T = unknown,>(
+  field: FilterFieldConfig<T>
+): Map<T, FilterOption<T>> => {
+  let cache = fieldOptionCaches.get(field as object)
+  if (!cache) {
+    cache = new Map()
+    fieldOptionCaches.set(field as object, cache)
+  }
+  return cache as Map<T, FilterOption<T>>
+}
+
+// Resolves a field's options for a popover/submenu. Static fields return their
+// list verbatim (unchanged legacy behavior). Async fields (`loadOptions`)
+// debounce the query, guard against out-of-order responses, and expose
+// loading/error state plus a value->label cache.
+function useFieldOptions<T = unknown>(
+  field: FilterFieldConfig<T>,
+  searchInput: string,
+  enabled: boolean
+): ResolvedFieldOptions<T> {
+  const isAsync = typeof field.loadOptions === "function"
+
+  // Seed the shared cache from any static options an async field also provides
+  // (static fields never read this cache, so skip the work for them).
+  if (isAsync && field.options) {
+    const cache = getFieldOptionCache(field)
+    for (const opt of field.options) {
+      cache.set(opt.value, opt)
+    }
+  }
+
+  const [state, setState] = useState<{
+    options: FilterOption<T>[]
+    loading: boolean
+    error: boolean
+  }>(() => ({ options: field.options ?? [], loading: false, error: false }))
+
+  // Debounce the query for async fields to avoid a request per keystroke.
+  const [debouncedQuery, setDebouncedQuery] = useState(searchInput)
+  useEffect(() => {
+    if (!isAsync) return
+    const timer = setTimeout(() => setDebouncedQuery(searchInput), 250)
+    return () => clearTimeout(timer)
+  }, [searchInput, isAsync])
+
+  const requestIdRef = useRef(0)
+  // Keep the latest loader in a ref so an unmemoized `loadOptions` identity does
+  // not cancel and refire the in-flight request on every parent re-render.
+  const loaderRef = useRef(field.loadOptions)
+  loaderRef.current = field.loadOptions
+  useEffect(() => {
+    if (!isAsync || !enabled) return
+    const loader = loaderRef.current
+    if (!loader) return
+
+    const requestId = ++requestIdRef.current
+    let cancelled = false
+    setState((prev) => ({ ...prev, loading: true, error: false }))
+
+    Promise.resolve()
+      .then(() => loader(debouncedQuery))
+      .then((result) => {
+        // Ignore stale responses (out-of-order guard).
+        if (cancelled || requestId !== requestIdRef.current) return
+        const cache = getFieldOptionCache(field)
+        for (const opt of result) cache.set(opt.value, opt)
+        setState({ options: result, loading: false, error: false })
+      })
+      .catch(() => {
+        if (cancelled || requestId !== requestIdRef.current) return
+        setState((prev) => ({ ...prev, loading: false, error: true }))
+      })
+
+    return () => {
+      cancelled = true
+    }
+  }, [isAsync, enabled, debouncedQuery])
+
+  const resolveSelected = useCallback(
+    (values: T[]): FilterOption<T>[] => {
+      const cache = getFieldOptionCache(field)
+      return values.map(
+        (value) => cache.get(value) ?? { value, label: String(value) }
+      )
+    },
+    [field]
+  )
+
+  if (!isAsync) {
+    return {
+      isAsync: false,
+      options: field.options ?? [],
+      loading: false,
+      error: false,
+      resolveSelected,
+    }
+  }
+
+  return {
+    isAsync: true,
+    options: state.options,
+    loading: state.loading,
+    error: state.error,
+    resolveSelected,
+  }
+}
+
 // Helper function to create operators from i18n config
 const createOperatorsFromI18n = (
   i18n: FilterI18nConfig
@@ -595,7 +766,6 @@ const createOperatorsFromI18n = (
   custom: [
     { value: "is", label: i18n.operators.is },
     { value: "after", label: i18n.operators.after },
-    { value: "is", label: i18n.operators.is },
     { value: "between", label: i18n.operators.between },
     { value: "empty", label: i18n.operators.empty },
     { value: "not_empty", label: i18n.operators.notEmpty },
@@ -646,7 +816,10 @@ function FilterOperatorDropdown<T = unknown>({
   onChange,
 }: FilterOperatorDropdownProps<T>) {
   const context = useFilterContext()
-  const operators = getOperatorsForField(field, values, context.i18n)
+  const operators = useMemo(
+    () => getOperatorsForField(field, values, context.i18n),
+    [field, values, context.i18n]
+  )
 
   // Find the operator label, with fallback to formatted operator name
   const operatorLabel =
@@ -743,20 +916,36 @@ function SelectOptionsPopover<T = unknown>({
     }
   }, [highlightedIndex, open, baseId])
 
+  const {
+    isAsync,
+    options: resolvedOptions,
+    loading,
+    error,
+    resolveSelected,
+  } = useFieldOptions(field, searchInput, inline || open)
+
   const isMultiSelect = field.type === "multiselect" || values.length > 1
   const effectiveValues =
     (field.value !== undefined ? (field.value as T[]) : values) || []
 
-  const selectedOptions =
-    field.options?.filter((opt) => effectiveValues.includes(opt.value)) || []
-  const unselectedOptions =
-    field.options?.filter((opt) => !effectiveValues.includes(opt.value)) || []
+  // Static fields read their list verbatim (unchanged legacy behavior). Async
+  // fields resolve selected values from the value->label cache and take the
+  // loader's (already query-filtered) result as the unselected list.
+  const selectedOptions = isAsync
+    ? resolveSelected(effectiveValues)
+    : field.options?.filter((opt) => effectiveValues.includes(opt.value)) || []
+  const unselectedOptions = isAsync
+    ? resolvedOptions.filter((opt) => !effectiveValues.includes(opt.value))
+    : field.options?.filter((opt) => !effectiveValues.includes(opt.value)) || []
 
-  // Filter options based on search input
+  // Filter options based on search input (client-side for static lists; async
+  // loaders have already filtered by the query).
   const filteredSelectedOptions = selectedOptions // Keep all selected visible
-  const filteredUnselectedOptions = unselectedOptions.filter((opt) =>
-    opt.label.toLowerCase().includes(searchInput.toLowerCase())
-  )
+  const filteredUnselectedOptions = isAsync
+    ? unselectedOptions
+    : unselectedOptions.filter((opt) =>
+        opt.label.toLowerCase().includes(searchInput.toLowerCase())
+      )
 
   const allFilteredOptions = useMemo(
     () => [...filteredSelectedOptions, ...filteredUnselectedOptions],
@@ -766,6 +955,62 @@ function SelectOptionsPopover<T = unknown>({
   const handleClose = () => {
     setOpen(false)
     onClose?.()
+  }
+
+  // Toggle a single option, shared by the plain and custom (renderOptionList)
+  // renderers so both behave identically.
+  const toggleOption = (option: FilterOption<T>) => {
+    const isSelected = effectiveValues.includes(option.value)
+    const next = isSelected
+      ? (effectiveValues.filter((v) => v !== option.value) as T[])
+      : isMultiSelect
+        ? ([...effectiveValues, option.value] as T[])
+        : ([option.value] as T[])
+
+    if (
+      !isSelected &&
+      isMultiSelect &&
+      field.maxSelections &&
+      next.length > field.maxSelections
+    ) {
+      return
+    }
+
+    if (field.onValueChange) {
+      field.onValueChange(next)
+    } else {
+      onChange(next)
+    }
+    if (!isMultiSelect) handleClose()
+  }
+
+  const renderOptionItem = (option: FilterOption<T>, overallIndex: number) => {
+    const isSelected = effectiveValues.includes(option.value)
+    const isHighlighted = highlightedIndex === overallIndex
+    const itemId = `${baseId}-item-${overallIndex}`
+
+    return (
+      <DropdownMenuCheckboxItem
+        key={String(option.value)}
+        id={itemId}
+        role="option"
+        aria-selected={isHighlighted}
+        data-highlighted={isHighlighted || undefined}
+        onMouseEnter={() => setHighlightedIndex(overallIndex)}
+        checked={isSelected}
+        className={cn(
+          "data-highlighted:bg-accent data-highlighted:text-accent-foreground",
+          option.className
+        )}
+        onSelect={(e) => {
+          if (isMultiSelect) e.preventDefault()
+        }}
+        onCheckedChange={() => toggleOption(option)}
+      >
+        {option.icon && option.icon}
+        <span className="truncate">{option.label}</span>
+      </DropdownMenuCheckboxItem>
+    )
   }
 
   const renderMenuContent = () => (
@@ -854,115 +1099,55 @@ function SelectOptionsPopover<T = unknown>({
           role="listbox"
           id={`${baseId}-listbox`}
         >
-          <ScrollArea className="size-full min-h-0 **:data-[slot=scroll-area-scrollbar]:m-0 [&_[data-slot=scroll-area-viewport]]:h-full [&_[data-slot=scroll-area-viewport]]:overscroll-contain">
-            {allFilteredOptions.length === 0 && (
-              <div className="text-muted-foreground py-2 text-center text-sm">
-                {context.i18n.noResultsFound}
-              </div>
-            )}
-
-            {/* Selected items */}
-            {filteredSelectedOptions.length > 0 && (
-              <DropdownMenuGroup className="px-1">
-                {filteredSelectedOptions.map((option, index) => {
-                  const isHighlighted = highlightedIndex === index
-                  const itemId = `${baseId}-item-${index}`
-
-                  return (
-                    <DropdownMenuCheckboxItem
-                      key={String(option.value)}
-                      id={itemId}
-                      role="option"
-                      aria-selected={isHighlighted}
-                      data-highlighted={isHighlighted || undefined}
-                      onMouseEnter={() => setHighlightedIndex(index)}
-                      checked={true}
-                      className={cn(
-                        "data-highlighted:bg-accent data-highlighted:text-accent-foreground",
-                        option.className
-                      )}
-                      onSelect={(e) => {
-                        if (isMultiSelect) e.preventDefault()
-                      }}
-                      onCheckedChange={() => {
-                        const next = effectiveValues.filter(
-                          (v) => v !== option.value
-                        ) as T[]
-                        if (field.onValueChange) {
-                          field.onValueChange(next)
-                        } else {
-                          onChange(next)
-                        }
-                        if (!isMultiSelect) handleClose()
-                      }}
-                    >
-                      {option.icon && option.icon}
-                      <span className="truncate">{option.label}</span>
-                    </DropdownMenuCheckboxItem>
-                  )
-                })}
-              </DropdownMenuGroup>
-            )}
-
-            {/* Separator */}
-            {filteredSelectedOptions.length > 0 &&
-              filteredUnselectedOptions.length > 0 && (
-                <DropdownMenuSeparator className="mx-0" />
+          {isAsync && loading && allFilteredOptions.length === 0 ? (
+            <div className="text-muted-foreground py-2 text-center text-sm">
+              {context.i18n.loadingOptions ?? DEFAULT_I18N.loadingOptions}
+            </div>
+          ) : isAsync && error ? (
+            <div className="text-muted-foreground py-2 text-center text-sm">
+              {context.i18n.errorLoadingOptions ??
+                DEFAULT_I18N.errorLoadingOptions}
+            </div>
+          ) : allFilteredOptions.length === 0 ? (
+            <div className="text-muted-foreground py-2 text-center text-sm">
+              {context.i18n.noResultsFound}
+            </div>
+          ) : field.renderOptionList ? (
+            field.renderOptionList({
+              options: allFilteredOptions,
+              highlightedIndex,
+              renderOption: renderOptionItem,
+            })
+          ) : (
+            <ScrollArea className="size-full min-h-0 **:data-[slot=scroll-area-scrollbar]:m-0 [&_[data-slot=scroll-area-viewport]]:h-full [&_[data-slot=scroll-area-viewport]]:overscroll-contain">
+              {/* Selected items */}
+              {filteredSelectedOptions.length > 0 && (
+                <DropdownMenuGroup className="px-1">
+                  {filteredSelectedOptions.map((option, index) =>
+                    renderOptionItem(option, index)
+                  )}
+                </DropdownMenuGroup>
               )}
 
-            {/* Available items */}
-            {filteredUnselectedOptions.length > 0 && (
-              <DropdownMenuGroup className="px-1">
-                {filteredUnselectedOptions.map((option, index) => {
-                  const overallIndex = index + filteredSelectedOptions.length
-                  const isHighlighted = highlightedIndex === overallIndex
-                  const itemId = `${baseId}-item-${overallIndex}`
+              {/* Separator */}
+              {filteredSelectedOptions.length > 0 &&
+                filteredUnselectedOptions.length > 0 && (
+                  <DropdownMenuSeparator className="mx-0" />
+                )}
 
-                  return (
-                    <DropdownMenuCheckboxItem
-                      key={String(option.value)}
-                      id={itemId}
-                      role="option"
-                      aria-selected={isHighlighted}
-                      data-highlighted={isHighlighted || undefined}
-                      onMouseEnter={() => setHighlightedIndex(overallIndex)}
-                      checked={false}
-                      className={cn(
-                        "data-highlighted:bg-accent data-highlighted:text-accent-foreground",
-                        option.className
-                      )}
-                      onSelect={(e) => {
-                        if (isMultiSelect) e.preventDefault()
-                      }}
-                      onCheckedChange={() => {
-                        const next = isMultiSelect
-                          ? ([...effectiveValues, option.value] as T[])
-                          : ([option.value] as T[])
-
-                        if (
-                          isMultiSelect &&
-                          field.maxSelections &&
-                          next.length > field.maxSelections
-                        ) {
-                          return
-                        }
-
-                        if (field.onValueChange) {
-                          field.onValueChange(next)
-                        } else {
-                          onChange(next)
-                        }
-                        if (!isMultiSelect) handleClose()
-                      }}
-                    >
-                      {option.icon && option.icon}
-                      <span className="truncate">{option.label}</span>
-                    </DropdownMenuCheckboxItem>
-                  )
-                })}
-              </DropdownMenuGroup>
-            )}
-          </ScrollArea>
+              {/* Available items */}
+              {filteredUnselectedOptions.length > 0 && (
+                <DropdownMenuGroup className="px-1">
+                  {filteredUnselectedOptions.map((option, index) =>
+                    renderOptionItem(
+                      option,
+                      index + filteredSelectedOptions.length
+                    )
+                  )}
+                </DropdownMenuGroup>
+              )}
+            </ScrollArea>
+          )}
         </div>
       </div>
     </>
@@ -987,7 +1172,10 @@ function SelectOptionsPopover<T = unknown>({
           <Button variant="outline" size={context.size}>
             <div className="flex items-center gap-1.5">
               {field.customValueRenderer ? (
-                field.customValueRenderer(values, field.options || [])
+                field.customValueRenderer(
+                  values,
+                  isAsync ? resolveSelected(values) : field.options || []
+                )
               ) : (
                 <>
                   {selectedOptions.length > 0 && (
@@ -1133,7 +1321,14 @@ export const FiltersContent = <T = unknown,>({
         if (!field) return null
 
         return (
-          <ButtonGroup key={filter.id}>
+          <ButtonGroup
+            key={filter.id}
+            // Sera is an underline style: its group text and input group carry
+            // only a bottom border. Normalise the boxed segments (the operator,
+            // value and remove buttons) to the same treatment so the whole chip
+            // reads as one underlined group instead of mixing boxes and rules.
+            className="style-sera:*:border-transparent style-sera:*:border-b-input style-sera:*:rounded-none"
+          >
             <ButtonGroupText>
               {field.icon && field.icon}
               {field.label}
@@ -1209,6 +1404,14 @@ function FilterSubmenuContent<T = unknown>({
   const inputRef = useRef<HTMLInputElement>(null)
   const baseId = useId()
 
+  const {
+    isAsync,
+    options: resolvedOptions,
+    loading,
+    error,
+    resolveSelected,
+  } = useFieldOptions(field, searchInput, true)
+
   useEffect(() => {
     if (isActive) {
       if (field.searchable !== false) {
@@ -1234,6 +1437,15 @@ function FilterSubmenuContent<T = unknown>({
   }, [highlightedIndex, isActive, baseId])
 
   const filteredOptions = useMemo(() => {
+    // Async fields: keep selected values first (resolved from cache so they
+    // stay labelled), then the loader's already-query-filtered results.
+    if (isAsync) {
+      const selectedSet = new Set(currentValues)
+      return [
+        ...resolveSelected(currentValues),
+        ...resolvedOptions.filter((option) => !selectedSet.has(option.value)),
+      ]
+    }
     return (
       field.options?.filter((option) => {
         const isSelected = currentValues.includes(option.value)
@@ -1242,7 +1454,43 @@ function FilterSubmenuContent<T = unknown>({
         return option.label.toLowerCase().includes(searchInput.toLowerCase())
       }) || []
     )
-  }, [field.options, searchInput, currentValues])
+  }, [
+    isAsync,
+    resolvedOptions,
+    resolveSelected,
+    field.options,
+    searchInput,
+    currentValues,
+  ])
+
+  const renderOptionItem = (option: FilterOption<T>, index: number) => {
+    const isSelected = currentValues.includes(option.value)
+    const isHighlighted = highlightedIndex === index
+    const itemId = `${baseId}-item-${index}`
+
+    return (
+      <DropdownMenuCheckboxItem
+        key={String(option.value)}
+        id={itemId}
+        role="option"
+        aria-selected={isHighlighted}
+        data-highlighted={isHighlighted || undefined}
+        onMouseEnter={() => setHighlightedIndex(index)}
+        checked={isSelected}
+        className={cn(
+          "data-highlighted:bg-accent data-highlighted:text-accent-foreground",
+          option.className
+        )}
+        onSelect={(e) => {
+          if (isMultiSelect) e.preventDefault()
+        }}
+        onCheckedChange={() => onToggle(option.value as T, isSelected)}
+      >
+        {option.icon && option.icon}
+        <span className="truncate">{option.label}</span>
+      </DropdownMenuCheckboxItem>
+    )
+  }
 
   useEffect(() => {
     if (isActive && filteredOptions.length > 0) {
@@ -1366,46 +1614,33 @@ function FilterSubmenuContent<T = unknown>({
             }
           }}
         >
-          <ScrollArea className="size-full min-h-0 **:data-[slot=scroll-area-scrollbar]:m-0 [&_[data-slot=scroll-area-viewport]]:h-full [&_[data-slot=scroll-area-viewport]]:overscroll-contain">
-            {filteredOptions.length === 0 ? (
-              <div className="text-muted-foreground py-2 text-center text-sm">
-                {i18n.noResultsFound}
-              </div>
-            ) : (
+          {isAsync && loading && filteredOptions.length === 0 ? (
+            <div className="text-muted-foreground py-2 text-center text-sm">
+              {i18n.loadingOptions ?? DEFAULT_I18N.loadingOptions}
+            </div>
+          ) : isAsync && error ? (
+            <div className="text-muted-foreground py-2 text-center text-sm">
+              {i18n.errorLoadingOptions ?? DEFAULT_I18N.errorLoadingOptions}
+            </div>
+          ) : filteredOptions.length === 0 ? (
+            <div className="text-muted-foreground py-2 text-center text-sm">
+              {i18n.noResultsFound}
+            </div>
+          ) : field.renderOptionList ? (
+            field.renderOptionList({
+              options: filteredOptions,
+              highlightedIndex,
+              renderOption: renderOptionItem,
+            })
+          ) : (
+            <ScrollArea className="size-full min-h-0 **:data-[slot=scroll-area-scrollbar]:m-0 [&_[data-slot=scroll-area-viewport]]:h-full [&_[data-slot=scroll-area-viewport]]:overscroll-contain">
               <DropdownMenuGroup>
-                {filteredOptions.map((option, index) => {
-                  const isSelected = currentValues.includes(option.value)
-                  const isHighlighted = highlightedIndex === index
-                  const itemId = `${baseId}-item-${index}`
-
-                  return (
-                    <DropdownMenuCheckboxItem
-                      key={String(option.value)}
-                      id={itemId}
-                      role="option"
-                      aria-selected={isHighlighted}
-                      data-highlighted={isHighlighted || undefined}
-                      onMouseEnter={() => setHighlightedIndex(index)}
-                      checked={isSelected}
-                      className={cn(
-                        "data-highlighted:bg-accent data-highlighted:text-accent-foreground",
-                        option.className
-                      )}
-                      onSelect={(e) => {
-                        if (isMultiSelect) e.preventDefault()
-                      }}
-                      onCheckedChange={() =>
-                        onToggle(option.value as T, isSelected)
-                      }
-                    >
-                      {option.icon && option.icon}
-                      <span className="truncate">{option.label}</span>
-                    </DropdownMenuCheckboxItem>
-                  )
-                })}
+                {filteredOptions.map((option, index) =>
+                  renderOptionItem(option, index)
+                )}
               </DropdownMenuGroup>
-            )}
-          </ScrollArea>
+            </ScrollArea>
+          )}
         </div>
       </div>
     </div>
@@ -1501,13 +1736,16 @@ export function Filters<T = unknown>({
     }
   }, [lastAddedFilterId])
 
-  const mergedI18n: FilterI18nConfig = {
-    ...DEFAULT_I18N,
-    ...i18n,
-    operators: { ...DEFAULT_I18N.operators, ...i18n?.operators },
-    placeholders: { ...DEFAULT_I18N.placeholders, ...i18n?.placeholders },
-    validation: { ...DEFAULT_I18N.validation, ...i18n?.validation },
-  }
+  const mergedI18n: FilterI18nConfig = useMemo(
+    () => ({
+      ...DEFAULT_I18N,
+      ...i18n,
+      operators: { ...DEFAULT_I18N.operators, ...i18n?.operators },
+      placeholders: { ...DEFAULT_I18N.placeholders, ...i18n?.placeholders },
+      validation: { ...DEFAULT_I18N.validation, ...i18n?.validation },
+    }),
+    [i18n]
+  )
 
   const fieldsMap = useMemo(() => getFieldsMap(fields), [fields])
 
@@ -1561,12 +1799,6 @@ export function Filters<T = unknown>({
     [fieldsMap, filters, onChange]
   )
 
-  useEffect(() => {
-    if (addFilterOpen && activeMenu === "root") {
-      rootInputRef.current?.focus()
-    }
-  }, [addFilterOpen, activeMenu])
-
   const selectableFields = useMemo(() => {
     const flatFields = flattenFields(fields)
     return flatFields.filter((field) => {
@@ -1591,22 +1823,36 @@ export function Filters<T = unknown>({
   }, [addFilterOpen, filteredFields.length])
 
   const triggerButton = useRender({
-    render: trigger as React.ReactElement,
+    render: (trigger as React.ReactElement) ?? (
+      <Button variant="outline">
+        <IconPlaceholder
+          lucide="PlusIcon"
+          tabler="IconPlus"
+          hugeicons="Plus01Icon"
+          phosphor="PlusIcon"
+          remixicon="RiAddLine"
+        />
+        {mergedI18n.addFilter}
+      </Button>
+    ),
     defaultTagName: "button",
   })
 
+  const contextValue = useMemo<FilterContextValue>(
+    () => ({
+      variant,
+      size,
+      radius,
+      i18n: mergedI18n,
+      className,
+      trigger,
+      allowMultiple,
+    }),
+    [variant, size, radius, mergedI18n, className, trigger, allowMultiple]
+  )
+
   return (
-    <FilterContext.Provider
-      value={{
-        variant,
-        size,
-        radius,
-        i18n: mergedI18n,
-        className,
-        trigger,
-        allowMultiple,
-      }}
-    >
+    <FilterContext.Provider value={contextValue}>
       <div
         className={cn(filtersContainerVariants({ variant, size }), className)}
       >
@@ -1678,7 +1924,7 @@ export function Filters<T = unknown>({
                             field &&
                             (field.type === "select" ||
                               field.type === "multiselect") &&
-                            field.options?.length
+                            fieldHasOptions(field)
 
                           if (e.key === "ArrowRight" && hasSubMenu) {
                             e.preventDefault()
@@ -1698,7 +1944,7 @@ export function Filters<T = unknown>({
                             const hasSubMenu =
                               (field.type === "select" ||
                                 field.type === "multiselect") &&
-                              field.options?.length
+                              fieldHasOptions(field)
                             if (!hasSubMenu) {
                               addFilter(field.key)
                             } else {
@@ -1750,7 +1996,7 @@ export function Filters<T = unknown>({
                         const hasSubMenu =
                           (field.type === "select" ||
                             field.type === "multiselect") &&
-                          field.options?.length
+                          fieldHasOptions(field)
 
                         if (hasSubMenu) {
                           const isMultiSelect = field.type === "multiselect"
@@ -1895,7 +2141,14 @@ export function Filters<T = unknown>({
           const field = fieldsMap[filter.field]
           if (!field) return null
           return (
-            <ButtonGroup key={filter.id}>
+            <ButtonGroup
+              key={filter.id}
+              // Sera is an underline style: its group text and input group carry
+              // only a bottom border. Normalise the boxed segments (operator,
+              // value, remove) to the same treatment so the whole chip reads as
+              // one underlined group instead of mixing boxes and rules.
+              className="style-sera:*:border-transparent style-sera:*:border-b-input style-sera:*:rounded-none"
+            >
               <ButtonGroupText className="bg-background dark:bg-input/30">
                 {field.icon && field.icon}
                 {field.label}

@@ -1,4 +1,5 @@
 "use client"
+"use no memo"
 
 import { useMemo, useState } from "react"
 import { Badge } from "@/registry-reui/bases/base/reui/badge"
@@ -416,7 +417,7 @@ export default function Pattern() {
       tableLayout={{ headerBackground: false }}
     >
       <div className="w-full space-y-2.5">
-        <DataGridContainer border={false}>
+        <DataGridContainer>
           <DataGridScrollArea>
             <DataGridTable />
           </DataGridScrollArea>

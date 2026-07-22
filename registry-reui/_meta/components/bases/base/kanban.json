@@ -136,6 +136,35 @@
         "order": 5,
         "gridSize": 1
       }
+    },
+    {
+      "name": "c-kanban-6",
+      "type": "registry:block",
+      "title": "Kanban board persisted to a backend",
+      "categories": [
+        "kanban"
+      ],
+      "description": "Persist moves with onValueCommit, optimistic updates, and Sonner rollback",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "card",
+        "kanban"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/kanban/c-kanban-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-kanban-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6,
+        "gridSize": 1
+      }
     }
   ]
 }
