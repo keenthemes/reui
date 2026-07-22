@@ -28,7 +28,7 @@ export default function Pattern() {
       <StepperNav>
         {steps.map((step) => (
           <StepperItem key={step} step={step}>
-            <StepperTrigger asChild>
+            <StepperTrigger>
               <StepperIndicator className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=completed]:bg-green-500 data-[state=completed]:text-white data-[state=inactive]:text-gray-500">
                 {step}
               </StepperIndicator>

@@ -1,4 +1,5 @@
 "use client"
+"use no memo"
 
 import { useMemo, useState } from "react"
 import { Badge } from "@/registry-reui/bases/base/reui/badge"
@@ -375,7 +376,6 @@ export default function Pattern() {
       sorting,
       columnOrder,
     },
-    columnResizeMode: "onChange",
     onPaginationChange: setPagination,
     onSortingChange: setSorting,
     onColumnOrderChange: setColumnOrder,

@@ -1,4 +1,5 @@
 "use client"
+"use no memo"
 
 import {
   CSSProperties,
@@ -6,6 +7,7 @@ import {
   ReactNode,
   useCallback,
   useEffect,
+  useRef,
   useState,
 } from "react"
 import { useDataGrid } from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
@@ -23,6 +25,7 @@ import {
   DataGridTableRenderedRow,
   DataGridTableRowSpacer,
   DataGridTableViewport,
+  getDataGridScrollAreaViewport,
   getDataGridTableMergedHeaderGroups,
   getDataGridTableRowSections,
   getPinningStyles,
@@ -236,9 +239,25 @@ function DataGridTableVirtualBody<TData>({
   allRowsLoadedMessage,
   measureRowRef,
 }: VirtualBodyProps<TData>) {
+  const { isLoading } = useDataGrid()
   const totalRows = topRows.length + centerRows.length + bottomRows.length
 
-  if (!totalRows) return <DataGridTableEmpty />
+  if (!totalRows) {
+    // Initial load must not flash the empty state as if the query returned
+    // nothing.
+    if (isLoading) {
+      return (
+        <DataGridTableVirtualStatusRow table={table}>
+          <div className="flex items-center justify-center gap-2">
+            <Spinner className="size-4 opacity-60" />
+            {loadingMoreMessage}
+          </div>
+        </DataGridTableVirtualStatusRow>
+      )
+    }
+
+    return <DataGridTableEmpty />
+  }
 
   const hasCenterRows = centerRows.length > 0
   const showFetchingRow = isInfiniteMode && isFetchingMore
@@ -291,6 +310,7 @@ function DataGridTableVirtualBody<TData>({
           key={row.id}
           row={row}
           rowRef={measureRowRef}
+          rowIndex={virtualRow.index}
         />
       )
     })
@@ -404,10 +424,9 @@ function DataGridTableVirtual<TData>({
   const handleViewportRef = useCallback((node: HTMLDivElement | null) => {
     setViewportElements({
       containerElement: node,
-      scrollElement:
-        (node?.closest(
-          '[data-slot="scroll-area-viewport"]'
-        ) as HTMLElement | null) ?? node,
+      scrollElement: node
+        ? (getDataGridScrollAreaViewport(node) ?? node)
+        : null,
     })
   }, [])
 
@@ -464,6 +483,11 @@ function DataGridTableVirtual<TData>({
       ? virtualizer.measureElement
       : undefined
   const resolvedFetchMoreOffset = Math.max(0, fetchMoreOffset)
+  // Latch onFetchMore per row count: virtualItems gets a new identity every
+  // scroll frame, so without it the effect fires duplicate page requests
+  // before the consumer flips isFetchingMore, and loops at end-of-data when
+  // hasMore is never set.
+  const fetchMoreFiredAtCountRef = useRef<number | null>(null)
 
   useEffect(() => {
     if (
@@ -478,7 +502,10 @@ function DataGridTableVirtual<TData>({
     const lastItem = virtualItems[virtualItems.length - 1]
     if (!lastItem) return
 
+    if (fetchMoreFiredAtCountRef.current === centerRows.length) return
+
     if (lastItem.index >= centerRows.length - 1 - resolvedFetchMoreOffset) {
+      fetchMoreFiredAtCountRef.current = centerRows.length
       onFetchMore?.()
     }
   }, [
@@ -499,7 +526,15 @@ function DataGridTableVirtual<TData>({
       style={
         usesExternalScrollArea
           ? undefined
-          : { height, overflow: "auto", position: "relative" }
+          : {
+              height,
+              overflow: "auto",
+              position: "relative",
+              // Standalone mode: this node IS the scroll container, so it
+              // must stay at its parent's width (not the resizable table
+              // width) or horizontal scrolling becomes impossible.
+              width: "auto",
+            }
       }
     >
       <DataGridTableBase>

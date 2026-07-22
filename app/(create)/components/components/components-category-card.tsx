@@ -23,6 +23,18 @@ export function ComponentsCategoryCard({
   const searchParams = useSearchParams()
   const [loaded, setLoaded] = React.useState(false)
 
+  // Resolve the loading state from the <img> element itself on mount. The
+  // `load` event can fire before React attaches onLoad - a cached or
+  // synchronously-decoded screenshot completes during hydration - which
+  // otherwise leaves the spinner running on top of a fully-loaded thumbnail.
+  // Reading `complete`/`naturalWidth` catches that race.
+  const resolveFromElement = React.useCallback(
+    (img: HTMLImageElement | null) => {
+      if (img?.complete && img.naturalWidth > 0) setLoaded(true)
+    },
+    []
+  )
+
   // Build href with preserved design system params
   const href = React.useMemo(() => {
     const nextParams = new URLSearchParams(searchParams.toString())
@@ -51,6 +63,7 @@ export function ComponentsCategoryCard({
           </div>
         ) : null}
         <Image
+          ref={resolveFromElement}
           src={`/screenshots/components/${slug}-light.png`}
           alt={slug}
           width={600}
@@ -58,10 +71,14 @@ export function ComponentsCategoryCard({
           className="w-full object-cover transition-all duration-300 dark:hidden"
           onLoad={() => setLoaded(true)}
           onError={(e) => {
+            // Clear the spinner too: a category with no screenshot yet would
+            // otherwise spin forever behind the fallback image.
+            setLoaded(true)
             e.currentTarget.src = "/screenshots/components/default-light.png"
           }}
         />
         <Image
+          ref={resolveFromElement}
           src={`/screenshots/components/${slug}-dark.png`}
           alt={slug}
           width={600}
@@ -69,6 +86,7 @@ export function ComponentsCategoryCard({
           className="hidden w-full object-cover transition-all duration-300 dark:block"
           onLoad={() => setLoaded(true)}
           onError={(e) => {
+            setLoaded(true)
             e.currentTarget.src = "/screenshots/components/default-dark.png"
           }}
         />

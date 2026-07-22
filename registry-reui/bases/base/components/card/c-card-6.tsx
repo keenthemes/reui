@@ -24,18 +24,20 @@ export default function Pattern() {
       <CardHeader className="flex items-center justify-between">
         <CardTitle>Need a help in Claim?</CardTitle>
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon">
-              <IconPlaceholder
-                lucide="MoreHorizontalIcon"
-                tabler="IconDots"
-                hugeicons="MoreHorizontalCircle01Icon"
-                phosphor="DotsThreeIcon"
-                remixicon="RiMoreLine"
-                aria-hidden="true"
-              />
-            </Button>
-          </DropdownMenuTrigger>
+          <DropdownMenuTrigger
+            render={
+              <Button variant="ghost" size="icon">
+                <IconPlaceholder
+                  lucide="MoreHorizontalIcon"
+                  tabler="IconDots"
+                  hugeicons="MoreHorizontalCircle01Icon"
+                  phosphor="DotsThreeIcon"
+                  remixicon="RiMoreLine"
+                  aria-hidden="true"
+                />
+              </Button>
+            }
+          />
           <DropdownMenuContent align="end" className="w-48">
             <DropdownMenuGroup>
               <DropdownMenuLabel>Team Settings</DropdownMenuLabel>

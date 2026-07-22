@@ -41,10 +41,8 @@ export default function BaseProgressStatus() {
   return (
     <div className="w-full max-w-xs space-y-2">
       <div className="flex items-center justify-between">
-        <span className="cn-progress-label text-sm font-medium">
-          Workspace Setup
-        </span>
-        <span className="cn-progress-value text-muted-foreground text-sm">
+        <span className="text-sm font-medium">Workspace Setup</span>
+        <span className="text-muted-foreground text-sm">
           {Math.min(Math.round(downloadProgress), 100)}%
         </span>
       </div>

@@ -14,9 +14,7 @@ export default function Pattern() {
   return (
     <div className="flex flex-wrap items-center justify-center gap-2">
       <Drawer>
-        <DrawerTrigger asChild>
-          <Button variant="outline">Bottom Drawer</Button>
-        </DrawerTrigger>
+        <DrawerTrigger render={<Button variant="outline">Bottom Drawer</Button>} />
         <DrawerContent className="data-[vaul-drawer-direction=bottom]:max-h-[50vh]">
           <DrawerHeader>
             <DrawerTitle>Move Goal</DrawerTitle>
@@ -40,9 +38,7 @@ export default function Pattern() {
           </div>
           <DrawerFooter>
             <Button>Submit</Button>
-            <DrawerClose asChild>
-              <Button variant="outline">Cancel</Button>
-            </DrawerClose>
+            <DrawerClose render={<Button variant="outline">Cancel</Button>} />
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

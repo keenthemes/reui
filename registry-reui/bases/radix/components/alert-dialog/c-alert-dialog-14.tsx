@@ -71,7 +71,7 @@ export default function Pattern() {
       <AlertDialogContent className="max-w-sm! gap-0 overflow-hidden p-0">
         {/* Header */}
         <div className="flex flex-col items-center justify-center gap-1.5 px-4 pt-6 pb-5 text-center">
-          <AlertDialogMedia className="rounded-full size-12 bg-green-50 text-green-500 dark:bg-green-950 dark:text-green-400">
+          <AlertDialogMedia className="size-12 rounded-full bg-green-50 text-green-500 dark:bg-green-950 dark:text-green-400">
             <IconPlaceholder
               lucide="ShieldAlertIcon"
               tabler="IconShieldExclamation"
@@ -94,10 +94,10 @@ export default function Pattern() {
           {SECURITY_ITEMS.map((item) => (
             <div
               key={item.title}
-              className="border-border rounded-md flex items-center justify-between border border-dashed px-3 py-2.5"
+              className="border-border flex items-center justify-between rounded-md border border-dashed px-3 py-2.5"
             >
               <div className="flex items-center gap-2.5">
-                <div className="bg-background border-border/80 rounded-md flex size-8 items-center justify-center border shadow-xs">
+                <div className="bg-background border-border/80 flex size-8 items-center justify-center rounded-md border shadow-xs">
                   {item.icon}
                 </div>
                 <div className="flex flex-col gap-0.25">
@@ -119,7 +119,12 @@ export default function Pattern() {
         </div>
 
         {/* Footer */}
-        <AlertDialogFooter className="grid grid-cols-1 gap-2 p-4">
+        {/* The content is `p-0`, so there is no padding to escape: the footer's
+            built-in `-mx-4 -mb-4` pushed the bar OUTSIDE the dialog, where
+            `overflow-hidden` clipped it - which is why it looked like it had no
+            padding. Cancelling the breakout puts it flush edge-to-edge with its
+            own `p-4` intact. */}
+        <AlertDialogFooter className="mx-0 mb-0 grid grid-cols-1 gap-2 p-4">
           <AlertDialogAction variant="default" className="flex-1">
             Start Deep Audit
           </AlertDialogAction>

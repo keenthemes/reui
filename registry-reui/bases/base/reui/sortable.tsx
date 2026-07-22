@@ -21,6 +21,7 @@ import { useRender } from "@base-ui/react/use-render"
 import {
   defaultDropAnimationSideEffects,
   DndContext,
+  DragCancelEvent,
   DragEndEvent,
   DragOverlay,
   DragStartEvent,
@@ -84,7 +85,30 @@ const dropAnimationConfig: DropAnimation = {
   }),
 }
 
+const MOUSE_SENSOR_OPTIONS = { activationConstraint: { distance: 10 } }
+const TOUCH_SENSOR_OPTIONS = {
+  activationConstraint: { delay: 250, tolerance: 5 },
+}
+const KEYBOARD_SENSOR_OPTIONS = {
+  coordinateGetter: sortableKeyboardCoordinates,
+}
+const MEASURING_CONFIG = {
+  droppable: { strategy: MeasuringStrategy.Always },
+}
+const STRATEGY_MAP = {
+  horizontal: rectSortingStrategy,
+  grid: rectSortingStrategy,
+  vertical: verticalListSortingStrategy,
+} as const
+
 // Multipurpose Sortable Component
+export interface SortableCommitMeta<T> {
+  event: DragEndEvent
+  activeIndex: number
+  overIndex: number
+  previousValue: T[]
+}
+
 export interface SortableRootProps<T> extends Omit<
   useRender.ComponentProps<"div">,
   "onDragStart" | "onDragEnd" | "children"
@@ -98,9 +122,12 @@ export interface SortableRootProps<T> extends Omit<
     activeIndex: number
     overIndex: number
   }) => void
+  onValueCommit?: (value: T[], meta: SortableCommitMeta<T>) => void
   strategy?: "horizontal" | "vertical" | "grid"
   onDragStart?: (event: DragStartEvent) => void
   onDragEnd?: (event: DragEndEvent) => void
+  onDragCancel?: (event: DragCancelEvent) => void
+  accessibility?: React.ComponentProps<typeof DndContext>["accessibility"]
   modifiers?: Modifiers
 }
 
@@ -111,9 +138,12 @@ function Sortable<T>({
   className,
   render,
   onMove,
+  onValueCommit,
   strategy = "vertical",
   onDragStart,
   onDragEnd,
+  onDragCancel,
+  accessibility,
   modifiers,
   children,
   ...props
@@ -124,20 +154,9 @@ function Sortable<T>({
   useLayoutEffect(() => setMounted(true), [])
 
   const sensors = useSensors(
-    useSensor(MouseSensor, {
-      activationConstraint: {
-        distance: 10,
-      },
-    }),
-    useSensor(TouchSensor, {
-      activationConstraint: {
-        delay: 250,
-        tolerance: 5,
-      },
-    }),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    })
+    useSensor(MouseSensor, MOUSE_SENSOR_OPTIONS),
+    useSensor(TouchSensor, TOUCH_SENSOR_OPTIONS),
+    useSensor(KeyboardSensor, KEYBOARD_SENSOR_OPTIONS)
   )
 
   const handleDragStart = useCallback(
@@ -164,35 +183,50 @@ function Sortable<T>({
         (item: T) => getItemValue(item) === over.id
       )
 
+      if (activeIndex === -1 || overIndex === -1) return
+
       if (activeIndex !== overIndex) {
         if (onMove) {
           onMove({ event, activeIndex, overIndex })
         } else {
           const newValue = arrayMove(value, activeIndex, overIndex)
           onValueChange(newValue)
+          onValueCommit?.(newValue, {
+            event,
+            activeIndex,
+            overIndex,
+            previousValue: value,
+          })
         }
       }
     },
-    [value, getItemValue, onValueChange, onMove, onDragEnd]
+    [value, getItemValue, onValueChange, onMove, onDragEnd, onValueCommit]
   )
 
-  const handleDragCancel = useCallback(() => {
-    setActiveId(null)
-  }, [])
+  const handleDragCancel = useCallback(
+    (event: DragCancelEvent) => {
+      setActiveId(null)
+      onDragCancel?.(event)
+    },
+    [onDragCancel]
+  )
 
-  const getStrategy = () => {
-    switch (strategy) {
-      case "horizontal":
-        return rectSortingStrategy
-      case "grid":
-        return rectSortingStrategy
-      case "vertical":
-      default:
-        return verticalListSortingStrategy
+  const itemIds = useMemo(() => {
+    const ids = value.map(getItemValue)
+    if (process.env.NODE_ENV !== "production") {
+      const seen = new Set<string>()
+      for (const id of ids) {
+        if (seen.has(id)) {
+          console.warn(
+            `[Sortable] Duplicate item id "${id}". Item ids must be unique, or drag and drop will misbehave.`
+          )
+          break
+        }
+        seen.add(id)
+      }
     }
-  }
-
-  const itemIds = useMemo(() => value.map(getItemValue), [value, getItemValue])
+    return ids
+  }, [value, getItemValue])
 
   const contextValue = useMemo(
     () => ({ activeId, modifiers }),
@@ -226,16 +260,16 @@ function Sortable<T>({
       <DndContext
         sensors={sensors}
         modifiers={modifiers}
-        measuring={{
-          droppable: {
-            strategy: MeasuringStrategy.Always,
-          },
-        }}
+        accessibility={accessibility}
+        measuring={MEASURING_CONFIG}
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
         onDragCancel={handleDragCancel}
       >
-        <SortableContext items={itemIds} strategy={getStrategy()}>
+        <SortableContext
+          items={itemIds}
+          strategy={STRATEGY_MAP[strategy] ?? verticalListSortingStrategy}
+        >
           {useRender({
             defaultTagName: "div",
             render,

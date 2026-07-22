@@ -1,0 +1,172 @@
+{
+  "items": [
+    {
+      "name": "c-event-calendar-1",
+      "type": "registry:block",
+      "title": "Event calendar with all views and live settings",
+      "categories": [
+        "event-calendar"
+      ],
+      "description": "Event calendar with all views and live settings",
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "card",
+        "event-calendar",
+        "event-calendar-content",
+        "event-calendar-i18n",
+        "event-calendar-nav",
+        "event-calendar-types",
+        "label",
+        "popover",
+        "select",
+        "switch",
+        "tabs"
+      ],
+      "dependencies": [
+        "date-fns"
+      ],
+      "files": [
+        {
+          "path": "components/event-calendar/c-event-calendar-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-event-calendar-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-event-calendar-2",
+      "type": "registry:block",
+      "title": "Event calendar with resource view for room bookings",
+      "categories": [
+        "event-calendar"
+      ],
+      "description": "Event calendar with resource view for room bookings",
+      "registryDependencies": [
+        "button",
+        "card",
+        "event-calendar",
+        "event-calendar-content",
+        "event-calendar-nav",
+        "event-calendar-types"
+      ],
+      "dependencies": [
+        "date-fns"
+      ],
+      "files": [
+        {
+          "path": "components/event-calendar/c-event-calendar-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-event-calendar-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-event-calendar-3",
+      "type": "registry:block",
+      "title": "Event calendar with create and edit dialog",
+      "categories": [
+        "event-calendar"
+      ],
+      "description": "Event calendar with create and edit dialog",
+      "registryDependencies": [
+        "button",
+        "card",
+        "dialog",
+        "event-calendar",
+        "event-calendar-content",
+        "event-calendar-nav",
+        "event-calendar-types",
+        "field",
+        "input",
+        "select",
+        "switch"
+      ],
+      "dependencies": [
+        "date-fns"
+      ],
+      "files": [
+        {
+          "path": "components/event-calendar/c-event-calendar-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-event-calendar-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-event-calendar-4",
+      "type": "registry:block",
+      "title": "Event calendar with custom event chips",
+      "categories": [
+        "event-calendar"
+      ],
+      "description": "Event calendar with custom event chips",
+      "registryDependencies": [
+        "button",
+        "card",
+        "event-calendar",
+        "event-calendar-content",
+        "event-calendar-nav",
+        "event-calendar-types"
+      ],
+      "dependencies": [
+        "date-fns"
+      ],
+      "files": [
+        {
+          "path": "components/event-calendar/c-event-calendar-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-event-calendar-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-event-calendar-5",
+      "type": "registry:block",
+      "title": "Event calendar with drag-to-book appointments",
+      "categories": [
+        "event-calendar"
+      ],
+      "description": "Event calendar with drag-to-book appointments",
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "card",
+        "event-calendar",
+        "event-calendar-content",
+        "event-calendar-nav",
+        "event-calendar-types"
+      ],
+      "dependencies": [
+        "date-fns"
+      ],
+      "files": [
+        {
+          "path": "components/event-calendar/c-event-calendar-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-event-calendar-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5,
+        "gridSize": 1
+      }
+    }
+  ]
+}

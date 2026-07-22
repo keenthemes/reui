@@ -1,4 +1,5 @@
 "use client"
+"use no memo"
 
 import { useMemo, useState } from "react"
 import { Badge } from "@/registry-reui/bases/base/reui/badge"
@@ -1823,8 +1824,8 @@ export default function Pattern() {
   const [expandedRows, setExpandedRows] = useState<ExpandedState>({})
   const [columnOrder, setColumnOrder] = useState<string[]>([
     "expand",
-    "orderNumber",
     "customer",
+    "items",
     "total",
     "status",
   ])
@@ -1995,7 +1996,6 @@ export default function Pattern() {
       expanded: expandedRows,
       columnOrder,
     },
-    columnResizeMode: "onChange",
     onPaginationChange: setPagination,
     onSortingChange: setSorting,
     onExpandedChange: setExpandedRows,

@@ -1,4 +1,5 @@
 "use client"
+"use no memo"
 
 import { useMemo, useState } from "react"
 import { useCopyToClipboard } from "@/registry-reui/bases/base/hooks/use-copy-to-clipboard"
@@ -357,7 +358,6 @@ export default function Pattern() {
     enableRowPinning: true,
     keepPinnedRows: true,
     state: { pagination, sorting, rowPinning },
-    columnResizeMode: "onChange",
     onPaginationChange: setPagination,
     onSortingChange: setSorting,
     onRowPinningChange: setRowPinning,

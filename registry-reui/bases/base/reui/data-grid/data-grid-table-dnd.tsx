@@ -1,8 +1,10 @@
 "use client"
+"use no memo"
 
 import {
   CSSProperties,
   Fragment,
+  memo,
   ReactNode,
   useEffect,
   useId,
@@ -20,6 +22,8 @@ import {
   DataGridTableBodyRowSkeleton,
   DataGridTableBodyRowSkeletonCell,
   DataGridTableEmpty,
+  DataGridTableFillBodyCell,
+  DataGridTableFillHeadCell,
   DataGridTableFoot,
   DataGridTableHead,
   DataGridTableHeadRow,
@@ -42,6 +46,7 @@ import {
 import {
   horizontalListSortingStrategy,
   SortableContext,
+  sortableKeyboardCoordinates,
   useSortable,
 } from "@dnd-kit/sortable"
 import { CSS } from "@dnd-kit/utilities"
@@ -51,6 +56,7 @@ import {
   Header,
   HeaderGroup,
   Row,
+  Table,
 } from "@tanstack/react-table"
 
 import { Button } from "@/registry/bases/base/ui/button"
@@ -158,6 +164,68 @@ function DataGridTableDndCell<TData>({ cell }: { cell: Cell<TData, unknown> }) {
   )
 }
 
+function DataGridTableDndBodyRows<TData>({ table }: { table: Table<TData> }) {
+  const { isLoading, props } = useDataGrid()
+  const pagination = table.getState().pagination
+
+  if (props.loadingMode === "skeleton" && isLoading && pagination?.pageSize) {
+    return (
+      <>
+        {Array.from({ length: pagination.pageSize }).map((_, rowIndex) => (
+          <DataGridTableBodyRowSkeleton key={rowIndex}>
+            {table.getVisibleFlatColumns().map((column, colIndex) => {
+              return (
+                <DataGridTableBodyRowSkeletonCell
+                  column={column}
+                  key={colIndex}
+                >
+                  {column.columnDef.meta?.skeleton}
+                </DataGridTableBodyRowSkeletonCell>
+              )
+            })}
+            <DataGridTableFillBodyCell />
+          </DataGridTableBodyRowSkeleton>
+        ))}
+      </>
+    )
+  }
+
+  if (!table.getRowModel().rows.length) return <DataGridTableEmpty />
+
+  return (
+    <>
+      {table.getRowModel().rows.map((row: Row<TData>) => {
+        return (
+          <Fragment key={row.id}>
+            <DataGridTableBodyRow row={row}>
+              <SortableContext
+                items={table.getState().columnOrder}
+                strategy={horizontalListSortingStrategy}
+              >
+                {row.getVisibleCells().map((cell: Cell<TData, unknown>) => (
+                  <DataGridTableDndCell cell={cell} key={cell.id} />
+                ))}
+              </SortableContext>
+              <DataGridTableFillBodyCell />
+            </DataGridTableBodyRow>
+            {row.getIsExpanded() && <DataGridTableBodyRowExpandded row={row} />}
+          </Fragment>
+        )
+      })}
+    </>
+  )
+}
+
+/**
+ * Memoized body rows: skip re-renders during active column resize.
+ * Column widths update via CSS variables on the <table> element,
+ * so the browser handles width changes without React re-renders.
+ */
+const MemoizedDataGridTableDndBodyRows = memo(
+  DataGridTableDndBodyRows,
+  (_prev, next) => !!next.table.getState().columnSizingInfo.isResizingColumn
+) as typeof DataGridTableDndBodyRows
+
 function DataGridTableDnd<TData>({
   handleDragEnd,
   footerContent,
@@ -165,15 +233,18 @@ function DataGridTableDnd<TData>({
   handleDragEnd: (event: DragEndEvent) => void
   footerContent?: ReactNode
 }) {
-  const { table, isLoading, props } = useDataGrid()
-  const pagination = table.getState().pagination
+  const { table, props } = useDataGrid()
   const containerRef = useRef<HTMLDivElement>(null)
   const [isDraggingColumn, setIsDraggingColumn] = useState(false)
 
   const sensors = useSensors(
     useSensor(MouseSensor, {}),
     useSensor(TouchSensor, {}),
-    useSensor(KeyboardSensor, {})
+    // Keyboard reordering moves one sortable position per keypress instead
+    // of the sensor's raw 25px default.
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
   )
 
   useEffect(() => {
@@ -261,6 +332,7 @@ function DataGridTableDnd<TData>({
                         />
                       ))}
                     </SortableContext>
+                    <DataGridTableFillHeadCell />
                   </DataGridTableHeadRow>
                 )
               })}
@@ -271,48 +343,7 @@ function DataGridTableDnd<TData>({
           )}
 
           <DataGridTableBody>
-            {props.loadingMode === "skeleton" &&
-            isLoading &&
-            pagination?.pageSize ? (
-              Array.from({ length: pagination.pageSize }).map((_, rowIndex) => (
-                <DataGridTableBodyRowSkeleton key={rowIndex}>
-                  {table.getVisibleFlatColumns().map((column, colIndex) => {
-                    return (
-                      <DataGridTableBodyRowSkeletonCell
-                        column={column}
-                        key={colIndex}
-                      >
-                        {column.columnDef.meta?.skeleton}
-                      </DataGridTableBodyRowSkeletonCell>
-                    )
-                  })}
-                </DataGridTableBodyRowSkeleton>
-              ))
-            ) : table.getRowModel().rows.length ? (
-              table.getRowModel().rows.map((row: Row<TData>) => {
-                return (
-                  <Fragment key={row.id}>
-                    <DataGridTableBodyRow row={row}>
-                      <SortableContext
-                        items={table.getState().columnOrder}
-                        strategy={horizontalListSortingStrategy}
-                      >
-                        {row
-                          .getVisibleCells()
-                          .map((cell: Cell<TData, unknown>) => (
-                            <DataGridTableDndCell cell={cell} key={cell.id} />
-                          ))}
-                      </SortableContext>
-                    </DataGridTableBodyRow>
-                    {row.getIsExpanded() && (
-                      <DataGridTableBodyRowExpandded row={row} />
-                    )}
-                  </Fragment>
-                )
-              })
-            ) : (
-              <DataGridTableEmpty />
-            )}
+            <MemoizedDataGridTableDndBodyRows table={table} />
           </DataGridTableBody>
 
           {footerContent && (

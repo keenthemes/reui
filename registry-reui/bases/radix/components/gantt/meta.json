@@ -1,0 +1,37 @@
+[
+  {
+    "name": "c-gantt-1",
+    "title": "Gantt chart with settings menu and schedulable rows",
+    "description": "Gantt chart with settings menu and schedulable rows",
+    "order": 1,
+    "gridSize": 1
+  },
+  {
+    "name": "c-gantt-2",
+    "title": "Gantt chart with drag-to-reorder tree rows",
+    "description": "Gantt chart with drag-to-reorder tree rows",
+    "order": 2,
+    "gridSize": 1
+  },
+  {
+    "name": "c-gantt-3",
+    "title": "Gantt chart with quarter roadmap and rollups",
+    "description": "Gantt chart with quarter roadmap and rollups",
+    "order": 3,
+    "gridSize": 1
+  },
+  {
+    "name": "c-gantt-4",
+    "title": "Gantt chart with weekly capacity board",
+    "description": "Gantt chart with weekly capacity board",
+    "order": 4,
+    "gridSize": 1
+  },
+  {
+    "name": "c-gantt-5",
+    "title": "Gantt chart with task table and progress",
+    "description": "Gantt chart with task table and progress",
+    "order": 5,
+    "gridSize": 1
+  }
+]

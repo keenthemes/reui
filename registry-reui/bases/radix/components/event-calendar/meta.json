@@ -1,0 +1,37 @@
+[
+  {
+    "name": "c-event-calendar-1",
+    "title": "Event calendar with all views and live settings",
+    "description": "Event calendar with all views and live settings",
+    "order": 1,
+    "gridSize": 1
+  },
+  {
+    "name": "c-event-calendar-2",
+    "title": "Event calendar with resource view for room bookings",
+    "description": "Event calendar with resource view for room bookings",
+    "order": 2,
+    "gridSize": 1
+  },
+  {
+    "name": "c-event-calendar-3",
+    "title": "Event calendar with create and edit dialog",
+    "description": "Event calendar with create and edit dialog",
+    "order": 3,
+    "gridSize": 1
+  },
+  {
+    "name": "c-event-calendar-4",
+    "title": "Event calendar with custom event chips",
+    "description": "Event calendar with custom event chips",
+    "order": 4,
+    "gridSize": 1
+  },
+  {
+    "name": "c-event-calendar-5",
+    "title": "Event calendar with drag-to-book appointments",
+    "description": "Event calendar with drag-to-book appointments",
+    "order": 5,
+    "gridSize": 1
+  }
+]
