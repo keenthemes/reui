@@ -1,0 +1,640 @@
+---
+title: Event Calendar
+description: A headless-first event calendar with month, week, day, N-day and agenda views, drag-and-drop scheduling, recurring events, time zones, and an external CRUD contract.
+component: true
+base: base
+---
+
+<ComponentPreview
+  styleName="base-nova"
+  name="c-event-calendar-1"
+  align="start"
+  previewClassName="h-auto p-0"
+/>
+
+The demo above is the whole feature surface in one example: every view (month, week, day, N-days, agenda, and the resource time grid), a multi-day all-day bar, custom chips via `renderEvent`, and a tabbed Settings panel driving view settings, time-grid options, and interactions as controlled props - with a reset back to defaults.
+
+The `event-calendar` package separates the calendar engine from the calendar UI. A subscribable store (`useEventCalendarState`) owns events, view, date, selection, and interactions with controlled and uncontrolled modes for every state pair; the shipped view components (month, week, day, N-days, agenda, and a resource day grid) render from that store through fine-grained selector hooks. Events are yours: the calendar never persists anything, it proposes changes through `onEventUpdate` and you accept, adjust, or reject them.
+
+The composition contract is a provider plus slots: `<EventCalendar>` wraps `<EventCalendarNav />`, an optional `<EventCalendarToolbar />`, and `<EventCalendarContent />`. Recurrence (an RFC 5545 subset, structured rules or raw `RRULE` strings), display time zones via `@date-fns/tz`, pointer-based drag, resize, and drag-create, and per-key i18n overrides are built in.
+
+## Installation
+
+```bash
+npx shadcn@latest add @reui/event-calendar
+```
+
+## Usage
+
+```tsx
+import { EventCalendar } from "@/components/reui/event-calendar/event-calendar"
+import { EventCalendarContent } from "@/components/reui/event-calendar/event-calendar-content"
+import { EventCalendarNav } from "@/components/reui/event-calendar/event-calendar-nav"
+import type { CalendarEvent } from "@/components/reui/event-calendar/event-calendar-types"
+```
+
+```tsx
+const [events, setEvents] = useState<CalendarEvent[]>(initialEvents)
+
+return (
+  <EventCalendar
+    events={events}
+    onEventsChange={setEvents}
+    defaultView="week"
+    className="h-[600px]"
+  >
+    <EventCalendarNav />
+    <EventCalendarContent />
+  </EventCalendar>
+)
+```
+
+Pass `defaultEvents` for uncontrolled state or `events` + `onEventsChange` for controlled state; the same pairing exists for `view`, `date`, `dayCount`, `selection`, `interactions`, and `viewSettings`. In the default `scrollMode="contained"` the calendar fills its container and scrolls internally, so give the root an explicit height (the examples use `h-[560px]`). Every timing change, whether from a drag, a resize, or `api.updateEvent`, funnels through `onEventUpdate`: return `false` to reject and revert, return nothing (or `true`) to accept, or return `{ start, end, allDay }` to accept with an adjustment, then persist to your backend from `onEventsChange` or inside `onEventUpdate` itself. Use `onRangeChange` to fetch remote events for the visible range, and `apiRef` (or a hoisted `useEventCalendarState` instance passed as `calendar`) for imperative control from outside the tree.
+
+For more variations, browse the [Event Calendar components](/components/event-calendar).
+
+## API Reference
+
+### EventCalendar
+
+The root provider and container. It creates (or adopts) the calendar instance, provides it via context, and renders a flex-column `div` (customizable through `render`). Besides the props below, it accepts every option and callback listed under [State options](#state-options) and [Callbacks](#callbacks), and every display prop listed under [View configuration](#view-configuration).
+
+| Prop        | Type                                         | Default | Description                                                                                                               |
+| :---------- | :------------------------------------------- | :------ | :------------------------------------------------------------------------------------------------------------------------ |
+| `calendar`  | `EventCalendarInstance<TData>`               | -       | Adopt a hoisted `useEventCalendarState` instance; option props are then ignored (a dev warning fires if both are passed). |
+| `apiRef`    | `RefObject<EventCalendarApi<TData> \| null>` | -       | Imperative escape hatch; receives the instance API for use outside the tree.                                              |
+| `children`  | `ReactNode`                                  | -       | Composed slots, typically `EventCalendarNav`, `EventCalendarToolbar`, and `EventCalendarContent`.                         |
+| `className` | `string`                                     | -       | Additional CSS classes for the root element.                                                                              |
+| `render`    | `useRender` render prop                      | -       | Replace the rendered root element.                                                                                        |
+
+---
+
+### EventCalendarNav
+
+Default composed navigation: Today, view switcher, prev/next, title, and a trailing spacer. Pass `children` to use it as a pure layout shell and compose the nav parts yourself. Renders as a `div` with `useRender` support.
+
+| Prop               | Type        | Default | Description                                                                      |
+| :----------------- | :---------- | :------ | :------------------------------------------------------------------------------- |
+| `showViewSwitcher` | `boolean`   | `true`  | Render the view switcher in the composed layout; turn off for fixed-view embeds. |
+| `children`         | `ReactNode` | -       | Replaces the default composed layout entirely.                                   |
+| `className`        | `string`    | -       | Additional CSS classes for the nav container.                                    |
+
+---
+
+### EventCalendarNavToday
+
+The "Today" navigation button; resets the calendar to now. It follows the configured `navButtonVariant` / `navButtonSize` and the `classNames.navButton` hook, and gets `data-active` while the anchor period contains now. `EventCalendarNavPrev` and `EventCalendarNavNext` share the same props.
+
+| Prop       | Type                    | Default | Description                                                                                                                                   |
+| :--------- | :---------------------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------- |
+| `tooltip`  | `ReactNode \| null`     | -       | Hover/focus-visible hint. Today defaults to the current date; Prev/Next default to their i18n labels. Pass `null` to disable this one button. |
+| `children` | `ReactNode`             | -       | Replaces the default label or chevron icon.                                                                                                   |
+| `render`   | `useRender` render prop | -       | Replace the rendered button element.                                                                                                          |
+
+---
+
+### EventCalendarNavPrev
+
+The previous-period navigation button; steps the anchor date one period back for the current view. Same props as [`EventCalendarNavToday`](#eventcalendarnavtoday), except `tooltip` defaults to the i18n "previous" label and `children` replaces the default chevron icon.
+
+---
+
+### EventCalendarNavNext
+
+The next-period navigation button; steps the anchor date one period forward for the current view. Same props as [`EventCalendarNavToday`](#eventcalendarnavtoday), except `tooltip` defaults to the i18n "next" label and `children` replaces the default chevron icon.
+
+---
+
+### EventCalendarTitle
+
+The current period title (from `i18n.functions.formatTitle`), marked `aria-live="polite"`.
+
+| Prop     | Type                                    | Default | Description                                |
+| :------- | :-------------------------------------- | :------ | :----------------------------------------- |
+| `format` | `(ctx: { title: string }) => ReactNode` | -       | Wrap or transform the computed title text. |
+
+---
+
+### EventCalendarViewSwitcher
+
+Dropdown listing the available views (the resolved `views` option) with optional keyboard-shortcut hints; when the `days` view is enabled, one item per `dayCountPresets` entry is offered.
+
+| Prop       | Type                | Default | Description                                                                                 |
+| :--------- | :------------------ | :------ | :------------------------------------------------------------------------------------------ |
+| `tooltip`  | `ReactNode \| null` | -       | Hover-only hint (force-closed while the menu is open); defaults to the "Select view" label. |
+| `children` | `ReactNode`         | -       | Replaces the default trigger content (current view name + chevron).                         |
+
+---
+
+### EventCalendarDatePicker
+
+Optional go-to-date popover (shadcn Calendar), not part of the default nav; compose it yourself. It is view-aware: week, N-days, and agenda highlight the whole active range, other views select a single date.
+
+| Prop       | Type                            | Default  | Description                                                                     |
+| :--------- | :------------------------------ | :------- | :------------------------------------------------------------------------------ |
+| `mode`     | `"auto" \| "single" \| "range"` | `"auto"` | `"auto"` resolves to `"range"` for week/N-days/agenda and `"single"` otherwise. |
+| `tooltip`  | `ReactNode \| null`             | `null`   | No tooltip by default (the button opens an overlay); pass a node to opt in.     |
+| `children` | `ReactNode`                     | -        | Replaces the default calendar icon.                                             |
+
+---
+
+### EventCalendarToolbar
+
+Free slot for consumer toolbar buttons; a pure layout shell (`flex items-center gap-2`) with `useRender` support and the `classNames.toolbar` hook. No props beyond standard `div` props.
+
+---
+
+### EventCalendarContent
+
+Active-view switchboard: renders the component registered for the current view and exposes `data-view` / `data-loading` attributes. While `loading` is true it dims and disables pointer events.
+
+| Prop         | Type                                           | Default | Description                                                                    |
+| :----------- | :--------------------------------------------- | :------ | :----------------------------------------------------------------------------- |
+| `components` | `Partial<Record<CalendarView, ComponentType>>` | -       | Swap individual view implementations (merged over the root `components` prop). |
+| `children`   | `ReactNode`                                    | -       | Replaces the switchboard entirely; read `useEventCalendarView()` inside.       |
+
+---
+
+### EventCalendarMonthView
+
+ARIA-grid month view: week rows, day cells, continuous multi-day bars in a lane overlay, "+N more" overflow, week numbers, and the day add affordance.
+
+| Prop               | Type               | Default | Description                                                                |
+| :----------------- | :----------------- | :------ | :------------------------------------------------------------------------- |
+| `maxEventsPerCell` | `number \| "auto"` | -       | Per-view override of the `maxEventsPerCell` view config (bars plus chips). |
+
+---
+
+### EventCalendarTimeGrid
+
+The shared week/day/N-days engine: hour gutter, minute-positioned event blocks with overlap packing, the all-day row, drag ghosts, and the now indicator. You usually render one of the wrappers below instead.
+
+| Prop           | Type                        | Default | Description                                                                                     |
+| :------------- | :-------------------------- | :------ | :---------------------------------------------------------------------------------------------- |
+| `view`         | `"week" \| "day" \| "days"` | -       | `Required`. Which time-based view this grid renders.                                            |
+| `dayStartHour` | `number`                    | -       | Per-view override of the `dayStartHour` option.                                                 |
+| `dayEndHour`   | `number`                    | -       | Per-view override of the `dayEndHour` option.                                                   |
+| `showAllDay`   | `boolean`                   | `true`  | Render the all-day row above the time track.                                                    |
+| `interval`     | `number`                    | -       | Gutter/gridline interval in minutes (clamped 5 to 240); defaults to the `interval` view config. |
+
+---
+
+### EventCalendarWeekView
+
+Thin wrapper around [`EventCalendarTimeGrid`](#eventcalendartimegrid) with `view` preset to `"week"`. Accepts every `EventCalendarTimeGrid` prop except `view`.
+
+---
+
+### EventCalendarDayView
+
+Thin wrapper around [`EventCalendarTimeGrid`](#eventcalendartimegrid) with `view` preset to `"day"`. Accepts every `EventCalendarTimeGrid` prop except `view`.
+
+---
+
+### EventCalendarDaysView
+
+Thin wrapper around [`EventCalendarTimeGrid`](#eventcalendartimegrid) with `view` preset to `"days"`. Accepts every `EventCalendarTimeGrid` prop except `view`.
+
+---
+
+### EventCalendarAgendaView
+
+Chronological list grouped by day: sticky date gutters, collapsible days with a color-dot summary row, expandable per-event details (via `renderAgendaEventDetails`), and a compact empty state. The agenda window length comes from the `agendaDayCount` option, so the view has no props beyond standard `div` props.
+
+---
+
+### EventCalendarResourceView
+
+Resource-columns day grid for booking scenarios: one time axis, one column per leaf resource (from the `resources` option, flattened depth-first), with full drag, resize, and drag-create across columns.
+
+| Prop           | Type      | Default | Description                                                                                     |
+| :------------- | :-------- | :------ | :---------------------------------------------------------------------------------------------- |
+| `dayStartHour` | `number`  | -       | Per-view override of the `dayStartHour` option.                                                 |
+| `dayEndHour`   | `number`  | -       | Per-view override of the `dayEndHour` option.                                                   |
+| `showAllDay`   | `boolean` | `true`  | Render the all-day row above the time track.                                                    |
+| `interval`     | `number`  | -       | Gutter/gridline interval in minutes (clamped 5 to 240); defaults to the `interval` view config. |
+
+---
+
+### EventCalendarApi
+
+The imperative API, available as `instance.api`, through `apiRef`, or from any hook's instance. Reading methods reflect the current snapshot; writing methods respect controlled props (they call the matching `on*Change` callback and only mutate internal state for uncontrolled fields).
+
+| Method                 | Signature                                                                                              | Description                                                                                |
+| :--------------------- | :----------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------- |
+| `next` / `prev`        | `() => void`                                                                                           | Step the anchor date one period forward or backward for the current view.                  |
+| `today`                | `() => void`                                                                                           | Jump to now.                                                                               |
+| `goTo`                 | `(date: Date) => void`                                                                                 | Jump to a date.                                                                            |
+| `setView`              | `(view: CalendarView, opts?: { dayCount?: number }) => void`                                           | Switch view; unknown views fall back to the first enabled view with a dev warning.         |
+| `setDayCount`          | `(count: number) => void`                                                                              | Set the N-day count (min 1).                                                               |
+| `getEvents`            | `() => CalendarEvent<TData>[]`                                                                         | Current events array.                                                                      |
+| `getEvent`             | `(id: string) => CalendarEvent<TData> \| undefined`                                                    | Find one event by id.                                                                      |
+| `setEvents`            | `(events: CalendarEvent<TData>[]) => void`                                                             | Replace the events array.                                                                  |
+| `addEvent`             | `(event: CalendarEvent<TData>) => void`                                                                | Append an event.                                                                           |
+| `updateEvent`          | `(id: string, patch: Partial<CalendarEvent<TData>>) => void`                                           | Patch an event; timing patches route through `onEventUpdate` with `source: "api"`.         |
+| `removeEvent`          | `(id: string) => void`                                                                                 | Remove an event.                                                                           |
+| `getOccurrences`       | `(range?: EventCalendarDateRange) => EventCalendarOccurrence<TData>[]`                                 | Expanded, sorted occurrences; defaults to the visible range.                               |
+| `getOccurrencesForDay` | `(day: Date) => EventCalendarOccurrence<TData>[]`                                                      | Deduplicated occurrences touching one day.                                                 |
+| `findOverlapping`      | `(candidate: { start: Date; end: Date; excludeEventId?: string }) => EventCalendarOccurrence<TData>[]` | Occurrences overlapping a candidate range.                                                 |
+| `select`               | `(selection: Partial<EventCalendarSelection>) => void`                                                 | Patch the selection.                                                                       |
+| `selectEvent`          | `(key: string, opts?: { additive?: boolean }) => void`                                                 | Select an occurrence key; `additive` toggles it within the current set.                    |
+| `clearSelection`       | `() => void`                                                                                           | Clear event keys and the committed slot.                                                   |
+| `setInteractions`      | `(patch: Partial<EventCalendarInteractions>) => void`                                                  | Toggle drag, resize, or slot selection.                                                    |
+| `setViewSettings`      | `(patch: EventCalendarViewSettings) => void`                                                           | Patch the user display toggles.                                                            |
+| `getVisibleRange`      | `() => EventCalendarDateRange`                                                                         | The full rendered grid range (including outside days); fetch remote data for this.         |
+| `getActiveRange`       | `() => EventCalendarDateRange`                                                                         | The logical period (the month or week itself).                                             |
+| `toZoned`              | `(date: Date) => Date`                                                                                 | The instant re-expressed in the calendar's display time zone (a `TZDate`).                 |
+| `scrollToTime`         | `(time: Date \| number) => void`                                                                       | Scroll a time grid to an instant or minutes-from-day-start; no-op outside time-grid views. |
+
+---
+
+### CalendarEvent
+
+Your event objects. `TData` is a fully generic consumer payload.
+
+| Property           | Type                                    | Default | Description                                                                    |
+| :----------------- | :-------------------------------------- | :------ | :----------------------------------------------------------------------------- |
+| `id`               | `string`                                | -       | `Required`. Stable event id.                                                   |
+| `title`            | `string`                                | -       | `Required`. Display title.                                                     |
+| `start`            | `Date`                                  | -       | `Required`. Start instant (consumers parse ISO strings themselves).            |
+| `end`              | `Date`                                  | -       | `Required`. Exclusive end instant; must be greater than or equal to `start`.   |
+| `allDay`           | `boolean`                               | -       | Render as an all-day bar; date comparison is day-granular in the display zone. |
+| `recurrence`       | `EventCalendarRecurrenceRule \| string` | -       | Structured rule or a raw `"RRULE:..."` line.                                   |
+| `recurringEventId` | `string`                                | -       | Marks this event as an edited single occurrence of that series.                |
+| `originalStart`    | `Date`                                  | -       | Which occurrence it replaces (RECURRENCE-ID semantics).                        |
+| `color`            | `string`                                | -       | Token or CSS color; flows to the `--ec-event-color` CSS variable.              |
+| `readOnly`         | `boolean`                               | -       | Excluded from drag and resize regardless of the interactions state.            |
+| `draggable`        | `boolean`                               | -       | Per-event override; the default comes from `interactions.drag`.                |
+| `resizable`        | `boolean`                               | -       | Per-event override; the default comes from `interactions.resize`.              |
+| `priority`         | `number`                                | -       | Packing prominence; feeds the `getEventPriority` ordering.                     |
+| `zIndex`           | `number`                                | -       | Explicit stacking override; wins over the computed z-index.                    |
+| `resourceId`       | `string`                                | -       | Bookable resource this event belongs to (resource view).                       |
+| `data`             | `TData`                                 | -       | Consumer payload, fully generic.                                               |
+
+---
+
+### EventCalendarResource
+
+A bookable resource (room, person, equipment). Nested resources render their leaves as booking columns in the resource view.
+
+| Property   | Type                      | Default | Description                                                 |
+| :--------- | :------------------------ | :------ | :---------------------------------------------------------- |
+| `id`       | `string`                  | -       | `Required`. Stable resource id.                             |
+| `title`    | `string`                  | -       | `Required`. Column header text (or `renderResourceHeader`). |
+| `color`    | `string`                  | -       | Token or CSS color for subtle row/column accents.           |
+| `children` | `EventCalendarResource[]` | -       | Child resources; only leaves become booking columns.        |
+
+---
+
+### EventCalendarRecurrenceRule
+
+The structured RFC 5545 subset. A raw `RRULE` string with the same parts is equally accepted on `event.recurrence`.
+
+| Property     | Type                                                                            | Default | Description                                                                                  |
+| :----------- | :------------------------------------------------------------------------------ | :------ | :------------------------------------------------------------------------------------------- |
+| `freq`       | `"daily" \| "weekly" \| "monthly" \| "yearly"`                                  | -       | `Required`. Recurrence frequency.                                                            |
+| `interval`   | `number`                                                                        | `1`     | Every N periods.                                                                             |
+| `count`      | `number`                                                                        | -       | Total number of occurrences.                                                                 |
+| `until`      | `Date`                                                                          | -       | Inclusive end instant.                                                                       |
+| `byWeekday`  | `Array<EventCalendarWeekday \| { day: EventCalendarWeekday; ordinal: number }>` | -       | Weekdays; ordinals (`2TU`, `-1FR`) apply to monthly/yearly rules.                            |
+| `byMonthDay` | `number[]`                                                                      | -       | Days of the month; negative values count back from month end.                                |
+| `byMonth`    | `number[]`                                                                      | -       | Months (1 to 12) for yearly rules.                                                           |
+| `weekStart`  | `EventCalendarWeekday`                                                          | -       | WKST equivalent.                                                                             |
+| `exDates`    | `Date[]`                                                                        | -       | Excluded instants; matching occurrences are removed (they still consume their `count` slot). |
+| `rDates`     | `Date[]`                                                                        | -       | Extra instants added to the series, each with the event's own duration.                      |
+
+`EventCalendarWeekday` is `"MO" \| "TU" \| "WE" \| "TH" \| "FR" \| "SA" \| "SU"`. For rule parts outside this subset, plug a full RRULE engine through the `getOccurrences` option; unsupported parts throw `EventCalendarRecurrenceError`.
+
+---
+
+### EventCalendarOccurrence
+
+One expanded instance of an event, as passed to click callbacks and returned by `api.getOccurrences`.
+
+| Property          | Type                   | Description                                            |
+| :---------------- | :--------------------- | :----------------------------------------------------- |
+| `key`             | `string`               | Stable per instance: `` `${event.id}::${startISO}` ``. |
+| `eventId`         | `string`               | The source event id.                                   |
+| `event`           | `CalendarEvent<TData>` | The source event.                                      |
+| `start` / `end`   | `Date`                 | This instance's instants (end exclusive).              |
+| `allDay`          | `boolean`              | Resolved all-day flag.                                 |
+| `isRecurring`     | `boolean`              | Whether it came from a recurrence expansion.           |
+| `recurrenceIndex` | `number`               | Series ordinal, when recurring.                        |
+
+---
+
+### EventCalendarSegment
+
+A per-day slice of an occurrence, produced by the event index and consumed by `EventCalendarEvent` and the layout hooks. Positional fields are filled per surface: `startMin` / `endMin` for timed blocks, `lane` / `column` / `columnCount` / `columnSpan` for packing, and `rowIndex` / `colStart` / `colSpan` for month/all-day bars. `isStart` / `isEnd` and `continuesBefore` / `continuesAfter` mark cross-day edges.
+
+---
+
+### EventCalendarProposedUpdate
+
+The payload of `onEventUpdate` and `canDropEvent`: a proposed timing (and optionally resource) change.
+
+| Property     | Type                                                              | Description                                                  |
+| :----------- | :---------------------------------------------------------------- | :----------------------------------------------------------- |
+| `event`      | `CalendarEvent<TData>`                                            | The event being changed.                                     |
+| `occurrence` | `EventCalendarOccurrence<TData> \| null`                          | The dragged occurrence; `null` when `source` is `"api"`.     |
+| `start`      | `Date`                                                            | Proposed start.                                              |
+| `end`        | `Date`                                                            | Proposed exclusive end.                                      |
+| `allDay`     | `boolean`                                                         | Proposed all-day flag.                                       |
+| `resourceId` | `string`                                                          | Proposed resource when the gesture crossed resource columns. |
+| `source`     | `"drag" \| "resize-start" \| "resize-end" \| "keyboard" \| "api"` | What produced the proposal.                                  |
+
+The `onEventUpdate` return type is `EventCalendarUpdateResult`: `false` rejects and reverts, `void` or `true` accepts, and `{ start?, end?, allDay? }` accepts with an adjustment.
+
+---
+
+### EventCalendarSlotInfo
+
+The payload of `onSlotClick`. A click is a point, not a range.
+
+| Property     | Type           | Description                                                             |
+| :----------- | :------------- | :---------------------------------------------------------------------- |
+| `date`       | `Date`         | Clicked instant (snapped in time grids) or day (day-granular surfaces). |
+| `end`        | `Date`         | Present for timed slots: `date` plus `slotDuration`.                    |
+| `allDay`     | `boolean`      | Whether the click landed on a day-granular surface.                     |
+| `view`       | `CalendarView` | The view the click happened in.                                         |
+| `resourceId` | `string`       | Present when the click happened inside a resource column.               |
+
+---
+
+### EventCalendarSlotDraft
+
+The drag-create rectangle, passed to `onSelectSlot` and `canSelectSlot`. The in-progress draft lives in state as `slotDraft` and is cleared on commit or cancel; the committed slot selection lives in `selection.slot`.
+
+| Property     | Type           | Description                                                  |
+| :----------- | :------------- | :----------------------------------------------------------- |
+| `start`      | `Date`         | Draft start.                                                 |
+| `end`        | `Date`         | Draft exclusive end.                                         |
+| `allDay`     | `boolean`      | Whether the draft was drawn on a day-granular surface.       |
+| `view`       | `CalendarView` | The view the draft was drawn in.                             |
+| `resourceId` | `string`       | Present when the slot was selected inside a resource column. |
+
+---
+
+### EventCalendarState
+
+The store snapshot, as received by `useEventCalendarSelector` selectors and `instance.getState()`.
+
+| Property       | Type                                    | Description                                                                          |
+| :------------- | :-------------------------------------- | :----------------------------------------------------------------------------------- |
+| `view`         | `CalendarView`                          | Active view (`"month" \| "week" \| "day" \| "days" \| "agenda" \| "resource"`).      |
+| `date`         | `Date`                                  | Anchor date.                                                                         |
+| `dayCount`     | `number`                                | Day count for the `days` view.                                                       |
+| `visibleRange` | `EventCalendarDateRange`                | Full rendered grid range including outside days; fetch remote data for this.         |
+| `activeRange`  | `EventCalendarDateRange`                | The logical period (the month or week itself).                                       |
+| `events`       | `CalendarEvent<TData>[]`                | Current events.                                                                      |
+| `selection`    | `EventCalendarSelection`                | Selected occurrence keys plus the committed slot.                                    |
+| `interactions` | `EventCalendarInteractions`             | Effective interaction toggles.                                                       |
+| `loading`      | `boolean`                               | The `loading` prop.                                                                  |
+| `drag`         | `EventCalendarDragState<TData> \| null` | Live move/resize gesture (kind, occurrence, proposed instants, validity), or `null`. |
+| `slotDraft`    | `EventCalendarSlotDraft \| null`        | Live drag-create rectangle, or `null`.                                               |
+| `viewSettings` | `EventCalendarViewSettings`             | User display toggles.                                                                |
+
+`EventCalendarDateRange` is `{ start: Date; end: Date }` with an inclusive start and an exclusive end. The exported `EventCalendarDataAdapter` type (`getEvents(range, signal?)`) describes the shape of an external data source; wiring it to a backend is application territory.
+
+## Hooks
+
+Most hooks require an `<EventCalendar>` ancestor. The exceptions: `useEventCalendarState` creates the instance itself, `useNow` is standalone, `useEventCalendarSettingsVersion` takes the instance as an argument, and hooks that accept an explicit `calendar` option work outside the tree.
+
+| Hook                              | Signature                                                                                     | Description                                                                                                                                                                    |
+| :-------------------------------- | :-------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `useEventCalendarState`           | `(options?: UseEventCalendarStateOptions<TData>) => EventCalendarInstance<TData>`             | Headless root hook: the full engine without markup. Pass the instance to `<EventCalendar calendar={instance}>` or drive fully custom UI from `getState` / `subscribe` / `api`. |
+| `useEventCalendar`                | `() => EventCalendarInstance<TData>`                                                          | The stable calendar instance from context; throws outside `<EventCalendar>`.                                                                                                   |
+| `useEventCalendarSelector`        | `(selector: (state: EventCalendarState<TData>) => T, options?: { calendar?, isEqual? }) => T` | Fine-grained subscription with equality memoization (`Object.is` default).                                                                                                     |
+| `useEventCalendarView`            | `() => { view, dayCount, availableViews, setView }`                                           | Active view state plus the resolved `views` option.                                                                                                                            |
+| `useEventCalendarNavigation`      | `() => { date, title, visibleRange, activeRange, next, prev, today, goTo, isToday }`          | Navigation state and actions; `title` is the formatted period title.                                                                                                           |
+| `useEventCalendarSelection`       | `() => { selection, select, selectEvent, clearSelection }`                                    | Selection state and actions.                                                                                                                                                   |
+| `useEventCalendarInteractions`    | `() => { interactions, setInteractions }`                                                     | Interaction toggles.                                                                                                                                                           |
+| `useEventCalendarOccurrences`     | `(range?: EventCalendarDateRange) => EventCalendarOccurrence<TData>[]`                        | Expanded, sorted occurrences; defaults to the visible range.                                                                                                                   |
+| `useEventCalendarDay`             | `(day: Date) => { segments: { allDay, timed }, isToday, isOutside }`                          | Per-cell subscription; only cells whose segments changed re-render.                                                                                                            |
+| `useEventCalendarWeek`            | `(day: Date) => { bars, laneCount, rowStart }`                                                | Per-week-row subscription for the month view's laned multi-day bars.                                                                                                           |
+| `useEventCalendarViewSettings`    | `() => { viewSettings, setViewSettings, effective }`                                          | User display toggles plus the effective values after view-config fallback.                                                                                                     |
+| `useEventCalendarSettings`        | `() => EventCalendarSettings<TData>`                                                          | Resolved settings including merged i18n; re-renders only when settings change.                                                                                                 |
+| `useEventCalendarSettingsVersion` | `(instance: EventCalendarInstance<TData>) => number`                                          | Subscribes to settings changes only (version counter, not state).                                                                                                              |
+| `useEventCalendarViewConfig`      | `() => EventCalendarViewConfig<TData>`                                                        | Root-level display props and render overrides, for view components.                                                                                                            |
+| `useEventCalendarViewContext`     | `() => { view: CalendarView }`                                                                | The rendering view of the nearest view component; throws outside a view.                                                                                                       |
+| `useEventCalendarGestures`        | `() => { beginMove, beginResize, beginCreate, canDrag, canResize }`                           | Per-chip / per-surface pointer gesture wiring for custom views and cells.                                                                                                      |
+| `useEventCalendarEventChip`       | `() => { occurrence, segment, isDragging, isSelected }`                                       | The chip's subject; usable inside `renderEvent` content and chip children.                                                                                                     |
+| `useNow`                          | `(intervalMs?: number) => Date`                                                               | Current time, refreshed on an interval (default 30000 ms) and on tab focus.                                                                                                    |
+
+An `EventCalendarInstance` is `{ getState, subscribe, api, settings, internals }`; `internals` is cross-file plumbing for sibling view modules and not public API.
+
+## Helpers
+
+Pure, React-free helpers exported from `event-calendar-lib.tsx` (plus the gesture flags from `event-calendar-dnd.tsx`). `event-calendar-lib.tsx` also exports the advanced types `EventCalendarIndex`, `EventCalendarDayBucket`, and `EventCalendarWeekRow` used in these signatures, and `event-calendar.tsx` exports the `EventCalendarContext`, `EventCalendarViewConfigContext`, and `EventCalendarViewContext` context objects for advanced composition.
+
+| Function             | Signature                                                                                | Description                                                                                      |
+| :------------------- | :--------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------- |
+| `flattenResources`   | `(resources: EventCalendarResource[], depth?: number) => Array<{ resource, depth }>`     | Depth-first flatten of the resource tree, parents included.                                      |
+| `buildEventIndex`    | `(events, visibleRange, opts) => EventCalendarIndex<TData>`                              | Expand, segment, and pack all events for a range into `{ occurrences, byDay, weekRows }`.        |
+| `segmentOccurrence`  | `(occurrence, range, timeZone) => EventCalendarSegment<TData>[]`                         | The canonical multi-day segmentation (exclusive end, zero-duration safe).                        |
+| `packTimedSegments`  | `(segments) => void`                                                                     | Google-style overlap packing for one day's timed segments (mutates `column` fields in place).    |
+| `packWeekRowLanes`   | `(segments, rowIndex, rowStart, timeZone) => EventCalendarSegment<TData>[]`              | Greedy lane packing of bar segments within one week row; returns new merged bar segments.        |
+| `defaultEventOrder`  | `(a, b: EventCalendarOccurrence) => number`                                              | Default sort: earlier start, then longer duration, then key.                                     |
+| `getViewDateRange`   | `(view, date, opts) => { visibleRange, activeRange }`                                    | The rendered and logical ranges for a view and anchor date.                                      |
+| `stepDate`           | `(view, date, direction, opts) => Date`                                                  | The anchor date stepped one period forward or backward.                                          |
+| `toZoned`            | `(date: Date, timeZone: string) => TZDate`                                               | The instant re-expressed in the display time zone.                                               |
+| `zonedStartOfDay`    | `(date: Date, timeZone: string) => TZDate`                                               | Zoned midnight of the day containing the instant.                                                |
+| `getDayKey`          | `(date: Date, timeZone: string) => string`                                               | Stable per-day key (`yyyy-MM-dd`) in the display time zone.                                      |
+| `getDayTotalMinutes` | `(dayStart: Date, timeZone: string) => number`                                           | Day length in minutes; 1380/1500 on DST transition days.                                         |
+| `getRangeKey`        | `(range: EventCalendarDateRange) => string`                                              | Cheap string cache key for a range.                                                              |
+| `snapMinutes`        | `(minutes: number, snap: number) => number`                                              | Round minutes to the nearest snap step.                                                          |
+| `rangesIntersect`    | `(a, b: EventCalendarDateRange) => boolean`                                              | Half-open range intersection.                                                                    |
+| `eventsOverlap`      | `(a, b: { start: Date; end: Date }) => boolean`                                          | Half-open overlap test.                                                                          |
+| `isBarOccurrence`    | `(occurrence: EventCalendarOccurrence) => boolean`                                       | True when the occurrence renders as a bar (all-day or multi-day).                                |
+| `spansMultipleDays`  | `(occ: { start: Date; end: Date }) => boolean`                                           | Longer than 24 hours (an event ending exactly at midnight is single-day).                        |
+| `resolveOffDay`      | `(day, timeZone, config: boolean \| EventCalendarOffDaysConfig \| undefined) => boolean` | Whether a day is an off day in the display zone.                                                 |
+| `minuteBlockStyle`   | `(startMin, endMin, boundsStartMin) => CSSProperties`                                    | Absolute top/height for a minute-positioned overlay block (from `event-calendar-time-grid.tsx`). |
+| `wasRecentDrag`      | `() => boolean`                                                                          | True shortly after a gesture ended; lets click handlers ignore the click that ends a drag.       |
+| `wasRecentChipPress` | `() => boolean`                                                                          | True shortly after a press started on an event chip; guards slot-create clicks.                  |
+| `markChipPress`      | `() => void`                                                                             | Flag a chip press (called by `EventCalendarEvent`); needed when building custom chips.           |
+
+Useful exported constants: `BASE_VIEWS` and `ALL_VIEWS` (the view lists), `DEFAULT_VIEW_CONFIG`, `DEFAULT_VIEW_COMPONENTS` (the view switchboard map), `EVENT_CALENDAR_ACTIVATION` (gesture defaults), `EVENT_CALENDAR_COLORS` (ten Tailwind palette presets for `event.color`), `EVENT_CALENDAR_GHOST` (the standardized drag-ghost classes), `EVENT_CALENDAR_FADE_TRUNCATE` (the fade-out truncation classes, reusable in `renderEvent` content), `MIN_PACK_SLOT` (packing-effective minimum of 30 minutes), and `MAX_OCCURRENCES` (recurrence expansion cap of 1000 per event).
+
+---
+
+### Recurrence helpers
+
+Exported from `event-calendar-recurrence.tsx`. The supported `RRULE` subset is `FREQ` (daily, weekly, monthly, yearly), `INTERVAL`, `COUNT`, `UNTIL`, `BYDAY` (with ordinals for monthly/yearly), `BYMONTHDAY`, `BYMONTH`, and `WKST`; anything else throws `EventCalendarRecurrenceError`, whose message points at the `getOccurrences` escape hatch.
+
+| Function            | Signature                                                               | Description                                                                                                       |
+| :------------------ | :---------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------- |
+| `expandRecurrence`  | `(event, range, ctx: { timeZone }) => EventCalendarOccurrence<TData>[]` | Expand one event into its occurrences intersecting the range; wall-time iteration in the display zone (DST-safe). |
+| `parseRRuleString`  | `(input: string, timeZone?: string) => EventCalendarRecurrenceRule`     | Parse a raw `RRULE` line (with or without the prefix); Z-less `UNTIL` values are wall time in the given zone.     |
+| `formatRRuleString` | `(rule: EventCalendarRecurrenceRule) => string`                         | Serialize the structured subset back to an `RRULE` line (without prefix).                                         |
+
+## Config
+
+### State options
+
+Option props accepted by `EventCalendar` and `useEventCalendarState`. Controlled/uncontrolled pairs follow the standard convention: pass the controlled prop plus its `on*Change` callback, or the `default*` prop for internal state.
+
+| Prop                                   | Type                                                                             | Default                         | Description                                                                                                               |
+| :------------------------------------- | :------------------------------------------------------------------------------- | :------------------------------ | :------------------------------------------------------------------------------------------------------------------------ |
+| `events` / `defaultEvents`             | `CalendarEvent<TData>[]`                                                         | `[]`                            | The events (controlled / uncontrolled).                                                                                   |
+| `view` / `defaultView`                 | `CalendarView`                                                                   | `"month"`                       | Active view.                                                                                                              |
+| `date` / `defaultDate`                 | `Date`                                                                           | `new Date()`                    | Anchor date.                                                                                                              |
+| `dayCount` / `defaultDayCount`         | `number`                                                                         | `3`                             | Day count for the `days` view (min 1).                                                                                    |
+| `selection` / `defaultSelection`       | `EventCalendarSelection`                                                         | `{ eventKeys: [], slot: null }` | Selection state.                                                                                                          |
+| `interactions` / `defaultInteractions` | `Partial<EventCalendarInteractions>`                                             | all `true`                      | Interaction toggles, merged over the defaults.                                                                            |
+| `viewSettings` / `defaultViewSettings` | `EventCalendarViewSettings`                                                      | `{}`                            | User display toggles.                                                                                                     |
+| `loading`                              | `boolean`                                                                        | `false`                         | Dims the content area and disables pointer events.                                                                        |
+| `views`                                | `CalendarView[]`                                                                 | base views                      | Enabled views; defaults to `["month", "week", "day", "days", "agenda"]`, plus `"resource"` when `resources` is non-empty. |
+| `timeZone`                             | `string`                                                                         | system time zone                | IANA display time zone; all day math and rendering happen in it.                                                          |
+| `locale`                               | `Locale`                                                                         | -                               | date-fns locale for every formatted string.                                                                               |
+| `weekStartsOn`                         | `0 \| 1 \| 2 \| 3 \| 4 \| 5 \| 6`                                                | `0`                             | First day of the week (0 = Sunday).                                                                                       |
+| `dayStartHour`                         | `number`                                                                         | `0`                             | First rendered hour in time grids.                                                                                        |
+| `dayEndHour`                           | `number`                                                                         | `24`                            | Last rendered hour in time grids.                                                                                         |
+| `slotDuration`                         | `number`                                                                         | `30`                            | Duration in minutes of a click-created slot (`onSlotClick` end).                                                          |
+| `snapDuration`                         | `number`                                                                         | `15`                            | Snap granularity in minutes for drag, resize, and drag-create.                                                            |
+| `agendaDayCount`                       | `number`                                                                         | `30`                            | Days covered by the agenda view window.                                                                                   |
+| `fixedWeeks`                           | `boolean`                                                                        | `true`                          | Month view always renders 6 weeks.                                                                                        |
+| `showOutsideDays`                      | `boolean`                                                                        | `true`                          | Show leading/trailing outside days in the month view.                                                                     |
+| `i18n`                                 | `Partial<EventCalendarI18nConfig>`                                               | -                               | Per-key overrides of labels, view names, formats, and formatter functions.                                                |
+| `resources`                            | `EventCalendarResource[]`                                                        | `[]`                            | Bookable resources for the resource view.                                                                                 |
+| `getEventPriority`                     | `(event: CalendarEvent<TData>) => number`                                        | `event.priority ?? 0`           | Packing prominence resolver.                                                                                              |
+| `eventOrder`                           | `(a, b: EventCalendarOccurrence<TData>) => number`                               | `defaultEventOrder`             | Occurrence sort comparator (default: earlier start, then longer duration, then key).                                      |
+| `getOccurrences`                       | `(event, range, ctx: { timeZone }) => Array<{ start: Date; end: Date }> \| null` | -                               | Custom recurrence expansion per event (plug a full RRULE engine); return `null` for the built-in one.                     |
+| `weekendDays`                          | `number[]`                                                                       | `[0, 6]`                        | Weekday numbers treated as the weekend by the "weekends" view toggle.                                                     |
+| `activation`                           | `Partial<EventCalendarActivationConfig>`                                         | see below                       | Pointer-gesture tuning.                                                                                                   |
+
+`EventCalendarActivationConfig` defaults: `moveDistancePx: 5`, `createDistancePx: 4`, `touchDelayMs: 250`, `touchTolerancePx: 5`, `autoScrollEdgePx: 48`, `autoScrollMaxStepPx: 15` (exported as `EVENT_CALENDAR_ACTIVATION`).
+
+---
+
+### Callbacks
+
+Callback props accepted by `EventCalendar` and `useEventCalendarState`, alongside the options above.
+
+| Prop                   | Signature                                                                                                             | Description                                                                                                                                                |
+| :--------------------- | :-------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `onEventClick`         | `(occurrence, e: React.MouseEvent) => void`                                                                           | Chip click; call `e.preventDefault()` to opt out of the built-in selection.                                                                                |
+| `onEventDoubleClick`   | `(occurrence, e: React.MouseEvent) => void`                                                                           | Chip double click.                                                                                                                                         |
+| `onEventUpdate`        | `(update: EventCalendarProposedUpdate<TData>) => EventCalendarUpdateResult`                                           | The one validation funnel for drags, resizes, and API timing changes; `false` rejects, an object adjusts.                                                  |
+| `canDropEvent`         | `(update: EventCalendarProposedUpdate<TData>) => boolean`                                                             | Live validation during a gesture; drives the `data-drop-invalid` styling and the not-allowed cursor.                                                       |
+| `onDragBlocked`        | `(occurrence, info: { gesture: "move" \| "resize"; reason: "readOnly" \| "disabled" \| "interactions-off" }) => void` | A gesture was attempted on a locked event; fires once per gesture so you can surface a message.                                                            |
+| `onSlotClick`          | `(slot: EventCalendarSlotInfo, e: React.MouseEvent) => void`                                                          | Click on an empty slot or day cell (also fired by the day add button).                                                                                     |
+| `onSelectSlot`         | `(slot: EventCalendarSlotDraft) => void`                                                                              | A drag-create selection was committed.                                                                                                                     |
+| `canSelectSlot`        | `(slot: EventCalendarSlotDraft) => boolean`                                                                           | Live validation of the drag-create rectangle.                                                                                                              |
+| `onRangeChange`        | `(info: EventCalendarRangeInfo) => void`                                                                              | Visible range changed (view, date, or time zone); fires once for the initial range. `info` carries `range`, `activeRange`, `view`, `date`, and `timeZone`. |
+| `onViewChange`         | `(view: CalendarView) => void`                                                                                        | View changed.                                                                                                                                              |
+| `onDateChange`         | `(date: Date) => void`                                                                                                | Anchor date changed.                                                                                                                                       |
+| `onDayCountChange`     | `(count: number) => void`                                                                                             | N-day count changed.                                                                                                                                       |
+| `onSelectionChange`    | `(selection: EventCalendarSelection) => void`                                                                         | Selection changed.                                                                                                                                         |
+| `onInteractionsChange` | `(interactions: EventCalendarInteractions) => void`                                                                   | Interaction toggles changed.                                                                                                                               |
+| `onViewSettingsChange` | `(viewSettings: EventCalendarViewSettings) => void`                                                                   | User display toggles changed.                                                                                                                              |
+| `onEventsChange`       | `(events: CalendarEvent<TData>[]) => void`                                                                            | Events array changed (drag commit, resize, API mutation).                                                                                                  |
+| `onMoreClick`          | `(day: Date, occurrences: EventCalendarOccurrence<TData>[], e: React.MouseEvent) => void \| false`                    | "+N more" clicked; return `false` to suppress the built-in popover and open your own UI.                                                                   |
+
+---
+
+### View configuration
+
+Display props and render overrides, accepted directly on `EventCalendar` (they live in the view layer, never in the headless options). Defaults come from `DEFAULT_VIEW_CONFIG`.
+
+| Prop                   | Type                                                | Default                                                       | Description                                                                                                                                                      |
+| :--------------------- | :-------------------------------------------------- | :------------------------------------------------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `scrollToHour`         | `number`                                            | `7`                                                           | Hour the time grids scroll to on mount.                                                                                                                          |
+| `nowIndicator`         | `boolean`                                           | `true`                                                        | Show the current-time line in time grids.                                                                                                                        |
+| `interval`             | `number`                                            | `60`                                                          | Grid interval in minutes for time-based views; gutter slots and gridlines follow it. Also accepted per view component.                                           |
+| `maxEventsPerCell`     | `number \| "auto"`                                  | `"auto"`                                                      | Max bars plus chips per month cell before "+N more".                                                                                                             |
+| `showWeekNumbers`      | `boolean`                                           | `false`                                                       | Week-number gutter in the month view.                                                                                                                            |
+| `enableShortcuts`      | `boolean`                                           | `true`                                                        | View-switcher keyboard shortcuts and their `kbd` hints.                                                                                                          |
+| `shortcutsScope`       | `"focus-within" \| "global"`                        | `"focus-within"`                                              | Where the shortcuts listen.                                                                                                                                      |
+| `scrollMode`           | `"contained" \| "page"`                             | `"contained"`                                                 | Contained: the calendar fills its container and views scroll internally. Page: content flows with the document and day headers stick below `--ec-sticky-offset`. |
+| `stickyNav`            | `boolean`                                           | `false`                                                       | Stick the default nav to the top while the page scrolls.                                                                                                         |
+| `dayClassName`         | `(day: Date) => string \| undefined`                | -                                                             | Custom per-day indication on month cells, day columns, and all-day cells.                                                                                        |
+| `todayClassName`       | `string`                                            | -                                                             | Extra classes for the current day, appended after the built-in highlight.                                                                                        |
+| `showDayAddButton`     | `boolean`                                           | `false`                                                       | Hover "+" affordance on month cells; fires the same `onSlotClick` as clicking the day.                                                                           |
+| `scrollbars`           | `"custom" \| "native"`                              | `"custom"`                                                    | Scroll implementation for every internally scrolling surface (shadcn ScrollArea vs browser scrollbars).                                                          |
+| `navButtonVariant`     | `"ghost" \| "outline" \| "secondary" \| "default"`  | `"ghost"`                                                     | Variant applied to all nav buttons.                                                                                                                              |
+| `navButtonSize`        | `"sm" \| "default"`                                 | `"sm"`                                                        | Size applied to all nav buttons (icon buttons use the icon twin).                                                                                                |
+| `offDays`              | `boolean \| EventCalendarOffDaysConfig`             | -                                                             | Off-day (non-working day) marking; `true` = weekends with a muted background.                                                                                    |
+| `classNames`           | `EventCalendarClassNames`                           | -                                                             | Per-element class hooks; see below.                                                                                                                              |
+| `components`           | `Partial<Record<CalendarView, ComponentType>>`      | -                                                             | Swap individual view implementations.                                                                                                                            |
+| `dayCountPresets`      | `number[]`                                          | `[5]`                                                         | N-day presets offered by the view switcher when the `days` view is enabled.                                                                                      |
+| `navTooltips`          | `false \| { side?, delay?, closeDelay?, timeout? }` | `{ side: "bottom", delay: 600, closeDelay: 0, timeout: 300 }` | Nav tooltips: `false` disables them all; the object tunes placement and timings.                                                                                 |
+| `eventTooltip`         | `boolean \| { side?, delay? }`                      | `false`                                                       | Styled tooltip on event hover / focus; `true` shows the event label, an object tunes side and delay. Content via `renderEventTooltip`.                           |
+| `compactEventMinutes`  | `number`                                            | `45`                                                          | Timed events shorter than this render the compact single-row chip layout.                                                                                        |
+| `morePopoverAlign`     | `"start" \| "center" \| "end"`                      | `"start"`                                                     | "+N more" popover alignment against its trigger.                                                                                                                 |
+| `nowIndicatorInterval` | `number`                                            | `30000`                                                       | Now-indicator refresh cadence in milliseconds.                                                                                                                   |
+| `agendaSummaryMaxDots` | `number`                                            | `6`                                                           | Max color dots in a collapsed agenda day summary.                                                                                                                |
+
+Render overrides, all optional and all part of the same view config:
+
+| Prop                        | Signature                                                                                    | Description                                                                                                   |
+| :-------------------------- | :------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------ |
+| `renderEvent`               | `(props: EventCalendarRenderEventProps<TData>) => ReactNode`                                 | Replace the chip content in grid views; receives `occurrence`, `segment`, `view`, `isDragging`, `isSelected`. |
+| `renderAgendaEvent`         | `(props: EventCalendarRenderEventProps<TData>) => ReactNode`                                 | Replace the agenda row content.                                                                               |
+| `renderEventTooltip`        | `(props: { occurrence, segment, view, label }) => ReactNode`                                 | Content for the styled hover tooltip (`eventTooltip`); a falsy return falls back to the default label.        |
+| `renderDragPreview`         | `(props: { drag: EventCalendarDragState<TData> }) => ReactNode`                              | Custom drag preview content.                                                                                  |
+| `renderMonthCell`           | `(props: { day, segments, isToday, isOutside, overflowCount, defaultContent }) => ReactNode` | Replace a month cell's body; `defaultContent` lets you wrap instead of rebuild.                               |
+| `renderDayColumnBackground` | `(props: { day, boundsStartMin, boundsEndMin, totalMinutes }) => ReactNode`                  | Business-logic layer rendered pointer-events-none behind event segments in each day column.                   |
+| `renderDayHeader`           | `(props: { day, view, isToday }) => ReactNode`                                               | Replace day header cells (month header row and time-grid headers).                                            |
+| `renderTimeGutterSlot`      | `(props: { time, hour, minute }) => ReactNode`                                               | Replace hour gutter labels.                                                                                   |
+| `renderAllDaySection`       | `(props: { days, segments }) => ReactNode`                                                   | Replace the entire all-day row of time grids.                                                                 |
+| `renderMoreIndicator`       | `(props: { day, count, segments }) => ReactNode`                                             | Replace the "+N more" trigger content.                                                                        |
+| `renderMoreContent`         | `(props: { day, segments, close }) => ReactNode`                                             | Replace the entire body of the built-in "+N more" popover while keeping its trigger and positioning.          |
+| `renderAgendaEventDetails`  | `(occurrence: EventCalendarOccurrence<TData>) => ReactNode`                                  | Agenda-only expandable details; returning a node gives the row an expand/collapse toggle.                     |
+| `renderNowIndicator`        | `(props: { time: Date }) => ReactNode`                                                       | Replace the current-time line.                                                                                |
+| `renderNoEvents`            | `() => ReactNode`                                                                            | Replace the agenda empty state.                                                                               |
+| `renderResourceHeader`      | `(props: { resource: EventCalendarResource }) => ReactNode`                                  | Resource column header content; default is `resource.title`.                                                  |
+| `renderAgendaDayHeader`     | `(props: { day, collapsed, count, toggle, defaultContent }) => ReactNode`                    | Replace the agenda date gutter (day badge, weekday, collapse toggle).                                         |
+| `renderAgendaDaySummary`    | `(props: { day, occurrences, count, expand, defaultContent }) => ReactNode`                  | Replace the collapsed agenda day summary row content.                                                         |
+
+The `classNames` object (`EventCalendarClassNames`) offers one string hook per element, cn-merged after the built-in classes so Tailwind variants and `!` overrides win. Available keys: `nav`, `toolbar`, `content`, `monthView`, `monthCell`, `timeGrid`, `timeGutter`, `dayColumn`, `allDaySection`, `agendaView`, `event`, `eventTooltip`, `moreIndicator`, `morePopover`, `morePopoverHeader`; nav family `navButton`, `title`, `navTooltip`, `viewSwitcherContent`, `viewSwitcherLabel`, `viewShortcut`, `datePickerContent`; month view `monthHeader`, `monthDayHeader`, `monthBody`, `monthRow`, `weekNumber`, `monthBarOverlay`, `monthBar`, `monthCellContent`, `monthCellFooter`, `monthDayNumber`, `dayAddButton`; time grid and resource `timeGridHeader`, `timeGutterLabel`, `allDayLabel`, `allDayCell`, `timedChip`, `resourceHeader`; interaction surfaces `dragGhost`, `dragCarry`, `dragCarryInvalid`, `dropHint`, `dropIndicator`, `slotDraft`, `resizeHandle`, `resizeGrip`; agenda `noEvents`, `agendaDay`, `agendaDayGutter`, `agendaDate`, `agendaDayToggle`, `agendaDayContent`, `agendaItem`, `agendaItemSurface`, `agendaItemToggle`, `agendaDaySummary`, `agendaSummaryDot`. Metric CSS variables can ride on any parent key, for example `classNames.timeGrid: "[--ec-gutter-width:4rem]"` or `classNames.morePopover: "[--ec-more-max-height:20rem]"`.
+
+---
+
+### EventCalendarInteractions
+
+Interaction toggles, controllable via the `interactions` prop or `api.setInteractions`. All three default to `true`.
+
+| Property     | Type      | Default | Description                   |
+| :----------- | :-------- | :------ | :---------------------------- |
+| `drag`       | `boolean` | `true`  | Move events by dragging.      |
+| `resize`     | `boolean` | `true`  | Resize events at their edges. |
+| `selectSlot` | `boolean` | `true`  | Drag-create slot selection.   |
+
+---
+
+### EventCalendarViewSettings
+
+User-adjustable display toggles (the "view settings" state), controllable via `viewSettings` / `onViewSettingsChange` or `api.setViewSettings`. Every field is optional; `undefined` defers to the matching view-config prop (see `useEventCalendarViewSettings().effective`).
+
+| Property       | Type      | Default | Description                                                                              |
+| :------------- | :-------- | :------ | :--------------------------------------------------------------------------------------- |
+| `weekends`     | `boolean` | -       | Show Saturday/Sunday columns in month, week, and N-day grids (effective default `true`). |
+| `weekNumbers`  | `boolean` | -       | Week-number gutter in the month view (defers to `showWeekNumbers`).                      |
+| `nowIndicator` | `boolean` | -       | Current-time line (defers to the `nowIndicator` view config).                            |
+| `offDays`      | `boolean` | -       | Off-day background marking (defers to the `offDays` view config).                        |
+
+---
+
+### EventCalendarOffDaysConfig
+
+Configuration for non-working-day marking, passed as the `offDays` view config. `true` uses the defaults (weekends with a muted background); marked cells carry `data-off` for CSS-selector customization.
+
+| Property      | Type                     | Default         | Description                                                          |
+| :------------ | :----------------------- | :-------------- | :------------------------------------------------------------------- |
+| `weekendDays` | `number[]`               | `[0, 6]`        | Weekday numbers treated as off (0 = Sunday).                         |
+| `dates`       | `Date[]`                 | -               | Additional explicit off dates (compared by day in the display zone). |
+| `isOffDay`    | `(day: Date) => boolean` | -               | Full custom predicate; runs in addition to `weekendDays` / `dates`.  |
+| `className`   | `string`                 | `"bg-muted/40"` | Marker classes.                                                      |
+
+---
+
+### Internationalization
+
+The `i18n` option accepts a `Partial<EventCalendarI18nConfig>` with four sections, shallow-merged per nested object so a partial override replaces individual keys, never whole sections:
+
+- `labels`: UI strings and label functions (`today`, `previous`, `next`, `addEvent`, `allDay`, `more(count)`, `noEvents`, `loading`, `event`, `events(count)`, `selectView`, `week(weekNumber)`, `resources`, `goToDate`, `dropNotAllowed`, `continues`, `timeFrom(time)`, `timeUntil(time)`, `viewShortcuts`, `toggleDayEvents(count, expanded)`, `eventDetails(title)`, `moreCompact(count)`, `timeRange(from, to)`).
+- `viewNames`: display names per view (`month`, `week`, `day`, `days(count)`, `agenda`, `resource`).
+- `formats`: date-fns format strings applied with the calendar `locale` (`monthTitle`, `weekTitle`, `dayTitle`, `agendaTitle`, `monthDayHeader`, `monthDayHeaderNarrow`, `timeGridDayHeader`, `agendaDayHeader`, `agendaDayNumber`, `agendaWeekday`, `moreDayHeader`, `monthCellAriaLabel`, `dayAria`, `resourceTitle`, `timeGutter`, `timeGutterMinute`, `eventTime`, `monthCellDay`). Leaving `weekTitle` / `agendaTitle` undefined keeps the smart cross-month range title.
+- `functions`: formatter functions (`formatTitle`, `formatEventTime`, `formatDayRange`, `formatEventLabel`, `formatEventAriaLabel`). The defaults are re-bound to the merged labels and formats, so overriding `formats.monthTitle` flows into the default `formatTitle` without replacing it.
+
+`mergeEventCalendarI18n(overrides?)` performs this merge and `DEFAULT_EVENT_CALENDAR_I18N` holds the defaults; both are exported from `event-calendar-i18n.tsx` for standalone use.

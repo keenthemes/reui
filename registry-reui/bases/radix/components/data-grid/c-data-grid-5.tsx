@@ -1,4 +1,5 @@
 "use client"
+"use no memo"
 
 import { useMemo, useState } from "react"
 import {
@@ -343,7 +344,7 @@ export default function Pattern() {
       }}
     >
       <div className="w-full space-y-2.5">
-        <DataGridContainer border={false}>
+        <DataGridContainer>
           <DataGridScrollArea>
             <DataGridTable />
           </DataGridScrollArea>

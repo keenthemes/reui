@@ -14,44 +14,9 @@ base: base
 
 ## Installation
 
-<CodeTabs>
-
-<TabsList>
-  <TabsTrigger value="cli">CLI</TabsTrigger>
-  <TabsTrigger value="manual">Manual</TabsTrigger>
-</TabsList>
-
-<TabsContent value="cli">
-
 ```bash
 npx shadcn@latest add @reui/filters
 ```
-
-</TabsContent>
-
-<TabsContent value="manual">
-
-<Steps>
-
-<Step>Install the following dependencies:</Step>
-
-```bash switch
-npm install @base-ui/react
-```
-
-<Step>Copy and paste the following code into your project.</Step>
-
-<ComponentSource
-  styleName="base-nova"
-  name="filters"
-  title="components/reui/filters.tsx"
-/>
-
-</Steps>
-
-</TabsContent>
-
-</CodeTabs>
 
 ## Usage
 
@@ -129,6 +94,18 @@ return <Filters filters={filters} fields={fields} onChange={setFilters} />
 
 <ComponentPreview styleName="base-nova" name="c-filters-9" align="start" />
 
+### Virtualized Large Lists
+
+<ComponentPreview styleName="base-nova" name="c-filters-10" align="start" />
+
+### Prefetched Async Options
+
+<ComponentPreview styleName="base-nova" name="c-filters-11" align="start" />
+
+### Async Server-side Search
+
+<ComponentPreview styleName="base-nova" name="c-filters-12" align="start" />
+
 ## API Reference
 
 ### Filters
@@ -157,27 +134,29 @@ The main component for displaying and managing a collection of active filters.
 
 Configuration for an individual filterable field.
 
-| Property              | Type                                                             | Description                                               |
-| :-------------------- | :--------------------------------------------------------------- | :-------------------------------------------------------- |
-| `key`                 | `string`                                                         | `Required`. Unique identifier for the field.              |
-| `label`               | `string`                                                         | `Required`. Human-readable label for the field.           |
-| `type`                | `"text" \| "select" \| "multiselect" \| "custom" \| "separator"` | The type of filter input to use.                          |
-| `icon`                | `ReactNode`                                                      | Optional icon to display next to the field label.         |
-| `options`             | `FilterOption<T>[]`                                              | List of options for `select` and `multiselect` fields.    |
-| `operators`           | `FilterOperator[]`                                               | Custom operators for this specific field.                 |
-| `defaultOperator`     | `string`                                                         | The operator to select by default when adding this field. |
-| `placeholder`         | `string`                                                         | Placeholder text for text inputs.                         |
-| `searchable`          | `boolean`                                                        | Whether the options list should be searchable.            |
-| `maxSelections`       | `number`                                                         | Maximum number of items allowed in `multiselect`.         |
-| `prefix`              | `ReactNode \| string`                                            | Prefix element for the input field.                       |
-| `suffix`              | `ReactNode \| string`                                            | Suffix element for the input field.                       |
-| `pattern`             | `string`                                                         | Regex pattern for text input validation.                  |
-| `validation`          | `(value) => boolean \| object`                                   | Custom validation function.                               |
-| `customRenderer`      | `(props) => ReactNode`                                           | Custom renderer for the filter value selector.            |
-| `customValueRenderer` | `(values, options) => ReactNode`                                 | Custom renderer for the active filter value display.      |
-| `fields`              | `FilterFieldConfig<T>[]`                                         | Nested fields if this is a group configuration.           |
-| `group`               | `string`                                                         | Group label if this is a group configuration.             |
-| `className`           | `string`                                                         | Additional CSS classes for the field components.          |
+| Property              | Type                                                                 | Description                                                                                                                                                                                                                                                                |
+| :-------------------- | :------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `key`                 | `string`                                                             | `Required`. Unique identifier for the field.                                                                                                                                                                                                                               |
+| `label`               | `string`                                                             | `Required`. Human-readable label for the field.                                                                                                                                                                                                                            |
+| `type`                | `"text" \| "select" \| "multiselect" \| "custom" \| "separator"`     | The type of filter input to use.                                                                                                                                                                                                                                           |
+| `icon`                | `ReactNode`                                                          | Optional icon to display next to the field label.                                                                                                                                                                                                                          |
+| `options`             | `FilterOption<T>[]`                                                  | List of options for `select` and `multiselect` fields.                                                                                                                                                                                                                     |
+| `loadOptions`         | `(query: string) => FilterOption<T>[] \| Promise<FilterOption<T>[]>` | Async options loader for large or remote lists. Called with the current search query - return a prefetched list (ignore the query) or server-side search results. Debounced, with loading/error states and a value-to-label cache. `options` still seeds the initial view. |
+| `renderOptionList`    | `(props: FilterOptionListRenderProps<T>) => ReactNode`               | Bring-your-own rendering for the options list, e.g. virtualization with a windowing library of your choice. Receives `{ options, highlightedIndex, renderOption }`; render the scrollable list and call `renderOption` for each row. Omit for the default plain list.      |
+| `operators`           | `FilterOperator[]`                                                   | Custom operators for this specific field.                                                                                                                                                                                                                                  |
+| `defaultOperator`     | `string`                                                             | The operator to select by default when adding this field.                                                                                                                                                                                                                  |
+| `placeholder`         | `string`                                                             | Placeholder text for text inputs.                                                                                                                                                                                                                                          |
+| `searchable`          | `boolean`                                                            | Whether the options list should be searchable.                                                                                                                                                                                                                             |
+| `maxSelections`       | `number`                                                             | Maximum number of items allowed in `multiselect`.                                                                                                                                                                                                                          |
+| `prefix`              | `ReactNode \| string`                                                | Prefix element for the input field.                                                                                                                                                                                                                                        |
+| `suffix`              | `ReactNode \| string`                                                | Suffix element for the input field.                                                                                                                                                                                                                                        |
+| `pattern`             | `string`                                                             | Regex pattern for text input validation.                                                                                                                                                                                                                                   |
+| `validation`          | `(value) => boolean \| object`                                       | Custom validation function.                                                                                                                                                                                                                                                |
+| `customRenderer`      | `(props) => ReactNode`                                               | Custom renderer for the filter value selector.                                                                                                                                                                                                                             |
+| `customValueRenderer` | `(values, options) => ReactNode`                                     | Custom renderer for the active filter value display.                                                                                                                                                                                                                       |
+| `fields`              | `FilterFieldConfig<T>[]`                                             | Nested fields if this is a group configuration.                                                                                                                                                                                                                            |
+| `group`               | `string`                                                             | Group label if this is a group configuration.                                                                                                                                                                                                                              |
+| `className`           | `string`                                                             | Additional CSS classes for the field components.                                                                                                                                                                                                                           |
 
 ---
 

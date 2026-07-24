@@ -1,4 +1,5 @@
 "use client"
+"use no memo"
 
 import { useMemo, useState } from "react"
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
@@ -393,7 +394,6 @@ export default function Pattern() {
         left: ["name"],
       },
     },
-    columnResizeMode: "onChange",
     onPaginationChange: setPagination,
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),

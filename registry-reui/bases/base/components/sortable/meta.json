@@ -47,5 +47,12 @@
     "description": "Sortable image gallery grid with frame",
     "order": 7,
     "gridSize": 1
+  },
+  {
+    "name": "c-sortable-8",
+    "title": "Sortable list persisted to a backend",
+    "description": "Persist the new order with onValueCommit, optimistic updates, and Sonner rollback",
+    "order": 8,
+    "gridSize": 1
   }
 ]

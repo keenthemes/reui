@@ -1,4 +1,5 @@
 "use client"
+"use no memo"
 
 import { HTMLAttributes, memo, ReactNode, useMemo } from "react"
 import {
@@ -46,10 +47,16 @@ function DataGridColumnHeaderInner<TData, TValue>({
   filter,
   visibility = false,
 }: DataGridColumnHeaderProps<TData, TValue>) {
-  const { isLoading, table, props, recordCount } = useDataGrid()
+  const { isLoading, table, props } = useDataGrid()
   const resolvedTitle = title ?? getColumnHeaderLabel(column)
 
-  const columnOrder = table.getState().columnOrder
+  // TanStack's columnOrder defaults to [] until a consumer seeds it; fall
+  // back to the definition order so Move Left/Right work out of the box.
+  const columnOrderState = table.getState().columnOrder
+  const columnOrder =
+    columnOrderState.length > 0
+      ? columnOrderState
+      : table.getAllLeafColumns().map((leafColumn) => leafColumn.id)
   const columnVisibilityKey =
     props.tableLayout?.columnsVisibility && visibility
       ? JSON.stringify(table.getState().columnVisibility)
@@ -393,7 +400,7 @@ function DataGridColumnHeaderInner<TData, TValue>({
             <Button
               variant="ghost"
               className={headerButtonClassName}
-              disabled={isLoading || recordCount === 0}
+              disabled={isLoading}
             >
               {icon && icon}
               {resolvedTitle}
@@ -434,7 +441,7 @@ function DataGridColumnHeaderInner<TData, TValue>({
         <Button
           variant="ghost"
           className={headerButtonClassName}
-          disabled={isLoading || recordCount === 0}
+          disabled={isLoading}
           onClick={handleSort}
         >
           {icon && icon}

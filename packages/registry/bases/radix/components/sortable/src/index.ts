@@ -9,6 +9,7 @@ export const componentPreviewLoaders = {
   "c-sortable-5": () => import("@/registry-reui/bases/radix/components/sortable/c-sortable-5.tsx"),
   "c-sortable-6": () => import("@/registry-reui/bases/radix/components/sortable/c-sortable-6.tsx"),
   "c-sortable-7": () => import("@/registry-reui/bases/radix/components/sortable/c-sortable-7.tsx"),
+  "c-sortable-8": () => import("@/registry-reui/bases/radix/components/sortable/c-sortable-8.tsx"),
 } as const
 
 export type ComponentName = keyof typeof componentPreviewLoaders

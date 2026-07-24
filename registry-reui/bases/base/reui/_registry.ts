@@ -277,8 +277,7 @@ export const reui: Registry["items"] = [
       "spinner"
     ],
     "dependencies": [
-      "@tanstack/react-table",
-      "class-variance-authority"
+      "@tanstack/react-table"
     ],
     "files": [
       {
@@ -312,8 +311,7 @@ export const reui: Registry["items"] = [
       "@dnd-kit/sortable",
       "@dnd-kit/utilities",
       "@tanstack/react-table",
-      "@tanstack/react-virtual",
-      "class-variance-authority"
+      "@tanstack/react-virtual"
     ],
     "files": [
       {
@@ -394,6 +392,321 @@ export const reui: Registry["items"] = [
     ]
   },
   {
+    "name": "event-calendar-agenda-view",
+    "type": "registry:ui",
+    "title": "Chronological agenda grouped by day - a day header row plus a clean time / dot / title table.",
+    "description": "Chronological agenda grouped by day - a day header row plus a clean time / dot / title table.",
+    "registryDependencies": [
+      "icon-stack",
+      "scroll-area"
+    ],
+    "dependencies": [
+      "@base-ui/react",
+      "date-fns"
+    ],
+    "files": [
+      {
+        "path": "reui/event-calendar/event-calendar-agenda-view.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/event-calendar/event-calendar-agenda-view.tsx"
+      }
+    ]
+  },
+  {
+    "name": "event-calendar-content",
+    "type": "registry:ui",
+    "title": "Active-view switchboard rendering month, week, day, N-days, or agenda; swappable per view via the components prop.",
+    "description": "Active-view switchboard rendering month, week, day, N-days, or agenda; swappable per view via the components prop.",
+    "registryDependencies": [],
+    "dependencies": [
+      "@base-ui/react"
+    ],
+    "files": [
+      {
+        "path": "reui/event-calendar/event-calendar-content.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/event-calendar/event-calendar-content.tsx"
+      }
+    ]
+  },
+  {
+    "name": "event-calendar-dnd",
+    "type": "registry:ui",
+    "title": "Custom pointer-event interaction engine - move, resize, and drag-create across month, week, day, and N-day views with live validation.",
+    "description": "Custom pointer-event interaction engine - move, resize, and drag-create across month, week, day, and N-day views with live validation.",
+    "registryDependencies": [],
+    "dependencies": [
+      "date-fns"
+    ],
+    "files": [
+      {
+        "path": "reui/event-calendar/event-calendar-dnd.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/event-calendar/event-calendar-dnd.tsx"
+      }
+    ]
+  },
+  {
+    "name": "event-calendar-event",
+    "type": "registry:ui",
+    "title": "The reusable event chip/bar/block - selection, clicks, drag + resize wiring, and the consumer render slot.",
+    "description": "The reusable event chip/bar/block - selection, clicks, drag + resize wiring, and the consumer render slot.",
+    "registryDependencies": [
+      "tooltip"
+    ],
+    "dependencies": [
+      "@base-ui/react",
+      "date-fns"
+    ],
+    "files": [
+      {
+        "path": "reui/event-calendar/event-calendar-event.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/event-calendar/event-calendar-event.tsx"
+      }
+    ]
+  },
+  {
+    "name": "event-calendar-i18n",
+    "type": "registry:ui",
+    "title": "Default UI texts, date-format strings, and formatter functions for the event calendar, fully overridable per key.",
+    "description": "Default UI texts, date-format strings, and formatter functions for the event calendar, fully overridable per key.",
+    "registryDependencies": [],
+    "dependencies": [
+      "date-fns"
+    ],
+    "files": [
+      {
+        "path": "reui/event-calendar/event-calendar-i18n.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/event-calendar/event-calendar-i18n.tsx"
+      }
+    ]
+  },
+  {
+    "name": "event-calendar-lib",
+    "type": "registry:ui",
+    "title": "Pure, React-free calendar math: view ranges, zoned day keys, multi-day segmentation, overlap packing, lane packing, and the event index.",
+    "description": "Pure, React-free calendar math: view ranges, zoned day keys, multi-day segmentation, overlap packing, lane packing, and the event index.",
+    "registryDependencies": [],
+    "dependencies": [
+      "@date-fns/tz",
+      "date-fns"
+    ],
+    "files": [
+      {
+        "path": "reui/event-calendar/event-calendar-lib.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/event-calendar/event-calendar-lib.tsx"
+      }
+    ]
+  },
+  {
+    "name": "event-calendar-month-view",
+    "type": "registry:ui",
+    "title": "ARIA-grid month view with week rows, day cells, event chips, and overflow counts.",
+    "description": "ARIA-grid month view with week rows, day cells, event chips, and overflow counts.",
+    "registryDependencies": [
+      "popover",
+      "scroll-area"
+    ],
+    "dependencies": [
+      "@base-ui/react",
+      "date-fns"
+    ],
+    "files": [
+      {
+        "path": "reui/event-calendar/event-calendar-month-view.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/event-calendar/event-calendar-month-view.tsx"
+      }
+    ]
+  },
+  {
+    "name": "event-calendar-nav",
+    "type": "registry:ui",
+    "title": "Composable navigation - Today, prev/next, period title, view switcher dropdown, and a free toolbar slot.",
+    "description": "Composable navigation - Today, prev/next, period title, view switcher dropdown, and a free toolbar slot.",
+    "registryDependencies": [
+      "button",
+      "calendar",
+      "dropdown-menu",
+      "popover",
+      "tooltip"
+    ],
+    "dependencies": [
+      "@base-ui/react",
+      "date-fns"
+    ],
+    "files": [
+      {
+        "path": "reui/event-calendar/event-calendar-nav.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/event-calendar/event-calendar-nav.tsx"
+      }
+    ]
+  },
+  {
+    "name": "event-calendar-recurrence",
+    "type": "registry:ui",
+    "title": "RFC 5545 subset recurrence expansion for the event calendar - structured rules or raw RRULE strings, with a hard occurrence cap.",
+    "description": "RFC 5545 subset recurrence expansion for the event calendar - structured rules or raw RRULE strings, with a hard occurrence cap.",
+    "registryDependencies": [],
+    "dependencies": [
+      "@date-fns/tz",
+      "date-fns"
+    ],
+    "files": [
+      {
+        "path": "reui/event-calendar/event-calendar-recurrence.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/event-calendar/event-calendar-recurrence.tsx"
+      }
+    ]
+  },
+  {
+    "name": "event-calendar-resource-view",
+    "type": "registry:ui",
+    "title": "Resource-columns day grid for booking scenarios - one time axis, one column per resource, full drag, resize, and drag-create.",
+    "description": "Resource-columns day grid for booking scenarios - one time axis, one column per resource, full drag, resize, and drag-create.",
+    "registryDependencies": [
+      "scroll-area"
+    ],
+    "dependencies": [
+      "@base-ui/react",
+      "date-fns"
+    ],
+    "files": [
+      {
+        "path": "reui/event-calendar/event-calendar-resource-view.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/event-calendar/event-calendar-resource-view.tsx"
+      }
+    ]
+  },
+  {
+    "name": "event-calendar-time-grid",
+    "type": "registry:ui",
+    "title": "Shared week/day/N-days engine - hour gutter, minute-positioned events, all-day row, drag ghosts, now indicator, and configurable scrolling.",
+    "description": "Shared week/day/N-days engine - hour gutter, minute-positioned events, all-day row, drag ghosts, now indicator, and configurable scrolling.",
+    "registryDependencies": [
+      "scroll-area"
+    ],
+    "dependencies": [
+      "@base-ui/react",
+      "date-fns"
+    ],
+    "files": [
+      {
+        "path": "reui/event-calendar/event-calendar-time-grid.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/event-calendar/event-calendar-time-grid.tsx"
+      }
+    ]
+  },
+  {
+    "name": "event-calendar-types",
+    "type": "registry:ui",
+    "title": "Public TypeScript contract for the headless event calendar: events, occurrences, segments, state, and callbacks.",
+    "description": "Public TypeScript contract for the headless event calendar: events, occurrences, segments, state, and callbacks.",
+    "registryDependencies": [],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "reui/event-calendar/event-calendar-types.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/event-calendar/event-calendar-types.tsx"
+      }
+    ]
+  },
+  {
+    "name": "event-calendar",
+    "type": "registry:ui",
+    "title": "Headless-first event calendar with month, week, day, N-day and agenda views, external CRUD contract, and a subscribable store.",
+    "description": "Headless-first event calendar with month, week, day, N-day and agenda views, external CRUD contract, and a subscribable store.",
+    "registryDependencies": [
+      "button",
+      "calendar",
+      "dropdown-menu",
+      "icon-stack",
+      "popover",
+      "scroll-area",
+      "tooltip"
+    ],
+    "dependencies": [
+      "@base-ui/react",
+      "@date-fns/tz",
+      "date-fns"
+    ],
+    "files": [
+      {
+        "path": "reui/event-calendar/event-calendar-agenda-view.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/event-calendar/event-calendar-agenda-view.tsx"
+      },
+      {
+        "path": "reui/event-calendar/event-calendar-content.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/event-calendar/event-calendar-content.tsx"
+      },
+      {
+        "path": "reui/event-calendar/event-calendar-dnd.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/event-calendar/event-calendar-dnd.tsx"
+      },
+      {
+        "path": "reui/event-calendar/event-calendar-event.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/event-calendar/event-calendar-event.tsx"
+      },
+      {
+        "path": "reui/event-calendar/event-calendar-i18n.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/event-calendar/event-calendar-i18n.tsx"
+      },
+      {
+        "path": "reui/event-calendar/event-calendar-lib.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/event-calendar/event-calendar-lib.tsx"
+      },
+      {
+        "path": "reui/event-calendar/event-calendar-month-view.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/event-calendar/event-calendar-month-view.tsx"
+      },
+      {
+        "path": "reui/event-calendar/event-calendar-nav.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/event-calendar/event-calendar-nav.tsx"
+      },
+      {
+        "path": "reui/event-calendar/event-calendar-recurrence.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/event-calendar/event-calendar-recurrence.tsx"
+      },
+      {
+        "path": "reui/event-calendar/event-calendar-resource-view.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/event-calendar/event-calendar-resource-view.tsx"
+      },
+      {
+        "path": "reui/event-calendar/event-calendar-time-grid.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/event-calendar/event-calendar-time-grid.tsx"
+      },
+      {
+        "path": "reui/event-calendar/event-calendar-types.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/event-calendar/event-calendar-types.tsx"
+      },
+      {
+        "path": "reui/event-calendar/event-calendar.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/event-calendar/event-calendar.tsx"
+      }
+    ]
+  },
+  {
     "name": "filters",
     "type": "registry:ui",
     "title": "Filters",
@@ -434,6 +747,227 @@ export const reui: Registry["items"] = [
         "path": "reui/frame.tsx",
         "type": "registry:ui",
         "target": "components/reui/frame.tsx"
+      }
+    ]
+  },
+  {
+    "name": "gantt-bar",
+    "type": "registry:ui",
+    "title": "The interactive gantt bar - selection, clicks, drag + resize wiring, and the consumer render slot.",
+    "description": "The interactive gantt bar - selection, clicks, drag + resize wiring, and the consumer render slot.",
+    "registryDependencies": [
+      "context-menu",
+      "tooltip"
+    ],
+    "dependencies": [
+      "@base-ui/react"
+    ],
+    "files": [
+      {
+        "path": "reui/gantt/gantt-bar.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/gantt/gantt-bar.tsx"
+      }
+    ]
+  },
+  {
+    "name": "gantt-dnd",
+    "type": "registry:ui",
+    "title": "Custom pointer-event interaction engine - edge resize and drag-create over the horizontal axis with live validation; bars are never dragged whole.",
+    "description": "Custom pointer-event interaction engine - edge resize and drag-create over the horizontal axis with live validation; bars are never dragged whole.",
+    "registryDependencies": [],
+    "dependencies": [
+      "date-fns"
+    ],
+    "files": [
+      {
+        "path": "reui/gantt/gantt-dnd.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/gantt/gantt-dnd.tsx"
+      }
+    ]
+  },
+  {
+    "name": "gantt-i18n",
+    "type": "registry:ui",
+    "title": "Default UI texts, date-format strings, and formatter functions for the gantt, fully overridable per key.",
+    "description": "Default UI texts, date-format strings, and formatter functions for the gantt, fully overridable per key.",
+    "registryDependencies": [],
+    "dependencies": [
+      "date-fns"
+    ],
+    "files": [
+      {
+        "path": "reui/gantt/gantt-i18n.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/gantt/gantt-i18n.tsx"
+      }
+    ]
+  },
+  {
+    "name": "gantt-lib",
+    "type": "registry:ui",
+    "title": "Pure, React-free calendar math: view ranges, zoned day keys, multi-day segmentation, overlap packing, lane packing, and the event index.",
+    "description": "Pure, React-free calendar math: view ranges, zoned day keys, multi-day segmentation, overlap packing, lane packing, and the event index.",
+    "registryDependencies": [],
+    "dependencies": [
+      "@date-fns/tz",
+      "date-fns"
+    ],
+    "files": [
+      {
+        "path": "reui/gantt/gantt-lib.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/gantt/gantt-lib.tsx"
+      }
+    ]
+  },
+  {
+    "name": "gantt-nav",
+    "type": "registry:ui",
+    "title": "Composable navigation - Today, view selector, prev/next, go-to-date, period title, and a free toolbar slot.",
+    "description": "Composable navigation - Today, view selector, prev/next, go-to-date, period title, and a free toolbar slot.",
+    "registryDependencies": [
+      "button",
+      "calendar",
+      "dropdown-menu",
+      "popover",
+      "tooltip"
+    ],
+    "dependencies": [
+      "@base-ui/react",
+      "date-fns"
+    ],
+    "files": [
+      {
+        "path": "reui/gantt/gantt-nav.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/gantt/gantt-nav.tsx"
+      }
+    ]
+  },
+  {
+    "name": "gantt-recurrence",
+    "type": "registry:ui",
+    "title": "RFC 5545 subset recurrence expansion for the event calendar - structured rules or raw RRULE strings, with a hard occurrence cap.",
+    "description": "RFC 5545 subset recurrence expansion for the event calendar - structured rules or raw RRULE strings, with a hard occurrence cap.",
+    "registryDependencies": [],
+    "dependencies": [
+      "@date-fns/tz",
+      "date-fns"
+    ],
+    "files": [
+      {
+        "path": "reui/gantt/gantt-recurrence.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/gantt/gantt-recurrence.tsx"
+      }
+    ]
+  },
+  {
+    "name": "gantt-types",
+    "type": "registry:ui",
+    "title": "Public TypeScript contract for the headless gantt: events, occurrences, segments, state, and callbacks.",
+    "description": "Public TypeScript contract for the headless gantt: events, occurrences, segments, state, and callbacks.",
+    "registryDependencies": [],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "reui/gantt/gantt-types.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/gantt/gantt-types.tsx"
+      }
+    ]
+  },
+  {
+    "name": "gantt-view",
+    "type": "registry:ui",
+    "title": "The gantt body - split resizable tree/timeline panes with synced scrolling, multi-column tree, grouped two-row header, day through year scales, zoom, drag-to-pan, lanes, drag and resize.",
+    "description": "The gantt body - split resizable tree/timeline panes with synced scrolling, multi-column tree, grouped two-row header, day through year scales, zoom, drag-to-pan, lanes, drag and resize.",
+    "registryDependencies": [
+      "button",
+      "checkbox",
+      "context-menu",
+      "scroll-area",
+      "tooltip"
+    ],
+    "dependencies": [
+      "@base-ui/react",
+      "date-fns"
+    ],
+    "files": [
+      {
+        "path": "reui/gantt/gantt-view.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/gantt/gantt-view.tsx"
+      }
+    ]
+  },
+  {
+    "name": "gantt",
+    "type": "registry:ui",
+    "title": "Headless-first gantt - horizontal resource timeline with day-to-year scales, external CRUD contract, and a subscribable store.",
+    "description": "Headless-first gantt - horizontal resource timeline with day-to-year scales, external CRUD contract, and a subscribable store.",
+    "registryDependencies": [
+      "button",
+      "calendar",
+      "checkbox",
+      "context-menu",
+      "dropdown-menu",
+      "popover",
+      "scroll-area",
+      "tooltip"
+    ],
+    "dependencies": [
+      "@base-ui/react",
+      "@date-fns/tz",
+      "date-fns"
+    ],
+    "files": [
+      {
+        "path": "reui/gantt/gantt-bar.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/gantt/gantt-bar.tsx"
+      },
+      {
+        "path": "reui/gantt/gantt-dnd.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/gantt/gantt-dnd.tsx"
+      },
+      {
+        "path": "reui/gantt/gantt-i18n.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/gantt/gantt-i18n.tsx"
+      },
+      {
+        "path": "reui/gantt/gantt-lib.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/gantt/gantt-lib.tsx"
+      },
+      {
+        "path": "reui/gantt/gantt-nav.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/gantt/gantt-nav.tsx"
+      },
+      {
+        "path": "reui/gantt/gantt-recurrence.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/gantt/gantt-recurrence.tsx"
+      },
+      {
+        "path": "reui/gantt/gantt-types.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/gantt/gantt-types.tsx"
+      },
+      {
+        "path": "reui/gantt/gantt-view.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/gantt/gantt-view.tsx"
+      },
+      {
+        "path": "reui/gantt/gantt.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/gantt/gantt.tsx"
       }
     ]
   },
@@ -572,7 +1106,9 @@ export const reui: Registry["items"] = [
     "title": "Stepper",
     "description": "",
     "registryDependencies": [],
-    "dependencies": [],
+    "dependencies": [
+      "@base-ui/react"
+    ],
     "files": [
       {
         "path": "reui/stepper.tsx",

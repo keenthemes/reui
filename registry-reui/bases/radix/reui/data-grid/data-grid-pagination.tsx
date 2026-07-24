@@ -1,4 +1,5 @@
 "use client"
+"use no memo"
 
 import React, { ReactNode } from "react"
 import { useDataGrid } from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
@@ -161,7 +162,11 @@ function DataGridPagination(props: DataGridPaginationProps): React.JSX.Element {
               <SelectTrigger className="w-16" size="sm">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent side="top" className="min-w-18">
+              <SelectContent
+                position="popper"
+                align="start"
+                className="min-w-(--radix-select-trigger-width)"
+              >
                 {mergedProps.sizes?.map((size: number) => (
                   <SelectItem key={size} value={`${size}`}>
                     {size}

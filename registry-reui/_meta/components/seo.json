@@ -1,7 +1,7 @@
 {
   "root": {
-    "description": "Free shadcn components for React and Tailwind CSS. {{count}} copy-ready layouts covering data grids, kanban, charts, forms, and 60+ open-source components compatible with shadcn/ui.",
-    "intro": "Browse {{count}} open-source shadcn components for React and Tailwind CSS. From `@tanstack/react-table`-powered data grids and `@dnd-kit/core` kanban boards to form fields, charts, and navigation, every component is copy-ready, maintained as part of the ReUI library, and fully compatible with your shadcn/ui setup and all five Shadcn Create style themes.",
+    "description": "Free shadcn components for React and Tailwind CSS. {{count}} copy-ready layouts covering data grids, kanban, event calendars, Gantt charts, forms, and 60+ open-source components compatible with shadcn/ui.",
+    "intro": "Browse {{count}} open-source shadcn components for React and Tailwind CSS. From `@tanstack/react-table`-powered data grids and `@dnd-kit/core` kanban boards to event calendars, Gantt charts, form fields, and navigation, every component is copy-ready, maintained as part of the ReUI library, and fully compatible with your shadcn/ui setup and all five Shadcn Create style themes.",
     "keywords": [
       "shadcn components",
       "shadcn/ui components",
@@ -32,7 +32,7 @@
       "title": "Shadcn Components: Go Beyond AI Defaults",
       "summary": [
         "ReUI is an open-source component library for the shadcn/ui ecosystem. Every component is built from shadcn primitives, styled with Tailwind CSS, and composed inside realistic dashboard layouts, not isolated component playgrounds. Browse {{count}} copy-ready catalog components and drop them directly into your React or Next.js project.",
-        "The library covers standard shadcn/ui components such as Button, Badge, and Dialog, plus 17 in-house custom components including Data Grid, Kanban, Filters, File Upload, Sortable, Timeline, and Stepper that extend the ecosystem beyond base shadcn/ui. All in-house components ship in both *Radix UI* and *Base UI* flavors.",
+        "The library covers standard shadcn/ui components such as Button, Badge, and Dialog, plus 19 in-house custom components including Data Grid, Kanban, Filters, Event Calendar, Gantt, File Upload, Sortable, Timeline, and Stepper that extend the ecosystem beyond base shadcn/ui. All in-house components ship in both *Radix UI* and *Base UI* flavors.",
         "Use the sections below to explore popular components, understand standard versus in-house components, check Shadcn Create compatibility, and compare *Radix UI* and *Base UI* variants."
       ],
       "sections": [
@@ -58,6 +58,14 @@
             {
               "title": "[Shadcn Kanban](/components/kanban)",
               "description": "Drag-and-drop task boards using `@dnd-kit/core` and `@dnd-kit/sortable` with dynamic overlays and composable card content."
+            },
+            {
+              "title": "[Shadcn Event Calendar](/components/event-calendar)",
+              "description": "Month, week, day, and agenda views with drag-and-drop scheduling, resource lanes, recurring events, and inline editing for planners and booking tools."
+            },
+            {
+              "title": "[Shadcn Gantt](/components/gantt)",
+              "description": "Project timelines with task trees, dependency bars, split panes, day-to-year zoom, and drag-to-reschedule editing for roadmaps and resource planning."
             },
             {
               "title": "[Shadcn Sortable](/components/sortable)",
@@ -150,7 +158,7 @@
         },
         {
           "question": "How is ReUI different from shadcn/ui itself?",
-          "answer": "shadcn/ui provides the primitive components and the CLI install model. ReUI builds on top of that foundation: it adds {{count}} composed components, 17 in-house custom components not in base shadcn/ui (Data Grid, Kanban, Filters, File Upload, Sortable, Timeline, Stepper, and more), and presents everything inside realistic dashboard frames rather than isolated demos. If shadcn/ui is the ingredient kit, ReUI is the recipe collection."
+          "answer": "shadcn/ui provides the primitive components and the CLI install model. ReUI builds on top of that foundation: it adds {{count}} composed components, 19 in-house custom components not in base shadcn/ui (Data Grid, Kanban, Filters, File Upload, Sortable, Timeline, Stepper, and more), and presents everything inside realistic dashboard frames rather than isolated demos. If shadcn/ui is the ingredient kit, ReUI is the recipe collection."
         },
         {
           "question": "Do I need to install an npm package to use ReUI components?",
@@ -2990,6 +2998,131 @@
       ]
     }
   },
+  "event-calendar": {
+    "description": "{{count}} free shadcn event calendar components with month, week, day, N-day and agenda views. Copy-ready React calendar with drag-and-drop, recurrence, and Tailwind CSS.",
+    "intro": "Browse {{count}} production-ready shadcn event calendar components built on a headless-first ReUI primitive. Covers month, week, day, N-day and agenda views, drag to move, resize, drag-to-create, recurring events, time zones, and a settings-driven feature tour - all composable with shadcn Button, Dropdown Menu, Popover, and Tooltip.",
+    "keywords": [
+      "shadcn event calendar",
+      "shadcn/ui calendar component",
+      "react event calendar",
+      "react calendar month week day view",
+      "tailwind event calendar",
+      "react calendar drag and drop",
+      "recurring events react calendar",
+      "react scheduler component",
+      "fullcalendar alternative react",
+      "headless calendar react",
+      "event calendar typescript react",
+      "shadcn create",
+      "reui event calendar examples"
+    ],
+    "content": {
+      "title": "Shadcn Event Calendar: Month, Week, Day and Agenda Views for React",
+      "summary": [
+        "ReUI Event Calendar is a custom shadcn component with a headless-first architecture: a subscribable store owns views, dates, selection, and interactions, while composable view components render month, week, day, N-day, and agenda layouts. Events are plain data you can wire to any backend.",
+        "The primitive ships with a custom pointer-event interaction engine for drag to move, edge resize, and drag-to-create, an RFC 5545 subset recurrence expander, time-zone aware rendering via @date-fns/tz, and fully overridable i18n texts and formatters.",
+        "The sections below cover what ReUI Event Calendar provides, why teams adopt it for scheduling and booking UIs, and how it composes with Button, Dropdown Menu, Popover, and other shadcn primitives."
+      ],
+      "sections": [
+        {
+          "title": "What is Shadcn Event Calendar?",
+          "paragraphs": [
+            "ReUI Event Calendar is a custom scheduling component for React, not part of the base shadcn/ui library. It follows a headless-first design: `EventCalendar` provides the store and context, `EventCalendarNav` renders Today, prev/next, the period title and a view switcher, and `EventCalendarContent` renders the active view. Swap any view with your own through the components prop.",
+            "Events are plain objects ({ id, title, start, end, allDay, color, recurrence, resourceId }) handed in as controlled or uncontrolled state. Every mutation flows through an external CRUD contract (onEventsChange, onEventUpdate, canDropEvent), so persisting to a REST API, GraphQL mutation, or Next.js Server Action is a one-liner."
+          ]
+        },
+        {
+          "title": "Why Use Shadcn Event Calendar?",
+          "paragraphs": [
+            "Event calendars appear in booking tools, team schedulers, resource planners, CRMs, and admin dashboards. Most React calendar libraries are monolithic and hard to restyle; ReUI Event Calendar is copy-and-own source styled with your Tailwind tokens, so the calendar matches the rest of your shadcn/ui app out of the box.",
+            "The interaction engine validates drags live (canDropEvent) and gates commits (onEventUpdate), which makes business rules such as locked events, no-overlap policies, and read-only calendars straightforward. Pair it with Shadcn Data Grid for list views and Shadcn Filters for calendar-level filtering."
+          ]
+        },
+        {
+          "title": "Shadcn Event Calendar Features",
+          "featureItems": [
+            {
+              "title": "Five Views Plus Resources.",
+              "description": "Month, week, day, N-day, and agenda views share one store and one event index. A resource view with one column per bookable resource activates automatically when resources are passed."
+            },
+            {
+              "title": "Drag, Resize, and Drag-to-Create.",
+              "description": "A custom pointer-event engine moves events across days and views, resizes timed events from either edge, and creates events from a drag rectangle, with live validation ghosts and snapping."
+            },
+            {
+              "title": "Recurring Events.",
+              "description": "An RFC 5545 subset expander accepts structured rules or raw RRULE strings (FREQ, INTERVAL, COUNT, UNTIL, BYDAY and more) with a hard occurrence cap for safety."
+            },
+            {
+              "title": "Time Zones and i18n.",
+              "description": "A timeZone prop renders the whole grid in any IANA zone via @date-fns/tz, and every label, date format, and formatter is overridable per key through the i18n prop."
+            },
+            {
+              "title": "Headless State, Composable UI.",
+              "description": "useEventCalendarState can be hoisted and adopted by multiple surfaces, an apiRef exposes an imperative API, and every view accepts render overrides down to individual event chips."
+            },
+            {
+              "title": "Display Controls.",
+              "description": "Week numbers, weekend hiding, off-day marking, business-hour boundaries, grid interval and snap duration, sticky nav, contained or page scrolling, and custom or native scrollbars."
+            },
+            {
+              "title": "Accessible by Default.",
+              "description": "ARIA-grid month view, keyboard shortcuts with focus-within scoping, live-region announcements for gestures, and tooltip-labelled navigation buttons."
+            }
+          ]
+        },
+        {
+          "title": "ReUI Event Calendar: In-House Custom Shadcn Component",
+          "inHouse": true,
+          "paragraphs": [
+            "ReUI Event Calendar is an in-house component built and maintained by the ReUI team as part of the ReUI open-source library. It follows the same copy-and-own installation model as every shadcn/ui component: the source lands directly in your repository as a set of composable files (root, views, nav, interaction engine, recurrence, i18n, types), and you own, extend, and style it with your Tailwind CSS tokens.",
+            "The component is available in two API flavors to match your primitive stack: a Radix UI version for teams using Radix-based shadcn primitives, and a Base UI version for teams on `@base-ui/react`. Both versions share identical visual output and Tailwind CSS styling - only the underlying headless primitive differs. ReUI maintains 19 such in-house components, all available in both Radix and Base UI versions, each with dedicated documentation covering the full component API, usage examples, and prop references."
+          ],
+          "docsLinks": [
+            {
+              "label": "Radix UI Version - API, Props and Usage",
+              "href": "/docs/components/radix/event-calendar"
+            },
+            {
+              "label": "Base UI Version - API, Props and Usage",
+              "href": "/docs/components/base/event-calendar"
+            }
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "question": "How do I persist event changes after a drag or resize?",
+          "answer": "Handle onEventUpdate: it receives the proposed start, end, and source of the gesture. Return false to revert, return an object to adjust, or accept and call your backend. Controlled usage via events plus onEventsChange keeps the calendar in sync with server state."
+        },
+        {
+          "question": "Can I block certain drops, for example onto locked events?",
+          "answer": "Yes. canDropEvent runs live during the gesture and paints an invalid ghost when it returns false, and onEventUpdate is the final commit gate. Locked events themselves can be marked readOnly so they cannot be moved at all."
+        },
+        {
+          "question": "Does it support recurring events like RRULE?",
+          "answer": "Yes. Events accept a structured recurrence rule or a raw RRULE string covering an RFC 5545 subset: FREQ, INTERVAL, COUNT, UNTIL, BYDAY, BYMONTHDAY, BYMONTH, WKST, EXDATE, and RDATE. Occurrences expand per visible range with a hard cap."
+        },
+        {
+          "question": "How do I render events in a different time zone?",
+          "answer": "Pass an IANA zone name to the timeZone prop. The grid, day keys, and all built-in formatting switch to that zone via @date-fns/tz. Use TZDate for your own formatting so labels match grid positions."
+        },
+        {
+          "question": "Can I replace the built-in event chips with my own design?",
+          "answer": "Yes. renderEvent receives the occurrence, segment, view, and drag state and returns your own React node. Separate overrides exist for agenda rows, month cells, day headers, the all-day section, and the more-events popover."
+        }
+      ]
+    },
+    "relatedComponents": {
+      "title": "Integrating With Other Components",
+      "integrationBody": [
+        "Pair the event calendar with Shadcn Data Grid to offer a list-view toggle of the same events, and with Shadcn Gantt when the schedule is resource-driven rather than date-driven.",
+        "Use Shadcn Dialog for create and edit forms opened from onEventClick and onSelectSlot, Shadcn Dropdown Menu for settings menus, and Shadcn Badge for event metadata inside custom renderEvent chips.",
+        "Wrap the calendar nav in its toolbar slot with Shadcn Button actions, and use Shadcn Sonner for async feedback when event changes are persisted to a backend."
+      ]
+    },
+    "inHouse": true
+  },
   "field": {
     "description": "Free shadcn field components for form layout, labels, and error feedback. Compose accessible React form fields with Tailwind CSS label and error layout.",
     "intro": "Browse {{count}} production-ready shadcn field components for accessible form composition, validation feedback, and label organization. Shadcn Field is compatible with Radix UI and Base UI interaction models and is fully aligned with Shadcn Create style options so your previews match your design tokens.",
@@ -3164,7 +3297,7 @@
             },
             {
               "title": "Sortable Image Grid.",
-              "description": "Composes with ReUI Sortable (``@dnd-kit/sortable``) to let users drag-and-drop uploaded images into a custom order before saving — essential for product photo management and gallery ordering."
+              "description": "Composes with ReUI Sortable (@dnd-kit/sortable) to let users drag-and-drop uploaded images into a custom order before saving — essential for product photo management and gallery ordering."
             },
             {
               "title": "Card and Dialog Variants.",
@@ -3181,7 +3314,7 @@
           "inHouse": true,
           "paragraphs": [
             "ReUI File Upload is a custom shadcn component for multi-file upload with validation, preview, and progress tracking.",
-            "Available in Radix UI and Base UI flavors via `@base-ui/react`. ReUI maintains 17 such in-house components."
+            "Available in Radix UI and Base UI flavors via `@base-ui/react`. ReUI maintains 19 such in-house components."
           ],
           "docsLinks": [
             {
@@ -3206,7 +3339,7 @@
         },
         {
           "question": "Can users reorder uploaded images?",
-          "answer": "Yes. The sortable image grid component composes File Upload with ReUI Sortable (``@dnd-kit/sortable``). After upload, images appear in a draggable grid. Users reorder them with drag-and-drop or keyboard, then save the ordered array to the backend."
+          "answer": "Yes. The sortable image grid component composes File Upload with ReUI Sortable (@dnd-kit/sortable). After upload, images appear in a draggable grid. Users reorder them with drag-and-drop or keyboard, then save the ordered array to the backend."
         },
         {
           "question": "How do I validate file type and size?",
@@ -3234,7 +3367,7 @@
   },
   "filters": {
     "description": "Free shadcn filters components for data filtering with URL persistence. Custom React component for client and server-side filtering with date ranges.",
-    "intro": "Browse {{count}} production-ready shadcn filter components integrating TanStack Table column filters, Zod validation, ``nuqs`` URL state persistence, ``react-day-picker`` date ranges, and i18n support. Covers field type variety, custom triggers, data grid integration, async filter mode, and size variants.",
+    "intro": "Browse {{count}} production-ready shadcn filter components integrating TanStack Table column filters, Zod validation, nuqs URL state persistence, react-day-picker date ranges, and i18n support. Covers field type variety, custom triggers, data grid integration, async filter mode, and size variants.",
     "keywords": [
       "shadcn filters",
       "react filter panel component",
@@ -3254,9 +3387,9 @@
       "URL state persistence"
     ],
     "content": {
-      "title": "Shadcn Filters: Faceted Search with TanStack and ``nuqs``",
+      "title": "Shadcn Filters: Faceted Search with TanStack and nuqs",
       "summary": [
-        "ReUI Filters is a custom shadcn component for building filter panels that connect directly to TanStack Table's column filter API. It renders a composable set of field types: text, select, multi-select, date range, number range, and boolean toggles: validates input with Zod, and persists active filters to the URL with ``nuqs`` for shareable, bookmarkable filtered views.",
+        "ReUI Filters is a custom shadcn component for building filter panels that connect directly to TanStack Table's column filter API. It renders a composable set of field types: text, select, multi-select, date range, number range, and boolean toggles: validates input with Zod, and persists active filters to the URL with nuqs for shareable, bookmarkable filtered views.",
         "Nine components cover field variety, input validation, custom trigger buttons, compact and large size variants, custom control rendering, full data grid integration, async filter mode for server-side filtering, and i18n support with locale-aware labels and date formatting.",
         "The sections below explain the architecture, why URL-persistent filters matter, feature details, and how Filters integrates with Data Grid and other ReUI primitives."
       ],
@@ -3264,8 +3397,8 @@
         {
           "title": "What is Shadcn Filters?",
           "paragraphs": [
-            "ReUI Filters is a custom shadcn component that does not exist in the base shadcn/ui library. It generates a filter panel from a schema of field definitions: each field maps to a column in a TanStack Table instance or a standalone filter state. Field types include text search, single and multi-select dropdowns, calendar date ranges via ``react-day-picker``, number ranges, and boolean toggles. Zod validates filter values before they reach the table or API.",
-            "Filter state can be controlled locally or serialized to URL search parameters using ``nuqs``: the typed URL state library built for Next.js App Router. This means users can share filtered views, the browser back button restores filter state, and analytics tools capture filter combinations as URL parameters."
+            "ReUI Filters is a custom shadcn component that does not exist in the base shadcn/ui library. It generates a filter panel from a schema of field definitions: each field maps to a column in a TanStack Table instance or a standalone filter state. Field types include text search, single and multi-select dropdowns, calendar date ranges via react-day-picker, number ranges, and boolean toggles. Zod validates filter values before they reach the table or API.",
+            "Filter state can be controlled locally or serialized to URL search parameters using nuqs: the typed URL state library built for Next.js App Router. This means users can share filtered views, the browser back button restores filter state, and analytics tools capture filter combinations as URL parameters."
           ]
         },
         {
@@ -3278,7 +3411,7 @@
         {
           "title": "Libraries and ReUI Filters Primitives",
           "paragraphs": [
-            "ReUI Filters integrates ``@tanstack/react-table`` for column filter state, ``nuqs`` for URL search param serialization, Zod for filter value validation, ``date-fns`` for date formatting and localization, and ``react-day-picker`` for calendar date range inputs.",
+            "ReUI Filters integrates @tanstack/react-table for column filter state, nuqs for URL search param serialization, Zod for filter value validation, date-fns for date formatting and localization, and react-day-picker for calendar date range inputs.",
             "The filter panel composes shadcn Dropdown Menu, Popover, Calendar, Badge, Button, and ScrollArea. Badge renders applied filter chips; Popover contains the date range calendar; ScrollArea handles long option lists in multi-select fields."
           ]
         },
@@ -3290,8 +3423,8 @@
               "description": "Filters map directly to TanStack Table column definitions. Set column.getFilterValue() and column.setFilterValue() for client-side filtering, or use manualFiltering with an async callback for server-side filtering."
             },
             {
-              "title": "``nuqs`` URL State Persistence.",
-              "description": "Active filter state serializes to URL search parameters via ``nuqs``. Users can share filtered views, the browser back button restores filters, and Next.js App Router handles hydration without extra code."
+              "title": "nuqs URL State Persistence.",
+              "description": "Active filter state serializes to URL search parameters via nuqs. Users can share filtered views, the browser back button restores filters, and Next.js App Router handles hydration without extra code."
             },
             {
               "title": "Zod Filter Validation.",
@@ -3299,7 +3432,7 @@
             },
             {
               "title": "Date Range Filters.",
-              "description": "Date range fields use ``react-day-picker`` inside a Popover for accessible calendar-based date selection. Integrates with ``date-fns`` for locale-aware formatting and range validation."
+              "description": "Date range fields use react-day-picker inside a Popover for accessible calendar-based date selection. Integrates with date-fns for locale-aware formatting and range validation."
             },
             {
               "title": "Multi-Field Type Support.",
@@ -3307,7 +3440,7 @@
             },
             {
               "title": "Applied Filter Chips.",
-              "description": "Active filters render as shadcn Badge chips with remove actions. A clear-all button resets all filters and, if ``nuqs`` is active, clears the URL state."
+              "description": "Active filters render as shadcn Badge chips with remove actions. A clear-all button resets all filters and, if nuqs is active, clears the URL state."
             },
             {
               "title": "Async and Server-Side Filter Mode.",
@@ -3315,7 +3448,7 @@
             },
             {
               "title": "i18n Support.",
-              "description": "Field labels, placeholder text, and date formatting accept locale props. The i18n filter component shows English and localized variants side by side using ``date-fns`` locale utilities."
+              "description": "Field labels, placeholder text, and date formatting accept locale props. The i18n filter component shows English and localized variants side by side using date-fns locale utilities."
             },
             {
               "title": "Size Variants and Custom Controls.",
@@ -3327,8 +3460,8 @@
           "title": "ReUI Filters: In-House Custom Shadcn Component",
           "inHouse": true,
           "paragraphs": [
-            "ReUI Filters is an in-house component built and maintained by the ReUI team as part of the ReUI open-source library. It is designed to integrate seamlessly into any shadcn/ui project: following the same copy-and-own installation model. The component source lands directly in your repository; you own it, extend it, and style it with your Tailwind CSS tokens. ReUI Filters is a custom schema-driven filter panel not available in base shadcn/ui. It integrates directly with ``@tanstack/react-table`` column filter APIs, persists filter state to URL search params via ``nuqs``, validates inputs with ``zod``, and supports async server-side filtering for large datasets. The i18n and custom control components extend it for global products.",
-            "The component is available in two API flavors to match your primitive stack: a Radix UI version for teams using Radix-based shadcn primitives, and a Base UI version for teams on ``@base-ui/react``. Both versions share identical visual output and Tailwind CSS styling: only the underlying headless primitive differs. ReUI maintains 10+ such in-house components, all available in both Radix and Base UI versions, each with dedicated documentation covering the full component API, usage examples, and prop references."
+            "ReUI Filters is an in-house component built and maintained by the ReUI team as part of the ReUI open-source library. It is designed to integrate seamlessly into any shadcn/ui project: following the same copy-and-own installation model. The component source lands directly in your repository; you own it, extend it, and style it with your Tailwind CSS tokens. ReUI Filters is a custom schema-driven filter panel not available in base shadcn/ui. It integrates directly with @tanstack/react-table column filter APIs, persists filter state to URL search params via nuqs, validates inputs with zod, and supports async server-side filtering for large datasets. The i18n and custom control components extend it for global products.",
+            "The component is available in two API flavors to match your primitive stack: a Radix UI version for teams using Radix-based shadcn primitives, and a Base UI version for teams on @base-ui/react. Both versions share identical visual output and Tailwind CSS styling: only the underlying headless primitive differs. ReUI maintains 10+ such in-house components, all available in both Radix and Base UI versions, each with dedicated documentation covering the full component API, usage examples, and prop references."
           ],
           "docsLinks": [
             {
@@ -3348,8 +3481,8 @@
           "answer": "Each filter field maps to a TanStack Table column via its accessorKey or id. The filter panel calls column.setFilterValue() on change and reads column.getFilterValue() to initialize state. Set filterFn on the column definition to control matching logic (exact, includes, inDateRange, etc.)."
         },
         {
-          "question": "How does URL filter state work with ``nuqs``?",
-          "answer": "Filter state is parsed from and written to URL search parameters via ``nuqs`` typed query hooks. In Next.js App Router, ``nuqs`` uses the router to update the URL without full navigation. Filters hydrate from the URL on mount, so shared links restore the exact filter state."
+          "question": "How does URL filter state work with nuqs?",
+          "answer": "Filter state is parsed from and written to URL search parameters via nuqs typed query hooks. In Next.js App Router, nuqs uses the router to update the URL without full navigation. Filters hydrate from the URL on mount, so shared links restore the exact filter state."
         },
         {
           "question": "Can filters work with server-side data?",
@@ -3357,7 +3490,7 @@
         },
         {
           "question": "How are date range filters implemented?",
-          "answer": "Date range fields use ``react-day-picker`` in range mode inside a shadcn Popover. Selected dates are validated and formatted with ``date-fns``. The range value passes to TanStack Table's inDateRange filter function or to your API as ISO date strings."
+          "answer": "Date range fields use react-day-picker in range mode inside a shadcn Popover. Selected dates are validated and formatted with date-fns. The range value passes to TanStack Table's inDateRange filter function or to your API as ISO date strings."
         },
         {
           "question": "Can I add custom filter controls beyond the built-in types?",
@@ -3365,7 +3498,7 @@
         },
         {
           "question": "Does the filter panel support i18n?",
-          "answer": "Yes. Field labels and placeholder text are props. Date formatting uses ``date-fns`` locale objects. The i18n filter component shows how to pass a locale to ``react-day-picker`` and ``date-fns`` simultaneously for consistent date display."
+          "answer": "Yes. Field labels and placeholder text are props. Date formatting uses date-fns locale objects. The i18n filter component shows how to pass a locale to react-day-picker and date-fns simultaneously for consistent date display."
         }
       ]
     },
@@ -3450,7 +3583,7 @@
           "inHouse": true,
           "paragraphs": [
             "ReUI Frame is an in-house component built and maintained by the ReUI team as part of the ReUI open-source library. It is designed to integrate seamlessly into any shadcn/ui project: following the same copy-and-own installation model. The component source lands directly in your repository; you own it, extend it, and style it with your Tailwind CSS tokens. ReUI Frame is a custom container component not available in base shadcn/ui. It provides a consistent layout shell: title, toolbar slot, action button, and scrollable content area: used across Data Grid, Kanban, Timeline, Chart, and Sortable components to produce self-contained dashboard panels without writing per-page chrome code.",
-            "The component is available in two API flavors to match your primitive stack: a Radix UI version for teams using Radix-based shadcn primitives, and a Base UI version for teams on ``@base-ui/react``. Both versions share identical visual output and Tailwind CSS styling: only the underlying headless primitive differs. ReUI maintains 10+ such in-house components, all available in both Radix and Base UI versions, each with dedicated documentation covering the full component API, usage examples, and prop references."
+            "The component is available in two API flavors to match your primitive stack: a Radix UI version for teams using Radix-based shadcn primitives, and a Base UI version for teams on @base-ui/react. Both versions share identical visual output and Tailwind CSS styling: only the underlying headless primitive differs. ReUI maintains 10+ such in-house components, all available in both Radix and Base UI versions, each with dedicated documentation covering the full component API, usage examples, and prop references."
           ],
           "docsLinks": [
             {
@@ -3497,6 +3630,131 @@
         "Wrap a [Shadcn Card](/components/card) group or [Shadcn Table](/components/table) inside a frame to establish clear page boundaries. Pair frames with [Shadcn Dialog](/components/dialog) or [Shadcn Drawer](/components/drawer) to maintain layout alignment when modals or panels slide in.",
         "Use frames inside dashboards with [Shadcn Tabs](/components/tabs) or [Shadcn Accordion](/components/accordion) to organize top-level sections. Nest frames when building nested layouts like page header, main content, and footer regions.",
         "Combine frames with [Shadcn Field](/components/field) groups and [Shadcn Button](/components/button) actions for forms and data entry workflows that span multiple viewport sizes."
+      ]
+    },
+    "inHouse": true
+  },
+  "gantt": {
+    "description": "{{count}} free shadcn gantt chart components with split tree and timeline panes, day to year scales, drag scheduling, and progress. Copy-ready React gantt with Tailwind CSS.",
+    "intro": "Browse {{count}} production-ready shadcn gantt components built on a headless-first ReUI primitive. Covers a resizable task tree, day through year scales, zoom, drag and resize scheduling with live validation, summary rollups, and a settings-driven feature tour - all composable with shadcn Button, Checkbox, Context Menu, and Tooltip.",
+    "keywords": [
+      "shadcn gantt chart",
+      "shadcn/ui gantt component",
+      "react gantt chart",
+      "react gantt timeline",
+      "tailwind gantt chart",
+      "react project timeline component",
+      "gantt chart drag and drop react",
+      "react task scheduler gantt",
+      "headless gantt react",
+      "gantt chart typescript react",
+      "project management gantt react",
+      "shadcn create",
+      "reui gantt examples"
+    ],
+    "content": {
+      "title": "Shadcn Gantt: Project Timelines with Tree and Scales for React",
+      "summary": [
+        "ReUI Gantt is a custom shadcn component with a headless-first architecture: a subscribable store owns the scale, date window, selection, and interactions, while `GanttView` renders split resizable tree and timeline panes with synced scrolling. Bars are plain data you can wire to any backend.",
+        "The primitive ships with day, week, month, quarter, and year scales, zoom with a floating control, infinite scrolling, summary rollups on parent rows, per-bar progress, edge resize and drag scheduling with live validation, and off-screen indicators that scroll to hidden bars.",
+        "The sections below cover what ReUI Gantt provides, why teams adopt it for project and resource planning, and how it composes with Checkbox, Context Menu, Tooltip, and other shadcn primitives."
+      ],
+      "sections": [
+        {
+          "title": "What is Shadcn Gantt?",
+          "paragraphs": [
+            "ReUI Gantt is a custom project-timeline component for React, not part of the base shadcn/ui library. It follows a headless-first design: `Gantt` provides the store and context, `GanttNav` renders Today, a scale switcher, prev/next and the period title, and `GanttView` renders the split tree and timeline body. The tree panel supports extra columns, a pinned name column, and a resizable splitter.",
+            "Bars are plain objects ({ id, title, start, end, color, progress, resourceId }) attached to tree rows by resourceId, handed in as controlled or uncontrolled state. Every mutation flows through an external CRUD contract (onEventsChange, onEventUpdate, canDropEvent), so persisting to a REST API, GraphQL mutation, or Next.js Server Action is a one-liner."
+          ]
+        },
+        {
+          "title": "Why Use Shadcn Gantt?",
+          "paragraphs": [
+            "Gantt charts appear in project management tools, resource planners, release trackers, and agency capacity boards. Most React gantt libraries are heavyweight, canvas-based, and hard to restyle; ReUI Gantt is copy-and-own DOM source styled with your Tailwind tokens, so the chart matches the rest of your shadcn/ui app out of the box.",
+            "The interaction engine validates gestures live (canDropEvent) and gates commits (onEventUpdate with a source discriminator), which makes business rules such as locked release gates, one-bar-per-task policies, and no-overlap rows straightforward. Pair it with Shadcn Data Grid for backlog views and Shadcn Kanban for status boards."
+          ]
+        },
+        {
+          "title": "Shadcn Gantt Features",
+          "featureItems": [
+            {
+              "title": "Split Tree and Timeline Panes.",
+              "description": "A resizable splitter divides the multi-column task tree from the timeline. Vertical scrolling stays perfectly synced, the name column stays pinned, and groups collapse and expand."
+            },
+            {
+              "title": "Day Through Year Scales with Zoom.",
+              "description": "Five scales with a grouped two-row header, a floating zoom control with configurable bounds, and infinite scrolling that extends the range as you approach an edge."
+            },
+            {
+              "title": "Drag Scheduling with Live Validation.",
+              "description": "Bars resize from either edge and move along the time axis with snapping; canDropEvent paints invalid ghosts live and onEventUpdate is the final commit gate, with drag-create available on empty tracks."
+            },
+            {
+              "title": "Progress and Summary Rollups.",
+              "description": "Bars render a subtle progress fill from a 0 to 100 value, and parent rows show envelope summary strips with duration-weighted progress; the rollup math is overridable."
+            },
+            {
+              "title": "Tree Columns and Row Selection.",
+              "description": "Add typed columns (due dates, assignees, priorities) after the built-in name column, drop a columns menu into the header slot, and select leaf rows with built-in checkboxes."
+            },
+            {
+              "title": "Off-Screen Indicators.",
+              "description": "Edge chips point to bars scrolled out of view and scroll the timeline to them on click, so long timelines stay navigable."
+            },
+            {
+              "title": "Headless State, Composable UI.",
+              "description": "useGanttState can be hoisted and adopted by multiple surfaces, an apiRef exposes an imperative API, and renderers exist for bars, tree labels, context menus, drag previews, hints, and summaries."
+            }
+          ]
+        },
+        {
+          "title": "ReUI Gantt: In-House Custom Shadcn Component",
+          "inHouse": true,
+          "paragraphs": [
+            "ReUI Gantt is an in-house component built and maintained by the ReUI team as part of the ReUI open-source library. It follows the same copy-and-own installation model as every shadcn/ui component: the source lands directly in your repository as a set of composable files (root, view, nav, bar, interaction engine, recurrence, i18n, types), and you own, extend, and style it with your Tailwind CSS tokens.",
+            "The component is available in two API flavors to match your primitive stack: a Radix UI version for teams using Radix-based shadcn primitives, and a Base UI version for teams on `@base-ui/react`. Both versions share identical visual output and Tailwind CSS styling - only the underlying headless primitive differs. ReUI maintains 19 such in-house components, all available in both Radix and Base UI versions, each with dedicated documentation covering the full component API, usage examples, and prop references."
+          ],
+          "docsLinks": [
+            {
+              "label": "Radix UI Version - API, Props and Usage",
+              "href": "/docs/components/radix/gantt"
+            },
+            {
+              "label": "Base UI Version - API, Props and Usage",
+              "href": "/docs/components/base/gantt"
+            }
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "question": "How do I persist bar changes after a drag or resize?",
+          "answer": "Handle onEventUpdate: it receives the proposed start, end, and the gesture source (drag, resize-start, resize-end, or api). Return false to revert, return an object to adjust, or accept and call your backend. Controlled usage via events plus onEventsChange keeps the gantt in sync with server state."
+        },
+        {
+          "question": "Can bars move between rows?",
+          "answer": "No, and that is by design: gantt bars move along the time axis only. Rows represent tasks or resources in the tree; reassigning a bar to another row is a data operation you perform through your own UI, for example a context menu action."
+        },
+        {
+          "question": "How do parent rows show progress without bars of their own?",
+          "answer": "Summary bars render an envelope strip across each parent row spanning its descendant bars, with duration-weighted mean progress. Override the math with getSummaryProgress or the rendering with renderSummary."
+        },
+        {
+          "question": "Can I add custom columns to the task tree?",
+          "answer": "Yes. Pass columns with an id, title, width, and render callback that receives the row context. The tree panel scrolls horizontally when columns outgrow it while the name column stays pinned, and the columnsMenu slot is the intended home for an add or remove columns dropdown."
+        },
+        {
+          "question": "How do I add a right-click menu to bars?",
+          "answer": "Return shadcn Context Menu items from renderEventMenu. The primitive wraps every bar in a Context Menu and renders your items as its content; drive actions through the gantt api or your own state."
+        }
+      ]
+    },
+    "relatedComponents": {
+      "title": "Integrating With Other Components",
+      "integrationBody": [
+        "Pair the gantt with Shadcn Data Grid for a sortable backlog view of the same tasks, and with Shadcn Event Calendar when plans are date-driven rather than resource-driven.",
+        "Use Shadcn Context Menu for bar and row actions, Shadcn Avatar in custom tree columns for assignees, and Shadcn Badge for status and priority chips inside custom bar renderers.",
+        "Wrap the gantt nav in its toolbar slot with Shadcn Button actions, and use Shadcn Sonner for async feedback when schedule changes are persisted to a backend."
       ]
     },
     "inHouse": true
@@ -3922,7 +4180,7 @@
   },
   "input-otp": {
     "description": "Free shadcn OTP input components using the input-otp package. Accessible one-time-password fields with paste handling, auto-submit, React OTP components.",
-    "intro": "Browse {{count}} production-ready shadcn OTP input components built on the ``input-otp`` library. Covers basic OTP entry, numeric-only digits, multiple separator styles, alphanumeric codes, PIN inputs, and verification code layouts: accessible, mobile-friendly, and composable with shadcn Field and Button.",
+    "intro": "Browse {{count}} production-ready shadcn OTP input components built on the input-otp library. Covers basic OTP entry, numeric-only digits, multiple separator styles, alphanumeric codes, PIN inputs, and verification code layouts: accessible, mobile-friendly, and composable with shadcn Field and Button.",
     "keywords": [
       "shadcn input otp",
       "shadcn/ui input otp",
@@ -3944,29 +4202,29 @@
     "content": {
       "title": "Shadcn Input OTP: Verification Codes and PIN Entry",
       "summary": [
-        "ReUI Input OTP is built on the ``input-otp`` library: the lightweight, accessible OTP input component used by shadcn/ui itself. It renders individual character slots as a single controlled input, handles paste from clipboard, auto-advances focus on digit entry, and announces completion state to screen readers.",
+        "ReUI Input OTP is built on the input-otp library: the lightweight, accessible OTP input component used by shadcn/ui itself. It renders individual character slots as a single controlled input, handles paste from clipboard, auto-advances focus on digit entry, and announces completion state to screen readers.",
         "Six components cover basic OTP entry, numeric-digit-only validation, multiple separator styles between slot groups, alphanumeric verification codes, PIN code entry, and a complete verification code flow with submit action.",
-        "The sections below cover the ``input-otp`` library integration, real authentication use cases, features, and how OTP input composes with Field and Button for complete verification forms."
+        "The sections below cover the input-otp library integration, real authentication use cases, features, and how OTP input composes with Field and Button for complete verification forms."
       ],
       "sections": [
         {
           "title": "What is Shadcn Input OTP?",
           "paragraphs": [
-            "Shadcn Input OTP is the official OTP input component in shadcn/ui, built on the ``input-otp`` library. It renders a segmented input: each character occupies a styled slot: while the underlying DOM element is a single text input. This gives native mobile keyboard support (numeric keypad on iOS/Android), correct autocomplete='one-time-code' behavior for SMS autofill, and clipboard paste that distributes characters across slots automatically.",
+            "Shadcn Input OTP is the official OTP input component in shadcn/ui, built on the input-otp library. It renders a segmented input: each character occupies a styled slot: while the underlying DOM element is a single text input. This gives native mobile keyboard support (numeric keypad on iOS/Android), correct autocomplete='one-time-code' behavior for SMS autofill, and clipboard paste that distributes characters across slots automatically.",
             "ReUI components show Input OTP in realistic authentication and security flows: SMS verification, email confirmation, two-factor authentication, PIN entry for payment confirmation, and alphanumeric license key entry. Each component includes the submit trigger and error state so you can evaluate the complete user flow."
           ]
         },
         {
           "title": "Why Use Shadcn Input OTP?",
           "paragraphs": [
-            "OTP inputs appear in two-factor authentication, email and phone verification, PIN-gated payment confirmation, and license key entry. The core challenge is building a segmented visual with a single DOM input: maintaining native mobile keyboard behavior, paste support, and accessibility simultaneously. The ``input-otp`` library solves this correctly; hand-rolled OTP inputs frequently break SMS autofill or paste.",
+            "OTP inputs appear in two-factor authentication, email and phone verification, PIN-gated payment confirmation, and license key entry. The core challenge is building a segmented visual with a single DOM input: maintaining native mobile keyboard behavior, paste support, and accessibility simultaneously. The input-otp library solves this correctly; hand-rolled OTP inputs frequently break SMS autofill or paste.",
             "The autocomplete='one-time-code' attribute enables iOS and Android SMS autofill: the operating system reads the SMS, extracts the code, and fills the input automatically. ReUI OTP components include this attribute and the correct inputmode='numeric' for numeric-only codes."
           ]
         },
         {
           "title": "Libraries and ReUI Input OTP Primitives",
           "paragraphs": [
-            "ReUI Input OTP imports the ``input-otp`` library for the OTPInput and OTPInputSlot primitives. It composes shadcn Field, Label, and Button for complete verification form layouts.",
+            "ReUI Input OTP imports the input-otp library for the OTPInput and OTPInputSlot primitives. It composes shadcn Field, Label, and Button for complete verification form layouts.",
             "The library is the same one shadcn/ui uses internally for its own OTP input component."
           ]
         },
@@ -3974,8 +4232,8 @@
           "title": "Shadcn Input OTP Features",
           "featureItems": [
             {
-              "title": "``input-otp`` Library Foundation.",
-              "description": "Built on the ``input-otp`` library — the same library used by shadcn/ui. Single DOM input with segmented visual rendering, native mobile keyboard, SMS autofill via autocomplete='one-time-code', and clipboard paste."
+              "title": "input-otp Library Foundation.",
+              "description": "Built on the input-otp library — the same library used by shadcn/ui. Single DOM input with segmented visual rendering, native mobile keyboard, SMS autofill via autocomplete='one-time-code', and clipboard paste."
             },
             {
               "title": "Auto-Advance and Auto-Submit.",
@@ -4007,11 +4265,11 @@
       "faqs": [
         {
           "question": "What library does ReUI Input OTP use?",
-          "answer": "The ``input-otp`` library: a lightweight, accessible OTP input built specifically for React. It is the same library used by shadcn/ui's built-in OTP input component. It renders a single DOM input with segmented visual slots."
+          "answer": "The input-otp library: a lightweight, accessible OTP input built specifically for React. It is the same library used by shadcn/ui's built-in OTP input component. It renders a single DOM input with segmented visual slots."
         },
         {
           "question": "Does SMS autofill work on iOS and Android?",
-          "answer": "Yes, when you set autocomplete='one-time-code' on the input element. iOS and Android detect incoming SMS messages containing a numeric code and offer one-tap fill. The ``input-otp`` library exposes this attribute through OTPInput props."
+          "answer": "Yes, when you set autocomplete='one-time-code' on the input element. iOS and Android detect incoming SMS messages containing a numeric code and offer one-tap fill. The input-otp library exposes this attribute through OTPInput props."
         },
         {
           "question": "How does paste work?",
@@ -4019,7 +4277,7 @@
         },
         {
           "question": "Can I restrict input to digits only?",
-          "answer": "Yes. Set inputMode='numeric' and component='[0-9]*' on the OTPInput element. The ``input-otp`` library validates keystrokes against the component and rejects non-matching characters. This also triggers the numeric keypad on mobile instead of the full keyboard."
+          "answer": "Yes. Set inputMode='numeric' and component='[0-9]*' on the OTPInput element. The input-otp library validates keystrokes against the component and rejects non-matching characters. This also triggers the numeric keypad on mobile instead of the full keyboard."
         },
         {
           "question": "How do I implement auto-submit when all slots are filled?",
@@ -4221,7 +4479,7 @@
           "inHouse": true,
           "paragraphs": [
             "ReUI Kanban is an in-house component built and maintained by the ReUI team as part of the ReUI open-source library. It is designed to integrate seamlessly into any shadcn/ui project : following the same copy-and-own installation model. The component source lands directly in your repository; you own it, extend it, and style it with your Tailwind CSS tokens. ReUI Kanban is a custom drag-and-drop board component not available in base shadcn/ui. It is powered by `@dnd-kit/core` for collision detection and sensor management, and `@dnd-kit/sortable` for the sortable context around cards and columns. Five components cover placeholder overlay, dynamic overlay, frame-column layout, minimal stacked board, and feature roadmap with Progress tracking.",
-            "The component is available in two API flavors to match your primitive stack: a Radix UI version for teams using Radix-based shadcn primitives, and a Base UI version for teams on `@base-ui/react`. Both versions share identical visual output and Tailwind CSS styling : only the underlying headless primitive differs. ReUI maintains 17 such in-house components, all available in both Radix and Base UI versions, each with dedicated documentation covering the full component API, usage examples, and prop references."
+            "The component is available in two API flavors to match your primitive stack: a Radix UI version for teams using Radix-based shadcn primitives, and a Base UI version for teams on `@base-ui/react`. Both versions share identical visual output and Tailwind CSS styling : only the underlying headless primitive differs. ReUI maintains 19 such in-house components, all available in both Radix and Base UI versions, each with dedicated documentation covering the full component API, usage examples, and prop references."
           ],
           "docsLinks": [
             {
@@ -4238,11 +4496,11 @@
       "faqs": [
         {
           "question": "How do I persist board state after dragging a card to a new column?",
-          "answer": "Call your backend in the onDragEnd callback after updating local state. Use optimistic updates with Sonner toasts for error rollback : the same component ReUI uses in the Sortable and Data Grid CRUD examples."
+          "answer": "Keep value and onValueChange for the live board, then use onValueCommit to save. It fires once per completed drag with the final board and a previousValue snapshot, so you can update optimistically and roll back on error with a Sonner toast. The kanban and sortable examples show this wired to a simulated backend end to end."
         },
         {
           "question": "Can I restrict cards from dragging between certain columns?",
-          "answer": "Yes. In your onDragEnd handler, check the source and destination column IDs. If the move is not allowed, skip the state update and optionally show a Sonner toast explaining why the drag was cancelled."
+          "answer": "Yes. For card moves, pass onMove: it fires once on drop with the source and destination column IDs, so you can skip a disallowed move and show a Sonner toast (note that onMove turns off the live cross-column preview, and column reorders still arrive through onValueChange). You can also validate inside onValueCommit and call setColumns with meta.previousValue to revert a move that is not allowed."
         },
         {
           "question": "How do I enable keyboard drag and drop for accessibility?",
@@ -4250,7 +4508,7 @@
         },
         {
           "question": "How do I implement optimistic UI when dragging cards?",
-          "answer": "Update local state immediately when the drag ends. Show a Sonner toast with undo action. If the API call fails, revert the local state and show an error toast. This gives users fast feedback while keeping the backend in sync."
+          "answer": "Use onValueCommit. It fires once when a drag completes, never during the live preview, with the final board and a previousValue snapshot. Apply the move optimistically through onValueChange, persist inside onValueCommit, and on failure call setColumns with meta.previousValue and show an error toast. Prefer a refetch on error if the user might drag again before the request settles."
         },
         {
           "question": "Does the kanban board handle many cards efficiently?",
@@ -4841,7 +5099,7 @@
           "inHouse": true,
           "paragraphs": [
             "ReUI Number Field is an in-house component built and maintained by the ReUI team as part of the ReUI open-source library. It is designed to integrate seamlessly into any shadcn/ui project : following the same copy-and-own installation model. The component source lands directly in your repository; you own it, extend it, and style it with your Tailwind CSS tokens. ReUI Number Field is a custom numeric input component built on `@base-ui/react` NumberField, not available in base shadcn/ui. It provides increment and decrement stepper buttons, min/max/step constraints, and keyboard-controlled value changes with full WAI-ARIA spinbutton semantics. Integrates with `react-hook-form` and `zod` for form validation.",
-            "The component is available in two API flavors to match your primitive stack: a Radix UI version for teams using Radix-based shadcn primitives, and a Base UI version for teams on `@base-ui/react`. Both versions share identical visual output and Tailwind CSS styling : only the underlying headless primitive differs. ReUI maintains 17 such in-house components, all available in both Radix and Base UI versions, each with dedicated documentation covering the full component API, usage examples, and prop references."
+            "The component is available in two API flavors to match your primitive stack: a Radix UI version for teams using Radix-based shadcn primitives, and a Base UI version for teams on `@base-ui/react`. Both versions share identical visual output and Tailwind CSS styling : only the underlying headless primitive differs. ReUI maintains 19 such in-house components, all available in both Radix and Base UI versions, each with dedicated documentation covering the full component API, usage examples, and prop references."
           ],
           "docsLinks": [
             {
@@ -5070,7 +5328,7 @@
           "inHouse": true,
           "paragraphs": [
             "ReUI Phone Input is an in-house component built and maintained by the ReUI team as part of the ReUI open-source library. It is designed to integrate seamlessly into any shadcn/ui project : following the same copy-and-own installation model. The component source lands directly in your repository; you own it, extend it, and style it with your Tailwind CSS tokens. ReUI Phone Input is a custom international phone number component not available in base shadcn/ui. It is built on `react-phone-number-input` for country code management and E.164 formatting, wrapping the country selector and number input in shadcn Input Group primitives. Supports preset value, default country, error state, and disabled and read-only modes.",
-            "The component is available in two API flavors to match your primitive stack: a Radix UI version for teams using Radix-based shadcn primitives, and a Base UI version for teams on `@base-ui/react`. Both versions share identical visual output and Tailwind CSS styling : only the underlying headless primitive differs. ReUI maintains 17 such in-house components, all available in both Radix and Base UI versions, each with dedicated documentation covering the full component API, usage examples, and prop references."
+            "The component is available in two API flavors to match your primitive stack: a Radix UI version for teams using Radix-based shadcn primitives, and a Base UI version for teams on `@base-ui/react`. Both versions share identical visual output and Tailwind CSS styling : only the underlying headless primitive differs. ReUI maintains 19 such in-house components, all available in both Radix and Base UI versions, each with dedicated documentation covering the full component API, usage examples, and prop references."
           ],
           "docsLinks": [
             {
@@ -5562,7 +5820,7 @@
       "title": "ReUI Rating: In-House Custom Shadcn Component",
       "paragraphs": [
         "ReUI Rating is a custom implementation built on Radix UI primitives, offering both interactive and read-only modes with smooth animations and full keyboard accessibility. It supports half-star selections, custom icon substitution, and seamless integration with form validation libraries.",
-        "ReUI maintains 17 in-house components that enhance the base shadcn/ui library with production-grade features for Next.js applications. The Rating component includes built-in screen reader support for star announcements and ARIA attributes."
+        "ReUI maintains 19 in-house components that enhance the base shadcn/ui library with production-grade features for Next.js applications. The Rating component includes built-in screen reader support for star announcements and ARIA attributes."
       ],
       "docsLinks": [
         {
@@ -5901,7 +6159,7 @@
       "title": "ReUI Scrollspy: In-House Custom Shadcn Component",
       "paragraphs": [
         "ReUI Scrollspy is a custom component that automatically highlights navigation items as the user scrolls through page sections. It handles fixed header offsets, dynamic content, and multiple scrollspy instances with minimal configuration.",
-        "ReUI maintains 17 in-house components for production Next.js apps. The Scrollspy component provides smooth scroll anchoring, performance optimization for many sections, and accessibility features."
+        "ReUI maintains 19 in-house components for production Next.js apps. The Scrollspy component provides smooth scroll anchoring, performance optimization for many sections, and accessibility features."
       ],
       "docsLinks": [
         {
@@ -6551,7 +6809,7 @@
         {
           "title": "What is Shadcn Sortable?",
           "paragraphs": [
-            "ReUI Sortable is a custom drag-and-drop reordering component, distinct from the base shadcn/ui library. It uses `@dnd-kit/sortable`'s SortableContext and useSortable hook to make any array of React elements reorderable. Items receive a transform and transition during drag, a drag handle activates the gesture, and arrayMove updates the order in onDragEnd.",
+            "ReUI Sortable is a custom drag-and-drop reordering component, distinct from the base shadcn/ui library. It uses `@dnd-kit/sortable`'s SortableContext and useSortable hook to make any array of React elements reorderable. Items receive a transform and transition during drag, a drag handle activates the gesture, and arrayMove updates the order on drop.",
             "Components show sortable items in vertical lists, responsive grids, and nested layouts. Frame wrappers pair sortable lists with toolbars and Sonner feedback for async save: the same composed layout used in ReUI's sidebar navigation and settings priority examples."
           ]
         },
@@ -6567,7 +6825,7 @@
           "featureItems": [
             {
               "title": "DnD Kit Sortable Engine.",
-              "description": "Powered by `@dnd-kit/sortable`. SortableContext provides the item order and collision strategy; useSortable exposes transform, transition, and setNodeRef for each item. arrayMove handles order updates in onDragEnd."
+              "description": "Powered by `@dnd-kit/sortable`. SortableContext provides the item order and collision strategy; useSortable exposes transform, transition, and setNodeRef for each item. arrayMove handles order updates on drop."
             },
             {
               "title": "Vertical List, Grid, and Nested Layouts.",
@@ -6617,7 +6875,7 @@
       "faqs": [
         {
           "question": "How do I persist sort order to a database after reordering?",
-          "answer": "Call your Server Action or API endpoint in onDragEnd after arrayMove updates state. Handle optimistic updates in the UI while the backend saves. Use Sonner toast to show success or rollback on error."
+          "answer": "Sortable commits once, on drop, through onValueChange, so persist there. For index-based mutations and a one-line rollback, use onValueCommit instead: it hands you the reordered array and a previousValue snapshot. Call your Server Action or API endpoint, keep the optimistic UI while it saves, and on error revert with meta.previousValue and show a Sonner toast."
         },
         {
           "question": "Does sortable support keyboard drag-and-drop accessibility?",
@@ -6629,11 +6887,11 @@
         },
         {
           "question": "How do I implement optimistic reorder updates with rollback?",
-          "answer": "Update local state immediately in onDragEnd. Call the API in a try/catch. If the API succeeds, you're done. If it fails, revert state to the previous order and show an error toast."
+          "answer": "Update local state immediately in onValueChange, which fires on drop. Call the API in a try/catch, or use onValueCommit and its previousValue snapshot. If the request succeeds you are done. If it fails, revert to the previous order and show an error toast."
         },
         {
           "question": "Can I create nested sortable lists?",
-          "answer": "Yes. Nest multiple SortableContext components and handle onDragEnd at each level. Drag items between parent and child lists by checking the over index. The tree component demonstrates nested sorting."
+          "answer": "Yes. Nest multiple Sortable roots and handle onValueChange at each level. Drag items between parent and child lists by checking the over index. The tree component demonstrates nested sorting."
         },
         {
           "question": "How does sortable work with images and media files?",

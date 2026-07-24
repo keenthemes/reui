@@ -1,8 +1,10 @@
 "use client"
+"use no memo"
 
 import {
   createContext,
   CSSProperties,
+  memo,
   ReactNode,
   useContext,
   useEffect,
@@ -17,9 +19,12 @@ import {
   DataGridTableBody,
   DataGridTableBodyRow,
   DataGridTableBodyRowCell,
+  DataGridTableBodyRowExpandded,
   DataGridTableBodyRowSkeleton,
   DataGridTableBodyRowSkeletonCell,
   DataGridTableEmpty,
+  DataGridTableFillBodyCell,
+  DataGridTableFillHeadCell,
   DataGridTableFoot,
   DataGridTableHead,
   DataGridTableHeadRow,
@@ -43,11 +48,18 @@ import {
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers"
 import {
   SortableContext,
+  sortableKeyboardCoordinates,
   useSortable,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable"
 import { CSS } from "@dnd-kit/utilities"
-import { Cell, flexRender, HeaderGroup, Row } from "@tanstack/react-table"
+import {
+  Cell,
+  flexRender,
+  HeaderGroup,
+  Row,
+  Table,
+} from "@tanstack/react-table"
 
 import { cn } from "@/registry/bases/radix/lib/utils"
 import { Button } from "@/registry/bases/radix/ui/button"
@@ -143,10 +155,65 @@ function DataGridTableDndRow<TData>({ row }: { row: Row<TData> }) {
             </DataGridTableBodyRowCell>
           )
         })}
+        <DataGridTableFillBodyCell />
       </DataGridTableBodyRow>
+      {row.getIsExpanded() && <DataGridTableBodyRowExpandded row={row} />}
     </SortableRowContext.Provider>
   )
 }
+
+function DataGridTableDndRowsBody<TData>({
+  table,
+  dataIds,
+}: {
+  table: Table<TData>
+  dataIds: UniqueIdentifier[]
+}) {
+  const { isLoading, props } = useDataGrid()
+  const pagination = table.getState().pagination
+
+  if (props.loadingMode === "skeleton" && isLoading && pagination?.pageSize) {
+    return (
+      <>
+        {Array.from({ length: pagination.pageSize }).map((_, rowIndex) => (
+          <DataGridTableBodyRowSkeleton key={rowIndex}>
+            {table.getVisibleFlatColumns().map((column, colIndex) => {
+              return (
+                <DataGridTableBodyRowSkeletonCell
+                  column={column}
+                  key={colIndex}
+                >
+                  {column.columnDef.meta?.skeleton}
+                </DataGridTableBodyRowSkeletonCell>
+              )
+            })}
+            <DataGridTableFillBodyCell />
+          </DataGridTableBodyRowSkeleton>
+        ))}
+      </>
+    )
+  }
+
+  if (!table.getRowModel().rows.length) return <DataGridTableEmpty />
+
+  return (
+    <SortableContext items={dataIds} strategy={verticalListSortingStrategy}>
+      {table.getRowModel().rows.map((row: Row<TData>) => {
+        return <DataGridTableDndRow row={row} key={row.id} />
+      })}
+    </SortableContext>
+  )
+}
+
+/**
+ * Memoized body rows: skip re-renders during active column resize.
+ * Column widths update via CSS variables on the <table> element,
+ * so the browser handles width changes without React re-renders.
+ */
+const MemoizedDataGridTableDndRowsBody = memo(
+  DataGridTableDndRowsBody,
+  (_prev, next) => !!next.table.getState().columnSizingInfo.isResizingColumn
+) as typeof DataGridTableDndRowsBody
 
 function DataGridTableDndRows<TData>({
   handleDragEnd,
@@ -157,15 +224,18 @@ function DataGridTableDndRows<TData>({
   dataIds: UniqueIdentifier[]
   footerContent?: ReactNode
 }) {
-  const { table, isLoading, props } = useDataGrid()
-  const pagination = table.getState().pagination
+  const { table, props } = useDataGrid()
   const tableContainerRef = useRef<HTMLDivElement>(null)
   const [isDraggingRow, setIsDraggingRow] = useState(false)
 
   const sensors = useSensors(
     useSensor(MouseSensor, {}),
     useSensor(TouchSensor, {}),
-    useSensor(KeyboardSensor, {})
+    // Keyboard reordering moves one sortable position per keypress instead
+    // of the sensor's raw 25px default.
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
   )
 
   useEffect(() => {
@@ -265,6 +335,7 @@ function DataGridTableDndRows<TData>({
                         </DataGridTableHeadRowCell>
                       )
                     })}
+                    <DataGridTableFillHeadCell />
                   </DataGridTableHeadRow>
                 )
               })}
@@ -275,35 +346,7 @@ function DataGridTableDndRows<TData>({
           )}
 
           <DataGridTableBody>
-            {props.loadingMode === "skeleton" &&
-            isLoading &&
-            pagination?.pageSize ? (
-              Array.from({ length: pagination.pageSize }).map((_, rowIndex) => (
-                <DataGridTableBodyRowSkeleton key={rowIndex}>
-                  {table.getVisibleFlatColumns().map((column, colIndex) => {
-                    return (
-                      <DataGridTableBodyRowSkeletonCell
-                        column={column}
-                        key={colIndex}
-                      >
-                        {column.columnDef.meta?.skeleton}
-                      </DataGridTableBodyRowSkeletonCell>
-                    )
-                  })}
-                </DataGridTableBodyRowSkeleton>
-              ))
-            ) : table.getRowModel().rows.length ? (
-              <SortableContext
-                items={dataIds}
-                strategy={verticalListSortingStrategy}
-              >
-                {table.getRowModel().rows.map((row: Row<TData>) => {
-                  return <DataGridTableDndRow row={row} key={row.id} />
-                })}
-              </SortableContext>
-            ) : (
-              <DataGridTableEmpty />
-            )}
+            <MemoizedDataGridTableDndRowsBody table={table} dataIds={dataIds} />
           </DataGridTableBody>
 
           {footerContent && (

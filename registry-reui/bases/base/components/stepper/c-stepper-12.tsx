@@ -30,10 +30,7 @@ export default function Pattern() {
               step={step}
               className="first:rounded-s-full last:rounded-e-full flex-1 overflow-hidden transition-all duration-300"
             >
-              <StepperTrigger
-                className="w-full flex-col items-start gap-2"
-                asChild
-              >
+              <StepperTrigger className="w-full flex-col items-start gap-2">
                 <StepperIndicator className="bg-border h-2 w-full rounded-none!">
                   <span className="sr-only">{step}</span>
                 </StepperIndicator>

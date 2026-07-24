@@ -20,114 +20,51 @@ The radix build ships the shared grid context, footer helpers, virtualization su
 
 ## Installation
 
-<CodeTabs>
-
-<TabsList>
-  <TabsTrigger value="cli">CLI</TabsTrigger>
-  <TabsTrigger value="manual">Manual</TabsTrigger>
-</TabsList>
-
-<TabsContent value="cli">
-
 ```bash
 npx shadcn@latest add @reui/data-grid
 ```
 
-</TabsContent>
+## React Compiler
 
-<TabsContent value="manual">
+<Callout title="React Compiler" variant="warning">
 
-<Steps>
+TanStack Table v8 returns a stable table instance whose state mutates internally (the reference itself never changes). React Compiler memoizes reads against that stable reference, so state updates can be skipped. In practice that shows up as stale row-selection checkboxes, frozen sort arrows, and unresponsive pin or pagination controls. The fix is the `"use no memo"` directive, which opts a file out of the compiler. It is an inert no-op when React Compiler is not enabled, and is the recommended interim until TanStack Table v9's compiler-native API lands.
 
-<Step>Install the shared core dependencies:</Step>
+**Already handled for you.** Every ReUI data-grid file you install (the primitive and the examples) already ships with `"use no memo"`, so installed ReUI code is safe out of the box.
 
-```bash
-npm install radix-ui @tanstack/react-table class-variance-authority
+**What you must do.** If you enable React Compiler, add `"use no memo"` to your own component that calls `useReactTable`, the one file ReUI cannot reach:
+
+</Callout>
+
+```tsx
+"use client"
+"use no memo" // required only when React Compiler is enabled
+
+export function MyTable() {
+  const table = useReactTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+  })
+
+  return (
+    <DataGrid table={table} recordCount={data.length}>
+      {/* ... */}
+    </DataGrid>
+  )
+}
 ```
 
-To enable drag-and-drop column or row reordering, install:
+Prefer excluding a whole directory over a per-file directive? Configure it in your compiler setup instead (Vite example):
 
-```bash
-npm install @dnd-kit/core @dnd-kit/modifiers @dnd-kit/sortable @dnd-kit/utilities
+```ts
+babel({
+  presets: [reactCompilerPreset()],
+  exclude: ["**/components/reui/data-grid/**", "**/your-tables/**"],
+})
 ```
 
-To enable virtualization and infinite scroll, install:
-
-```bash
-npm install @tanstack/react-virtual
-```
-
-<Step>Copy the shipped files you need into your project.</Step>
-
-`data-grid-table.tsx` exports the footer helpers and `DataGridTableRowPin`. `data-grid-table-virtual.tsx` adds virtualization, infinite scroll, and `footerContent` support. `data-grid-scroll-area.tsx` provides the dedicated radix scroll wrapper.
-
-<ComponentSource
-  styleName="radix-nova"
-  name="data-grid"
-  title="components/reui/data-grid/data-grid.tsx"
-/>
-
-<ComponentSource
-  styleName="radix-nova"
-  name="data-grid-table"
-  title="components/reui/data-grid/data-grid-table.tsx"
-/>
-
-<ComponentSource
-  styleName="radix-nova"
-  name="data-grid-pagination"
-  title="components/reui/data-grid/data-grid-pagination.tsx"
-/>
-
-<ComponentSource
-  styleName="radix-nova"
-  name="data-grid-column-header"
-  title="components/reui/data-grid/data-grid-column-header.tsx"
-/>
-
-<ComponentSource
-  styleName="radix-nova"
-  name="data-grid-column-filter"
-  title="components/reui/data-grid/data-grid-column-filter.tsx"
-/>
-
-<ComponentSource
-  styleName="radix-nova"
-  name="data-grid-column-visibility"
-  title="components/reui/data-grid/data-grid-column-visibility.tsx"
-/>
-
-<ComponentSource
-  styleName="radix-nova"
-  name="data-grid-table-dnd"
-  title="components/reui/data-grid/data-grid-table-dnd.tsx"
-/>
-
-<ComponentSource
-  styleName="radix-nova"
-  name="data-grid-table-dnd-rows"
-  title="components/reui/data-grid/data-grid-table-dnd-rows.tsx"
-/>
-
-<ComponentSource
-  styleName="radix-nova"
-  name="data-grid-table-virtual"
-  title="components/reui/data-grid/data-grid-table-virtual.tsx"
-/>
-
-<ComponentSource
-  styleName="radix-nova"
-  name="data-grid-scroll-area"
-  title="components/reui/data-grid/data-grid-scroll-area.tsx"
-/>
-
-<Step>Update the import paths to match your project setup.</Step>
-
-</Steps>
-
-</TabsContent>
-
-</CodeTabs>
+On Next.js, prefer the per-file `"use no memo"` directive, since its SWC compiler exclusion is more limited.
 
 ## Usage
 

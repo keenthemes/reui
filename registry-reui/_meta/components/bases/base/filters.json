@@ -261,6 +261,80 @@
         "order": 9,
         "gridSize": 1
       }
+    },
+    {
+      "name": "c-filters-10",
+      "type": "registry:block",
+      "title": "Filters with virtualized large lists",
+      "categories": [
+        "filters"
+      ],
+      "description": "Filters with virtualized large lists",
+      "registryDependencies": [
+        "filters"
+      ],
+      "dependencies": [
+        "@tanstack/react-virtual"
+      ],
+      "files": [
+        {
+          "path": "components/filters/c-filters-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-filters-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-filters-11",
+      "type": "registry:block",
+      "title": "Filters with prefetched async options",
+      "categories": [
+        "filters"
+      ],
+      "description": "Filters with prefetched async options",
+      "registryDependencies": [
+        "filters"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/filters/c-filters-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-filters-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-filters-12",
+      "type": "registry:block",
+      "title": "Filters with async server-side search",
+      "categories": [
+        "filters"
+      ],
+      "description": "Filters with async server-side search",
+      "registryDependencies": [
+        "filters"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/filters/c-filters-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-filters-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12,
+        "gridSize": 1
+      }
     }
   ]
 }

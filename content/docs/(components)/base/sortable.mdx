@@ -14,44 +14,9 @@ base: base
 
 ## Installation
 
-<CodeTabs>
-
-<TabsList>
-  <TabsTrigger value="cli">CLI</TabsTrigger>
-  <TabsTrigger value="manual">Manual</TabsTrigger>
-</TabsList>
-
-<TabsContent value="cli">
-
 ```bash
 npx shadcn@latest add @reui/sortable
 ```
-
-</TabsContent>
-
-<TabsContent value="manual">
-
-<Steps>
-
-<Step>Install the following dependencies:</Step>
-
-```bash switch
-npm install @dnd-kit/core @dnd-kit/sortable @base-ui/react
-```
-
-<Step>Copy and paste the following code into your project.</Step>
-
-<ComponentSource
-  styleName="base-nova"
-  name="sortable"
-  title="components/reui/sortable.tsx"
-/>
-
-</Steps>
-
-</TabsContent>
-
-</CodeTabs>
 
 ## Usage
 
@@ -100,19 +65,67 @@ import {
   align="start"
 />
 
+### Persist to a backend
+
+<ComponentPreview
+  styleName="base-nova"
+  name="c-sortable-8"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+## Persisting order
+
+Sortable commits once, on drop, so `onValueChange` alone is already enough to
+persist the whole array. When you want index-based mutations and a one-line
+rollback, use `onValueCommit`: it fires with the reordered array and a
+`previousValue` snapshot.
+
+```tsx
+const reorder = api.list.reorder.useMutation()
+
+<Sortable
+  value={items}
+  onValueChange={setItems}
+  getItemValue={(item) => item.id}
+  onValueCommit={(next, meta) => {
+    reorder.mutate(
+      { id: next[meta.overIndex].id, toIndex: meta.overIndex },
+      {
+        onError: () => {
+          setItems(meta.previousValue) // roll back
+          toast.error("Could not save the new order. Restored.")
+        },
+      },
+    )
+  }}
+>
+  {/* ... */}
+</Sortable>
+```
+
 ## API Reference
 
 ### Sortable
 
 The root component that manages the sortable state and drag-and-drop context.
 
-| Prop            | Type                               | Default      | Description                                                 |
-| :-------------- | :--------------------------------- | :----------- | :---------------------------------------------------------- |
-| `value`         | `T[]`                              | -            | **Required**. The array of items to sort.                   |
-| `onValueChange` | `(value: T[]) => void`             | -            | **Required**. Callback fired when items are reordered.      |
-| `getItemValue`  | `(item: T) => string`              | -            | **Required**. Function to extract a unique ID from an item. |
-| `layout`        | `"vertical" \| "grid" \| "nested"` | `"vertical"` | The visual layout of the sortable list.                     |
-| `className`     | `string`                           | -            | Additional CSS classes for the container.                   |
+| Prop            | Type                                                                               | Default      | Description                                                                                                                                                                           |
+| :-------------- | :--------------------------------------------------------------------------------- | :----------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `value`         | `T[]`                                                                              | -            | **Required**. The array of items to sort.                                                                                                                                             |
+| `onValueChange` | `(value: T[]) => void`                                                             | -            | **Required**. Fired once, on drop, with the reordered array. This alone is enough to persist the whole array.                                                                         |
+| `getItemValue`  | `(item: T) => string`                                                              | -            | **Required**. Function to extract a unique ID from an item.                                                                                                                           |
+| `onValueCommit` | `(value: T[], meta: SortableCommitMeta<T>) => void`                                | -            | Fired on drop with the reordered array and a `previousValue` snapshot. Convenient for index-based backend mutations and one-line rollback. See [Persisting order](#persisting-order). |
+| `onMove`        | `(event: { event: DragEndEvent; activeIndex: number; overIndex: number }) => void` | -            | Opt-in. When set, replaces the default `onValueChange` reorder so you apply the move yourself.                                                                                        |
+| `strategy`      | `"horizontal" \| "vertical" \| "grid"`                                             | `"vertical"` | The sorting strategy and layout of the list.                                                                                                                                          |
+| `onDragStart`   | `(event: DragStartEvent) => void`                                                  | -            | Raw dnd-kit passthrough, fired when a drag starts.                                                                                                                                    |
+| `onDragEnd`     | `(event: DragEndEvent) => void`                                                    | -            | Raw dnd-kit passthrough, fired before the reorder is applied (so `onValueChange` is the persistence seam, not this).                                                                  |
+| `onDragCancel`  | `(event: DragCancelEvent) => void`                                                 | -            | Raw dnd-kit passthrough, fired when a drag is cancelled.                                                                                                                              |
+| `accessibility` | `DndContextProps["accessibility"]`                                                 | -            | dnd-kit accessibility options (announcements and screen reader instructions).                                                                                                         |
+| `modifiers`     | `Modifiers`                                                                        | -            | dnd-kit modifiers applied to the drag.                                                                                                                                                |
+| `className`     | `string`                                                                           | -            | Additional CSS classes for the container.                                                                                                                                             |
+
+`SortableCommitMeta<T>` is `{ event: DragEndEvent; activeIndex: number; overIndex: number; previousValue: T[] }`.
 
 ---
 

@@ -151,6 +151,12 @@
       "count": 20
     },
     {
+      "name": "event-calendar",
+      "label": "Event Calendar",
+      "description": "Open-source shadcn event calendar components with month, week, day and agenda views, and drag-and-drop scheduling.",
+      "count": 5
+    },
+    {
       "name": "field",
       "label": "Field",
       "description": "Open-source shadcn form field components for form composition, validated inputs, and helper text.",
@@ -166,13 +172,19 @@
       "name": "filters",
       "label": "Filters",
       "description": "Open-source shadcn filters components for filter bars, faceted search, and dashboard filtering.",
-      "count": 9
+      "count": 12
     },
     {
       "name": "frame",
       "label": "Frame",
       "description": "Open-source shadcn frame components for embedded previews, app shells, and device mockups.",
       "count": 19
+    },
+    {
+      "name": "gantt",
+      "label": "Gantt",
+      "description": "Open-source shadcn gantt components with split tree and timeline panes, drag scheduling, and progress rollups.",
+      "count": 5
     },
     {
       "name": "hover-card",
@@ -214,7 +226,7 @@
       "name": "kanban",
       "label": "Kanban",
       "description": "Open-source shadcn kanban components for task boards, workflow pipelines, and drag-and-drop planning.",
-      "count": 5
+      "count": 6
     },
     {
       "name": "kbd",
@@ -346,7 +358,7 @@
       "name": "sortable",
       "label": "Sortable",
       "description": "Open-source shadcn sortable components for drag-and-drop lists, priority ranking, and reordering rows.",
-      "count": 7
+      "count": 8
     },
     {
       "name": "spinner",
@@ -415,5 +427,5 @@
       "count": 7
     }
   ],
-  "totalComponents": 1020
+  "totalComponents": 1034
 }
