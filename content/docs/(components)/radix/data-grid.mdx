@@ -353,20 +353,23 @@ Used for enabling row drag-and-drop reordering with optional footer rendering.
 
 ### DataGridTableVirtual
 
-A virtualized table renderer using `@tanstack/react-virtual` for row virtualization, infinite scroll, optional footer rows, and pinned rows when `rowsPinnable` is enabled. The wrapper manages row count and the scroll element for you, while `virtualizerOptions` lets you customize the underlying TanStack Virtual instance.
+A virtualized table renderer using `@tanstack/react-virtual` for row virtualization, infinite scroll, optional footer rows, and pinned rows when `rowsPinnable` is enabled. The wrapper manages row count and the scroll element for you, while `virtualizerOptions` lets you customize the underlying TanStack Virtual instance. Set `scrollToRowIndex` to reveal a controlled center row; `"auto"` alignment keeps already-visible rows in place and accounts for sticky headers.
 
-| Prop                 | Type                                     | Default | Description                                                                                                                          |
-| :------------------- | :--------------------------------------- | :------ | :----------------------------------------------------------------------------------------------------------------------------------- |
-| `height`             | `number \| string`                       | -       | Optional fixed height when not using an outer scroll container.                                                                      |
-| `estimateSize`       | `number`                                 | `48`    | Estimated row height in pixels for the virtualizer.                                                                                  |
-| `overscan`           | `number`                                 | `10`    | Number of rows to render outside the visible area.                                                                                   |
-| `footerContent`      | `ReactNode`                              | -       | Optional footer content rendered inside `<tfoot>`.                                                                                   |
-| `renderHeader`       | `boolean`                                | `true`  | Whether to render the table header.                                                                                                  |
-| `onFetchMore`        | `() => void`                             | -       | Callback triggered when user scrolls near the bottom.                                                                                |
-| `isFetchingMore`     | `boolean`                                | -       | Whether additional data is currently being loaded.                                                                                   |
-| `hasMore`            | `boolean`                                | -       | Whether there are more records available to fetch.                                                                                   |
-| `fetchMoreOffset`    | `number`                                 | `0`     | How many rows before the end should trigger `onFetchMore`.                                                                           |
-| `virtualizerOptions` | `DataGridTableVirtualizerOptions<TData>` | -       | Optional passthrough for TanStack Virtual settings like `enabled`, `getItemKey`, `measureElement`, `rangeExtractor`, and `onChange`. |
+| Prop                 | Type                                     | Default  | Description                                                                                                                          |
+| :------------------- | :--------------------------------------- | :------- | :----------------------------------------------------------------------------------------------------------------------------------- |
+| `height`             | `number \| string`                       | -        | Optional fixed height when not using an outer scroll container.                                                                      |
+| `estimateSize`       | `number`                                 | `48`     | Estimated row height in pixels for the virtualizer.                                                                                  |
+| `overscan`           | `number`                                 | `10`     | Number of rows to render outside the visible area.                                                                                   |
+| `scrollBehavior`     | `ScrollBehavior`                         | `"auto"` | Scroll animation used when revealing `scrollToRowIndex`.                                                                             |
+| `scrollToRowAlign`   | `"auto" \| "center" \| "start" \| "end"` | `"auto"` | Alignment used when revealing the target row. `"auto"` only scrolls when the row is outside the visible area.                        |
+| `scrollToRowIndex`   | `number`                                 | -        | Index within the center (non-pinned) row section to reveal. Supports custom scroll elements and disabled virtualization.             |
+| `footerContent`      | `ReactNode`                              | -        | Optional footer content rendered inside `<tfoot>`.                                                                                   |
+| `renderHeader`       | `boolean`                                | `true`   | Whether to render the table header.                                                                                                  |
+| `onFetchMore`        | `() => void`                             | -        | Callback triggered when user scrolls near the bottom.                                                                                |
+| `isFetchingMore`     | `boolean`                                | -        | Whether additional data is currently being loaded.                                                                                   |
+| `hasMore`            | `boolean`                                | -        | Whether there are more records available to fetch.                                                                                   |
+| `fetchMoreOffset`    | `number`                                 | `0`      | How many rows before the end should trigger `onFetchMore`.                                                                           |
+| `virtualizerOptions` | `DataGridTableVirtualizerOptions<TData>` | -        | Optional passthrough for TanStack Virtual settings like `enabled`, `getItemKey`, `measureElement`, `rangeExtractor`, and `onChange`. |
 
 ---
 
