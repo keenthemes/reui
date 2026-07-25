@@ -105,9 +105,10 @@ The root container for one or more frame panels.
 
 ### CSS Variables
 
-| Variable         | Default            | Description                                        |
-| :--------------- | :----------------- | :------------------------------------------------- |
-| `--frame-radius` | `var(--radius-xl)` | The border radius of the frame and its components. |
+| Variable               | Default                                             | Description                                                                                                     |
+| :--------------------- | :-------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------- |
+| `--frame-radius`       | `var(--radius-xl)`                                  | The outer border radius of the frame. Panels derive their radius from it, so this is the single knob to adjust. |
+| `--frame-panel-radius` | `calc(var(--frame-radius) - var(--frame-px) - 1px)` | The inner panel radius, reduced from `--frame-radius` so panel corners nest concentrically inside the frame.     |
 
 ---
 

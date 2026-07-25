@@ -3973,6 +3973,120 @@
     },
     "inHouse": true
   },
+  "icon-tile": {
+    "description": "Free shadcn icon tile components for consistent icon surfaces in list rows, feature cards, empty states, and Tailwind CSS dashboard layouts.",
+    "intro": "Browse {{count}} production-ready shadcn icon tile components for list-row media, feature cards, dashboard stat tiles, settings rows, and app-launcher grids. ReUI Icon Tile is a square container that gives every icon in your app the same size, radius, and surface treatment.",
+    "keywords": [
+      "shadcn icon tile",
+      "shadcn icon tile component",
+      "shadcn icon container",
+      "shadcn icon box",
+      "react icon tile component",
+      "react icon container",
+      "tailwind icon tile",
+      "tailwind icon box",
+      "icon wrapper component",
+      "rounded icon container",
+      "icon tile react",
+      "feature card icon tile",
+      "dashboard stat icon tile",
+      "app launcher icon grid",
+      "shadcn create",
+      "reui icon tile"
+    ],
+    "content": {
+      "title": "Shadcn Icon Tile: Consistent Icon Surfaces for React",
+      "summary": [
+        "ReUI Icon Tile is a shadcn-compatible component that wraps an icon in a square surface with a fixed size, radius, and border treatment. It gives every icon in a product the same footprint, so list rows, cards, and settings screens line up without one-off wrapper divs.",
+        "Icon Tile ships three variants (outline, elevated, and frame) and five sizes from 24px to 64px. The glyph scales with the tile, so you pick a size once and the icon, padding, and radius follow.",
+        "The examples cover the core shadcn icon tile pattern, all three variants, the size scale, circular tiles, colored surfaces, list-row media, feature cards, and dashboard stat tiles."
+      ],
+      "sections": [
+        {
+          "title": "What is Shadcn Icon Tile?",
+          "paragraphs": [
+            "Shadcn Icon Tile is a small layout primitive: a square container with a consistent surface for a single icon. The child can be a lucide icon, Tabler icon, Hugeicons icon, Phosphor icon, Remix icon, a ReUI animated icon, or any React node, and the tile handles sizing, centering, radius, and background.",
+            "ReUI ships Icon Tile as a copy-ready component for both Radix and Base UI shadcn setups. It follows the shadcn copy-and-own model, uses Tailwind CSS utilities, and reads its colors from your theme tokens so tiles match the active Shadcn Create style."
+          ]
+        },
+        {
+          "title": "Why Use an Icon Tile?",
+          "paragraphs": [
+            "Icons on their own drift. One screen uses size-4 in a bordered box, the next uses size-5 on a muted circle, and rows stop aligning. An icon tile turns that into a single decision: choose a variant and a size, and every surface in the app agrees.",
+            "It is most useful where an icon carries visual weight rather than pure decoration: list-row media, feature cards, empty states, dashboard stat tiles, settings rows, onboarding steps, navigation, and app-launcher grids. Because the tile is built from Tailwind utilities and CSS variables, you keep full control of color without forking the component."
+          ]
+        },
+        {
+          "title": "Shadcn Icon Tile Features",
+          "featureItems": [
+            {
+              "title": "Three Surface Variants.",
+              "description": "Outline is a bordered tile and the default. Elevated adds a muted fill, a background-coloured ring, and a soft raised shadow. Frame renders a double container (a muted ring around an inset card) matching the ReUI Frame look."
+            },
+            {
+              "title": "Five Sizes.",
+              "description": "xs (24px), sm (32px), default (40px), lg (48px), and xl (64px). The glyph scales with the tile, so the icon stays proportional at every step."
+            },
+            {
+              "title": "Radius Control.",
+              "description": "The radius prop accepts default, which follows the active style theme, or full for a circular tile. No extra Tailwind overrides needed for avatar-style icon buttons."
+            },
+            {
+              "title": "Fully Overridable.",
+              "description": "Style the tile with className, or reach for the four CSS variables to change surface, border, ring, and glyph color per instance without editing the component source."
+            },
+            {
+              "title": "Consistent Row and Card Media.",
+              "description": "Drop it into list rows, feature cards, empty states, settings rows, onboarding steps, navigation, and app-launcher grids so icon media keeps one footprint across the product."
+            },
+            {
+              "title": "Radix and Base UI Versions.",
+              "description": "ReUI ships the same Icon Tile visuals for Radix-based shadcn projects and Base UI projects, so teams can keep a consistent design language across stacks."
+            }
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "question": "What is a shadcn icon tile used for?",
+          "answer": "Use it wherever an icon needs a surface rather than floating on the page: list-row media, feature cards, empty states, dashboard stat tiles, settings rows, onboarding steps, navigation, and app-launcher grids. It keeps every icon at the same size and radius."
+        },
+        {
+          "question": "What variants does Icon Tile support?",
+          "answer": "Three. Outline is a bordered tile and the default choice. Elevated uses a muted fill with a background-coloured ring and a soft raised shadow. Frame is a double container, a muted ring around an inset card, which matches the ReUI Frame look."
+        },
+        {
+          "question": "What sizes are available?",
+          "answer": "Five: xs at 24px, sm at 32px, default at 40px, lg at 48px, and xl at 64px. The glyph scales with the tile, so you set one size prop instead of tuning the icon separately."
+        },
+        {
+          "question": "How do I make a circular icon tile?",
+          "answer": "Set radius=\"full\" on the tile. The default value follows the radius of the active style theme, so tiles stay in line with buttons, inputs, and cards unless you opt into the circular look."
+        },
+        {
+          "question": "Can I change the tile colors?",
+          "answer": "Yes. Pass Tailwind classes through className, or set the four CSS variables the component exposes to control the surface, border, ring, and glyph color per instance. Nothing needs to be forked to recolor a tile."
+        },
+        {
+          "question": "Can I put anything other than an icon inside?",
+          "answer": "Yes. The children slot accepts any React node, so a short initial, a number, a small logo, or a status glyph works too. The tile only handles sizing, centering, and the surface treatment."
+        },
+        {
+          "question": "How is Icon Tile different from Icon Stack?",
+          "answer": "Icon Tile is a flat square surface for everyday icon media and repeats well across rows and grids. [Shadcn Icon Stack](/components/icon-stack) is a layered isometric illustration meant for a single focal moment such as an empty state or onboarding panel."
+        }
+      ]
+    },
+    "relatedComponents": {
+      "title": "Integrating with Other Components",
+      "integrationBody": [
+        "Use Icon Tile inside [Shadcn Item](/components/item) media for list rows, package entries, and settings screens. Pair it with [Shadcn Badge](/components/badge) when the row also needs status context.",
+        "Combine Icon Tile with [Shadcn Card](/components/card) for feature grids and dashboard stat tiles, and with [Shadcn Empty](/components/empty) for zero-data screens that need a calm icon surface instead of a full illustration.",
+        "The frame variant is built to sit next to [Shadcn Frame](/components/frame) surfaces. Add [Shadcn Tooltip](/components/tooltip) or [Shadcn Button](/components/button) for app-launcher grids and navigation, and read the full prop reference in the [Base UI docs](/docs/components/base/icon-tile) or the [Radix docs](/docs/components/radix/icon-tile)."
+      ]
+    },
+    "inHouse": true
+  },
   "input": {
     "description": "Free shadcn input components with prefixes, suffixes, masking, and addons. Password toggle, clearing support. Copy-ready 17 React input variations.",
     "intro": "Browse {{count}} production-ready shadcn input components for text entry, search fields, passwords, and real-time validation. Shadcn Input is compatible with Radix UI and Base UI form components and is fully aligned with Shadcn Create style options so your previews match your design tokens.",

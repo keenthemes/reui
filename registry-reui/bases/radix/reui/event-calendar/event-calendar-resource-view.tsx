@@ -73,6 +73,7 @@ function EventCalendarResourceView({
   dayEndHour,
   showAllDay = true,
   interval: intervalProp,
+  style,
   ...props
 }: EventCalendarResourceViewProps) {
   const instance = useEventCalendar()
@@ -240,7 +241,10 @@ function EventCalendarResourceView({
           viewConfig.classNames?.timeGrid,
           className
         )}
-        style={{ "--ec-hour-height": "4rem" } as CSSProperties}
+        // merged, not spread: every measurement in the timed track is a
+        // calc() on --ec-hour-height, so a consumer style prop must not
+        // replace it (base gets this for free through mergeProps)
+        style={{ "--ec-hour-height": "4rem", ...style } as CSSProperties}
         {...props}
       >
         {/* Resource header row */}
@@ -359,7 +363,8 @@ function EventCalendarResourceAllDayCell({
       ? typeof viewConfig.offDays === "object"
         ? viewConfig.offDays
         : true
-      : false
+      : false,
+    settings.weekendDays
   )
   const offClassName =
     (typeof viewConfig.offDays === "object" && viewConfig.offDays.className) ||
@@ -474,7 +479,8 @@ function EventCalendarResourceColumn({
       ? typeof viewConfig.offDays === "object"
         ? viewConfig.offDays
         : true
-      : false
+      : false,
+    settings.weekendDays
   )
   const offClassName =
     (typeof viewConfig.offDays === "object" && viewConfig.offDays.className) ||
@@ -488,14 +494,21 @@ function EventCalendarResourceColumn({
   const boundsMinutes = Math.max(60, boundsEndMin - boundsStartMin)
 
   // Filter this resource's timed segments and repack per column.
-  // Clones keep the shared index cache untouched.
+  // Clones keep the shared index cache untouched. Segments the day bounds clip
+  // away are dropped here too, otherwise they hold a column nobody can see and
+  // leave a phantom empty half beside the first in-bounds chip.
   const packed = useMemo(() => {
     const mine = segments.timed
-      .filter((segment) => segment.occurrence.event.resourceId === resource.id)
+      .filter((segment) => {
+        if (segment.occurrence.event.resourceId !== resource.id) return false
+        const startMin = Math.max(segment.startMin ?? 0, boundsStartMin)
+        const endMin = Math.min(segment.endMin ?? startMin, boundsEndMin)
+        return endMin > boundsStartMin && startMin < boundsEndMin
+      })
       .map((segment) => ({ ...segment }) as EventCalendarSegment)
     packTimedSegments(mine)
     return mine
-  }, [segments.timed, resource.id])
+  }, [segments.timed, resource.id, boundsStartMin, boundsEndMin])
 
   const dragGhost = useEventCalendarSelector<
     unknown,

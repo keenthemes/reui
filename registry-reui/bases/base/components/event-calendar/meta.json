@@ -16,7 +16,7 @@
   {
     "name": "c-event-calendar-3",
     "title": "Event calendar with create and edit dialog",
-    "description": "Event calendar with create and edit dialog",
+    "description": "Month calendar with event CRUD in one dialog: open from an empty day, an event, or Add event, commit via apiRef. Title, color, start, duration, all-day fields. ReUI EventCalendar, Nav, Toolbar; shadcn Dialog, Field, Select, Switch. Scheduling apps.",
     "order": 3,
     "gridSize": 1
   },

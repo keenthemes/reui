@@ -1123,6 +1123,9 @@ function GanttView({
       // the timeline, which mirrors back through the link above. Horizontal
       // wheel intent stays native for the tree's own columns.
       const onWheel = (e: WheelEvent) => {
+        // ctrl/cmd (and trackpad pinch, which sets ctrlKey) is the zoom
+        // gesture; scrolling as well would move the rows out from under it
+        if (e.ctrlKey || e.metaKey) return
         if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return
         const dy = e.deltaMode === 1 ? e.deltaY * 16 : e.deltaY
         timelineViewport.scrollTop += dy
@@ -1142,6 +1145,9 @@ function GanttView({
       // so flick-scrolling syncs through the (frame-lagged) link - accepted,
       // pointer drags are the gantt's primary touch interaction.
       const onWheel = (e: WheelEvent) => {
+        // ctrl/cmd (and trackpad pinch, which sets ctrlKey) is the zoom
+        // gesture; scrolling as well would move the rows out from under it
+        if (e.ctrlKey || e.metaKey) return
         if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return
         const max =
           timelineViewport.scrollHeight - timelineViewport.clientHeight
@@ -1313,6 +1319,12 @@ function GanttView({
   const pendingRestoreRef = useRef<{
     ms: number
     align: "start" | "center"
+    /**
+     * Park the anchored instant this many pixels from the viewport's inline
+     * start instead of at the edge or the middle. Wheel zoom needs it so the
+     * instant under the cursor stays under the cursor.
+     */
+    offsetPx?: number
   } | null>(null)
   const extendLockRef = useRef(false)
   const lastUserScrollRef = useRef(0)
@@ -1328,6 +1340,12 @@ function GanttView({
     const markIntent = () => {
       lastUserScrollRef.current = performance.now()
     }
+    // zooming is not scroll intent - the re-seat it triggers must not be
+    // mistaken for the user reaching an edge and asking to grow the range
+    const markWheelIntent = (e: WheelEvent) => {
+      if (e.ctrlKey || e.metaKey) return
+      markIntent()
+    }
     // pointerdown counts only where pressing can scroll: the scrollbars,
     // the pan header, or a native-scroll host - NOT bars, chips, or zoom
     const onPointerDown = (e: PointerEvent) => {
@@ -1340,12 +1358,12 @@ function GanttView({
         markIntent()
       }
     }
-    pane.addEventListener("wheel", markIntent, { passive: true })
+    pane.addEventListener("wheel", markWheelIntent, { passive: true })
     pane.addEventListener("pointerdown", onPointerDown)
     pane.addEventListener("touchstart", markIntent, { passive: true })
     pane.addEventListener("keydown", markIntent)
     return () => {
-      pane.removeEventListener("wheel", markIntent)
+      pane.removeEventListener("wheel", markWheelIntent)
       pane.removeEventListener("pointerdown", onPointerDown)
       pane.removeEventListener("touchstart", markIntent)
       pane.removeEventListener("keydown", markIntent)
@@ -1398,6 +1416,9 @@ function GanttView({
     // parked exactly on an edge, further wheeling emits no scroll event -
     // the wheel itself is the growth gesture then
     const onWheel = (e: WheelEvent) => {
+      // a zoom gesture must never grow the range: the track is rescaling
+      // under the pointer, so an edge reading mid-gesture is meaningless
+      if (e.ctrlKey || e.metaKey) return
       if (extendLockRef.current || e.deltaX === 0) return
       if (viewport.scrollWidth <= viewport.clientWidth + 8) return
       const towardStart = isRtl ? e.deltaX > 0 : e.deltaX < 0
@@ -1502,7 +1523,7 @@ function GanttView({
           raf = requestAnimationFrame(seat)
           return
         }
-        const { ms, align } = pendingRestoreRef.current
+        const { ms, align, offsetPx } = pendingRestoreRef.current
         pendingRestoreRef.current = null
         // clamp: a stale anchor (e.g. an ignored controlled-zoom proposal)
         // must never park the view outside the track
@@ -1510,7 +1531,8 @@ function GanttView({
           Math.max((ms - rangeStartMs) / (rangeEndMs - rangeStartMs), 0),
           1
         )
-        const offset = align === "center" ? viewport.clientWidth / 2 : 0
+        const offset =
+          offsetPx ?? (align === "center" ? viewport.clientWidth / 2 : 0)
         setScrollStart(
           viewport,
           Math.max(0, fraction * viewport.scrollWidth - offset)
@@ -1549,6 +1571,65 @@ function GanttView({
       align: "center",
     }
   }
+
+  /**
+   * Keep the instant under the POINTER pinned across a zoom step. The buttons
+   * anchor the viewport center, but a wheel or pinch gesture points at
+   * something - zooming away from it reads as the content sliding out from
+   * under the cursor.
+   */
+  const anchorZoomPointer = (clientX: number) => {
+    const viewport = getPaneViewport(timelinePaneRef.current)
+    const axis = viewport?.querySelector<HTMLElement>("[data-gantt-axis]")
+    if (!viewport || !axis) return
+    const liveStart = Number(axis.dataset.ganttRangeStart)
+    const liveEnd = Number(axis.dataset.ganttRangeEnd)
+    if (Number.isNaN(liveStart) || Number.isNaN(liveEnd)) return
+    // trackPoint mirrors in RTL, where the range start is the right edge
+    const offsetPx = trackPoint(viewport, clientX).offset
+    pendingRestoreRef.current = {
+      ms:
+        liveStart +
+        ((getScrollStart(viewport) + offsetPx) / viewport.scrollWidth) *
+          (liveEnd - liveStart),
+      align: "start",
+      offsetPx,
+    }
+  }
+
+  // ----- ctrl/cmd + wheel (and trackpad pinch) zooms the time range -----
+  // The listener is manual and non-passive because it must preventDefault:
+  // React's synthetic wheel handler cannot. It attaches once and reads the
+  // live logic through a ref, so a zoom step never re-binds mid-gesture.
+  const wheelZoomRef = useRef<((e: WheelEvent) => void) | null>(null)
+  useEffect(() => {
+    wheelZoomRef.current = (e: WheelEvent) => {
+      if (!viewConfig.wheelZoom) return
+      // Browsers deliver a trackpad pinch as wheel + ctrlKey on every
+      // platform; metaKey is the Mac keyboard idiom the same gesture implies.
+      if (!e.ctrlKey && !e.metaKey) return
+      const lines = e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? 400 : 1
+      // Continuous, not stepped: a pinch emits dozens of small deltas per
+      // second, so the button's 0.25 step would slam to a limit instantly.
+      // Exponential keeps each notch proportional at any zoom level.
+      const next = clampZoom(zoom * Math.exp(-e.deltaY * lines * 0.002))
+      // Already clamped: hand the gesture back so the browser's own page
+      // zoom still works for anyone who relies on it.
+      if (Math.abs(next - zoom) < 1e-4) return
+      e.preventDefault()
+      // Controlled zoom anchors via fineCenterRef when the parent adopts;
+      // pre-setting an anchor would leak stale if the parent ignores it.
+      if (viewConfig.zoom === undefined) anchorZoomPointer(e.clientX)
+      setZoomValue(+next.toFixed(4))
+    }
+  })
+  useEffect(() => {
+    const viewport = getPaneViewport(timelinePaneRef.current)
+    if (!viewport) return
+    const onWheel = (e: WheelEvent) => wheelZoomRef.current?.(e)
+    viewport.addEventListener("wheel", onWheel, { passive: false })
+    return () => viewport.removeEventListener("wheel", onWheel)
+  }, [viewConfig.scrollbars, scale])
 
   // Drag-to-pan from the header (intent-based: activates after 4px)
   const beginHeaderPan = (e: React.PointerEvent) => {

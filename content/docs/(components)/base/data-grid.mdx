@@ -404,3 +404,15 @@ A cell inside a footer row.
 | `colSpan`   | `number`    | -       | Column span for the footer cell. |
 | `className` | `string`    | -       | Additional CSS classes.          |
 | `children`  | `ReactNode` | -       | Content of the footer cell.      |
+
+---
+
+### DOM Attributes
+
+Data rows carry these attributes so you can target them from queries, tests, and styles. They are applied by the shared row renderer, so they appear on standard, virtualized, pinned, and draggable rows alike. Spacer, skeleton, empty, and expanded-detail rows are rendered separately and carry none of them.
+
+| Attribute         | Value               | Description                                                                                                                            |
+| :---------------- | :------------------ | :------------------------------------------------------------------------------------------------------------------------------------- |
+| `data-row-id`     | `string`            | The resolved TanStack Table row id, respecting any `getRowId` configuration. Stable across sorting and pagination.                     |
+| `data-index`      | `number`            | Position of the row within the rendered rows, used for virtual measurement and striping. Omitted when the renderer does not supply it. |
+| `data-row-pinned` | `"top" \| "bottom"` | Which edge the row is pinned to. Omitted entirely when the row is not pinned.                                                          |

@@ -199,6 +199,12 @@
       "count": 6
     },
     {
+      "name": "icon-tile",
+      "label": "Icon Tile",
+      "description": "Open-source shadcn icon tile components for list row media, feature cards, empty states, and dashboard tiles.",
+      "count": 17
+    },
+    {
       "name": "input",
       "label": "Input",
       "description": "Open-source shadcn input components for form entry, search fields, and auth screens.",
@@ -214,7 +220,7 @@
       "name": "input-otp",
       "label": "Input Otp",
       "description": "Open-source shadcn OTP input components for verification codes, 2FA flows, and secure confirmation screens.",
-      "count": 7
+      "count": 6
     },
     {
       "name": "item",
@@ -427,5 +433,5 @@
       "count": 7
     }
   ],
-  "totalComponents": 1034
+  "totalComponents": 1051
 }

@@ -183,8 +183,13 @@ function makeDefaultGanttFunctions(
         return `${format(start, "MMM d, yyyy", opts)} - ${format(last, "MMM d, yyyy", opts)}`
       }
       const fmt = cfg.formats.eventTime
-      // Multi-day timed events carry the date on both sides
-      if (end.getTime() - start.getTime() > 24 * 60 * 60 * 1000) {
+      // Multi-day timed events carry the date on both sides. Compare calendar
+      // days off the last rendered instant (end is exclusive, so a 14:00 to
+      // midnight bar still ends on the start day). Elapsed ms would miss an
+      // exactly-24h bar and a DST day that only runs 23 hours.
+      const lastInstant =
+        end.getTime() - 1 >= start.getTime() ? subMilliseconds(end, 1) : start
+      if (format(start, "yyyy-MM-dd") !== format(lastInstant, "yyyy-MM-dd")) {
         return `${format(start, `MMM d, ${fmt}`, opts)} - ${format(end, `MMM d, ${fmt}`, opts)}`
       }
       return `${format(start, fmt, opts)} - ${format(end, fmt, opts)}`

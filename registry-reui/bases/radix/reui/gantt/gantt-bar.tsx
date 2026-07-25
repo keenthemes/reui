@@ -220,7 +220,7 @@ function GanttBar<TData = unknown>({
           data-slot="gantt-resize-handle"
           data-edge="start"
           // grip hugs the start edge (justify-start + tight inset) so the
-          // indicator reads as "resize this end", not a centered pill
+          // indicator reads as "resize this end", not a centered pill.
           // pointer-coarse keeps it visible on touch, where hover never fires
           className="absolute inset-y-0 start-0.5 flex w-2 cursor-ew-resize items-center justify-start opacity-0 group-hover/gantt-bar-group:opacity-100 pointer-coarse:opacity-100"
           onPointerDown={(e) => gestures.beginResize(e, segment, "start")}
@@ -236,7 +236,7 @@ function GanttBar<TData = unknown>({
           data-slot="gantt-resize-handle"
           data-edge="end"
           // grip hugs the end edge (justify-end + tight inset) so the
-          // indicator reads as "resize this end", not a centered pill
+          // indicator reads as "resize this end", not a centered pill.
           // pointer-coarse keeps it visible on touch, where hover never fires
           className="absolute inset-y-0 end-0.5 flex w-2 cursor-ew-resize items-center justify-end opacity-0 group-hover/gantt-bar-group:opacity-100 pointer-coarse:opacity-100"
           onPointerDown={(e) => gestures.beginResize(e, segment, "end")}

@@ -119,6 +119,11 @@ function getViewDateRange(
   return { activeRange: range, visibleRange: range }
 }
 
+/** Day of month of the last day of the month containing the zoned date. */
+function lastDayOfZonedMonth(date: Date): number {
+  return addDays(startOfMonth(addMonths(date, 1)), -1).getDate()
+}
+
 /** The anchor date stepped one period forward or backward for the view. */
 function stepDate(
   view: CalendarView,
@@ -127,7 +132,16 @@ function stepDate(
   opts: Pick<ViewRangeOptions, "timeZone" | "dayCount" | "agendaDayCount">
 ): Date {
   const zoned = toZoned(date, opts.timeZone)
-  if (view === "month") return addMonths(zoned, direction)
+  if (view === "month") {
+    const stepped = addMonths(zoned, direction)
+    // addMonths clamps the day down into a shorter month and never restores
+    // it, so next-then-prev from the 31st would leave the anchor on the 28th.
+    // Sticking a month end to the target month's end keeps stepping
+    // invertible, which matters because the anchor is what day and week view
+    // open on after a month navigation.
+    if (zoned.getDate() !== lastDayOfZonedMonth(zoned)) return stepped
+    return addDays(stepped, lastDayOfZonedMonth(stepped) - stepped.getDate())
+  }
   if (view === "week") return addWeeks(zoned, direction)
   if (view === "day" || view === "resource") return addDays(zoned, direction)
   if (view === "days")
@@ -153,8 +167,10 @@ function eventsOverlap(
  * The one canonical multi-day segmentation. Splits an occurrence into per-day
  * segments clamped to the range. Rules (unit-tested in M1): exclusive end - an
  * event ending exactly at zoned midnight emits NO segment for that day;
- * zero-duration events emit one min-height segment; allDay compares date-only
- * in the display zone.
+ * zero-duration events emit one min-height segment; allDay occurrences walk
+ * the same absolute instants as timed ones and only drop startMin/endMin, so
+ * their bounds have to already BE display-zone midnights (see
+ * CalendarEvent.allDay) or the bar paints on the wrong days.
  */
 function segmentOccurrence<TData>(
   occurrence: EventCalendarOccurrence<TData>,
@@ -211,14 +227,32 @@ function segmentOccurrence<TData>(
 }
 
 /** True when the occurrence should render as a bar (all-day row / month lanes). */
-function isBarOccurrence(occurrence: EventCalendarOccurrence): boolean {
-  return occurrence.allDay || spansMultipleDays(occurrence)
+function isBarOccurrence(
+  occurrence: EventCalendarOccurrence,
+  timeZone?: string
+): boolean {
+  return occurrence.allDay || spansMultipleDays(occurrence, timeZone)
 }
 
-function spansMultipleDays(occ: { start: Date; end: Date }): boolean {
+function spansMultipleDays(
+  occ: { start: Date; end: Date },
+  timeZone?: string
+): boolean {
   // An event ending exactly at the next midnight is still single-day
-  // (exclusive end), so compare against a strictly-later instant.
-  return occ.end.getTime() - occ.start.getTime() > 24 * 60 * 60 * 1000
+  // (exclusive end), so compare against a strictly-later instant. The
+  // yardstick is the length of the day the event starts on, never a flat 24h:
+  // a fall-back day is 25h long, and a 00:00-to-00:00 shift on it is still one
+  // calendar day that belongs in the hour track, not in the all-day row.
+  // Without a display zone the dates answer in their own frame (TZDate) or in
+  // the host zone.
+  const dayStart = startOfDay(
+    timeZone ? toZoned(occ.start, timeZone) : occ.start
+  )
+  const nextDayStart = startOfDay(addDays(dayStart, 1))
+  return (
+    occ.end.getTime() - occ.start.getTime() >
+    nextDayStart.getTime() - dayStart.getTime()
+  )
 }
 
 interface PackedPosition {
@@ -483,9 +517,11 @@ function buildEventIndex<TData>(
 
   const occurrences: EventCalendarOccurrence<TData>[] = []
   for (const event of events) {
+    const replaced = overrideTimes.get(event.id)
     const custom = opts.getOccurrences?.(event, visibleRange, { timeZone })
     if (custom) {
       custom.forEach((occ, i) => {
+        if (replaced?.has(occ.start.getTime())) return
         if (!rangesIntersect({ start: occ.start, end: occ.end }, visibleRange))
           return
         occurrences.push({
@@ -501,7 +537,6 @@ function buildEventIndex<TData>(
       })
       continue
     }
-    const replaced = overrideTimes.get(event.id)
     const expanded = expandRecurrence(event, visibleRange, { timeZone })
     occurrences.push(
       ...(replaced
@@ -519,7 +554,7 @@ function buildEventIndex<TData>(
 
   for (const occurrence of occurrences) {
     const segments = segmentOccurrence(occurrence, visibleRange, timeZone)
-    const bar = isBarOccurrence(occurrence)
+    const bar = isBarOccurrence(occurrence, timeZone)
     for (const seg of segments) {
       const key = getDayKey(seg.day, timeZone)
       let bucket = byDay.get(key)
@@ -585,15 +620,22 @@ function flattenResources(
 
 const DEFAULT_WEEKEND_DAYS = [0, 6]
 
-/** Resolves whether a day is an off day (non-working) in the display zone. */
+/**
+ * Resolves whether a day is an off day (non-working) in the display zone.
+ * Callers pass the calendar's own weekendDays so the shading cannot contradict
+ * the weekend the rest of the calendar renders; an explicit offDays.weekendDays
+ * still wins over it.
+ */
 function resolveOffDay(
   day: Date,
   timeZone: string,
-  config: boolean | EventCalendarOffDaysConfig | undefined
+  config: boolean | EventCalendarOffDaysConfig | undefined,
+  defaultWeekendDays?: number[]
 ): boolean {
   if (!config) return false
   const resolved: EventCalendarOffDaysConfig = config === true ? {} : config
-  const weekendDays = resolved.weekendDays ?? DEFAULT_WEEKEND_DAYS
+  const weekendDays =
+    resolved.weekendDays ?? defaultWeekendDays ?? DEFAULT_WEEKEND_DAYS
   const zoned = toZoned(day, timeZone)
   if (weekendDays.includes(zoned.getDay())) return true
   if (resolved.dates?.length) {

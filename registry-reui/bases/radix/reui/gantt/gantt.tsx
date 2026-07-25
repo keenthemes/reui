@@ -1283,6 +1283,14 @@ interface GanttViewConfig<TData = unknown> {
   displayCreateTaskHint: boolean
   /** Floating zoom in/out control over the track. Default on. */
   zoomControl: boolean
+  /**
+   * Ctrl/Cmd + wheel over the timeline zooms the time range, anchored on the
+   * pointer. Trackpad pinch arrives as the same event (browsers set ctrlKey
+   * on it), so this is also the pinch-to-zoom switch. Default on. The gesture
+   * is handed back to the browser at the zoom limits, so page zoom still
+   * works there.
+   */
+  wheelZoom: boolean
   /** Nav button variant; all nav buttons follow it. Default "ghost". */
   navButtonVariant: "ghost" | "outline" | "secondary" | "default"
   /** Nav button size; icon buttons use the icon twin. Default "sm". */
@@ -1439,6 +1447,7 @@ const DEFAULT_VIEW_CONFIG: GanttViewConfig = {
   displayCreateTaskHint: false,
   dragCreate: false,
   zoomControl: true,
+  wheelZoom: true,
   navButtonVariant: "ghost",
   navButtonSize: "sm",
   timelineLines: "vertical",
@@ -1472,6 +1481,7 @@ const VIEW_CONFIG_KEYS: Array<keyof GanttViewConfig> = [
   "displayCreateTaskHint",
   "dragCreate",
   "zoomControl",
+  "wheelZoom",
   "navButtonVariant",
   "navButtonSize",
   "offDays",

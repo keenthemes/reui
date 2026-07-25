@@ -420,7 +420,7 @@ function GanttToolbar({ className, render, ...props }: GanttToolbarProps) {
   })
 }
 
-interface GanttNavProps extends useRender.ComponentProps<"div"> {}
+type GanttNavProps = useRender.ComponentProps<"div">
 
 /**
  * Default composed nav (event-calendar parity): Today, time-period switcher,

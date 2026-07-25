@@ -987,6 +987,24 @@ export const reui: Registry["items"] = [
     ]
   },
   {
+    "name": "icon-tile",
+    "type": "registry:ui",
+    "title": "Square container that gives icons a consistent surface",
+    "description": "Square container that gives icons a consistent surface",
+    "registryDependencies": [],
+    "dependencies": [
+      "@base-ui/react",
+      "class-variance-authority"
+    ],
+    "files": [
+      {
+        "path": "reui/icon-tile.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/icon-tile.tsx"
+      }
+    ]
+  },
+  {
     "name": "kanban",
     "type": "registry:ui",
     "title": "Kanban",

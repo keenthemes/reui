@@ -1,0 +1,251 @@
+---
+title: Icon Tile
+description: Shadcn Icon Tile that wraps an icon in a consistent square surface for list rows, feature cards, and empty states.
+component: true
+base: base
+---
+
+<ComponentPreview styleName="base-nova" name="c-icon-tile-1" />
+
+## Installation
+
+```bash
+npx shadcn@latest add @reui/icon-tile
+```
+
+## Usage
+
+```tsx
+import { FolderIcon } from "lucide-react"
+
+import { IconTile } from "@/components/reui/icon-tile"
+```
+
+```tsx
+<IconTile aria-hidden="true">
+  <FolderIcon />
+</IconTile>
+```
+
+`IconTile` is a shadcn-compatible ReUI primitive that gives an icon a square
+surface with a consistent size, radius, and border treatment. Use it for list
+row media, feature cards, settings rows, empty states, and any place where a
+bare glyph needs a container to sit in.
+
+The tile sizes its own child svgs, so you do not pass a size class to the icon
+in the common case. Keep meaningful labels in the surrounding copy and mark
+purely decorative tiles with `aria-hidden="true"`.
+
+## Examples
+
+### Elevated icon tile
+
+<ComponentPreview styleName="base-nova" name="c-icon-tile-2" />
+
+### Framed icon tile
+
+<ComponentPreview styleName="base-nova" name="c-icon-tile-3" />
+
+### All variants
+
+<ComponentPreview styleName="base-nova" name="c-icon-tile-4" />
+
+### Sizes
+
+<ComponentPreview styleName="base-nova" name="c-icon-tile-5" />
+
+### Circular tiles
+
+<ComponentPreview styleName="base-nova" name="c-icon-tile-6" />
+
+### Custom sizing
+
+<ComponentPreview styleName="base-nova" name="c-icon-tile-7" />
+
+### Color tones
+
+<ComponentPreview styleName="base-nova" name="c-icon-tile-8" />
+
+### Text content
+
+<ComponentPreview styleName="base-nova" name="c-icon-tile-9" />
+
+### List row
+
+<ComponentPreview styleName="base-nova" name="c-icon-tile-10" />
+
+### Feature card
+
+<ComponentPreview styleName="base-nova" name="c-icon-tile-11" />
+
+### Empty state
+
+<ComponentPreview styleName="base-nova" name="c-icon-tile-12" />
+
+### Interactive tile
+
+<ComponentPreview styleName="base-nova" name="c-icon-tile-13" />
+
+### Status overlay
+
+<ComponentPreview styleName="base-nova" name="c-icon-tile-14" />
+
+### Soft tones
+
+<ComponentPreview styleName="base-nova" name="c-icon-tile-15" />
+
+### Solid tones
+
+<ComponentPreview styleName="base-nova" name="c-icon-tile-16" />
+
+### Brand colors
+
+<ComponentPreview styleName="base-nova" name="c-icon-tile-17" />
+
+## API Reference
+
+`IconTile` renders a single element (a `span` by default) that centers its
+children on a sized, rounded surface. There are no sub-components. Everything
+the tile draws is derived from CSS variables set on that root, so a tile can be
+retuned from one `className` without extra wrappers.
+
+Implementation dependencies: `@base-ui/react` and `class-variance-authority`.
+
+### Variants
+
+| Variant    | Description                                                                                                                                                                                                            |
+| :--------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `outline`  | The default. A plain bordered surface on the page background, quiet enough for list rows and toolbars.                                                                                                                 |
+| `elevated` | A muted fill with a 2px background-colored ring and a soft shadow, the same recipe as the card-2 block. Reads as a physical chip lifted off the page.                                                                  |
+| `soft`     | A tinted double container: an opacity-filled outer ring with no border around a bordered inner card, all from `currentColor`. Defaults to `text-primary`; set a text color class to retint the whole tile.             |
+| `solid`    | A filled tone with a contrasting glyph. Defaults to `bg-primary`; override the fill with a `bg-*` class plus a readable text color to retint.                                                                          |
+| `frame`    | A double container: a muted ring around an inset card, matching the `Frame` primitive. The inner card is painted with an `::after` pseudo element, so there is no wrapper node and `render` composition keeps working. |
+
+```tsx
+<IconTile variant="elevated">
+  <PackageIcon />
+</IconTile>
+```
+
+### Sizes
+
+Each size sets the tile box, the glyph size, and the inset shared by the
+`soft` and `frame` variants together, so the proportions hold at every step.
+
+| Size      | Tile | Glyph |
+| :-------- | :--- | :---- |
+| `xs`      | 24px | 14px  |
+| `sm`      | 32px | 16px  |
+| `default` | 40px | 18px  |
+| `lg`      | 48px | 22px  |
+| `xl`      | 56px | 28px  |
+
+```tsx
+<IconTile size="lg" variant="frame">
+  <FolderIcon />
+</IconTile>
+```
+
+### Radius
+
+`radius="default"` follows the active style radius, so a tile matches the rest
+of the installed style. `radius="full"` makes the tile circular.
+
+```tsx
+<IconTile radius="full">
+  <FolderIcon />
+</IconTile>
+```
+
+### Composition
+
+The tile composes through the Base UI `render` prop, so it can become a link,
+a button, or any other element while keeping its surface styles and data
+attributes.
+
+```tsx
+<IconTile render={<a href="/settings" aria-label="Open settings" />}>
+  <Settings2Icon aria-hidden="true" />
+</IconTile>
+```
+
+### Data attributes
+
+The root carries data attributes for styling and for test selectors.
+
+| Attribute      | Value                                                     |
+| :------------- | :-------------------------------------------------------- |
+| `data-slot`    | `"icon-tile"`                                             |
+| `data-variant` | `"outline" \| "elevated" \| "soft" \| "solid" \| "frame"` |
+| `data-size`    | `"xs" \| "sm" \| "default" \| "lg" \| "xl"`               |
+
+### CSS Variables
+
+The root sets four variables, so a single `className` can retune the whole tile
+without touching the icon.
+
+| Variable                | Default (at `size="default"`) | Description                                                                       |
+| :---------------------- | :---------------------------- | :-------------------------------------------------------------------------------- |
+| `--icon-tile-size`      | `--spacing(10)`               | Tile width and height.                                                            |
+| `--icon-tile-icon-size` | `--spacing(4.5)`              | Glyph size applied to child svgs that carry no `size-*` class.                    |
+| `--icon-tile-radius`    | Active style radius           | Corner radius. Also drives the inner card of the `soft` and `frame` variants.     |
+| `--icon-tile-inset`     | `--spacing(0.75)`             | Gap between the outer ring and the inner card of the `soft` and `frame` variants. |
+
+### Overriding the size
+
+There are three ways to step outside the size scale, and they can be combined.
+
+1. A plain utility on the tile. A `size-*` class in `className` wins over the
+   primitive's `size-(--icon-tile-size)` through tailwind-merge, so the tile box
+   changes while the glyph keeps the size from the `size` prop.
+
+   ```tsx
+   <IconTile variant="elevated" className="size-14">
+     <ImageIcon />
+   </IconTile>
+   ```
+
+2. A `size-*` class directly on the child icon. Child svgs are auto-sized with
+   `[&_svg:not([class*=size-])]:size-(--icon-tile-icon-size)`, so an icon that
+   already carries a `size-*` class opts out of the tile's glyph sizing.
+
+   ```tsx
+   <IconTile className="size-14">
+     <ImageIcon className="size-7" />
+   </IconTile>
+   ```
+
+3. The CSS variables. Setting `--icon-tile-size` and `--icon-tile-icon-size`
+   keeps the tile and glyph in step and needs no class on the icon. The `soft`
+   and `frame` inset stays on the value from the `size` prop, so set
+   `--icon-tile-inset` too when such a tile moves far from its scale step.
+
+   ```tsx
+   <IconTile className="[--icon-tile-icon-size:--spacing(7)] [--icon-tile-size:--spacing(14)]">
+     <Settings2Icon />
+   </IconTile>
+   ```
+
+For color, reach for the `soft` or `solid` variant and set a single text color
+class; both derive their fills and borders from `currentColor`. Any variant can
+also be recolored directly through `className`, as the brand-color example does
+by overriding the `elevated` fill with a Tailwind color.
+
+```tsx
+<IconTile variant="soft" className="text-success">
+  <CircleCheckIcon />
+</IconTile>
+```
+
+### Props
+
+| Prop        | Type                                                      | Default     | Description                                                                     |
+| :---------- | :-------------------------------------------------------- | :---------- | :------------------------------------------------------------------------------ |
+| `variant`   | `"outline" \| "elevated" \| "soft" \| "solid" \| "frame"` | `"outline"` | The surface treatment of the tile.                                              |
+| `size`      | `"xs" \| "sm" \| "default" \| "lg" \| "xl"`               | `"default"` | The tile size, which also sets the glyph size.                                  |
+| `radius`    | `"default" \| "full"`                                     | `"default"` | `"default"` uses the active style radius, `"full"` makes the tile circular.     |
+| `render`    | `useRender.RenderProp`                                    | -           | Render a different element while keeping the tile styles (Base UI `useRender`). |
+| `className` | `string`                                                  | -           | Additional CSS classes, including overrides of the tile CSS variables.          |
+| `children`  | `React.ReactNode`                                         | -           | The icon, initials, or short text rendered inside the tile.                     |
+
+All native `span` props are supported.

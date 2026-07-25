@@ -75,7 +75,7 @@
       "categories": [
         "gantt"
       ],
-      "description": "Gantt chart with quarter roadmap and rollups",
+      "description": "Quarter-scale roadmap where workstream groups form swimlanes and parent rows roll children into one summary bar. Toolbar button calls addEvent via apiRef to schedule backlog items. ReUI Gantt, GanttNav, GanttToolbar, GanttView; shadcn Card, Button.",
       "registryDependencies": [
         "button",
         "card",

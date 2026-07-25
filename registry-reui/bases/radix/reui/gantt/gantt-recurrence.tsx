@@ -234,41 +234,57 @@ function expandRecurrence<TData>(
   // Fast-forward past periods entirely before the range: they produce
   // nothing and must not consume the occurrence cap (an old-enough daily
   // series would otherwise exhaust MAX_OCCURRENCES before reaching the
-  // window and silently vanish). COUNT rules keep full iteration - every
-  // period consumes the count, so they stay exact and are bounded by count.
-  if (rule.count === undefined) {
-    // weekly BYDAY emits across the cursor's whole Sunday week
-    const weekSlackMs = weeklyDays ? 6 * 86_400_000 : 0
-    // divide by the LONGEST possible step so the jump can never overshoot
-    const maxStepMs =
-      (rule.freq === "daily"
-        ? 24
-        : rule.freq === "weekly"
-          ? 7 * 24
-          : rule.freq === "monthly"
-            ? 31 * 24
-            : 366 * 24) *
-        3_600_000 *
-        interval +
-      3_600_000
-    for (let pass = 0; pass < 2; pass++) {
-      const gap =
-        range.start.getTime() - durationMs - weekSlackMs - cursor.getTime()
-      const skip = Math.floor(gap / maxStepMs)
-      if (skip <= 0) break
-      cursor = advance(cursor, skip)
-      index += skip * (weeklyDays ? weeklyDays.length : 1)
-    }
-    // close the remainder step by step (bounded by the jump math)
-    let guard = 0
-    while (
-      guard++ < 10_000 &&
-      !(rule.until && cursor.getTime() > rule.until.getTime()) &&
-      cursor.getTime() + durationMs + weekSlackMs < range.start.getTime()
-    ) {
-      cursor = advance(cursor, 1)
-      index += weeklyDays ? weeklyDays.length : 1
-    }
+  // window and silently vanish). COUNT rules jump too: the skipped periods
+  // are credited to `index`, which is what terminates the series, so the
+  // count still ends it on exactly the right instant. Leaving them on full
+  // iteration would hide any series whose count exceeds MAX_OCCURRENCES.
+  //
+  // Daily and weekly ONLY. Their step is a fixed wall-time length, so one jump
+  // of N steps lands exactly where N single steps land. addMonths/addYears
+  // CLAMP instead: a Jan 31 monthly anchor steps to Feb 28 and never returns to
+  // the 31st, while a single jump from the anchor clamps at most once. Jumping
+  // those would make the same occurrence render on a different day depending on
+  // which window the viewer scrolled in from, so they always iterate.
+  const canFastForward = rule.freq === "daily" || rule.freq === "weekly"
+  // weekly BYDAY emits across the cursor's whole Sunday week
+  const weekSlackMs = weeklyDays ? 6 * 86_400_000 : 0
+  // divide by the LONGEST possible step so the jump can never overshoot
+  const maxStepMs =
+    (rule.freq === "daily"
+      ? 24
+      : rule.freq === "weekly"
+        ? 7 * 24
+        : rule.freq === "monthly"
+          ? 31 * 24
+          : 366 * 24) *
+      3_600_000 *
+      interval +
+    3_600_000
+  for (let pass = 0; canFastForward && pass < 2; pass++) {
+    const gap =
+      range.start.getTime() - durationMs - weekSlackMs - cursor.getTime()
+    const skip = Math.floor(gap / maxStepMs)
+    if (skip <= 0) break
+    cursor = advance(cursor, skip)
+    index += skip * (weeklyDays ? weeklyDays.length : 1)
+  }
+  // close the remainder step by step (bounded by the jump math)
+  let guard = 0
+  while (
+    guard++ < 10_000 &&
+    !(rule.until && cursor.getTime() > rule.until.getTime()) &&
+    cursor.getTime() + durationMs + weekSlackMs < range.start.getTime()
+  ) {
+    cursor = advance(cursor, 1)
+    index += weeklyDays ? weeklyDays.length : 1
+  }
+  // The jump credits a whole week of selected days per skipped week, but full
+  // iteration never counts the selected days that fall BEFORE the anchor
+  // inside the anchor's own week. Drop them once so both paths number the
+  // same instant identically (index counts occurrences at or after the
+  // anchor, and only those).
+  if (weeklyDays && index > 0) {
+    index -= weeklyDays.filter((day) => day < zonedStart.getDay()).length
   }
 
   const pushIfVisible = (rawStart: Date) => {
@@ -293,7 +309,10 @@ function expandRecurrence<TData>(
 
   while (produced < MAX_OCCURRENCES) {
     if (rule.until && cursor.getTime() > rule.until.getTime()) break
-    if (rule.count !== undefined && produced >= rule.count) break
+    // COUNT is series-absolute, so it reads `index` (the position in the
+    // series, fast-forward included) rather than `produced` (emissions in
+    // this loop, which MAX_OCCURRENCES caps).
+    if (rule.count !== undefined && index >= rule.count) break
     // Past the visible window with no count to honor - stop iterating. For
     // weekly BYDAY the WEEK START decides: selected days earlier in the
     // anchor's week can still fall before range.end.
@@ -311,7 +330,10 @@ function expandRecurrence<TData>(
         if (!weeklyDays.includes(candidate.getDay())) continue
         if (candidate.getTime() < zonedStart.getTime()) continue
         if (rule.until && candidate.getTime() > rule.until.getTime()) continue
-        if (rule.count !== undefined && produced >= rule.count) break
+        // the cap is checked here too, or a week that crosses it mid-loop
+        // still emits its remaining selected days
+        if (produced >= MAX_OCCURRENCES) break
+        if (rule.count !== undefined && index >= rule.count) break
         pushIfVisible(candidate)
         produced++
         index++

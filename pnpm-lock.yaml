@@ -182,6 +182,9 @@ importers:
       '@reui/components-base-icon-stack':
         specifier: workspace:*
         version: link:packages/registry/bases/base/components/icon-stack
+      '@reui/components-base-icon-tile':
+        specifier: workspace:*
+        version: link:packages/registry/bases/base/components/icon-tile
       '@reui/components-base-input':
         specifier: workspace:*
         version: link:packages/registry/bases/base/components/input
@@ -395,6 +398,9 @@ importers:
       '@reui/components-radix-icon-stack':
         specifier: workspace:*
         version: link:packages/registry/bases/radix/components/icon-stack
+      '@reui/components-radix-icon-tile':
+        specifier: workspace:*
+        version: link:packages/registry/bases/radix/components/icon-tile
       '@reui/components-radix-input':
         specifier: workspace:*
         version: link:packages/registry/bases/radix/components/input
@@ -644,7 +650,7 @@ importers:
         version: 3.3.5
       '@ianvs/prettier-plugin-sort-imports':
         specifier: ^4.7.1
-        version: 4.7.1(prettier@3.9.4)
+        version: 4.7.1(prettier@3.8.4)
       '@types/mdx':
         specifier: ^2.0.14
         version: 2.0.14
@@ -676,11 +682,11 @@ importers:
         specifier: ^7.3.0
         version: 7.3.0
       prettier:
-        specifier: ^3.8.4
-        version: 3.9.4
+        specifier: 3.8.4
+        version: 3.8.4
       prettier-plugin-tailwindcss:
         specifier: ^0.7.4
-        version: 0.7.4(@ianvs/prettier-plugin-sort-imports@4.7.1(prettier@3.9.4))(prettier@3.9.4)
+        version: 0.7.4(@ianvs/prettier-plugin-sort-imports@4.7.1(prettier@3.8.4))(prettier@3.8.4)
       shadcn:
         specifier: 4.1.2
         version: 4.1.2(@types/node@25.9.4)(typescript@5.9.3)
@@ -1230,6 +1236,21 @@ importers:
 
   packages/registry/bases/base/components/icon-stack:
     dependencies:
+      react:
+        specifier: '>=18'
+        version: 19.2.7
+      react-dom:
+        specifier: '>=18'
+        version: 19.2.7(react@19.2.7)
+
+  packages/registry/bases/base/components/icon-tile:
+    dependencies:
+      '@base-ui/react':
+        specifier: 1.5.0
+        version: 1.5.0(@date-fns/tz@1.5.0)(@types/react@19.2.17)(date-fns@4.4.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      class-variance-authority:
+        specifier: ^0.7.1
+        version: 0.7.1
       react:
         specifier: '>=18'
         version: 19.2.7
@@ -2265,6 +2286,21 @@ importers:
 
   packages/registry/bases/radix/components/icon-stack:
     dependencies:
+      react:
+        specifier: '>=18'
+        version: 19.2.7
+      react-dom:
+        specifier: '>=18'
+        version: 19.2.7(react@19.2.7)
+
+  packages/registry/bases/radix/components/icon-tile:
+    dependencies:
+      class-variance-authority:
+        specifier: ^0.7.1
+        version: 0.7.1
+      radix-ui:
+        specifier: ^1.4.3
+        version: 1.6.2(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react:
         specifier: '>=18'
         version: 19.2.7
@@ -7302,8 +7338,8 @@ packages:
       prettier-plugin-svelte:
         optional: true
 
-  prettier@3.9.4:
-    resolution: {integrity: sha512-yWG/o/4oJfo036EKAfK6ACAoDOfHeRHx4tuxkfBZiauURiaSmYwlpOr5LQqKtIkRD2z1PLteme2WoxEnj4tHTg==}
+  prettier@3.8.4:
+    resolution: {integrity: sha512-N2MylSdi48+5N/6S5j+maeHbUSIzzZ5uOcX5Hm4QpV8Dkb1HFjfAKTKX6yNPJQD9AhcT3ifHNB66tWTTJDi11Q==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -8726,13 +8762,13 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.3': {}
 
-  '@ianvs/prettier-plugin-sort-imports@4.7.1(prettier@3.9.4)':
+  '@ianvs/prettier-plugin-sort-imports@4.7.1(prettier@3.8.4)':
     dependencies:
       '@babel/generator': 7.29.7
       '@babel/parser': 7.29.7
       '@babel/traverse': 7.29.7
       '@babel/types': 7.29.7
-      prettier: 3.9.4
+      prettier: 3.8.4
       semver: 7.8.5
     transitivePeerDependencies:
       - supports-color
@@ -12954,13 +12990,13 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier-plugin-tailwindcss@0.7.4(@ianvs/prettier-plugin-sort-imports@4.7.1(prettier@3.9.4))(prettier@3.9.4):
+  prettier-plugin-tailwindcss@0.7.4(@ianvs/prettier-plugin-sort-imports@4.7.1(prettier@3.8.4))(prettier@3.8.4):
     dependencies:
-      prettier: 3.9.4
+      prettier: 3.8.4
     optionalDependencies:
-      '@ianvs/prettier-plugin-sort-imports': 4.7.1(prettier@3.9.4)
+      '@ianvs/prettier-plugin-sort-imports': 4.7.1(prettier@3.8.4)
 
-  prettier@3.9.4: {}
+  prettier@3.8.4: {}
 
   pretty-ms@9.3.0:
     dependencies:

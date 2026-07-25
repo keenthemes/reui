@@ -2,36 +2,36 @@
 "use client"
 
 import * as React from "react"
+import type { CSSProperties, ReactElement, ReactNode } from "react"
 import {
   Children,
   cloneElement,
   createContext,
-  CSSProperties,
   isValidElement,
-  ReactElement,
-  ReactNode,
   useCallback,
   useContext,
-  useLayoutEffect,
   useMemo,
   useState,
+  useSyncExternalStore,
 } from "react"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
+import type {
+  DragCancelEvent,
+  DragEndEvent,
+  DragStartEvent,
+  DropAnimation,
+  Modifiers,
+  UniqueIdentifier,
+} from "@dnd-kit/core"
 import {
   defaultDropAnimationSideEffects,
   DndContext,
-  DragCancelEvent,
-  DragEndEvent,
   DragOverlay,
-  DragStartEvent,
-  DropAnimation,
   KeyboardSensor,
   MeasuringStrategy,
-  Modifiers,
   MouseSensor,
   TouchSensor,
-  UniqueIdentifier,
   useSensor,
   useSensors,
   type DraggableSyntheticListeners,
@@ -84,6 +84,22 @@ const dropAnimationConfig: DropAnimation = {
     },
   }),
 }
+
+/**
+ * Client-mount gate for the `createPortal` calls below, which need
+ * `document.body` and so must not run on the server or during hydration.
+ *
+ * A never-notifying subscription makes `useSyncExternalStore` return the server
+ * snapshot (`false`) while rendering on the server and while hydrating, then the
+ * client snapshot (`true`) once mounted - the same gate the previous
+ * `useLayoutEffect(() => setMounted(true), [])` provided, minus the extra render
+ * pass that `react-hooks/set-state-in-effect` flags. All three functions are
+ * module-scoped so their identities stay stable; an inline `getSnapshot` is the
+ * classic cause of an infinite re-subscribe loop.
+ */
+const subscribeToNothing = () => () => {}
+const getIsMounted = () => true
+const getIsMountedOnServer = () => false
 
 const MOUSE_SENSOR_OPTIONS = { activationConstraint: { distance: 10 } }
 const TOUCH_SENSOR_OPTIONS = {
@@ -149,9 +165,11 @@ function Sortable<T>({
   ...props
 }: SortableRootProps<T>) {
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null)
-  const [mounted, setMounted] = useState(false)
-
-  useLayoutEffect(() => setMounted(true), [])
+  const mounted = useSyncExternalStore(
+    subscribeToNothing,
+    getIsMounted,
+    getIsMountedOnServer
+  )
 
   const sensors = useSensors(
     useSensor(MouseSensor, MOUSE_SENSOR_OPTIONS),
@@ -411,9 +429,11 @@ function SortableOverlay({
   ...props
 }: SortableOverlayProps) {
   const { activeId, modifiers } = useContext(SortableInternalContext)
-  const [mounted, setMounted] = useState(false)
-
-  useLayoutEffect(() => setMounted(true), [])
+  const mounted = useSyncExternalStore(
+    subscribeToNothing,
+    getIsMounted,
+    getIsMountedOnServer
+  )
 
   const content =
     activeId && children

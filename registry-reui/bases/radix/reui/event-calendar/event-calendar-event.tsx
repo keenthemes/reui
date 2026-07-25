@@ -148,6 +148,10 @@ function EventCalendarEvent<TData = unknown>({
   asChild = false,
   children,
   preview = false,
+  style,
+  onPointerDown,
+  onClick,
+  onDoubleClick,
   ...props
 }: EventCalendarEventProps<TData>) {
   const instance = useEventCalendar<TData>()
@@ -177,7 +181,8 @@ function EventCalendarEvent<TData = unknown>({
   const isSelected = preview ? false : isSelectedRaw
   const isDragging = preview ? false : isDraggingRaw
 
-  const isBar = occurrence.allDay || spansMultipleDays(occurrence)
+  const isBar =
+    occurrence.allDay || spansMultipleDays(occurrence, settings.timeZone)
   const inTimeGrid =
     view === "week" || view === "day" || view === "days" || view === "resource"
   const interactive = view !== "agenda" && !preview
@@ -246,7 +251,8 @@ function EventCalendarEvent<TData = unknown>({
             {settings.i18n.functions.formatEventTime(
               toZoned(occurrence.start, settings.timeZone),
               toZoned(occurrence.end, settings.timeZone),
-              occurrence.allDay
+              occurrence.allDay,
+              { locale: settings.locale }
             )}
           </span>
         ))}
@@ -286,7 +292,8 @@ function EventCalendarEvent<TData = unknown>({
     return settings.i18n.functions.formatEventTime(
       toZoned(occurrence.start, settings.timeZone),
       toZoned(occurrence.end, settings.timeZone),
-      false
+      false,
+      { locale: settings.locale }
     )
   })()
 
@@ -344,7 +351,8 @@ function EventCalendarEvent<TData = unknown>({
   const timeLabel = settings.i18n.functions.formatEventTime(
     toZoned(occurrence.start, settings.timeZone),
     toZoned(occurrence.end, settings.timeZone),
-    occurrence.allDay
+    occurrence.allDay,
+    { locale: settings.locale }
   )
   // native hover tooltip text; a consumer formatter returning undefined
   // drops the title attribute entirely (e.g. when it renders its own tooltip)
@@ -474,21 +482,34 @@ function EventCalendarEvent<TData = unknown>({
             : ""
         }`
       }
+      // Selection is otherwise conveyed by a background tint alone; the chip is a
+      // real toggle in every interactive view, so a screen reader hears the state
+      // (agenda rows never select, previews are inert - both stay unpressed).
+      aria-pressed={interactive ? isSelected : undefined}
       aria-hidden={preview || undefined}
       tabIndex={preview ? -1 : undefined}
+      // merged, not spread: every tint, ring and dot on the chip reads
+      // --ec-event-color, so a consumer style prop must not replace it (base
+      // gets this for free through mergeProps)
       style={
         {
           "--ec-event-color": event.color ?? "var(--color-primary)",
+          ...style,
         } as CSSProperties
       }
-      onPointerDown={(e: React.PointerEvent) => {
+      // Consumer handler first, then the calendar's own, matching the order
+      // mergeProps gives base: the consumer can still preventDefault to opt
+      // out of selection, and neither side loses its listener.
+      onPointerDown={(e: React.PointerEvent<HTMLButtonElement>) => {
+        onPointerDown?.(e)
         e.stopPropagation()
         // suppress the trailing slot-create click if this press does not turn
         // into a drag (e.g. a locked chip) - see markChipPress
         markChipPress()
         if (interactive) gestures.beginMove(e, segment)
       }}
-      onClick={(e: React.MouseEvent) => {
+      onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+        onClick?.(e)
         e.stopPropagation()
         if (wasRecentDrag()) return
         // consumer first: e.preventDefault() opts out of built-in selection
@@ -498,7 +519,8 @@ function EventCalendarEvent<TData = unknown>({
         if (e.defaultPrevented || view === "agenda") return
         instance.api.selectEvent(occurrence.key)
       }}
-      onDoubleClick={(e: React.MouseEvent) => {
+      onDoubleClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+        onDoubleClick?.(e)
         e.stopPropagation()
         settings.onEventDoubleClick?.(occurrence, e)
       }}

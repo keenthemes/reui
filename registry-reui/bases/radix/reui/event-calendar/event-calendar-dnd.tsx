@@ -3,7 +3,7 @@
 
 "use client"
 
-import { useCallback, useMemo } from "react"
+import { useCallback, useEffect, useMemo } from "react"
 import {
   useEventCalendar,
   useEventCalendarViewConfig,
@@ -101,6 +101,28 @@ function markChipPress(): void {
 function wasRecentChipPress(): boolean {
   return performance.now() - lastChipPressAt < 300
 }
+
+/**
+ * Registry of in-flight gesture cancels. A gesture measures its surface (day
+ * columns and cells) once at activation and then lives on window listeners, so
+ * the CALENDAR - not the chip, chips legitimately unmount mid-gesture (lane
+ * repacking, a "+N more" popover closing) - is what must be able to abort it.
+ * Cancel fully reverts: listeners, overlays and the body drag state all clear,
+ * and no update is committed.
+ */
+const activeGestureCancels = new Set<() => void>()
+
+/** Cancel (and fully revert) every in-flight event calendar pointer gesture. */
+function cancelActiveEventCalendarGestures(): void {
+  for (const cancel of [...activeGestureCancels]) cancel()
+}
+
+/**
+ * Mounted-consumer count for the gestures hook. Every chip holds one, so only
+ * the LAST consumer leaving means the calendar itself is gone; aborting when
+ * any single chip unmounts would kill a drag the user is still holding.
+ */
+let gestureConsumers = 0
 
 /**
  * Snap a translate offset to the device pixel grid. The cursor-following
@@ -256,9 +278,11 @@ function beginBlockedGesture<TData>(
     : (gesture === "move" ? event.draggable : event.resizable) === false
       ? "disabled"
       : "interactions-off"
+  const pointerId = startEvent.pointerId
   let activated = false
+  let finished = false
   const onMove = (e: PointerEvent) => {
-    if (activated) return
+    if (e.pointerId !== pointerId || activated) return
     if (
       Math.hypot(e.clientX - startX, e.clientY - startY) <
       activation.moveDistancePx
@@ -270,12 +294,18 @@ function beginBlockedGesture<TData>(
     // body class alongside the inline cursor so consumer CSS can restyle or
     // detect the blocked-drag state (mirrors "ec-dragging")
     document.body.classList.add("ec-drag-blocked")
+    // only now is there anything to get stuck: focus loss means the release
+    // may never be delivered, leaving the cursor not-allowed document-wide
+    window.addEventListener("blur", cleanup)
     instance.settings.onDragBlocked?.(segment.occurrence, { gesture, reason })
   }
   const cleanup = () => {
+    if (finished) return
+    finished = true
     window.removeEventListener("pointermove", onMove)
-    window.removeEventListener("pointerup", cleanup)
-    window.removeEventListener("pointercancel", cleanup)
+    window.removeEventListener("pointerup", onRelease)
+    window.removeEventListener("pointercancel", onRelease)
+    window.removeEventListener("blur", cleanup)
     if (activated) {
       document.body.style.cursor = ""
       document.body.classList.remove("ec-drag-blocked")
@@ -284,9 +314,15 @@ function beginBlockedGesture<TData>(
       lastGestureEndedAt = performance.now()
     }
   }
+  // only the pointer that started the press may end it: a second finger
+  // lifting must not clear the not-allowed cursor out from under it
+  const onRelease = (e: PointerEvent) => {
+    if (e.pointerId !== pointerId) return
+    cleanup()
+  }
   window.addEventListener("pointermove", onMove)
-  window.addEventListener("pointerup", cleanup)
-  window.addEventListener("pointercancel", cleanup)
+  window.addEventListener("pointerup", onRelease)
+  window.addEventListener("pointercancel", onRelease)
 }
 
 function beginGesture<TData>(config: BeginGestureConfig<TData>) {
@@ -298,8 +334,24 @@ function beginGesture<TData>(config: BeginGestureConfig<TData>) {
   const activation = { ...EVENT_CALENDAR_ACTIVATION, ...settings.activation }
   const startX = startEvent.clientX
   const startY = startEvent.clientY
+  const pointerId = startEvent.pointerId
+  // Resolved once: the chip can be re-rendered away mid-gesture. A gesture
+  // from a portaled surface (the "+N more" popover) has no calendar ancestor,
+  // so fall back to the registered root - same reason as collectSurface.
+  const announcer =
+    origin
+      .closest<HTMLElement>("[data-slot=event-calendar]")
+      ?.querySelector<HTMLElement>("[data-slot=event-calendar-announcer]") ??
+    internals
+      .getRootEl()
+      ?.querySelector<HTMLElement>("[data-slot=event-calendar-announcer]") ??
+    null
 
-  let active = kind.startsWith("resize") // resize activates immediately
+  const isTouch = startEvent.pointerType === "touch"
+  // resize activates immediately on precise pointers; on touch it waits for
+  // the same long-press as a move, so a finger landing on the (invisible on
+  // touch) handle strip can never start a resize the user never asked for
+  let active = kind.startsWith("resize") && !isTouch
   let surface: Surface | null = active
     ? collectSurface(origin, internals.getRootEl())
     : null
@@ -313,7 +365,6 @@ function beginGesture<TData>(config: BeginGestureConfig<TData>) {
   // make the anchor drift with auto-scroll instead of staying pinned.
   let createAnchorMin: number | null = null
   let lastPointer: PointerEvent = startEvent
-  const isTouch = startEvent.pointerType === "touch"
 
   const occurrence = segment?.occurrence
   const isBar = occurrence
@@ -324,6 +375,23 @@ function beginGesture<TData>(config: BeginGestureConfig<TData>) {
 
   // Preserve the grab offset so the event does not jump to the pointer
   let grabOffsetMin = 0
+  /**
+   * The grabbed CHIP, not the whole occurrence. A cross-midnight event renders
+   * one chip per day, so the offset above is measured in the grabbed chip's own
+   * day frame (mixing the two frames jumps a tail chip a full day on grab) and
+   * these two carry that chip back to the occurrence. For a chip that fits in
+   * one day the lead is 0 and the duration is the occurrence's, i.e. unchanged.
+   */
+  let grabLeadMs = 0
+  let grabSegDurationMs = occurrence
+    ? occurrence.end.getTime() - occurrence.start.getTime()
+    : 0
+  /**
+   * Which day of a multi-day bar was grabbed. Without it the day-granular move
+   * slides the bar's START under the pointer, so a Mon-Fri bar grabbed on
+   * Wednesday teleports two days forward on the first nudge.
+   */
+  let grabDayOffset = 0
 
   const activationDistance =
     kind === "create" ? activation.createDistancePx : activation.moveDistancePx
@@ -350,15 +418,53 @@ function beginGesture<TData>(config: BeginGestureConfig<TData>) {
   const activate = () => {
     if (active) return
     active = true
+    // armed with the gesture, not with the press: a press that never activates
+    // holds no drag state, no overlay and no body class to strand
+    window.addEventListener("blur", onWindowBlur)
     surface = collectSurface(origin, internals.getRootEl())
-    if (kind === "move" && occurrence && surface.columns.length > 0 && !isBar) {
-      const col = findColumn(surface, startX)
-      if (col) {
-        const startMin =
-          (occurrence.start.getTime() -
-            zonedStartOfDay(occurrence.start, timeZone).getTime()) /
-          60000
-        grabOffsetMin = pointerMinutes(surface, col, startY) - startMin
+    if (kind === "move" && occurrence) {
+      const grabCell = findCell(surface, startX, startY)
+      if (grabCell) {
+        const originDay = zonedStartOfDay(occurrence.start, timeZone)
+        // end is exclusive, so step back an instant for the last covered day
+        const lastDay = zonedStartOfDay(
+          new Date(
+            Math.max(occurrence.end.getTime() - 1, occurrence.start.getTime())
+          ),
+          timeZone
+        )
+        const offset = differenceInCalendarDays(
+          zonedStartOfDay(grabCell.day, timeZone),
+          originDay
+        )
+        // A gesture from the "+N more" popover grabs over whatever cell that
+        // floating surface happens to cover, so only a day the event actually
+        // spans can be the grabbed day.
+        if (
+          offset >= 0 &&
+          offset <= differenceInCalendarDays(lastDay, originDay)
+        ) {
+          grabDayOffset = offset
+        }
+      }
+      if (surface.columns.length > 0 && !isBar) {
+        const col = findColumn(surface, startX)
+        if (col) {
+          const colDayStart = zonedStartOfDay(col.day, timeZone)
+          const segStartMs = Math.max(
+            occurrence.start.getTime(),
+            colDayStart.getTime()
+          )
+          grabLeadMs = segStartMs - occurrence.start.getTime()
+          grabSegDurationMs =
+            Math.min(
+              occurrence.end.getTime(),
+              addDays(colDayStart, 1).getTime()
+            ) - segStartMs
+          grabOffsetMin =
+            pointerMinutes(surface, col, startY) -
+            (segStartMs - colDayStart.getTime()) / 60000
+        }
       }
     }
     setBodyDragging(true)
@@ -442,7 +548,10 @@ function beginGesture<TData>(config: BeginGestureConfig<TData>) {
       const targetDay = zonedStartOfDay(cell.day, timeZone)
       if (kind === "move") {
         const originDay = zonedStartOfDay(occurrence.start, timeZone)
-        const delta = differenceInCalendarDays(targetDay, originDay)
+        // minus the grabbed day: the bar follows the pointer by the distance
+        // travelled, it does not re-anchor its start under the pointer
+        const delta =
+          differenceInCalendarDays(targetDay, originDay) - grabDayOffset
         const start = addDays(toZoned(occurrence.start, timeZone), delta)
         return {
           start,
@@ -489,12 +598,16 @@ function beginGesture<TData>(config: BeginGestureConfig<TData>) {
 
     if (kind === "move") {
       const newStartMin = snapMinutes(rawMin - grabOffsetMin, snap)
-      const durationMin = Math.round(durationMs / 60000)
+      // the clamp keeps the grabbed CHIP inside the column it is over; the
+      // lead then carries the rest of a cross-midnight occurrence with it
+      const chipDurationMin = Math.round(grabSegDurationMs / 60000)
       const clamped = Math.min(
         Math.max(newStartMin, col.boundsStartMin),
-        col.boundsEndMin - durationMin
+        col.boundsEndMin - chipDurationMin
       )
-      const start = addMinutes(dayStart, clamped)
+      const start = new Date(
+        addMinutes(dayStart, clamped).getTime() - grabLeadMs
+      )
       return {
         start,
         end: new Date(start.getTime() + durationMs),
@@ -678,10 +791,17 @@ function beginGesture<TData>(config: BeginGestureConfig<TData>) {
     }
   }
 
+  // idempotent: pointerup, pointercancel, Escape, blur and the calendar-level
+  // teardown can race; whichever lands first wins and the rest no-op
+  let finished = false
   const cleanup = () => {
+    if (finished) return
+    finished = true
+    activeGestureCancels.delete(cancel)
     window.removeEventListener("pointermove", onPointerMove)
     window.removeEventListener("pointerup", onPointerUp)
     window.removeEventListener("pointercancel", onCancel)
+    window.removeEventListener("blur", onWindowBlur)
     window.removeEventListener("keydown", onKeyDown, true)
     if (rafScroll) cancelAnimationFrame(rafScroll)
     if (touchTimer) clearTimeout(touchTimer)
@@ -708,7 +828,15 @@ function beginGesture<TData>(config: BeginGestureConfig<TData>) {
     }
   }
 
+  // focus loss mid-gesture (alt-tab, OS dialogs) means the release may never
+  // be delivered; treat it as a cancel so the gesture cannot get stuck and
+  // commit its stale proposal on the next click
+  const onWindowBlur = () => cancel()
+
   const onPointerMove = (e: PointerEvent) => {
+    // a second finger must not drive - or cancel the pending long press of -
+    // the gesture this pointer started
+    if (e.pointerId !== pointerId) return
     lastPointer = e
     if (!active) {
       const distance = Math.hypot(e.clientX - startX, e.clientY - startY)
@@ -727,6 +855,7 @@ function beginGesture<TData>(config: BeginGestureConfig<TData>) {
   }
 
   const onPointerUp = (e: PointerEvent) => {
+    if (e.pointerId !== pointerId) return
     cleanup()
     if (!active) return
     lastGestureEndedAt = performance.now()
@@ -754,8 +883,7 @@ function beginGesture<TData>(config: BeginGestureConfig<TData>) {
     if (unchanged) return
     // Commit through the one validation funnel; consumer reject = automatic
     // revert because the calendar never mutated during the gesture.
-    void e
-    internals.applyProposedUpdate({
+    const accepted = internals.applyProposedUpdate({
       event: occurrence.event,
       occurrence,
       start: drag.proposedStart,
@@ -765,14 +893,31 @@ function beginGesture<TData>(config: BeginGestureConfig<TData>) {
       source:
         kind === "move" ? "drag" : (kind as "resize-start" | "resize-end"),
     })
+    // the polite live region is the only feedback a screen-reader user gets
+    // that the drop landed, and on what; a vetoed commit stays silent
+    if (accepted && announcer) {
+      announcer.textContent = `${occurrence.event.title}, ${settings.i18n.functions.formatEventTime(
+        toZoned(drag.proposedStart, timeZone),
+        toZoned(drag.proposedEnd, timeZone),
+        drag.proposedAllDay,
+        { locale: settings.locale }
+      )}`
+    }
   }
 
-  const onCancel = () => cancel()
+  const onCancel = (e: PointerEvent) => {
+    if (e.pointerId !== pointerId) return
+    cancel()
+  }
 
   window.addEventListener("pointermove", onPointerMove)
   window.addEventListener("pointerup", onPointerUp)
   window.addEventListener("pointercancel", onCancel)
+  // a resize on a precise pointer is live from the first frame, so it never
+  // reaches activate() to arm its own blur cancel
+  if (active) window.addEventListener("blur", onWindowBlur)
   window.addEventListener("keydown", onKeyDown, true)
+  activeGestureCancels.add(cancel)
 
   // Touch: long-press activation (movement past tolerance cancels above)
   if (isTouch && !active) {
@@ -797,6 +942,18 @@ function useEventCalendarGestures<TData = unknown>() {
     }),
     [classNames]
   )
+
+  // An in-flight gesture lives on window listeners and body-appended overlays,
+  // so it must never outlive the calendar. Chips hold this hook too and they
+  // legitimately unmount mid-gesture, so only the LAST consumer leaving - the
+  // calendar itself going away - aborts.
+  useEffect(() => {
+    gestureConsumers += 1
+    return () => {
+      gestureConsumers -= 1
+      if (gestureConsumers === 0) cancelActiveEventCalendarGestures()
+    }
+  }, [])
 
   const canDrag = useCallback(
     (segment: EventCalendarSegment<TData>) => {
@@ -884,6 +1041,7 @@ function useEventCalendarGestures<TData = unknown>() {
 
 export {
   EVENT_CALENDAR_ACTIVATION,
+  cancelActiveEventCalendarGestures,
   markChipPress,
   useEventCalendarGestures,
   wasRecentChipPress,

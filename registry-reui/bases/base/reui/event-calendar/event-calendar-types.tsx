@@ -49,6 +49,11 @@ interface CalendarEvent<TData = unknown> {
   start: Date
   /** Exclusive; must be >= start. */
   end: Date
+  /**
+   * Start and end must be midnights in the calendar's display time zone:
+   * segmentation walks the raw instants, so a row stored at another zone's
+   * midnight paints on the wrong days.
+   */
   allDay?: boolean
   /** Structured rule or a raw "RRULE:..." line. */
   recurrence?: EventCalendarRecurrenceRule | string

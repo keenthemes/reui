@@ -6,6 +6,7 @@
 import {
   useCallback,
   useEffect,
+  useId,
   useLayoutEffect,
   useMemo,
   useRef,
@@ -43,6 +44,7 @@ import {
 import type {
   EventCalendarDateRange,
   EventCalendarDragState,
+  EventCalendarEventId,
   EventCalendarSegment,
 } from "@/registry-reui/bases/radix/reui/event-calendar/event-calendar-types"
 import { addDays, format, getWeek } from "date-fns"
@@ -61,6 +63,44 @@ import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 // the server (never runs there) to avoid the SSR useLayoutEffect warning.
 const useIsoLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect
+
+// An occurrence key encodes the start instant and is also the chip's React key,
+// so committing a move re-keys the chip: React remounts it and the browser
+// drops focus to <body>. The chip that owns focus is recorded here so the cell
+// rendering its replacement can hand focus back. Module scope because the drop
+// can land in a different cell than the one the chip left, and only one element
+// holds focus at a time anyway.
+let focusedChip: {
+  node: HTMLElement
+  eventId: EventCalendarEventId
+  recurrenceIndex?: number
+} | null = null
+
+/** Give focus back to the recorded chip's replacement, if `root` renders it. */
+function restoreChipFocus(
+  root: HTMLElement | null,
+  segments: EventCalendarSegment[]
+) {
+  const pending = focusedChip
+  // Only a chip removed WHILE focused needs help: a node still in the tree, or
+  // a focus that has already moved on by itself, is left alone.
+  if (!root || !pending || pending.node.isConnected) return
+  const active = document.activeElement
+  if (active && active !== document.body) return
+  const index = segments.findIndex(
+    (segment) =>
+      segment.occurrence.eventId === pending.eventId &&
+      segment.occurrence.recurrenceIndex === pending.recurrenceIndex
+  )
+  if (index < 0) return
+  const chip = root.querySelectorAll<HTMLElement>(
+    "[data-slot=event-calendar-event]"
+  )[index]
+  if (!chip) return
+  // cleared first: focus() re-records through the new chip's own onFocus
+  focusedChip = null
+  chip.focus()
+}
 
 interface EventCalendarMonthViewProps extends HTMLAttributes<HTMLDivElement> {
   maxEventsPerCell?: number | "auto"
@@ -452,6 +492,11 @@ function EventCalendarMonthWeek({
         >
           {settings.i18n.labels.week(
             getWeek(toZoned(week[0], settings.timeZone), {
+              // locale supplies firstWeekContainsDate, so a de/ISO calendar
+              // numbers the year-boundary weeks its own way instead of falling
+              // back to US numbering; weekStartsOn stays explicit so the number
+              // keeps matching the rendered grid
+              locale: settings.locale,
               weekStartsOn: settings.weekStartsOn,
             })
           )}
@@ -624,7 +669,8 @@ function EventCalendarMonthCell({
       ? typeof viewConfig.offDays === "object"
         ? viewConfig.offDays
         : true
-      : false
+      : false,
+    settings.weekendDays
   )
   const offClassName =
     (typeof viewConfig.offDays === "object" && viewConfig.offDays.className) ||
@@ -640,9 +686,14 @@ function EventCalendarMonthCell({
     if (!covered) return null
     return drag.valid ? "valid" : "invalid"
   })
-  // Hide hover affordances mid-gesture: the only intent is the drop target
-  const isInteracting = useEventCalendarSelector<unknown, boolean>(
-    (state) => state.drag !== null || state.slotDraft !== null
+  // Hide hover affordances mid-gesture: the only intent is the drop target.
+  // Gated on the one thing that reads it: a plain global boolean flips for all
+  // 42 cells the moment a gesture starts and again when it ends, which is pure
+  // waste in the default configuration where no add button renders.
+  const isInteracting = useEventCalendarSelector<unknown, boolean>((state) =>
+    viewConfig.showDayAddButton
+      ? state.drag !== null || state.slotDraft !== null
+      : false
   )
   const inDraft = useEventCalendarSelector<
     unknown,
@@ -767,6 +818,14 @@ function EventCalendarMonthCell({
       extraHidden + (m - visibleTimed.length) + (placeholderAtMore ? 1 : 0)
   }
 
+  // No dep array: the replacement for a chip that lost focus to a commit can
+  // appear on any re-render of any cell, and a cell with nothing to restore
+  // bails after two comparisons.
+  const rootRef = useRef<HTMLDivElement | null>(null)
+  useIsoLayoutEffect(() => {
+    restoreChipFocus(rootRef.current, visibleTimed)
+  })
+
   // Faint dashed drop placeholder, tinted to the dragged event's color, echoing
   // the move ghost (EVENT_CALENDAR_GHOST.move); one chip-height tall so chips
   // shift by exactly one row when it is inserted.
@@ -822,6 +881,20 @@ function EventCalendarMonthCell({
             <EventCalendarEvent
               key={segment.occurrence.key}
               segment={segment}
+              // Remember the chip holding focus so a commit that re-keys it can
+              // hand focus back to the remounted one (see restoreChipFocus)
+              onFocus={(e) => {
+                focusedChip = {
+                  node: e.currentTarget,
+                  eventId: segment.occurrence.eventId,
+                  recurrenceIndex: segment.occurrence.recurrenceIndex,
+                }
+              }}
+              // A chip still in the tree lost focus on its own, so there is
+              // nothing to restore; only a blur from the remount is kept.
+              onBlur={(e) => {
+                if (e.currentTarget.isConnected) focusedChip = null
+              }}
               // Hold a fixed height like the all-day lane above; without this
               // the chip flex-shrinks to whatever room the cell has left, so
               // cells with a reserved bar lane or a second chip render shorter
@@ -919,6 +992,7 @@ function EventCalendarMonthCell({
 
   return (
     <div
+      ref={rootRef}
       role="gridcell"
       data-slot="event-calendar-month-cell"
       data-today={isToday || undefined}
@@ -1007,6 +1081,7 @@ function EventCalendarMoreIndicator({
   const settings = useEventCalendarSettings()
   const viewConfig = useEventCalendarViewConfig()
   const [open, setOpen] = useState(false)
+  const headerId = useId()
 
   // Grabbing a chip from this list starts a drag; close the popover so it does
   // not sit over the drop target while the event is carried to another day.
@@ -1064,6 +1139,20 @@ function EventCalendarMoreIndicator({
       <PopoverContent
         data-slot="event-calendar-more-popover"
         align={viewConfig.morePopoverAlign}
+        // The popover is a dialog, so it needs a name. The built-in body already
+        // renders the day header this list belongs to, so point at that; a
+        // consumer body has no header to point at and gets the same formatted
+        // day as a label instead.
+        aria-labelledby={viewConfig.renderMoreContent ? undefined : headerId}
+        aria-label={
+          viewConfig.renderMoreContent
+            ? format(
+                toZoned(day, settings.timeZone),
+                settings.i18n.formats.moreDayHeader,
+                { locale: settings.locale }
+              )
+            : undefined
+        }
         // PopoverContent is unlayered (flex-col gap-4 p-4); override with !
         // text-xs re-establishes the calendar's base type here because this
         // content is portaled out of the root subtree and cannot inherit it.
@@ -1080,7 +1169,11 @@ function EventCalendarMoreIndicator({
             close: () => setOpen(false),
           })
         ) : (
-          <EventCalendarMoreDefaultContent day={day} segments={segments} />
+          <EventCalendarMoreDefaultContent
+            day={day}
+            segments={segments}
+            headerId={headerId}
+          />
         )}
       </PopoverContent>
     </Popover>
@@ -1091,15 +1184,19 @@ function EventCalendarMoreIndicator({
 function EventCalendarMoreDefaultContent({
   day,
   segments,
+  headerId,
 }: {
   day: Date
   segments: EventCalendarSegment[]
+  /** Names the popover dialog: the header IS the list's accessible name. */
+  headerId?: string
 }) {
   const settings = useEventCalendarSettings()
   const viewConfig = useEventCalendarViewConfig()
   return (
     <>
       <div
+        id={headerId}
         className={cn(
           "text-muted-foreground px-1 py-1 text-xs font-medium",
           viewConfig.classNames?.morePopoverHeader

@@ -1,0 +1,415 @@
+{
+  "items": [
+    {
+      "name": "c-icon-tile-1",
+      "type": "registry:block",
+      "title": "Default icon tile",
+      "categories": [
+        "icon-tile"
+      ],
+      "description": "Default icon tile",
+      "registryDependencies": [
+        "icon-tile"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/icon-tile/c-icon-tile-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-icon-tile-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1,
+        "gridSize": 2
+      }
+    },
+    {
+      "name": "c-icon-tile-2",
+      "type": "registry:block",
+      "title": "Elevated icon tile",
+      "categories": [
+        "icon-tile"
+      ],
+      "description": "Icon tile with elevated surface",
+      "registryDependencies": [
+        "icon-tile"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/icon-tile/c-icon-tile-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-icon-tile-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2,
+        "gridSize": 2
+      }
+    },
+    {
+      "name": "c-icon-tile-3",
+      "type": "registry:block",
+      "title": "Framed icon tile",
+      "categories": [
+        "icon-tile"
+      ],
+      "description": "Icon tile with framed surface",
+      "registryDependencies": [
+        "icon-tile"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/icon-tile/c-icon-tile-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-icon-tile-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3,
+        "gridSize": 2
+      }
+    },
+    {
+      "name": "c-icon-tile-4",
+      "type": "registry:block",
+      "title": "All variants",
+      "categories": [
+        "icon-tile"
+      ],
+      "description": "Every icon tile variant",
+      "registryDependencies": [
+        "icon-tile"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/icon-tile/c-icon-tile-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-icon-tile-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4,
+        "gridSize": 2
+      }
+    },
+    {
+      "name": "c-icon-tile-5",
+      "type": "registry:block",
+      "title": "Sizes",
+      "categories": [
+        "icon-tile"
+      ],
+      "description": "Icon tile size scale",
+      "registryDependencies": [
+        "icon-tile"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/icon-tile/c-icon-tile-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-icon-tile-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5,
+        "gridSize": 2
+      }
+    },
+    {
+      "name": "c-icon-tile-6",
+      "type": "registry:block",
+      "title": "Circular tiles",
+      "categories": [
+        "icon-tile"
+      ],
+      "description": "Icon tiles with circular shape",
+      "registryDependencies": [
+        "icon-tile"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/icon-tile/c-icon-tile-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-icon-tile-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6,
+        "gridSize": 2
+      }
+    },
+    {
+      "name": "c-icon-tile-7",
+      "type": "registry:block",
+      "title": "Custom sizing",
+      "categories": [
+        "icon-tile"
+      ],
+      "description": "Icon tile with custom sizing",
+      "registryDependencies": [
+        "icon-tile"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/icon-tile/c-icon-tile-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-icon-tile-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7,
+        "gridSize": 2
+      }
+    },
+    {
+      "name": "c-icon-tile-8",
+      "type": "registry:block",
+      "title": "Color tones",
+      "categories": [
+        "icon-tile"
+      ],
+      "description": "Semantic icon tile color tones",
+      "registryDependencies": [
+        "icon-tile"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/icon-tile/c-icon-tile-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-icon-tile-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8,
+        "gridSize": 2
+      }
+    },
+    {
+      "name": "c-icon-tile-9",
+      "type": "registry:block",
+      "title": "Text content",
+      "categories": [
+        "icon-tile"
+      ],
+      "description": "Icon tile with text content",
+      "registryDependencies": [
+        "icon-tile"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/icon-tile/c-icon-tile-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-icon-tile-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9,
+        "gridSize": 2
+      }
+    },
+    {
+      "name": "c-icon-tile-10",
+      "type": "registry:block",
+      "title": "List row",
+      "categories": [
+        "icon-tile"
+      ],
+      "description": "Icon tile in a list row",
+      "registryDependencies": [
+        "icon-tile",
+        "item"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/icon-tile/c-icon-tile-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-icon-tile-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10,
+        "gridSize": 2
+      }
+    },
+    {
+      "name": "c-icon-tile-11",
+      "type": "registry:block",
+      "title": "Feature card",
+      "categories": [
+        "icon-tile"
+      ],
+      "description": "Icon tile in a feature card",
+      "registryDependencies": [
+        "frame",
+        "icon-tile"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/icon-tile/c-icon-tile-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-icon-tile-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11,
+        "gridSize": 2
+      }
+    },
+    {
+      "name": "c-icon-tile-12",
+      "type": "registry:block",
+      "title": "Empty state",
+      "categories": [
+        "icon-tile"
+      ],
+      "description": "Icon tile in an empty state",
+      "registryDependencies": [
+        "empty",
+        "icon-tile"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/icon-tile/c-icon-tile-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-icon-tile-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12,
+        "gridSize": 2
+      }
+    },
+    {
+      "name": "c-icon-tile-13",
+      "type": "registry:block",
+      "title": "Interactive tile",
+      "categories": [
+        "icon-tile"
+      ],
+      "description": "Interactive icon tile",
+      "registryDependencies": [
+        "icon-tile"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/icon-tile/c-icon-tile-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-icon-tile-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13,
+        "gridSize": 2
+      }
+    },
+    {
+      "name": "c-icon-tile-14",
+      "type": "registry:block",
+      "title": "Status overlay",
+      "categories": [
+        "icon-tile"
+      ],
+      "description": "Icon tile with status overlay",
+      "registryDependencies": [
+        "icon-tile"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/icon-tile/c-icon-tile-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-icon-tile-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14,
+        "gridSize": 2
+      }
+    },
+    {
+      "name": "c-icon-tile-15",
+      "type": "registry:block",
+      "title": "Soft tones",
+      "categories": [
+        "icon-tile"
+      ],
+      "description": "Tone-adjustable soft variant",
+      "registryDependencies": [
+        "icon-tile"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/icon-tile/c-icon-tile-15.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-icon-tile-15.tsx"
+        }
+      ],
+      "meta": {
+        "order": 15,
+        "gridSize": 2
+      }
+    },
+    {
+      "name": "c-icon-tile-16",
+      "type": "registry:block",
+      "title": "Solid tones",
+      "categories": [
+        "icon-tile"
+      ],
+      "description": "Tone-adjustable solid variant",
+      "registryDependencies": [
+        "icon-tile"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/icon-tile/c-icon-tile-16.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-icon-tile-16.tsx"
+        }
+      ],
+      "meta": {
+        "order": 16,
+        "gridSize": 2
+      }
+    },
+    {
+      "name": "c-icon-tile-17",
+      "type": "registry:block",
+      "title": "Brand colors",
+      "categories": [
+        "icon-tile"
+      ],
+      "description": "Elevated tile with a Tailwind color fill",
+      "registryDependencies": [
+        "icon-tile"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/icon-tile/c-icon-tile-17.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-icon-tile-17.tsx"
+        }
+      ],
+      "meta": {
+        "order": 17,
+        "gridSize": 2
+      }
+    }
+  ]
+}

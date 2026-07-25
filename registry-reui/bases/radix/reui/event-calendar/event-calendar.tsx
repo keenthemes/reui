@@ -20,6 +20,7 @@ import {
 import {
   mergeEventCalendarI18n,
   type EventCalendarI18nConfig,
+  type EventCalendarI18nOverrides,
 } from "@/registry-reui/bases/radix/reui/event-calendar/event-calendar-i18n"
 import {
   buildEventIndex,
@@ -70,6 +71,36 @@ const DEFAULT_INTERACTIONS: EventCalendarInteractions = {
 }
 
 const EMPTY_SELECTION: EventCalendarSelection = { eventKeys: [], slot: null }
+
+// resolveSettings runs on every render, so a freshly allocated default would
+// bust the view memos keyed on it (the month grid rebuilds its 42 zoned day
+// starts whenever weekendDays changes identity). Shared, never mutated.
+const DEFAULT_WEEKEND_DAYS: number[] = [0, 6]
+const EMPTY_RESOURCES: EventCalendarResource[] = []
+const DEFAULT_EVENT_PRIORITY = (event: CalendarEvent<never>) =>
+  event.priority ?? 0
+
+// Priority-aware default order, cached on the resolver identity: eventOrder is
+// part of the index cache key, so a fresh closure per render would rebuild the
+// whole index on every render.
+const priorityOrderCache = new WeakMap<object, unknown>()
+type EventOrder<TData> = (
+  a: EventCalendarOccurrence<TData>,
+  b: EventCalendarOccurrence<TData>
+) => number
+function priorityEventOrder<TData>(
+  getEventPriority: (event: CalendarEvent<TData>) => number
+): EventOrder<TData> {
+  const cached = priorityOrderCache.get(getEventPriority)
+  if (cached) return cached as EventOrder<TData>
+  // higher priority packs and orders first; ties fall through to the
+  // start/duration/key default
+  const order: EventOrder<TData> = (a, b) =>
+    getEventPriority(b.event) - getEventPriority(a.event) ||
+    defaultEventOrder(a, b)
+  priorityOrderCache.set(getEventPriority, order)
+  return order
+}
 
 interface EventCalendarCallbacks<TData = unknown> {
   onEventClick?: (
@@ -145,7 +176,7 @@ interface UseEventCalendarStateOptions<
   agendaDayCount?: number
   fixedWeeks?: boolean
   showOutsideDays?: boolean
-  i18n?: Partial<EventCalendarI18nConfig>
+  i18n?: EventCalendarI18nOverrides
   /** Bookable resources for the resource view. */
   resources?: EventCalendarResource[]
   getEventPriority?: (event: CalendarEvent<TData>) => number
@@ -295,12 +326,18 @@ function resolveSettings<TData>(
     loading: _l,
     ...rest
   } = options
+  const getEventPriority =
+    options.getEventPriority ??
+    (DEFAULT_EVENT_PRIORITY as (event: CalendarEvent<TData>) => number)
   return {
     ...rest,
     timeZone:
       options.timeZone ?? Intl.DateTimeFormat().resolvedOptions().timeZone,
     locale: options.locale,
-    weekStartsOn: options.weekStartsOn ?? 0,
+    // locale-first default: a de/fr locale gets Monday weeks without also
+    // having to set weekStartsOn; an explicit weekStartsOn always wins
+    weekStartsOn:
+      options.weekStartsOn ?? options.locale?.options?.weekStartsOn ?? 0,
     // the resource view only makes sense with resources configured
     views:
       options.views ?? (options.resources?.length ? ALL_VIEWS : BASE_VIEWS),
@@ -312,12 +349,11 @@ function resolveSettings<TData>(
     fixedWeeks: options.fixedWeeks ?? true,
     showOutsideDays: options.showOutsideDays ?? true,
     i18n: mergeEventCalendarI18n(options.i18n),
-    resources: options.resources ?? [],
-    getEventPriority:
-      options.getEventPriority ?? ((event) => event.priority ?? 0),
-    eventOrder: options.eventOrder ?? defaultEventOrder,
+    resources: options.resources ?? EMPTY_RESOURCES,
+    getEventPriority,
+    eventOrder: options.eventOrder ?? priorityEventOrder(getEventPriority),
     getOccurrences: options.getOccurrences,
-    weekendDays: options.weekendDays ?? [0, 6],
+    weekendDays: options.weekendDays ?? DEFAULT_WEEKEND_DAYS,
     activation: options.activation,
   }
 }
@@ -374,7 +410,24 @@ function createEventCalendarStore<TData>(
     rangeKey: string
     timeZone: string
     weekStartsOn: WeekStartsOn
+    eventOrder: EventCalendarSettings<TData>["eventOrder"]
+    getOccurrences: EventCalendarSettings<TData>["getOccurrences"]
     index: EventCalendarIndex<TData>
+  } | null = null
+  // Second single-entry cache, for api.getOccurrences(range) outside the
+  // visible range: that branch builds a throwaway index, so without it every
+  // call hands back brand new occurrence OBJECTS and the identity-based
+  // isEqual in useEventCalendarOccurrences can never settle - an unstable
+  // getSnapshot is a hard render loop under useSyncExternalStore, not a slow
+  // render.
+  let rangeCache: {
+    events: CalendarEvent<TData>[]
+    rangeKey: string
+    timeZone: string
+    weekStartsOn: WeekStartsOn
+    eventOrder: EventCalendarSettings<TData>["eventOrder"]
+    getOccurrences: EventCalendarSettings<TData>["getOccurrences"]
+    occurrences: EventCalendarOccurrence<TData>[]
   } | null = null
   let scrollHandler: ((time: Date | number) => void) | null = null
   // The rendered calendar root element, registered by the <EventCalendar> host.
@@ -489,6 +542,27 @@ function createEventCalendarStore<TData>(
     if (!controlled) notify()
   }
 
+  // An occurrence key encodes the start instant (id::startISO), so committing a
+  // move re-keys the occurrence and a selection holding the old key would point
+  // at nothing. Remapped in the same commit and emitted BEFORE the events write
+  // so a controlled consumer applies the two in a consistent order.
+  const remapSelectionKey = (
+    id: EventCalendarEventId,
+    oldKey: string,
+    nextStart: Date
+  ) => {
+    const newKey = `${id}::${nextStart.toISOString()}`
+    if (newKey === oldKey) return
+    const selection = getState().selection
+    if (!selection.eventKeys.includes(oldKey)) return
+    setField("selection", {
+      ...selection,
+      eventKeys: selection.eventKeys.map((key) =>
+        key === oldKey ? newKey : key
+      ),
+    })
+  }
+
   // extraPatch: non-timing fields committed in the SAME write. Two sequential
   // setField("events") calls break controlled mode - the second one re-reads
   // the still-stale controlled array and its onEventsChange payload silently
@@ -508,6 +582,18 @@ function createEventCalendarStore<TData>(
           }
         : { start: update.start, end: update.end, allDay: update.allDay }
     if (update.resourceId !== undefined) adjusted.resourceId = update.resourceId
+    // the STORED event holds the pre-commit start, which is what the live
+    // occurrence key was built from (update.event already carries the proposal
+    // when the call comes from api.updateEvent)
+    const stored = getState().events.find(
+      (event) => event.id === update.event.id
+    )
+    const oldKey =
+      update.occurrence?.key ??
+      (stored ? `${stored.id}::${stored.start.toISOString()}` : null)
+    if (oldKey) {
+      remapSelectionKey(update.event.id, oldKey, adjusted.start ?? update.start)
+    }
     const events = getState().events
     const next = events.map((event) =>
       event.id === update.event.id
@@ -526,7 +612,9 @@ function createEventCalendarStore<TData>(
       indexCache.events === state.events &&
       indexCache.rangeKey === rangeKey &&
       indexCache.timeZone === settings.timeZone &&
-      indexCache.weekStartsOn === settings.weekStartsOn
+      indexCache.weekStartsOn === settings.weekStartsOn &&
+      indexCache.eventOrder === settings.eventOrder &&
+      indexCache.getOccurrences === settings.getOccurrences
     ) {
       return indexCache.index
     }
@@ -541,6 +629,8 @@ function createEventCalendarStore<TData>(
       rangeKey,
       timeZone: settings.timeZone,
       weekStartsOn: settings.weekStartsOn,
+      eventOrder: settings.eventOrder,
+      getOccurrences: settings.getOccurrences,
       index,
     }
     return index
@@ -624,6 +714,13 @@ function createEventCalendarStore<TData>(
         )
         return
       }
+      if (timingChanged) {
+        remapSelectionKey(
+          id,
+          `${id}::${event.start.toISOString()}`,
+          merged.start
+        )
+      }
       setField(
         "events",
         getState().events.map((e) => (e.id === id ? merged : e))
@@ -644,12 +741,34 @@ function createEventCalendarStore<TData>(
       if (within) {
         return getIndex().occurrences.filter((occ) => eventsOverlap(occ, range))
       }
-      return buildEventIndex(state.events, range, {
+      const rangeKey = getRangeKey(range)
+      if (
+        rangeCache &&
+        rangeCache.events === state.events &&
+        rangeCache.rangeKey === rangeKey &&
+        rangeCache.timeZone === settings.timeZone &&
+        rangeCache.weekStartsOn === settings.weekStartsOn &&
+        rangeCache.eventOrder === settings.eventOrder &&
+        rangeCache.getOccurrences === settings.getOccurrences
+      ) {
+        return rangeCache.occurrences
+      }
+      const { occurrences } = buildEventIndex(state.events, range, {
         timeZone: settings.timeZone,
         weekStartsOn: settings.weekStartsOn,
         eventOrder: settings.eventOrder,
         getOccurrences: settings.getOccurrences,
-      }).occurrences
+      })
+      rangeCache = {
+        events: state.events,
+        rangeKey,
+        timeZone: settings.timeZone,
+        weekStartsOn: settings.weekStartsOn,
+        eventOrder: settings.eventOrder,
+        getOccurrences: settings.getOccurrences,
+        occurrences,
+      }
+      return occurrences
     },
     getOccurrencesForDay(day) {
       const bucket = getIndex().byDay.get(getDayKey(day, settings.timeZone))
@@ -774,6 +893,8 @@ function createEventCalendarStore<TData>(
     "getEventPriority",
     "eventOrder",
     "getOccurrences",
+    "weekendDays",
+    "activation",
   ] as const
 
   return {
@@ -902,6 +1023,74 @@ function useEventCalendarView(): {
   }
 }
 
+/**
+ * isToday is a wall-clock read, so no store write ever invalidates it and a
+ * calendar left open overnight keeps highlighting yesterday. One timer per
+ * display zone, armed for the next zoned midnight and re-armed on fire, wakes
+ * every day-scoped hook exactly when the answer changes; an interval would
+ * tick thousands of times a day to catch one transition.
+ */
+const midnightTicker = (() => {
+  const zones = new Map<
+    string,
+    { listeners: Set<() => void>; timer: ReturnType<typeof setTimeout> | null }
+  >()
+  let version = 0
+
+  const arm = (timeZone: string) => {
+    const entry = zones.get(timeZone)
+    if (!entry) return
+    const now = new Date()
+    const next = zonedStartOfDay(
+      addDays(toZoned(now, timeZone), 1),
+      timeZone
+    ).getTime()
+    entry.timer = setTimeout(
+      () => {
+        version++
+        entry.listeners.forEach((listener) => listener())
+        arm(timeZone)
+      },
+      Math.max(1000, next - now.getTime())
+    )
+  }
+
+  return {
+    subscribe(timeZone: string, listener: () => void) {
+      let entry = zones.get(timeZone)
+      if (!entry) {
+        entry = { listeners: new Set(), timer: null }
+        zones.set(timeZone, entry)
+        entry.listeners.add(listener)
+        arm(timeZone)
+      } else {
+        entry.listeners.add(listener)
+      }
+      const current = entry
+      return () => {
+        current.listeners.delete(listener)
+        if (current.listeners.size > 0) return
+        if (current.timer) clearTimeout(current.timer)
+        zones.delete(timeZone)
+      }
+    },
+    getVersion: () => version,
+  }
+})()
+
+/** Re-renders the caller on the next midnight in `timeZone`. */
+function useMidnightTick(timeZone: string): number {
+  const subscribe = useCallback(
+    (listener: () => void) => midnightTicker.subscribe(timeZone, listener),
+    [timeZone]
+  )
+  return useSyncExternalStore(
+    subscribe,
+    midnightTicker.getVersion,
+    midnightTicker.getVersion
+  )
+}
+
 function useEventCalendarNavigation(): {
   date: Date
   /** i18n.functions.formatTitle output for the current view. */
@@ -932,6 +1121,7 @@ function useEventCalendarNavigation(): {
     }
   )
   useEventCalendarSettingsVersion(instance)
+  useMidnightTick(settings.timeZone)
   const now = new Date()
   return {
     date: slice.date,
@@ -1035,6 +1225,7 @@ function useEventCalendarDay<TData = unknown>(
       isEqual: (a, b) => getRangeKey(a) === getRangeKey(b),
     }
   )
+  useMidnightTick(timeZone)
   const dayStart = zonedStartOfDay(day, timeZone)
   return {
     segments: bucket,
@@ -1217,6 +1408,7 @@ interface EventCalendarClassNames {
   // agenda
   noEvents?: string
   agendaDay?: string
+  agendaDayHeader?: string
   agendaDayGutter?: string
   agendaDate?: string
   agendaDayToggle?: string

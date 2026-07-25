@@ -7,7 +7,7 @@ import {
   type EventCalendarRenderEventProps,
 } from "@/registry-reui/bases/radix/reui/event-calendar/event-calendar"
 import { EventCalendarContent } from "@/registry-reui/bases/radix/reui/event-calendar/event-calendar-content"
-import type { EventCalendarI18nConfig } from "@/registry-reui/bases/radix/reui/event-calendar/event-calendar-i18n"
+import type { EventCalendarI18nOverrides } from "@/registry-reui/bases/radix/reui/event-calendar/event-calendar-i18n"
 import {
   EventCalendarNav,
   EventCalendarToolbar,
@@ -202,7 +202,7 @@ interface DemoLocale {
   label: string
   locale: Locale | undefined
   dir: "ltr" | "rtl"
-  i18n: Partial<EventCalendarI18nConfig> | undefined
+  i18n: EventCalendarI18nOverrides | undefined
 }
 
 const LOCALES: DemoLocale[] = [

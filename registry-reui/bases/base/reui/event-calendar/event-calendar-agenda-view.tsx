@@ -121,15 +121,28 @@ function EventCalendarAgendaView({
           {groups.map(({ day, bucket }) => {
             const items = [...(bucket?.allDay ?? []), ...(bucket?.timed ?? [])]
             const zoned = toZoned(day, settings.timeZone)
+            const weekday = format(zoned, "EEEE", { locale: settings.locale })
+            const dayDate = format(zoned, "MMMM d, yyyy", {
+              locale: settings.locale,
+            })
             return (
               <div
                 key={day.getTime()}
                 data-slot="event-calendar-agenda-day"
                 data-today={isToday(day) || undefined}
+                // A named group per day so a screen reader can step day by day
+                // (and hear how full one is) instead of arrowing every row.
+                role="group"
+                aria-label={`${weekday}, ${dayDate}, ${settings.i18n.labels.events(items.length)}`}
               >
                 {/* Group header: weekday (leading) + full date (trailing) */}
                 <div
                   data-slot="event-calendar-agenda-day-header"
+                  // The day bar is the agenda's only structure, so give it a
+                  // heading level: the H key and the rotor can jump between
+                  // days, which is the whole point of a long agenda.
+                  role="heading"
+                  aria-level={3}
                   className={cn(
                     "bg-muted/60 sticky top-0 z-10 flex items-baseline justify-between gap-4 border-b px-4 py-2",
                     // The custom ScrollArea's overlay scrollbar (w-2.5 = 10px)
@@ -149,10 +162,10 @@ function EventCalendarAgendaView({
                       isToday(day) && "text-primary"
                     )}
                   >
-                    {format(zoned, "EEEE", { locale: settings.locale })}
+                    {weekday}
                   </span>
                   <span className="text-muted-foreground font-medium tabular-nums">
-                    {format(zoned, "MMMM d, yyyy", { locale: settings.locale })}
+                    {dayDate}
                   </span>
                 </div>
                 {items.map((segment) => (
@@ -172,6 +185,13 @@ function EventCalendarAgendaView({
   const defaultProps = {
     "data-slot": "event-calendar-agenda-view",
     "data-view": "agenda",
+    // Unlike the grid views the agenda has no row/column semantics to carry a
+    // name, so label the region with the day range it covers - through
+    // formatDayRange, so a consumer override reaches it.
+    role: "group",
+    "aria-label": settings.i18n.functions.formatDayRange(visibleRange, {
+      locale: settings.locale,
+    }),
     className: cn(
       "flex min-h-0 flex-1 flex-col overflow-hidden border-t",
       viewConfig.classNames?.agendaView,

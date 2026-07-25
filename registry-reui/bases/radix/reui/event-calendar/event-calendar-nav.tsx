@@ -287,7 +287,7 @@ interface EventCalendarViewSwitcherProps extends Omit<
 
 function EventCalendarViewSwitcher({
   className,
-  asChild,
+  asChild = false,
   children,
   tooltip,
   ...props
@@ -339,6 +339,7 @@ function EventCalendarViewSwitcher({
               data-slot="event-calendar-view-switcher"
               aria-label={labels.selectView}
               className={cn("gap-1", nav.className, className)}
+              asChild={asChild}
             >
               {children ?? (
                 <>

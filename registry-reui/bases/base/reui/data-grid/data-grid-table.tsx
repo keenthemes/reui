@@ -87,7 +87,8 @@ function getDataGridScrollAreaViewport(node: HTMLElement): HTMLElement | null {
 }
 
 type DataGridResizeStartEvent =
-  ReactMouseEvent<HTMLDivElement> | ReactTouchEvent<HTMLDivElement>
+  | ReactMouseEvent<HTMLDivElement>
+  | ReactTouchEvent<HTMLDivElement>
 
 type DataGridResizeDocumentEvent = globalThis.MouseEvent | globalThis.TouchEvent
 

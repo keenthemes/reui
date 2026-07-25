@@ -1,13 +1,7 @@
 "use client"
 
-import {
-  createContext,
-  HTMLAttributes,
-  TimeHTMLAttributes,
-  useCallback,
-  useContext,
-  useState,
-} from "react"
+import type { HTMLAttributes, TimeHTMLAttributes } from "react"
+import { createContext, useCallback, useContext, useState } from "react"
 import { Slot } from "radix-ui"
 
 import { cn } from "@/registry/bases/radix/lib/utils"

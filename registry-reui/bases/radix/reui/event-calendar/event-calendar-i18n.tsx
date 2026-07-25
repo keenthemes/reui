@@ -5,7 +5,13 @@ import type {
   CalendarView,
   EventCalendarDateRange,
 } from "@/registry-reui/bases/radix/reui/event-calendar/event-calendar-types"
-import { format, isSameMonth, isSameYear, type Locale } from "date-fns"
+import {
+  format,
+  isSameMonth,
+  isSameYear,
+  subMilliseconds,
+  type Locale,
+} from "date-fns"
 
 interface EventCalendarI18nConfig {
   labels: {
@@ -91,8 +97,17 @@ interface EventCalendarI18nConfig {
         locale?: Locale
       }
     ) => string
-    formatEventTime: (start: Date, end: Date, allDay: boolean) => string
-    formatDayRange: (range: EventCalendarDateRange) => string
+    formatEventTime: (
+      start: Date,
+      end: Date,
+      allDay: boolean,
+      /** date-fns options (the calendar `locale`); trailing so a 3-arg override still fits. */
+      opts?: { locale?: Locale }
+    ) => string
+    formatDayRange: (
+      range: EventCalendarDateRange,
+      opts?: { locale?: Locale }
+    ) => string
     /** Chip native tooltip text; return undefined to drop the attribute. */
     formatEventLabel?: (title: string, timeLabel: string) => string | undefined
     /** Chip aria-label composition. */
@@ -141,7 +156,7 @@ const DEFAULT_VIEW_NAMES: EventCalendarI18nConfig["viewNames"] = {
   month: "Month",
   week: "Week",
   day: "Day",
-  days: (count) => `${count} days`,
+  days: (count) => (count === 1 ? "1 day" : `${count} days`),
   agenda: "Agenda",
   resource: "Time Grid",
 }
@@ -197,8 +212,10 @@ function makeDefaultFunctions(
       if (view === "agenda" && cfg.formats.agendaTitle) {
         return format(date, cfg.formats.agendaTitle, opts)
       }
-      // week / days / agenda: smart range label, last day is activeRange.end - 1ms
-      const rangeEnd = new Date(activeRange.end.getTime() - 1)
+      // week / days / agenda: smart range label, last day is activeRange.end - 1ms.
+      // subMilliseconds keeps the zoned date type (a plain new Date(ms)
+      // would flip the label to the machine zone near midnight)
+      const rangeEnd = subMilliseconds(activeRange.end, 1)
       const start = activeRange.start
       if (isSameMonth(start, rangeEnd)) {
         return `${format(start, "MMMM d", opts)} - ${format(rangeEnd, "d, yyyy", opts)}`
@@ -208,18 +225,24 @@ function makeDefaultFunctions(
       }
       return `${format(start, "MMM d, yyyy", opts)} - ${format(rangeEnd, "MMM d, yyyy", opts)}`
     },
-    formatEventTime: (start, end, allDay) => {
+    formatEventTime: (start, end, allDay, opts) => {
       if (allDay) return cfg.labels.allDay
       const fmt = cfg.formats.eventTime
-      // Multi-day timed events carry the date on both sides
-      if (end.getTime() - start.getTime() > 24 * 60 * 60 * 1000) {
-        return `${format(start, `MMM d, ${fmt}`)} - ${format(end, `MMM d, ${fmt}`)}`
+      // Multi-day timed events carry the date on both sides. Compare calendar
+      // days off the last rendered instant (end is exclusive, so a 14:00 to
+      // midnight event still ends on the start day). Elapsed ms would miss an
+      // exactly-24h event and a DST day that only runs 23 hours.
+      const lastInstant =
+        end.getTime() - 1 >= start.getTime() ? subMilliseconds(end, 1) : start
+      if (format(start, "yyyy-MM-dd") !== format(lastInstant, "yyyy-MM-dd")) {
+        return `${format(start, `MMM d, ${fmt}`, opts)} - ${format(end, `MMM d, ${fmt}`, opts)}`
       }
-      return `${format(start, fmt)} - ${format(end, fmt)}`
+      return `${format(start, fmt, opts)} - ${format(end, fmt, opts)}`
     },
-    formatDayRange: (range) => {
-      const rangeEnd = new Date(range.end.getTime() - 1)
-      return `${format(range.start, "MMM d")} - ${format(rangeEnd, "MMM d")}`
+    formatDayRange: (range, opts) => {
+      // subMilliseconds keeps the zoned date type, same reason as formatTitle
+      const rangeEnd = subMilliseconds(range.end, 1)
+      return `${format(range.start, "MMM d", opts)} - ${format(rangeEnd, "MMM d", opts)}`
     },
   }
 }
@@ -235,13 +258,22 @@ const DEFAULT_EVENT_CALENDAR_I18N: EventCalendarI18nConfig = {
 }
 
 /**
+ * One level deeper than `Partial`, because the merge below is per nested
+ * section: overriding a single label must not force a consumer to restate the
+ * other 22. Unknown keys are still rejected by the excess property check.
+ */
+type EventCalendarI18nOverrides = {
+  [K in keyof EventCalendarI18nConfig]?: Partial<EventCalendarI18nConfig[K]>
+}
+
+/**
  * Shallow merge per nested object, matching the filters.tsx i18n contract:
  * a partial override replaces individual keys, never whole sections. Default
  * functions are re-bound to the MERGED labels/formats; explicit `functions`
  * overrides still win.
  */
 function mergeEventCalendarI18n(
-  overrides?: Partial<EventCalendarI18nConfig>
+  overrides?: EventCalendarI18nOverrides
 ): EventCalendarI18nConfig {
   if (!overrides) return DEFAULT_EVENT_CALENDAR_I18N
   const labels = { ...DEFAULT_LABELS, ...overrides.labels }
@@ -259,4 +291,4 @@ function mergeEventCalendarI18n(
 }
 
 export { DEFAULT_EVENT_CALENDAR_I18N, mergeEventCalendarI18n }
-export type { EventCalendarI18nConfig }
+export type { EventCalendarI18nConfig, EventCalendarI18nOverrides }

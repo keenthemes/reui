@@ -176,7 +176,8 @@ function EventCalendarEvent<TData = unknown>({
   const isSelected = preview ? false : isSelectedRaw
   const isDragging = preview ? false : isDraggingRaw
 
-  const isBar = occurrence.allDay || spansMultipleDays(occurrence)
+  const isBar =
+    occurrence.allDay || spansMultipleDays(occurrence, settings.timeZone)
   const inTimeGrid =
     view === "week" || view === "day" || view === "days" || view === "resource"
   const interactive = view !== "agenda" && !preview
@@ -245,7 +246,8 @@ function EventCalendarEvent<TData = unknown>({
             {settings.i18n.functions.formatEventTime(
               toZoned(occurrence.start, settings.timeZone),
               toZoned(occurrence.end, settings.timeZone),
-              occurrence.allDay
+              occurrence.allDay,
+              { locale: settings.locale }
             )}
           </span>
         ))}
@@ -285,7 +287,8 @@ function EventCalendarEvent<TData = unknown>({
     return settings.i18n.functions.formatEventTime(
       toZoned(occurrence.start, settings.timeZone),
       toZoned(occurrence.end, settings.timeZone),
-      false
+      false,
+      { locale: settings.locale }
     )
   })()
 
@@ -343,7 +346,8 @@ function EventCalendarEvent<TData = unknown>({
   const timeLabel = settings.i18n.functions.formatEventTime(
     toZoned(occurrence.start, settings.timeZone),
     toZoned(occurrence.end, settings.timeZone),
-    occurrence.allDay
+    occurrence.allDay,
+    { locale: settings.locale }
   )
   // native hover tooltip text; a consumer formatter returning undefined
   // drops the title attribute entirely (e.g. when it renders its own tooltip)
@@ -469,6 +473,10 @@ function EventCalendarEvent<TData = unknown>({
           ? `, ${settings.i18n.labels.continues}`
           : ""
       }`,
+    // Selection is otherwise conveyed by a background tint alone; the chip is a
+    // real toggle in every interactive view, so a screen reader hears the state
+    // (agenda rows never select, previews are inert - both stay unpressed).
+    "aria-pressed": interactive ? isSelected : undefined,
     "aria-hidden": preview || undefined,
     tabIndex: preview ? -1 : undefined,
     style: {

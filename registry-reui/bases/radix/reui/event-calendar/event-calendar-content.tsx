@@ -54,7 +54,9 @@ function EventCalendarContent({
     ...viewConfig.components,
     ...components,
   }
-  const ActiveView = resolved[view]
+  // A spread copies keys that hold `undefined`, so `components={{ month: isPro
+  // ? ProMonth : undefined }}` would erase the default and render <undefined />.
+  const ActiveView = resolved[view] ?? DEFAULT_VIEW_COMPONENTS[view]
 
   const Comp = asChild ? Slot.Root : "div"
 

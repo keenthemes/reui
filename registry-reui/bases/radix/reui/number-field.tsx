@@ -1,8 +1,10 @@
 "use client"
 
-import { createContext, ReactNode, useContext, useId } from "react"
+import type { ReactNode } from "react"
+import { createContext, useContext, useId } from "react"
 import { NumberField as NumberFieldPrimitive } from "@base-ui/react/number-field"
-import { cva, VariantProps } from "class-variance-authority"
+import type { VariantProps } from "class-variance-authority"
+import { cva } from "class-variance-authority"
 
 import { cn } from "@/registry/bases/base/lib/utils"
 import { Label } from "@/registry/bases/base/ui/label"
@@ -14,13 +16,12 @@ const NumberFieldContext = createContext<{
 } | null>(null)
 
 const numberFieldGroupVariants = cva(
-  "relative flex w-full justify-between border border-input data-disabled:pointer-events-none data-disabled:opacity-50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive aria-invalid:ring-3 has-aria-invalid:border-destructive has-aria-invalid:ring-destructive/20 dark:has-aria-invalid:ring-destructive/40 has-aria-invalid:ring-3 style-vega:rounded-md style-nova:rounded-lg style-maia:rounded-4xl style-lyra:rounded-none style-mira:rounded-md style-luma:rounded-3xl style-rhea:rounded-2xl style-sera:rounded-none bg-transparent dark:bg-input/30 transition-colors focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-3",
+  "relative flex w-full justify-between border border-input data-disabled:pointer-events-none data-disabled:opacity-50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive focus-within:has-aria-invalid:border-destructive focus-within:has-aria-invalid:ring-destructive/20 dark:focus-within:has-aria-invalid:ring-destructive/40 style-vega:rounded-md style-nova:rounded-lg style-maia:rounded-4xl style-lyra:rounded-none style-mira:rounded-md style-luma:rounded-3xl style-rhea:rounded-2xl style-sera:rounded-none bg-transparent dark:bg-input/30 transition-colors focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-3",
   {
     variants: {
       size: {
         sm: "h-7 text-sm",
-        default:
-          "h-8 text-sm",
+        default: "h-8 text-sm",
         lg: "h-9 text-sm",
       },
     },
@@ -53,8 +54,7 @@ const numberFieldInputVariants = cva(
     variants: {
       size: {
         sm: "px-2 py-0.5",
-        default:
-          "px-2.5 py-1",
+        default: "px-2.5 py-1",
         lg: "px-2.5 py-1.5",
       },
     },

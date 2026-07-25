@@ -2,33 +2,34 @@
 "use client"
 
 import * as React from "react"
+import type { CSSProperties, HTMLAttributes, ReactNode } from "react"
 import {
   createContext,
-  CSSProperties,
-  HTMLAttributes,
-  ReactNode,
   useCallback,
   useContext,
   useLayoutEffect,
   useMemo,
   useRef,
   useState,
+  useSyncExternalStore,
 } from "react"
-import {
-  defaultDropAnimationSideEffects,
-  DndContext,
+import type {
   DragCancelEvent,
   DragEndEvent,
   DragOverEvent,
-  DragOverlay,
   DragStartEvent,
   DropAnimation,
+  Modifiers,
+  UniqueIdentifier,
+} from "@dnd-kit/core"
+import {
+  defaultDropAnimationSideEffects,
+  DndContext,
+  DragOverlay,
   KeyboardSensor,
   MeasuringStrategy,
-  Modifiers,
   MouseSensor,
   TouchSensor,
-  UniqueIdentifier,
   useSensor,
   useSensors,
   type DraggableAttributes,
@@ -111,6 +112,22 @@ const dropAnimationConfig: DropAnimation = {
   }),
 }
 
+/**
+ * Client-mount gate for the `createPortal` call in KanbanOverlay, which needs
+ * `document.body` and so must not run on the server or during hydration.
+ *
+ * A never-notifying subscription makes `useSyncExternalStore` return the server
+ * snapshot (`false`) while rendering on the server and while hydrating, then the
+ * client snapshot (`true`) once mounted - the same gate the previous
+ * `useLayoutEffect(() => setMounted(true), [])` provided, minus the extra render
+ * pass that `react-hooks/set-state-in-effect` flags. All three functions are
+ * module-scoped so their identities stay stable; an inline `getSnapshot` is the
+ * classic cause of an infinite re-subscribe loop.
+ */
+const subscribeToNothing = () => () => {}
+const getIsMounted = () => true
+const getIsMountedOnServer = () => false
+
 const MOUSE_SENSOR_OPTIONS = { activationConstraint: { distance: 10 } }
 const TOUCH_SENSOR_OPTIONS = {
   activationConstraint: { delay: 250, tolerance: 5 },
@@ -184,11 +201,15 @@ function Kanban<T>({
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null)
 
   // Always-current mirrors so the drag handlers can read fresh values without
-  // widening their dependency arrays (keeps handler identity stable).
+  // widening their dependency arrays (keeps handler identity stable). The
+  // handlers only fire after commit, so syncing the mirrors in an effect is
+  // safe — assigning to a ref during render breaks under concurrent rendering.
   const valueRef = useRef(value)
-  valueRef.current = value
   const getItemValueRef = useRef(getItemValue)
-  getItemValueRef.current = getItemValue
+  useLayoutEffect(() => {
+    valueRef.current = value
+    getItemValueRef.current = getItemValue
+  })
   const dragOriginRef = useRef<{
     value: Record<string, T[]>
     container: string | undefined
@@ -204,11 +225,10 @@ function Kanban<T>({
   const columnIds = useMemo(() => {
     const keys = Object.keys(columns)
     if (process.env.NODE_ENV !== "production") {
-      const getId = getItemValueRef.current
       const seen = new Set<string>()
       for (const key of keys) {
         for (const item of columns[key]) {
-          const itemId = getId(item)
+          const itemId = getItemValue(item)
           if (seen.has(itemId)) {
             console.warn(
               `[Kanban] Duplicate item id "${itemId}". Item ids must be unique across all columns, or drag and drop will misbehave.`
@@ -220,7 +240,7 @@ function Kanban<T>({
       }
     }
     return keys
-  }, [columns])
+  }, [columns, getItemValue])
 
   const isColumn = useCallback(
     (id: UniqueIdentifier) => columnIds.includes(id as string),
@@ -903,9 +923,11 @@ export interface KanbanOverlayProps extends Omit<
 
 function KanbanOverlay({ children, className, ...props }: KanbanOverlayProps) {
   const { activeId, isColumn, modifiers } = useContext(KanbanContext)
-  const [mounted, setMounted] = useState(false)
-
-  useLayoutEffect(() => setMounted(true), [])
+  const mounted = useSyncExternalStore(
+    subscribeToNothing,
+    getIsMounted,
+    getIsMountedOnServer
+  )
 
   const variant = activeId ? (isColumn(activeId) ? "column" : "item") : "item"
 
