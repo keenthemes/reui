@@ -3,7 +3,7 @@
 
 import { useMemo, useState } from "react"
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
-import { Column } from "@tanstack/react-table"
+import type { Column } from "@tanstack/react-table"
 
 import { cn } from "@/registry/bases/radix/lib/utils"
 import { Button } from "@/registry/bases/radix/ui/button"

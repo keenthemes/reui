@@ -1,7 +1,7 @@
 "use client"
 "use no memo"
 
-import React, { ReactNode } from "react"
+import type { JSX, ReactNode } from "react"
 import { useDataGrid } from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
 
 import { cn } from "@/registry/bases/radix/lib/utils"
@@ -33,7 +33,7 @@ interface DataGridPaginationProps {
   ellipsisText?: string
 }
 
-function DataGridPagination(props: DataGridPaginationProps): React.JSX.Element {
+function DataGridPagination(props: DataGridPaginationProps): JSX.Element {
   const { table, recordCount, isLoading } = useDataGrid()
 
   const defaultProps: Partial<DataGridPaginationProps> = {

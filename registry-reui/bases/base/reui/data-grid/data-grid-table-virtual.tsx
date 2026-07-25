@@ -1,15 +1,8 @@
 "use client"
 "use no memo"
 
-import {
-  CSSProperties,
-  memo,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react"
+import { memo, useCallback, useEffect, useRef, useState } from "react"
+import type { CSSProperties, ReactNode } from "react"
 import { useDataGrid } from "@/registry-reui/bases/base/reui/data-grid/data-grid"
 import {
   DataGridTableBase,
@@ -31,9 +24,10 @@ import {
   getPinningStyles,
   hasDataGridTableRightPinnedColumns,
 } from "@/registry-reui/bases/base/reui/data-grid/data-grid-table"
-import { Column, flexRender, Row, Table } from "@tanstack/react-table"
-import {
-  useVirtualizer,
+import { flexRender } from "@tanstack/react-table"
+import type { Column, Row, Table } from "@tanstack/react-table"
+import { useVirtualizer } from "@tanstack/react-virtual"
+import type {
   VirtualItem,
   Virtualizer,
   VirtualizerOptions,

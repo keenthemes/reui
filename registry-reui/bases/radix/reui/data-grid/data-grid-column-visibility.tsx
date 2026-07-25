@@ -1,9 +1,9 @@
 "use client"
 "use no memo"
 
-import { ReactElement } from "react"
+import type { ReactElement } from "react"
 import { getColumnHeaderLabel } from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
-import { Table } from "@tanstack/react-table"
+import type { Table } from "@tanstack/react-table"
 
 import {
   DropdownMenu,

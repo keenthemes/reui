@@ -2,29 +2,25 @@
 "use no memo"
 
 import {
-  CSSProperties,
   Fragment,
   memo,
-  MouseEvent as ReactMouseEvent,
-  ReactNode,
-  TouchEvent as ReactTouchEvent,
-  Ref,
-  RefObject,
   useCallback,
   useEffect,
   useLayoutEffect,
   useMemo,
   useRef,
 } from "react"
+import type {
+  CSSProperties,
+  MouseEvent as ReactMouseEvent,
+  ReactNode,
+  TouchEvent as ReactTouchEvent,
+  Ref,
+  RefObject,
+} from "react"
 import { useDataGrid } from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
-import {
-  Cell,
-  Column,
-  flexRender,
-  Header,
-  Row,
-  Table,
-} from "@tanstack/react-table"
+import { flexRender } from "@tanstack/react-table"
+import type { Cell, Column, Header, Row, Table } from "@tanstack/react-table"
 
 import { cn } from "@/registry/bases/radix/lib/utils"
 import { Checkbox } from "@/registry/bases/radix/ui/checkbox"
@@ -91,8 +87,7 @@ function getDataGridScrollAreaViewport(node: HTMLElement): HTMLElement | null {
 }
 
 type DataGridResizeStartEvent =
-  | ReactMouseEvent<HTMLDivElement>
-  | ReactTouchEvent<HTMLDivElement>
+  ReactMouseEvent<HTMLDivElement> | ReactTouchEvent<HTMLDivElement>
 
 type DataGridResizeDocumentEvent = globalThis.MouseEvent | globalThis.TouchEvent
 

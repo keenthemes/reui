@@ -2,16 +2,15 @@
 "use no memo"
 
 import {
-  CSSProperties,
   Fragment,
   memo,
-  ReactNode,
   useEffect,
   useId,
   useMemo,
   useRef,
   useState,
 } from "react"
+import type { CSSProperties, ReactNode } from "react"
 import { useDataGrid } from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
 import {
   DataGridTableBase,
@@ -36,12 +35,12 @@ import {
   closestCenter,
   DndContext,
   KeyboardSensor,
-  Modifier,
   MouseSensor,
   TouchSensor,
   useSensor,
   useSensors,
   type DragEndEvent,
+  type Modifier,
 } from "@dnd-kit/core"
 import {
   horizontalListSortingStrategy,
@@ -50,9 +49,9 @@ import {
   useSortable,
 } from "@dnd-kit/sortable"
 import { CSS } from "@dnd-kit/utilities"
-import {
+import { flexRender } from "@tanstack/react-table"
+import type {
   Cell,
-  flexRender,
   Header,
   HeaderGroup,
   Row,
