@@ -1243,6 +1243,7 @@ function DataGridTableBodyRow<TData>({
           : undefined
       }
       data-index={dataIndex}
+      data-row-id={row.id}
       data-row-pinned={isRowPinned || undefined}
       data-row-pinned-boundary={pinnedBoundary}
       onClick={() => props.onRowClick && props.onRowClick(row.original)}
