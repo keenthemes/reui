@@ -1,6 +1,8 @@
 import { Button } from "@/registry/bases/radix/ui/button"
+import { ButtonGroup } from "@/registry/bases/radix/ui/button-group"
 import {
   Combobox,
+  ComboboxClear,
   ComboboxContent,
   ComboboxEmpty,
   ComboboxInput,
@@ -28,26 +30,36 @@ export default function Pattern() {
         defaultValue={countries[0]}
         itemToStringValue={(item: (typeof countries)[number]) => item.label}
       >
-        <ComboboxTrigger
-          render={
-            <Button variant="outline" className="justify-between font-normal" />
-          }
-        >
-          <ComboboxValue>
-            {(item: (typeof countries)[number]) => (
-              <span className="flex items-center gap-2">
-                <img
-                  src={`https://flagcdn.com/${item.code.toLowerCase()}.svg`}
-                  alt=""
-                  width={16}
-                  height={16}
-                  className="rounded-xs"
-                />
-                <span>{item.label}</span>
-              </span>
-            )}
-          </ComboboxValue>
-        </ComboboxTrigger>
+        <ButtonGroup>
+          <ComboboxTrigger
+            render={
+              <Button
+                variant="outline"
+                className="min-w-40 flex-1 justify-between font-normal"
+              />
+            }
+          >
+            <ComboboxValue placeholder="Select a country">
+              {(item: (typeof countries)[number] | null) =>
+                item ? (
+                  <span className="flex items-center gap-2">
+                    <img
+                      src={`https://flagcdn.com/${item.code.toLowerCase()}.svg`}
+                      alt=""
+                      width={16}
+                      height={16}
+                      className="rounded-xs"
+                    />
+                    <span>{item.label}</span>
+                  </span>
+                ) : (
+                  "Select a country"
+                )
+              }
+            </ComboboxValue>
+          </ComboboxTrigger>
+          <ComboboxClear render={<Button variant="outline" size="icon" />} />
+        </ButtonGroup>
         <ComboboxContent className="max-w-(--anchor-width) min-w-(--anchor-width)">
           <ComboboxInput showTrigger={false} placeholder="Search" />
           <ComboboxEmpty>No items found.</ComboboxEmpty>

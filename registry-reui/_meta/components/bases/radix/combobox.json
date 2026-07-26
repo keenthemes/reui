@@ -220,13 +220,14 @@
     {
       "name": "c-combobox-10",
       "type": "registry:block",
-      "title": "A combobox rendered inside a popup",
+      "title": "A popup combobox with a clear button",
       "categories": [
         "combobox"
       ],
-      "description": "A combobox rendered inside a popup",
+      "description": "A popup combobox with a clear button",
       "registryDependencies": [
         "button",
+        "button-group",
         "combobox",
         "field"
       ],

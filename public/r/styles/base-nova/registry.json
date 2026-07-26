@@ -8136,11 +8136,12 @@
     {
       "name": "c-combobox-10",
       "type": "registry:block",
-      "title": "A combobox rendered inside a popup",
-      "description": "A combobox rendered inside a popup",
+      "title": "A popup combobox with a clear button",
+      "description": "A popup combobox with a clear button",
       "dependencies": [],
       "registryDependencies": [
         "button",
+        "button-group",
         "combobox",
         "field"
       ],
