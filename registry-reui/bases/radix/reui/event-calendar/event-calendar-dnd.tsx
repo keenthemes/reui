@@ -763,10 +763,28 @@ function beginGesture<TData>(config: BeginGestureConfig<TData>) {
     const edge = activation.autoScrollEdgePx
     const step = activation.autoScrollMaxStepPx
     let delta = 0
-    if (e.clientY < rect.top + edge) {
-      delta = -step * ((rect.top + edge - e.clientY) / edge)
-    } else if (e.clientY > rect.bottom - edge) {
-      delta = step * ((e.clientY - (rect.bottom - edge)) / edge)
+    /**
+     * The scroller wraps the time track ONLY - the day headers and the all-day
+     * row sit above it, outside the box - so its top edge is a hard floor. A
+     * pointer above that floor is over one of those rows, and both are drop
+     * targets in their own right (a bar moving across dates, a timed chip
+     * lifted onto the all-day lane to convert it); they are already fully
+     * visible, so reaching them is never a request to scroll. Without the
+     * floor, "past the top edge" is true on every single move of a horizontal
+     * all-day drag and the track pans out from under a gesture that only wants
+     * to change the date - fast, because the proximity ratio grows past 1 the
+     * further above the box the pointer sits.
+     *
+     * Below the track there is no such row, so overshooting the bottom keeps
+     * scrolling - that is how a grid is normally asked to keep going - but the
+     * eased speed is capped at one step per frame for the same reason.
+     */
+    if (e.clientY >= rect.top) {
+      if (e.clientY < rect.top + edge) {
+        delta = -step * ((rect.top + edge - e.clientY) / edge)
+      } else if (e.clientY > rect.bottom - edge) {
+        delta = step * Math.min(1, (e.clientY - (rect.bottom - edge)) / edge)
+      }
     }
     if (rafScroll) cancelAnimationFrame(rafScroll)
     if (delta !== 0) {

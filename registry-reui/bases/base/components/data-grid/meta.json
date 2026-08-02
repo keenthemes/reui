@@ -201,5 +201,12 @@
     "description": "Data grid with row pinning support",
     "order": 29,
     "gridSize": 1
+  },
+  {
+    "name": "c-data-grid-30",
+    "title": "Data grid with tree rows",
+    "description": "Data grid with tree rows",
+    "order": 30,
+    "gridSize": 1
   }
 ]

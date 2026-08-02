@@ -93,6 +93,7 @@ function DataGridScrollArea({
 }: DataGridScrollAreaProps) {
   const { props: dataGridProps, table } = useDataGrid()
   const containerRef = useRef<HTMLDivElement>(null)
+  const overlayRef = useRef<HTMLDivElement | null>(null)
   const viewportRef = useRef<HTMLDivElement | null>(null)
   const dragRef = useRef<{
     pointerId: number
@@ -125,12 +126,19 @@ function DataGridScrollArea({
     document.body.style.webkitUserSelect = ""
   }, [])
 
-  const resetMetrics = useCallback(() => {
-    const container = containerRef.current
+  // The overlay is mounted one commit after the sync that detected overflow,
+  // so it misses that sync's write. Seeding it from the ref callback lands the
+  // geometry during commit, before the browser paints the track.
+  const setOverlayRef = useCallback((node: HTMLDivElement | null) => {
+    overlayRef.current = node
 
-    if (container && !areMetricsEqual(INITIAL_METRICS, metricsRef.current)) {
-      applyMetrics(container, INITIAL_METRICS)
+    if (node) applyMetrics(node, metricsRef.current)
+  }, [])
+
+  const resetMetrics = useCallback(() => {
+    if (!areMetricsEqual(INITIAL_METRICS, metricsRef.current)) {
       metricsRef.current = INITIAL_METRICS
+      if (overlayRef.current) applyMetrics(overlayRef.current, INITIAL_METRICS)
     }
 
     setHasCustomVerticalOverflow((prev) => (prev ? false : prev))
@@ -198,8 +206,13 @@ function DataGridScrollArea({
     }
 
     if (!areMetricsEqual(nextMetrics, metricsRef.current)) {
-      applyMetrics(container, nextMetrics)
       metricsRef.current = nextMetrics
+      // Scoped to the overlay, never to the container. These four properties
+      // inherit, and thumbTop changes on essentially every scroll frame, so
+      // writing them on the element that wraps the whole grid invalidates
+      // computed style for every row and cell each frame. The overlay subtree
+      // is their only reader.
+      if (overlayRef.current) applyMetrics(overlayRef.current, nextMetrics)
     }
 
     setHasCustomVerticalOverflow((prev) =>
@@ -381,6 +394,10 @@ function DataGridScrollArea({
     <div ref={containerRef} className="relative">
       <ScrollAreaPrimitive.Root
         data-slot="data-grid-scroll-area"
+        // Styling hook: present while the sticky-header scroll mode detects
+        // vertical overflow, so consumers can style scrollable vs short
+        // grids with a plain ancestor attribute selector.
+        data-overflow-vertical={hasCustomVerticalOverflow ? "true" : undefined}
         className={cn("relative", className)}
         {...props}
       >
@@ -433,6 +450,7 @@ function DataGridScrollArea({
 
       {usesCustomVerticalScrollbar && hasCustomVerticalOverflow && (
         <div
+          ref={setOverlayRef}
           aria-hidden="true"
           className="pointer-events-none absolute inset-e-0 top-(--data-grid-scrollbar-header-height) z-20 h-(--data-grid-scrollbar-track-height)"
         >

@@ -961,6 +961,39 @@
         "order": 29,
         "gridSize": 1
       }
+    },
+    {
+      "name": "c-data-grid-30",
+      "type": "registry:block",
+      "title": "Data grid with tree rows",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with tree rows",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "card",
+        "data-grid",
+        "data-grid-column-header",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table"
+      ],
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-30.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-30.tsx"
+        }
+      ],
+      "meta": {
+        "order": 30,
+        "gridSize": 1
+      }
     }
   ]
 }

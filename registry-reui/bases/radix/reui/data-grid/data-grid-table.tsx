@@ -57,6 +57,18 @@ function getPinningStyles<TData>(column: Column<TData>): CSSProperties {
   }
 }
 
+// Shared indent contract for tree rows: DataGridTableRowExpand consumes it,
+// and fully custom cells can reuse it for depth alignment without the
+// built-in toggle.
+function getDataGridTreeIndentStyle<TData>(
+  row: Row<TData>,
+  indent: number = 20
+): CSSProperties {
+  return {
+    "--data-grid-tree-padding": `${row.depth * indent}px`,
+  } as CSSProperties
+}
+
 function assignRef<T>(ref: Ref<T> | undefined, value: T | null) {
   if (!ref) return
 
@@ -942,7 +954,21 @@ function DataGridTableHeadRowCellResize<TData>({
           isLastVisibleColumn
             ? "end-0 w-5 justify-end before:hidden"
             : isPinned
-              ? "end-0 w-5 justify-end before:hidden"
+              ? cn(
+                  // A pinned column is sticky, so the handle sits inside the
+                  // cell instead of straddling the boundary, where the next
+                  // sticky cell would paint over it.
+                  "end-0 w-5 justify-end",
+                  // With the pin affordance on, the pinned edge already draws
+                  // its own separator and a resize line would double it. But
+                  // pinning is also usable purely as an ordering lock, with no
+                  // affordance and no separator -- and there this line is the
+                  // only thing marking the edge, so hiding it left a resizable
+                  // column showing a resize cursor and no indicator at all.
+                  props.tableLayout?.columnsPinnable
+                    ? "before:hidden"
+                    : "before:absolute before:inset-y-0 before:end-0 before:w-px before:bg-border"
+                )
               : "-end-2 w-5 justify-center before:absolute before:inset-y-0 before:w-px before:-translate-x-px before:bg-border",
           column.getIsResizing() &&
             (isResizeModeOnEnd
@@ -1038,7 +1064,7 @@ function DataGridTableResizeIndicator({
     <div
       ref={indicatorRef}
       aria-hidden="true"
-      className="pointer-events-none absolute inset-y-0 z-20"
+      className="pointer-events-none absolute inset-y-0 z-50"
     >
       <div className="bg-primary/85 absolute inset-y-0 left-0 w-px -translate-x-1/2" />
       <div
@@ -1240,6 +1266,7 @@ function DataGridTableBodyRow<TData>({
       }
       data-index={dataIndex}
       data-row-id={row.id}
+      data-depth={row.depth || undefined}
       data-row-pinned={isRowPinned || undefined}
       data-row-pinned-boundary={pinnedBoundary}
       onClick={() => props.onRowClick && props.onRowClick(row.original)}
@@ -1278,6 +1305,16 @@ function DataGridTableBodyRow<TData>({
 
 function DataGridTableBodyRowExpandded<TData>({ row }: { row: Row<TData> }) {
   const { props, table } = useDataGrid()
+  const expandedContent = table
+    .getAllColumns()
+    .find((column) => column.columnDef.meta?.expandedContent)
+    ?.columnDef.meta?.expandedContent
+
+  // Tree and grouped rows share row.getIsExpanded() with detail expansion.
+  // Without a detail column there is nothing to render, and an empty <tr>
+  // would break striping parity, rowBorder, and virtual row measurement.
+  if (!expandedContent) return null
+
   const bodyRowBottomBorderClasses =
     "[&:not(:last-child)>td]:border-b [tbody:has(+tfoot)_&:last-child>td]:border-b [*:has(>[data-slot=data-grid]+[data-slot=data-grid-pagination])_[data-slot=data-grid]_&:last-child>td]:border-b"
 
@@ -1291,10 +1328,7 @@ function DataGridTableBodyRowExpandded<TData>({ row }: { row: Row<TData> }) {
           (props.tableLayout?.columnsResizable ? 1 : 0)
         }
       >
-        {table
-          .getAllColumns()
-          .find((column) => column.columnDef.meta?.expandedContent)
-          ?.columnDef.meta?.expandedContent?.(row.original)}
+        {expandedContent(row.original)}
       </td>
     </tr>
   )
@@ -1508,7 +1542,11 @@ function DataGridTableRowSelect<TData>({ row }: { row: Row<TData> }) {
         )}
       ></div>
       <Checkbox
-        checked={row.getIsSelected()}
+        checked={
+          row.getIsSomeSelected() && !row.getIsSelected()
+            ? "indeterminate"
+            : row.getIsSelected()
+        }
         onCheckedChange={(value) => row.toggleSelected(!!value)}
         onClick={(event) => {
           // Selection must not bubble into the row's onRowClick handler.
@@ -1537,6 +1575,74 @@ function DataGridTableRowSelectAll() {
       aria-label="Select all"
       className="align-[inherit]"
     />
+  )
+}
+
+function DataGridTableRowExpand<TData>({
+  row,
+  indent = 20,
+  className,
+  children,
+}: {
+  row: Row<TData>
+  /** Horizontal offset in px applied per tree depth level. */
+  indent?: number
+  className?: string
+  /** Custom toggle icon; replaces the default chevron. */
+  children?: ReactNode
+}) {
+  const { props } = useDataGrid()
+  const isExpanded = row.getIsExpanded()
+  const controlSize = props.tableLayout?.dense ? "size-6" : "size-7"
+
+  return (
+    <span
+      data-slot="data-grid-table-row-expand"
+      style={getDataGridTreeIndentStyle(row, indent)}
+      className={cn(
+        "inline-flex shrink-0 items-center align-middle ps-(--data-grid-tree-padding)",
+        className
+      )}
+    >
+      {row.getCanExpand() ? (
+        <button
+          type="button"
+          aria-expanded={isExpanded}
+          aria-label={isExpanded ? "Collapse row" : "Expand row"}
+          onClick={(event) => {
+            // Expansion must not bubble into the row's onRowClick handler.
+            event.stopPropagation()
+            row.toggleExpanded()
+          }}
+          className={cn(
+            "text-muted-foreground hover:text-foreground style-vega:rounded-md style-nova:rounded-lg style-maia:rounded-full style-lyra:rounded-none style-mira:rounded-md style-luma:rounded-full style-sera:rounded-none style-rhea:rounded-full inline-flex items-center justify-center transition-colors",
+            controlSize
+          )}
+        >
+          {children ?? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+              className="in-aria-[expanded=false]:-rotate-90 rtl:in-aria-[expanded=false]:rotate-90 transition-transform duration-200"
+            >
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          )}
+        </button>
+      ) : (
+        // Leaf spacer: compact by design so leaf content sits near the
+        // parent label instead of a full toggle width deeper.
+        <span aria-hidden="true" className="w-2 shrink-0" />
+      )}
+    </span>
   )
 }
 
@@ -1834,6 +1940,7 @@ export {
   DataGridTableHeadRowCell,
   DataGridTableHeadRowCellResize,
   DataGridTableLoader,
+  DataGridTableRowExpand,
   DataGridTableRowPin,
   DataGridTableRowSelect,
   DataGridTableRowSelectAll,
@@ -1844,6 +1951,7 @@ export {
   getPinningStyles,
   getDataGridTableResolvedRows,
   getDataGridTableRowSections,
+  getDataGridTreeIndentStyle,
   hasDataGridTableRightPinnedColumns,
 }
 

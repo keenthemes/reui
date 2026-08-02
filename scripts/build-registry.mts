@@ -32,7 +32,26 @@ const PROJECT_ROOT = path.resolve(__dirname, "..")
 // ---------------------------------------------------------------------------
 
 const { BASES: rawBases } = await import("../registry/bases.ts")
-const BASES = rawBases as ReadonlyArray<{ name: string }>
+const { filterAvailableBases } = await import("../lib/registry-bases.ts")
+
+// `registry/bases.ts` mirrors upstream shadcn and lists every base it ships,
+// including ones this repo has no source for (React Aria). Building those
+// emits empty public/r/styles/<base>-<style>/ dirs, and because the metadata
+// loader swallows missing sources it does so silently, on the deploy path.
+const ALL_MIRRORED_BASES = rawBases as ReadonlyArray<{ name: string }>
+const BASES = filterAvailableBases(ALL_MIRRORED_BASES)
+
+// Say so out loud. A base that is mirrored but not built is a deliberate
+// state, and the one thing that must never happen is it changing silently.
+const SKIPPED_BASES = ALL_MIRRORED_BASES.filter(
+  (base) => !BASES.includes(base)
+).map((base) => base.name)
+if (SKIPPED_BASES.length > 0) {
+  console.log(
+    `  Skipping mirrored base(s) not shipped by this repo: ${SKIPPED_BASES.join(", ")}` +
+      ` (see lib/registry-bases.ts)`
+  )
+}
 
 const stylesSource = await fs.readFile(
   path.join(PROJECT_ROOT, "registry", "styles.tsx"),

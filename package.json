@@ -1,6 +1,6 @@
 {
   "name": "reui",
-  "version": "2.1.5",
+  "version": "2.1.8",
   "private": true,
   "type": "module",
   "scripts": {
@@ -196,7 +196,6 @@
     "@reui/components-radix-toggle-group": "workspace:*",
     "@reui/components-radix-tooltip": "workspace:*",
     "@reui/components-radix-tree": "workspace:*",
-    "@reui/shared": "workspace:*",
     "@tabler/icons-react": "^3.41.1",
     "@tailwindcss/postcss": "^4.3.1",
     "@tanstack/react-table": "^8.21.3",

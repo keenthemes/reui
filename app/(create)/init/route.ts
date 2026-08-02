@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server"
 import { registryItemSchema } from "shadcn/schema"
 
+import { isBaseAvailable } from "@/lib/registry-bases"
 import { buildRegistryBase, designSystemConfigSchema } from "@/registry/config"
 
 export async function GET(request: NextRequest) {
@@ -23,6 +24,17 @@ export async function GET(request: NextRequest) {
     if (!result.success) {
       return NextResponse.json(
         { error: result.error.issues[0].message },
+        { status: 400 }
+      )
+    }
+
+    // designSystemConfigSchema builds its base enum from the mirror, so it
+    // accepts every shadcn base including ones this repo does not ship.
+    // Reject those instead of returning an install target (and a runtime
+    // dependency such as react-aria-components) backed by no content.
+    if (!isBaseAvailable(result.data.base)) {
+      return NextResponse.json(
+        { error: `Unsupported base: ${result.data.base}` },
         { status: 400 }
       )
     }

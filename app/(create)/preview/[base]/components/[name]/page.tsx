@@ -2,6 +2,7 @@ import { cacheLife } from "next/cache"
 import { notFound } from "next/navigation"
 
 import { getComponentByNameServer } from "@/lib/components-browse.server"
+import { filterAvailableBases } from "@/lib/registry-bases"
 import { BASES } from "@/registry/config"
 
 import { ComponentWorkbenchPanel } from "./component-workbench-panel"
@@ -22,7 +23,7 @@ async function loadComponentWorkbenchData(baseName: string, name: string) {
   "use cache"
   cacheLife("max")
 
-  const base = BASES.find((candidate: any) => candidate.name === baseName)
+  const base = filterAvailableBases(BASES).find((candidate: any) => candidate.name === baseName)
   if (!base) {
     return { ok: false as const }
   }

@@ -9816,6 +9816,36 @@
       }
     },
     {
+      "name": "c-data-grid-30",
+      "type": "registry:block",
+      "title": "Data grid with tree rows",
+      "description": "Data grid with tree rows",
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "registryDependencies": [
+        "avatar",
+        "@reui/badge",
+        "card",
+        "@reui/data-grid",
+        "@reui/data-grid-column-header",
+        "@reui/data-grid-pagination",
+        "@reui/data-grid-scroll-area",
+        "@reui/data-grid-table"
+      ],
+      "files": [
+        {
+          "path": "c-data-grid-30.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-30.tsx"
+        }
+      ],
+      "meta": {
+        "order": 30,
+        "gridSize": 1
+      }
+    },
+    {
       "name": "c-data-grid-4",
       "type": "registry:block",
       "title": "Data grid without table borders",

@@ -31,6 +31,7 @@ export const componentPreviewLoaders = {
   "c-data-grid-27": () => import("@/registry-reui/bases/base/components/data-grid/c-data-grid-27.tsx"),
   "c-data-grid-28": () => import("@/registry-reui/bases/base/components/data-grid/c-data-grid-28.tsx"),
   "c-data-grid-29": () => import("@/registry-reui/bases/base/components/data-grid/c-data-grid-29.tsx"),
+  "c-data-grid-30": () => import("@/registry-reui/bases/base/components/data-grid/c-data-grid-30.tsx"),
 } as const
 
 export type ComponentName = keyof typeof componentPreviewLoaders
