@@ -116,7 +116,7 @@
         "@dnd-kit/modifiers",
         "@dnd-kit/sortable",
         "@dnd-kit/utilities",
-        "@tanstack/react-table",
+        "@tanstack/react-table@^8.21.3",
         "@tanstack/react-virtual"
       ],
       "registryDependencies": [
@@ -191,7 +191,7 @@
       "title": "Data Grid Column Filter",
       "description": "",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "@reui/badge",
@@ -214,7 +214,7 @@
       "title": "Data Grid Column Header",
       "description": "",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "button",
@@ -235,7 +235,7 @@
       "title": "Data Grid Column Visibility",
       "description": "",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "@reui/data-grid",
@@ -294,7 +294,7 @@
       "title": "Data Grid Table",
       "description": "",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "checkbox",
@@ -318,7 +318,7 @@
         "@dnd-kit/core",
         "@dnd-kit/sortable",
         "@dnd-kit/utilities",
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "button",
@@ -343,7 +343,7 @@
         "@dnd-kit/modifiers",
         "@dnd-kit/sortable",
         "@dnd-kit/utilities",
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "button",
@@ -364,7 +364,7 @@
       "title": "Data Grid Table Virtual",
       "description": "",
       "dependencies": [
-        "@tanstack/react-table",
+        "@tanstack/react-table@^8.21.3",
         "@tanstack/react-virtual"
       ],
       "registryDependencies": [

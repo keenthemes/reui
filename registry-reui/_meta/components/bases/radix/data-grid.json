@@ -15,7 +15,7 @@
         "data-grid-table"
       ],
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "files": [
         {
@@ -46,7 +46,7 @@
         "data-grid-table"
       ],
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "files": [
         {
@@ -76,7 +76,7 @@
         "data-grid-table"
       ],
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "files": [
         {
@@ -107,7 +107,7 @@
         "data-grid-table"
       ],
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "files": [
         {
@@ -137,7 +137,7 @@
         "data-grid-table"
       ],
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "files": [
         {
@@ -167,7 +167,7 @@
         "data-grid-table"
       ],
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "files": [
         {
@@ -197,7 +197,7 @@
         "data-grid-table"
       ],
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "files": [
         {
@@ -229,7 +229,7 @@
         "data-grid-table"
       ],
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "files": [
         {
@@ -263,7 +263,7 @@
         "data-grid-table"
       ],
       "dependencies": [
-        "@tanstack/react-table",
+        "@tanstack/react-table@^8.21.3",
         "class-variance-authority"
       ],
       "files": [
@@ -295,7 +295,7 @@
         "data-grid-table"
       ],
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "files": [
         {
@@ -326,7 +326,7 @@
         "data-grid-table"
       ],
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "files": [
         {
@@ -358,7 +358,7 @@
         "data-grid-table"
       ],
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "files": [
         {
@@ -391,7 +391,7 @@
       "dependencies": [
         "@dnd-kit/core",
         "@dnd-kit/sortable",
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "files": [
         {
@@ -423,7 +423,7 @@
       "dependencies": [
         "@dnd-kit/core",
         "@dnd-kit/sortable",
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "files": [
         {
@@ -456,7 +456,7 @@
         "data-grid-table"
       ],
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "files": [
         {
@@ -489,7 +489,7 @@
         "data-grid-table"
       ],
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "files": [
         {
@@ -520,7 +520,7 @@
         "data-grid-table"
       ],
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "files": [
         {
@@ -553,7 +553,7 @@
         "data-grid-table"
       ],
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "files": [
         {
@@ -587,7 +587,7 @@
         "data-grid-table"
       ],
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "files": [
         {
@@ -622,7 +622,7 @@
         "data-grid-table"
       ],
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "files": [
         {
@@ -657,7 +657,7 @@
         "skeleton"
       ],
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "files": [
         {
@@ -697,7 +697,7 @@
         "use-copy-to-clipboard"
       ],
       "dependencies": [
-        "@tanstack/react-table",
+        "@tanstack/react-table@^8.21.3",
         "sonner"
       ],
       "files": [
@@ -738,7 +738,7 @@
         "use-copy-to-clipboard"
       ],
       "dependencies": [
-        "@tanstack/react-table",
+        "@tanstack/react-table@^8.21.3",
         "sonner"
       ],
       "files": [
@@ -776,7 +776,7 @@
         "use-copy-to-clipboard"
       ],
       "dependencies": [
-        "@tanstack/react-table",
+        "@tanstack/react-table@^8.21.3",
         "sonner"
       ],
       "files": [
@@ -811,7 +811,7 @@
         "data-grid-table"
       ],
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "files": [
         {
@@ -845,7 +845,7 @@
         "data-grid-table"
       ],
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "files": [
         {
@@ -878,7 +878,7 @@
         "data-grid-table-virtual"
       ],
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "files": [
         {
@@ -911,7 +911,7 @@
         "data-grid-table-virtual"
       ],
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "files": [
         {
@@ -947,7 +947,7 @@
         "use-copy-to-clipboard"
       ],
       "dependencies": [
-        "@tanstack/react-table",
+        "@tanstack/react-table@^8.21.3",
         "sonner"
       ],
       "files": [
@@ -981,7 +981,7 @@
         "data-grid-table"
       ],
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "files": [
         {

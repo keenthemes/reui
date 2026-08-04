@@ -117,7 +117,7 @@ export const reui: Registry["items"] = [
       "separator"
     ],
     "dependencies": [
-      "@tanstack/react-table"
+      "@tanstack/react-table@^8.21.3"
     ],
     "files": [
       {
@@ -137,7 +137,7 @@ export const reui: Registry["items"] = [
       "dropdown-menu"
     ],
     "dependencies": [
-      "@tanstack/react-table"
+      "@tanstack/react-table@^8.21.3"
     ],
     "files": [
       {
@@ -156,7 +156,7 @@ export const reui: Registry["items"] = [
       "dropdown-menu"
     ],
     "dependencies": [
-      "@tanstack/react-table"
+      "@tanstack/react-table@^8.21.3"
     ],
     "files": [
       {
@@ -215,7 +215,7 @@ export const reui: Registry["items"] = [
       "@dnd-kit/modifiers",
       "@dnd-kit/sortable",
       "@dnd-kit/utilities",
-      "@tanstack/react-table"
+      "@tanstack/react-table@^8.21.3"
     ],
     "files": [
       {
@@ -237,7 +237,7 @@ export const reui: Registry["items"] = [
       "@dnd-kit/core",
       "@dnd-kit/sortable",
       "@dnd-kit/utilities",
-      "@tanstack/react-table"
+      "@tanstack/react-table@^8.21.3"
     ],
     "files": [
       {
@@ -256,7 +256,7 @@ export const reui: Registry["items"] = [
       "spinner"
     ],
     "dependencies": [
-      "@tanstack/react-table",
+      "@tanstack/react-table@^8.21.3",
       "@tanstack/react-virtual"
     ],
     "files": [
@@ -277,7 +277,7 @@ export const reui: Registry["items"] = [
       "spinner"
     ],
     "dependencies": [
-      "@tanstack/react-table"
+      "@tanstack/react-table@^8.21.3"
     ],
     "files": [
       {
@@ -310,7 +310,7 @@ export const reui: Registry["items"] = [
       "@dnd-kit/modifiers",
       "@dnd-kit/sortable",
       "@dnd-kit/utilities",
-      "@tanstack/react-table",
+      "@tanstack/react-table@^8.21.3",
       "@tanstack/react-virtual"
     ],
     "files": [

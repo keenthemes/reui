@@ -9116,7 +9116,7 @@
       "title": "Data grid with pagination",
       "description": "Data grid with pagination",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "@reui/data-grid",
@@ -9142,7 +9142,7 @@
       "title": "Data grid with column icons",
       "description": "Data grid with column icons",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "avatar",
@@ -9170,7 +9170,7 @@
       "title": "Data grid with sortable columns",
       "description": "Data grid with sortable columns",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "avatar",
@@ -9198,7 +9198,7 @@
       "title": "Data grid with movable columns",
       "description": "Data grid with movable columns",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "avatar",
@@ -9229,7 +9229,7 @@
       "dependencies": [
         "@dnd-kit/core",
         "@dnd-kit/sortable",
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "avatar",
@@ -9259,7 +9259,7 @@
       "dependencies": [
         "@dnd-kit/core",
         "@dnd-kit/sortable",
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "avatar",
@@ -9286,7 +9286,7 @@
       "title": "Data grid with column resizing",
       "description": "Data grid with column resizing",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "avatar",
@@ -9316,7 +9316,7 @@
       "title": "Data grid with pinnable columns",
       "description": "Data grid with pinnable columns",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "avatar",
@@ -9346,7 +9346,7 @@
       "title": "Data grid with sticky header",
       "description": "Data grid with sticky header",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "avatar",
@@ -9374,7 +9374,7 @@
       "title": "Data grid with column controls",
       "description": "Data grid with column controls",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "avatar",
@@ -9404,7 +9404,7 @@
       "title": "Data grid with card container",
       "description": "Data grid with card container",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "avatar",
@@ -9435,7 +9435,7 @@
       "title": "Data grid with cell border",
       "description": "Data grid with cell border",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "avatar",
@@ -9463,7 +9463,7 @@
       "title": "Data grid with column visibility controls",
       "description": "Data grid with column visibility controls",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "avatar",
@@ -9495,7 +9495,7 @@
       "title": "Data grid with loading skeleton",
       "description": "Data grid with loading skeleton",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "avatar",
@@ -9527,7 +9527,7 @@
       "title": "Data grid with CRUD features",
       "description": "Data grid with CRUD features",
       "dependencies": [
-        "@tanstack/react-table",
+        "@tanstack/react-table@^8.21.3",
         "sonner"
       ],
       "registryDependencies": [
@@ -9565,7 +9565,7 @@
       "title": "Data grid with CRUD in frame container",
       "description": "Data grid with CRUD in frame container",
       "dependencies": [
-        "@tanstack/react-table",
+        "@tanstack/react-table@^8.21.3",
         "sonner"
       ],
       "registryDependencies": [
@@ -9603,7 +9603,7 @@
       "title": "Data grid with column totals footer",
       "description": "Data grid with column totals footer",
       "dependencies": [
-        "@tanstack/react-table",
+        "@tanstack/react-table@^8.21.3",
         "sonner"
       ],
       "registryDependencies": [
@@ -9638,7 +9638,7 @@
       "title": "Data grid with summary stats footer",
       "description": "Data grid with summary stats footer",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "avatar",
@@ -9669,7 +9669,7 @@
       "title": "Data grid with per-column aggregate footer",
       "description": "Data grid with per-column aggregate footer",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "avatar",
@@ -9700,7 +9700,7 @@
       "title": "Data grid with local infinite scroll",
       "description": "Data grid with local infinite scroll",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "avatar",
@@ -9730,7 +9730,7 @@
       "title": "Data grid with remote infinite scroll",
       "description": "Data grid with remote infinite scroll",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "avatar",
@@ -9760,7 +9760,7 @@
       "title": "Data grid with row pinning support",
       "description": "Data grid with row pinning support",
       "dependencies": [
-        "@tanstack/react-table",
+        "@tanstack/react-table@^8.21.3",
         "sonner"
       ],
       "registryDependencies": [
@@ -9794,7 +9794,7 @@
       "title": "Data grid with dense layout",
       "description": "Data grid with dense layout",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "avatar",
@@ -9821,7 +9821,7 @@
       "title": "Data grid with tree rows",
       "description": "Data grid with tree rows",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "avatar",
@@ -9851,7 +9851,7 @@
       "title": "Data grid without table borders",
       "description": "Data grid without table borders",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "avatar",
@@ -9879,7 +9879,7 @@
       "title": "Data grid with striped rows",
       "description": "Data grid with striped rows",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "avatar",
@@ -9906,7 +9906,7 @@
       "title": "Data grid with auto width table layout",
       "description": "Data grid with auto width table layout",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "avatar",
@@ -9933,7 +9933,7 @@
       "title": "Data grid with row selection",
       "description": "Data grid with row selection",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "avatar",
@@ -9960,7 +9960,7 @@
       "title": "Data grid with expandable rows",
       "description": "Data grid with expandable rows",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "avatar",
@@ -9989,7 +9989,7 @@
       "title": "Data grid with sub table",
       "description": "Data grid with sub table",
       "dependencies": [
-        "@tanstack/react-table",
+        "@tanstack/react-table@^8.21.3",
         "class-variance-authority"
       ],
       "registryDependencies": [
@@ -12123,7 +12123,7 @@
       "title": "Filters with data grid",
       "description": "Filters with data grid",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "@reui/alert",
@@ -12156,7 +12156,7 @@
       "title": "Filters with data grid and async mode",
       "description": "Filters with data grid and async mode",
       "dependencies": [
-        "@tanstack/react-table",
+        "@tanstack/react-table@^8.21.3",
         "nuqs"
       ],
       "registryDependencies": [
@@ -23097,7 +23097,7 @@
         "@dnd-kit/modifiers",
         "@dnd-kit/sortable",
         "@dnd-kit/utilities",
-        "@tanstack/react-table",
+        "@tanstack/react-table@^8.21.3",
         "@tanstack/react-virtual"
       ],
       "registryDependencies": [
@@ -23172,7 +23172,7 @@
       "title": "Data Grid Column Filter",
       "description": "",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "@reui/badge",
@@ -23195,7 +23195,7 @@
       "title": "Data Grid Column Header",
       "description": "",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "button",
@@ -23216,7 +23216,7 @@
       "title": "Data Grid Column Visibility",
       "description": "",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "@reui/data-grid",
@@ -23275,7 +23275,7 @@
       "title": "Data Grid Table",
       "description": "",
       "dependencies": [
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "checkbox",
@@ -23299,7 +23299,7 @@
         "@dnd-kit/core",
         "@dnd-kit/sortable",
         "@dnd-kit/utilities",
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "button",
@@ -23324,7 +23324,7 @@
         "@dnd-kit/modifiers",
         "@dnd-kit/sortable",
         "@dnd-kit/utilities",
-        "@tanstack/react-table"
+        "@tanstack/react-table@^8.21.3"
       ],
       "registryDependencies": [
         "button",
@@ -23345,7 +23345,7 @@
       "title": "Data Grid Table Virtual",
       "description": "",
       "dependencies": [
-        "@tanstack/react-table",
+        "@tanstack/react-table@^8.21.3",
         "@tanstack/react-virtual"
       ],
       "registryDependencies": [
