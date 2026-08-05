@@ -1,11 +1,12 @@
 "use client"
-"use no memo"
 
 import { useEffect, useMemo, useState } from "react"
 import { Badge } from "@/registry-reui/bases/base/reui/badge"
 import {
   DataGrid,
   DataGridContainer,
+  dataGridFeatures,
+  type DataGridFeatures,
 } from "@/registry-reui/bases/base/reui/data-grid/data-grid"
 import { DataGridColumnHeader } from "@/registry-reui/bases/base/reui/data-grid/data-grid-column-header"
 import { DataGridPagination } from "@/registry-reui/bases/base/reui/data-grid/data-grid-pagination"
@@ -17,13 +18,9 @@ import {
 import {
   ColumnDef,
   ExpandedState,
-  getCoreRowModel,
-  getExpandedRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
   PaginationState,
   SortingState,
-  useReactTable,
+  useTable,
 } from "@tanstack/react-table"
 
 import {
@@ -386,9 +383,7 @@ const demoData: IData[] = [
 function collectImageUrls(rows: IData[]): string[] {
   return rows.flatMap((row) => [
     ...(row.avatar ? [row.avatar] : []),
-    ...(row.flag
-      ? [`https://flagcdn.com/${row.flag.toLowerCase()}.svg`]
-      : []),
+    ...(row.flag ? [`https://flagcdn.com/${row.flag.toLowerCase()}.svg`] : []),
     ...(row.children ? collectImageUrls(row.children) : []),
   ])
 }
@@ -411,7 +406,7 @@ export default function Pattern() {
     }
   }, [])
 
-  const columns = useMemo<ColumnDef<IData>[]>(
+  const columns = useMemo<ColumnDef<DataGridFeatures, IData>[]>(
     () => [
       {
         accessorKey: "name",
@@ -444,9 +439,7 @@ export default function Pattern() {
                   </a>
                 </>
               ) : (
-                <span className="text-foreground font-medium">
-                  {item.name}
-                </span>
+                <span className="text-foreground font-medium">{item.name}</span>
               )}
             </div>
           )
@@ -494,9 +487,7 @@ export default function Pattern() {
                 alt={item.flag}
                 className="size-4 rounded-full object-cover"
               />
-              <div className="text-foreground font-medium">
-                {item.location}
-              </div>
+              <div className="text-foreground font-medium">{item.location}</div>
             </div>
           )
         },
@@ -521,7 +512,8 @@ export default function Pattern() {
     []
   )
 
-  const table = useReactTable({
+  const table = useTable({
+    features: dataGridFeatures,
     columns,
     data: demoData,
     pageCount: Math.ceil((demoData?.length || 0) / pagination.pageSize),
@@ -537,10 +529,6 @@ export default function Pattern() {
     onPaginationChange: setPagination,
     onSortingChange: setSorting,
     onExpandedChange: setExpanded,
-    getCoreRowModel: getCoreRowModel(),
-    getExpandedRowModel: getExpandedRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
   })
 
   return (

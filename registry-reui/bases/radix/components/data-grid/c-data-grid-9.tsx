@@ -1,4 +1,9 @@
 "use client"
+
+// This file keeps "use no memo": its own cell/header templates read state
+// through builder calls on a stable row/column, which React Compiler cannot
+// see. The primitive wraps its own such reads in TanStack's Subscribe; a
+// consumer template has to opt out or subscribe itself.
 "use no memo"
 
 import { useMemo, useState } from "react"
@@ -6,6 +11,8 @@ import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 import {
   DataGrid,
   DataGridContainer,
+  dataGridFeatures,
+  type DataGridFeatures,
 } from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
 import { DataGridColumnHeader } from "@/registry-reui/bases/radix/reui/data-grid/data-grid-column-header"
 import { DataGridPagination } from "@/registry-reui/bases/radix/reui/data-grid/data-grid-pagination"
@@ -14,13 +21,9 @@ import { DataGridTable } from "@/registry-reui/bases/radix/reui/data-grid/data-g
 import {
   ColumnDef,
   ExpandedState,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
   PaginationState,
   SortingState,
-  useReactTable,
+  useTable,
 } from "@tanstack/react-table"
 import type { VariantProps } from "class-variance-authority"
 
@@ -1733,7 +1736,7 @@ function OrderItemsSubTable({ items }: { items: OrderItemData[] }) {
     pageSize: 5, // Show 3 items per page for sub-tables
   })
 
-  const columns = useMemo<ColumnDef<OrderItemData>[]>(
+  const columns = useMemo<ColumnDef<DataGridFeatures, OrderItemData>[]>(
     () => [
       {
         accessorKey: "productName",
@@ -1775,7 +1778,8 @@ function OrderItemsSubTable({ items }: { items: OrderItemData[] }) {
     []
   )
 
-  const table = useReactTable({
+  const table = useTable({
+    features: dataGridFeatures,
     data: items,
     columns,
     pageCount: Math.ceil(items.length / pagination.pageSize),
@@ -1785,9 +1789,6 @@ function OrderItemsSubTable({ items }: { items: OrderItemData[] }) {
     },
     onSortingChange: setSorting,
     onPaginationChange: setPagination,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
     getRowId: (row: OrderItemData) => row.id,
   })
 
@@ -1830,7 +1831,7 @@ export default function Pattern() {
     "status",
   ])
 
-  const columns = useMemo<ColumnDef<Data>[]>(
+  const columns = useMemo<ColumnDef<DataGridFeatures, Data>[]>(
     () => [
       {
         id: "expand",
@@ -1983,7 +1984,8 @@ export default function Pattern() {
     []
   )
 
-  const table = useReactTable({
+  const table = useTable({
+    features: dataGridFeatures,
     columns,
     data: demoData,
     pageCount: Math.ceil((demoData?.length || 0) / pagination.pageSize),
@@ -2000,10 +2002,6 @@ export default function Pattern() {
     onSortingChange: setSorting,
     onExpandedChange: setExpandedRows,
     onColumnOrderChange: setColumnOrder,
-    getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
   })
 
   return (

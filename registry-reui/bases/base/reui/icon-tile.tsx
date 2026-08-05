@@ -75,10 +75,17 @@ const iconTileVariants = cva(
        * The plain value is the fallback outside a style scope; the `style-*`
        * tokens win by specificity inside one, and survive the registry
        * transform as the single resolved value per generated style.
+       *
+       * Each style token is clamped to a fraction of the tile. A flat radius
+       * is a circle once it reaches half the box, so the soft styles used to
+       * render `xs` (24px) and `sm` (32px) as plain circles and swallow the
+       * `full` variant's meaning. Clamping keeps one corner ratio at every
+       * size instead, so a tile still reads as the same shape when it scales.
+       * Luma and Rhea take the gentler quarter ratio; Maia stays at a third.
        */
       radius: {
         default:
-          "[--icon-tile-radius:var(--radius-md)] style-vega:[--icon-tile-radius:var(--radius-md)] style-nova:[--icon-tile-radius:var(--radius-md)] style-maia:[--icon-tile-radius:var(--radius-2xl)] style-lyra:[--icon-tile-radius:0px] style-mira:[--icon-tile-radius:var(--radius-md)] style-luma:[--icon-tile-radius:var(--radius-2xl)] style-rhea:[--icon-tile-radius:var(--radius-2xl)] style-sera:[--icon-tile-radius:0px]",
+          "[--icon-tile-radius:min(var(--radius-md),calc(var(--icon-tile-size)/3))] style-vega:[--icon-tile-radius:min(var(--radius-md),calc(var(--icon-tile-size)/3))] style-nova:[--icon-tile-radius:min(var(--radius-md),calc(var(--icon-tile-size)/3))] style-maia:[--icon-tile-radius:min(var(--radius-xl),calc(var(--icon-tile-size)/3))] style-lyra:[--icon-tile-radius:0px] style-mira:[--icon-tile-radius:min(var(--radius-md),calc(var(--icon-tile-size)/3))] style-luma:[--icon-tile-radius:min(var(--radius-xl),calc(var(--icon-tile-size)/4))] style-rhea:[--icon-tile-radius:min(var(--radius-xl),calc(var(--icon-tile-size)/4))] style-sera:[--icon-tile-radius:0px]",
         full: "[--icon-tile-radius:calc(infinity*1px)]",
       },
     },

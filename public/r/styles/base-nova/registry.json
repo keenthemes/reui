@@ -12156,8 +12156,7 @@
       "title": "Filters with data grid and async mode",
       "description": "Filters with data grid and async mode",
       "dependencies": [
-        "@tanstack/react-table",
-        "nuqs"
+        "@tanstack/react-table"
       ],
       "registryDependencies": [
         "@reui/alert",
@@ -23177,6 +23176,7 @@
       "registryDependencies": [
         "@reui/badge",
         "button",
+        "@reui/data-grid",
         "input",
         "popover",
         "separator"

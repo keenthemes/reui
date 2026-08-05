@@ -196,6 +196,7 @@
       "registryDependencies": [
         "@reui/badge",
         "button",
+        "@reui/data-grid",
         "input",
         "popover",
         "separator"

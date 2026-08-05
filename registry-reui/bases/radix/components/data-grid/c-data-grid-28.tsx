@@ -1,19 +1,16 @@
 "use client"
-"use no memo"
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
-import { DataGrid } from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
+import {
+  DataGrid,
+  dataGridFeatures,
+  type DataGridFeatures,
+} from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
 import { DataGridColumnHeader } from "@/registry-reui/bases/radix/reui/data-grid/data-grid-column-header"
 import { DataGridScrollArea } from "@/registry-reui/bases/radix/reui/data-grid/data-grid-scroll-area"
 import { DataGridTableVirtual } from "@/registry-reui/bases/radix/reui/data-grid/data-grid-table-virtual"
-import {
-  ColumnDef,
-  getCoreRowModel,
-  getSortedRowModel,
-  SortingState,
-  useReactTable,
-} from "@tanstack/react-table"
+import { ColumnDef, SortingState, useTable } from "@tanstack/react-table"
 
 import {
   Avatar,
@@ -127,7 +124,7 @@ export default function Pattern() {
     fetchTimeoutRef.current = timeoutId
   }, [clearPendingFetch, hasMore, isFetching])
 
-  const columns = useMemo<ColumnDef<IData>[]>(
+  const columns = useMemo<ColumnDef<DataGridFeatures, IData>[]>(
     () => [
       {
         accessorKey: "id",
@@ -219,14 +216,18 @@ export default function Pattern() {
     []
   )
 
-  const table = useReactTable({
+  const table = useTable({
+    features: dataGridFeatures,
+    // No pagination row model on v8, so every row rendered. The shared
+    // bundle registers one, and manualPagination is v9's way to say the
+    // data is already the page - it keeps the pagination APIs while
+    // leaving the rows unsliced.
+    manualPagination: true,
     columns,
     data,
     getRowId: (row: IData) => row.id,
     state: { sorting },
     onSortingChange: setSorting,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
   })
 
   return (

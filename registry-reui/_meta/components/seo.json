@@ -2284,7 +2284,7 @@
   },
   "data-grid": {
     "description": "Shadcn Data Grid components using TanStack React Table with virtual scrolling. Sortable, filterable columns, row selection, column resizing. 29 examples.",
-    "intro": "Browse {{count}} production-ready shadcn data grid components built on TanStack Table v8 and TanStack Virtual. Covers pagination, sorting, column resizing, drag-and-drop rows and columns, row and column pinning, infinite scroll, CRUD, expandable rows, footer aggregates, and virtualized rendering: fully compatible with Shadcn Create style tokens.",
+    "intro": "Browse {{count}} production-ready shadcn data grid components built on TanStack Table v9 and TanStack Virtual. Covers pagination, sorting, column resizing, drag-and-drop rows and columns, row and column pinning, infinite scroll, CRUD, expandable rows, footer aggregates, and virtualized rendering: fully compatible with Shadcn Create style tokens.",
     "keywords": [
       "shadcn data grid",
       "shadcn/ui data grid",
@@ -2306,7 +2306,7 @@
     "content": {
       "title": "Shadcn Data Grid: TanStack Table, Virtual, and DnD",
       "summary": [
-        "ReUI Data Grid is built on TanStack Table v8 and TanStack Virtual: the headless table and virtualization engines trusted by thousands of production React apps. It handles sorting, filtering, pagination, column sizing, pinning, selection, grouping, and virtual row rendering without dictating markup.",
+        "ReUI Data Grid is built on TanStack Table v9 and TanStack Virtual: the headless table and virtualization engines trusted by thousands of production React apps. It handles sorting, filtering, pagination, column sizing, pinning, selection, grouping, and virtual row rendering without dictating markup.",
         "Components cover 29 real layouts including drag-and-drop rows and columns via @dnd-kit, local and remote infinite scroll, CRUD with Sonner feedback, expandable rows, sub-tables, footer aggregates, and dense or borderless visual variants.",
         "ReUI shows every data grid component inside realistic dashboards and frame containers so you can evaluate density, sticky headers, and column controls next to real chrome: not an isolated sandbox. The sections below cover architecture, features, and integration guidance."
       ],
@@ -2314,14 +2314,14 @@
         {
           "title": "What is Shadcn Data Grid?",
           "paragraphs": [
-            "ReUI Data Grid is a custom shadcn component built on TanStack Table v8 for state management and TanStack Virtual for row and column virtualization. It exposes the full TanStack Table API: columnDef, getCoreRowModel, getSortedRowModel, getFilteredRowModel, getPaginationRowModel, and more: while wrapping the markup in Tailwind-styled, accessible table primitives that follow shadcn conventions.",
+            "ReUI Data Grid is a custom shadcn component built on TanStack Table v9 for state management and TanStack Virtual for row and column virtualization. It exposes the full TanStack Table API: columnDef, getCoreRowModel, getSortedRowModel, getFilteredRowModel, getPaginationRowModel, and more: while wrapping the markup in Tailwind-styled, accessible table primitives that follow shadcn conventions.",
             "Components range from simple paginated lists to full CRUD interfaces with drag-and-drop column reordering via `@dnd-kit/sortable`, pinned rows and columns, expandable sub-tables, aggregate footers, loading skeletons, and both local and server-driven infinite scroll. Every layout is shown inside a realistic frame or dashboard container so you judge composition in context."
           ]
         },
         {
           "title": "Why Use Shadcn Data Grid?",
           "paragraphs": [
-            "Admin panels, analytics dashboards, CRM tables, audit logs, and billing history all need a table that scales with data. TanStack Table v8 handles thousands of rows without re-rendering the entire DOM: TanStack Virtual extends that to tens of thousands by only mounting visible rows. Together they let you ship a fast, accessible table without building sort state, filter logic, or pagination from scratch.",
+            "Admin panels, analytics dashboards, CRM tables, audit logs, and billing history all need a table that scales with data. TanStack Table v9 handles thousands of rows without re-rendering the entire DOM: TanStack Virtual extends that to tens of thousands by only mounting visible rows. Together they let you ship a fast, accessible table without building sort state, filter logic, or pagination from scratch.",
             "The DnD Kit integration adds drag-and-drop column reordering and row reordering that works with keyboard and pointer devices. Pair with [Shadcn Filters](/docs/components/base/filters) for faceted search, [Shadcn Pagination](/components/pagination) for standalone controls, and [Sonner](/components/toast) for async feedback on CRUD operations."
           ]
         },
@@ -2337,7 +2337,7 @@
           "featureItems": [
             {
               "title": "TanStack Table Core.",
-              "description": "Powered by TanStack Table v8. Full access to getSortedRowModel, getFilteredRowModel, getPaginationRowModel, getGroupedRowModel, and getCoreRowModel: headless, typed, and framework-agnostic state."
+              "description": "Powered by TanStack Table v9. Full access to createSortedRowModel, createFilteredRowModel, createPaginatedRowModel, and the rest of the `dataGridFeatures` bundle: headless, typed, and framework-agnostic state."
             },
             {
               "title": "TanStack Virtual Row Virtualization.",
@@ -2423,7 +2423,7 @@
         },
         {
           "question": "Which table library does ReUI Data Grid use?",
-          "answer": "TanStack Table v8 (`@tanstack/react-table`). It is headless and framework-agnostic, so you own the markup while TanStack handles sort, filter, pagination, grouping, and selection state. ReUI wraps it in Tailwind-styled shadcn-compatible primitives."
+          "answer": "TanStack Table v9 (`@tanstack/react-table`). It is headless and framework-agnostic, so you own the markup while TanStack handles sort, filter, pagination, grouping, and selection state. ReUI wraps it in Tailwind-styled shadcn-compatible primitives."
         },
         {
           "question": "Can I drag and drop columns and rows in the data grid?",

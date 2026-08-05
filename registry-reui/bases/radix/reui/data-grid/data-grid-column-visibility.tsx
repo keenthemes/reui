@@ -1,8 +1,8 @@
 "use client"
-"use no memo"
 
 import type { ReactElement } from "react"
 import { getColumnHeaderLabel } from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
+import type { DataGridFeatures } from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
 import type { Table } from "@tanstack/react-table"
 
 import {
@@ -14,11 +14,11 @@ import {
   DropdownMenuTrigger,
 } from "@/registry/bases/radix/ui/dropdown-menu"
 
-function DataGridColumnVisibility<TData>({
+function DataGridColumnVisibility<TData extends object>({
   table,
   trigger,
 }: {
-  table: Table<TData>
+  table: Table<DataGridFeatures, TData>
   trigger: ReactElement<Record<string, unknown>>
 }) {
   return (

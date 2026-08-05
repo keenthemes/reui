@@ -1,6 +1,6 @@
 {
   "name": "reui",
-  "version": "2.1.8",
+  "version": "2.0.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -198,7 +198,7 @@
     "@reui/components-radix-tree": "workspace:*",
     "@tabler/icons-react": "^3.41.1",
     "@tailwindcss/postcss": "^4.3.1",
-    "@tanstack/react-table": "^8.21.3",
+    "@tanstack/react-table": "^9.0.0",
     "@tanstack/react-virtual": "^3.14.3",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",

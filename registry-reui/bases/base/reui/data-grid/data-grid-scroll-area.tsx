@@ -1,5 +1,4 @@
 "use client"
-"use no memo"
 
 import { useCallback, useEffect, useRef, useState } from "react"
 import type { PointerEvent, ReactNode } from "react"
@@ -115,8 +114,8 @@ function DataGridScrollArea({
   // Pinned columns are sticky and never scroll, so the horizontal scrollbar
   // track is inset to span only the scrollable center region between them.
   const isColumnsPinnable = !!dataGridProps.tableLayout?.columnsPinnable
-  const scrollbarInsetStart = isColumnsPinnable ? table.getLeftTotalSize() : 0
-  const scrollbarInsetEnd = isColumnsPinnable ? table.getRightTotalSize() : 0
+  const scrollbarInsetStart = isColumnsPinnable ? table.getStartTotalSize() : 0
+  const scrollbarInsetEnd = isColumnsPinnable ? table.getEndTotalSize() : 0
   const [hasCustomVerticalOverflow, setHasCustomVerticalOverflow] =
     useState(false)
 

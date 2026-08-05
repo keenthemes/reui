@@ -1,8 +1,8 @@
 "use client"
-"use no memo"
 
 import { useMemo, useState } from "react"
 import { Badge } from "@/registry-reui/bases/base/reui/badge"
+import type { DataGridFeatures } from "@/registry-reui/bases/base/reui/data-grid/data-grid"
 import type { Column } from "@tanstack/react-table"
 
 import { cn } from "@/registry/bases/base/lib/utils"
@@ -16,8 +16,8 @@ import {
 import { Separator } from "@/registry/bases/base/ui/separator"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
-interface DataGridColumnFilterProps<TData, TValue> {
-  column?: Column<TData, TValue>
+interface DataGridColumnFilterProps<TData extends object, TValue> {
+  column?: Column<DataGridFeatures, TData, TValue>
   title?: string
   options: {
     label: string
@@ -26,7 +26,7 @@ interface DataGridColumnFilterProps<TData, TValue> {
   }[]
 }
 
-function DataGridColumnFilter<TData, TValue>({
+function DataGridColumnFilter<TData extends object, TValue>({
   column,
   title,
   options,

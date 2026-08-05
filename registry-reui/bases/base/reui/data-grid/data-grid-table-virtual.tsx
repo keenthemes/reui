@@ -1,9 +1,12 @@
 "use client"
-"use no memo"
 
 import { memo, useCallback, useEffect, useRef, useState } from "react"
 import type { CSSProperties, ReactNode } from "react"
 import { useDataGrid } from "@/registry-reui/bases/base/reui/data-grid/data-grid"
+import type {
+  DataGridFeatures,
+  DataGridTableInstance,
+} from "@/registry-reui/bases/base/reui/data-grid/data-grid"
 import {
   DataGridTableBase,
   DataGridTableBody,
@@ -242,18 +245,21 @@ function scrollDataGridTableRowIntoView({
   return true
 }
 
-type DataGridTableVirtualizerOptions<TData> = Omit<
+type DataGridTableVirtualizerOptions<TData extends object> = Omit<
   VirtualizerOptions<HTMLElement, HTMLTableRowElement>,
   "count" | "estimateSize" | "getItemKey" | "getScrollElement"
 > & {
-  estimateSize?: (index: number, row: Row<TData>) => number
-  getItemKey?: (index: number, row: Row<TData>) => string | number
+  estimateSize?: (index: number, row: Row<DataGridFeatures, TData>) => number
+  getItemKey?: (
+    index: number,
+    row: Row<DataGridFeatures, TData>
+  ) => string | number
   getScrollElement?: (
     elements: DataGridTableVirtualScrollElements
   ) => HTMLElement | null
 }
 
-interface DataGridTableVirtualProps<TData> {
+interface DataGridTableVirtualProps<TData extends object> {
   height?: number | string
   estimateSize?: number
   overscan?: number
@@ -272,11 +278,11 @@ interface DataGridTableVirtualProps<TData> {
   virtualizerOptions?: DataGridTableVirtualizerOptions<TData>
 }
 
-interface VirtualBodyProps<TData> {
-  table: Table<TData>
-  topRows: Row<TData>[]
-  centerRows: Row<TData>[]
-  bottomRows: Row<TData>[]
+interface VirtualBodyProps<TData extends object> {
+  table: DataGridTableInstance<TData>
+  topRows: Row<DataGridFeatures, TData>[]
+  centerRows: Row<DataGridFeatures, TData>[]
+  bottomRows: Row<DataGridFeatures, TData>[]
   virtualItems: VirtualItem[]
   totalSize: number
   isVirtualizationEnabled: boolean
@@ -288,16 +294,16 @@ interface VirtualBodyProps<TData> {
   measureRowRef?: (element: HTMLTableRowElement | null) => void
 }
 
-function DataGridTableVirtualPinnedPlaceholderCell<TData>({
+function DataGridTableVirtualPinnedPlaceholderCell<TData extends object>({
   column,
 }: {
-  column: Column<TData>
+  column: Column<DataGridFeatures, TData, unknown>
 }) {
   const { props } = useDataGrid()
   const isPinned = column.getIsPinned()
-  const isLastLeftPinned = isPinned === "left" && column.getIsLastColumn("left")
-  const isFirstRightPinned =
-    isPinned === "right" && column.getIsFirstColumn("right")
+  const isLastStartPinned =
+    isPinned === "start" && column.getIsLastColumn("start")
+  const isFirstEndPinned = isPinned === "end" && column.getIsFirstColumn("end")
 
   return (
     <td
@@ -312,20 +318,20 @@ function DataGridTableVirtualPinnedPlaceholderCell<TData>({
       }}
       data-pinned={isPinned || undefined}
       data-last-col={
-        isLastLeftPinned ? "left" : isFirstRightPinned ? "right" : undefined
+        isLastStartPinned ? "start" : isFirstEndPinned ? "end" : undefined
       }
       className={cn(
         "p-0",
         props.tableLayout?.cellBorder && "border-e",
         props.tableLayout?.columnsPinnable &&
           column.getCanPin() &&
-          "data-pinned:bg-background data-pinned:isolate [&[data-pinned=left][data-last-col=left]]:shadow-[inset_-1px_0_0_0_var(--border)] [&[data-pinned=right][data-last-col=right]]:shadow-[inset_1px_0_0_0_var(--border)]"
+          "data-pinned:bg-background data-pinned:isolate [&[data-pinned=end][data-last-col=end]]:shadow-[inset_1px_0_0_0_var(--border)] [&[data-pinned=start][data-last-col=start]]:shadow-[inset_-1px_0_0_0_var(--border)]"
       )}
     />
   )
 }
 
-function DataGridTableVirtualUtilityRow<TData>({
+function DataGridTableVirtualUtilityRow<TData extends object>({
   table,
   children,
   centerCellClassName,
@@ -333,7 +339,7 @@ function DataGridTableVirtualUtilityRow<TData>({
   rowClassName,
   ariaHidden,
 }: {
-  table: Table<TData>
+  table: DataGridTableInstance<TData>
   children: ReactNode
   centerCellClassName?: string
   centerCellStyle?: CSSProperties
@@ -341,9 +347,9 @@ function DataGridTableVirtualUtilityRow<TData>({
   ariaHidden?: boolean
 }) {
   const { props } = useDataGrid()
-  const leftVisibleColumns = table.getLeftVisibleLeafColumns()
+  const leftVisibleColumns = table.getStartVisibleLeafColumns()
   const centerVisibleColumns = table.getCenterVisibleLeafColumns()
-  const rightVisibleColumns = table.getRightVisibleLeafColumns()
+  const rightVisibleColumns = table.getEndVisibleLeafColumns()
   const hasRightPinnedColumns = hasDataGridTableRightPinnedColumns(table)
 
   return (
@@ -377,11 +383,11 @@ function DataGridTableVirtualUtilityRow<TData>({
   )
 }
 
-function DataGridTableVirtualSpacer<TData>({
+function DataGridTableVirtualSpacer<TData extends object>({
   table,
   height,
 }: {
-  table: Table<TData>
+  table: DataGridTableInstance<TData>
   height: number
 }) {
   if (height <= 0) return null
@@ -398,12 +404,12 @@ function DataGridTableVirtualSpacer<TData>({
   )
 }
 
-function DataGridTableVirtualStatusRow<TData>({
+function DataGridTableVirtualStatusRow<TData extends object>({
   table,
   children,
   className,
 }: {
-  table: Table<TData>
+  table: DataGridTableInstance<TData>
   children: ReactNode
   className?: string
 }) {
@@ -420,7 +426,7 @@ function DataGridTableVirtualStatusRow<TData>({
   )
 }
 
-function DataGridTableVirtualBody<TData>({
+function DataGridTableVirtualBody<TData extends object>({
   table,
   topRows,
   centerRows,
@@ -575,10 +581,10 @@ function DataGridTableVirtualBody<TData>({
  */
 const MemoizedVirtualBody = memo(
   DataGridTableVirtualBody,
-  (_prev, next) => !!next.table.getState().columnSizingInfo.isResizingColumn
+  (_prev, next) => !!next.table.state.columnResizing.isResizingColumn
 ) as typeof DataGridTableVirtualBody
 
-function DataGridTableVirtual<TData>({
+function DataGridTableVirtual<TData extends object>({
   height,
   estimateSize = 48,
   overscan = 10,
@@ -593,7 +599,7 @@ function DataGridTableVirtual<TData>({
   fetchMoreOffset = 0,
   virtualizerOptions,
 }: DataGridTableVirtualProps<TData>) {
-  const { table, props } = useDataGrid()
+  const { table, props } = useDataGrid<TData>()
   const mergedHeaderGroups = getDataGridTableMergedHeaderGroups(table)
   const hasRightPinnedColumns = hasDataGridTableRightPinnedColumns(table)
   const { topRows, centerRows, bottomRows } = getDataGridTableRowSections(
@@ -867,7 +873,7 @@ function DataGridTableVirtual<TData>({
             {mergedHeaderGroups.map((headerGroup) => (
               <DataGridTableHeadRow key={headerGroup.id} rowId={headerGroup.id}>
                 {headerGroup.headers
-                  .filter((header) => header.column.getIsPinned() !== "right")
+                  .filter((header) => header.column.getIsPinned() !== "end")
                   .map((header) => {
                     const { column } = header
 
@@ -891,7 +897,7 @@ function DataGridTableVirtual<TData>({
                   <DataGridTableFillHeadCell />
                 ) : null}
                 {headerGroup.headers
-                  .filter((header) => header.column.getIsPinned() === "right")
+                  .filter((header) => header.column.getIsPinned() === "end")
                   .map((header) => {
                     const { column } = header
 

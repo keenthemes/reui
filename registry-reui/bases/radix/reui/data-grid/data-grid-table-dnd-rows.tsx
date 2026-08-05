@@ -1,5 +1,4 @@
 "use client"
-"use no memo"
 
 import {
   createContext,
@@ -14,6 +13,10 @@ import {
 } from "react"
 import type { CSSProperties, ReactNode } from "react"
 import { useDataGrid } from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
+import type {
+  DataGridFeatures,
+  DataGridTableInstance,
+} from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
 import {
   DataGridTableBase,
   DataGridTableBody,
@@ -62,6 +65,7 @@ import {
 import { CSS } from "@dnd-kit/utilities"
 import { flexRender } from "@tanstack/react-table"
 import type { Cell, HeaderGroup, Row, Table } from "@tanstack/react-table"
+import { createPortal } from "react-dom"
 
 import { cn } from "@/registry/bases/radix/lib/utils"
 import { Button } from "@/registry/bases/radix/ui/button"
@@ -94,8 +98,8 @@ type DataGridTableDndRowData = {
  * is positioned over the row, so it never adds a column, shifts striping, or
  * gets clipped by a truncating resizable cell.
  */
-type DataGridTableDndRowDecoration<TData> = (context: {
-  row: Row<TData>
+type DataGridTableDndRowDecoration<TData extends object> = (context: {
+  row: Row<DataGridFeatures, TData>
   isDragging: boolean
   isOver: boolean
 }) => ReactNode
@@ -171,12 +175,30 @@ function DataGridTableDndRowHandle({
   )
 }
 
-function DataGridTableDndRow<TData>({
+/**
+ * The rows do not move while one is being carried.
+ *
+ * Sliding the siblings apart opens a gap the carried row could go into, which
+ * reads well in a list of identical rows and badly in a table: the gap is the
+ * height of the row you are holding, so with rows of unequal height it never
+ * matches the slot it claims to be, and the row you picked up slides away from
+ * where it started - which is exactly the position you need to remember if you
+ * decide not to drop it.
+ *
+ * Holding everything still keeps the origin legible, and nothing is lost: the
+ * DragOverlay clone follows the pointer and the drop indicator names the seam.
+ * Pass `verticalListSortingStrategy` as `sortingStrategy` for the old feel.
+ */
+const holdRowsInPlaceStrategy: SortingStrategy = () => null
+
+function DataGridTableDndRow<TData extends object>({
   row,
   renderRowDecoration,
+  dropIndicator = true,
 }: {
-  row: Row<TData>
+  row: Row<DataGridFeatures, TData>
   renderRowDecoration?: DataGridTableDndRowDecoration<TData>
+  dropIndicator?: boolean
 }) {
   const rowData: DataGridTableDndRowData = {
     type: "data-grid-row",
@@ -185,11 +207,34 @@ function DataGridTableDndRow<TData>({
     parentId: row.getParentRow()?.id ?? null,
   }
 
-  const { transform, setNodeRef, isDragging, isOver, attributes, listeners } =
-    useSortable({
-      id: row.id,
-      data: rowData,
-    })
+  const {
+    transform,
+    setNodeRef,
+    isDragging,
+    isOver,
+    attributes,
+    listeners,
+    index,
+    activeIndex,
+    overIndex,
+  } = useSortable({
+    id: row.id,
+    data: rowData,
+  })
+
+  // Which edge of THIS row the carried row would land on, or null when it is
+  // not the drop target. Nothing slides apart any more, so the bar is the only
+  // thing that says where the drop goes: it marks the row at the destination
+  // index, on the side the carried row comes to rest.
+  //
+  // Dragging down it lands after the target, dragging up before it, so the
+  // edge follows the direction of travel.
+  const dropEdge =
+    dropIndicator && activeIndex !== -1 && index === overIndex && !isDragging
+      ? activeIndex < overIndex
+        ? "bottom"
+        : "top"
+      : null
 
   const style: CSSProperties = {
     transform: CSS.Transform.toString(transform),
@@ -203,13 +248,18 @@ function DataGridTableDndRow<TData>({
     zIndex: isDragging ? 1 : 0,
     position: "relative",
     cursor: isDragging ? "grabbing" : undefined,
-    // The row you are holding is drawn by the DragOverlay below, so the one
-    // left behind only has to show that it has been picked up, and it does that
-    // by fading. Nothing else: a border or a surface on it would compete with
-    // the clone that is actually being carried. It used to paint itself a solid
-    // background with inset hairlines, which was for the days when this row WAS
-    // the thing following the pointer.
-    ...(isDragging && { opacity: 0.5 }),
+    // The row you are holding is drawn by the DragOverlay, so the one left
+    // behind is not a second copy of it - it is the slot you came from, and it
+    // stays exactly where it was. Fading alone read as "this row is busy";
+    // the outline says "this is the space you are moving out of", which is the
+    // thing you need if you change your mind mid-drag.
+    ...(isDragging && {
+      opacity: 0.4,
+      // Inset so the dashes sit inside the row box and cannot be clipped by
+      // the neighbouring row's border.
+      outline: "1px dashed var(--border)",
+      outlineOffset: "-1px",
+    }),
   }
 
   const decoration = renderRowDecoration?.({ row, isDragging, isOver })
@@ -219,7 +269,7 @@ function DataGridTableDndRow<TData>({
       <DataGridTableBodyRow row={row} dndRef={setNodeRef} dndStyle={style}>
         {row
           .getVisibleCells()
-          .map((cell: Cell<TData, unknown>, index, cells) => {
+          .map((cell: Cell<DataGridFeatures, TData, unknown>, index, cells) => {
             return (
               <DataGridTableBodyRowCell cell={cell} key={cell.id}>
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -242,6 +292,33 @@ function DataGridTableDndRow<TData>({
                     {decoration}
                   </div>
                 ) : null}
+                {dropEdge && index === cells.length - 1 ? (
+                  // Same anchoring trick as the decoration above: a plain
+                  // element inside the last cell, so it adds no column and
+                  // cannot disturb `table-layout: fixed`. It spans the row
+                  // because the row is the nearest positioned ancestor.
+                  <div
+                    aria-hidden="true"
+                    data-slot="data-grid-table-row-drop-indicator"
+                    data-edge={dropEdge}
+                    className="pointer-events-none absolute inset-0 z-20"
+                  >
+                    {/* Two solid pixels down the leading edge, the same marker
+                        the tree drag uses for its drop target. A wash across
+                        the row has to stay faint enough not to read as a
+                        selected row, and in the achromatic styles primary
+                        carries no chroma at all, so faint plus colourless is
+                        just grey. The bar reads at any weight and leaves the
+                        row's own background to hover and selection.
+
+                        The bar is the whole indicator: the gap the rows have
+                        already opened says which side, so a rule across the
+                        seam as well only competes with the row borders it sits
+                        between. `data-edge` still carries the direction for
+                        anyone styling their own. */}
+                    <span className="bg-primary absolute inset-y-0 start-0 w-0.5" />
+                  </div>
+                ) : null}
               </DataGridTableBodyRowCell>
             )
           })}
@@ -252,19 +329,21 @@ function DataGridTableDndRow<TData>({
   )
 }
 
-function DataGridTableDndRowsBody<TData>({
+function DataGridTableDndRowsBody<TData extends object>({
   table,
   dataIds,
   renderRowDecoration,
+  dropIndicator,
   sortingStrategy,
 }: {
-  table: Table<TData>
+  table: DataGridTableInstance<TData>
   dataIds: UniqueIdentifier[]
   renderRowDecoration?: DataGridTableDndRowDecoration<TData>
+  dropIndicator?: boolean
   sortingStrategy: SortingStrategy
 }) {
   const { isLoading, props } = useDataGrid()
-  const pagination = table.getState().pagination
+  const pagination = table.state.pagination
 
   if (props.loadingMode === "skeleton" && isLoading && pagination?.pageSize) {
     return (
@@ -292,11 +371,12 @@ function DataGridTableDndRowsBody<TData>({
 
   return (
     <SortableContext items={dataIds} strategy={sortingStrategy}>
-      {table.getRowModel().rows.map((row: Row<TData>) => {
+      {table.getRowModel().rows.map((row: Row<DataGridFeatures, TData>) => {
         return (
           <DataGridTableDndRow
             row={row}
             renderRowDecoration={renderRowDecoration}
+            dropIndicator={dropIndicator}
             key={row.id}
           />
         )
@@ -312,17 +392,18 @@ function DataGridTableDndRowsBody<TData>({
  */
 const MemoizedDataGridTableDndRowsBody = memo(
   DataGridTableDndRowsBody,
-  (_prev, next) => !!next.table.getState().columnSizingInfo.isResizingColumn
+  (_prev, next) => !!next.table.state.columnResizing.isResizingColumn
 ) as typeof DataGridTableDndRowsBody
 
-function DataGridTableDndRows<TData>({
+function DataGridTableDndRows<TData extends object>({
   handleDragEnd,
   dataIds,
   footerContent,
   collisionDetection = closestCenter,
   modifiers,
-  sortingStrategy = verticalListSortingStrategy,
+  sortingStrategy = holdRowsInPlaceStrategy,
   renderRowDecoration,
+  dropIndicator = true,
   onDragStart,
   onDragMove,
   onDragOver,
@@ -352,29 +433,63 @@ function DataGridTableDndRows<TData>({
   sortingStrategy?: SortingStrategy
   /** Per-row slot for drop indicators and depth guides. */
   renderRowDecoration?: DataGridTableDndRowDecoration<TData>
+  /**
+   * Draws a line on the seam the carried row would land on. On by default;
+   * pass `false` when `renderRowDecoration` paints its own insertion affordance
+   * and the two would compete.
+   */
+  dropIndicator?: boolean
   onDragStart?: (event: DragStartEvent) => void
   onDragMove?: (event: DragMoveEvent) => void
   onDragOver?: (event: DragOverEvent) => void
   onDragCancel?: (event: DragCancelEvent) => void
 }) {
-  const { table, props } = useDataGrid()
+  const { table, props } = useDataGrid<TData>()
   const tableContainerRef = useRef<HTMLDivElement>(null)
   const [isDraggingRow, setIsDraggingRow] = useState(false)
+  // The overlay is portalled to the document body. dnd-kit renders DragOverlay
+  // in place, and it positions with `position: fixed` against viewport
+  // coordinates - so any ancestor that establishes a containing block for fixed
+  // descendants silently re-anchors it. `content-visibility`, `contain`,
+  // `transform`, `filter` and `will-change` all do that, and the first two are
+  // exactly what a card grid uses to defer off-screen work. The clone then
+  // lands offset by that ancestor's own top/left, and the container clamp
+  // below mis-clamps too, because its rects are measured in viewport space.
+  //
+  // Resolved in an effect rather than read at render so the server and the
+  // first client render agree. A drag cannot start before hydration, so the
+  // overlay being absent for one frame costs nothing.
+  const [portalTarget, setPortalTarget] = useState<HTMLElement | null>(null)
+
+  useEffect(() => {
+    setPortalTarget(document.body)
+  }, [])
   // The row being carried, plus the column widths measured off the header the
   // moment the drag starts. The clone lives outside the table, so it has no
   // columns of its own and has to be told what they are.
   const [carried, setCarried] = useState<{
     id: UniqueIdentifier
     width: number
+    height: number
     columns: number[]
   } | null>(null)
 
   const pickUpRow = useCallback((id: UniqueIdentifier) => {
-    const head = tableContainerRef.current?.querySelector("thead tr")
-    if (!head) {
+    const container = tableContainerRef.current
+    const head = container?.querySelector("thead tr")
+    if (!container || !head) {
       setCarried(null)
       return
     }
+
+    // The clone has to be exactly as tall as the row it was lifted from.
+    // A fixed height reads as the grid growing under the pointer the moment
+    // you pick a row up, and it is wrong in both directions: rows whose
+    // content wraps are taller than any constant, and dense rows are shorter.
+    const source = Array.from(
+      container.querySelectorAll<HTMLElement>("tbody tr[data-row-id]")
+    ).find((candidate) => candidate.dataset.rowId === String(id))
+    const height = source?.getBoundingClientRect().height ?? 0
 
     // The fill cell is a header-only spacer that soaks up the surplus a column
     // resize leaves behind, and the clone renders data cells only. Measuring it
@@ -392,12 +507,15 @@ function DataGridTableDndRows<TData>({
     setCarried({
       id,
       width: columns.reduce((total, width) => total + width, 0),
+      height,
       columns,
     })
   }, [])
 
   const carriedRow = carried
-    ? table.getRowModel().rows.find((row: Row<TData>) => row.id === carried.id)
+    ? table
+        .getRowModel()
+        .rows.find((row: Row<DataGridFeatures, TData>) => row.id === carried.id)
     : undefined
 
   const sensors = useSensors(
@@ -501,39 +619,43 @@ function DataGridTableDndRows<TData>({
           <DataGridTableHead>
             {table
               .getHeaderGroups()
-              .map((headerGroup: HeaderGroup<TData>, index) => {
-                return (
-                  <DataGridTableHeadRow key={index} rowId={headerGroup.id}>
-                    {headerGroup.headers.map((header, index) => {
-                      const { column } = header
+              .map(
+                (headerGroup: HeaderGroup<DataGridFeatures, TData>, index) => {
+                  return (
+                    <DataGridTableHeadRow key={index} rowId={headerGroup.id}>
+                      {headerGroup.headers.map((header, index) => {
+                        const { column } = header
 
-                      return (
-                        <DataGridTableHeadRowCell header={header} key={index}>
-                          {header.isPlaceholder ? null : props.tableLayout
-                              ?.columnsResizable && column.getCanResize() ? (
-                            <div className="truncate">
-                              {flexRender(
+                        return (
+                          <DataGridTableHeadRowCell header={header} key={index}>
+                            {header.isPlaceholder ? null : props.tableLayout
+                                ?.columnsResizable && column.getCanResize() ? (
+                              <>
+                                {flexRender(
+                                  header.column.columnDef.header,
+                                  header.getContext()
+                                )}
+                              </>
+                            ) : (
+                              flexRender(
                                 header.column.columnDef.header,
                                 header.getContext()
-                              )}
-                            </div>
-                          ) : (
-                            flexRender(
-                              header.column.columnDef.header,
-                              header.getContext()
-                            )
-                          )}
-                          {props.tableLayout?.columnsResizable &&
-                            column.getCanResize() && (
-                              <DataGridTableHeadRowCellResize header={header} />
+                              )
                             )}
-                        </DataGridTableHeadRowCell>
-                      )
-                    })}
-                    <DataGridTableFillHeadCell />
-                  </DataGridTableHeadRow>
-                )
-              })}
+                            {props.tableLayout?.columnsResizable &&
+                              column.getCanResize() && (
+                                <DataGridTableHeadRowCellResize
+                                  header={header}
+                                />
+                              )}
+                          </DataGridTableHeadRowCell>
+                        )
+                      })}
+                      <DataGridTableFillHeadCell />
+                    </DataGridTableHeadRow>
+                  )
+                }
+              )}
           </DataGridTableHead>
 
           {(props.tableLayout?.stripped || !props.tableLayout?.rowBorder) && (
@@ -545,6 +667,7 @@ function DataGridTableDndRows<TData>({
               table={table}
               dataIds={dataIds}
               renderRowDecoration={renderRowDecoration}
+              dropIndicator={dropIndicator}
               sortingStrategy={sortingStrategy}
             />
           </DataGridTableBody>
@@ -560,45 +683,66 @@ function DataGridTableDndRows<TData>({
           without disturbing the grid: it adds no cell, so it cannot alter the
           column widths, and it floats above the rows rather than through them.
           Its presence also tells dnd-kit to stop translating the source row, so
-          the row left behind simply dims in place. */}
-      <DragOverlay dropAnimation={null}>
-        {carried && carriedRow ? (
-          <table
-            aria-hidden="true"
-            style={{ width: carried.width, tableLayout: "fixed" }}
-            className="bg-background border-border pointer-events-none cursor-grabbing rounded-md border shadow-lg"
-          >
-            <tbody>
-              {/* Padding rides on the inner element, not the cell. A `td` can
+          the row left behind simply dims in place.
+
+          Portalled to the body so the fixed positioning resolves against the
+          viewport wherever the grid is mounted. React context crosses a portal,
+          so DndContext still reaches it. */}
+      {portalTarget
+        ? createPortal(
+            <DragOverlay dropAnimation={null}>
+              {carried && carriedRow ? (
+                <table
+                  aria-hidden="true"
+                  style={{ width: carried.width, tableLayout: "fixed" }}
+                  className="bg-background border-border pointer-events-none cursor-grabbing rounded-md border shadow-lg"
+                >
+                  <tbody>
+                    {/* Padding rides on the inner element, not the cell. A `td` can
                   never render narrower than its own horizontal padding, so a
                   column resized below that would silently widen here and the
-                  clone would stop matching the row it came from. */}
-              <tr className="[&>td]:h-14 [&>td]:p-0 [&>td]:align-middle">
-                {carriedRow
-                  .getVisibleCells()
-                  .map((cell: Cell<TData, unknown>, index: number) => (
-                    <td
-                      key={cell.id}
-                      // Falls back to the column's own size so an unforeseen
-                      // header/cell count mismatch degrades to a real width
-                      // rather than to `auto`.
-                      style={{
-                        width: carried.columns[index] ?? cell.column.getSize(),
-                      }}
+                  clone would stop matching the row it came from. Height comes
+                  from the measured source row for the same reason the widths
+                  do: the clone has no row of its own to inherit it from. */}
+                    <tr
+                      style={{ height: carried.height || undefined }}
+                      className="[&>td]:p-0 [&>td]:align-middle"
                     >
-                      <div className="truncate px-3">
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext()
+                      {carriedRow
+                        .getVisibleCells()
+                        .map(
+                          (
+                            cell: Cell<DataGridFeatures, TData, unknown>,
+                            index: number
+                          ) => (
+                            <td
+                              key={cell.id}
+                              // Falls back to the column's own size so an unforeseen
+                              // header/cell count mismatch degrades to a real width
+                              // rather than to `auto`.
+                              style={{
+                                width:
+                                  carried.columns[index] ??
+                                  cell.column.getSize(),
+                              }}
+                            >
+                              <div className="truncate px-3">
+                                {flexRender(
+                                  cell.column.columnDef.cell,
+                                  cell.getContext()
+                                )}
+                              </div>
+                            </td>
+                          )
                         )}
-                      </div>
-                    </td>
-                  ))}
-              </tr>
-            </tbody>
-          </table>
-        ) : null}
-      </DragOverlay>
+                    </tr>
+                  </tbody>
+                </table>
+              ) : null}
+            </DragOverlay>,
+            portalTarget
+          )
+        : null}
     </DndContext>
   )
 }

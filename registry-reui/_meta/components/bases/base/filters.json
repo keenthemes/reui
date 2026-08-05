@@ -221,8 +221,7 @@
         "skeleton"
       ],
       "dependencies": [
-        "@tanstack/react-table",
-        "nuqs"
+        "@tanstack/react-table"
       ],
       "files": [
         {
