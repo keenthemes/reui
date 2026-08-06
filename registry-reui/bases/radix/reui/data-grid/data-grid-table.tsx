@@ -801,11 +801,13 @@ function DataGridTableHeadRow({
 function DataGridTableHeadRowCell<TData extends object>({
   children,
   header,
+  columnIndex,
   dndRef,
   dndStyle,
 }: {
   children: ReactNode
   header: Header<DataGridFeatures, TData, unknown>
+  columnIndex?: number
   dndRef?: React.Ref<HTMLTableCellElement>
   dndStyle?: CSSProperties
 }) {
@@ -853,6 +855,7 @@ function DataGridTableHeadRowCell<TData extends object>({
         }),
         ...(dndStyle ? dndStyle : null),
       }}
+      data-column-index={columnIndex}
       data-pinned={isPinned || undefined}
       data-outer-pinned-col={
         isFirstStartPinned ? "start" : isLastEndPinned ? "end" : undefined
@@ -1377,11 +1380,13 @@ function DataGridTableBodyRowExpandded<TData extends object>({
 function DataGridTableBodyRowCell<TData extends object>({
   children,
   cell,
+  columnIndex,
   dndRef,
   dndStyle,
 }: {
   children: ReactNode
   cell: Cell<DataGridFeatures, TData, unknown>
+  columnIndex?: number
   dndRef?: React.Ref<HTMLTableCellElement>
   dndStyle?: CSSProperties
 }) {
@@ -1408,6 +1413,7 @@ function DataGridTableBodyRowCell<TData extends object>({
         }),
         ...(dndStyle ? dndStyle : null),
       }}
+      data-column-index={columnIndex}
       data-pinned={isPinned || undefined}
       data-last-col={
         isLastStartPinned ? "start" : isFirstEndPinned ? "end" : undefined

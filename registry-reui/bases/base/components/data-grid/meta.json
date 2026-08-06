@@ -208,5 +208,12 @@
     "description": "Data grid with tree rows",
     "order": 30,
     "gridSize": 1
+  },
+  {
+    "name": "c-data-grid-31",
+    "title": "Data grid with column virtualization",
+    "description": "Data grid with column virtualization",
+    "order": 31,
+    "gridSize": 1
   }
 ]

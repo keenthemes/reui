@@ -9846,6 +9846,35 @@
       }
     },
     {
+      "name": "c-data-grid-31",
+      "type": "registry:block",
+      "title": "Data grid with column virtualization",
+      "description": "Data grid with column virtualization",
+      "dependencies": [
+        "@tanstack/react-table",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button",
+        "card",
+        "@reui/data-grid",
+        "@reui/data-grid-column-header",
+        "@reui/data-grid-scroll-area",
+        "@reui/data-grid-table-virtual"
+      ],
+      "files": [
+        {
+          "path": "c-data-grid-31.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-31.tsx"
+        }
+      ],
+      "meta": {
+        "order": 31,
+        "gridSize": 1
+      }
+    },
+    {
       "name": "c-data-grid-4",
       "type": "registry:block",
       "title": "Data grid without table borders",

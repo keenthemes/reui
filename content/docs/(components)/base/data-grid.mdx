@@ -1,6 +1,6 @@
 ---
 title: Data Grid
-description: A powerful TanStack Table v9 data grid with sorting, filtering, pagination, footer rows, drag-and-drop, virtualization, infinite scroll, row pinning, and tree rows.
+description: A powerful TanStack Table v9 data grid with sorting, filtering, pagination, footer rows, drag-and-drop, row and column virtualization, infinite scroll, row pinning, and tree rows.
 component: true
 base: base
 links:
@@ -14,7 +14,7 @@ links:
   align="start"
 />
 
-The current `data-grid` package ships the shared grid context, table renderers, pagination, column controls, drag-and-drop helpers, virtualization, infinite scroll, footer helpers, row-pinning support, and tree rows. Footer components (`DataGridTableFoot`, `DataGridTableFootRow`, `DataGridTableFootRowCell`) plus the `DataGridTableRowPin` and `DataGridTableRowExpand` toggles are exported from `data-grid-table.tsx`.
+The current `data-grid` package ships the shared grid context, table renderers, pagination, column controls, drag-and-drop helpers, row and column virtualization, infinite scroll, footer helpers, row-pinning support, and tree rows. Footer components (`DataGridTableFoot`, `DataGridTableFootRow`, `DataGridTableFootRowCell`) plus the `DataGridTableRowPin` and `DataGridTableRowExpand` toggles are exported from `data-grid-table.tsx`.
 
 In the base build, `data-grid-scroll-area.tsx` is also included and exports `DataGridScrollArea` for dedicated scroll handling around sticky-header or wide tables.
 
@@ -208,7 +208,7 @@ return (
 )
 ```
 
-Use `DataGridTableRowPin` inside a column definition to let users pin rows, swap in `DataGridTableVirtual` when you need virtualization or infinite scroll, and wrap sticky-header tables with `DataGridScrollArea` when you want the dedicated base scroll wrapper. When rows can be pinned or virtualized, provide a stable `getRowId` so row identity stays intact across reordering.
+Use `DataGridTableRowPin` inside a column definition to let users pin rows, swap in `DataGridTableVirtual` when you need row virtualization, opt-in center-column virtualization, or infinite scroll, and wrap sticky-header tables with `DataGridScrollArea` when you want the dedicated base scroll wrapper. When rows can be pinned or virtualized, provide a stable `getRowId` so row identity stays intact across reordering.
 
 ## Examples
 
@@ -275,10 +275,20 @@ Use `DataGridTableRowPin` inside a column definition to let users pin rows, swap
   align="start"
 />
 
+### Column Virtualization
+
+<ComponentPreview
+  styleName="base-nova"
+  name="c-data-grid-31"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
 For the full set of variations (expandable rows, sub-grids, tree rows, sortable / movable /
 draggable / resizable / pinnable columns, sticky header, column controls and
 visibility, loading skeleton, CRUD in frame, footer totals / summary /
-aggregates, infinite scroll, and row pinning) browse the
+aggregates, row and column virtualization, controlled row and column scrolling,
+infinite scroll, and row pinning) browse the
 [Data Grid components](/components/data-grid).
 
 ## API Reference
@@ -570,23 +580,36 @@ Together these cover cross-parent (re-parenting) drops: drop `restrictToVertical
 
 ### DataGridTableVirtual
 
-A virtualized table renderer using `@tanstack/react-virtual` for row virtualization, infinite scroll, optional footer rows, and pinned rows when `rowsPinnable` is enabled. The wrapper manages row count and the scroll element for you, while `virtualizerOptions` lets you customize the underlying TanStack Virtual instance. Set `scrollToRowIndex` to reveal a controlled center row; `"auto"` alignment keeps already-visible rows in place and accounts for sticky headers.
+A virtualized table renderer using `@tanstack/react-virtual` for row virtualization, optional center-column virtualization, infinite scroll, footer rows, and pinned rows when `rowsPinnable` is enabled. Row virtualization remains enabled by default and can be customized with `virtualizerOptions`. Pass `columnVirtualizerOptions` to opt into column virtualization; omitting it renders every center column.
 
-| Prop                 | Type                                     | Default  | Description                                                                                                                          |
-| :------------------- | :--------------------------------------- | :------- | :----------------------------------------------------------------------------------------------------------------------------------- |
-| `height`             | `number \| string`                       | -        | Optional fixed height when not using an outer scroll container.                                                                      |
-| `estimateSize`       | `number`                                 | `48`     | Estimated row height in pixels for the virtualizer.                                                                                  |
-| `overscan`           | `number`                                 | `10`     | Number of rows to render outside the visible area.                                                                                   |
-| `scrollBehavior`     | `ScrollBehavior`                         | `"auto"` | Scroll animation used when revealing `scrollToRowIndex`.                                                                             |
-| `scrollToRowAlign`   | `"auto" \| "center" \| "start" \| "end"` | `"auto"` | Alignment used when revealing the target row. `"auto"` only scrolls when the row is outside the visible area.                        |
-| `scrollToRowIndex`   | `number`                                 | -        | Index within the center (non-pinned) row section to reveal. Supports custom scroll elements and disabled virtualization.             |
-| `footerContent`      | `ReactNode`                              | -        | Optional footer content rendered inside `<tfoot>`.                                                                                   |
-| `renderHeader`       | `boolean`                                | `true`   | Whether to render the table header.                                                                                                  |
-| `onFetchMore`        | `() => void`                             | -        | Callback triggered when user scrolls near the bottom.                                                                                |
-| `isFetchingMore`     | `boolean`                                | -        | Whether additional data is currently being loaded.                                                                                   |
-| `hasMore`            | `boolean`                                | -        | Whether there are more records available to fetch.                                                                                   |
-| `fetchMoreOffset`    | `number`                                 | `0`      | How many rows before the end should trigger `onFetchMore`.                                                                           |
-| `virtualizerOptions` | `DataGridTableVirtualizerOptions<TData>` | -        | Optional passthrough for TanStack Virtual settings like `enabled`, `getItemKey`, `measureElement`, `rangeExtractor`, and `onChange`. |
+Column virtualization activates only when `tableLayout.width` is `"fixed"` and the table uses a single, ungrouped header row. Start- and end-pinned columns always render outside the virtual window. `scrollToRowIndex` targets the center row section, while `scrollToColumnIndex` targets the center visible leaf columns. Both controlled scrolling APIs share `scrollBehavior`, and `"auto"` alignment keeps an already-visible target in place.
+
+```tsx
+<DataGridTableVirtual
+  columnVirtualizerOptions={{ enabled: true, overscan: 3 }}
+  scrollToColumnIndex={targetColumnIndex}
+  scrollToColumnAlign="center"
+/>
+```
+
+| Prop                       | Type                                     | Default  | Description                                                                                                                                                                                |
+| :------------------------- | :--------------------------------------- | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `height`                   | `number \| string`                       | -        | Optional fixed height when not using an outer scroll container.                                                                                                                            |
+| `estimateSize`             | `number`                                 | `48`     | Estimated row height in pixels for the row virtualizer.                                                                                                                                    |
+| `overscan`                 | `number`                                 | `10`     | Number of rows to render outside the visible area.                                                                                                                                         |
+| `columnVirtualizerOptions` | `DataGridTableColumnVirtualizerOptions`  | -        | Passing this prop opts into center-column virtualization for fixed-layout tables with ungrouped headers. Supports settings such as `enabled` and `overscan`; pinned columns always render. |
+| `scrollBehavior`           | `ScrollBehavior`                         | `"auto"` | Scroll animation used when revealing a controlled row or column.                                                                                                                           |
+| `scrollToColumnAlign`      | `"auto" \| "center" \| "start" \| "end"` | `"auto"` | Alignment used when revealing the target center column. `"auto"` only scrolls when the column is outside the visible area.                                                                 |
+| `scrollToColumnIndex`      | `number`                                 | -        | Index within the center (non-pinned) visible leaf columns to reveal. Supports disabled column virtualization.                                                                              |
+| `scrollToRowAlign`         | `"auto" \| "center" \| "start" \| "end"` | `"auto"` | Alignment used when revealing the target row. `"auto"` only scrolls when the row is outside the visible area.                                                                              |
+| `scrollToRowIndex`         | `number`                                 | -        | Index within the center (non-pinned) row section to reveal. Supports custom scroll elements and disabled virtualization.                                                                   |
+| `footerContent`            | `ReactNode`                              | -        | Optional footer content rendered inside `<tfoot>`.                                                                                                                                         |
+| `renderHeader`             | `boolean`                                | `true`   | Whether to render the table header.                                                                                                                                                        |
+| `onFetchMore`              | `() => void`                             | -        | Callback triggered when user scrolls near the bottom.                                                                                                                                      |
+| `isFetchingMore`           | `boolean`                                | -        | Whether additional data is currently being loaded.                                                                                                                                         |
+| `hasMore`                  | `boolean`                                | -        | Whether there are more records available to fetch.                                                                                                                                         |
+| `fetchMoreOffset`          | `number`                                 | `0`      | How many rows before the end should trigger `onFetchMore`.                                                                                                                                 |
+| `virtualizerOptions`       | `DataGridTableVirtualizerOptions<TData>` | -        | Optional passthrough for row virtualizer settings like `enabled`, `getItemKey`, `measureElement`, `rangeExtractor`, and `onChange`.                                                        |
 
 **Set `manualPagination: true`.** A virtualized grid renders every row, and `dataGridFeatures` registers `paginatedRowModel`, which is the one row model in the bundle that is not inert: `table.getRowModel()` is sliced to `pageSize` (default `10`) unless the table opts out. Without it an otherwise correct virtual grid renders ten rows and stops. `manualPagination: true` is v9's way to say the data already is the page, so it keeps the pagination APIs while leaving the rows unsliced.
 
@@ -662,11 +685,12 @@ These values were `left` / `right` before TanStack Table v9. v9 moves column pin
 
 </Callout>
 
-| Attribute               | Value              | Description                                                                                                         |
-| :---------------------- | :----------------- | :------------------------------------------------------------------------------------------------------------------ |
-| `data-pinned`           | `"start" \| "end"` | Which edge the column is pinned to. Omitted entirely when the column is not pinned.                                 |
-| `data-last-col`         | `"start" \| "end"` | Marks the inner boundary of a pinned group - the last start-pinned or first end-pinned column. Carries the divider. |
-| `data-outer-pinned-col` | `"start" \| "end"` | Marks the outer edge of a pinned group. Header cells only; used for background clipping.                            |
+| Attribute               | Value              | Description                                                                                                           |
+| :---------------------- | :----------------- | :-------------------------------------------------------------------------------------------------------------------- |
+| `data-pinned`           | `"start" \| "end"` | Which edge the column is pinned to. Omitted entirely when the column is not pinned.                                   |
+| `data-last-col`         | `"start" \| "end"` | Marks the inner boundary of a pinned group - the last start-pinned or first end-pinned column. Carries the divider.   |
+| `data-outer-pinned-col` | `"start" \| "end"` | Marks the outer edge of a pinned group. Header cells only; used for background clipping.                              |
+| `data-column-index`     | `number`           | Index in the center visible leaf columns. Set on virtual table header and body cells for controlled column scrolling. |
 
 While a column is being resized the grid also renders a full-height vertical line at the pointer, with a cap in the header. It is only shown in `onEnd` mode - the default - because that is the mode where the column width does not move until you release, so the line is the only feedback the drag produces. Target it with `[data-slot="data-grid-table-resize-indicator"]`.
 

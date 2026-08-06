@@ -22,6 +22,7 @@
     "@tanstack/react-table": "^9.0.0",
     "@tanstack/react-virtual": "^3.14.3",
     "class-variance-authority": "^0.7.1",
+    "lucide-react": "1.17.0",
     "radix-ui": "^1.4.3",
     "sonner": "^2.0.7"
   },
