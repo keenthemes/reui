@@ -9846,6 +9846,34 @@
       }
     },
     {
+      "name": "c-data-grid-32",
+      "type": "registry:block",
+      "title": "Data grid with localized labels",
+      "description": "Data grid with localized labels",
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "registryDependencies": [
+        "@reui/data-grid",
+        "@reui/data-grid-column-header",
+        "@reui/data-grid-i18n",
+        "@reui/data-grid-pagination",
+        "@reui/data-grid-scroll-area",
+        "@reui/data-grid-table"
+      ],
+      "files": [
+        {
+          "path": "c-data-grid-32.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-32.tsx"
+        }
+      ],
+      "meta": {
+        "order": 32,
+        "gridSize": 1
+      }
+    },
+    {
       "name": "c-data-grid-4",
       "type": "registry:block",
       "title": "Data grid without table borders",
@@ -23081,6 +23109,7 @@
         "@reui/badge",
         "button",
         "checkbox",
+        "@reui/data-grid-i18n",
         "@reui/data-grid-table",
         "dropdown-menu",
         "input",
@@ -23105,6 +23134,11 @@
           "path": "data-grid-column-visibility.tsx",
           "type": "registry:ui",
           "target": "components/reui/data-grid/data-grid-column-visibility.tsx"
+        },
+        {
+          "path": "data-grid-i18n.ts",
+          "type": "registry:ui",
+          "target": "components/reui/data-grid/data-grid-i18n.ts"
         },
         {
           "path": "data-grid-pagination.tsx",
@@ -23205,6 +23239,21 @@
           "path": "data-grid-column-visibility.tsx",
           "type": "registry:ui",
           "target": "components/reui/data-grid/data-grid-column-visibility.tsx"
+        }
+      ]
+    },
+    {
+      "name": "data-grid-i18n",
+      "type": "registry:ui",
+      "title": "Data Grid localized labels and formatter callbacks",
+      "description": "Default Data Grid labels and formatter callbacks, fully overridable per key.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "data-grid-i18n.ts",
+          "type": "registry:ui",
+          "target": "components/reui/data-grid/data-grid-i18n.ts"
         }
       ]
     },

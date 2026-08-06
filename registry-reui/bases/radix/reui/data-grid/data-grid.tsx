@@ -3,6 +3,14 @@
 import { createContext, useContext, useEffect, useMemo, useRef } from "react"
 import type { ReactNode } from "react"
 import {
+  DEFAULT_DATA_GRID_I18N,
+  mergeDataGridI18n,
+} from "@/registry-reui/bases/radix/reui/data-grid/data-grid-i18n"
+import type {
+  DataGridI18nConfig,
+  DataGridI18nOverrides,
+} from "@/registry-reui/bases/radix/reui/data-grid/data-grid-i18n"
+import {
   columnFacetingFeature,
   columnFilteringFeature,
   columnOrderingFeature,
@@ -170,7 +178,7 @@ export type DataGridApiResponse<T> = {
  */
 export type DataGridLayoutProps<TData extends object> = Omit<
   DataGridProps<TableFeatures, TData>,
-  "table" | "children"
+  "table" | "children" | "i18n"
 >
 
 export interface DataGridContextProps<TData extends object> {
@@ -178,6 +186,7 @@ export interface DataGridContextProps<TData extends object> {
   table: DataGridTableInstance<TData>
   recordCount: number
   isLoading: boolean
+  i18n: DataGridI18nConfig
   /**
    * Internal coordinator for `meta.autoSize` columns. Lives at the core level
    * so every table variant and viewport instance shares one application state.
@@ -296,6 +305,7 @@ export interface DataGridProps<
   fetchingMoreMessage?: ReactNode | string
   allRowsLoadedMessage?: ReactNode | string
   emptyMessage?: ReactNode | string
+  i18n?: DataGridI18nOverrides
   tableLayout?: {
     dense?: boolean
     cellBorder?: boolean
@@ -352,14 +362,23 @@ function useDataGrid<
   return context
 }
 
+/** Resolved DataGrid messages, with an English fallback for standalone helpers. */
+function useDataGridI18n(): DataGridI18nConfig {
+  return useContext(DataGridContext)?.i18n ?? DEFAULT_DATA_GRID_I18N
+}
+
 function DataGridProvider<TData extends object>({
   children,
+  i18n: i18nOverrides,
   table,
   ...props
 }: DataGridLayoutProps<TData> & {
   table: DataGridTableInstance<TData>
   children?: ReactNode
+  i18n?: DataGridI18nOverrides
 }) {
+  const i18n = useMemo(() => mergeDataGridI18n(i18nOverrides), [i18nOverrides])
+
   // Latest-props ref: context reads always resolve fresh props through the
   // getter below without the memoized context value depending on unstable
   // ReactNode/function prop identities (inline emptyMessage/onRowClick would
@@ -419,11 +438,13 @@ function DataGridProvider<TData extends object>({
       },
       recordCount: props.recordCount,
       isLoading: props.isLoading || false,
+      i18n,
       autoSize,
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [
       autoSize,
+      i18n,
       props.recordCount,
       props.isLoading,
       props.loadingMode,
@@ -524,7 +545,9 @@ function DataGrid<TFeatures extends TableFeatures, TData extends object>({
   // feature-gated APIs they call, and v9's invariant TFeatures rules out
   // expressing that with a generic constraint.
   const internalTable = table as unknown as DataGridTableInstance<TData>
-  const internalProps = mergedProps as unknown as DataGridLayoutProps<TData>
+  const internalProps = mergedProps as unknown as DataGridLayoutProps<TData> & {
+    i18n?: DataGridI18nOverrides
+  }
 
   return (
     <DataGridProvider table={internalTable} {...internalProps}>
@@ -552,4 +575,10 @@ function DataGridContainer({
   )
 }
 
-export { useDataGrid, DataGridProvider, DataGrid, DataGridContainer }
+export {
+  useDataGrid,
+  useDataGridI18n,
+  DataGridProvider,
+  DataGrid,
+  DataGridContainer,
+}

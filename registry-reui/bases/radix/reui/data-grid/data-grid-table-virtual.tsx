@@ -599,7 +599,7 @@ function DataGridTableVirtual<TData extends object>({
   fetchMoreOffset = 0,
   virtualizerOptions,
 }: DataGridTableVirtualProps<TData>) {
-  const { table, props } = useDataGrid<TData>()
+  const { table, props, i18n } = useDataGrid<TData>()
   const mergedHeaderGroups = getDataGridTableMergedHeaderGroups(table)
   const hasRightPinnedColumns = hasDataGridTableRightPinnedColumns(table)
   const { topRows, centerRows, bottomRows } = getDataGridTableRowSections(
@@ -624,9 +624,9 @@ function DataGridTableVirtual<TData extends object>({
 
   const isVirtualizationEnabled = virtualizerOptions?.enabled !== false
   const loadingMoreMessage =
-    props.fetchingMoreMessage || props.loadingMessage || "Loading..."
+    props.fetchingMoreMessage ?? props.loadingMessage ?? i18n.labels.loading
   const allRowsLoadedMessage =
-    props.allRowsLoadedMessage || "All records loaded"
+    props.allRowsLoadedMessage ?? i18n.labels.allRowsLoaded
 
   const handleViewportRef = useCallback((node: HTMLDivElement | null) => {
     setViewportElements({

@@ -12,7 +12,10 @@ import {
   useState,
 } from "react"
 import type { CSSProperties, ReactNode } from "react"
-import { useDataGrid } from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
+import {
+  useDataGrid,
+  useDataGridI18n,
+} from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
 import type {
   DataGridFeatures,
   DataGridTableInstance,
@@ -107,7 +110,7 @@ type DataGridTableDndRowDecoration<TData extends object> = (context: {
 function DataGridTableDndRowHandle({
   className,
   disabled,
-  disabledLabel = "Reordering unavailable",
+  disabledLabel,
 }: {
   className?: string
   /**
@@ -121,6 +124,8 @@ function DataGridTableDndRowHandle({
   disabledLabel?: string
 }) {
   const context = useContext(SortableRowContext)
+  const i18n = useDataGridI18n()
+  const resolvedDisabledLabel = disabledLabel ?? i18n.labels.reorderUnavailable
 
   if (!context || disabled) {
     return (
@@ -135,8 +140,10 @@ function DataGridTableDndRowHandle({
           disabled && "cursor-not-allowed",
           className
         )}
-        aria-label={disabled ? disabledLabel : "Drag to reorder row"}
-        title={disabled ? disabledLabel : undefined}
+        aria-label={
+          disabled ? resolvedDisabledLabel : i18n.labels.dragToReorderRow
+        }
+        title={disabled ? resolvedDisabledLabel : undefined}
         disabled
       >
         <IconPlaceholder
@@ -159,7 +166,7 @@ function DataGridTableDndRowHandle({
         "size-7 cursor-grab opacity-70 hover:bg-transparent hover:opacity-100 active:cursor-grabbing",
         className
       )}
-      aria-label="Drag to reorder row"
+      aria-label={i18n.labels.dragToReorderRow}
       {...context.attributes}
       {...context.listeners}
     >

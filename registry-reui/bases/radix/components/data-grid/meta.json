@@ -208,5 +208,12 @@
     "description": "Data grid with tree rows",
     "order": 30,
     "gridSize": 1
+  },
+  {
+    "name": "c-data-grid-32",
+    "title": "Data grid with localized labels",
+    "description": "Data grid with localized labels",
+    "order": 32,
+    "gridSize": 1
   }
 ]

@@ -994,6 +994,37 @@
         "order": 30,
         "gridSize": 1
       }
+    },
+    {
+      "name": "c-data-grid-32",
+      "type": "registry:block",
+      "title": "Data grid with localized labels",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with localized labels",
+      "registryDependencies": [
+        "data-grid",
+        "data-grid-column-header",
+        "data-grid-i18n",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table"
+      ],
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-32.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-32.tsx"
+        }
+      ],
+      "meta": {
+        "order": 32,
+        "gridSize": 1
+      }
     }
   ]
 }

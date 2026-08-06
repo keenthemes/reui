@@ -1,7 +1,10 @@
 "use client"
 
 import type { ReactElement } from "react"
-import { getColumnHeaderLabel } from "@/registry-reui/bases/base/reui/data-grid/data-grid"
+import {
+  getColumnHeaderLabel,
+  useDataGridI18n,
+} from "@/registry-reui/bases/base/reui/data-grid/data-grid"
 import type { DataGridFeatures } from "@/registry-reui/bases/base/reui/data-grid/data-grid"
 import type { Table } from "@tanstack/react-table"
 
@@ -21,13 +24,15 @@ function DataGridColumnVisibility<TData extends object>({
   table: Table<DataGridFeatures, TData>
   trigger: ReactElement<Record<string, unknown>>
 }) {
+  const i18n = useDataGridI18n()
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger render={trigger} />
       <DropdownMenuContent align="end" className="min-w-[150px]">
         <DropdownMenuGroup>
           <DropdownMenuLabel className="font-medium">
-            Toggle Columns
+            {i18n.labels.toggleColumns}
           </DropdownMenuLabel>
           {table
             .getAllColumns()

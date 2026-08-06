@@ -33,21 +33,20 @@ interface DataGridPaginationProps {
 }
 
 function DataGridPagination(props: DataGridPaginationProps): JSX.Element {
-  const { table, recordCount, isLoading } = useDataGrid()
+  const { table, recordCount, isLoading, i18n } = useDataGrid()
 
   const defaultProps: Partial<DataGridPaginationProps> = {
     sizes: [5, 10, 25, 50, 100],
     sizesSkeleton: <Skeleton className="h-8 w-44" />,
     moreLimit: 5,
-    info: "{from} - {to} of {count}",
     infoSkeleton: <Skeleton className="h-8 w-60" />,
-    rowsPerPageLabel: "Rows per page",
-    previousPageLabel: "Go to previous page",
-    nextPageLabel: "Go to next page",
-    ellipsisText: "...",
   }
 
   const mergedProps: DataGridPaginationProps = { ...defaultProps, ...props }
+  const rowsPerPageLabel = props.rowsPerPageLabel ?? i18n.labels.rowsPerPage
+  const previousPageLabel = props.previousPageLabel ?? i18n.labels.previousPage
+  const nextPageLabel = props.nextPageLabel ?? i18n.labels.nextPage
+  const ellipsisText = props.ellipsisText ?? i18n.labels.paginationEllipsis
 
   const btnBaseClasses = "p-0 text-sm"
   const btnArrowClasses = btnBaseClasses + " rtl:transform rtl:rotate-180"
@@ -58,12 +57,13 @@ function DataGridPagination(props: DataGridPaginationProps): JSX.Element {
   const pageCount = table.getPageCount()
 
   // Replace placeholders in paginationInfo
-  const paginationInfo = mergedProps.info
-    ? mergedProps.info
-        .replaceAll("{from}", from.toString())
-        .replaceAll("{to}", to.toString())
-        .replaceAll("{count}", recordCount.toString())
-    : `${from} - ${to} of ${recordCount}`
+  const paginationInfo =
+    props.info !== undefined
+      ? props.info
+          .replaceAll("{from}", from.toString())
+          .replaceAll("{to}", to.toString())
+          .replaceAll("{count}", recordCount.toString())
+      : i18n.labels.paginationInfo({ from, to, count: recordCount })
 
   // Pagination limit logic
   const paginationMoreLimit = mergedProps.moreLimit || 5
@@ -111,7 +111,7 @@ function DataGridPagination(props: DataGridPaginationProps): JSX.Element {
           variant="ghost"
           onClick={() => table.setPageIndex(currentGroupStart - 1)}
         >
-          {mergedProps.ellipsisText}
+          {ellipsisText}
         </Button>
       )
     }
@@ -128,7 +128,7 @@ function DataGridPagination(props: DataGridPaginationProps): JSX.Element {
           size="icon-sm"
           onClick={() => table.setPageIndex(currentGroupEnd)}
         >
-          {mergedProps.ellipsisText}
+          {ellipsisText}
         </Button>
       )
     }
@@ -149,7 +149,7 @@ function DataGridPagination(props: DataGridPaginationProps): JSX.Element {
         ) : (
           <>
             <div className="text-muted-foreground text-sm">
-              {mergedProps.rowsPerPageLabel}
+              {rowsPerPageLabel}
             </div>
             <Select
               value={`${pageSize}`}
@@ -193,9 +193,7 @@ function DataGridPagination(props: DataGridPaginationProps): JSX.Element {
                   onClick={() => table.previousPage()}
                   disabled={!table.getCanPreviousPage()}
                 >
-                  <span className="sr-only">
-                    {mergedProps.previousPageLabel}
-                  </span>
+                  <span className="sr-only">{previousPageLabel}</span>
                   <IconPlaceholder
                     lucide="ChevronLeftIcon"
                     tabler="IconChevronLeft"
@@ -219,7 +217,7 @@ function DataGridPagination(props: DataGridPaginationProps): JSX.Element {
                   onClick={() => table.nextPage()}
                   disabled={!table.getCanNextPage()}
                 >
-                  <span className="sr-only">{mergedProps.nextPageLabel}</span>
+                  <span className="sr-only">{nextPageLabel}</span>
                   <IconPlaceholder
                     lucide="ChevronRightIcon"
                     tabler="IconChevronRight"

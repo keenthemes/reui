@@ -275,6 +275,15 @@ Use `DataGridTableRowPin` inside a column definition to let users pin rows, swap
   align="start"
 />
 
+### Localized Labels
+
+<ComponentPreview
+  styleName="base-nova"
+  name="c-data-grid-32"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
 For the full set of variations (expandable rows, sub-grids, tree rows, sortable / movable /
 draggable / resizable / pinnable columns, sticky header, column controls and
 visibility, loading skeleton, CRUD in frame, footer totals / summary /
@@ -297,10 +306,39 @@ The root component that provides the table context.
 | `fetchingMoreMessage`  | `ReactNode \| string`     | `loadingMessage`       | Message to display while `DataGridTableVirtual` is fetching more rows. |
 | `allRowsLoadedMessage` | `ReactNode \| string`     | `"All records loaded"` | Message to display when virtual infinite scroll reaches the end.       |
 | `emptyMessage`         | `ReactNode \| string`     | `"No data available"`  | Message to display when the table is empty.                            |
+| `i18n`                 | `DataGridI18nOverrides`   | -                      | Partial overrides for DataGrid-owned labels and accessibility text.    |
 | `onRowClick`           | `(row: TData) => void`    | -                      | Callback function triggered when a row is clicked.                     |
 | `tableLayout`          | `DataGridTableLayout`     | -                      | Configuration for table layout and features.                           |
 | `tableClassNames`      | `DataGridTableClassNames` | -                      | Custom CSS classes for various table parts.                            |
 | `className`            | `string`                  | -                      | Additional CSS classes for the root grid component.                    |
+
+---
+
+### Localization
+
+Pass component-scoped label overrides to the root `DataGrid`. Every key is optional and merges with the English defaults. Explicit message props on child components, such as `emptyMessage`, `loadingMessage`, `info`, or `rowsPerPageLabel`, take precedence over the root configuration.
+
+```tsx
+import type { DataGridI18nOverrides } from "@/components/reui/data-grid/data-grid-i18n"
+
+const i18n: DataGridI18nOverrides = {
+  labels: {
+    sortAscending: "A-Z",
+    sortDescending: "Z-A",
+    rowsPerPage: "Per page",
+    paginationInfo: ({ from, to, count }) =>
+      `${from}-${to} of ${count} projects`,
+  },
+}
+
+<DataGrid table={table} recordCount={data.length} i18n={i18n}>
+  {/* ... */}
+</DataGrid>
+```
+
+`DataGridI18nConfig` describes the fully resolved configuration. `DataGridI18nOverrides`, `DEFAULT_DATA_GRID_I18N`, and `mergeDataGridI18n()` are exported from `data-grid-i18n.ts`. Dynamic labels use typed callbacks: `unpinColumn(title)`, `selectedCount(count)`, and `paginationInfo({ from, to, count })`.
+
+The `labels` section also covers sorting, column pinning and movement, column visibility, filtering, loading and empty states, infinite-scroll completion, pagination controls, row pinning and selection, and drag-reorder accessibility labels. Consumer-owned column titles, filter options, and cell values remain outside this contract.
 
 ---
 
@@ -523,7 +561,7 @@ const table = useTable({
 })
 ```
 
-The drag handle comes from `DataGridTableDndRowHandle` in a column of your own. It reads the row's sortable context, so it only works inside the rows this component renders; placed anywhere else it renders as a disabled grip. It also takes `className`, plus a `disabled` flag and a `disabledLabel` (default `"Reordering unavailable"`) for the cases where reordering is genuinely off, a sort being the usual one: the grip keeps its place in the gutter and reads as unavailable instead of vanishing and collapsing the column.
+The drag handle comes from `DataGridTableDndRowHandle` in a column of your own. It reads the row's sortable context, so it only works inside the rows this component renders; placed anywhere else it renders as a disabled grip. It also takes `className`, plus a `disabled` flag and an optional `disabledLabel` (falling back to `i18n.labels.reorderUnavailable`) for the cases where reordering is genuinely off, a sort being the usual one: the grip keeps its place in the gutter and reads as unavailable instead of vanishing and collapsing the column.
 
 | Prop                  | Type                               | Default                    | Description                                                                                                                                                                |
 | :-------------------- | :--------------------------------- | :------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

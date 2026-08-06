@@ -167,6 +167,21 @@ export const reui: Registry["items"] = [
     ]
   },
   {
+    "name": "data-grid-i18n",
+    "type": "registry:ui",
+    "title": "Data Grid localized labels and formatter callbacks",
+    "description": "Default Data Grid labels and formatter callbacks, fully overridable per key.",
+    "registryDependencies": [],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "reui/data-grid/data-grid-i18n.ts",
+        "type": "registry:ui",
+        "target": "components/reui/data-grid/data-grid-i18n.ts"
+      }
+    ]
+  },
+  {
     "name": "data-grid-pagination",
     "type": "registry:ui",
     "title": "Data Grid Pagination",
@@ -328,6 +343,11 @@ export const reui: Registry["items"] = [
         "path": "reui/data-grid/data-grid-column-visibility.tsx",
         "type": "registry:ui",
         "target": "components/reui/data-grid/data-grid-column-visibility.tsx"
+      },
+      {
+        "path": "reui/data-grid/data-grid-i18n.ts",
+        "type": "registry:ui",
+        "target": "components/reui/data-grid/data-grid-i18n.ts"
       },
       {
         "path": "reui/data-grid/data-grid-pagination.tsx",
