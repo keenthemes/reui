@@ -566,6 +566,23 @@ function DataGridTableFillFootCell() {
 }
 
 function DataGridTableBase({ children }: { children: ReactNode }) {
+  const { table } = useDataGrid()
+
+  // The provider intentionally does not publish columnSizing on every resize
+  // tick. Subscribe at the table boundary so committed widths still update
+  // the CSS variables without re-rendering the whole grid during a drag.
+  return (
+    <table.Subscribe
+      selector={(state) =>
+        state.columnResizing.isResizingColumn ? null : state.columnSizing
+      }
+    >
+      {() => <DataGridTableBaseContent>{children}</DataGridTableBaseContent>}
+    </table.Subscribe>
+  )
+}
+
+function DataGridTableBaseContent({ children }: { children: ReactNode }) {
   const { props, table } = useDataGrid()
   const leftVisibleColumns = table.getStartVisibleLeafColumns()
   const centerVisibleColumns = table.getCenterVisibleLeafColumns()
