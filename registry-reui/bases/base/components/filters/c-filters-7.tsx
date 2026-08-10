@@ -6,6 +6,8 @@ import { Badge } from "@/registry-reui/bases/base/reui/badge"
 import {
   DataGrid,
   DataGridContainer,
+  dataGridFeatures,
+  type DataGridFeatures,
 } from "@/registry-reui/bases/base/reui/data-grid/data-grid"
 import { DataGridColumnHeader } from "@/registry-reui/bases/base/reui/data-grid/data-grid-column-header"
 import { DataGridPagination } from "@/registry-reui/bases/base/reui/data-grid/data-grid-pagination"
@@ -18,13 +20,9 @@ import {
 } from "@/registry-reui/bases/base/reui/filters"
 import {
   ColumnDef,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
   PaginationState,
   SortingState,
-  useReactTable,
+  useTable,
 } from "@tanstack/react-table"
 
 import {
@@ -648,7 +646,7 @@ export default function Pattern() {
     }
   }, [filters, applyFiltersToData])
 
-  const columns = useMemo<ColumnDef<IData>[]>(
+  const columns = useMemo<ColumnDef<DataGridFeatures, IData>[]>(
     () => [
       {
         accessorKey: "name",
@@ -815,7 +813,8 @@ export default function Pattern() {
     columns.map((column) => column.id as string)
   )
 
-  const table = useReactTable({
+  const table = useTable({
+    features: dataGridFeatures,
     columns,
     data: filteredData,
     pageCount: Math.ceil((filteredData?.length || 0) / pagination.pageSize),
@@ -828,10 +827,6 @@ export default function Pattern() {
     onColumnOrderChange: setColumnOrder,
     onPaginationChange: setPagination,
     onSortingChange: setSorting,
-    getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
   })
 
   return (

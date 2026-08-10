@@ -1,11 +1,19 @@
 "use client"
 
+// This file keeps "use no memo": its own cell/header templates read state
+// through builder calls on a stable row/column, which React Compiler cannot
+// see. The primitive wraps its own such reads in TanStack's Subscribe; a
+// consumer template has to opt out or subscribe itself.
+"use no memo"
+
 import { useMemo, useState } from "react"
 import { useCopyToClipboard } from "@/registry-reui/bases/base/hooks/use-copy-to-clipboard"
 import { Badge } from "@/registry-reui/bases/base/reui/badge"
 import {
   DataGrid,
   DataGridContainer,
+  dataGridFeatures,
+  type DataGridFeatures,
 } from "@/registry-reui/bases/base/reui/data-grid/data-grid"
 import { DataGridColumnHeader } from "@/registry-reui/bases/base/reui/data-grid/data-grid-column-header"
 import { DataGridPagination } from "@/registry-reui/bases/base/reui/data-grid/data-grid-pagination"
@@ -16,15 +24,11 @@ import {
 } from "@/registry-reui/bases/base/reui/data-grid/data-grid-table"
 import {
   ColumnDef,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
   PaginationState,
   Row,
   RowPinningState,
   SortingState,
-  useReactTable,
+  useTable,
 } from "@tanstack/react-table"
 import { toast } from "sonner"
 
@@ -196,7 +200,7 @@ const demoData: IData[] = [
   },
 ]
 
-function ActionsCell({ row }: { row: Row<IData> }) {
+function ActionsCell({ row }: { row: Row<DataGridFeatures, IData> }) {
   const { copyToClipboard } = useCopyToClipboard()
   const isPinned = row.getIsPinned()
 
@@ -248,7 +252,7 @@ export default function Pattern() {
     bottom: [],
   })
 
-  const columns = useMemo<ColumnDef<IData>[]>(
+  const columns = useMemo<ColumnDef<DataGridFeatures, IData>[]>(
     () => [
       {
         id: "pin",
@@ -349,7 +353,8 @@ export default function Pattern() {
     []
   )
 
-  const table = useReactTable({
+  const table = useTable({
+    features: dataGridFeatures,
     columns,
     data: demoData,
     pageCount: Math.ceil(demoData.length / pagination.pageSize),
@@ -357,14 +362,9 @@ export default function Pattern() {
     enableRowPinning: true,
     keepPinnedRows: true,
     state: { pagination, sorting, rowPinning },
-    columnResizeMode: "onChange",
     onPaginationChange: setPagination,
     onSortingChange: setSorting,
     onRowPinningChange: setRowPinning,
-    getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
   })
 
   return (

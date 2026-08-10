@@ -6,6 +6,8 @@ import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 import {
   DataGrid,
   DataGridContainer,
+  dataGridFeatures,
+  type DataGridFeatures,
 } from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
 import { DataGridColumnHeader } from "@/registry-reui/bases/radix/reui/data-grid/data-grid-column-header"
 import { DataGridPagination } from "@/registry-reui/bases/radix/reui/data-grid/data-grid-pagination"
@@ -18,21 +20,10 @@ import {
 } from "@/registry-reui/bases/radix/reui/filters"
 import {
   ColumnDef,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
   PaginationState,
   SortingState,
-  useReactTable,
+  useTable,
 } from "@tanstack/react-table"
-import {
-  createParser,
-  parseAsBoolean,
-  parseAsJson,
-  useQueryState,
-  useQueryStates,
-} from "nuqs"
 
 import {
   Avatar,
@@ -310,28 +301,83 @@ const getActiveFilters = (filters: Filter[]) => {
   })
 }
 
-type FilterState = { operator: string; values: string[] }
+// Pure: the same function seeds the initial view and serves every later
+// filter change, so the first paint can never disagree with the first refetch.
+function filterData(newFilters: Filter[]): IData[] {
+  let filtered = [...demoData]
 
-// Custom parser for "operator:value1|value2" format
-const parseAsFilterValue = createParser<FilterState>({
-  parse: (queryValue: string) => {
-    if (!queryValue) return null
-    const separatorIndex = queryValue.indexOf(":")
-    if (separatorIndex === -1) {
-      return { operator: "is", values: queryValue.split("|").filter(Boolean) }
-    }
-    const operator = queryValue.slice(0, separatorIndex)
-    const values = queryValue
-      .slice(separatorIndex + 1)
-      .split("|")
-      .filter(Boolean)
-    return { operator, values }
-  },
-  serialize: (filter: FilterState) => {
-    if (!filter.values?.length) return ""
-    return `${filter.operator}:${filter.values.join("|")}`
-  },
-})
+  // Filter out empty filters before applying
+  const activeFilters = getActiveFilters(newFilters)
+
+  activeFilters.forEach((filter) => {
+    const { field, operator, values } = filter
+
+    filtered = filtered.filter((item) => {
+      const fieldValue = item[field as keyof IData]
+
+      switch (operator) {
+        case "is":
+          return values.includes(fieldValue)
+        case "is_not":
+          return !values.includes(fieldValue)
+        case "contains":
+          return values.some((value) =>
+            String(fieldValue)
+              .toLowerCase()
+              .includes(String(value).toLowerCase())
+          )
+        case "not_contains":
+          return !values.some((value) =>
+            String(fieldValue)
+              .toLowerCase()
+              .includes(String(value).toLowerCase())
+          )
+        case "equals":
+          return fieldValue === values[0]
+        case "not_equals":
+          return fieldValue !== values[0]
+        case "greater_than":
+          return Number(fieldValue) > Number(values[0])
+        case "less_than":
+          return Number(fieldValue) < Number(values[0])
+        case "greater_than_or_equal":
+          return Number(fieldValue) >= Number(values[0])
+        case "less_than_or_equal":
+          return Number(fieldValue) <= Number(values[0])
+        case "between":
+          if (values.length >= 2) {
+            const min = Number(values[0])
+            const max = Number(values[1])
+            return Number(fieldValue) >= min && Number(fieldValue) <= max
+          }
+          return true
+        case "not_between":
+          if (values.length >= 2) {
+            const min = Number(values[0])
+            const max = Number(values[1])
+            return Number(fieldValue) < min || Number(fieldValue) > max
+          }
+          return true
+        case "before":
+          return new Date(String(fieldValue)) < new Date(String(values[0]))
+        case "after":
+          return new Date(String(fieldValue)) > new Date(String(values[0]))
+        default:
+          return true
+      }
+    })
+  })
+
+  return filtered
+}
+
+// Seed the grid with a filtered view so the demo opens on the state a real app
+// would restore from a saved view. `createFilter(field, operator, values)` is the
+// same helper the `Filters` component emits, so these are ordinary filter objects.
+const INITIAL_FILTERS: Filter[] = [
+  createFilter("status", "is", ["active"]),
+  createFilter("availability", "is", ["online"]),
+]
 
 export default function Pattern() {
   const [pagination, setPagination] = useState<PaginationState>({
@@ -339,46 +385,21 @@ export default function Pattern() {
     pageSize: 5,
   })
 
-  // Sorting state synced with URL
-  const [sorting, setSorting] = useQueryState(
-    "sort",
-    parseAsJson<SortingState>((v) => v as SortingState).withDefault([
-      { id: "name", desc: false },
-    ])
-  )
+  const [sorting, setSorting] = useState<SortingState>([
+    { id: "name", desc: false },
+  ])
 
-  // Individual filter states synced with URL
-  const [filterStates, setFilterStates] = useQueryStates(
-    {
-      filters: parseAsBoolean.withDefault(false),
-      name: parseAsFilterValue,
-      email: parseAsFilterValue,
-      company: parseAsFilterValue,
-      role: parseAsFilterValue,
-      status: parseAsFilterValue,
-      availability: parseAsFilterValue,
-      location: parseAsFilterValue,
-    },
-    { history: "replace", shallow: true }
-  )
-
-  // Derived filters array for the Filters component
-  const filters = useMemo(() => {
-    return Object.entries(filterStates)
-      .filter(
-        ([key, state]) =>
-          key !== "filters" && state !== null && typeof state !== "boolean"
-      )
-      .map(([key, state]) => {
-        const filterState = state as FilterState
-        return createFilter(key, filterState.operator, filterState.values)
-      })
-  }, [filterStates])
+  // The filter array is ordinary React state. Where it lives is a consumer
+  // decision - component state here, but a URL query string, localStorage or a
+  // saved server-side view all work the same way, because `Filters` only ever
+  // hands you the next array and reads back the one you pass in.
+  const [filters, setFilters] = useState<Filter[]>(INITIAL_FILTERS)
 
   // Async state management
   const [isLoading, setIsLoading] = useState(false)
-  const [filteredData, setFilteredData] = useState<IData[]>(demoData)
-  const isInitialLoad = useRef(true)
+  const [filteredData, setFilteredData] = useState<IData[]>(() =>
+    filterData(INITIAL_FILTERS)
+  )
   const filterTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   // Filter field configurations
@@ -533,42 +554,22 @@ export default function Pattern() {
         {
           value: "online",
           label: "Online",
-          icon: (
-            <div className="flex items-center gap-2">
-              <div className="size-2 rounded-full bg-green-500" />
-              <span>Online</span>
-            </div>
-          ),
+          icon: <div className="size-2 rounded-full bg-green-500"></div>,
         },
         {
           value: "away",
           label: "Away",
-          icon: (
-            <div className="flex items-center gap-2">
-              <div className="size-2 rounded-full bg-yellow-500" />
-              <span>Away</span>
-            </div>
-          ),
+          icon: <div className="size-2 rounded-full bg-yellow-500"></div>,
         },
         {
           value: "busy",
           label: "Busy",
-          icon: (
-            <div className="flex items-center gap-2">
-              <div className="size-2 rounded-full bg-red-500" />
-              <span>Busy</span>
-            </div>
-          ),
+          icon: <div className="size-2 rounded-full bg-red-500"></div>,
         },
         {
           value: "offline",
           label: "Offline",
-          icon: (
-            <div className="flex items-center gap-2">
-              <div className="size-2 rounded-full bg-gray-400" />
-              <span>Offline</span>
-            </div>
-          ),
+          icon: <div className="size-2 rounded-full bg-gray-400"></div>,
         },
       ],
     },
@@ -592,119 +593,30 @@ export default function Pattern() {
   ]
 
   // Apply filters to data (shared function)
-  const applyFiltersToData = useCallback((newFilters: Filter[]) => {
-    let filtered = [...demoData]
-
-    // Filter out empty filters before applying
-    const activeFilters = getActiveFilters(newFilters)
-
-    activeFilters.forEach((filter) => {
-      const { field, operator, values } = filter
-
-      filtered = filtered.filter((item) => {
-        const fieldValue = item[field as keyof IData]
-
-        switch (operator) {
-          case "is":
-            return values.includes(fieldValue)
-          case "is_not":
-            return !values.includes(fieldValue)
-          case "contains":
-            return values.some((value) =>
-              String(fieldValue)
-                .toLowerCase()
-                .includes(String(value).toLowerCase())
-            )
-          case "not_contains":
-            return !values.some((value) =>
-              String(fieldValue)
-                .toLowerCase()
-                .includes(String(value).toLowerCase())
-            )
-          case "equals":
-            return fieldValue === values[0]
-          case "not_equals":
-            return fieldValue !== values[0]
-          case "greater_than":
-            return Number(fieldValue) > Number(values[0])
-          case "less_than":
-            return Number(fieldValue) < Number(values[0])
-          case "greater_than_or_equal":
-            return Number(fieldValue) >= Number(values[0])
-          case "less_than_or_equal":
-            return Number(fieldValue) <= Number(values[0])
-          case "between":
-            if (values.length >= 2) {
-              const min = Number(values[0])
-              const max = Number(values[1])
-              return Number(fieldValue) >= min && Number(fieldValue) <= max
-            }
-            return true
-          case "not_between":
-            if (values.length >= 2) {
-              const min = Number(values[0])
-              const max = Number(values[1])
-              return Number(fieldValue) < min || Number(fieldValue) > max
-            }
-            return true
-          case "before":
-            return new Date(String(fieldValue)) < new Date(String(values[0]))
-          case "after":
-            return new Date(String(fieldValue)) > new Date(String(values[0]))
-          default:
-            return true
-        }
-      })
-    })
-
-    return filtered
-  }, [])
 
   // Simulate async data filtering
-  const simulateAsyncFiltering = useCallback(
-    async (newFilters: Filter[]) => {
-      setIsLoading(true) // Show loading on current data
+  const simulateAsyncFiltering = useCallback(async (newFilters: Filter[]) => {
+    setIsLoading(true) // Show loading on current data
 
-      // Simulate API call delay
-      await new Promise((resolve) =>
-        setTimeout(resolve, 800 + Math.random() * 1200)
-      )
+    // Simulate API call delay
+    await new Promise((resolve) =>
+      setTimeout(resolve, 800 + Math.random() * 1200)
+    )
 
-      // Apply filters and update data after timeout
-      const filtered = applyFiltersToData(newFilters)
-      setFilteredData(filtered)
-      setIsLoading(false)
-    },
-    [applyFiltersToData]
-  )
+    // Apply filters and update data after timeout
+    const filtered = filterData(newFilters)
+    setFilteredData(filtered)
+    setIsLoading(false)
+  }, [])
 
   const handleFiltersChange = useCallback(
     (newFilters: Filter[]) => {
       const oldActive = getActiveFilters(filters)
       const newActive = getActiveFilters(newFilters)
 
-      // Convert Filter[] back to individual query states
-      const nextStates: Record<string, FilterState | boolean | null> = {}
-
-      // Reset all tracked fields first
-      Object.keys(filterStates).forEach((key) => {
-        nextStates[key] = null
-      })
-
-      // Set only active ones
-      newFilters.forEach((f) => {
-        if (f.values.length > 0) {
-          nextStates[f.field] = {
-            operator: f.operator,
-            values: f.values as string[],
-          }
-        }
-      })
-
-      // Set the filters marker if any filters exist
-      nextStates.filters = newFilters.length > 0 ? true : null
-
-      setFilterStates(nextStates)
+      // Always store the new array so the chips stay live while a value is
+      // still being typed; only a change to the ACTIVE set triggers a refetch.
+      setFilters(newFilters)
 
       if (JSON.stringify(oldActive) === JSON.stringify(newActive)) {
         return
@@ -722,7 +634,7 @@ export default function Pattern() {
         simulateAsyncFiltering(newFilters)
       }, 300)
     },
-    [filters, filterStates, setFilterStates, simulateAsyncFiltering]
+    [filters, simulateAsyncFiltering]
   )
 
   // Cleanup timeout on unmount
@@ -734,17 +646,7 @@ export default function Pattern() {
     }
   }, [])
 
-  // Initial data load - only run once on mount
-  useEffect(() => {
-    if (isInitialLoad.current) {
-      // Apply initial filter without loading state
-      const initialFiltered = applyFiltersToData(filters || [])
-      setFilteredData(initialFiltered)
-      isInitialLoad.current = false
-    }
-  }, [filters, applyFiltersToData])
-
-  const columns = useMemo<ColumnDef<IData>[]>(
+  const columns = useMemo<ColumnDef<DataGridFeatures, IData>[]>(
     () => [
       {
         accessorKey: "name",
@@ -911,27 +813,20 @@ export default function Pattern() {
     columns.map((column) => column.id as string)
   )
 
-  const table = useReactTable({
+  const table = useTable({
+    features: dataGridFeatures,
     columns,
     data: filteredData,
     pageCount: Math.ceil((filteredData?.length || 0) / pagination.pageSize),
     getRowId: (row: IData) => row.id,
     state: {
       pagination,
-      sorting: sorting || [],
+      sorting,
       columnOrder,
     },
     onColumnOrderChange: setColumnOrder,
     onPaginationChange: setPagination,
-    onSortingChange: (updater) => {
-      const nextSorting =
-        typeof updater === "function" ? updater(sorting || []) : updater
-      setSorting(nextSorting, { history: "replace", shallow: true })
-    },
-    getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
+    onSortingChange: setSorting,
   })
 
   return (
@@ -965,13 +860,7 @@ export default function Pattern() {
               if (filterTimeoutRef.current) {
                 clearTimeout(filterTimeoutRef.current)
               }
-              // Clear all filters in the URL
-              const clearedStates: Record<string, null> = {}
-              Object.keys(filterStates).forEach(
-                (key) => (clearedStates[key] = null)
-              )
-              clearedStates.filters = null
-              setFilterStates(clearedStates)
+              setFilters([])
               simulateAsyncFiltering([])
             }}
             disabled={isLoading}

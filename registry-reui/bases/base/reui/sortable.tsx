@@ -2,35 +2,36 @@
 "use client"
 
 import * as React from "react"
+import type { CSSProperties, ReactElement, ReactNode } from "react"
 import {
   Children,
   cloneElement,
   createContext,
-  CSSProperties,
   isValidElement,
-  ReactElement,
-  ReactNode,
   useCallback,
   useContext,
-  useLayoutEffect,
   useMemo,
   useState,
+  useSyncExternalStore,
 } from "react"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
+import type {
+  DragCancelEvent,
+  DragEndEvent,
+  DragStartEvent,
+  DropAnimation,
+  Modifiers,
+  UniqueIdentifier,
+} from "@dnd-kit/core"
 import {
   defaultDropAnimationSideEffects,
   DndContext,
-  DragEndEvent,
   DragOverlay,
-  DragStartEvent,
-  DropAnimation,
   KeyboardSensor,
   MeasuringStrategy,
-  Modifiers,
   MouseSensor,
   TouchSensor,
-  UniqueIdentifier,
   useSensor,
   useSensors,
   type DraggableSyntheticListeners,
@@ -84,7 +85,46 @@ const dropAnimationConfig: DropAnimation = {
   }),
 }
 
+/**
+ * Client-mount gate for the `createPortal` calls below, which need
+ * `document.body` and so must not run on the server or during hydration.
+ *
+ * A never-notifying subscription makes `useSyncExternalStore` return the server
+ * snapshot (`false`) while rendering on the server and while hydrating, then the
+ * client snapshot (`true`) once mounted - the same gate the previous
+ * `useLayoutEffect(() => setMounted(true), [])` provided, minus the extra render
+ * pass that `react-hooks/set-state-in-effect` flags. All three functions are
+ * module-scoped so their identities stay stable; an inline `getSnapshot` is the
+ * classic cause of an infinite re-subscribe loop.
+ */
+const subscribeToNothing = () => () => {}
+const getIsMounted = () => true
+const getIsMountedOnServer = () => false
+
+const MOUSE_SENSOR_OPTIONS = { activationConstraint: { distance: 10 } }
+const TOUCH_SENSOR_OPTIONS = {
+  activationConstraint: { delay: 250, tolerance: 5 },
+}
+const KEYBOARD_SENSOR_OPTIONS = {
+  coordinateGetter: sortableKeyboardCoordinates,
+}
+const MEASURING_CONFIG = {
+  droppable: { strategy: MeasuringStrategy.Always },
+}
+const STRATEGY_MAP = {
+  horizontal: rectSortingStrategy,
+  grid: rectSortingStrategy,
+  vertical: verticalListSortingStrategy,
+} as const
+
 // Multipurpose Sortable Component
+export interface SortableCommitMeta<T> {
+  event: DragEndEvent
+  activeIndex: number
+  overIndex: number
+  previousValue: T[]
+}
+
 export interface SortableRootProps<T> extends Omit<
   useRender.ComponentProps<"div">,
   "onDragStart" | "onDragEnd" | "children"
@@ -98,9 +138,12 @@ export interface SortableRootProps<T> extends Omit<
     activeIndex: number
     overIndex: number
   }) => void
+  onValueCommit?: (value: T[], meta: SortableCommitMeta<T>) => void
   strategy?: "horizontal" | "vertical" | "grid"
   onDragStart?: (event: DragStartEvent) => void
   onDragEnd?: (event: DragEndEvent) => void
+  onDragCancel?: (event: DragCancelEvent) => void
+  accessibility?: React.ComponentProps<typeof DndContext>["accessibility"]
   modifiers?: Modifiers
 }
 
@@ -111,33 +154,27 @@ function Sortable<T>({
   className,
   render,
   onMove,
+  onValueCommit,
   strategy = "vertical",
   onDragStart,
   onDragEnd,
+  onDragCancel,
+  accessibility,
   modifiers,
   children,
   ...props
 }: SortableRootProps<T>) {
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null)
-  const [mounted, setMounted] = useState(false)
-
-  useLayoutEffect(() => setMounted(true), [])
+  const mounted = useSyncExternalStore(
+    subscribeToNothing,
+    getIsMounted,
+    getIsMountedOnServer
+  )
 
   const sensors = useSensors(
-    useSensor(MouseSensor, {
-      activationConstraint: {
-        distance: 10,
-      },
-    }),
-    useSensor(TouchSensor, {
-      activationConstraint: {
-        delay: 250,
-        tolerance: 5,
-      },
-    }),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    })
+    useSensor(MouseSensor, MOUSE_SENSOR_OPTIONS),
+    useSensor(TouchSensor, TOUCH_SENSOR_OPTIONS),
+    useSensor(KeyboardSensor, KEYBOARD_SENSOR_OPTIONS)
   )
 
   const handleDragStart = useCallback(
@@ -164,35 +201,50 @@ function Sortable<T>({
         (item: T) => getItemValue(item) === over.id
       )
 
+      if (activeIndex === -1 || overIndex === -1) return
+
       if (activeIndex !== overIndex) {
         if (onMove) {
           onMove({ event, activeIndex, overIndex })
         } else {
           const newValue = arrayMove(value, activeIndex, overIndex)
           onValueChange(newValue)
+          onValueCommit?.(newValue, {
+            event,
+            activeIndex,
+            overIndex,
+            previousValue: value,
+          })
         }
       }
     },
-    [value, getItemValue, onValueChange, onMove, onDragEnd]
+    [value, getItemValue, onValueChange, onMove, onDragEnd, onValueCommit]
   )
 
-  const handleDragCancel = useCallback(() => {
-    setActiveId(null)
-  }, [])
+  const handleDragCancel = useCallback(
+    (event: DragCancelEvent) => {
+      setActiveId(null)
+      onDragCancel?.(event)
+    },
+    [onDragCancel]
+  )
 
-  const getStrategy = () => {
-    switch (strategy) {
-      case "horizontal":
-        return rectSortingStrategy
-      case "grid":
-        return rectSortingStrategy
-      case "vertical":
-      default:
-        return verticalListSortingStrategy
+  const itemIds = useMemo(() => {
+    const ids = value.map(getItemValue)
+    if (process.env.NODE_ENV !== "production") {
+      const seen = new Set<string>()
+      for (const id of ids) {
+        if (seen.has(id)) {
+          console.warn(
+            `[Sortable] Duplicate item id "${id}". Item ids must be unique, or drag and drop will misbehave.`
+          )
+          break
+        }
+        seen.add(id)
+      }
     }
-  }
-
-  const itemIds = useMemo(() => value.map(getItemValue), [value, getItemValue])
+    return ids
+  }, [value, getItemValue])
 
   const contextValue = useMemo(
     () => ({ activeId, modifiers }),
@@ -226,16 +278,16 @@ function Sortable<T>({
       <DndContext
         sensors={sensors}
         modifiers={modifiers}
-        measuring={{
-          droppable: {
-            strategy: MeasuringStrategy.Always,
-          },
-        }}
+        accessibility={accessibility}
+        measuring={MEASURING_CONFIG}
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
         onDragCancel={handleDragCancel}
       >
-        <SortableContext items={itemIds} strategy={getStrategy()}>
+        <SortableContext
+          items={itemIds}
+          strategy={STRATEGY_MAP[strategy] ?? verticalListSortingStrategy}
+        >
           {useRender({
             defaultTagName: "div",
             render,
@@ -377,9 +429,11 @@ function SortableOverlay({
   ...props
 }: SortableOverlayProps) {
   const { activeId, modifiers } = useContext(SortableInternalContext)
-  const [mounted, setMounted] = useState(false)
-
-  useLayoutEffect(() => setMounted(true), [])
+  const mounted = useSyncExternalStore(
+    subscribeToNothing,
+    getIsMounted,
+    getIsMountedOnServer
+  )
 
   const content =
     activeId && children

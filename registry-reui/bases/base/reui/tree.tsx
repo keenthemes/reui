@@ -4,7 +4,7 @@
 import { createContext, useContext } from "react"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
-import { ItemInstance } from "@headless-tree/core"
+import type { ItemInstance } from "@headless-tree/core"
 
 import { cn } from "@/registry/bases/base/lib/utils"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"

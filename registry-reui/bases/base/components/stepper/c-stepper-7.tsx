@@ -97,10 +97,7 @@ export default function Pattern() {
             step={index + 1}
             className="relative flex-1 items-start"
           >
-            <StepperTrigger
-              className="flex grow flex-col items-start justify-center gap-2.5"
-              asChild
-            >
+            <StepperTrigger className="flex grow flex-col items-start justify-center gap-2.5">
               <StepperIndicator className="data-[state=inactive]:border-border data-[state=inactive]:text-muted-foreground data-[state=completed]:bg-success size-8 border-2 data-[state=completed]:text-white data-[state=inactive]:bg-transparent">
                 {step.icon}
               </StepperIndicator>

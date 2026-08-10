@@ -183,6 +183,33 @@
         "order": 7,
         "gridSize": 1
       }
+    },
+    {
+      "name": "c-sortable-8",
+      "type": "registry:block",
+      "title": "Sortable list persisted to a backend",
+      "categories": [
+        "sortable"
+      ],
+      "description": "Persist the new order with onValueCommit, optimistic updates, and Sonner rollback",
+      "registryDependencies": [
+        "badge",
+        "sortable"
+      ],
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "components/sortable/c-sortable-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-sortable-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8,
+        "gridSize": 1
+      }
     }
   ]
 }

@@ -2,6 +2,7 @@ import Link from "next/link"
 import { type RegistryItem } from "shadcn/schema"
 
 import { getCanonicalComponentDocPath } from "@/lib/component-doc-paths"
+import { filterAvailableBases } from "@/lib/registry-bases"
 import { cn } from "@/lib/utils"
 import { BASES } from "@/registry/bases"
 
@@ -14,15 +15,15 @@ export function DocsBaseSwitcher({
   component: string
   className?: string
 }) {
-  const orderedBases = [...(BASES as RegistryItem[])].sort((a, b) => {
+  const availableBases = filterAvailableBases(BASES as RegistryItem[])
+
+  const orderedBases = [...availableBases].sort((a, b) => {
     if (a.name === "base") return -1
     if (b.name === "base") return 1
     return 0
   })
 
-  const activeBase = (BASES as RegistryItem[]).find(
-    (baseItem) => base === baseItem.name
-  )
+  const activeBase = availableBases.find((baseItem) => base === baseItem.name)
 
   return (
     <div className={cn("inline-flex w-full items-center gap-6", className)}>

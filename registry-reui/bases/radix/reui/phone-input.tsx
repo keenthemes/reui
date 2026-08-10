@@ -1,12 +1,7 @@
 "use client"
 
-import {
-  ComponentProps,
-  createContext,
-  useContext,
-  useMemo,
-  useState,
-} from "react"
+import type { ComponentProps } from "react"
+import { createContext, useContext, useMemo, useState } from "react"
 import * as BasePhoneInput from "react-phone-number-input"
 import flags from "react-phone-number-input/flags"
 
@@ -93,10 +88,8 @@ function InputComponent({ className, ...props }: ComponentProps<typeof Input>) {
     <Input
       className={cn(
         "rounded-s-none focus:z-1",
-        variant === "sm" &&
-          "h-7",
-        variant === "lg" &&
-          "h-9",
+        variant === "sm" && "h-7",
+        variant === "lg" && "h-9",
         className
       )}
       {...props}
@@ -145,7 +138,7 @@ function CountrySelect({
             variant="outline"
             size={variant}
             className={cn(
-              "style-vega:rounded-s-md style-nova:rounded-s-lg style-maia:rounded-s-4xl style-lyra:rounded-s-none style-mira:rounded-s-md style-luma:rounded-s-3xl style-rhea:rounded-s-2xl style-sera:rounded-s-none rounded-e-none flex gap-1 border-e-0 px-2.5 py-0 leading-none hover:bg-transparent focus:z-10 data-pressed:bg-transparent",
+              "style-vega:rounded-s-md style-nova:rounded-s-lg style-maia:rounded-s-4xl style-lyra:rounded-s-none style-mira:rounded-s-md style-luma:rounded-s-3xl style-rhea:rounded-s-2xl style-sera:rounded-s-none flex gap-1 rounded-e-none border-e-0 px-2.5 py-0 leading-none hover:bg-transparent focus:z-10 data-pressed:bg-transparent",
               disabled && "opacity-50"
             )}
             disabled={disabled}

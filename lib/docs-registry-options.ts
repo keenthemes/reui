@@ -1,4 +1,5 @@
 import { getIconLibraryFromStyle } from "@/lib/icons"
+import { filterAvailableBases } from "@/lib/registry-bases"
 import {
   BASES,
   iconLibraries,
@@ -10,7 +11,9 @@ import {
 
 export const DEFAULT_DOCS_STYLE_NAME = "base-nova"
 
-const VALID_BASE_NAMES = new Set<string>(BASES.map((base) => base.name))
+const VALID_BASE_NAMES = new Set<string>(
+  filterAvailableBases(BASES).map((base) => base.name)
+)
 const VALID_STYLE_NAMES = new Set<string>(STYLES.map((style) => style.name))
 const VALID_ICON_LIBRARY_NAMES = new Set<string>(Object.keys(iconLibraries))
 

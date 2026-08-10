@@ -1,13 +1,7 @@
 "use client"
 
-import {
-  PointerEvent,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
+import type { PointerEvent, ReactNode } from "react"
 import { useDataGrid } from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
 import { ScrollArea as ScrollAreaPrimitive } from "@base-ui/react/scroll-area"
 
@@ -96,8 +90,9 @@ function DataGridScrollArea({
   orientation = "both",
   ...props
 }: DataGridScrollAreaProps) {
-  const { props: dataGridProps } = useDataGrid()
+  const { props: dataGridProps, table } = useDataGrid()
   const containerRef = useRef<HTMLDivElement>(null)
+  const overlayRef = useRef<HTMLDivElement | null>(null)
   const viewportRef = useRef<HTMLDivElement | null>(null)
   const dragRef = useRef<{
     pointerId: number
@@ -116,6 +111,11 @@ function DataGridScrollArea({
   const showVertical = orientation !== "horizontal"
   const usesCustomVerticalScrollbar =
     showVertical && !!dataGridProps.tableLayout?.headerSticky
+  // Pinned columns are sticky and never scroll, so the horizontal scrollbar
+  // track is inset to span only the scrollable center region between them.
+  const isColumnsPinnable = !!dataGridProps.tableLayout?.columnsPinnable
+  const scrollbarInsetStart = isColumnsPinnable ? table.getStartTotalSize() : 0
+  const scrollbarInsetEnd = isColumnsPinnable ? table.getEndTotalSize() : 0
   const [hasCustomVerticalOverflow, setHasCustomVerticalOverflow] =
     useState(false)
 
@@ -125,12 +125,19 @@ function DataGridScrollArea({
     document.body.style.webkitUserSelect = ""
   }, [])
 
-  const resetMetrics = useCallback(() => {
-    const container = containerRef.current
+  // The overlay is mounted one commit after the sync that detected overflow,
+  // so it misses that sync's write. Seeding it from the ref callback lands the
+  // geometry during commit, before the browser paints the track.
+  const setOverlayRef = useCallback((node: HTMLDivElement | null) => {
+    overlayRef.current = node
 
-    if (container && !areMetricsEqual(INITIAL_METRICS, metricsRef.current)) {
-      applyMetrics(container, INITIAL_METRICS)
+    if (node) applyMetrics(node, metricsRef.current)
+  }, [])
+
+  const resetMetrics = useCallback(() => {
+    if (!areMetricsEqual(INITIAL_METRICS, metricsRef.current)) {
       metricsRef.current = INITIAL_METRICS
+      if (overlayRef.current) applyMetrics(overlayRef.current, INITIAL_METRICS)
     }
 
     setHasCustomVerticalOverflow((prev) => (prev ? false : prev))
@@ -198,8 +205,13 @@ function DataGridScrollArea({
     }
 
     if (!areMetricsEqual(nextMetrics, metricsRef.current)) {
-      applyMetrics(container, nextMetrics)
       metricsRef.current = nextMetrics
+      // Scoped to the overlay, never to the container. These four properties
+      // inherit, and thumbTop changes on essentially every scroll frame, so
+      // writing them on the element that wraps the whole grid invalidates
+      // computed style for every row and cell each frame. The overlay subtree
+      // is their only reader.
+      if (overlayRef.current) applyMetrics(overlayRef.current, nextMetrics)
     }
 
     setHasCustomVerticalOverflow((prev) =>
@@ -220,21 +232,6 @@ function DataGridScrollArea({
       return
     }
 
-    observedElementsRef.current = {
-      header: container.querySelector(
-        '[data-slot="data-grid-table"] thead'
-      ) as HTMLElement | null,
-      horizontalScrollbar: container.querySelector(
-        '[data-slot="data-grid-scrollbar"][data-orientation="horizontal"]'
-      ) as HTMLElement | null,
-      table: container.querySelector(
-        '[data-slot="data-grid-table"]'
-      ) as HTMLElement | null,
-      tableViewport: container.querySelector(
-        '[data-slot="data-grid-table-viewport"]'
-      ) as HTMLElement | null,
-    }
-
     let frame = 0
 
     const scheduleSync = () => {
@@ -242,25 +239,69 @@ function DataGridScrollArea({
       frame = window.requestAnimationFrame(syncCustomVerticalScrollbar)
     }
 
-    scheduleSync()
-    viewport.addEventListener("scroll", scheduleSync, { passive: true })
-
     const observer =
       typeof ResizeObserver === "undefined"
         ? null
         : new ResizeObserver(scheduleSync)
+    const observed = new Set<HTMLElement>()
 
-    observer?.observe(viewport)
-    observedElementsRef.current.header &&
-      observer?.observe(observedElementsRef.current.header)
-    observedElementsRef.current.table &&
-      observer?.observe(observedElementsRef.current.table)
-    observedElementsRef.current.tableViewport &&
-      observer?.observe(observedElementsRef.current.tableViewport)
+    const observeElement = (element: HTMLElement | null) => {
+      if (element && observer && !observed.has(element)) {
+        observer.observe(element)
+        observed.add(element)
+      }
+    }
+
+    const resolveObservedElements = () => {
+      observedElementsRef.current = {
+        header: container.querySelector(
+          '[data-slot="data-grid-table"] thead'
+        ) as HTMLElement | null,
+        horizontalScrollbar: container.querySelector(
+          '[data-slot="data-grid-scrollbar"][data-orientation="horizontal"]'
+        ) as HTMLElement | null,
+        table: container.querySelector(
+          '[data-slot="data-grid-table"]'
+        ) as HTMLElement | null,
+        tableViewport: container.querySelector(
+          '[data-slot="data-grid-table-viewport"]'
+        ) as HTMLElement | null,
+      }
+
+      observeElement(observedElementsRef.current.header)
+      observeElement(observedElementsRef.current.table)
+      observeElement(observedElementsRef.current.tableViewport)
+
+      return !!(
+        observedElementsRef.current.header && observedElementsRef.current.table
+      )
+    }
+
+    observeElement(viewport)
+    const resolvedOnMount = resolveObservedElements()
+
+    scheduleSync()
+    viewport.addEventListener("scroll", scheduleSync, { passive: true })
+
+    // A table that mounts after this effect (empty state swapped for data)
+    // would otherwise never be observed and the custom scrollbar would
+    // overlap the sticky header. One-shot: disconnects once resolved.
+    let mutationObserver: MutationObserver | null = null
+    if (!resolvedOnMount && typeof MutationObserver !== "undefined") {
+      mutationObserver = new MutationObserver(() => {
+        if (resolveObservedElements()) {
+          mutationObserver?.disconnect()
+          mutationObserver = null
+          scheduleSync()
+        }
+      })
+      mutationObserver.observe(container, { childList: true, subtree: true })
+    }
 
     return () => {
       cancelAnimationFrame(frame)
       observer?.disconnect()
+      mutationObserver?.disconnect()
       viewport.removeEventListener("scroll", scheduleSync)
       clearDragState()
     }
@@ -352,6 +393,10 @@ function DataGridScrollArea({
     <div ref={containerRef} className="relative">
       <ScrollAreaPrimitive.Root
         data-slot="data-grid-scroll-area"
+        // Styling hook: present while the sticky-header scroll mode detects
+        // vertical overflow, so consumers can style scrollable vs short
+        // grids with a plain ancestor attribute selector.
+        data-overflow-vertical={hasCustomVerticalOverflow ? "true" : undefined}
         className={cn("relative", className)}
         {...props}
       >
@@ -371,6 +416,14 @@ function DataGridScrollArea({
             data-orientation="horizontal"
             orientation="horizontal"
             className={SCROLLBAR_CLASSNAME}
+            style={
+              scrollbarInsetStart > 0 || scrollbarInsetEnd > 0
+                ? {
+                    marginInlineStart: scrollbarInsetStart || undefined,
+                    marginInlineEnd: scrollbarInsetEnd || undefined,
+                  }
+                : undefined
+            }
           >
             <ScrollAreaPrimitive.Thumb
               data-slot="data-grid-thumb"
@@ -396,6 +449,7 @@ function DataGridScrollArea({
 
       {usesCustomVerticalScrollbar && hasCustomVerticalOverflow && (
         <div
+          ref={setOverlayRef}
           aria-hidden="true"
           className="pointer-events-none absolute inset-e-0 top-(--data-grid-scrollbar-header-height) z-20 h-(--data-grid-scrollbar-track-height)"
         >

@@ -4,6 +4,8 @@ import { useMemo, useState } from "react"
 import {
   DataGrid,
   DataGridContainer,
+  dataGridFeatures,
+  type DataGridFeatures,
 } from "@/registry-reui/bases/base/reui/data-grid/data-grid"
 import { DataGridPagination } from "@/registry-reui/bases/base/reui/data-grid/data-grid-pagination"
 import { DataGridScrollArea } from "@/registry-reui/bases/base/reui/data-grid/data-grid-scroll-area"
@@ -11,14 +13,9 @@ import {
   DataGridTableDndRowHandle,
   DataGridTableDndRows,
 } from "@/registry-reui/bases/base/reui/data-grid/data-grid-table-dnd-rows"
-import { DragEndEvent, UniqueIdentifier } from "@dnd-kit/core"
+import { DragEndEvent, Modifier, UniqueIdentifier } from "@dnd-kit/core"
 import { arrayMove } from "@dnd-kit/sortable"
-import {
-  ColumnDef,
-  getCoreRowModel,
-  getSortedRowModel,
-  useReactTable,
-} from "@tanstack/react-table"
+import { ColumnDef, useTable } from "@tanstack/react-table"
 
 import {
   Avatar,
@@ -40,6 +37,14 @@ interface IData {
   location: string
   balance: number
 }
+
+// Let the carried row follow the pointer sideways as well as up and down.
+// The default restriction pins it to the column it came from, which puts the
+// clone directly on top of the rows you are trying to read; drifting it a
+// little to the side lifts it clear of them, so the drop indicator underneath
+// stays visible and the seam you are aiming at is much easier to judge. The
+// primitive still rails the vertical axis, so the row cannot leave the grid.
+const FOLLOW_POINTER: Modifier[] = [({ transform }) => transform]
 
 const demoData: IData[] = [
   {
@@ -135,7 +140,7 @@ const demoData: IData[] = [
 ]
 
 export default function Pattern() {
-  const columns = useMemo<ColumnDef<IData>[]>(
+  const columns = useMemo<ColumnDef<DataGridFeatures, IData>[]>(
     () => [
       {
         id: "drag",
@@ -238,12 +243,16 @@ export default function Pattern() {
     }
   }
 
-  const table = useReactTable({
+  const table = useTable({
+    features: dataGridFeatures,
+    // No pagination row model on v8, so every row rendered. The shared
+    // bundle registers one, and manualPagination is v9's way to say the
+    // data is already the page - it keeps the pagination APIs while
+    // leaving the rows unsliced.
+    manualPagination: true,
     columns,
     data,
     getRowId: (row: IData) => row.id,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
   })
 
   return (
@@ -258,6 +267,7 @@ export default function Pattern() {
             <DataGridTableDndRows
               handleDragEnd={handleDragEnd}
               dataIds={dataIds}
+              modifiers={FOLLOW_POINTER}
             />
           </DataGridScrollArea>
         </DataGridContainer>

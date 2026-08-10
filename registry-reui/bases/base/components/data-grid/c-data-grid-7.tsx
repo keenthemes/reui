@@ -4,6 +4,8 @@ import { useEffect, useMemo, useState } from "react"
 import {
   DataGrid,
   DataGridContainer,
+  dataGridFeatures,
+  type DataGridFeatures,
 } from "@/registry-reui/bases/base/reui/data-grid/data-grid"
 import { DataGridPagination } from "@/registry-reui/bases/base/reui/data-grid/data-grid-pagination"
 import { DataGridScrollArea } from "@/registry-reui/bases/base/reui/data-grid/data-grid-scroll-area"
@@ -14,14 +16,10 @@ import {
 } from "@/registry-reui/bases/base/reui/data-grid/data-grid-table"
 import {
   ColumnDef,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
   PaginationState,
   RowSelectionState,
   SortingState,
-  useReactTable,
+  useTable,
 } from "@tanstack/react-table"
 
 import { cn } from "@/lib/utils"
@@ -251,7 +249,7 @@ export default function Pattern() {
     }
   }, [rowSelection])
 
-  const columns = useMemo<ColumnDef<IData>[]>(
+  const columns = useMemo<ColumnDef<DataGridFeatures, IData>[]>(
     () => [
       {
         accessorKey: "id",
@@ -349,7 +347,8 @@ export default function Pattern() {
     []
   )
 
-  const table = useReactTable({
+  const table = useTable({
+    features: dataGridFeatures,
     columns,
     data: demoData,
     pageCount: Math.ceil((demoData?.length || 0) / pagination.pageSize),
@@ -363,10 +362,6 @@ export default function Pattern() {
     onRowSelectionChange: setRowSelection,
     onPaginationChange: setPagination,
     onSortingChange: setSorting,
-    getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
   })
 
   return (

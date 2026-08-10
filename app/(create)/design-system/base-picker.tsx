@@ -3,6 +3,7 @@
 import * as React from "react"
 
 import { useConfig } from "@/hooks/use-config"
+import { filterAvailableBases } from "@/lib/registry-bases"
 import { BASES, type Base } from "@/registry/config"
 import {
   Picker,
@@ -13,6 +14,10 @@ import {
   PickerTrigger,
 } from "@/app/(create)/design-system/picker"
 import { useDesignSystemSearchParams } from "@/app/(create)/lib/search-params"
+
+// The mirror lists every shadcn base, including ones this repo does not ship
+// (React Aria). Only offer the ones we actually serve.
+const AVAILABLE_BASES = filterAvailableBases(BASES as any[])
 
 export function BasePicker({
   isMobile,
@@ -31,15 +36,15 @@ export function BasePicker({
 
   const currentBase = React.useMemo(
     () =>
-      (BASES as any[]).find(
+      AVAILABLE_BASES.find(
         (base) => base.name === (params.base ?? config.base)
-      ),
+      ) ?? AVAILABLE_BASES[0],
     [params.base, config.base]
   )
 
   const handleValueChange = React.useCallback(
     (value: string) => {
-      const newBase = (BASES as any[]).find((base) => base.name === value)
+      const newBase = AVAILABLE_BASES.find((base) => base.name === value)
       if (!newBase) {
         return
       }
@@ -80,7 +85,7 @@ export function BasePicker({
           onValueChange={handleValueChange}
         >
           <PickerGroup>
-            {(BASES as any[]).map((base) => (
+            {AVAILABLE_BASES.map((base) => (
               <PickerRadioItem key={base.name} value={base.name}>
                 {base.meta?.logo && (
                   <div

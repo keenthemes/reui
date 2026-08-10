@@ -11,7 +11,7 @@ export default function Pattern() {
         <RadioGroupItem
           value="blue"
           id="color-blue"
-          className="border-blue-500 data-checked:border-blue-500 [&_.cn-radio-group-indicator]:text-blue-500"
+          className="border-blue-500 data-checked:border-blue-500 [&_[data-slot=radio-group-indicator]]:text-blue-500"
         />
         <FieldLabel htmlFor="color-blue">Blue</FieldLabel>
       </Field>
@@ -19,7 +19,7 @@ export default function Pattern() {
         <RadioGroupItem
           value="green"
           id="color-green"
-          className="border-green-500 data-checked:border-green-500 [&_.cn-radio-group-indicator]:text-green-500"
+          className="border-green-500 data-checked:border-green-500 [&_[data-slot=radio-group-indicator]]:text-green-500"
         />
         <FieldLabel htmlFor="color-green">Green</FieldLabel>
       </Field>
@@ -27,7 +27,7 @@ export default function Pattern() {
         <RadioGroupItem
           value="yellow"
           id="color-yellow"
-          className="border-yellow-500 data-checked:border-yellow-500 [&_.cn-radio-group-indicator]:text-yellow-500"
+          className="border-yellow-500 data-checked:border-yellow-500 [&_[data-slot=radio-group-indicator]]:text-yellow-500"
         />
         <FieldLabel htmlFor="color-yellow">Yellow</FieldLabel>
       </Field>

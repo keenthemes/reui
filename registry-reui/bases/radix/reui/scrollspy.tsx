@@ -1,6 +1,7 @@
 "use client"
 
-import { ReactNode, RefObject, useCallback, useEffect, useRef } from "react"
+import type { ReactNode, RefObject } from "react"
+import { useCallback, useEffect, useRef } from "react"
 
 type ScrollspyProps = {
   children: ReactNode

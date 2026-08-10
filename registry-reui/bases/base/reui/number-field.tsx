@@ -1,8 +1,10 @@
 "use client"
 
-import { createContext, ReactNode, useContext, useId } from "react"
+import type { ReactNode } from "react"
+import { createContext, useContext, useId } from "react"
 import { NumberField as NumberFieldPrimitive } from "@base-ui/react/number-field"
-import { cva, VariantProps } from "class-variance-authority"
+import type { VariantProps } from "class-variance-authority"
+import { cva } from "class-variance-authority"
 
 import { cn } from "@/registry/bases/base/lib/utils"
 import { Label } from "@/registry/bases/base/ui/label"
@@ -19,8 +21,7 @@ const numberFieldGroupVariants = cva(
     variants: {
       size: {
         sm: "h-7 text-sm",
-        default:
-          "h-8 text-sm",
+        default: "h-8 text-sm",
         lg: "h-9 text-sm",
       },
     },
@@ -53,8 +54,7 @@ const numberFieldInputVariants = cva(
     variants: {
       size: {
         sm: "px-2 py-0.5",
-        default:
-          "px-2.5 py-1",
+        default: "px-2.5 py-1",
         lg: "px-2.5 py-1.5",
       },
     },

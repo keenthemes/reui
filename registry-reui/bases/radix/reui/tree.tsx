@@ -1,15 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
-import {
-  ButtonHTMLAttributes,
-  createContext,
-  CSSProperties,
-  Fragment,
-  HTMLAttributes,
-  useContext,
-} from "react"
-import { ItemInstance } from "@headless-tree/core"
+import type { ButtonHTMLAttributes, CSSProperties, HTMLAttributes } from "react"
+import { createContext, Fragment, useContext } from "react"
+import type { ItemInstance } from "@headless-tree/core"
 import { Slot } from "radix-ui"
 
 import { cn } from "@/registry/bases/radix/lib/utils"

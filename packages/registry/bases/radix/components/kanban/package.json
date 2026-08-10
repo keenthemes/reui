@@ -18,7 +18,8 @@
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
     "class-variance-authority": "^0.7.1",
-    "radix-ui": "^1.4.3"
+    "radix-ui": "^1.4.3",
+    "sonner": "^2.0.7"
   },
   "peerDependencies": {
     "react": ">=18",

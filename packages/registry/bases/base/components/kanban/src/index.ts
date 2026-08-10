@@ -7,6 +7,7 @@ export const componentPreviewLoaders = {
   "c-kanban-3": () => import("@/registry-reui/bases/base/components/kanban/c-kanban-3.tsx"),
   "c-kanban-4": () => import("@/registry-reui/bases/base/components/kanban/c-kanban-4.tsx"),
   "c-kanban-5": () => import("@/registry-reui/bases/base/components/kanban/c-kanban-5.tsx"),
+  "c-kanban-6": () => import("@/registry-reui/bases/base/components/kanban/c-kanban-6.tsx"),
 } as const
 
 export type ComponentName = keyof typeof componentPreviewLoaders

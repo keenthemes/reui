@@ -1,8 +1,9 @@
 "use client"
 
-import { ReactElement } from "react"
+import type { ReactElement } from "react"
 import { getColumnHeaderLabel } from "@/registry-reui/bases/base/reui/data-grid/data-grid"
-import { Table } from "@tanstack/react-table"
+import type { DataGridFeatures } from "@/registry-reui/bases/base/reui/data-grid/data-grid"
+import type { Table } from "@tanstack/react-table"
 
 import {
   DropdownMenu,
@@ -13,11 +14,11 @@ import {
   DropdownMenuTrigger,
 } from "@/registry/bases/base/ui/dropdown-menu"
 
-function DataGridColumnVisibility<TData>({
+function DataGridColumnVisibility<TData extends object>({
   table,
   trigger,
 }: {
-  table: Table<TData>
+  table: Table<DataGridFeatures, TData>
   trigger: ReactElement<Record<string, unknown>>
 }) {
   return (

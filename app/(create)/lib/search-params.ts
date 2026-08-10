@@ -31,6 +31,7 @@ import {
   type StyleName,
   type ThemeName,
 } from "@/registry/config"
+import { filterAvailableBases } from "@/lib/registry-bases"
 import { FONT_DEFINITIONS } from "@/lib/font-definitions"
 
 // Pull the list of valid font names from the pure font-definitions
@@ -47,7 +48,11 @@ const fontHeadingLiterals = [
 ] as const satisfies readonly FontHeadingValue[]
 
 const designSystemSearchParams = {
-  base: parseAsStringLiteral<BaseName>(BASES.map((b) => b.name)),
+  // Only bases this repo ships are accepted from the URL, so a stale or
+  // hand-typed ?base=aria falls back to the default instead of a dead base.
+  base: parseAsStringLiteral<BaseName>(
+    filterAvailableBases(BASES).map((b) => b.name)
+  ),
   item: parseAsString.withOptions({ shallow: true }),
   iconLibrary: parseAsStringLiteral<IconLibraryName>(
     Object.values(iconLibraries).map((i) => i.name)

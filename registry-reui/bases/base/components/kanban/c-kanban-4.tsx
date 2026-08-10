@@ -48,7 +48,7 @@ function TaskCard({
         <p className="text-sm font-medium">{task.title}</p>
         <Progress
           value={task.progress}
-          className="[&_.cn-progress-track]:h-1"
+          className="[&_[data-slot=progress-track]]:h-1"
         />
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-1.5">

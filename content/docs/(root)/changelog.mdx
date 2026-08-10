@@ -3,6 +3,70 @@ title: Changelog
 description: Latest updates and announcements.
 ---
 
+## v2.2.0 - 5 August, 2026.
+
+**Data Grid on TanStack Table v9:**
+
+- The Data Grid now runs on TanStack Table v9. Tables are created with `useTable({ features: dataGridFeatures })`, so there is no more per-table `getCoreRowModel` / `getSortedRowModel` / `getFilteredRowModel` / `getPaginationRowModel` wiring - [Docs](/docs/components/base/data-grid).
+- New public surface on the installed primitive: the ready-made `dataGridFeatures` bundle, plus the `DataGridFeatures`, `DataGridTableInstance`, `DataGridColumnMeta` and `DataGridLayoutProps` types - [Docs](/docs/components/base/data-grid).
+- Installing the Data Grid no longer widens TanStack's `ColumnMeta` for every other table in your app. The global module augmentation is gone, replaced by a `DataGridColumnMeta` interface wired through the bundle's `columnMeta` slot - [Docs](/docs/components/base/data-grid).
+- The React Compiler opt-out is no longer the default. `"use no memo"` came out of 78 registry files; the primitive reads state through TanStack's `Subscribe` instead, and the few examples that still need it each carry a comment saying why - [Preview](/components/data-grid).
+- All 30 Data Grid examples, plus the two Filters examples that drive a grid, were updated for v9 in both the Base UI and Radix twins - [Preview](/components/data-grid).
+
+**Breaking changes:**
+
+- The Data Grid now needs `@tanstack/react-table` v9 in your project. Upgrade the dependency before pulling this version - [Docs](/docs/components/base/data-grid).
+- Column pinning moved from `left` / `right` to `start` / `end`. That covers `initialState.columnPinning`, `column.pin()` and `getIsPinned()`, and the emitted `data-pinned`, `data-last-col` and `data-outer-pinned-col` attributes. CSS selecting `[data-pinned="left"]` needs updating to `[data-pinned="start"]` - [Docs](/docs/components/base/data-grid).
+- `DataGridProps` takes a leading `TFeatures` generic, `useDataGrid` is generic, and the sub-component prop types are feature-parameterized. `VisibilityState` is now `ColumnVisibilityState` - [Docs](/docs/components/base/data-grid).
+
+**Fixes & Improvements:**
+
+- Row drag and drop holds the other rows still instead of sliding them apart, and marks the destination with an indicator bar. New `dropIndicator` prop, on by default - [Preview](/components/data-grid).
+- The row drag clone is portalled to the document body and measured to the row it was lifted from, so it stays under the pointer inside containers that create a fixed-position containing block - [Preview](/components/data-grid).
+- Columns marked `meta.autoSize` stay resizable. A width you drag by hand is no longer overwritten by the next viewport measurement - [Preview](/components/data-grid).
+- Column resizing draws a full-height indicator at the pointer, exposed as `data-slot="data-grid-table-resize-indicator"` for styling - [Preview](/components/data-grid).
+- The Icon Tile corner radius now scales with the tile instead of using one flat value, so the softer styles no longer render their `xs` and `sm` sizes as full circles - [Preview](/components/icon-tile).
+
+## v2.1.8 - 2 August, 2026.
+
+**Features:**
+
+- Data Grid tree rows with recursive sub-rows at any depth, and a row expand toggle that supplies per-level indentation - [Preview](/components/data-grid).
+- Tree rows work with every existing Data Grid feature: sorting keeps subtrees attached to their parents, pinned and resizable columns keep the indent intact, and virtualization treats expanded children as ordinary rows - [Docs](/docs/components/base/data-grid).
+- Cross-parent row drag and drop in tree grids, with drop indicators and depth guides through `renderRowDecoration` - [Docs](/docs/components/base/data-grid).
+- 1 new Data Grid tree rows component added - [Preview](/components/data-grid).
+
+## v2.1.7 - 29 July, 2026.
+
+**Fixes & Improvements:**
+
+- Data Grid component improvements - [Preview](/components/data-grid).
+- Event Calendar component improvements - [Preview](/components/event-calendar).
+- Gantt component improvements - [Preview](/components/gantt).
+
+## v2.1.6 - 24 July, 2026.
+
+**Features:**
+
+- New Icon Tile component with five surface variants (outline, elevated, soft, solid, frame) - [Preview](/components/icon-tile).
+- 16 new Icon Tile components added - [Preview](/components/icon-tile).
+
+## v2.1.5 - 22 July, 2026.
+
+**Features:**
+
+- New Event Calendar component with month, week, day, N-day and agenda views, drag-and-drop scheduling, recurring events, and time zones - [Preview](/components/event-calendar).
+- 5 new Event Calendar components added - [Preview](/components/event-calendar).
+- New Gantt component with split tree and timeline panes, day to year scales, zoom, drag and resize scheduling, and summary rollups - [Preview](/components/gantt).
+- 5 new Gantt components added - [Preview](/components/gantt).
+- 3 new Filters components added - [Preview](/components/filters).
+- 1 new Kanban component added - [Preview](/components/kanban).
+- 1 new Sortable component added - [Preview](/components/sortable).
+
+**Fixes & Improvements:**
+
+- Component category thumbnails no longer stall on a loading spinner when a screenshot is missing.
+
 ## v2.0.1 - 17 March, 2026.
 
 **Features:**

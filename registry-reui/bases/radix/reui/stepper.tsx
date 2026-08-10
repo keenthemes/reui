@@ -2,12 +2,11 @@
 
 "use client"
 
+import type { HTMLAttributes, ReactElement } from "react"
 import {
   Children,
   createContext,
-  HTMLAttributes,
   isValidElement,
-  ReactElement,
   useCallback,
   useContext,
   useEffect,
@@ -15,6 +14,7 @@ import {
   useRef,
   useState,
 } from "react"
+import { Slot } from "radix-ui"
 
 import { cn } from "@/registry/bases/radix/lib/utils"
 
@@ -286,20 +286,12 @@ function StepperTrigger({
     }
   }
 
-  if (asChild) {
-    return (
-      <span
-        data-slot="stepper-trigger"
-        data-state={state}
-        className={className}
-      >
-        {children}
-      </span>
-    )
-  }
+  // `asChild` composes onto the consumer's element via Slot, so the trigger
+  // keeps its ref, tab semantics, and keyboard handlers either way.
+  const Comp = asChild ? Slot.Root : "button"
 
   return (
-    <button
+    <Comp
       ref={btnRef}
       role="tab"
       id={id}
@@ -320,7 +312,7 @@ function StepperTrigger({
       {...props}
     >
       {children}
-    </button>
+    </Comp>
   )
 }
 
@@ -365,7 +357,7 @@ function StepperSeparator({ className }: React.ComponentProps<"div">) {
       data-slot="stepper-separator"
       data-state={state}
       className={cn(
-        "bg-muted style-vega:rounded-sm style-nova:rounded-sm style-maia:rounded-full style-lyra:rounded-none style-mira:rounded-sm style-luma:rounded-full style-rhea:rounded-full style-sera:rounded-none group-data-[orientation=horizontal]/stepper-nav:h-0.5 group-data-[orientation=vertical]/stepper-nav:h-12 group-data-[orientation=vertical]/stepper-nav:w-0.5 m-0.5 group-data-[orientation=horizontal]/stepper-nav:flex-1",
+        "bg-muted style-vega:rounded-sm style-nova:rounded-sm style-maia:rounded-full style-lyra:rounded-none style-mira:rounded-sm style-luma:rounded-full style-rhea:rounded-full style-sera:rounded-none m-0.5 group-data-[orientation=horizontal]/stepper-nav:h-0.5 group-data-[orientation=horizontal]/stepper-nav:flex-1 group-data-[orientation=vertical]/stepper-nav:h-12 group-data-[orientation=vertical]/stepper-nav:w-0.5",
         className
       )}
     />
@@ -379,10 +371,7 @@ function StepperTitle({ children, className }: React.ComponentProps<"h3">) {
     <h3
       data-slot="stepper-title"
       data-state={state}
-      className={cn(
-        "text-sm leading-none font-medium",
-        className
-      )}
+      className={cn("text-sm leading-none font-medium", className)}
     >
       {children}
     </h3>
@@ -399,10 +388,7 @@ function StepperDescription({
     <div
       data-slot="stepper-description"
       data-state={state}
-      className={cn(
-        "text-muted-foreground text-sm",
-        className
-      )}
+      className={cn("text-muted-foreground text-sm", className)}
     >
       {children}
     </div>

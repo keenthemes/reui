@@ -2,31 +2,34 @@
 "use client"
 
 import * as React from "react"
+import type { CSSProperties, HTMLAttributes, ReactNode } from "react"
 import {
   createContext,
-  CSSProperties,
-  HTMLAttributes,
-  ReactNode,
   useCallback,
   useContext,
   useLayoutEffect,
   useMemo,
+  useRef,
   useState,
+  useSyncExternalStore,
 } from "react"
+import type {
+  DragCancelEvent,
+  DragEndEvent,
+  DragOverEvent,
+  DragStartEvent,
+  DropAnimation,
+  Modifiers,
+  UniqueIdentifier,
+} from "@dnd-kit/core"
 import {
   defaultDropAnimationSideEffects,
   DndContext,
-  DragEndEvent,
-  DragOverEvent,
   DragOverlay,
-  DragStartEvent,
-  DropAnimation,
   KeyboardSensor,
   MeasuringStrategy,
-  Modifiers,
   MouseSensor,
   TouchSensor,
-  UniqueIdentifier,
   useSensor,
   useSensors,
   type DraggableAttributes,
@@ -109,6 +112,33 @@ const dropAnimationConfig: DropAnimation = {
   }),
 }
 
+/**
+ * Client-mount gate for the `createPortal` call in KanbanOverlay, which needs
+ * `document.body` and so must not run on the server or during hydration.
+ *
+ * A never-notifying subscription makes `useSyncExternalStore` return the server
+ * snapshot (`false`) while rendering on the server and while hydrating, then the
+ * client snapshot (`true`) once mounted - the same gate the previous
+ * `useLayoutEffect(() => setMounted(true), [])` provided, minus the extra render
+ * pass that `react-hooks/set-state-in-effect` flags. All three functions are
+ * module-scoped so their identities stay stable; an inline `getSnapshot` is the
+ * classic cause of an infinite re-subscribe loop.
+ */
+const subscribeToNothing = () => () => {}
+const getIsMounted = () => true
+const getIsMountedOnServer = () => false
+
+const MOUSE_SENSOR_OPTIONS = { activationConstraint: { distance: 10 } }
+const TOUCH_SENSOR_OPTIONS = {
+  activationConstraint: { delay: 250, tolerance: 5 },
+}
+const KEYBOARD_SENSOR_OPTIONS = {
+  coordinateGetter: sortableKeyboardCoordinates,
+}
+const MEASURING_CONFIG = {
+  droppable: { strategy: MeasuringStrategy.Always },
+}
+
 export interface KanbanMoveEvent {
   event: DragEndEvent
   activeContainer: string
@@ -117,12 +147,34 @@ export interface KanbanMoveEvent {
   overIndex: number
 }
 
-export interface KanbanRootProps<T> extends HTMLAttributes<HTMLDivElement> {
+export interface KanbanCommitMeta<T> {
+  kind: "item" | "column"
+  event: DragEndEvent
+  activeContainer: string
+  activeIndex: number
+  overContainer: string
+  overIndex: number
+  previousValue: Record<string, T[]>
+}
+
+export interface KanbanRootProps<T> extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "onDragStart" | "onDragEnd"
+> {
   value: Record<string, T[]>
   onValueChange: (value: Record<string, T[]>) => void
   getItemValue: (item: T) => string
   children: ReactNode
   onMove?: (event: KanbanMoveEvent) => void
+  onValueCommit?: (
+    value: Record<string, T[]>,
+    meta: KanbanCommitMeta<T>
+  ) => void
+  restoreOnCancel?: boolean
+  onDragStart?: (event: DragStartEvent) => void
+  onDragEnd?: (event: DragEndEvent) => void
+  onDragCancel?: (event: DragCancelEvent) => void
+  accessibility?: React.ComponentProps<typeof DndContext>["accessibility"]
   asChild?: boolean
   modifiers?: Modifiers
 }
@@ -135,6 +187,12 @@ function Kanban<T>({
   className,
   asChild = false,
   onMove,
+  onValueCommit,
+  restoreOnCancel = false,
+  onDragStart,
+  onDragEnd,
+  onDragCancel,
+  accessibility,
   modifiers,
   ...props
 }: KanbanRootProps<T>) {
@@ -142,24 +200,47 @@ function Kanban<T>({
   const setColumns = onValueChange
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null)
 
+  // Always-current mirrors so the drag handlers can read fresh values without
+  // widening their dependency arrays (keeps handler identity stable). The
+  // handlers only fire after commit, so syncing the mirrors in an effect is
+  // safe — assigning to a ref during render breaks under concurrent rendering.
+  const valueRef = useRef(value)
+  const getItemValueRef = useRef(getItemValue)
+  useLayoutEffect(() => {
+    valueRef.current = value
+    getItemValueRef.current = getItemValue
+  })
+  const dragOriginRef = useRef<{
+    value: Record<string, T[]>
+    container: string | undefined
+    index: number
+  } | null>(null)
+
   const sensors = useSensors(
-    useSensor(MouseSensor, {
-      activationConstraint: {
-        distance: 10,
-      },
-    }),
-    useSensor(TouchSensor, {
-      activationConstraint: {
-        delay: 250,
-        tolerance: 5,
-      },
-    }),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    })
+    useSensor(MouseSensor, MOUSE_SENSOR_OPTIONS),
+    useSensor(TouchSensor, TOUCH_SENSOR_OPTIONS),
+    useSensor(KeyboardSensor, KEYBOARD_SENSOR_OPTIONS)
   )
 
-  const columnIds = useMemo(() => Object.keys(columns), [columns])
+  const columnIds = useMemo(() => {
+    const keys = Object.keys(columns)
+    if (process.env.NODE_ENV !== "production") {
+      const seen = new Set<string>()
+      for (const key of keys) {
+        for (const item of columns[key]) {
+          const itemId = getItemValue(item)
+          if (seen.has(itemId)) {
+            console.warn(
+              `[Kanban] Duplicate item id "${itemId}". Item ids must be unique across all columns, or drag and drop will misbehave.`
+            )
+            break
+          }
+          seen.add(itemId)
+        }
+      }
+    }
+    return keys
+  }, [columns, getItemValue])
 
   const isColumn = useCallback(
     (id: UniqueIdentifier) => columnIds.includes(id as string),
@@ -176,9 +257,95 @@ function Kanban<T>({
     [columns, columnIds, getItemValue, isColumn]
   )
 
-  const handleDragStart = useCallback((event: DragStartEvent) => {
-    setActiveId(event.active.id)
-  }, [])
+  const commitChange = useCallback(
+    (
+      finalValue: Record<string, T[]>,
+      event: DragEndEvent,
+      kind: "item" | "column"
+    ) => {
+      if (!onValueCommit) return
+      const origin = dragOriginRef.current
+      if (!origin) return
+
+      const id = event.active.id
+
+      if (kind === "column") {
+        const keys = Object.keys(finalValue)
+        const overIndex = keys.indexOf(id as string)
+        if (overIndex === -1 || overIndex === origin.index) return
+        onValueCommit(finalValue, {
+          kind: "column",
+          event,
+          activeContainer: id as string,
+          activeIndex: origin.index,
+          overContainer: String(event.over?.id ?? id),
+          overIndex,
+          previousValue: origin.value,
+        })
+        return
+      }
+
+      const getId = getItemValueRef.current
+      let overContainer: string | undefined
+      let overIndex = -1
+      for (const key of Object.keys(finalValue)) {
+        const found = finalValue[key].findIndex((item) => getId(item) === id)
+        if (found !== -1) {
+          overContainer = key
+          overIndex = found
+          break
+        }
+      }
+      if (overContainer === undefined) return
+      if (overContainer === origin.container && overIndex === origin.index) {
+        return
+      }
+      onValueCommit(finalValue, {
+        kind: "item",
+        event,
+        activeContainer: origin.container ?? overContainer,
+        activeIndex: origin.index,
+        overContainer,
+        overIndex,
+        previousValue: origin.value,
+      })
+    },
+    [onValueCommit]
+  )
+
+  const handleDragStart = useCallback(
+    (event: DragStartEvent) => {
+      setActiveId(event.active.id)
+      onDragStart?.(event)
+
+      if (onValueCommit || restoreOnCancel) {
+        const snapshot = valueRef.current
+        const id = event.active.id
+        const keys = Object.keys(snapshot)
+        if (keys.includes(id as string)) {
+          dragOriginRef.current = {
+            value: snapshot,
+            container: id as string,
+            index: keys.indexOf(id as string),
+          }
+        } else {
+          const getId = getItemValueRef.current
+          let container: string | undefined
+          let index = -1
+          for (const key of keys) {
+            const found = snapshot[key].findIndex((item) => getId(item) === id)
+            if (found !== -1) {
+              container = key
+              index = found
+              break
+            }
+          }
+          dragOriginRef.current = { value: snapshot, container, index }
+        }
+      }
+    },
+    [onDragStart, onValueCommit, restoreOnCancel]
+  )
 
   const handleDragOver = useCallback(
     (event: DragOverEvent) => {
@@ -244,16 +411,45 @@ function Kanban<T>({
     [findContainer, getItemValue, isColumn, setColumns, columns, onMove]
   )
 
-  const handleDragCancel = useCallback(() => {
-    setActiveId(null)
-  }, [])
+  const handleDragCancel = useCallback(
+    (event: DragCancelEvent) => {
+      const origin = dragOriginRef.current
+
+      if (restoreOnCancel && origin && !onMove) {
+        // Escape/cancel: undo the live-preview reshuffle applied during dragOver.
+        setColumns(origin.value)
+      } else if (onValueCommit && origin && !onMove) {
+        // No restore requested: the live preview stays visible, so commit it.
+        commitChange(valueRef.current, event, "item")
+      }
+
+      dragOriginRef.current = null
+      setActiveId(null)
+      onDragCancel?.(event)
+    },
+    [
+      restoreOnCancel,
+      onMove,
+      onValueCommit,
+      setColumns,
+      onDragCancel,
+      commitChange,
+    ]
+  )
 
   const handleDragEnd = useCallback(
     (event: DragEndEvent) => {
       const { active, over } = event
       setActiveId(null)
+      onDragEnd?.(event)
 
-      if (!over) return
+      if (!over) {
+        // Released over nothing. In default mode the live preview during
+        // dragOver may have already moved the item, so commit the current value.
+        commitChange(valueRef.current, event, "item")
+        dragOriginRef.current = null
+        return
+      }
 
       // Handle item move callback
       if (onMove && !isColumn(active.id)) {
@@ -278,6 +474,9 @@ function Kanban<T>({
             overIndex,
           })
         }
+        // In onMove mode the consumer owns applying the item move, so do not
+        // fire onValueCommit for item moves; column reorders still commit below.
+        dragOriginRef.current = null
         return
       }
 
@@ -296,7 +495,15 @@ function Kanban<T>({
             newColumns[key] = columns[key]
           })
           setColumns(newColumns)
+          commitChange(newColumns, event, "column")
         }
+        dragOriginRef.current = null
+        return
+      }
+
+      // A column drag that ends over a non-column droppable is not an item move.
+      if (isColumn(active.id)) {
+        dragOriginRef.current = null
         return
       }
 
@@ -318,12 +525,21 @@ function Kanban<T>({
         )
 
         if (activeIndex !== overIndex) {
-          setColumns({
+          const newColumns = {
             ...columns,
             [container]: arrayMove(columns[container], activeIndex, overIndex),
-          })
+          }
+          setColumns(newColumns)
+          commitChange(newColumns, event, "item")
+        } else {
+          // Cross-column moves are applied during dragOver, so the current
+          // value is already final.
+          commitChange(columns, event, "item")
         }
+      } else {
+        commitChange(columns, event, "item")
       }
+      dragOriginRef.current = null
     },
     [
       columnIds,
@@ -333,6 +549,8 @@ function Kanban<T>({
       isColumn,
       setColumns,
       onMove,
+      onDragEnd,
+      commitChange,
     ]
   )
 
@@ -367,11 +585,8 @@ function Kanban<T>({
       <DndContext
         sensors={sensors}
         modifiers={modifiers}
-        measuring={{
-          droppable: {
-            strategy: MeasuringStrategy.Always,
-          },
-        }}
+        accessibility={accessibility}
+        measuring={MEASURING_CONFIG}
         onDragStart={handleDragStart}
         onDragOver={handleDragOver}
         onDragEnd={handleDragEnd}
@@ -708,9 +923,11 @@ export interface KanbanOverlayProps extends Omit<
 
 function KanbanOverlay({ children, className, ...props }: KanbanOverlayProps) {
   const { activeId, isColumn, modifiers } = useContext(KanbanContext)
-  const [mounted, setMounted] = useState(false)
-
-  useLayoutEffect(() => setMounted(true), [])
+  const mounted = useSyncExternalStore(
+    subscribeToNothing,
+    getIsMounted,
+    getIsMountedOnServer
+  )
 
   const variant = activeId ? (isColumn(activeId) ? "column" : "item") : "item"
 

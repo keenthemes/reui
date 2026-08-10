@@ -1,0 +1,121 @@
+[
+  {
+    "name": "c-icon-tile-1",
+    "title": "Default icon tile",
+    "description": "Default icon tile",
+    "order": 1,
+    "gridSize": 2
+  },
+  {
+    "name": "c-icon-tile-2",
+    "title": "Elevated icon tile",
+    "description": "Icon tile with elevated surface",
+    "order": 2,
+    "gridSize": 2
+  },
+  {
+    "name": "c-icon-tile-3",
+    "title": "Framed icon tile",
+    "description": "Icon tile with framed surface",
+    "order": 3,
+    "gridSize": 2
+  },
+  {
+    "name": "c-icon-tile-4",
+    "title": "All variants",
+    "description": "Every icon tile variant",
+    "order": 4,
+    "gridSize": 2
+  },
+  {
+    "name": "c-icon-tile-5",
+    "title": "Sizes",
+    "description": "Icon tile size scale",
+    "order": 5,
+    "gridSize": 2
+  },
+  {
+    "name": "c-icon-tile-6",
+    "title": "Circular tiles",
+    "description": "Icon tiles with circular shape",
+    "order": 6,
+    "gridSize": 2
+  },
+  {
+    "name": "c-icon-tile-7",
+    "title": "Custom sizing",
+    "description": "Icon tile with custom sizing",
+    "order": 7,
+    "gridSize": 2
+  },
+  {
+    "name": "c-icon-tile-8",
+    "title": "Color tones",
+    "description": "Semantic icon tile color tones",
+    "order": 8,
+    "gridSize": 2
+  },
+  {
+    "name": "c-icon-tile-9",
+    "title": "Text content",
+    "description": "Icon tile with text content",
+    "order": 9,
+    "gridSize": 2
+  },
+  {
+    "name": "c-icon-tile-10",
+    "title": "List row",
+    "description": "Icon tile in a list row",
+    "order": 10,
+    "gridSize": 2
+  },
+  {
+    "name": "c-icon-tile-11",
+    "title": "Feature card",
+    "description": "Icon tile in a feature card",
+    "order": 11,
+    "gridSize": 2
+  },
+  {
+    "name": "c-icon-tile-12",
+    "title": "Empty state",
+    "description": "Icon tile in an empty state",
+    "order": 12,
+    "gridSize": 2
+  },
+  {
+    "name": "c-icon-tile-13",
+    "title": "Interactive tile",
+    "description": "Interactive icon tile",
+    "order": 13,
+    "gridSize": 2
+  },
+  {
+    "name": "c-icon-tile-14",
+    "title": "Status overlay",
+    "description": "Icon tile with status overlay",
+    "order": 14,
+    "gridSize": 2
+  },
+  {
+    "name": "c-icon-tile-15",
+    "title": "Soft tones",
+    "description": "Tone-adjustable soft variant",
+    "order": 15,
+    "gridSize": 2
+  },
+  {
+    "name": "c-icon-tile-16",
+    "title": "Solid tones",
+    "description": "Tone-adjustable solid variant",
+    "order": 16,
+    "gridSize": 2
+  },
+  {
+    "name": "c-icon-tile-17",
+    "title": "Brand colors",
+    "description": "Elevated tile with a Tailwind color fill",
+    "order": 17,
+    "gridSize": 2
+  }
+]

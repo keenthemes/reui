@@ -2,7 +2,8 @@
 
 import { useMemo, useState } from "react"
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
-import { Column } from "@tanstack/react-table"
+import type { DataGridFeatures } from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
+import type { Column } from "@tanstack/react-table"
 
 import { cn } from "@/registry/bases/radix/lib/utils"
 import { Button } from "@/registry/bases/radix/ui/button"
@@ -15,8 +16,8 @@ import {
 import { Separator } from "@/registry/bases/radix/ui/separator"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
-interface DataGridColumnFilterProps<TData, TValue> {
-  column?: Column<TData, TValue>
+interface DataGridColumnFilterProps<TData extends object, TValue> {
+  column?: Column<DataGridFeatures, TData, TValue>
   title?: string
   options: {
     label: string
@@ -25,7 +26,7 @@ interface DataGridColumnFilterProps<TData, TValue> {
   }[]
 }
 
-function DataGridColumnFilter<TData, TValue>({
+function DataGridColumnFilter<TData extends object, TValue>({
   column,
   title,
   options,

@@ -19,7 +19,7 @@ export default function Pattern() {
       </AlertDialogTrigger>
       <AlertDialogContent className="gap-8 p-8 sm:max-w-sm">
         <div className="mx-auto flex flex-col items-center justify-center gap-2">
-          <AlertDialogMedia className="bg-info/10 text-info dark:bg-info/20 rounded-full size-16">
+          <AlertDialogMedia className="bg-info/10 text-info dark:bg-info/20 size-16 rounded-full">
             <IconPlaceholder
               lucide="CheckIcon"
               tabler="IconCheck"
@@ -38,7 +38,7 @@ export default function Pattern() {
           </AlertDialogDescription>
         </div>
 
-        <div className="bg-muted/60 rounded-xl grid gap-4 p-4">
+        <div className="bg-muted/60 grid gap-4 rounded-xl p-4">
           {[
             ["Order Number", "GBD99763JS"],
             ["Order Date", "7 September 2024"],
@@ -56,7 +56,11 @@ export default function Pattern() {
           ))}
         </div>
 
-        <AlertDialogFooter>
+        {/* The footer's built-in `-mx-4 -mb-4` cancels the content's DEFAULT
+            `p-4`. This dialog uses `p-8`, so the breakout has to match it -
+            otherwise the bar (and its top border) stops 1rem short on each
+            side. `px-8` keeps the button aligned with the body above. */}
+        <AlertDialogFooter className="-mx-8 -mb-8 px-8">
           <AlertDialogCancel
             size="lg"
             variant="default"

@@ -3,7 +3,11 @@
 import { useMemo, useState } from "react"
 import { useCopyToClipboard } from "@/registry-reui/bases/base/hooks/use-copy-to-clipboard"
 import { Badge } from "@/registry-reui/bases/base/reui/badge"
-import { DataGrid } from "@/registry-reui/bases/base/reui/data-grid/data-grid"
+import {
+  DataGrid,
+  dataGridFeatures,
+  type DataGridFeatures,
+} from "@/registry-reui/bases/base/reui/data-grid/data-grid"
 import { DataGridColumnHeader } from "@/registry-reui/bases/base/reui/data-grid/data-grid-column-header"
 import { DataGridPagination } from "@/registry-reui/bases/base/reui/data-grid/data-grid-pagination"
 import { DataGridScrollArea } from "@/registry-reui/bases/base/reui/data-grid/data-grid-scroll-area"
@@ -16,14 +20,10 @@ import {
 } from "@/registry-reui/bases/base/reui/data-grid/data-grid-table"
 import {
   ColumnDef,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
   PaginationState,
   Row,
   SortingState,
-  useReactTable,
+  useTable,
 } from "@tanstack/react-table"
 import { toast } from "sonner"
 
@@ -152,7 +152,7 @@ const demoData: IData[] = [
   },
 ]
 
-function ActionsCell({ row }: { row: Row<IData> }) {
+function ActionsCell({ row }: { row: Row<DataGridFeatures, IData> }) {
   const { copyToClipboard } = useCopyToClipboard()
   const handleCopyId = () => {
     copyToClipboard(row.original.id)
@@ -200,7 +200,7 @@ export default function Pattern() {
     []
   )
 
-  const columns = useMemo<ColumnDef<IData>[]>(
+  const columns = useMemo<ColumnDef<DataGridFeatures, IData>[]>(
     () => [
       {
         accessorKey: "id",
@@ -312,20 +312,16 @@ export default function Pattern() {
     columns.map((c) => c.id as string)
   )
 
-  const table = useReactTable({
+  const table = useTable({
+    features: dataGridFeatures,
     columns,
     data: demoData,
     pageCount: Math.ceil(demoData.length / pagination.pageSize),
     getRowId: (row: IData) => row.id,
     state: { pagination, sorting, columnOrder },
-    columnResizeMode: "onChange",
     onColumnOrderChange: setColumnOrder,
     onPaginationChange: setPagination,
     onSortingChange: setSorting,
-    getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
   })
 
   const visibleCount = table.getVisibleLeafColumns().length
@@ -340,7 +336,7 @@ export default function Pattern() {
       <DataGridTableFootRowCell className="font-bold tabular-nums">
         ${totalBalance.toLocaleString("en-US", { minimumFractionDigits: 2 })}
       </DataGridTableFootRowCell>
-      {/* Actions column — empty */}
+      {/* Actions column - empty */}
       <DataGridTableFootRowCell />
     </DataGridTableFootRow>
   )

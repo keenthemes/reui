@@ -11,6 +11,9 @@ export const componentPreviewLoaders = {
   "c-filters-7": () => import("@/registry-reui/bases/base/components/filters/c-filters-7.tsx"),
   "c-filters-8": () => import("@/registry-reui/bases/base/components/filters/c-filters-8.tsx"),
   "c-filters-9": () => import("@/registry-reui/bases/base/components/filters/c-filters-9.tsx"),
+  "c-filters-10": () => import("@/registry-reui/bases/base/components/filters/c-filters-10.tsx"),
+  "c-filters-11": () => import("@/registry-reui/bases/base/components/filters/c-filters-11.tsx"),
+  "c-filters-12": () => import("@/registry-reui/bases/base/components/filters/c-filters-12.tsx"),
 } as const
 
 export type ComponentName = keyof typeof componentPreviewLoaders

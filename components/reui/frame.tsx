@@ -1,40 +1,48 @@
-import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 
 const frameVariants = cva(
   [
-    "relative flex flex-col gap-(--frame-gap) rounded-(--frame-radius) p-(--frame-padding)",
-    "[--frame-radius:var(--radius-xl)] [--frame-border-radius:calc(var(--frame-radius)-1px)]",
-    "[--frame-gap:--spacing(0.75)] [--frame-padding:--spacing(0.5)]",
-    "[--frame-panel-px:--spacing(6)] [--frame-panel-py:--spacing(6)]",
-    "[--frame-panel-header-px:--spacing(4)] [--frame-panel-header-py:--spacing(3)]",
-    "[--frame-panel-footer-px:--spacing(4)] [--frame-panel-footer-py:--spacing(3)]",
+    "relative flex flex-col bg-muted/50 gap-(--frame-gap) px-(--frame-px) py-(--frame-py) rounded-(--frame-radius)",
+    "(--radius-xl)] [--frame-radius:var(--radius-xl)]",
+    "(--radius-none)] (--radius-2xl)] (--radius-lg)] (--radius-none)]",
+    "[--frame-gap:--spacing(0.75)] [--frame-px:--spacing(0.75)] [--frame-py:--spacing(0.75)] [--frame-panel-header-gap:0rem] [--frame-panel-footer-gap:--spacing(1)]",
+    "[--frame-panel-px-adjust:0px] [--frame-panel-py-adjust:0px] [--frame-panel-header-px-adjust:0px] [--frame-panel-header-py-adjust:0px] [--frame-panel-footer-px-adjust:0px] [--frame-panel-footer-py-adjust:0px]",
+    "[--frame-panel-px:calc(var(--frame-panel-px-base)_+_var(--frame-panel-px-adjust))] [--frame-panel-py:calc(var(--frame-panel-py-base)_+_var(--frame-panel-py-adjust))] [--frame-panel-header-px:calc(var(--frame-panel-header-px-base)_+_var(--frame-panel-header-px-adjust))] [--frame-panel-header-py:calc(var(--frame-panel-header-py-base)_+_var(--frame-panel-header-py-adjust))] [--frame-panel-footer-px:calc(var(--frame-panel-footer-px-base)_+_var(--frame-panel-footer-px-adjust))] [--frame-panel-footer-py:calc(var(--frame-panel-footer-py-base)_+_var(--frame-panel-footer-py-adjust))]",
+    "(1)] (1)] (1.25)] (1.5)] (1.5)] (0.5)] (1)] (1)]",
+    "[--frame-panel-bg:var(--color-card)] [--frame-panel-border-color:var(--color-border)] [--frame-border-color:var(--color-border)]",
   ],
   {
     variants: {
       variant: {
-        default:
-          "border border-site-border/60 bg-site-background/60 dark:bg-site-background/20 [--frame-panel-bg:var(--color-site-background)] [--frame-panel-border-color:var(--color-site-border)]",
+        default: "border border-[var(--frame-border-color)] bg-clip-padding",
         inverse:
-          "border border-site-border/60 bg-site-background dark:bg-site-background/30 [--frame-panel-bg:color-mix(in_oklch,var(--color-site-muted)_45%,transparent)] [--frame-panel-border-color:var(--color-site-border)]",
-        ghost:
-          "bg-transparent p-0 [--frame-panel-bg:transparent] [--frame-panel-border-color:transparent]",
+          "[--frame-panel-bg:color-mix(in_oklch,var(--color-muted)_40%,transparent)] border border-[var(--frame-border-color)] bg-background bg-clip-padding",
+        ghost: "",
       },
       spacing: {
-        xs: "[--frame-padding:--spacing(0.5)] [--frame-gap:--spacing(0.5)] [--frame-panel-px:--spacing(3)] [--frame-panel-py:--spacing(3)] [--frame-panel-header-px:--spacing(3)] [--frame-panel-header-py:--spacing(2)] [--frame-panel-footer-px:--spacing(3)] [--frame-panel-footer-py:--spacing(2)]",
-        sm: "[--frame-padding:--spacing(0.5)] [--frame-gap:--spacing(0.75)] [--frame-panel-px:--spacing(4)] [--frame-panel-py:--spacing(4)] [--frame-panel-header-px:--spacing(4)] [--frame-panel-header-py:--spacing(2.5)] [--frame-panel-footer-px:--spacing(4)] [--frame-panel-footer-py:--spacing(2.5)]",
+        xs: "[--frame-panel-px-base:--spacing(2)] [--frame-panel-py-base:--spacing(2)] [--frame-panel-header-px-base:--spacing(2)] [--frame-panel-header-py-base:--spacing(0.5)] [--frame-panel-footer-px-base:--spacing(2)] [--frame-panel-footer-py-base:--spacing(0.5)]",
+        sm: "[--frame-panel-px-base:--spacing(3)] [--frame-panel-py-base:--spacing(3.5)] [--frame-panel-header-px-base:--spacing(3)] [--frame-panel-header-py-base:--spacing(1.5)] [--frame-panel-footer-px-base:--spacing(3)] [--frame-panel-footer-py-base:--spacing(1.5)]",
         default:
-          "[--frame-padding:--spacing(0.5)] [--frame-gap:--spacing(0.75)] [--frame-panel-px:--spacing(6)] [--frame-panel-py:--spacing(6)] [--frame-panel-header-px:--spacing(4)] [--frame-panel-header-py:--spacing(3)] [--frame-panel-footer-px:--spacing(4)] [--frame-panel-footer-py:--spacing(3)]",
-        lg: "[--frame-padding:--spacing(0.75)] [--frame-gap:--spacing(1)] [--frame-panel-px:--spacing(8)] [--frame-panel-py:--spacing(8)] [--frame-panel-header-px:--spacing(5)] [--frame-panel-header-py:--spacing(4)] [--frame-panel-footer-px:--spacing(5)] [--frame-panel-footer-py:--spacing(4)]",
+          "[--frame-panel-px-base:--spacing(4)] [--frame-panel-py-base:--spacing(4)] [--frame-panel-header-px-base:--spacing(4)] [--frame-panel-header-py-base:--spacing(2)] [--frame-panel-footer-px-base:--spacing(4)] [--frame-panel-footer-py-base:--spacing(2)]",
+        lg: "[--frame-panel-px-base:--spacing(5)] [--frame-panel-py-base:--spacing(5)] [--frame-panel-header-px-base:--spacing(5)] [--frame-panel-header-py-base:--spacing(2.5)] [--frame-panel-footer-px-base:--spacing(5)] [--frame-panel-footer-py-base:--spacing(2.5)]",
       },
       stacked: {
-        true: "gap-0 *:has-[+[data-slot=frame-panel]]:rounded-b-none *:has-[+[data-slot=frame-panel]]:before:hidden *:[[data-slot=frame-panel]+[data-slot=frame-panel]]:rounded-t-none *:[[data-slot=frame-panel]+[data-slot=frame-panel]]:border-t-0",
-        false: "",
+        true: [
+          "gap-0 *:has-[+[data-slot=frame-panel]]:rounded-b-none",
+          "*:has-[+[data-slot=frame-panel]]:before:hidden",
+          "*:[[data-slot=frame-panel]+[data-slot=frame-panel]]:rounded-t-none",
+          "*:[[data-slot=frame-panel]+[data-slot=frame-panel]]:border-t-0",
+        ],
+        false: [
+          "data-[spacing=sm]:*:[[data-slot=frame-panel]+[data-slot=frame-panel]]:mt-0.5",
+          "data-[spacing=default]:*:[[data-slot=frame-panel]+[data-slot=frame-panel]]:mt-1",
+          "data-[spacing=lg]:*:[[data-slot=frame-panel]+[data-slot=frame-panel]]:mt-2",
+        ],
       },
       dense: {
-        true: "gap-0 p-0 [&_[data-slot=frame-panel]]:-mx-px [&_[data-slot=frame-panel]]:before:hidden [&_[data-slot=frame-panel]:last-child]:-mb-px [&:not(:has([data-slot=frame-panel-header]))_[data-slot=frame-panel]:is(:first-child)]:-mt-px",
+        true: "p-0 gap-0 border-[var(--frame-border-color)] [&_[data-slot=frame-panel]]:-mx-px [&_[data-slot=frame-panel]]:before:hidden [&_[data-slot=frame-panel]:last-child]:-mb-px [&:not(:has([data-slot=frame-panel-header]))_[data-slot=frame-panel]:is(:first-child)]:-mt-px",
         false: "",
       },
     },
@@ -57,27 +65,33 @@ function Frame({
 }: React.ComponentProps<"div"> & VariantProps<typeof frameVariants>) {
   return (
     <div
-      data-slot="frame"
-      data-spacing={spacing ?? "default"}
       className={cn(
         frameVariants({ variant, spacing, stacked, dense }),
         className
       )}
+      data-slot="frame"
+      data-spacing={spacing}
       {...props}
     />
   )
 }
 
-function FramePanel({ className, ...props }: React.ComponentProps<"div">) {
+function FramePanel({
+  className,
+  fit,
+  ...props
+}: React.ComponentProps<"div"> & { fit?: boolean }) {
   return (
     <div
-      data-slot="frame-panel"
       className={cn(
-        "relative grow overflow-hidden rounded-(--frame-radius) border border-(--frame-panel-border-color) bg-(--frame-panel-bg) bg-clip-padding px-(--frame-panel-px) py-(--frame-panel-py) shadow-xs",
-        "before:pointer-events-none before:absolute before:inset-0 before:rounded-[var(--frame-border-radius)] before:shadow-[0_1px_--theme(--color-black/4%)]",
-        "dark:bg-clip-border dark:before:shadow-[0_-1px_--theme(--color-white/8%)]",
+        "relative overflow-hidden rounded-[calc(var(--frame-radius)-4px)] border border-(--frame-panel-border-color) bg-(--frame-panel-bg) bg-clip-padding shadow-xs",
+        !fit && "grow",
+        "before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(--frame-radius)-1px)] before:shadow-black/5",
+        "dark:bg-clip-border dark:before:shadow-white/5",
+        "px-(--frame-panel-px) py-(--frame-panel-py)",
         className
       )}
+      data-slot="frame-panel"
       {...props}
     />
   )
@@ -86,11 +100,11 @@ function FramePanel({ className, ...props }: React.ComponentProps<"div">) {
 function FrameHeader({ className, ...props }: React.ComponentProps<"header">) {
   return (
     <header
-      data-slot="frame-panel-header"
       className={cn(
-        "flex flex-col gap-1 px-(--frame-panel-header-px) py-(--frame-panel-header-py)",
+        "flex flex-col gap-(--frame-panel-header-gap) px-(--frame-panel-header-px) py-(--frame-panel-header-py)",
         className
       )}
+      data-slot="frame-panel-header"
       {...props}
     />
   )
@@ -99,8 +113,8 @@ function FrameHeader({ className, ...props }: React.ComponentProps<"header">) {
 function FrameTitle({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
+      className={cn("text-sm font-semibold", className)}
       data-slot="frame-panel-title"
-      className={cn("text-site-foreground text-sm font-semibold", className)}
       {...props}
     />
   )
@@ -112,8 +126,8 @@ function FrameDescription({
 }: React.ComponentProps<"div">) {
   return (
     <div
+      className={cn("text-muted-foreground text-sm", className)}
       data-slot="frame-panel-description"
-      className={cn("text-site-muted-foreground text-sm", className)}
       {...props}
     />
   )
@@ -122,11 +136,11 @@ function FrameDescription({
 function FrameFooter({ className, ...props }: React.ComponentProps<"footer">) {
   return (
     <footer
-      data-slot="frame-panel-footer"
       className={cn(
-        "flex flex-col gap-2 px-(--frame-panel-footer-px) py-(--frame-panel-footer-py)",
+        "flex flex-col gap-(--frame-panel-footer-gap) px-(--frame-panel-footer-px) py-(--frame-panel-footer-py)",
         className
       )}
+      data-slot="frame-panel-footer"
       {...props}
     />
   )
