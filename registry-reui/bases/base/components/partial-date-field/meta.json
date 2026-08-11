@@ -1,0 +1,8 @@
+[
+  {
+    "name": "c-partial-date-field-1",
+    "title": "Flexible date precision",
+    "description": "Day / month / year modes with popover picker",
+    "order": 1
+  }
+]

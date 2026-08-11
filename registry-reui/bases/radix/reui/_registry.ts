@@ -1168,5 +1168,66 @@ export const reui: Registry["items"] = [
         "target": "components/reui/tree.tsx"
       }
     ]
-  }
+  },
+
+  {
+    "name": "locale-field",
+    "type": "registry:ui",
+    "title": "Locale Field",
+    "description": "Multilingual text field with locale tabs, fill-status dots, and master-locale soft border",
+    "registryDependencies": ["field", "input", "tabs"],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "reui/locale-field.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/locale-field.tsx"
+      },
+      {
+        "path": "reui/locale-status.ts",
+        "type": "registry:lib",
+        "target": "components/reui/locale-status.ts"
+      }
+    ]
+  },
+  {
+    "name": "music-key-field",
+    "type": "registry:ui",
+    "title": "Music Key Field",
+    "description": "Musical key selector: simple open grid or complex Major/Minor NOTES dropdown",
+    "registryDependencies": ["button", "popover", "tabs"],
+    "dependencies": ["lucide-react"],
+    "files": [
+      {
+        "path": "reui/music-key-field.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/music-key-field.tsx"
+      },
+      {
+        "path": "reui/music-key-notes.ts",
+        "type": "registry:lib",
+        "target": "components/reui/music-key-notes.ts"
+      }
+    ]
+  },
+  {
+    "name": "partial-date-field",
+    "type": "registry:ui",
+    "title": "Partial Date Field",
+    "description": "Date input with day / month / year precision (YYYY, YYYY-MM, YYYY-MM-DD)",
+    "registryDependencies": ["button", "calendar", "popover", "tabs"],
+    "dependencies": ["lucide-react"],
+    "files": [
+      {
+        "path": "reui/partial-date-field.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/partial-date-field.tsx"
+      },
+      {
+        "path": "reui/partial-date.ts",
+        "type": "registry:lib",
+        "target": "components/reui/partial-date.ts"
+      }
+    ]
+  },
 ]
