@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ReUI form fields demo — Locale · Key field (music) · Partial date</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --bg: oklch(0.985 0.002 247);
+    --surface: #fff;
+    --surface-2: oklch(0.972 0.003 264);
+    --muted-bg: oklch(0.945 0.006 260);
+    --border: oklch(0.91 0.008 260);
+    --border-soft: oklch(0.86 0.01 258);
+    --fg: oklch(0.21 0.034 264);
+    --muted: oklch(0.48 0.03 260);
+    --primary: oklch(0.546 0.245 262);
+    --primary-soft: oklch(0.94 0.03 258);
+    --destructive: oklch(0.55 0.2 25);
+    --green: oklch(0.65 0.17 155);
+    --amber: oklch(0.77 0.16 75);
+    --font: Inter, system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+    --shadow: 0 10px 28px oklch(0.25 0.03 260 / 0.12);
+    --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.05);
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 13px/1.45 var(--font); color: var(--fg); background: var(--bg); }
+  a { color: var(--primary); text-decoration: none; font-weight: 550; }
+  .page { max-width: 920px; margin: 0 auto; padding: 20px 14px 100px; }
+  h1 { font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 6px; }
+  .lead { color: var(--muted); margin: 0 0 18px; max-width: 68ch; }
+  .nav { margin-bottom: 12px; font-size: 12.5px; }
+  section {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 16px; margin-bottom: 14px;
+  }
+  section h2 {
+    font-size: 14.5px; font-weight: 700; margin: 0 0 4px;
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  }
+  section h2 .n {
+    width: 22px; height: 22px; border-radius: 6px;
+    background: var(--primary); color: #fff; font-size: 12px;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .badge {
+    font-size: 10.5px; font-weight: 650; letter-spacing: .03em; text-transform: uppercase;
+    padding: 2px 7px; border-radius: 999px; border: 1px solid var(--border);
+    color: var(--muted); background: var(--surface-2);
+  }
+  .badge.hi {
+    border-color: color-mix(in oklch, var(--primary) 30%, var(--border));
+    color: var(--primary);
+    background: color-mix(in oklch, var(--primary-soft) 75%, white);
+  }
+  .why { color: var(--muted); margin: 0 0 14px; font-size: 12.5px; max-width: 72ch; }
+  .note {
+    margin-top: 12px; padding: 10px 12px; border-radius: 8px;
+    background: var(--surface-2); color: var(--muted); font-size: 12px;
+  }
+  .note strong { color: var(--fg); }
+  .field-label { font-size: 11.5px; font-weight: 600; color: var(--muted); margin: 0 0 6px; }
+  .demo-grid { display: grid; gap: 14px; }
+  @media (min-width: 760px) {
+    .demo-grid.two { grid-template-columns: 1fr 1fr; }
+    .demo-grid.keys { grid-template-columns: 220px 240px; align-items: start; }
+  }
+  .card-demo {
+    border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px; background: var(--surface-2);
+  }
+  .card-demo h3 {
+    margin: 0 0 12px; font-size: 11.5px; font-weight: 650;
+    text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted);
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  }
+
+  /* shared segment */
+  .seg {
+    display: grid; width: 100%; grid-auto-flow: column; grid-auto-columns: 1fr;
+    height: 32px; padding: 3px; border-radius: 8px; background: var(--muted-bg);
+  }
+  .seg > button {
+    appearance: none; border: 1px solid transparent; background: transparent;
+    height: 100%; min-width: 0; border-radius: 6px; padding: 0 6px;
+    font: 550 12.5px/1 var(--font); color: oklch(0.42 0.02 260 / 0.7);
+    cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+  }
+  .seg > button:hover { color: var(--fg); }
+  .seg > button[aria-selected="true"] {
+    background: var(--surface); color: var(--fg); box-shadow: var(--shadow-sm);
+  }
+  .seg > button[data-master="true"] {
+    border-color: oklch(0.78 0.012 258 / 0.7);
+    box-shadow: inset 0 0 0 0.5px oklch(0.7 0.015 258 / 0.18);
+  }
+  .seg > button[data-master="true"][aria-selected="true"] {
+    border-color: oklch(0.68 0.02 258 / 0.45);
+    box-shadow: var(--shadow-sm), inset 0 0 0 0.5px oklch(0.55 0.03 258 / 0.15);
+  }
+
+  .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; background: oklch(0.82 0.01 260); }
+  .dot.full { background: var(--green); }
+  .dot.partial { background: var(--amber); box-shadow: 0 0 0 2px color-mix(in oklch, var(--amber) 22%, transparent); }
+  .legend { display: flex; flex-wrap: wrap; gap: 10px 14px; margin-bottom: 10px; font-size: 11.5px; color: var(--muted); }
+  .legend i { font-style: normal; display: inline-flex; align-items: center; gap: 5px; }
+  .legend .sample-master {
+    display: inline-flex; align-items: center; height: 22px; padding: 0 8px;
+    border: 1px solid oklch(0.78 0.012 258 / 0.7); border-radius: 6px;
+    font: 600 11px var(--font); background: var(--surface);
+    box-shadow: inset 0 0 0 0.5px oklch(0.7 0.015 258 / 0.18);
+  }
+
+  .in {
+    width: 100%; height: 36px; border: 1px solid var(--border-soft); border-radius: 8px;
+    padding: 0 11px; font: 13px var(--font); background: var(--surface);
+    box-shadow: var(--shadow-sm);
+  }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+  @media (max-width: 420px) { .pair { grid-template-columns: 1fr; } }
+  .sub-lab { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+  .meta-line { margin-top: 8px; font-size: 11px; color: var(--muted); font-family: var(--mono); }
+  .field-label { font-size: 11.5px; font-weight: 600; color: var(--muted); margin: 0 0 6px; }
+
+  /* ── cells (ReUI button icon rules: flex center, svg size-4) ── */
+  .cell {
+    appearance: none; border: 0; background: transparent;
+    height: 34px; border-radius: 7px; width: 100%;
+    font: 600 13px var(--mono); color: var(--fg); cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+  .cell:hover:not(:disabled):not([aria-pressed="true"]) { background: var(--muted-bg); }
+  .cell[aria-pressed="true"] { background: var(--primary); color: #fff; }
+  .cell:disabled { opacity: 0; pointer-events: none; }
+  .cell.clear {
+    opacity: 1; pointer-events: auto; color: var(--destructive);
+  }
+  .cell.clear:hover { background: color-mix(in oklch, var(--destructive) 8%, transparent); }
+  .cell.clear:disabled { opacity: 0; pointer-events: none; }
+  /* ReUI default icon in button: size-4 = 16px (lucide XIcon) */
+  .cell.clear svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    display: block;
+  }
+
+  /* ── SIMPLE: compact open panel only — pick key, no layout modes ── */
+  .key-simple {
+    width: 168px;
+    border: 1px solid var(--border-soft);
+    border-radius: 10px;
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+  }
+  .key-simple .head { padding: 8px 8px 0; }
+  .key-simple .head .seg { height: 28px; }
+  .key-simple .head .seg > button { font-family: var(--mono); font-weight: 600; font-size: 13px; }
+  .key-simple .body { padding: 6px 8px 8px; }
+  .key-simple .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  /* ── COMPLEX: proper dropdown, narrow ── */
+  .key-complex { position: relative; width: 168px; }
+  .key-dd-btn {
+    appearance: none;
+    width: 100%;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 0 10px 0 12px;
+    border: 1px solid var(--border-soft);
+    border-radius: 8px;
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+    font: 600 13px var(--mono);
+    color: var(--fg);
+    cursor: pointer;
+  }
+  .key-dd-btn .ph { font-weight: 500; font-family: var(--font); color: oklch(0.65 0.015 260); }
+  .key-dd-btn .caret {
+    width: 16px; height: 16px; flex-shrink: 0; opacity: 0.45;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .key-dd-btn[aria-expanded="true"] {
+    border-color: color-mix(in oklch, var(--primary) 40%, var(--border-soft));
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--primary) 12%, transparent);
+  }
+  .key-dd {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    z-index: 50;
+    width: 200px;
+    padding: 10px;
+    border: 1px solid var(--border-soft);
+    border-radius: 10px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+  .key-dd[hidden] { display: none !important; }
+  .key-dd .seg { height: 30px; margin-bottom: 8px; }
+  .key-dd .grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px;
+  }
+
+  /* date */
+  .date-wrap { position: relative; max-width: 280px; }
+  .date-btn {
+    appearance: none; width: 100%; height: 36px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 12px; border: 1px solid var(--border-soft); border-radius: 8px;
+    background: var(--surface); box-shadow: var(--shadow-sm);
+    font: 13px var(--font); color: var(--fg); cursor: pointer;
+  }
+  .date-btn .ph { color: oklch(0.65 0.015 260); }
+  .pop {
+    position: absolute; z-index: 40; margin-top: 4px; left: 0;
+    min-width: 280px; max-width: min(320px, 100vw - 32px);
+    background: var(--surface); border: 1px solid var(--border-soft);
+    border-radius: 10px; box-shadow: var(--shadow); padding: 12px;
+  }
+  .pop[hidden] { display: none !important; }
+  .cal-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; gap: 8px; }
+  .cal-nav button {
+    appearance: none; border: 1px solid var(--border); background: var(--surface);
+    width: 32px; height: 32px; border-radius: 7px; cursor: pointer;
+  }
+  .cal-nav .title { font-weight: 650; font-size: 13px; flex: 1; text-align: center; }
+  .cal-nav .title button {
+    width: auto; padding: 0 6px; border: 0; background: transparent;
+    font: 650 13px var(--font); cursor: pointer;
+  }
+  .dow { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; margin-bottom: 4px; }
+  .dow span { text-align: center; font-size: 10.5px; font-weight: 600; color: var(--muted); padding: 4px 0; }
+  .days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+  .days button {
+    appearance: none; border: 0; background: transparent; height: 34px;
+    border-radius: 7px; font: 500 12.5px var(--font); cursor: pointer;
+  }
+  .days button.out { color: oklch(0.75 0.01 260); }
+  .days button:hover { background: var(--muted-bg); }
+  .days button[aria-selected="true"] { background: var(--primary); color: #fff; font-weight: 650; }
+  .days button.today:not([aria-selected="true"]) { box-shadow: inset 0 0 0 1px var(--primary); }
+  .month-grid, .year-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+  .month-grid button, .year-grid button {
+    appearance: none; border: 0; background: transparent; height: 36px;
+    border-radius: 7px; font: 550 12.5px var(--font); cursor: pointer;
+  }
+  .month-grid button:hover, .year-grid button:hover { background: var(--muted-bg); }
+  .month-grid button[aria-selected="true"],
+  .year-grid button[aria-selected="true"] { background: var(--primary); color: #fff; }
+  .pop-foot {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border);
+  }
+  .pop-foot button {
+    appearance: none; border: 0; background: transparent;
+    font: 550 12px var(--font); color: var(--muted); cursor: pointer; min-height: 32px;
+  }
+  .pop-foot .val { font-family: var(--mono); font-size: 11.5px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="nav">
+    <a href="https://github.com/keenthemes/reui/pull/118">PR #118 · keenthemes/reui</a>
+    ·
+    <span style="color:var(--muted)">Universal interactive reference (English)</span>
+  </div>
+  <h1>Interactive form fields</h1>
+  <p class="lead">
+    Three reusable form controls for multilingual content, musical keys, and incomplete calendar dates. No product branding — pattern reference only.
+  </p>
+
+  <section id="i18n">
+    <h2><span class="n">1</span> Locale field</h2>
+    <p class="why">Locale tabs with fill-status dots. Master locale uses a soft border only (no badge text).</p>
+    <div class="legend">
+      <i><span class="dot full"></span> filled</i>
+      <i><span class="dot partial"></span> partial</i>
+      <i><span class="dot"></span> empty</i>
+      <i><span class="sample-master">EN</span> master locale</i>
+    </div>
+    <div class="demo-grid two">
+      <div class="card-demo">
+        <h3>Title · EN master (not first in tab order)</h3>
+        <div id="ml-single"></div>
+        <div class="meta-line" id="ml-single-out"></div>
+      </div>
+      <div class="card-demo">
+        <h3>First + last name · partial on DE</h3>
+        <div id="ml-pair"></div>
+        <div class="meta-line" id="ml-pair-out"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="key">
+    <h2><span class="n">2</span> Key field (music)</h2>
+    <p class="why">
+      <strong>Simple</strong> — open ♯|♭ spelling + 2×6 pitch grid (no layout toggles).<br>
+      <strong>Complex</strong> — narrow dropdown: Major|Minor, NOTES grid, clear. ~168–200px wide.
+    </p>
+
+    <div class="demo-grid keys">
+      <div class="card-demo">
+        <h3>Simple <span class="badge">open grid</span></h3>
+        <div class="field-label">Original key</div>
+        <div id="key-simple"></div>
+        <div class="meta-line" id="key-simple-out"></div>
+      </div>
+      <div class="card-demo">
+        <h3>Complex <span class="badge hi">dropdown</span></h3>
+        <div class="field-label">Original key</div>
+        <div id="key-complex"></div>
+        <div class="meta-line" id="key-complex-out"></div>
+      </div>
+    </div>
+    <p class="note">
+      Complex: open dropdown, pick a note, closes. Clear uses lucide <code>XIcon</code> at <code>size-4</code> (16px), centered — same as ReUI button icons.
+    </p>
+  </section>
+
+  <section id="date">
+    <h2><span class="n">3</span> Partial date</h2>
+    <p class="why">Day / month / year precision + popover picker. Stored as YYYY, YYYY-MM, or YYYY-MM-DD.</p>
+    <div class="card-demo" style="max-width:300px">
+      <h3>Release date</h3>
+      <div id="date-demo"></div>
+    </div>
+  </section>
+</div>
+
+<script>
+function esc(s) {
+  return String(s ?? '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;')
+}
+function displayKey(key) {
+  return String(key || '').replace(/#/g, '\u266F').replace(/b/g, '\u266D')
+}
+
+/* multilang */
+function mountSingle(rootId, outId, order, master, initial, active) {
+  const state = { active: active || order[0], order, master, values: { ...initial } }
+  const root = document.getElementById(rootId)
+  const out = document.getElementById(outId)
+  const fill = (c) => !!(state.values[c] && String(state.values[c]).trim())
+  function render() {
+    root.innerHTML = `
+      <div class="seg" role="tablist" style="grid-template-columns: repeat(${state.order.length}, 1fr)">
+        ${state.order.map((code) => `
+          <button type="button" role="tab" data-loc="${code}" data-master="${code===state.master}"
+            aria-selected="${code===state.active}"
+            aria-label="${code.toUpperCase()}${code===state.master ? ', default language' : ''}">
+            <span class="dot ${fill(code)?'full':''}"></span>${code.toUpperCase()}
+          </button>`).join('')}
+      </div>
+      <div class="field-label" style="margin-top:8px">Title · ${state.active.toUpperCase()}</div>
+      <input class="in" value="${esc(state.values[state.active]||'')}" placeholder="Text…" />`
+    root.querySelectorAll('[data-loc]').forEach((b) => b.onclick = () => { state.active = b.dataset.loc; render() })
+    const input = root.querySelector('input')
+    input.oninput = () => {
+      state.values[state.active] = input.value
+      root.querySelectorAll('[data-loc]').forEach((b) => {
+        b.querySelector('.dot').className = 'dot ' + (fill(b.dataset.loc) ? 'full' : '')
+      })
+      out.textContent = `master=${state.master} · ` + JSON.stringify(state.values)
+    }
+    out.textContent = `master=${state.master} · ` + JSON.stringify(state.values)
+  }
+  render()
+}
+function pairStatus(v) {
+  const f = !!(v?.first && v.first.trim())
+  const l = !!(v?.last && v.last.trim())
+  if (f && l) return 'full'
+  if (f || l) return 'partial'
+  return 'empty'
+}
+function mountPair(rootId, outId, order, master, initial, active) {
+  const state = { active: active || order[0], order, master, values: structuredClone(initial) }
+  const root = document.getElementById(rootId)
+  const out = document.getElementById(outId)
+  function render() {
+    root.innerHTML = `
+      <div class="seg" role="tablist" style="grid-template-columns: repeat(${state.order.length}, 1fr)">
+        ${state.order.map((code) => {
+          const st = pairStatus(state.values[code])
+          const cls = st === 'full' ? 'full' : st === 'partial' ? 'partial' : ''
+          return `<button type="button" role="tab" data-loc="${code}" data-master="${code===state.master}"
+            aria-selected="${code===state.active}"
+            aria-label="${code.toUpperCase()}${code===state.master ? ', default language' : ''}">
+            <span class="dot ${cls}"></span>${code.toUpperCase()}
+          </button>`
+        }).join('')}
+      </div>
+      <div class="pair">
+        <div><div class="sub-lab">First · ${state.active.toUpperCase()}</div>
+          <input class="in" data-k="first" value="${esc(state.values[state.active]?.first||'')}" placeholder="First name" /></div>
+        <div><div class="sub-lab">Last · ${state.active.toUpperCase()}</div>
+          <input class="in" data-k="last" value="${esc(state.values[state.active]?.last||'')}" placeholder="Last name" /></div>
+      </div>`
+    root.querySelectorAll('[data-loc]').forEach((b) => b.onclick = () => { state.active = b.dataset.loc; render() })
+    root.querySelectorAll('input').forEach((input) => {
+      input.oninput = () => {
+        if (!state.values[state.active]) state.values[state.active] = { first: '', last: '' }
+        state.values[state.active][input.dataset.k] = input.value
+        root.querySelectorAll('[data-loc]').forEach((b) => {
+          const st = pairStatus(state.values[b.dataset.loc])
+          b.querySelector('.dot').className = 'dot ' + (st === 'full' ? 'full' : st === 'partial' ? 'partial' : '')
+        })
+        out.textContent = `master=${state.master} · ` + JSON.stringify(state.values)
+      }
+    })
+    out.textContent = `master=${state.master} · ` + JSON.stringify(state.values)
+  }
+  render()
+}
+mountSingle('ml-single','ml-single-out',['en','de','fr','es'],'en',{en:'Product launch',de:'Produkteinführung',fr:'',es:''},'en')
+mountPair('ml-pair','ml-pair-out',['en','de','fr'],'en',
+  {en:{first:'Sam',last:'Evans'},de:{first:'Sam',last:''},fr:{first:'',last:''}},'en')
+
+/* ═══ SIMPLE: only ♯|♭ + fixed 2-col grid. No layout modes. ═══ */
+const FLATS  = ['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B']
+const SHARPS = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B']
+let simpleSpell = 'sharp'
+let simpleIdx = 2
+
+function mountSimple() {
+  const root = document.getElementById('key-simple')
+  const out = document.getElementById('key-simple-out')
+  const k = simpleSpell === 'sharp' ? SHARPS : FLATS
+  root.innerHTML = `
+    <div class="key-simple">
+      <div class="head">
+        <div class="seg" style="grid-template-columns:1fr 1fr">
+          <button type="button" data-spell="sharp" aria-selected="${simpleSpell==='sharp'}">♯</button>
+          <button type="button" data-spell="flat" aria-selected="${simpleSpell==='flat'}">♭</button>
+        </div>
+      </div>
+      <div class="body">
+        <div class="grid" role="radiogroup">
+          ${k.map((name, i) =>
+            `<button type="button" class="cell" data-i="${i}" aria-pressed="${i===simpleIdx}">${displayKey(name)}</button>`
+          ).join('')}
+        </div>
+      </div>
+    </div>`
+  root.querySelectorAll('[data-spell]').forEach((b) => {
+    b.onclick = () => { simpleSpell = b.dataset.spell; mountSimple() }
+  })
+  root.querySelectorAll('[data-i]').forEach((b) => {
+    b.onclick = () => { simpleIdx = Number(b.dataset.i); mountSimple() }
+  })
+  out.textContent = `value: ${k[simpleIdx]}`
+}
+mountSimple()
+
+/* ═══ COMPLEX: real dropdown, narrow, v1 logic ═══ */
+const NOTES = [
+  { flat: null,  natural: 'C', sharp: 'C#' },
+  { flat: 'Db',  natural: 'D', sharp: 'D#' },
+  { flat: 'Eb',  natural: 'E', sharp: null },
+  { flat: null,  natural: 'F', sharp: 'F#' },
+  { flat: 'Gb',  natural: 'G', sharp: 'G#' },
+  { flat: 'Ab',  natural: 'A', sharp: 'A#' },
+  { flat: 'Bb',  natural: 'B', sharp: null },
+]
+
+function mountComplex() {
+  const root = document.getElementById('key-complex')
+  const out = document.getElementById('key-complex-out')
+  if (!root.dataset.ready) {
+    root.dataset.value = 'D'
+    root.dataset.minor = '0'
+    root.dataset.open = '0'
+    root.dataset.ready = '1'
+  }
+  const value = root.dataset.value
+  const isMinor = root.dataset.minor === '1'
+  const open = root.dataset.open === '1'
+  const base = value.replace(/m$/, '')
+  const suffix = isMinor ? 'm' : ''
+
+  function cell(note, isClear) {
+    if (isClear) {
+      if (!value) return `<button type="button" class="cell" disabled></button>`
+      // ReUI: lucide XIcon, default button svg size-4 (16px), flex-centered in cell
+      return `<button type="button" class="cell clear" data-clear="1" title="Clear" aria-label="Clear"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>`
+    }
+    if (!note) return `<button type="button" class="cell" disabled></button>`
+    return `<button type="button" class="cell" data-note="${note}" aria-pressed="${base===note}">${displayKey(note)}${suffix}</button>`
+  }
+
+  const grid = NOTES.map((row, i) => {
+    const last = i === NOTES.length - 1
+    const sharp = last && !row.sharp ? cell(null, true) : cell(row.sharp, false)
+    return cell(row.flat, false) + cell(row.natural, false) + sharp
+  }).join('')
+
+  root.innerHTML = `
+    <div class="key-complex">
+      <button type="button" class="key-dd-btn" id="ks-btn" aria-haspopup="listbox" aria-expanded="${open}">
+        <span class="${value ? '' : 'ph'}">${value ? displayKey(value) : 'Key field (music)'}</span>
+        <span class="caret" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </button>
+      <div class="key-dd" role="listbox" ${open ? '' : 'hidden'}>
+        <div class="seg" style="grid-template-columns:1fr 1fr">
+          <button type="button" data-mode="maj" aria-selected="${!isMinor}">Major</button>
+          <button type="button" data-mode="min" aria-selected="${isMinor}">Minor</button>
+        </div>
+        <div class="grid">${grid}</div>
+      </div>
+    </div>`
+
+  root.querySelector('#ks-btn').onclick = (e) => {
+    e.stopPropagation()
+    root.dataset.open = open ? '0' : '1'
+    mountComplex()
+  }
+  root.querySelectorAll('[data-mode]').forEach((b) => {
+    b.onclick = (e) => {
+      e.stopPropagation()
+      const minor = b.dataset.mode === 'min'
+      root.dataset.minor = minor ? '1' : '0'
+      const b0 = (root.dataset.value || '').replace(/m$/, '')
+      if (b0) root.dataset.value = b0 + (minor ? 'm' : '')
+      mountComplex()
+    }
+  })
+  root.querySelectorAll('[data-note]').forEach((b) => {
+    b.onclick = (e) => {
+      e.stopPropagation()
+      root.dataset.value = b.dataset.note + (root.dataset.minor === '1' ? 'm' : '')
+      root.dataset.open = '0'
+      mountComplex()
+    }
+  })
+  const clearBtn = root.querySelector('[data-clear]')
+  if (clearBtn) {
+    clearBtn.onclick = (e) => {
+      e.stopPropagation()
+      root.dataset.value = ''
+      root.dataset.open = '0'
+      mountComplex()
+    }
+  }
+  out.textContent = value ? `value: "${value}"` : 'value: (empty)'
+}
+mountComplex()
+
+document.addEventListener('click', (e) => {
+  const root = document.getElementById('key-complex')
+  if (!root?.dataset.ready || root.dataset.open !== '1') return
+  if (!root.contains(e.target)) {
+    root.dataset.open = '0'
+    mountComplex()
+  }
+})
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Escape') return
+  const root = document.getElementById('key-complex')
+  if (root?.dataset.open === '1') {
+    root.dataset.open = '0'
+    mountComplex()
+  }
+})
+
+/* date */
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December']
+const MONTHS_SHORT = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+const DOW = ['Mo','Tu','We','Th','Fr','Sa','Su']
+function parseFlex(val) {
+  if (!val) return { mode: 'full', y: null, m: null, d: null }
+  const p = val.split('-').map(Number)
+  if (p.length >= 3) return { mode: 'full', y: p[0], m: p[1], d: p[2] }
+  if (p.length === 2) return { mode: 'month-year', y: p[0], m: p[1], d: null }
+  return { mode: 'year', y: p[0], m: null, d: null }
+}
+function formatFlex(mode, y, m, d) {
+  if (!y) return ''
+  if (mode === 'year') return String(y)
+  if (mode === 'month-year') return `${y}-${String(m).padStart(2,'0')}`
+  return `${y}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`
+}
+function displayFlex(mode, y, m, d) {
+  if (!y) return ''
+  if (mode === 'year') return String(y)
+  if (mode === 'month-year' && m) return `${MONTHS[m-1]} ${y}`
+  if (mode === 'full' && m && d) return `${d} ${MONTHS[m-1]} ${y}`
+  return ''
+}
+function mountFlexibleDate(rootId, initial) {
+  const root = document.getElementById(rootId)
+  let parsed = parseFlex(initial)
+  let open = false, view = 'main'
+  let viewYear = parsed.y || new Date().getFullYear()
+  let viewMonth = parsed.m || (new Date().getMonth() + 1)
+  let yearPage = Math.floor((parsed.y || new Date().getFullYear()) / 12) * 12
+  const uid = rootId + '-pop'
+  function setMode(mode) {
+    const y = parsed.y || new Date().getFullYear(), m = parsed.m || 1
+    if (mode === 'year') parsed = { mode, y, m: null, d: null }
+    else if (mode === 'month-year') parsed = { mode, y, m, d: null }
+    else parsed = { mode, y, m, d: parsed.d || 1 }
+    viewYear = parsed.y; viewMonth = parsed.m || 1; view = 'main'; render()
+  }
+  function commit(y, m, d) {
+    parsed = { mode: parsed.mode, y, m: m ?? parsed.m, d: d ?? parsed.d }
+    if (parsed.mode === 'year') { parsed.m = null; parsed.d = null }
+    if (parsed.mode === 'month-year') parsed.d = null
+    open = false; view = 'main'; render()
+  }
+  function clear() { parsed = { mode: parsed.mode, y: null, m: null, d: null }; open = false; render() }
+  function dim(y, m) { return new Date(y, m, 0).getDate() }
+  function startWd(y, m) { return (new Date(y, m - 1, 1).getDay() + 6) % 7 }
+  function renderPicker() {
+    const mode = parsed.mode
+    if (mode === 'year') {
+      const years = Array.from({ length: 12 }, (_, i) => yearPage + i)
+      return `<div class="cal-nav"><button type="button" data-act="year-prev">‹</button><div class="title">${yearPage}–${yearPage+11}</div><button type="button" data-act="year-next">›</button></div>
+        <div class="year-grid">${years.map((y)=>`<button type="button" data-year="${y}" aria-selected="${parsed.y===y}">${y}</button>`).join('')}</div>
+        <div class="pop-foot"><button type="button" data-act="clear">Clear</button><span class="val">${formatFlex(mode,parsed.y,parsed.m,parsed.d)||'—'}</span></div>`
+    }
+    if (mode === 'month-year') {
+      return `<div class="cal-nav"><button type="button" data-act="y-prev">‹</button><div class="title">${viewYear}</div><button type="button" data-act="y-next">›</button></div>
+        <div class="month-grid">${MONTHS_SHORT.map((lab,i)=>{const m=i+1;return `<button type="button" data-month="${m}" aria-selected="${parsed.y===viewYear&&parsed.m===m}">${lab}</button>`}).join('')}</div>
+        <div class="pop-foot"><button type="button" data-act="clear">Clear</button><span class="val">${formatFlex(mode,parsed.y,parsed.m,parsed.d)||'—'}</span></div>`
+    }
+    if (view === 'years') {
+      const years = Array.from({ length: 12 }, (_, i) => yearPage + i)
+      return `<div class="cal-nav"><button type="button" data-act="year-prev">‹</button><div class="title">${yearPage}–${yearPage+11}</div><button type="button" data-act="year-next">›</button></div>
+        <div class="year-grid">${years.map((y)=>`<button type="button" data-pick-year="${y}" aria-selected="${viewYear===y}">${y}</button>`).join('')}</div>`
+    }
+    if (view === 'months') {
+      return `<div class="cal-nav"><button type="button" data-act="y-prev">‹</button><div class="title"><button type="button" data-act="to-years">${viewYear}</button></div><button type="button" data-act="y-next">›</button></div>
+        <div class="month-grid">${MONTHS_SHORT.map((lab,i)=>{const m=i+1;return `<button type="button" data-pick-month="${m}" aria-selected="${viewMonth===m}">${lab}</button>`}).join('')}</div>`
+    }
+    const y = viewYear, m = viewMonth, cells = [], start = startWd(y, m), n = dim(y, m), today = new Date()
+    for (let i = 0; i < start; i++) cells.push(`<button type="button" class="out" disabled>${dim(y, m===1?12:m-1)-start+i+1}</button>`)
+    for (let d = 1; d <= n; d++) {
+      const sel = parsed.y===y && parsed.m===m && parsed.d===d
+      const isT = today.getFullYear()===y && today.getMonth()+1===m && today.getDate()===d
+      cells.push(`<button type="button" data-day="${d}" aria-selected="${sel}" class="${isT?'today':''}">${d}</button>`)
+    }
+    return `<div class="cal-nav"><button type="button" data-act="m-prev">‹</button><div class="title"><button type="button" data-act="to-months">${MONTHS[m-1]}</button> <button type="button" data-act="to-years">${y}</button></div><button type="button" data-act="m-next">›</button></div>
+      <div class="dow">${DOW.map((d)=>`<span>${d}</span>`).join('')}</div><div class="days">${cells.join('')}</div>
+      <div class="pop-foot"><button type="button" data-act="clear">Clear</button><span class="val">${formatFlex(parsed.mode,parsed.y,parsed.m,parsed.d)||'—'}</span></div>`
+  }
+  function bind() {
+    const pop = document.getElementById(uid); if (!pop) return
+    pop.querySelectorAll('[data-act]').forEach((btn) => {
+      btn.onclick = (e) => {
+        e.stopPropagation(); const a = btn.dataset.act
+        if (a==='clear') return clear()
+        if (a==='year-prev') { yearPage -= 12; render() }
+        if (a==='year-next') { yearPage += 12; render() }
+        if (a==='y-prev') { viewYear -= 1; render() }
+        if (a==='y-next') { viewYear += 1; render() }
+        if (a==='m-prev') { viewMonth -= 1; if (viewMonth<1){viewMonth=12;viewYear-=1} render() }
+        if (a==='m-next') { viewMonth += 1; if (viewMonth>12){viewMonth=1;viewYear+=1} render() }
+        if (a==='to-months') { view = 'months'; render() }
+        if (a==='to-years') { yearPage = Math.floor(viewYear/12)*12; view = 'years'; render() }
+      }
+    })
+    pop.querySelectorAll('[data-year]').forEach((b) => b.onclick = (e) => { e.stopPropagation(); commit(Number(b.dataset.year), null, null) })
+    pop.querySelectorAll('[data-month]').forEach((b) => b.onclick = (e) => { e.stopPropagation(); commit(viewYear, Number(b.dataset.month), null) })
+    pop.querySelectorAll('[data-pick-year]').forEach((b) => b.onclick = (e) => { e.stopPropagation(); viewYear = Number(b.dataset.pickYear); view = 'months'; render() })
+    pop.querySelectorAll('[data-pick-month]').forEach((b) => b.onclick = (e) => { e.stopPropagation(); viewMonth = Number(b.dataset.pickMonth); view = 'main'; render() })
+    pop.querySelectorAll('[data-day]').forEach((b) => b.onclick = (e) => { e.stopPropagation(); commit(viewYear, viewMonth, Number(b.dataset.day)) })
+  }
+  function render() {
+    const disp = displayFlex(parsed.mode, parsed.y, parsed.m, parsed.d)
+    const stored = formatFlex(parsed.mode, parsed.y, parsed.m, parsed.d)
+    root.innerHTML = `
+      <div class="seg" style="max-width:280px;grid-template-columns:1fr 1fr 1fr">
+        <button type="button" data-mode="full" aria-selected="${parsed.mode==='full'}">Day</button>
+        <button type="button" data-mode="month-year" aria-selected="${parsed.mode==='month-year'}">Month</button>
+        <button type="button" data-mode="year" aria-selected="${parsed.mode==='year'}">Year</button>
+      </div>
+      <div class="date-wrap" style="margin-top:8px">
+        <button type="button" class="date-btn" id="${rootId}-trig" aria-expanded="${open}">
+          <span class="${disp?'':'ph'}">${disp || 'Select date…'}</span>
+          <span class="caret" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="pop" id="${uid}" ${open?'':'hidden'}>${open ? renderPicker() : ''}</div>
+      </div>
+      <div class="meta-line">stored: ${stored || '—'} · ${parsed.mode}</div>`
+    root.querySelectorAll('[data-mode]').forEach((b) => b.onclick = () => setMode(b.dataset.mode))
+    document.getElementById(rootId + '-trig').onclick = (e) => {
+      e.stopPropagation(); open = !open
+      if (open) {
+        view = 'main'
+        viewYear = parsed.y || new Date().getFullYear()
+        viewMonth = parsed.m || (new Date().getMonth() + 1)
+        yearPage = Math.floor(viewYear / 12) * 12
+      }
+      render()
+    }
+    if (open) bind()
+  }
+  document.addEventListener('click', (e) => {
+    if (!open) return
+    if (!root.contains(e.target)) { open = false; render() }
+  })
+  render()
+}
+mountFlexibleDate('date-demo', '2015-06')
+</script>
+</body>
+</html>
