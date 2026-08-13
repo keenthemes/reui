@@ -986,13 +986,13 @@ function DataGridTableHeadRowCellResize<TData extends object>({
         className: cn(
           "absolute top-0 h-full cursor-col-resize user-select-none touch-none z-10 flex",
           isLastVisibleColumn
-            ? "end-0 w-5 justify-end before:hidden"
+            ? "end-0 w-5! justify-end before:hidden"
             : isPinned
               ? cn(
                   // A pinned column is sticky, so the handle sits inside the
                   // cell instead of straddling the boundary, where the next
                   // sticky cell would paint over it.
-                  "end-0 w-5 justify-end",
+                  "end-0 w-5! justify-end",
                   // With the pin affordance on, the pinned edge already draws
                   // its own separator and a resize line would double it. But
                   // pinning is also usable purely as an ordering lock, with no
@@ -1003,7 +1003,7 @@ function DataGridTableHeadRowCellResize<TData extends object>({
                     ? "before:hidden"
                     : "before:absolute before:inset-y-0 before:end-0 before:w-px before:bg-border"
                 )
-              : "-end-2 w-5 justify-center before:absolute before:inset-y-0 before:w-px before:-translate-x-px before:bg-border",
+              : "-end-2 w-5! justify-center before:absolute before:inset-y-0 before:w-px before:-translate-x-px before:bg-border",
           column.getIsResizing() &&
             (isResizeModeOnEnd
               ? "opacity-100"
