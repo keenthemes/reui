@@ -1003,7 +1003,7 @@ function DataGridTableHeadRowCellResize<TData extends object>({
                     ? "before:hidden"
                     : "before:absolute before:inset-y-0 before:end-0 before:w-px before:bg-border"
                 )
-              : "-end-2 w-5! justify-center before:absolute before:inset-y-0 before:w-px before:-translate-x-px before:bg-border",
+              : "-end-2 w-5! justify-center! before:absolute before:inset-y-0 before:w-px before:-translate-x-px before:bg-border",
           column.getIsResizing() &&
             (isResizeModeOnEnd
               ? "opacity-100"
