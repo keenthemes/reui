@@ -17,7 +17,10 @@ import type {
   Ref,
   RefObject,
 } from "react"
-import { useDataGrid } from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
+import {
+  useDataGrid,
+  useDataGridData,
+} from "@/registry-reui/bases/radix/reui/data-grid/data-grid"
 import type {
   DataGridFeatures,
   DataGridTableInstance,
@@ -407,6 +410,24 @@ function getDataGridTableRowSections<TData extends object>(
     centerRows: table.getCenterRows() as Row<DataGridFeatures, TData>[],
     bottomRows: table.getBottomRows() as Row<DataGridFeatures, TData>[],
   }
+}
+
+function getDataGridTableSkeletonRowCount<TData extends object>(
+  table: DataGridTableInstance<TData>,
+  dataRowCount: number
+) {
+  const pageSize = table.state.pagination?.pageSize ?? 0
+  if (pageSize === 0) return 0
+
+  return Math.min(dataRowCount || pageSize, pageSize)
+}
+
+function DataGridTableDataBoundary<TData extends object>({
+  children,
+}: {
+  children: (data: readonly TData[]) => ReactNode
+}) {
+  return children(useDataGridData<TData>())
 }
 
 function getDataGridTableResolvedRows<TData extends object>(
@@ -1744,14 +1765,15 @@ function DataGridTableRowExpand<TData extends object>({
 }
 
 function DataGridTableBodyRows<TData extends object>({
-  table,
+  dataRowCount,
 }: {
   table: DataGridTableInstance<TData>
+  dataRowCount: number
 }) {
-  const { isLoading, props } = useDataGrid()
-  const pagination = table.state.pagination
+  const { isLoading, props, table } = useDataGrid<TData>()
+  const skeletonRowCount = getDataGridTableSkeletonRowCount(table, dataRowCount)
 
-  if (isLoading && props.loadingMode === "skeleton" && pagination?.pageSize) {
+  if (isLoading && props.loadingMode === "skeleton" && skeletonRowCount > 0) {
     const leftVisibleColumns = table.getStartVisibleLeafColumns()
     const centerVisibleColumns = table.getCenterVisibleLeafColumns()
     const rightVisibleColumns = table.getEndVisibleLeafColumns()
@@ -1759,7 +1781,7 @@ function DataGridTableBodyRows<TData extends object>({
 
     return (
       <>
-        {Array.from({ length: pagination.pageSize }).map((_, rowIndex) => (
+        {Array.from({ length: skeletonRowCount }).map((_, rowIndex) => (
           <DataGridTableBodyRowSkeleton key={rowIndex}>
             {[...leftVisibleColumns, ...centerVisibleColumns].map((column) => (
               <DataGridTableBodyRowSkeletonCell column={column} key={column.id}>
@@ -2008,7 +2030,14 @@ function DataGridTable<TData extends object>({
           )}
 
         <DataGridTableBody>
-          <MemoizedDataGridTableBodyRows table={table} />
+          <DataGridTableDataBoundary<TData>>
+            {(data) => (
+              <MemoizedDataGridTableBodyRows
+                table={table}
+                dataRowCount={data.length}
+              />
+            )}
+          </DataGridTableDataBoundary>
         </DataGridTableBody>
 
         {footerContent && (
@@ -2022,6 +2051,7 @@ function DataGridTable<TData extends object>({
 export {
   DataGridTable,
   DataGridTableBase,
+  DataGridTableDataBoundary,
   DataGridTableBody,
   DataGridTableBodyRow,
   DataGridTableBodyRowCell,
@@ -2052,6 +2082,7 @@ export {
   getPinningStyles,
   getDataGridTableResolvedRows,
   getDataGridTableRowSections,
+  getDataGridTableSkeletonRowCount,
   getDataGridTreeIndentStyle,
   hasDataGridTableRightPinnedColumns,
 }

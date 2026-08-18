@@ -332,6 +332,9 @@ const DataGridContext = createContext<
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   DataGridContextProps<any> | undefined
 >(undefined)
+const DataGridDataContext = createContext<readonly object[] | undefined>(
+  undefined
+)
 
 /**
  * Reads the grid context. Pass `TData` from the calling component when the
@@ -350,6 +353,13 @@ function useDataGrid<
     throw new Error("useDataGrid must be used within a DataGridProvider")
   }
   return context
+}
+
+function useDataGridData<TData extends object>() {
+  const data = useContext(DataGridDataContext)
+  if (!data)
+    throw new Error("useDataGridData must be used within a DataGridProvider")
+  return data as readonly TData[]
 }
 
 function DataGridProvider<TData extends object>({
@@ -453,7 +463,9 @@ function DataGridProvider<TData extends object>({
     <DataGridContext.Provider
       value={value as unknown as DataGridContextProps<TData>}
     >
-      {children}
+      <DataGridDataContext.Provider value={table.options.data}>
+        {children}
+      </DataGridDataContext.Provider>
     </DataGridContext.Provider>
   )
 }
@@ -552,4 +564,10 @@ function DataGridContainer({
   )
 }
 
-export { useDataGrid, DataGridProvider, DataGrid, DataGridContainer }
+export {
+  useDataGrid,
+  useDataGridData,
+  DataGridProvider,
+  DataGrid,
+  DataGridContainer,
+}

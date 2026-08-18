@@ -25,6 +25,7 @@ import {
   DataGridTableBodyRowExpandded,
   DataGridTableBodyRowSkeleton,
   DataGridTableBodyRowSkeletonCell,
+  DataGridTableDataBoundary,
   DataGridTableEmpty,
   DataGridTableFillBodyCell,
   DataGridTableFillHeadCell,
@@ -35,6 +36,7 @@ import {
   DataGridTableHeadRowCellResize,
   DataGridTableRowSpacer,
   DataGridTableViewport,
+  getDataGridTableSkeletonRowCount,
 } from "@/registry-reui/bases/base/reui/data-grid/data-grid-table"
 import {
   closestCenter,
@@ -330,25 +332,26 @@ function DataGridTableDndRow<TData extends object>({
 }
 
 function DataGridTableDndRowsBody<TData extends object>({
-  table,
+  dataRowCount,
   dataIds,
   renderRowDecoration,
   dropIndicator,
   sortingStrategy,
 }: {
   table: DataGridTableInstance<TData>
+  dataRowCount: number
   dataIds: UniqueIdentifier[]
   renderRowDecoration?: DataGridTableDndRowDecoration<TData>
   dropIndicator?: boolean
   sortingStrategy: SortingStrategy
 }) {
-  const { isLoading, props } = useDataGrid()
-  const pagination = table.state.pagination
+  const { isLoading, props, table } = useDataGrid<TData>()
+  const skeletonRowCount = getDataGridTableSkeletonRowCount(table, dataRowCount)
 
-  if (props.loadingMode === "skeleton" && isLoading && pagination?.pageSize) {
+  if (props.loadingMode === "skeleton" && isLoading && skeletonRowCount > 0) {
     return (
       <>
-        {Array.from({ length: pagination.pageSize }).map((_, rowIndex) => (
+        {Array.from({ length: skeletonRowCount }).map((_, rowIndex) => (
           <DataGridTableBodyRowSkeleton key={rowIndex}>
             {table.getVisibleFlatColumns().map((column, colIndex) => {
               return (
@@ -663,13 +666,18 @@ function DataGridTableDndRows<TData extends object>({
           )}
 
           <DataGridTableBody>
-            <MemoizedDataGridTableDndRowsBody
-              table={table}
-              dataIds={dataIds}
-              renderRowDecoration={renderRowDecoration}
-              dropIndicator={dropIndicator}
-              sortingStrategy={sortingStrategy}
-            />
+            <DataGridTableDataBoundary<TData>>
+              {(data) => (
+                <MemoizedDataGridTableDndRowsBody
+                  table={table}
+                  dataRowCount={data.length}
+                  dataIds={dataIds}
+                  renderRowDecoration={renderRowDecoration}
+                  dropIndicator={dropIndicator}
+                  sortingStrategy={sortingStrategy}
+                />
+              )}
+            </DataGridTableDataBoundary>
           </DataGridTableBody>
 
           {footerContent && (

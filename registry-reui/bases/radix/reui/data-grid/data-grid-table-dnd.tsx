@@ -23,6 +23,7 @@ import {
   DataGridTableBodyRowExpandded,
   DataGridTableBodyRowSkeleton,
   DataGridTableBodyRowSkeletonCell,
+  DataGridTableDataBoundary,
   DataGridTableEmpty,
   DataGridTableFillBodyCell,
   DataGridTableFillHeadCell,
@@ -33,6 +34,7 @@ import {
   DataGridTableHeadRowCellResize,
   DataGridTableRowSpacer,
   DataGridTableViewport,
+  getDataGridTableSkeletonRowCount,
 } from "@/registry-reui/bases/radix/reui/data-grid/data-grid-table"
 import {
   closestCenter,
@@ -171,17 +173,18 @@ function DataGridTableDndCell<TData extends object>({
 }
 
 function DataGridTableDndBodyRows<TData extends object>({
-  table,
+  dataRowCount,
 }: {
   table: DataGridTableInstance<TData>
+  dataRowCount: number
 }) {
-  const { isLoading, props } = useDataGrid()
-  const pagination = table.state.pagination
+  const { isLoading, props, table } = useDataGrid<TData>()
+  const skeletonRowCount = getDataGridTableSkeletonRowCount(table, dataRowCount)
 
-  if (props.loadingMode === "skeleton" && isLoading && pagination?.pageSize) {
+  if (props.loadingMode === "skeleton" && isLoading && skeletonRowCount > 0) {
     return (
       <>
-        {Array.from({ length: pagination.pageSize }).map((_, rowIndex) => (
+        {Array.from({ length: skeletonRowCount }).map((_, rowIndex) => (
           <DataGridTableBodyRowSkeleton key={rowIndex}>
             {table.getVisibleFlatColumns().map((column, colIndex) => {
               return (
@@ -357,7 +360,14 @@ function DataGridTableDnd<TData extends object>({
           )}
 
           <DataGridTableBody>
-            <MemoizedDataGridTableDndBodyRows table={table} />
+            <DataGridTableDataBoundary<TData>>
+              {(data) => (
+                <MemoizedDataGridTableDndBodyRows
+                  table={table}
+                  dataRowCount={data.length}
+                />
+              )}
+            </DataGridTableDataBoundary>
           </DataGridTableBody>
 
           {footerContent && (

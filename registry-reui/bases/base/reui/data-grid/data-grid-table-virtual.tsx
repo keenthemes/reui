@@ -10,6 +10,7 @@ import type {
 import {
   DataGridTableBase,
   DataGridTableBody,
+  DataGridTableDataBoundary,
   DataGridTableEmpty,
   DataGridTableFillBodyCell,
   DataGridTableFillHeadCell,
@@ -584,7 +585,7 @@ const MemoizedVirtualBody = memo(
   (_prev, next) => !!next.table.state.columnResizing.isResizingColumn
 ) as typeof DataGridTableVirtualBody
 
-function DataGridTableVirtual<TData extends object>({
+function DataGridTableVirtualContent<TData extends object>({
   height,
   estimateSize = 48,
   overscan = 10,
@@ -953,6 +954,16 @@ function DataGridTableVirtual<TData extends object>({
         )}
       </DataGridTableBase>
     </DataGridTableViewport>
+  )
+}
+
+function DataGridTableVirtual<TData extends object>(
+  props: DataGridTableVirtualProps<TData>
+) {
+  return (
+    <DataGridTableDataBoundary<TData>>
+      {() => <DataGridTableVirtualContent {...props} />}
+    </DataGridTableDataBoundary>
   )
 }
 
