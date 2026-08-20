@@ -32,6 +32,7 @@ import {
 } from "@/registry-reui/bases/radix/reui/event-calendar/event-calendar-dnd"
 import {
   EVENT_CALENDAR_GHOST,
+  EVENT_CALENDAR_SLOT_DRAFT,
   EventCalendarEvent,
 } from "@/registry-reui/bases/radix/reui/event-calendar/event-calendar-event"
 import {
@@ -717,6 +718,28 @@ function EventCalendarMonthCell({
           a.isEnd === b.isEnd),
     }
   )
+
+  // Month drag-create selects whole DAYS, so the readout is a date range rather
+  // than a time range. Held separately from `inDraft` above, which only knows
+  // whether this cell is an edge of the selection, not what the selection is.
+  const draftRange = useEventCalendarSelector<
+    unknown,
+    { start: Date; end: Date } | null
+  >(
+    (state) => {
+      const draft = state.slotDraft
+      if (!draft || !draft.allDay) return null
+      return { start: draft.start, end: draft.end }
+    },
+    {
+      isEqual: (a, b) =>
+        a === b ||
+        (a !== null &&
+          b !== null &&
+          a.start.getTime() === b.start.getTime() &&
+          a.end.getTime() === b.end.getTime()),
+    }
+  )
   // A single-day timed MOVE landing on THIS day: expose the proposed
   // minute-of-day (+ color/validity) so the cell can render a drop placeholder
   // at the correct time-sorted position, instead of the overlay marking a bar
@@ -1025,7 +1048,7 @@ function EventCalendarMonthCell({
         // No drop-target bg fill on move/resize - the dragged bar + not-allowed
         // cursor carry the feedback; a cell-wide color wash is too distracting.
         // data-drop-target stays as an opt-in styling hook.
-        inDraft && "bg-primary/5",
+        inDraft && EVENT_CALENDAR_SLOT_DRAFT.surface,
         viewConfig.classNames?.monthCell
       )}
       onPointerDown={(e) => {
@@ -1044,12 +1067,35 @@ function EventCalendarMonthCell({
           aria-hidden
           data-slot="event-calendar-slot-draft"
           className={cn(
-            "border-primary/40 pointer-events-none absolute inset-0 z-10 border-y border-dashed",
-            inDraft.isStart && "border-s",
-            inDraft.isEnd && "border-e",
+            "pointer-events-none absolute inset-0 z-10",
+            EVENT_CALENDAR_SLOT_DRAFT.segment,
+            inDraft.isStart && EVENT_CALENDAR_SLOT_DRAFT.segmentStart,
+            inDraft.isEnd && EVENT_CALENDAR_SLOT_DRAFT.segmentEnd,
             viewConfig.classNames?.slotDraft
           )}
-        />
+        >
+          {/* Date-range readout, the month-view counterpart of the time-grid
+              one. Rendered only on the FIRST cell of the selection, otherwise
+              a three-day drag would repeat the same label three times. Pinned
+              to the bottom because the day number owns the top of the cell,
+              and given its own surface so it stays legible over event chips. */}
+          {inDraft.isStart && draftRange && (
+            <span
+              className={cn(
+                "absolute inset-x-1 bottom-1",
+                EVENT_CALENDAR_SLOT_DRAFT.label
+              )}
+            >
+              {settings.i18n.functions.formatDayRange(
+                {
+                  start: toZoned(draftRange.start, settings.timeZone),
+                  end: toZoned(draftRange.end, settings.timeZone),
+                },
+                { locale: settings.locale }
+              )}
+            </span>
+          )}
+        </span>
       )}
       {content}
     </div>

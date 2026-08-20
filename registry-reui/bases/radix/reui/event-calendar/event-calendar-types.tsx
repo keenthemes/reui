@@ -5,22 +5,18 @@ type EventCalendarEventId = string
 
 type CalendarView = "month" | "week" | "day" | "days" | "agenda" | "resource"
 
-/**
- * A bookable resource (room, person, equipment). Nesting via children renders
- * with children; the resource day view shows leaves as booking columns.
- */
+/** Bookable resource. The resource view flattens children and renders leaves
+ *  only, as booking columns; a parent's own title never renders. */
 interface EventCalendarResource {
   id: string
   title: string
-  /** Token or css color used for subtle row/column accents. */
   color?: string
   children?: EventCalendarResource[]
 }
 
+/** Half-open: start is inclusive, end is exclusive. */
 interface EventCalendarDateRange {
-  /** Inclusive instant. */
   start: Date
-  /** Exclusive instant. */
   end: Date
 }
 
@@ -45,15 +41,11 @@ interface EventCalendarRecurrenceRule {
 interface CalendarEvent<TData = unknown> {
   id: EventCalendarEventId
   title: string
-  /** Plain instant; consumers parse ISO strings themselves. */
   start: Date
   /** Exclusive; must be >= start. */
   end: Date
-  /**
-   * Start and end must be midnights in the calendar's display time zone:
-   * segmentation walks the raw instants, so a row stored at another zone's
-   * midnight paints on the wrong days.
-   */
+  /** Start and end must be midnights in the display time zone: segmentation
+   *  walks raw instants, so another zone's midnight paints the wrong days. */
   allDay?: boolean
   /** Structured rule or a raw "RRULE:..." line. */
   recurrence?: EventCalendarRecurrenceRule | string
@@ -65,17 +57,14 @@ interface CalendarEvent<TData = unknown> {
   color?: string
   /** Excluded from drag and resize regardless of interactions state. */
   readOnly?: boolean
-  /** Per-event override; default comes from interactions.drag. */
+  /** Per-event overrides; defaults come from interactions.drag / .resize. */
   draggable?: boolean
-  /** Per-event override; default comes from interactions.resize. */
   resizable?: boolean
   /** Packing prominence; feeds getEventPriority ordering. */
   priority?: number
-  /** Explicit stacking override; wins over the computed z. */
+  /** Verbatim stacking override; replaces the computed 10 + column. */
   zIndex?: number
-  /** Bookable resource this event belongs to (resource view). */
   resourceId?: string
-  /** Consumer payload, fully generic. */
   data?: TData
 }
 
@@ -93,7 +82,7 @@ interface EventCalendarOccurrence<TData = unknown> {
 
 interface EventCalendarSegment<TData = unknown> {
   occurrence: EventCalendarOccurrence<TData>
-  /** Zoned day this segment belongs to. */
+  /** Zoned midnight of the segment's day; startMin/endMin count from it. */
   day: Date
   isStart: boolean
   isEnd: boolean
@@ -102,13 +91,13 @@ interface EventCalendarSegment<TData = unknown> {
   /** Timed only: minutes from the zoned day start. */
   startMin?: number
   endMin?: number
-  /** Month / all-day lane index. */
+  /** Layout output: lane stacks month bars and all-day lanes;
+   *  column/columnCount/columnSpan pack time-grid overlaps;
+   *  rowIndex/colStart/colSpan place a bar in the week row. */
   lane?: number
-  /** Time-grid overlap packing. */
   column?: number
   columnCount?: number
   columnSpan?: number
-  /** Week-row granularity (month bars / all-day lanes). */
   rowIndex?: number
   colStart?: number
   colSpan?: number
@@ -116,7 +105,7 @@ interface EventCalendarSegment<TData = unknown> {
 
 interface EventCalendarSelection {
   eventKeys: string[]
-  /** Committed slot selection; see EventCalendarSlotDraft for the in-gesture value. */
+  /** Committed slot selection; EventCalendarSlotDraft holds the in-gesture one. */
   slot: { start: Date; end: Date; allDay: boolean } | null
 }
 
@@ -132,51 +121,36 @@ interface EventCalendarDragState<TData = unknown> {
   proposedStart: Date
   proposedEnd: Date
   proposedAllDay: boolean
-  /**
-   * True when the proposal was resolved on the day-granular surface (month
-   * cells / the all-day lane) rather than minute columns - the all-day lane
-   * ghost keys on this, covering timed MULTI-DAY bars whose proposals stay
-   * timed (proposedAllDay alone misses them).
-   */
+  /** Day-granular proposal (month cells, all-day lane), not minute columns; the
+   *  all-day ghost keys on it: proposedAllDay misses timed MULTI-DAY bars. */
   proposedDayGranular: boolean
-  /** Target resource when dragging across resource columns/rows. */
   proposedResourceId?: string
   /** Last canDropEvent verdict; drives data-drop-invalid styling. */
   valid: boolean
 }
 
-/**
- * The in-progress drag-create rectangle ONLY, cleared on commit or cancel.
- * The committed slot selection lives in EventCalendarSelection.slot.
- */
+/** The in-progress drag-create rectangle only; cleared on commit or cancel. */
 interface EventCalendarSlotDraft {
   start: Date
   end: Date
   allDay: boolean
   view: CalendarView
-  /** Present when the slot was selected inside a resource column/row. */
   resourceId?: string
 }
 
-/**
- * User-adjustable display toggles (the "View settings" submenu). Every field
- * is optional; undefined defers to the matching root view-config prop.
- */
+/** "View settings" toggles; undefined defers to the root view-config prop. */
 interface EventCalendarViewSettings {
-  /** Show Saturday/Sunday columns in month, week, and N-day grids. */
   weekends?: boolean
-  /** Week-number gutter in the month view. */
   weekNumbers?: boolean
   nowIndicator?: boolean
-  /** Off-day (non-working) background marking. */
   offDays?: boolean
 }
 
 interface EventCalendarState<TData = unknown> {
   view: CalendarView
-  /** Anchor date. */
+  /** Anchor date; navigation steps this, and both ranges derive from it. */
   date: Date
-  /** For the "days" view. */
+  /** Read by the "days" view only; other views ignore it. */
   dayCount: number
   /** Full rendered grid incl. outside days - fetch remote data for THIS. */
   visibleRange: EventCalendarDateRange
@@ -206,7 +180,6 @@ interface EventCalendarProposedUpdate<TData = unknown> {
   start: Date
   end: Date
   allDay: boolean
-  /** Proposed resource when the gesture crossed resource columns/rows. */
   resourceId?: string
   source: "drag" | "resize-start" | "resize-end" | "keyboard" | "api"
 }
@@ -223,16 +196,10 @@ interface EventCalendarSlotInfo {
   end?: Date
   allDay: boolean
   view: CalendarView
-  /** Present when the click happened inside a resource column/row. */
   resourceId?: string
 }
 
-/**
- * Off-day marking (non-working days). `true` uses the defaults: weekends
- * with a muted background. Custom weekday sets, explicit dates, a predicate,
- * and a custom class are all supported; marked cells carry `data-off` for
- * CSS-selector customization.
- */
+/** Off-days; `true` = weekend defaults. Marked cells carry `data-off`. */
 interface EventCalendarOffDaysConfig {
   /** Weekday numbers treated as off (0 = Sunday). Default [0, 6]. */
   weekendDays?: number[]
@@ -244,11 +211,6 @@ interface EventCalendarOffDaysConfig {
   className?: string
 }
 
-/**
- * External-data contract. v1 ships the type plus docs recipes (Google
- * events.list / MS Graph calendarView map to CalendarEvent in ~15 lines);
- * OAuth, tokens, and sync loops are application backend territory.
- */
 interface EventCalendarDataAdapter<TData = unknown> {
   getEvents(
     range: EventCalendarDateRange,

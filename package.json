@@ -1,6 +1,6 @@
 {
   "name": "reui",
-  "version": "2.0.0",
+  "version": "2.3.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -65,6 +65,7 @@
     "@reui/components-base-calendar": "workspace:*",
     "@reui/components-base-card": "workspace:*",
     "@reui/components-base-carousel": "workspace:*",
+    "@reui/components-base-cascader": "workspace:*",
     "@reui/components-base-chart": "workspace:*",
     "@reui/components-base-checkbox": "workspace:*",
     "@reui/components-base-collapsible": "workspace:*",
@@ -137,6 +138,7 @@
     "@reui/components-radix-calendar": "workspace:*",
     "@reui/components-radix-card": "workspace:*",
     "@reui/components-radix-carousel": "workspace:*",
+    "@reui/components-radix-cascader": "workspace:*",
     "@reui/components-radix-chart": "workspace:*",
     "@reui/components-radix-checkbox": "workspace:*",
     "@reui/components-radix-collapsible": "workspace:*",

@@ -1,917 +1,451 @@
 "use client"
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react"
-import { Alert, AlertTitle } from "@/registry-reui/bases/base/reui/alert"
-import { Badge } from "@/registry-reui/bases/base/reui/badge"
+import { useState } from "react"
+import { Filters } from "@/registry-reui/bases/base/reui/filters/filters"
 import {
-  DataGrid,
-  DataGridContainer,
-  dataGridFeatures,
-  type DataGridFeatures,
-} from "@/registry-reui/bases/base/reui/data-grid/data-grid"
-import { DataGridColumnHeader } from "@/registry-reui/bases/base/reui/data-grid/data-grid-column-header"
-import { DataGridPagination } from "@/registry-reui/bases/base/reui/data-grid/data-grid-pagination"
-import { DataGridTable } from "@/registry-reui/bases/base/reui/data-grid/data-grid-table"
-import {
-  createFilter,
-  Filters,
-  type Filter,
-  type FilterFieldConfig,
-} from "@/registry-reui/bases/base/reui/filters"
-import {
-  ColumnDef,
-  PaginationState,
-  SortingState,
-  useTable,
-} from "@tanstack/react-table"
+  createFilterQuery,
+  createFilterRule,
+} from "@/registry-reui/bases/base/reui/filters/filters-query"
+import type {
+  FilterEditorProps,
+  FilterField,
+  FilterOption,
+  FilterQuery,
+} from "@/registry-reui/bases/base/reui/filters/filters-types"
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/registry/bases/base/ui/avatar"
+import { cn } from "@/registry/bases/base/lib/utils"
 import { Button } from "@/registry/bases/base/ui/button"
-import { ScrollArea, ScrollBar } from "@/registry/bases/base/ui/scroll-area"
-import { Skeleton } from "@/registry/bases/base/ui/skeleton"
+import { Checkbox } from "@/registry/bases/base/ui/checkbox"
+import { Label } from "@/registry/bases/base/ui/label"
+import {
+  NativeSelect,
+  NativeSelectOption,
+} from "@/registry/bases/base/ui/native-select"
+import {
+  RadioGroup,
+  RadioGroupItem,
+} from "@/registry/bases/base/ui/radio-group"
+import { Switch } from "@/registry/bases/base/ui/switch"
+import {
+  ToggleGroup,
+  ToggleGroupItem,
+} from "@/registry/bases/base/ui/toggle-group"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
-interface IData {
-  id: string
-  name: string
-  availability: "online" | "away" | "busy" | "offline"
-  avatar: string
-  status: "active" | "inactive"
-  flag: string // Emoji flags
-  email: string
-  company: string
-  role: string
-  joined: string
-  location: string
-  balance: number
-}
+/* -------------------------------------------------------------------------- */
+/*                                  Options                                   */
+/* -------------------------------------------------------------------------- */
 
-const demoData: IData[] = [
-  {
-    id: "1",
-    name: "Alex Johnson",
-    availability: "online",
-    avatar:
-      "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=96&h=96&dpr=2&q=80",
-    status: "active",
-    flag: "us",
-    email: "alex@apple.com",
-    company: "Apple",
-    role: "CEO",
-    joined: "Jan, 2024",
-    location: "San Francisco, USA",
-    balance: 5143.03,
-  },
-  {
-    id: "2",
-    name: "Sarah Chen",
-    availability: "away",
-    avatar:
-      "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=96&h=96&dpr=2&q=80",
-    status: "inactive",
-    flag: "gb",
-    email: "sarah@openai.com",
-    company: "OpenAI",
-    role: "CTO",
-    joined: "Mar, 2023",
-    location: "London, UK",
-    balance: 4321.87,
-  },
-  {
-    id: "3",
-    name: "Michael Rodriguez",
-    availability: "busy",
-    avatar:
-      "https://images.unsplash.com/photo-1584308972272-9e4e7685e80f?w=96&h=96&dpr=2&q=80",
-    status: "active",
-    flag: "ca",
-    email: "michael@meta.com",
-    company: "Meta",
-    role: "Designer",
-    joined: "Jun, 2022",
-    location: "Toronto, Canada",
-    balance: 7654.98,
-  },
-  {
-    id: "4",
-    name: "Emma Wilson",
-    availability: "offline",
-    avatar:
-      "https://images.unsplash.com/photo-1485893086445-ed75865251e0?w=96&h=96&dpr=2&q=80",
-    status: "inactive",
-    flag: "au",
-    email: "emma@tesla.com",
-    company: "Tesla",
-    role: "Developer",
-    joined: "Sep, 2024",
-    location: "Sydney, Australia",
-    balance: 3456.45,
-  },
-  {
-    id: "5",
-    name: "David Kim",
-    availability: "online",
-    avatar:
-      "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=96&h=96&dpr=2&q=80",
-    status: "active",
-    flag: "de",
-    email: "david@sap.com",
-    company: "SAP",
-    role: "Lawyer",
-    joined: "Nov, 2023",
-    location: "Berlin, Germany",
-    balance: 9876.54,
-  },
-  {
-    id: "6",
-    name: "Aron Thompson",
-    availability: "away",
-    avatar:
-      "https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=96&h=96&dpr=2&q=80",
-    status: "active",
-    flag: "my",
-    email: "aron@keenthemes.com",
-    company: "Keenthemes",
-    role: "Director",
-    joined: "Feb, 2022",
-    location: "Kuala Lumpur, MY",
-    balance: 6214.22,
-  },
-  {
-    id: "7",
-    name: "James Brown",
-    availability: "busy",
-    avatar:
-      "https://images.unsplash.com/photo-1543299750-19d1d6297053?w=96&h=96&dpr=2&q=80",
-    status: "inactive",
-    flag: "es",
-    email: "james@bbva.es",
-    company: "BBVA",
-    role: "Product Manager",
-    joined: "Aug, 2024",
-    location: "Barcelona, Spain",
-    balance: 5321.77,
-  },
-  {
-    id: "8",
-    name: "Maria Garcia",
-    availability: "offline",
-    avatar:
-      "https://images.unsplash.com/photo-1620075225255-8c2051b6c015?w=96&h=96&dpr=2&q=80",
-    status: "active",
-    flag: "jp",
-    email: "maria@sony.jp",
-    company: "Sony",
-    role: "Marketing Lead",
-    joined: "Dec, 2023",
-    location: "Tokyo, Japan",
-    balance: 8452.39,
-  },
-  {
-    id: "9",
-    name: "Nick Johnson",
-    availability: "online",
-    avatar:
-      "https://images.unsplash.com/photo-1485206412256-701ccc5b93ca?w=96&h=96&dpr=2&q=80",
-    status: "active",
-    flag: "fr",
-    email: "nick@lvmh.fr",
-    company: "LVMH",
-    role: "Data Scientist",
-    joined: "Apr, 2022",
-    location: "Paris, France",
-    balance: 7345.1,
-  },
-  {
-    id: "10",
-    name: "Liam Thompson",
-    availability: "away",
-    avatar:
-      "https://images.unsplash.com/photo-1542595913-85d69b0edbaf?w=96&h=96&dpr=2&q=80",
-    status: "inactive",
-    flag: "it",
-    email: "liam@eni.it",
-    company: "ENI",
-    role: "Engineer",
-    joined: "Jul, 2024",
-    location: "Milan, Italy",
-    balance: 5214.88,
-  },
-  {
-    id: "11",
-    name: "Alex Johnson",
-    availability: "busy",
-    avatar:
-      "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=96&h=96&dpr=2&q=80",
-    status: "active",
-    flag: "br",
-    email: "alex@vale.br",
-    company: "Vale",
-    role: "Software Engineer",
-    joined: "May, 2023",
-    location: "Rio de Janeiro, Brazil",
-    balance: 9421.5,
-  },
-  {
-    id: "12",
-    name: "Sarah Chen",
-    availability: "offline",
-    avatar:
-      "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=96&h=96&dpr=2&q=80",
-    status: "active",
-    flag: "in",
-    email: "sarah@tata.in",
-    company: "Tata",
-    role: "Sales Manager",
-    joined: "Oct, 2024",
-    location: "Mumbai, India",
-    balance: 4521.67,
-  },
+const CHANNELS = [
+  { value: "web", label: "Web" },
+  { value: "ios", label: "iOS" },
+  { value: "android", label: "Android" },
+  { value: "api", label: "API" },
 ]
 
-// Availability status component
-const AvailabilityStatus = ({ availability }: { availability: string }) => {
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "online":
-        return "bg-green-500"
-      case "away":
-        return "bg-yellow-500"
-      case "busy":
-        return "bg-red-500"
-      case "offline":
-        return "bg-gray-400"
-      default:
-        return "bg-gray-400"
-    }
-  }
+const PLANS = [
+  { value: "free", label: "Free", hint: "No card on file" },
+  { value: "pro", label: "Pro", hint: "Monthly or yearly" },
+  { value: "ultimate", label: "Ultimate", hint: "Seat based" },
+]
 
-  const getStatusLabel = (status: string) => {
-    switch (status) {
-      case "online":
-        return "Online"
-      case "away":
-        return "Away"
-      case "busy":
-        return "Busy"
-      case "offline":
-        return "Offline"
-      default:
-        return "Unknown"
-    }
-  }
+const PERMISSIONS = [
+  { value: "read", label: "Read" },
+  { value: "write", label: "Write" },
+  { value: "publish", label: "Publish" },
+  { value: "admin", label: "Administer" },
+  { value: "billing", label: "Billing" },
+]
+
+const REGIONS = [
+  { value: "emea", label: "EMEA" },
+  { value: "amer", label: "AMER" },
+  { value: "apac", label: "APAC" },
+  { value: "latam", label: "LATAM" },
+]
+
+const asArray = (value: unknown): string[] =>
+  Array.isArray(value) ? (value as string[]) : []
+
+/**
+ * The row every hand-rolled list below is built from.
+ *
+ * It is the shipped option row's own density written out: `px-2 py-1` inside a
+ * `p-1` list, so a checkbox row and a `FilterMenu` row are the same height in
+ * the same popover rather than two densities in one bar. The two overrides are
+ * both `Label`'s, and both are wrong for a menu row rather than wrong outright:
+ * `font-medium` is emphasis a row does not want, and `leading-none` is a
+ * one-line caption's line box, which crushes a row to 24px where the list
+ * beside it draws 28.
+ */
+const ROW =
+  "hover:bg-accent flex cursor-pointer items-center gap-2 rounded-md px-2 py-1 leading-normal font-normal"
+
+/**
+ * The first pick by name, plus what it stands in for.
+ *
+ * The default display collapses anything past one pick to "N selected", which
+ * names nothing: the whole point of picking Read and Write is that the chip
+ * says Read. c-filters-1 stacks avatars for exactly this reason; these options
+ * carry no icon, so the leading LABEL does that work and the overflow follows
+ * it in the same muted, tabular treatment the avatar stack uses.
+ */
+function PickedLabels({
+  options,
+  empty,
+}: {
+  options: FilterOption[]
+  empty: string
+}) {
+  if (options.length === 0) return <>{empty}</>
+  return (
+    <span className="flex items-center gap-1.5">
+      {options[0].label}
+      {options.length > 1 ? (
+        <span className="text-muted-foreground text-xs tabular-nums">
+          +{options.length - 1}
+        </span>
+      ) : null}
+    </span>
+  )
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                  Editors                                   */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * A segmented control, committing on every press.
+ *
+ * `commit(next, { close: false })` writes the value through WITHOUT dismissing,
+ * which is what makes several picks one gesture: each press is a real change
+ * the chip redraws from, and the control the user is working in stays where it
+ * was. That is the same contract the built-in multi-select uses, so a custom
+ * control behaves like the shipped ones for free.
+ */
+function ChannelToggles({
+  value,
+  onValueChange,
+  commit,
+  field,
+}: FilterEditorProps<string[]>) {
+  const current = asArray(value)
 
   return (
-    <div className="flex items-center gap-1.5">
-      <div className={`size-2 rounded-full ${getStatusColor(availability)}`} />
-      <span className="text-muted-foreground text-sm">
-        {getStatusLabel(availability)}
-      </span>
+    // No width: the group is `w-fit` and four short segments already decide how
+    // wide the panel wants to be, so a fixed one could only be too much or too
+    // little.
+    <div className="p-2">
+      <ToggleGroup
+        multiple
+        variant="outline"
+        spacing={0}
+        aria-label={field.label}
+        value={current}
+        onValueChange={(next) => {
+          onValueChange(next)
+          commit(next, { close: false })
+        }}
+      >
+        {CHANNELS.map((channel) => (
+          <ToggleGroupItem key={channel.value} value={channel.value}>
+            {channel.label}
+          </ToggleGroupItem>
+        ))}
+      </ToggleGroup>
     </div>
   )
 }
 
-// Helper to check if a filter has meaningful values
-const getActiveFilters = (filters: Filter[]) => {
-  return filters.filter((filter) => {
-    const { values } = filter
+/** One choice, so choosing IS the commit and the popover closes behind it. */
+function PlanRadios({ value, commit, field }: FilterEditorProps<string>) {
+  return (
+    <RadioGroup
+      className="flex w-56 flex-col p-1"
+      aria-label={field.label}
+      value={typeof value === "string" ? value : null}
+      onValueChange={(next) => commit(String(next))}
+    >
+      {PLANS.map((plan) => (
+        // Top aligned, because the row is two lines and the control belongs
+        // beside the first of them.
+        <Label key={plan.value} className={cn(ROW, "items-start")}>
+          <RadioGroupItem value={plan.value} className="mt-0.5" />
+          <span className="flex flex-col gap-0.5">
+            <span className="text-sm">{plan.label}</span>
+            <span className="text-muted-foreground text-xs">{plan.hint}</span>
+          </span>
+        </Label>
+      ))}
+    </RadioGroup>
+  )
+}
 
-    // Check if filter has meaningful values
-    if (!values || values.length === 0) return false
+/**
+ * Checkboxes rather than the built-in list, for a short closed set.
+ *
+ * Every tick is a real commit with `{ close: false }`, exactly as the built-in
+ * multi-select does, so there is nothing held back for an Apply to accept or a
+ * Discard to take away: a pair of those buttons would be describing a
+ * transaction this editor never runs, and Discard would be a promise it cannot
+ * keep. The footer offers the one thing ticking cannot reach instead, which is
+ * emptying the set in a single press, beside the count it changes.
+ */
+function PermissionChecks({
+  value,
+  onValueChange,
+  commit,
+  labels,
+}: FilterEditorProps<string[]>) {
+  const current = asArray(value)
 
-    // For text/string values, check if they're not empty strings
-    if (
-      values.every((value) => typeof value === "string" && value.trim() === "")
+  const write = (next: string[]) => {
+    onValueChange(next)
+    commit(next, { close: false })
+  }
+
+  const toggle = (entry: string, checked: boolean) =>
+    write(
+      checked ? [...current, entry] : current.filter((item) => item !== entry)
     )
-      return false
 
-    // For number values, check if they're not null/undefined
-    if (values.every((value) => value === null || value === undefined))
-      return false
+  return (
+    <div className="flex w-56 flex-col p-1">
+      {PERMISSIONS.map((permission) => (
+        <Label key={permission.value} className={ROW}>
+          <Checkbox
+            checked={current.includes(permission.value)}
+            onCheckedChange={(checked) => toggle(permission.value, checked)}
+          />
+          <span className="text-sm">{permission.label}</span>
+        </Label>
+      ))}
 
-    // For arrays, check if they're not empty
-    if (values.every((value) => Array.isArray(value) && value.length === 0))
-      return false
-
-    return true
-  })
+      <div className="mt-1 flex items-center justify-between gap-2 border-t ps-2 pt-1">
+        <span className="text-muted-foreground text-xs tabular-nums">
+          {labels.valueCount(current.length)}
+        </span>
+        <Button
+          variant="ghost"
+          size="sm"
+          disabled={current.length === 0}
+          onClick={() => write([])}
+        >
+          {labels.clear}
+        </Button>
+      </div>
+    </div>
+  )
 }
 
-// Pure: the same function seeds the initial view and serves every later
-// filter change, so the first paint can never disagree with the first refetch.
-function filterData(newFilters: Filter[]): IData[] {
-  let filtered = [...demoData]
+/** A switch, for the one case where the value is the control's own state. */
+function EnabledSwitch({ value, commit, field }: FilterEditorProps<boolean>) {
+  const current = value === true
 
-  // Filter out empty filters before applying
-  const activeFilters = getActiveFilters(newFilters)
-
-  activeFilters.forEach((filter) => {
-    const { field, operator, values } = filter
-
-    filtered = filtered.filter((item) => {
-      const fieldValue = item[field as keyof IData]
-
-      switch (operator) {
-        case "is":
-          return values.includes(fieldValue)
-        case "is_not":
-          return !values.includes(fieldValue)
-        case "contains":
-          return values.some((value) =>
-            String(fieldValue)
-              .toLowerCase()
-              .includes(String(value).toLowerCase())
-          )
-        case "not_contains":
-          return !values.some((value) =>
-            String(fieldValue)
-              .toLowerCase()
-              .includes(String(value).toLowerCase())
-          )
-        case "equals":
-          return fieldValue === values[0]
-        case "not_equals":
-          return fieldValue !== values[0]
-        case "greater_than":
-          return Number(fieldValue) > Number(values[0])
-        case "less_than":
-          return Number(fieldValue) < Number(values[0])
-        case "greater_than_or_equal":
-          return Number(fieldValue) >= Number(values[0])
-        case "less_than_or_equal":
-          return Number(fieldValue) <= Number(values[0])
-        case "between":
-          if (values.length >= 2) {
-            const min = Number(values[0])
-            const max = Number(values[1])
-            return Number(fieldValue) >= min && Number(fieldValue) <= max
-          }
-          return true
-        case "not_between":
-          if (values.length >= 2) {
-            const min = Number(values[0])
-            const max = Number(values[1])
-            return Number(fieldValue) < min || Number(fieldValue) > max
-          }
-          return true
-        case "before":
-          return new Date(String(fieldValue)) < new Date(String(values[0]))
-        case "after":
-          return new Date(String(fieldValue)) > new Date(String(values[0]))
-        default:
-          return true
-      }
-    })
-  })
-
-  return filtered
+  return (
+    // `w-40` is the width the shipped boolean editor uses, and this is the same
+    // filter that editor would have drawn, so the popover is the size the bar's
+    // own True/False panel would have been.
+    <Label className="flex w-40 cursor-pointer items-center justify-between gap-3 p-2 font-normal">
+      <span className="text-sm">{field.label}</span>
+      {/* One decisive value, so flipping it is the whole edit. */}
+      <Switch
+        checked={current}
+        onCheckedChange={(checked) => commit(checked)}
+        aria-label={field.label}
+      />
+    </Label>
+  )
 }
 
-// Seed the grid with a filtered view so the demo opens on the state a real app
-// would restore from a saved view. `createFilter(field, operator, values)` is the
-// same helper the `Filters` component emits, so these are ordinary filter objects.
-const INITIAL_FILTERS: Filter[] = [
-  createFilter("status", "is", ["active"]),
-  createFilter("availability", "is", ["online"]),
+/**
+ * The platform's own menu, for a list short enough that a search box is chrome.
+ *
+ * A native `<select>` opens as an OS popup OUTSIDE the document, which is why it
+ * is worth having as an option here: on a phone it becomes the system wheel, and
+ * it is the one control in this set whose menu is never clipped by the popover
+ * it lives in. The empty option is what lets the filter be cleared back to "any",
+ * since a select has no unselected state of its own.
+ *
+ * No caption over it. The popover is anchored to the chip's value segment and
+ * the chip spells the attribute out an inch to the left, so a heading here
+ * would be the field's name twice on one line; the select keeps the name as its
+ * `aria-label`, where it is not already on screen.
+ */
+function RegionSelect({ value, commit, field }: FilterEditorProps<string>) {
+  return (
+    <div className="w-48 p-2">
+      <NativeSelect
+        className="w-full"
+        aria-label={field.label}
+        value={typeof value === "string" ? value : ""}
+        onChange={(event) =>
+          commit(event.target.value === "" ? undefined : event.target.value)
+        }
+      >
+        <NativeSelectOption value="">Any region</NativeSelectOption>
+        {REGIONS.map((region) => (
+          <NativeSelectOption key={region.value} value={region.value}>
+            {region.label}
+          </NativeSelectOption>
+        ))}
+      </NativeSelect>
+    </div>
+  )
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   Schema                                   */
+/* -------------------------------------------------------------------------- */
+
+const fields: FilterField[] = [
+  {
+    id: "channel",
+    label: "Channel",
+    type: "multiselect",
+    // The options still ship, even though the editor draws its own rows: they
+    // are what the chip resolves a stored value's LABEL from.
+    options: CHANNELS,
+    editor: ChannelToggles as never,
+    renderValue: ({ options }) => (
+      <PickedLabels options={options} empty="any channel" />
+    ),
+    icon: (
+      <IconPlaceholder
+        lucide="MonitorSmartphoneIcon"
+        tabler="IconDevices"
+        hugeicons="ComputerPhoneSyncIcon"
+        phosphor="DevicesIcon"
+        remixicon="RiDeviceLine"
+      />
+    ),
+  },
+  {
+    id: "plan",
+    label: "Plan",
+    type: "select",
+    options: PLANS.map((plan) => ({ value: plan.value, label: plan.label })),
+    editor: PlanRadios as never,
+    icon: (
+      <IconPlaceholder
+        lucide="CreditCardIcon"
+        tabler="IconCreditCard"
+        hugeicons="CreditCardIcon"
+        phosphor="CreditCardIcon"
+        remixicon="RiBankCardLine"
+      />
+    ),
+  },
+  {
+    id: "permissions",
+    label: "Permissions",
+    type: "multiselect",
+    options: PERMISSIONS,
+    editor: PermissionChecks as never,
+    renderValue: ({ options }) => (
+      <PickedLabels options={options} empty="any permission" />
+    ),
+    icon: (
+      <IconPlaceholder
+        lucide="ShieldCheckIcon"
+        tabler="IconShieldCheck"
+        hugeicons="ShieldUserIcon"
+        phosphor="ShieldCheckIcon"
+        remixicon="RiShieldCheckLine"
+      />
+    ),
+  },
+  {
+    id: "region",
+    label: "Region",
+    type: "select",
+    options: REGIONS,
+    editor: RegionSelect as never,
+    icon: (
+      <IconPlaceholder
+        lucide="GlobeIcon"
+        tabler="IconWorld"
+        hugeicons="Globe02Icon"
+        phosphor="GlobeSimpleIcon"
+        remixicon="RiGlobalLine"
+      />
+    ),
+  },
+  {
+    id: "twoFactor",
+    // The short form, because a chip is a row of them. Spelled out, this chip
+    // is 60px wider, and the four of them clear the bar by 64 in sera, so the
+    // long form is the difference between a row and a wrap. The acronym is what
+    // a filter list would call it anyway.
+    label: "2FA",
+    type: "boolean",
+    editor: EnabledSwitch as never,
+    renderValue: ({ value }) => (value === true ? "on" : "off"),
+    icon: (
+      <IconPlaceholder
+        lucide="KeyRoundIcon"
+        tabler="IconKey"
+        hugeicons="SquareLock02Icon"
+        phosphor="KeyIcon"
+        remixicon="RiKey2Line"
+      />
+    ),
+  },
 ]
 
 export default function Pattern() {
-  const [pagination, setPagination] = useState<PaginationState>({
-    pageIndex: 0,
-    pageSize: 5,
-  })
+  const [query, setQuery] = useState<FilterQuery>(() =>
+    createFilterQuery<unknown>([
+      createFilterRule({
+        id: "seed-1",
+        path: ["channel"],
+        operator: "has_any_of",
+        value: ["web", "ios"],
+      }),
+      createFilterRule({
+        id: "seed-2",
+        path: ["plan"],
+        operator: "is",
+        value: "pro",
+      }),
+      createFilterRule({
+        id: "seed-3",
+        path: ["region"],
+        operator: "is",
+        value: "emea",
+      }),
+      /*
+        FOUR chips, and the fourth is the last one that fits.
 
-  const [sorting, setSorting] = useState<SortingState>([
-    { id: "name", desc: false },
-  ])
+        Five editors are on show, and seeding one chip each is the obvious
+        thing: every editor would then be one press away. It does not fit, and
+        the way it fails is worse than the click it saves. The bar is a wrapping
+        row whose chips live in an inner toolbar, and a flex child that wraps
+        internally claims the full width of its line, so the moment the fifth
+        chip goes to a second row the toolbar owns BOTH rows and pushes Add
+        filter and Clear onto a third - the trigger at the far left, Clear at
+        the far right, a thousand pixels of nothing between them.
 
-  // The filter array is ordinary React state. Where it lives is a consumer
-  // decision - component state here, but a URL query string, localStorage or a
-  // saved server-side view all work the same way, because `Filters` only ever
-  // hands you the next array and reads back the one you pass in.
-  const [filters, setFilters] = useState<Filter[]>(INITIAL_FILTERS)
-
-  // Async state management
-  const [isLoading, setIsLoading] = useState(false)
-  const [filteredData, setFilteredData] = useState<IData[]>(() =>
-    filterData(INITIAL_FILTERS)
+        Measured at the width a catalog card gives this bar (1128px), the five
+        chips run 1172 to 1336 depending on the style against a budget of 977 to
+        1036. No arrangement of five fits and no wording closes a 300px gap, so
+        the count is the thing that gives. Two of the five drops leave a row that
+        fits; this one clears sera by 64px where dropping Channel clears it by
+        15, and it costs the least besides, because Permissions drew the same
+        `PickedLabels` display the Channel chip already shows - and shows better,
+        since Channel carries the overflow count too. Its editor is reachable
+        from Add filter like any other field.
+      */
+      createFilterRule({
+        id: "seed-4",
+        path: ["twoFactor"],
+        operator: "is",
+        value: true,
+      }),
+    ])
   )
-  const filterTimeoutRef = useRef<NodeJS.Timeout | null>(null)
-
-  // Filter field configurations
-  const fields: FilterFieldConfig[] = [
-    {
-      key: "name",
-      label: "Name",
-      icon: (
-        <IconPlaceholder
-          lucide="UserIcon"
-          tabler="IconUser"
-          hugeicons="UserIcon"
-          phosphor="UserIcon"
-          remixicon="RiUserLine"
-          className="size-3.5"
-        />
-      ),
-      type: "text",
-      className: "w-40",
-      placeholder: "Search names...",
-    },
-    {
-      key: "email",
-      label: "Email",
-      icon: (
-        <IconPlaceholder
-          lucide="MailIcon"
-          tabler="IconMail"
-          hugeicons="MailIcon"
-          phosphor="EnvelopeIcon"
-          remixicon="RiMailLine"
-          className="size-3.5"
-        />
-      ),
-      type: "text",
-      className: "w-48",
-      placeholder: "user@example.com",
-    },
-    {
-      key: "company",
-      label: "Company",
-      icon: (
-        <IconPlaceholder
-          lucide="BuildingIcon"
-          tabler="IconBuilding"
-          hugeicons="Building02Icon"
-          phosphor="BuildingIcon"
-          remixicon="RiBuilding4Line"
-          className="size-3.5"
-        />
-      ),
-      type: "select",
-      searchable: true,
-      className: "w-[180px]",
-      options: [
-        { value: "Apple", label: "Apple" },
-        { value: "OpenAI", label: "OpenAI" },
-        { value: "Meta", label: "Meta" },
-        { value: "Tesla", label: "Tesla" },
-        { value: "SAP", label: "SAP" },
-        { value: "Keenthemes", label: "Keenthemes" },
-        { value: "BBVA", label: "BBVA" },
-        { value: "Sony", label: "Sony" },
-        { value: "LVMH", label: "LVMH" },
-        { value: "ENI", label: "ENI" },
-        { value: "Vale", label: "Vale" },
-        { value: "Tata", label: "Tata" },
-      ],
-    },
-    {
-      key: "role",
-      label: "Role",
-      icon: (
-        <IconPlaceholder
-          lucide="UserIcon"
-          tabler="IconUser"
-          hugeicons="UserIcon"
-          phosphor="UserIcon"
-          remixicon="RiUserLine"
-          className="size-3.5"
-        />
-      ),
-      type: "select",
-      searchable: true,
-      className: "w-[160px]",
-      options: [
-        { value: "CEO", label: "CEO" },
-        { value: "CTO", label: "CTO" },
-        { value: "Designer", label: "Designer" },
-        { value: "Developer", label: "Developer" },
-        { value: "Lawyer", label: "Lawyer" },
-        { value: "Director", label: "Director" },
-        { value: "Product Manager", label: "Product Manager" },
-        { value: "Marketing Lead", label: "Marketing Lead" },
-        { value: "Data Scientist", label: "Data Scientist" },
-        { value: "Engineer", label: "Engineer" },
-        { value: "Software Engineer", label: "Software Engineer" },
-        { value: "Sales Manager", label: "Sales Manager" },
-      ],
-    },
-    {
-      key: "status",
-      label: "Status",
-      icon: (
-        <IconPlaceholder
-          lucide="UserIcon"
-          tabler="IconUser"
-          hugeicons="UserIcon"
-          phosphor="UserIcon"
-          remixicon="RiUserLine"
-          className="size-3.5"
-        />
-      ),
-      type: "multiselect",
-      searchable: false,
-      className: "w-[140px]",
-      options: [
-        {
-          value: "active",
-          label: "Active",
-          icon: <div className="size-2 rounded-full bg-green-500"></div>,
-        },
-        {
-          value: "inactive",
-          label: "Inactive",
-          icon: <div className="bg-destructive size-2 rounded-full"></div>,
-        },
-        {
-          value: "archived",
-          label: "Archived",
-          icon: <div className="size-2 rounded-full bg-zinc-400"></div>,
-        },
-      ],
-    },
-    {
-      key: "availability",
-      label: "Availability",
-      icon: (
-        <IconPlaceholder
-          lucide="UserIcon"
-          tabler="IconUser"
-          hugeicons="UserIcon"
-          phosphor="UserIcon"
-          remixicon="RiUserLine"
-          className="size-3.5"
-        />
-      ),
-      type: "select",
-      searchable: false,
-      className: "w-[160px]",
-      options: [
-        {
-          value: "online",
-          label: "Online",
-          icon: <div className="size-2 rounded-full bg-green-500"></div>,
-        },
-        {
-          value: "away",
-          label: "Away",
-          icon: <div className="size-2 rounded-full bg-yellow-500"></div>,
-        },
-        {
-          value: "busy",
-          label: "Busy",
-          icon: <div className="size-2 rounded-full bg-red-500"></div>,
-        },
-        {
-          value: "offline",
-          label: "Offline",
-          icon: <div className="size-2 rounded-full bg-gray-400"></div>,
-        },
-      ],
-    },
-    {
-      key: "location",
-      label: "Location",
-      icon: (
-        <IconPlaceholder
-          lucide="MapPinIcon"
-          tabler="IconMapPin"
-          hugeicons="Location06Icon"
-          phosphor="MapPinIcon"
-          remixicon="RiMapPinLine"
-          className="size-3.5"
-        />
-      ),
-      type: "text",
-      className: "w-40",
-      placeholder: "Search locations...",
-    },
-  ]
-
-  // Apply filters to data (shared function)
-
-  // Simulate async data filtering
-  const simulateAsyncFiltering = useCallback(async (newFilters: Filter[]) => {
-    setIsLoading(true) // Show loading on current data
-
-    // Simulate API call delay
-    await new Promise((resolve) =>
-      setTimeout(resolve, 800 + Math.random() * 1200)
-    )
-
-    // Apply filters and update data after timeout
-    const filtered = filterData(newFilters)
-    setFilteredData(filtered)
-    setIsLoading(false)
-  }, [])
-
-  const handleFiltersChange = useCallback(
-    (newFilters: Filter[]) => {
-      const oldActive = getActiveFilters(filters)
-      const newActive = getActiveFilters(newFilters)
-
-      // Always store the new array so the chips stay live while a value is
-      // still being typed; only a change to the ACTIVE set triggers a refetch.
-      setFilters(newFilters)
-
-      if (JSON.stringify(oldActive) === JSON.stringify(newActive)) {
-        return
-      }
-
-      setPagination((prev) => ({ ...prev, pageIndex: 0 }))
-
-      // Clear any pending timeout
-      if (filterTimeoutRef.current) {
-        clearTimeout(filterTimeoutRef.current)
-      }
-
-      // Add a small debounce before starting the async simulation
-      filterTimeoutRef.current = setTimeout(() => {
-        simulateAsyncFiltering(newFilters)
-      }, 300)
-    },
-    [filters, simulateAsyncFiltering]
-  )
-
-  // Cleanup timeout on unmount
-  useEffect(() => {
-    return () => {
-      if (filterTimeoutRef.current) {
-        clearTimeout(filterTimeoutRef.current)
-      }
-    }
-  }, [])
-
-  const columns = useMemo<ColumnDef<DataGridFeatures, IData>[]>(
-    () => [
-      {
-        accessorKey: "name",
-        id: "name",
-        header: ({ column }) => (
-          <DataGridColumnHeader title="Staff" column={column} />
-        ),
-        cell: ({ row }) => {
-          return (
-            <div className="flex items-center gap-3">
-              <Avatar className="size-8">
-                <AvatarImage
-                  src={row.original.avatar}
-                  alt={row.original.name}
-                />
-                <AvatarFallback>
-                  {row.original.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
-                </AvatarFallback>
-              </Avatar>
-              <div className="space-y-px">
-                <div className="text-foreground font-medium">
-                  {row.original.name}
-                </div>
-                <div className="text-muted-foreground truncate text-xs">
-                  {row.original.email}
-                </div>
-              </div>
-            </div>
-          )
-        },
-        size: 200,
-        enableSorting: true,
-        enableHiding: false,
-        meta: {
-          skeleton: (
-            <div className="flex items-center gap-3">
-              <Skeleton className="size-8 rounded-full" />
-              <div className="space-y-1">
-                <Skeleton className="h-4 w-24" />
-                <Skeleton className="h-4 w-16" />
-              </div>
-            </div>
-          ),
-        },
-      },
-      {
-        accessorKey: "company",
-        id: "company",
-        header: ({ column }) => (
-          <DataGridColumnHeader title="Company" column={column} />
-        ),
-        cell: (info) => <span>{info.getValue() as string}</span>,
-        size: 150,
-        enableSorting: true,
-        enableHiding: false,
-        meta: {
-          skeleton: <Skeleton className="h-4 w-20" />,
-        },
-      },
-      {
-        accessorKey: "role",
-        id: "role",
-        header: ({ column }) => (
-          <DataGridColumnHeader title="Occupation" column={column} />
-        ),
-        cell: (info) => <span>{info.getValue() as string}</span>,
-        size: 125,
-        enableSorting: true,
-        enableHiding: false,
-        meta: {
-          skeleton: <Skeleton className="h-4 w-16" />,
-        },
-      },
-      {
-        accessorKey: "status",
-        id: "status",
-        header: "Status",
-        cell: ({ row }) => {
-          const status = row.original.status
-
-          if (status == "active") {
-            return <Badge variant="success-outline">Active</Badge>
-          } else if (status == "inactive") {
-            return <Badge variant="destructive-outline">Inactive</Badge>
-          } else if (status == "archived") {
-            return <Badge variant="warning-outline">Archived</Badge>
-          }
-        },
-        size: 100,
-        meta: {
-          skeleton: <Skeleton className="h-4 w-16 rounded-full" />,
-        },
-      },
-      {
-        accessorKey: "availability",
-        id: "availability",
-        header: "Availability",
-        cell: ({ row }) => (
-          <AvailabilityStatus availability={row.original.availability} />
-        ),
-        size: 120,
-        enableSorting: true,
-        meta: {
-          skeleton: (
-            <div className="flex items-center gap-1.5">
-              <Skeleton className="size-4 rounded-full" />
-              <Skeleton className="h-3.5 w-12" />
-            </div>
-          ),
-        },
-      },
-      {
-        accessorKey: "location",
-        id: "location",
-        header: ({ column }) => (
-          <DataGridColumnHeader title="Location" column={column} />
-        ),
-        cell: ({ row }) => (
-          <div className="flex items-center gap-2">
-            <img
-              src={`https://flagcdn.com/${row.original.flag.toLowerCase()}.svg`}
-              alt={row.original.flag}
-              className="size-4 rounded-full object-cover"
-            />
-            <span>{row.original.location}</span>
-          </div>
-        ),
-        size: 180,
-        enableSorting: true,
-        meta: {
-          skeleton: (
-            <div className="flex items-center gap-2">
-              <Skeleton className="size-4 rounded" />
-              <Skeleton className="h-3.5 w-24" />
-            </div>
-          ),
-        },
-      },
-      {
-        accessorKey: "balance",
-        id: "balance",
-        header: ({ column }) => (
-          <DataGridColumnHeader title="Balance" column={column} />
-        ),
-        cell: ({ row }) => (
-          <span className="font-medium">
-            ${row.original.balance.toLocaleString()}
-          </span>
-        ),
-        size: 120,
-        enableSorting: true,
-        meta: {
-          skeleton: <Skeleton className="h-4 w-16" />,
-        },
-      },
-    ],
-    []
-  )
-
-  const [columnOrder, setColumnOrder] = useState<string[]>(
-    columns.map((column) => column.id as string)
-  )
-
-  const table = useTable({
-    features: dataGridFeatures,
-    columns,
-    data: filteredData,
-    pageCount: Math.ceil((filteredData?.length || 0) / pagination.pageSize),
-    getRowId: (row: IData) => row.id,
-    state: {
-      pagination,
-      sorting,
-      columnOrder,
-    },
-    onColumnOrderChange: setColumnOrder,
-    onPaginationChange: setPagination,
-    onSortingChange: setSorting,
-  })
 
   return (
-    <div className="w-full self-start">
-      {/* Filters Section */}
-      <div className="mb-3.5 flex items-start gap-2.5">
-        <div className="flex-1">
-          <Filters
-            filters={filters}
-            fields={fields}
-            onChange={handleFiltersChange}
-            size="sm"
-            trigger={
-              <Button variant="outline" size="icon-sm">
-                <IconPlaceholder
-                  lucide="ListFilterIcon"
-                  tabler="IconFilter2"
-                  hugeicons="FilterMailIcon"
-                  phosphor="FunnelSimpleIcon"
-                  remixicon="RiFilter3Line"
-                />
-              </Button>
-            }
-          />
-        </div>
-        {filters.length > 0 && (
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => {
-              if (filterTimeoutRef.current) {
-                clearTimeout(filterTimeoutRef.current)
-              }
-              setFilters([])
-              simulateAsyncFiltering([])
-            }}
-            disabled={isLoading}
-          >
-            <IconPlaceholder
-              lucide="FunnelXIcon"
-              tabler="IconFilterX"
-              hugeicons="FilterRemoveIcon"
-              phosphor="FunnelXIcon"
-              remixicon="RiFilterOffLine"
-            />
-            Clear
-          </Button>
-        )}
-      </div>
-
-      {/* Data Grid */}
-      <DataGrid
-        table={table}
-        isLoading={isLoading}
-        loadingMode="skeleton"
-        recordCount={filteredData?.length || 0}
-        tableLayout={{
-          dense: true,
-          columnsMovable: true,
-        }}
-      >
-        <div className="w-full space-y-2.5">
-          <DataGridContainer>
-            <ScrollArea>
-              <DataGridTable />
-              <ScrollBar orientation="horizontal" />
-            </ScrollArea>
-          </DataGridContainer>
-          <DataGridPagination />
-        </div>
-      </DataGrid>
-
-      {/* Async Info Alert */}
-      <Alert variant="success" className="mt-5">
-        <IconPlaceholder
-          lucide="CircleAlertIcon"
-          tabler="IconAlertCircle"
-          hugeicons="AlertCircleIcon"
-          phosphor="WarningCircleIcon"
-          remixicon="RiErrorWarningLine"
-        />
-        <AlertTitle>
-          Async Mode: Simulated API Delay of <strong>800-2000ms</strong>
-        </AlertTitle>
-      </Alert>
-    </div>
+    <Filters fields={fields} query={query} onQueryChange={setQuery} showClear />
   )
 }

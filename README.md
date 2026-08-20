@@ -46,7 +46,7 @@ ReUI is a free, open-source component library for the [shadcn/ui](https://ui.sha
 
 ReUI provides in total: **19 custom in-house components** not found in base shadcn/ui.
 
-### In-House Components (19)
+### In-House Components (20)
 
 Custom-built, shadcn-compatible components not available in base shadcn/ui. Each is maintained by the Keenthemes team, ships full component API documentation, props reference, and usage examples, and is available in both Radix UI and Base UI flavors at [reui.io/docs](https://reui.io/docs).
 
@@ -55,10 +55,11 @@ Custom-built, shadcn-compatible components not available in base shadcn/ui. Each
 | **Alert** | 20 | Contextual notifications with severity variants and dismissible states | [Preview](https://reui.io/components/alert) | [Radix UI](https://reui.io/docs/components/radix/alert) | [Base UI](https://reui.io/docs/components/base/alert) |
 | **Autocomplete** | 12 | Searchable input with async filtering and keyboard navigation | [Preview](https://reui.io/components/autocomplete) | [Radix UI](https://reui.io/docs/components/radix/autocomplete) | [Base UI](https://reui.io/docs/components/base/autocomplete) |
 | **Badge** | 25 | Status indicators with multiple styles, sizes, and dot variants | [Preview](https://reui.io/components/badge) | [Radix UI](https://reui.io/docs/components/radix/badge) | [Base UI](https://reui.io/docs/components/base/badge) |
+| **Cascader** | 20 | Nested multi-level combobox with drill-down, columns and tree modes, breadcrumbs, search, async levels and custom rows | [Preview](https://reui.io/components/cascader) | [Radix UI](https://reui.io/docs/components/radix/cascader) | [Base UI](https://reui.io/docs/components/base/cascader) |
 | **Data Grid** | 30 | Advanced table powered by TanStack Table + Virtual with DnD, pinning, resizing, and infinite scroll | [Preview](https://reui.io/components/data-grid) | [Radix UI](https://reui.io/docs/components/radix/data-grid) | [Base UI](https://reui.io/docs/components/base/data-grid) |
 | **Date Selector** | 4 | Flexible date range picker with calendar UI and preset ranges | [Preview](https://reui.io/components/date-selector) | [Radix UI](https://reui.io/docs/components/radix/date-selector) | [Base UI](https://reui.io/docs/components/base/date-selector) |
 | **Event Calendar** | 5 | Headless-first calendar with month, week, day, N-day, and agenda views, drag-and-drop scheduling, recurring events, time zones, and an external CRUD contract | [Preview](https://reui.io/components/event-calendar) | [Radix UI](https://reui.io/docs/components/radix/event-calendar) | [Base UI](https://reui.io/docs/components/base/event-calendar) |
-| **Filters** | 12 | URL-state filter panel with TanStack Table integration, Zod validation, and multi-field types | [Preview](https://reui.io/components/filters) | [Radix UI](https://reui.io/docs/components/radix/filters) | [Base UI](https://reui.io/docs/components/base/filters) |
+| **Filters** | 12 | Stepped filter builder with nested attributes, popover value editors and a boolean query tree, in chip or advanced chrome | [Preview](https://reui.io/components/filters) | [Radix UI](https://reui.io/docs/components/radix/filters) | [Base UI](https://reui.io/docs/components/base/filters) |
 | **Frame** | 19 | Card-like wrapper for panels and content areas | [Preview](https://reui.io/components/frame) | [Radix UI](https://reui.io/docs/components/radix/frame) | [Base UI](https://reui.io/docs/components/base/frame) |
 | **Gantt** | 5 | Headless-first gantt with split tree and timeline panes, day-to-year scales, zoom, drag and resize scheduling, progress, summary rollups, and an external CRUD contract | [Preview](https://reui.io/components/gantt) | [Radix UI](https://reui.io/docs/components/radix/gantt) | [Base UI](https://reui.io/docs/components/base/gantt) |
 | **Icon Stack** | 6 | Layered isometric icon illustrations for empty states and feature visuals | [Preview](https://reui.io/components/icon-stack) | [Radix UI](https://reui.io/docs/components/radix/icon-stack) | [Base UI](https://reui.io/docs/components/base/icon-stack) |

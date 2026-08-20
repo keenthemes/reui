@@ -3,15 +3,16 @@
     {
       "name": "c-filters-1",
       "type": "registry:block",
-      "title": "Filters with various field types",
+      "title": "Everything in one filter bar",
       "categories": [
         "filters"
       ],
-      "description": "Filters with various field types",
+      "description": "Multi-select, nested fields, async options and stacked values.",
       "registryDependencies": [
         "avatar",
-        "button",
-        "filters"
+        "filters",
+        "filters-query",
+        "filters-types"
       ],
       "dependencies": [],
       "files": [
@@ -23,24 +24,24 @@
       ],
       "meta": {
         "order": 1,
-        "gridSize": 1
+        "gridSize": 1,
+        "previewHeight": "560"
       }
     },
     {
       "name": "c-filters-2",
       "type": "registry:block",
-      "title": "Filters with input validation",
+      "title": "Nested attributes at workspace scale",
       "categories": [
         "filters"
       ],
-      "description": "Filters with input validation",
+      "description": "Drill-down groups, a filterable branch and deep search.",
       "registryDependencies": [
-        "button",
-        "filters"
+        "filters",
+        "filters-query",
+        "filters-types"
       ],
-      "dependencies": [
-        "zod"
-      ],
+      "dependencies": [],
       "files": [
         {
           "path": "components/filters/c-filters-2.tsx",
@@ -50,21 +51,23 @@
       ],
       "meta": {
         "order": 2,
-        "gridSize": 1
+        "gridSize": 1,
+        "previewHeight": "360"
       }
     },
     {
       "name": "c-filters-3",
       "type": "registry:block",
-      "title": "Filters with custom trigger button",
+      "title": "Status and priority colour badges",
       "categories": [
         "filters"
       ],
-      "description": "Filters with custom trigger button",
+      "description": "Colour-coded options and badges in the chip.",
       "registryDependencies": [
-        "avatar",
-        "button",
-        "filters"
+        "badge",
+        "filters",
+        "filters-query",
+        "filters-types"
       ],
       "dependencies": [],
       "files": [
@@ -76,20 +79,24 @@
       ],
       "meta": {
         "order": 3,
-        "gridSize": 1
+        "gridSize": 1,
+        "previewHeight": "360"
       }
     },
     {
       "name": "c-filters-4",
       "type": "registry:block",
-      "title": "Filters with small size controls",
+      "title": "Avatars, paging and a restored view",
       "categories": [
         "filters"
       ],
-      "description": "Filters with small size controls",
+      "description": "Avatar options, results paged over the wire and a saved view.",
       "registryDependencies": [
+        "avatar",
         "button",
-        "filters"
+        "filters",
+        "filters-query",
+        "filters-types"
       ],
       "dependencies": [],
       "files": [
@@ -101,20 +108,26 @@
       ],
       "meta": {
         "order": 4,
-        "gridSize": 1
+        "gridSize": 1,
+        "previewHeight": "360"
       }
     },
     {
       "name": "c-filters-5",
       "type": "registry:block",
-      "title": "Filters with large size controls",
+      "title": "A date and a date range editor",
       "categories": [
         "filters"
       ],
-      "description": "Filters with large size controls",
+      "description": "Consumer-owned date and date range controls.",
       "registryDependencies": [
         "button",
-        "filters"
+        "calendar",
+        "filters",
+        "filters-date",
+        "filters-query",
+        "filters-types",
+        "input"
       ],
       "dependencies": [],
       "files": [
@@ -126,31 +139,26 @@
       ],
       "meta": {
         "order": 5,
-        "gridSize": 1
+        "gridSize": 1,
+        "previewHeight": "432"
       }
     },
     {
       "name": "c-filters-6",
       "type": "registry:block",
-      "title": "Filters with custom controls",
+      "title": "Sliders as the value editor",
       "categories": [
         "filters"
       ],
-      "description": "Filters with custom controls",
+      "description": "One slider editor for range and single-value operators.",
       "registryDependencies": [
         "button",
-        "calendar",
-        "date-selector",
-        "dialog",
         "filters",
-        "popover",
-        "scroll-area",
+        "filters-query",
+        "filters-types",
         "slider"
       ],
-      "dependencies": [
-        "date-fns",
-        "react-day-picker"
-      ],
+      "dependencies": [],
       "files": [
         {
           "path": "components/filters/c-filters-6.tsx",
@@ -160,29 +168,30 @@
       ],
       "meta": {
         "order": 6,
-        "gridSize": 1
+        "gridSize": 1,
+        "previewHeight": "360"
       }
     },
     {
       "name": "c-filters-7",
       "type": "registry:block",
-      "title": "Filters with data grid",
+      "title": "Filtering a table",
       "categories": [
         "filters"
       ],
-      "description": "Filters with data grid",
+      "description": "The query tree compiled to a row predicate.",
       "registryDependencies": [
-        "alert",
         "avatar",
         "badge",
-        "button",
+        "card",
         "data-grid",
         "data-grid-column-header",
         "data-grid-pagination",
+        "data-grid-scroll-area",
         "data-grid-table",
         "filters",
-        "scroll-area",
-        "skeleton"
+        "filters-query",
+        "filters-types"
       ],
       "dependencies": [
         "@tanstack/react-table"
@@ -196,33 +205,31 @@
       ],
       "meta": {
         "order": 7,
-        "gridSize": 1
+        "gridSize": 1,
+        "previewHeight": "520"
       }
     },
     {
       "name": "c-filters-8",
       "type": "registry:block",
-      "title": "Filters with data grid and async mode",
+      "title": "Choice controls as editors",
       "categories": [
         "filters"
       ],
-      "description": "Filters with data grid and async mode",
+      "description": "Toggle group, radios, checkboxes, select and switch.",
       "registryDependencies": [
-        "alert",
-        "avatar",
-        "badge",
         "button",
-        "data-grid",
-        "data-grid-column-header",
-        "data-grid-pagination",
-        "data-grid-table",
+        "checkbox",
         "filters",
-        "scroll-area",
-        "skeleton"
+        "filters-query",
+        "filters-types",
+        "label",
+        "native-select",
+        "radio-group",
+        "switch",
+        "toggle-group"
       ],
-      "dependencies": [
-        "@tanstack/react-table"
-      ],
+      "dependencies": [],
       "files": [
         {
           "path": "components/filters/c-filters-8.tsx",
@@ -232,21 +239,27 @@
       ],
       "meta": {
         "order": 8,
-        "gridSize": 1
+        "gridSize": 1,
+        "previewHeight": "360"
       }
     },
     {
       "name": "c-filters-9",
       "type": "registry:block",
-      "title": "Filters with i18n support",
+      "title": "Typed values in shadcn inputs",
       "categories": [
         "filters"
       ],
-      "description": "Filters with i18n support",
+      "description": "An input group, a term list, code slots and a validated domain.",
       "registryDependencies": [
         "button",
-        "dropdown-menu",
-        "filters"
+        "filters",
+        "filters-query",
+        "filters-types",
+        "input",
+        "input-group",
+        "input-otp",
+        "textarea"
       ],
       "dependencies": [],
       "files": [
@@ -258,22 +271,35 @@
       ],
       "meta": {
         "order": 9,
-        "gridSize": 1
+        "gridSize": 1,
+        "previewHeight": "360"
       }
     },
     {
       "name": "c-filters-10",
       "type": "registry:block",
-      "title": "Filters with virtualized large lists",
+      "title": "Nested groups in a popover",
       "categories": [
         "filters"
       ],
-      "description": "Filters with virtualized large lists",
+      "description": "A data grid paged, sorted and totalled under a popover builder.",
       "registryDependencies": [
-        "filters"
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "data-grid",
+        "data-grid-column-header",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table",
+        "filters",
+        "filters-operators",
+        "filters-query",
+        "filters-types"
       ],
       "dependencies": [
-        "@tanstack/react-virtual"
+        "@tanstack/react-table"
       ],
       "files": [
         {
@@ -284,19 +310,25 @@
       ],
       "meta": {
         "order": 10,
-        "gridSize": 1
+        "gridSize": 1,
+        "previewHeight": "600"
       }
     },
     {
       "name": "c-filters-11",
       "type": "registry:block",
-      "title": "Filters with prefetched async options",
+      "title": "Nested groups inline, walked back out",
       "categories": [
         "filters"
       ],
-      "description": "Filters with prefetched async options",
+      "description": "The builder inline, beside its own tree read back as an expression.",
       "registryDependencies": [
-        "filters"
+        "avatar",
+        "button",
+        "card",
+        "filters",
+        "filters-query",
+        "filters-types"
       ],
       "dependencies": [],
       "files": [
@@ -308,19 +340,26 @@
       ],
       "meta": {
         "order": 11,
-        "gridSize": 1
+        "gridSize": 1,
+        "previewHeight": "720"
       }
     },
     {
       "name": "c-filters-12",
       "type": "registry:block",
-      "title": "Filters with async server-side search",
+      "title": "Controlled, sized and translated",
       "categories": [
         "filters"
       ],
-      "description": "Filters with async server-side search",
+      "description": "One controlled query, three locales and every change reported.",
       "registryDependencies": [
-        "filters"
+        "avatar",
+        "badge",
+        "filters",
+        "filters-operators",
+        "filters-query",
+        "filters-types",
+        "toggle-group"
       ],
       "dependencies": [],
       "files": [
@@ -332,7 +371,8 @@
       ],
       "meta": {
         "order": 12,
-        "gridSize": 1
+        "gridSize": 1,
+        "previewHeight": "440"
       }
     }
   ]

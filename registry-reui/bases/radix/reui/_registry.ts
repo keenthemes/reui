@@ -105,6 +105,243 @@ export const reui: Registry["items"] = [
     }
   },
   {
+    "name": "cascader-async",
+    "type": "registry:ui",
+    "title": "Cascader Async",
+    "description": "",
+    "registryDependencies": [],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "reui/cascader/cascader-async.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/cascader/cascader-async.tsx"
+      }
+    ]
+  },
+  {
+    "name": "cascader-columns",
+    "type": "registry:ui",
+    "title": "Cascader Columns",
+    "description": "",
+    "registryDependencies": [
+      "scroll-area"
+    ],
+    "dependencies": [
+      "@base-ui/react"
+    ],
+    "files": [
+      {
+        "path": "reui/cascader/cascader-columns.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/cascader/cascader-columns.tsx"
+      }
+    ]
+  },
+  {
+    "name": "cascader-context",
+    "type": "registry:ui",
+    "title": "Cascader Context",
+    "description": "",
+    "registryDependencies": [],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "reui/cascader/cascader-context.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/cascader/cascader-context.tsx"
+      }
+    ]
+  },
+  {
+    "name": "cascader-footer",
+    "type": "registry:ui",
+    "title": "Cascader Footer",
+    "description": "",
+    "registryDependencies": [],
+    "dependencies": [
+      "@base-ui/react"
+    ],
+    "files": [
+      {
+        "path": "reui/cascader/cascader-footer.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/cascader/cascader-footer.tsx"
+      }
+    ]
+  },
+  {
+    "name": "cascader-i18n",
+    "type": "registry:ui",
+    "title": "Cascader I18n",
+    "description": "",
+    "registryDependencies": [],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "reui/cascader/cascader-i18n.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/cascader/cascader-i18n.tsx"
+      }
+    ]
+  },
+  {
+    "name": "cascader-item",
+    "type": "registry:ui",
+    "title": "Cascader Item",
+    "description": "",
+    "registryDependencies": [
+      "spinner"
+    ],
+    "dependencies": [
+      "@base-ui/react"
+    ],
+    "files": [
+      {
+        "path": "reui/cascader/cascader-item.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/cascader/cascader-item.tsx"
+      }
+    ]
+  },
+  {
+    "name": "cascader-lib",
+    "type": "registry:ui",
+    "title": "Cascader Lib",
+    "description": "",
+    "registryDependencies": [],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "reui/cascader/cascader-lib.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/cascader/cascader-lib.tsx"
+      }
+    ]
+  },
+  {
+    "name": "cascader-nav",
+    "type": "registry:ui",
+    "title": "Cascader Nav",
+    "description": "",
+    "registryDependencies": [],
+    "dependencies": [
+      "@base-ui/react",
+      "radix-ui"
+    ],
+    "files": [
+      {
+        "path": "reui/cascader/cascader-nav.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/cascader/cascader-nav.tsx"
+      }
+    ]
+  },
+  {
+    "name": "cascader-types",
+    "type": "registry:ui",
+    "title": "Nested multi-level combobox with drill-down, columns and tree modes.",
+    "description": "Nested multi-level combobox with drill-down, columns and tree modes.",
+    "registryDependencies": [],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "reui/cascader/cascader-types.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/cascader/cascader-types.tsx"
+      }
+    ]
+  },
+  {
+    "name": "cascader-virtual",
+    "type": "registry:ui",
+    "title": "Cascader Virtual",
+    "description": "",
+    "registryDependencies": [],
+    "dependencies": [
+      "@tanstack/react-virtual"
+    ],
+    "files": [
+      {
+        "path": "reui/cascader/cascader-virtual.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/cascader/cascader-virtual.tsx"
+      }
+    ]
+  },
+  {
+    "name": "cascader",
+    "type": "registry:ui",
+    "title": "Cascader",
+    "description": "",
+    "registryDependencies": [
+      "scroll-area",
+      "spinner"
+    ],
+    "dependencies": [
+      "@base-ui/react",
+      "@tanstack/react-virtual",
+      "radix-ui"
+    ],
+    "files": [
+      {
+        "path": "reui/cascader/cascader-async.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/cascader/cascader-async.tsx"
+      },
+      {
+        "path": "reui/cascader/cascader-columns.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/cascader/cascader-columns.tsx"
+      },
+      {
+        "path": "reui/cascader/cascader-context.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/cascader/cascader-context.tsx"
+      },
+      {
+        "path": "reui/cascader/cascader-footer.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/cascader/cascader-footer.tsx"
+      },
+      {
+        "path": "reui/cascader/cascader-i18n.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/cascader/cascader-i18n.tsx"
+      },
+      {
+        "path": "reui/cascader/cascader-item.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/cascader/cascader-item.tsx"
+      },
+      {
+        "path": "reui/cascader/cascader-lib.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/cascader/cascader-lib.tsx"
+      },
+      {
+        "path": "reui/cascader/cascader-nav.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/cascader/cascader-nav.tsx"
+      },
+      {
+        "path": "reui/cascader/cascader-types.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/cascader/cascader-types.tsx"
+      },
+      {
+        "path": "reui/cascader/cascader-virtual.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/cascader/cascader-virtual.tsx"
+      },
+      {
+        "path": "reui/cascader/cascader.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/cascader/cascader.tsx"
+      }
+    ]
+  },
+  {
     "name": "data-grid-column-filter",
     "type": "registry:ui",
     "title": "Data Grid Column Filter",
@@ -707,6 +944,226 @@ export const reui: Registry["items"] = [
     ]
   },
   {
+    "name": "filters-advanced",
+    "type": "registry:ui",
+    "title": "Filters Advanced",
+    "description": "",
+    "registryDependencies": [
+      "button",
+      "dropdown-menu",
+      "input",
+      "popover",
+      "tooltip"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "reui/filters/filters-advanced.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/filters/filters-advanced.tsx"
+      }
+    ]
+  },
+  {
+    "name": "filters-builder",
+    "type": "registry:ui",
+    "title": "Filters Builder",
+    "description": "",
+    "registryDependencies": [
+      "button",
+      "cascader",
+      "popover"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "reui/filters/filters-builder.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/filters/filters-builder.tsx"
+      }
+    ]
+  },
+  {
+    "name": "filters-chip",
+    "type": "registry:ui",
+    "title": "Filters Chip",
+    "description": "",
+    "registryDependencies": [
+      "button",
+      "button-group",
+      "dropdown-menu",
+      "popover",
+      "tooltip"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "reui/filters/filters-chip.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/filters/filters-chip.tsx"
+      }
+    ]
+  },
+  {
+    "name": "filters-context",
+    "type": "registry:ui",
+    "title": "Filters Context",
+    "description": "",
+    "registryDependencies": [],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "reui/filters/filters-context.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/filters/filters-context.tsx"
+      }
+    ]
+  },
+  {
+    "name": "filters-date",
+    "type": "registry:ui",
+    "title": "Filters Date",
+    "description": "",
+    "registryDependencies": [],
+    "dependencies": [
+      "date-fns"
+    ],
+    "files": [
+      {
+        "path": "reui/filters/filters-date.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/filters/filters-date.tsx"
+      }
+    ]
+  },
+  {
+    "name": "filters-dnd",
+    "type": "registry:ui",
+    "title": "Pointer-based drag layer for the advanced condition builder - a carry clone that follows the pointer, drop indicators between rows and into groups, and Alt to copy.",
+    "description": "Pointer-based drag layer for the advanced condition builder - a carry clone that follows the pointer, drop indicators between rows and into groups, and Alt to copy.",
+    "registryDependencies": [],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "reui/filters/filters-dnd.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/filters/filters-dnd.tsx"
+      }
+    ]
+  },
+  {
+    "name": "filters-draft",
+    "type": "registry:ui",
+    "title": "Filters Draft",
+    "description": "",
+    "registryDependencies": [],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "reui/filters/filters-draft.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/filters/filters-draft.tsx"
+      }
+    ]
+  },
+  {
+    "name": "filters-editors",
+    "type": "registry:ui",
+    "title": "Filters Editors",
+    "description": "",
+    "registryDependencies": [
+      "button",
+      "button-group",
+      "cascader",
+      "input"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "reui/filters/filters-editors.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/filters/filters-editors.tsx"
+      }
+    ]
+  },
+  {
+    "name": "filters-i18n",
+    "type": "registry:ui",
+    "title": "Filters I18n",
+    "description": "",
+    "registryDependencies": [],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "reui/filters/filters-i18n.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/filters/filters-i18n.tsx"
+      }
+    ]
+  },
+  {
+    "name": "filters-lib",
+    "type": "registry:ui",
+    "title": "Filters Lib",
+    "description": "",
+    "registryDependencies": [
+      "cascader"
+    ],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "reui/filters/filters-lib.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/filters/filters-lib.tsx"
+      }
+    ]
+  },
+  {
+    "name": "filters-operators",
+    "type": "registry:ui",
+    "title": "Filters Operators",
+    "description": "",
+    "registryDependencies": [],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "reui/filters/filters-operators.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/filters/filters-operators.tsx"
+      }
+    ]
+  },
+  {
+    "name": "filters-query",
+    "type": "registry:ui",
+    "title": "Filters Query",
+    "description": "",
+    "registryDependencies": [],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "reui/filters/filters-query.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/filters/filters-query.tsx"
+      }
+    ]
+  },
+  {
+    "name": "filters-types",
+    "type": "registry:ui",
+    "title": "Stepped filter builder with nested fields, popover value editors and a boolean query tree.",
+    "description": "Stepped filter builder with nested fields, popover value editors and a boolean query tree.",
+    "registryDependencies": [],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "reui/filters/filters-types.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/filters/filters-types.tsx"
+      }
+    ]
+  },
+  {
     "name": "filters",
     "type": "registry:ui",
     "title": "Filters",
@@ -714,21 +1171,86 @@ export const reui: Registry["items"] = [
     "registryDependencies": [
       "button",
       "button-group",
+      "cascader",
       "dropdown-menu",
       "input",
-      "input-group",
-      "kbd",
-      "scroll-area",
+      "popover",
       "tooltip"
     ],
     "dependencies": [
-      "class-variance-authority"
+      "class-variance-authority",
+      "date-fns"
     ],
     "files": [
       {
-        "path": "reui/filters.tsx",
+        "path": "reui/filters/filters-advanced.tsx",
         "type": "registry:ui",
-        "target": "components/reui/filters.tsx"
+        "target": "components/reui/filters/filters-advanced.tsx"
+      },
+      {
+        "path": "reui/filters/filters-builder.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/filters/filters-builder.tsx"
+      },
+      {
+        "path": "reui/filters/filters-chip.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/filters/filters-chip.tsx"
+      },
+      {
+        "path": "reui/filters/filters-context.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/filters/filters-context.tsx"
+      },
+      {
+        "path": "reui/filters/filters-date.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/filters/filters-date.tsx"
+      },
+      {
+        "path": "reui/filters/filters-dnd.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/filters/filters-dnd.tsx"
+      },
+      {
+        "path": "reui/filters/filters-draft.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/filters/filters-draft.tsx"
+      },
+      {
+        "path": "reui/filters/filters-editors.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/filters/filters-editors.tsx"
+      },
+      {
+        "path": "reui/filters/filters-i18n.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/filters/filters-i18n.tsx"
+      },
+      {
+        "path": "reui/filters/filters-lib.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/filters/filters-lib.tsx"
+      },
+      {
+        "path": "reui/filters/filters-operators.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/filters/filters-operators.tsx"
+      },
+      {
+        "path": "reui/filters/filters-query.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/filters/filters-query.tsx"
+      },
+      {
+        "path": "reui/filters/filters-types.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/filters/filters-types.tsx"
+      },
+      {
+        "path": "reui/filters/filters.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/filters/filters.tsx"
       }
     ]
   },

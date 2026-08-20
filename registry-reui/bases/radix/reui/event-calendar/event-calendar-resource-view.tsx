@@ -27,6 +27,7 @@ import {
 } from "@/registry-reui/bases/radix/reui/event-calendar/event-calendar-dnd"
 import {
   EVENT_CALENDAR_GHOST,
+  EVENT_CALENDAR_SLOT_DRAFT,
   EventCalendarEvent,
 } from "@/registry-reui/bases/radix/reui/event-calendar/event-calendar-event"
 import {
@@ -403,7 +404,14 @@ function EventCalendarResourceAllDayCell({
         "relative flex min-h-[calc(var(--ec-month-bar-h,1.625rem)+0.625rem)] min-w-0 flex-col gap-0.5 border-e px-1 py-1.5 last:border-e-0",
         isOff && offClassName,
         viewConfig.dayClassName?.(day),
-        inDraft && cn("bg-primary/10", viewConfig.classNames?.slotDraft),
+        inDraft &&
+          cn(
+            EVENT_CALENDAR_SLOT_DRAFT.surface,
+            EVENT_CALENDAR_SLOT_DRAFT.segment,
+            EVENT_CALENDAR_SLOT_DRAFT.segmentStart,
+            EVENT_CALENDAR_SLOT_DRAFT.segmentEnd,
+            viewConfig.classNames?.slotDraft
+          ),
         viewConfig.classNames?.allDayCell
       )}
       onPointerDown={(e) => {
@@ -562,6 +570,30 @@ function EventCalendarResourceColumn({
           a.valid === b.valid &&
           a.proposedStart.getTime() === b.proposedStart.getTime() &&
           a.proposedEnd.getTime() === b.proposedEnd.getTime()),
+    }
+  )
+
+  // Instants behind `draftWindow` below, for the range readout. Same
+  // resource filter, so a draft on a neighbouring resource never labels this
+  // column.
+  const draftRange = useEventCalendarSelector<
+    unknown,
+    { start: Date; end: Date } | null
+  >(
+    (state) => {
+      const draft = state.slotDraft
+      if (!draft || draft.allDay || draft.resourceId !== resource.id) {
+        return null
+      }
+      return { start: draft.start, end: draft.end }
+    },
+    {
+      isEqual: (a, b) =>
+        a === b ||
+        (a !== null &&
+          b !== null &&
+          a.start.getTime() === b.start.getTime() &&
+          a.end.getTime() === b.end.getTime()),
     }
   )
 
@@ -758,7 +790,8 @@ function EventCalendarResourceColumn({
         <div
           data-slot="event-calendar-slot-draft"
           className={cn(
-            "border-primary/40 bg-primary/5 pointer-events-none absolute inset-x-0.5 z-40 rounded-sm border border-dashed",
+            EVENT_CALENDAR_SLOT_DRAFT.box,
+            "pointer-events-none absolute inset-x-0.5 z-40 overflow-hidden",
             viewConfig.classNames?.slotDraft
           )}
           style={minuteBlockStyle(
@@ -766,7 +799,18 @@ function EventCalendarResourceColumn({
             draftWindow[1],
             boundsStartMin
           )}
-        />
+        >
+          {draftRange && (
+            <span className={cn("block", EVENT_CALENDAR_SLOT_DRAFT.label)}>
+              {settings.i18n.functions.formatEventTime(
+                toZoned(draftRange.start, settings.timeZone),
+                toZoned(draftRange.end, settings.timeZone),
+                false,
+                { locale: settings.locale }
+              )}
+            </span>
+          )}
+        </div>
       )}
     </div>
   )

@@ -13,7 +13,8 @@ import {
   ComponentSourceClient,
   type ComponentSourceClientProps,
 } from "@/components/component-source-client"
-import { DocsComponentLivePreview } from "@/components/docs-component-live-preview"
+import { resolveDocsPreviewClassName } from "@/lib/component-preview-frame"
+import { DocsComponentPreviewSlot } from "@/components/docs-component-preview-slot"
 import type { IconLibraryName } from "@/registry/config"
 
 type DocsComponentPreviewProps = React.ComponentProps<"div"> & {
@@ -27,6 +28,8 @@ type DocsComponentPreviewProps = React.ComponentProps<"div"> & {
   chromeLessOnMobile?: boolean
   previewClassName?: string
   code?: string
+  /** Frame height for iframe-backed previews. Mirrors DocsComponentPreview. */
+  previewHeight?: string | number
 }
 
 function useResolvedRegistryOptions(
@@ -118,12 +121,15 @@ export function DocsComponentPreviewSwitch({
   hideCode = false,
   chromeLessOnMobile = false,
   code,
+  previewHeight,
+  initialPreviewHeight,
   ...props
 }: DocsComponentPreviewProps & {
   children: React.ReactNode
   initialCategory?: string
   initialStyleName: string
   initialIconLibrary: IconLibraryName
+  initialPreviewHeight?: string | number
 }) {
   void _styleName
   void _iconLibrary
@@ -157,14 +163,20 @@ export function DocsComponentPreviewSwitch({
   return (
     <ComponentPreviewTabs
       className={className}
-      previewClassName={previewClassName}
+      previewClassName={resolveDocsPreviewClassName(
+        initialCategory,
+        previewClassName
+      )}
       align={align}
       hideCode={hideCode}
       component={
-        <DocsComponentLivePreview
+        <DocsComponentPreviewSlot
           name={name}
           base={getRegistryBaseName(resolvedStyleName)}
           category={initialCategory}
+          title={name}
+          previewHeight={previewHeight}
+          metaPreviewHeight={initialPreviewHeight}
         />
       }
       source={

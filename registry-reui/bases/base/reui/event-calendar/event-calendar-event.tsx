@@ -43,10 +43,7 @@ import {
 } from "@/registry/bases/base/ui/tooltip"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
-/**
- * Effective Tailwind palette presets for event colors; every entry works on
- * light and dark surfaces through the chip's alpha background + accent border.
- */
+/** Event color presets; each stays legible on light and dark surfaces. */
 const EVENT_CALENDAR_COLORS: Array<{ name: string; value: string }> = [
   { name: "Blue", value: "var(--color-blue-500)" },
   { name: "Emerald", value: "var(--color-emerald-500)" },
@@ -61,17 +58,11 @@ const EVENT_CALENDAR_COLORS: Array<{ name: string; value: string }> = [
 ]
 
 /**
- * Standardized drag-ghost surface treatment, shared verbatim by every view
- * (month, week/day/N-days, resource). One visual language for interactions:
- * - move: the event is CARRIED FREELY - a cursor-attached full clone (built
- *   by the dnd engine, data-slot=event-calendar-drag-carry) travels with the
- *   pointer; the in-grid ghost is only this faint dashed placeholder marking
- *   the snapped drop slot. The source stays dimmed in place.
- * - resize: the event is STRETCHED - the chip itself at the proposed extent
- *   with a dashed boundary instead of solid (slight indicator, no elevation).
- * - invalid: destructive tint on the placeholder / dashed clone; the engine
- *   adds the not-allowed cursor, a destructive ring on the carry clone, and
- *   a cursor-following validation hint.
+ * Drag-ghost surfaces, shared verbatim by every view. A move CARRIES the
+ * event: the dnd engine attaches a full clone to the cursor
+ * (data-slot=event-calendar-drag-carry), so this in-grid ghost is only the
+ * dashed placeholder for the snapped drop slot. A resize STRETCHES instead:
+ * the chip itself at the proposed extent, dashed rather than solid.
  */
 const EVENT_CALENDAR_GHOST = {
   move: "rounded-sm border border-dashed border-(--ec-event-color)/50 bg-(--ec-event-color)/8",
@@ -84,17 +75,42 @@ const EVENT_CALENDAR_GHOST = {
 } as const
 
 /**
- * Fade-out truncation for stacked timed blocks: squeezed cascade columns
- * hard-clip titles into a mash of adjacent glyphs; a right-edge mask fade
- * reads cleaner than an ellipsis at those tiny widths. The mask applies ONLY
- * below a 10rem container width - mask-image forces text off subpixel
- * antialiasing onto a grayscale raster layer, so masking every wide chip
- * makes the whole grid read bolder/blurry and shimmer while the window
- * resizes. Wide chips keep a plain ellipsis. Consumer renderEvent content
- * can import and reuse it.
+ * Fade-out truncation for stacked timed blocks, where squeezed cascade
+ * columns clip titles into a mash of glyphs; a right-edge mask fade reads
+ * cleaner than an ellipsis at those widths. Masked ONLY below a 10rem
+ * container: mask-image forces text off subpixel antialiasing, so masking
+ * wide chips makes the whole grid read bolder and shimmer while resizing.
+ * Wide chips keep the plain ellipsis. Exported for consumer renderEvent.
  */
 const EVENT_CALENDAR_FADE_TRUNCATE =
   "w-full truncate @max-[10rem]:text-clip @max-[10rem]:[mask-image:linear-gradient(to_right,#000_calc(100%-0.75rem),transparent)] @max-[10rem]:rtl:[mask-image:linear-gradient(to_left,#000_calc(100%-0.75rem),transparent)]"
+
+/**
+ * The drag-to-create selection, shared by every view: a dashed primary
+ * outline over a faint wash with the range printed inside. `box` is the timed
+ * grid's single minute-positioned rectangle; `segment` is one day-cell slice
+ * of a multi-cell draft, with side borders and rounding only on the run's two
+ * ends so it reads as one dashed box rather than a row of them.
+ */
+const EVENT_CALENDAR_SLOT_DRAFT = {
+  box: "rounded-sm border border-dashed border-primary/40 bg-primary/5",
+  segment: "border-y border-dashed border-primary/40",
+  segmentStart: "rounded-s-sm border-s",
+  segmentEnd: "rounded-e-sm border-e",
+  /**
+   * The wash for segmented views, on the CELL not the dashed overlay: the
+   * overlay stacks above the chips, so tinting it would wash them instead.
+   */
+  surface: "bg-primary/5",
+  /**
+   * The range readout. `leading-none` is load-bearing: the shortest timed
+   * draft is one snap interval tall (16px at the default 15-minute snap and
+   * 4rem hour height), and looser leading renders ~18px, clipped by the
+   * draft's own overflow-hidden.
+   */
+  label:
+    "text-primary truncate px-1 py-0.5 text-[0.6875rem] leading-none font-medium",
+} as const
 
 interface EventCalendarChipContextValue<TData = unknown> {
   occurrence: EventCalendarOccurrence<TData>
@@ -128,18 +144,16 @@ interface EventCalendarEventProps<TData = unknown> extends Omit<
   /** Replaces the default chip CONTENT; the wrapper stays calendar-owned. */
   children?: ReactNode
   /**
-   * Static drag clone: renders the chip exactly as-is but inert - no gestures,
-   * resize handles, selection/drag state, focus, or pointer events. Used for
-   * the full-fidelity ghost that tracks the proposed slot during a move.
+   * Static drag clone: the chip as-is but inert - no gestures, resize
+   * handles, selection/drag state, focus or pointer events.
    */
   preview?: boolean
 }
 
 /**
- * The one interactive event element used by every view. The wrapper owns
- * positioning hooks, a11y, selection, drag/resize listeners, and data
- * attributes; content comes from children, the root renderEvent override,
- * or the built-in default.
+ * The one interactive event element in every view. The wrapper owns a11y,
+ * data attributes, selection and drag/resize wiring; content comes from
+ * children, else renderEvent, else the built-in default.
  */
 function EventCalendarEvent<TData = unknown>({
   segment,
@@ -183,9 +197,8 @@ function EventCalendarEvent<TData = unknown>({
   const interactive = view !== "agenda" && !preview
   const timedBlock = inTimeGrid && !isBar
   const horizontalBar = isBar && !inTimeGrid
-  // >= compactEventMinutes renders the stacked (title over time) layout;
-  // squeezed cascade columns there fade-truncate instead of hard-clipping
-  // into neighbors
+  // >= compactEventMinutes renders the stacked (title over time) layout, where
+  // squeezed cascade columns fade-truncate instead of clipping into neighbors
   const stackedBlock =
     timedBlock &&
     (segment.endMin ?? 0) - (segment.startMin ?? 0) >=
@@ -193,15 +206,14 @@ function EventCalendarEvent<TData = unknown>({
 
   const defaultContent = (
     <>
-      {/* leading color dot for single-row chips (month cells, all-day bars);
-          time-grid blocks read their color from the tinted surface instead -
-          in the stacked layout a dot would sit alone on the first line */}
+      {/* leading dot for single-row chips (month cells, all-day bars); a
+          time-grid block takes its color from the tinted surface instead, and
+          in its stacked layout a dot would sit alone on the first line */}
       {!timedBlock && (
         <span
           aria-hidden
           data-slot="event-calendar-event-dot"
-          // -me-0.5 tightens just the dot-to-title gap (the chip keeps gap-1.5
-          // between the title and the trailing time)
+          // -me-0.5 tightens only the dot-to-title gap; the chip keeps gap-1.5
           className="-me-0.5 size-1.5 shrink-0 rounded-full bg-(--ec-event-color)"
         />
       )}
@@ -225,7 +237,7 @@ function EventCalendarEvent<TData = unknown>({
         {event.title}
       </span>
       {/* month cells are narrow: a compact never-shrinking start time keeps
-          the title readable; grid views show the full range */}
+          the title readable; grids show the full range */}
       {!occurrence.allDay &&
         segment.isStart &&
         (view === "month" ? (
@@ -254,10 +266,9 @@ function EventCalendarEvent<TData = unknown>({
     </>
   )
 
-  // Agenda time text is per-day for multi-day events: the first day reads
-  // "From 9:00 AM", middle days "All day", the last day "Until 5:00 PM".
-  // Boundaries derive from the occurrence vs segment.day (never the packing
-  // flags - lane merging rewrites those on shared segment objects).
+  // Per-day time text for a multi-day event: "From 9:00 AM", "All day",
+  // "Until 5:00 PM". Boundaries come from the occurrence vs segment.day, never
+  // the packing flags - lane merging rewrites those on shared segments.
   const agendaTimeText = (() => {
     if (view !== "agenda") return ""
     if (occurrence.allDay) return settings.i18n.labels.allDay
@@ -318,12 +329,10 @@ function EventCalendarEvent<TData = unknown>({
     </>
   )
 
-  // Custom chip content is memoized so a drag - which re-renders the lane on
-  // every pointer move - never re-invokes the consumer's renderEvent per frame.
-  // The element stays referentially stable across those re-renders, so React
-  // skips the custom subtree and it doesn't flicker; on drop only the moved
-  // chip's inputs change and recompute. Deps are exactly renderProps' inputs
-  // plus the render fns (all stable during an internal drag).
+  // Memoized so a drag - which re-renders the lane on every pointer move -
+  // never re-invokes the consumer's renderEvent per frame: a referentially
+  // stable element lets React skip the custom subtree instead of flickering it.
+  // The render fns are deps, so an inline arrow from the consumer defeats it.
   const customContent = useMemo(() => {
     const renderProps = { occurrence, segment, view, isDragging, isSelected }
     return view === "agenda"
@@ -349,18 +358,15 @@ function EventCalendarEvent<TData = unknown>({
     occurrence.allDay,
     { locale: settings.locale }
   )
-  // native hover tooltip text; a consumer formatter returning undefined
-  // drops the title attribute entirely (e.g. when it renders its own tooltip)
+  // native hover tooltip text; a formatter returning undefined drops the title
   const label = settings.i18n.functions.formatEventLabel
     ? settings.i18n.functions.formatEventLabel(event.title, timeLabel)
     : `${event.title}, ${timeLabel}`
 
-  // Optional styled tooltip on hover / keyboard focus (viewConfig.eventTooltip,
-  // default off). When on, the native title is dropped so the two never stack;
-  // a preview clone never gets one. Content defaults to the label and can be
-  // overridden with renderEventTooltip - a falsy result (null/undefined, or
-  // the `false`/"" that `cond && <node>` yields) falls back to the label, and
-  // an empty label (i18n opt-out) leaves no content so the tooltip is skipped.
+  // Optional styled tooltip (viewConfig.eventTooltip, default off). It replaces
+  // the native title so the two never stack, and a preview never gets one. A
+  // falsy renderEventTooltip result (including the false/"" of `cond && <node>`)
+  // falls back to the label; an empty label leaves no content and skips it.
   const tooltipOpts =
     typeof viewConfig.eventTooltip === "object" ? viewConfig.eventTooltip : null
   const tooltipContent =
@@ -376,11 +382,9 @@ function EventCalendarEvent<TData = unknown>({
 
   const showResize =
     interactive && resizeOn && !event.readOnly && event.resizable !== false
-  // Hover grip pill (mirrors the gantt bars): a tiny bar inside each resize
-  // handle signals the direction. Shown on every resizable chip - compact
-  // sub-compactEventMinutes timed blocks included - because the chip
-  // min-height (1.5rem) leaves room at the very top/bottom edges without
-  // colliding with the vertically-centered title.
+  // Hover grip pill (mirrors the gantt bars) marking the resize direction.
+  // Shown on compact sub-compactEventMinutes blocks too: the 1.5rem chip
+  // min-height leaves edge room without colliding with the centered title.
   const grip = (
     <span
       aria-hidden
@@ -459,8 +463,6 @@ function EventCalendarEvent<TData = unknown>({
     "data-dragging": isDragging || undefined,
     "data-preview": preview || undefined,
     "data-past": occurrence.end.getTime() < Date.now() || undefined,
-    // native hover reveal for squeezed/faded chips: full title + time (dropped
-    // when the styled eventTooltip is on so the two never stack)
     title: preview || tooltipOn ? undefined : label,
     "aria-label":
       settings.i18n.functions.formatEventAriaLabel?.(
@@ -473,9 +475,8 @@ function EventCalendarEvent<TData = unknown>({
           ? `, ${settings.i18n.labels.continues}`
           : ""
       }`,
-    // Selection is otherwise conveyed by a background tint alone; the chip is a
-    // real toggle in every interactive view, so a screen reader hears the state
-    // (agenda rows never select, previews are inert - both stay unpressed).
+    // A background tint alone conveys selection, so the chip is a real toggle
+    // wherever it is interactive (agenda rows never select, previews are inert).
     "aria-pressed": interactive ? isSelected : undefined,
     "aria-hidden": preview || undefined,
     tabIndex: preview ? -1 : undefined,
@@ -484,8 +485,7 @@ function EventCalendarEvent<TData = unknown>({
     } as CSSProperties,
     onPointerDown: (e: React.PointerEvent) => {
       e.stopPropagation()
-      // suppress the trailing slot-create click if this press does not turn
-      // into a drag (e.g. a locked chip) - see markChipPress
+      // suppress the trailing slot-create click when this press yields no drag
       markChipPress()
       if (interactive) gestures.beginMove(e, segment)
     },
@@ -493,7 +493,6 @@ function EventCalendarEvent<TData = unknown>({
       e.stopPropagation()
       if (wasRecentDrag()) return
       // consumer first: e.preventDefault() opts out of built-in selection
-      // (e.g. click = open dialog only, no selected tint)
       settings.onEventClick?.(occurrence, e)
       // the agenda is a read-only list: a click never selects/focuses a row
       if (e.defaultPrevented || view === "agenda") return
@@ -515,11 +514,9 @@ function EventCalendarEvent<TData = unknown>({
             // @container removes intrinsic sizing; only grid chips are containers
             // py-1: room above/below inline badges (attendee pill etc.)
             "@container gap-1.5 rounded-sm px-1.5 py-1 leading-normal",
-            // soft tint + hairline inset ring: color reads from the surface
-            // itself (no accent border), stays legible in light and dark
+            // soft tint + inset ring, not an accent border: legible on both themes
             "bg-(--ec-event-color)/15 hover:bg-(--ec-event-color)/25",
-            // a flat tint reads darker over a dark surface, so lift it a little
-            // in dark mode to keep a lighter, softer chip tone
+            // a flat tint reads darker on a dark surface, so lift it there
             "dark:bg-(--ec-event-color)/20 dark:hover:bg-(--ec-event-color)/30",
             "inset-ring inset-ring-(--ec-event-color)/15",
             "transition-[background-color,box-shadow] duration-150",
@@ -572,6 +569,7 @@ export {
   EVENT_CALENDAR_COLORS,
   EVENT_CALENDAR_FADE_TRUNCATE,
   EVENT_CALENDAR_GHOST,
+  EVENT_CALENDAR_SLOT_DRAFT,
   EventCalendarEvent,
   useEventCalendarEventChip,
 }

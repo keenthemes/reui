@@ -1,5 +1,6 @@
 import * as React from "react"
 
+import { resolveDocsPreviewClassName } from "@/lib/component-preview-frame"
 import { getComponentByNameServer } from "@/lib/components-browse.server"
 import {
   DEFAULT_DOCS_STYLE_NAME,
@@ -9,7 +10,7 @@ import {
 } from "@/lib/docs-registry-options"
 import { ComponentPreviewTabs } from "@/components/component-preview-tabs"
 import { ComponentSource } from "@/components/component-source"
-import { DocsComponentLivePreview } from "@/components/docs-component-live-preview"
+import { DocsComponentPreviewSlot } from "@/components/docs-component-preview-slot"
 import { DocsComponentPreviewSwitch } from "@/components/docs-mdx-components.client"
 import type { IconLibraryName } from "@/registry/config"
 
@@ -24,6 +25,12 @@ type DocsComponentPreviewProps = React.ComponentProps<"div"> & {
   chromeLessOnMobile?: boolean
   previewClassName?: string
   code?: string
+  /**
+   * Frame height in px for iframe-backed previews, authored per instance in
+   * MDX. Takes precedence over the example's `previewHeight` meta. Ignored by
+   * categories that still render inline.
+   */
+  previewHeight?: string | number
 }
 
 function inferComponentCategoryFromName(name: string) {
@@ -43,9 +50,14 @@ export function DocsComponentPreview(props: DocsComponentPreviewProps) {
     props.iconLibrary,
     initialStyleName
   )
+  const registryComponent = getComponentByNameServer(props.name, initialBase)
   const initialCategory =
-    getComponentByNameServer(props.name, initialBase)?.primaryCategory ??
+    registryComponent?.primaryCategory ??
     inferComponentCategoryFromName(props.name)
+  // Fallback height for framed previews when the MDX tag does not author one.
+  // Same manifest field the catalog cards read, so a height set once in the
+  // category's meta.json applies on both surfaces.
+  const initialPreviewHeight = registryComponent?.meta?.previewHeight
 
   const {
     name,
@@ -55,6 +67,7 @@ export function DocsComponentPreview(props: DocsComponentPreviewProps) {
     hideCode = false,
     chromeLessOnMobile = false,
     code,
+    previewHeight,
     styleName: _styleName = DEFAULT_DOCS_STYLE_NAME,
     iconLibrary: _iconLibrary,
     type: _type,
@@ -73,18 +86,25 @@ export function DocsComponentPreview(props: DocsComponentPreviewProps) {
       initialCategory={initialCategory}
       initialStyleName={initialStyleName}
       initialIconLibrary={initialIconLibrary}
+      initialPreviewHeight={initialPreviewHeight}
     >
       <ComponentPreviewTabs
         align={align}
         hideCode={hideCode}
         className={className}
-        previewClassName={previewClassName}
+        previewClassName={resolveDocsPreviewClassName(
+          initialCategory,
+          previewClassName
+        )}
         chromeLessOnMobile={chromeLessOnMobile}
         component={
-          <DocsComponentLivePreview
+          <DocsComponentPreviewSlot
             name={name}
             base={initialBase}
             category={initialCategory}
+            title={props.description || name}
+            previewHeight={previewHeight}
+            metaPreviewHeight={initialPreviewHeight}
           />
         }
         source={

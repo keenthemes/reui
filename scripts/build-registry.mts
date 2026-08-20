@@ -104,10 +104,16 @@ const REQUIRED_REGISTRY_ITEMS = [
 ]
 // Keep these style alternations in sync with the STYLES list in registry/styles.tsx.
 const GENERATED_STYLE_PATTERN = "(?:vega|nova|maia|lyra|mira|luma|sera|rhea)"
+// The token runs to the next space. Quotes are NOT terminators here: an
+// arbitrary variant can carry one, e.g. `style-mira:[&_svg:not([class*='size-'])]:size-3.5`.
+// The surrounding quotes are already stripped by the caller.
 const STYLE_VARIANT_TOKEN_RE =
-  /\bstyle-(vega|nova|maia|lyra|mira|luma|sera|rhea):([^\s"'`{}]+)/g
+  /\bstyle-(vega|nova|maia|lyra|mira|luma|sera|rhea):([^\s{}]+)/g
+// A single-line string literal holding at least one `style-*:` token. The body
+// may contain the OTHER two quote characters - only the opening delimiter ends
+// it - which is what `(?:(?!\1)[^\n])` expresses.
 const QUOTED_STYLE_VARIANT_RE =
-  /(["'`])([^"'`\n]*\bstyle-(?:vega|nova|maia|lyra|mira|luma|sera|rhea):[^"'`\n]*)\1/g
+  /(["'`])((?:(?!\1)[^\n])*\bstyle-(?:vega|nova|maia|lyra|mira|luma|sera|rhea):(?:(?!\1)[^\n])*)\1/g
 
 function getSvgImportPaths(code: string): string[] {
   const svgImports = new Set<string>()

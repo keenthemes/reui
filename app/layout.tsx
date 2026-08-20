@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils"
 import { LayoutProvider } from "@/hooks/use-layout"
 import { Toaster } from "@/components/ui/sonner"
 import { Analytics } from "@/components/analytics"
+import { PreviewScrollReceiver } from "@/components/preview-scroll-receiver"
 import { ScrollToTop } from "@/components/scroll-to-top"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -142,6 +143,11 @@ export default function RootLayout({
                 <NuqsAdapter>
                   <TopProgressBar />
                   <ScrollToTop />
+                  {/* Continues a wheel gesture on the page when a preview
+                      iframe has nothing left to scroll. Root-level because
+                      previews appear on both /components and /docs; it is one
+                      idle listener until a preview posts. */}
+                  <PreviewScrollReceiver />
                   {children}
                   <TailwindIndicator />
                   <Toaster position="top-center" />

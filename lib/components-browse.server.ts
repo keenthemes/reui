@@ -11,6 +11,10 @@ interface RegistryComponentMeta {
   colSpan?: number
   gridSize?: 1 | 2
   order?: number
+  // Authored in the category's meta.json and carried through by
+  // scripts/build-components.mts. Read by the iframe-backed preview to size
+  // its frame; ignored by the inline preview path.
+  previewHeight?: string
 }
 
 interface RegistryComponentItem {
@@ -177,29 +181,44 @@ function loadComponentNameIndex(base: string = "base") {
   })
 }
 
-export function getComponentByNameServer(name: string, base: string = "base") {
+/**
+ * Deliberately NOT wrapped in `devCached`.
+ *
+ * The shard read underneath this (`loadComponentCategoryShard` ->
+ * `readJsonCached`) is already cached AND mtime-aware, so the only thing an
+ * extra `devCached` layer added was permanence: `devCached` is a plain
+ * globalThis Map with no invalidation, so a resolved item stayed frozen for the
+ * life of the dev server. Editing a component's `meta.json` then updated
+ * /components/<category> immediately (that path reads the shard directly) while
+ * /docs kept serving the pre-edit value until a full restart - which is how a
+ * stale `previewHeight` reached the docs previews. The remaining work here is a
+ * find over one already-parsed category array, so dropping the wrapper costs
+ * nothing measurable.
+ */
+export function getComponentByNameServer(
+  name: string,
+  base: string = "base"
+): BrowseComponentItem | null {
   const normalizedName = name.trim()
 
-  return devCached(`component-item:${base}:${normalizedName}`, () => {
-    try {
-      const categoryByName = loadComponentNameIndex(base)
-      const indexedCategory = categoryByName[normalizedName]
+  try {
+    const categoryByName = loadComponentNameIndex(base)
+    const indexedCategory = categoryByName[normalizedName]
 
-      if (!indexedCategory) {
-        return null
-      }
-
-      return (
-        getComponentsByCategoryServer(indexedCategory).find(
-          (candidate) => candidate.name === normalizedName
-        ) ?? null
-      )
-    } catch (error) {
-      console.error(
-        `Failed to resolve component "${normalizedName}" for base "${base}"`,
-        error
-      )
+    if (!indexedCategory) {
       return null
     }
-  }) as BrowseComponentItem | null
+
+    return (
+      getComponentsByCategoryServer(indexedCategory).find(
+        (candidate) => candidate.name === normalizedName
+      ) ?? null
+    )
+  } catch (error) {
+    console.error(
+      `Failed to resolve component "${normalizedName}" for base "${base}"`,
+      error
+    )
+    return null
+  }
 }

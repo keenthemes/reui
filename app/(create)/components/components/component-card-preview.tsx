@@ -3,9 +3,15 @@
 import * as React from "react"
 import { RotateCwIcon } from "lucide-react"
 
+import {
+  CATALOG_FRAME_DESIGN_KEYS,
+  resolveComponentPreviewFrameHeight,
+  shouldFrameComponentPreview,
+} from "@/lib/component-preview-frame"
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer"
 import { Button } from "@/components/ui/button"
 import { Spinner } from "@/components/ui/spinner"
+import { ComponentPreviewFrame } from "@/components/component-preview-frame"
 
 /**
  * Isolates a single component preview so a failed lazy import (e.g. a missing
@@ -65,7 +71,58 @@ function loadLivePreviewModule() {
   return livePreviewModulePromise
 }
 
+/**
+ * Picks between the iframe-backed preview (heavy categories only) and the
+ * inline one every other category keeps using. See
+ * lib/component-preview-frame.ts for the allowlist and the kill switch.
+ */
 export function ComponentCardPreview({
+  name,
+  title,
+  base = "base",
+  category,
+  previewHeight,
+}: {
+  name: string
+  title: string
+  base?: string
+  category?: string
+  previewHeight?: string
+}) {
+  const inline = (
+    <InlineComponentCardPreview
+      name={name}
+      title={title}
+      base={base}
+      category={category}
+    />
+  )
+
+  if (!shouldFrameComponentPreview(category, "catalog")) {
+    return inline
+  }
+
+  return (
+    <ComponentPreviewFrame
+      name={name}
+      base={base}
+      title={title}
+      height={resolveComponentPreviewFrameHeight({
+        category,
+        metaPreviewHeight: previewHeight,
+      })}
+      designKeys={CATALOG_FRAME_DESIGN_KEYS}
+      // NOT `preview`: FrameContent centers that slot and caps it at
+      // `sm:max-w-[80%]`, which is right for an inline demo but boxes a frame
+      // that is already sized to fill its card. This slot is unmatched by
+      // those rules, so the example spans the full card width.
+      slot="preview-frame"
+      fallback={inline}
+    />
+  )
+}
+
+function InlineComponentCardPreview({
   name,
   title,
   base = "base",

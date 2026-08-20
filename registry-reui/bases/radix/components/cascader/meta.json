@@ -1,0 +1,122 @@
+[
+  {
+    "name": "c-cascader-1",
+    "title": "Nested attribute picker with drill-down navigation.",
+    "description": "Nested attribute picker with drill-down navigation.",
+    "order": 1
+  },
+  {
+    "name": "c-cascader-2",
+    "title": "Multi-select permissions with checkboxes and a selection cap.",
+    "description": "Multi-select permissions with checkboxes and a selection cap.",
+    "order": 2
+  },
+  {
+    "name": "c-cascader-3",
+    "title": "Deep search across every level with path-annotated results.",
+    "description": "Deep search across every level with path-annotated results.",
+    "order": 3
+  },
+  {
+    "name": "c-cascader-4",
+    "title": "Pinned footer with a side-anchored import flyout.",
+    "description": "Pinned footer with a side-anchored import flyout.",
+    "order": 4
+  },
+  {
+    "name": "c-cascader-5",
+    "title": "Custom rows with avatars and role badges.",
+    "description": "Custom rows pairing avatars with outline role badges that color-code seniority.",
+    "order": 5
+  },
+  {
+    "name": "c-cascader-6",
+    "title": "Trigger path formatting and collapsing.",
+    "description": "Trigger path formatting and collapsing.",
+    "order": 6
+  },
+  {
+    "name": "c-cascader-7",
+    "title": "Embedded panel without a popover.",
+    "description": "Embedded panel without a popover.",
+    "order": 7
+  },
+  {
+    "name": "c-cascader-8",
+    "title": "Flat adjacency data with a parent pointer.",
+    "description": "Flat adjacency data with a parent pointer.",
+    "order": 8
+  },
+  {
+    "name": "c-cascader-9",
+    "title": "Controlled path, value, query and open state.",
+    "description": "External buttons jump the panel to a level, reset it to the root and clear the selection, with all four controlled props printed under the control.",
+    "order": 9
+  },
+  {
+    "name": "c-cascader-10",
+    "title": "Translated labels across a country picker.",
+    "description": "A German country picker where every string the primitive renders comes from labels, including the live-region announcements, with each flag in an IconTile.",
+    "order": 10
+  },
+  {
+    "name": "c-cascader-11",
+    "title": "Two-line rows with descriptions and a disabled option.",
+    "description": "Two-line rows with descriptions and a disabled option.",
+    "order": 11
+  },
+  {
+    "name": "c-cascader-12",
+    "title": "Form field that submits like a native input.",
+    "description": "Form field that submits like a native input.",
+    "order": 12
+  },
+  {
+    "name": "c-cascader-13",
+    "title": "Columns mode with independently scrolling panels.",
+    "description": "A media library in Miller columns where all three panes overflow and each scrolls on its own.",
+    "order": 13
+  },
+  {
+    "name": "c-cascader-14",
+    "title": "Tree mode with inline expand and multi-select scopes.",
+    "description": "Tree mode with inline expand and multi-select scopes.",
+    "order": 14
+  },
+  {
+    "name": "c-cascader-15",
+    "title": "Async drill-down that loads before it navigates.",
+    "description": "Async drill-down that loads before it navigates.",
+    "order": 15
+  },
+  {
+    "name": "c-cascader-16",
+    "title": "Virtualized level with thousands of rows.",
+    "description": "Six unevenly sized regions of country markets, windowed so only the visible rows ever mount.",
+    "order": 16
+  },
+  {
+    "name": "c-cascader-17",
+    "title": "Consumer-rendered removable chips with path-aware labels.",
+    "description": "Chips rendered outside the primitive from useCascaderSelection, each carrying its full path so repeated column names stay distinct.",
+    "order": 17
+  },
+  {
+    "name": "c-cascader-18",
+    "title": "Cascading tree multi-select inside a popover.",
+    "description": "A cascading tree with indeterminate branches in a popover, bounded by the positioner's available height.",
+    "order": 18
+  },
+  {
+    "name": "c-cascader-19",
+    "title": "Status and priority colour dots via renderLabel.",
+    "description": "Status and priority colour dots via renderLabel.",
+    "order": 19
+  },
+  {
+    "name": "c-cascader-20",
+    "title": "Expense accounts with a colour inherited down each branch.",
+    "description": "Expense accounts with a colour inherited down each branch.",
+    "order": 20
+  }
+]

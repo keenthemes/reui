@@ -51,11 +51,12 @@ grid that never hides and never pins a column still needs both just to render ro
 
 Two entries in the bundle are neither features nor row models:
 
-- `sortFns: { basic: sortFn_basic, text: sortFn_text }`. On v9 a string `sortFn` resolves against this registry
-  alone, so `"basic"` and `"text"` (plus the default `"auto"`) are the only names this bundle types. Any other
-  built-in (`"alphanumeric"`, `"datetime"`, `"textCaseSensitive"`) has to be registered in your own bundle or
-  passed as a function. `"auto"` keeps working, but when it infers an unregistered name it warns in development
-  and falls back.
+- `sortFns`, which registers every built-in v9 ships: `alphanumeric`, `alphanumericCaseSensitive`, `basic`,
+  `datetime`, `text` and `textCaseSensitive`. On v9 a string `sortFn` resolves against this registry alone, and
+  the default `sortFn: "auto"` infers one of those names from the first row's value, so the map has to be
+  complete or an ordinary string column warns in development and falls back to unsorted order. Register a custom
+  comparator by extending the bundle with `tableFeatures({ ...dataGridFeatures, sortFns: { ...} })`, or pass a
+  function directly as `sortFn`.
 - `columnMeta`, which types `columnDef.meta` as `DataGridColumnMeta` (`headerTitle`, `headerClassName`,
   `cellClassName`, `skeleton`, `expandedContent`, `autoSize`). A features-level `columnMeta` slot wins over the
   global `ColumnMeta` interface, so the v8 `declare module` augmentation is ignored on any table built with
@@ -98,34 +99,81 @@ once. The sub-components that take a `column`, `row` or `table` prop (`DataGridC
 `DataGridTableRowExpand`) are declared against `DataGridFeatures`, and `TFeatures` is invariant in v9, so any
 bundle that is wider or leaner than `dataGridFeatures` needs a cast at those boundaries.
 
-<Callout title="Upgrading from v8" variant="warning">
+## Prompt for TanStack Table v9 migration
 
-These are the changes that bite hardest when porting existing tables:
+If you already have the Data Grid installed, paste the prompt below into your coding agent.
+It covers both cases: a session with the [ReUI MCP](/docs/mcp) connected, and a plain
+project where the primitive is reinstalled from the registry.
 
-- **Every generic gained a leading `TFeatures`.** `ColumnDef<TData, TValue>` becomes
-  `ColumnDef<DataGridFeatures, TData, TValue>`, and `Row`, `Column`, `Cell`, `Header` and `Table` shift the same
-  way. This is the first wall of compile errors in any ported file.
-- **`useReactTable` is now `useTable`, and the `get*RowModel` options are gone.** Row models moved into the
-  `features` bundle (`sortedRowModel`, `filteredRowModel`, `paginatedRowModel` and friends), which is what
-  `dataGridFeatures` hands you.
-- **A registered `paginatedRowModel` always slices.** It is the one row model that is not inert, so a grid that
-  used to render every row now shows only `pageSize` rows (10 by default). When the data is already one page, or
-  the grid renders all rows, set `manualPagination: true`.
-- **Column pinning moved from `left`/`right` to `start`/`end`**, across `ColumnPinningState`, `column.pin()`,
-  `getIsPinned()` and the `getLeft*`/`getRight*` method families. The grid's `data-pinned`, `data-last-col` and
-  `data-outer-pinned-col` attributes now emit `start` / `end` too, so CSS targeting `[data-pinned="left"]` must
-  be updated.
-- **`getIsSomeRowsSelected()` and `getIsSomePageRowsSelected()` changed meaning**, from "some but not all" to
-  "at least one". An indeterminate checkbox that does not also exclude the all-selected case will stay
-  indeterminate forever. Guard it: `getIsSomePageRowsSelected() && !getIsAllPageRowsSelected()`.
-- **State reads and names moved.** `table.getState()` is gone and reads go through `table.state`, the
-  `columnSizingInfo` slice is now `columnResizing` (`setColumnSizingInfo` is `setColumnResizing`),
-  `VisibilityState` is `ColumnVisibilityState`, and `sortingFn` / `SortingFn` are `sortFn` / `SortFn`.
-- **State shapes got stricter.** `ColumnPinningState` requires both `start` and `end`, `RowPinningState` requires
-  both `top` and `bottom`, and `RowSelectionState` narrowed to `Record<string, true>`, so deselecting by writing
-  `false` no longer type-checks.
+```text
+Migrate ReUI Data Grid to TanStack Table v9.
 
-</Callout>
+STEP 1 - Replace the Data Grid primitive from the registry.
+
+  Case A, the ReUI MCP is available in this session:
+    - Call search("data-grid"), then get_component("data-grid") to read the current API.
+    - Call get_examples("data-grid") to see real composition.
+    - Run the command returned by get_install_command("data-grid") and overwrite when prompted.
+
+  Case B, no ReUI MCP:
+    - Run: npx shadcn@latest add @reui/data-grid
+    - Answer yes when asked to overwrite the existing files.
+
+  Every data-grid file must come from the registry. Do not hand-patch them, do not merge
+  them by hand, and do not keep a local fork of any of them.
+
+STEP 2 - Move to TanStack Table v9 and confirm v8 is gone.
+
+  - Set "@tanstack/react-table" to "^9.0.0" in package.json.
+  - Reinstall (npm install, pnpm install or yarn).
+  - Do not continue until all three checks pass:
+      1. package.json lists "@tanstack/react-table": "^9.0.0" and no other version of it.
+      2. The installed version is 9.x. Run: npm ls @tanstack/react-table
+      3. No v8 copy survives in the lockfile. Search the lockfile for "react-table" and
+         confirm every resolved version is 9.x. If an 8.x entry remains, another dependency
+         is pulling it in: dedupe or upgrade that package.
+  - This matters because v9 removed useReactTable entirely. A leftover v8 install under v9
+    code fails as an unresolved import, not as a helpful error.
+
+STEP 3 - Update every table you own.
+
+  - useReactTable({ ... }) becomes useTable({ features: dataGridFeatures, ... }), importing
+    dataGridFeatures from your installed data-grid.
+  - Delete the getCoreRowModel / getSortedRowModel / getFilteredRowModel /
+    getPaginationRowModel options. dataGridFeatures already registers them.
+  - If a grid used to render every row, add manualPagination: true. The v9 paginated row
+    model always slices, so that grid would otherwise show only the first page.
+  - Add the leading TFeatures generic to types: ColumnDef<TData, TValue> becomes
+    ColumnDef<DataGridFeatures, TData, TValue>. Same for Row, Column, Cell, Header, Table.
+  - Column pinning is start/end, never left/right: ColumnPinningState, column.pin(),
+    getIsPinned(), and any CSS matching [data-pinned="left"].
+  - Renames: table.getState() becomes table.state, VisibilityState becomes
+    ColumnVisibilityState, sortingFn becomes sortFn, columnSizingInfo becomes columnResizing.
+  - Indeterminate header checkbox: use
+    getIsSomePageRowsSelected() && !getIsAllPageRowsSelected().
+  - Column meta comes from the exported DataGridColumnMeta. Delete any
+    declare module "@tanstack/react-table" augmentation you added.
+  - Remove "use no memo" from files that only wrap the grid.
+  - State shapes got stricter: ColumnPinningState requires both start and end,
+    RowPinningState requires both top and bottom, and RowSelectionState narrowed to
+    Record<string, true>, so deselecting by writing false no longer type-checks.
+
+STEP 4 - Prove the migration is complete.
+
+  Search the whole project. Every one of these must return zero results:
+    useReactTable
+    getCoreRowModel
+    data-pinned="left"
+    table.getState(
+    declare module "@tanstack/react-table"
+  Any hit is a call site you missed.
+
+STEP 5 - Verify it actually runs.
+
+  Typecheck must pass with no errors. Then open each grid and confirm: sorting, paging,
+  column visibility, pinning a column to each side while scrolling horizontally, row
+  selection including the header checkbox, and column resizing.
+```
 
 ## React Compiler
 

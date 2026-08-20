@@ -3,6 +3,31 @@ title: Changelog
 description: Latest updates and announcements.
 ---
 
+## v2.3.0 - 19 August, 2026.
+
+**New component - Cascader:**
+
+- A nested multi-level combobox with drill-down navigation, breadcrumbs, search and custom rows. Three modes from one state machine: `drill` (default), `columns` and `tree` - [Docs](/docs/components/base/cascader).
+- Selection is opt-in per level. Pressing a branch NAVIGATES rather than selects until `selectable="any"`, so a parent is never chosen by accident on the way to its children - [Docs](/docs/components/base/cascader).
+- Async levels come from `getChildren` rather than from mutating `items`, so a lazily loaded tree needs no local copy of the data - [Docs](/docs/components/base/cascader).
+- 20 examples across both twins, covering multi-select with a selection cap, indeterminate branches, inline tree expansion, footers and virtualized lists - [Preview](/components/cascader).
+
+**Filters rebuilt:**
+
+- The value is now ONE `FilterQuery` tree rather than an array of chips. Seed it with `createFilterQuery()`, read it with `flattenFilterConditions`, and drive it through `query` / `onQueryChange` or uncontrolled `defaultQuery` - [Docs](/docs/components/base/filters).
+- `variant` picks the chrome: `basic` for the chip bar, `advanced` for the builder panel (`advancedMode` `popover` or `inline`). Both edit the same tree - [Docs](/docs/components/base/filters).
+- The builder edits values in the row itself for text and number, and reserves popovers for lists and ranges - [Preview](/components/filters).
+
+**Breaking changes:**
+
+- The pre-rewrite Filters props are gone. `filters` / `onChange` and `createFilter()` no longer exist; use `query` / `onQueryChange` and `createFilterQuery()` - [Docs](/docs/components/base/filters).
+
+**Fixes & Improvements:**
+
+- Component docs previews now render inside an iframe and mount only when scrolled into view. A page with dozens of live examples used to mount all of them at once, which was the slowest thing about browsing the component pages - [Preview](/components/data-grid).
+- Filters drag and drop keeps the dragged row readable instead of fading it almost to nothing, and the drop indicator lines up with the row it will land beside - [Preview](/components/filters).
+- Choosing an attribute in the Filters chip hands off to the condition menu without the field picker flashing behind it, and the value menu now opens aligned to the value segment on the first open - [Preview](/components/filters).
+
 ## v2.2.0 - 5 August, 2026.
 
 **Data Grid on TanStack Table v9:**
@@ -15,7 +40,7 @@ description: Latest updates and announcements.
 
 **Breaking changes:**
 
-- The Data Grid now needs `@tanstack/react-table` v9 in your project. Upgrade the dependency before pulling this version - [Docs](/docs/components/base/data-grid).
+- The Data Grid now needs `@tanstack/react-table` v9 in your project. The docs ship a copy-paste migration prompt that walks a coding agent through the whole port - [Docs](/docs/components/base/data-grid#prompt-for-tanstack-table-v9-migration).
 - Column pinning moved from `left` / `right` to `start` / `end`. That covers `initialState.columnPinning`, `column.pin()` and `getIsPinned()`, and the emitted `data-pinned`, `data-last-col` and `data-outer-pinned-col` attributes. CSS selecting `[data-pinned="left"]` needs updating to `[data-pinned="start"]` - [Docs](/docs/components/base/data-grid).
 - `DataGridProps` takes a leading `TFeatures` generic, `useDataGrid` is generic, and the sub-component prop types are feature-parameterized. `VisibilityState` is now `ColumnVisibilityState` - [Docs](/docs/components/base/data-grid).
 

@@ -29,6 +29,7 @@ import {
 } from "@/registry-reui/bases/radix/reui/event-calendar/event-calendar-dnd"
 import {
   EVENT_CALENDAR_GHOST,
+  EVENT_CALENDAR_SLOT_DRAFT,
   EventCalendarEvent,
 } from "@/registry-reui/bases/radix/reui/event-calendar/event-calendar-event"
 import {
@@ -748,6 +749,28 @@ function EventCalendarAllDayCell({ day }: { day: Date }) {
     }
   )
 
+  // All-day drags select whole DAYS, so this row reads a date range, matching
+  // the month grid. Without it, dragging the all-day strip in week view would
+  // be the one create gesture in the calendar with no readout at all.
+  const allDayDraftRange = useEventCalendarSelector<
+    unknown,
+    { start: Date; end: Date } | null
+  >(
+    (state) => {
+      const draft = state.slotDraft
+      if (!draft || !draft.allDay) return null
+      return { start: draft.start, end: draft.end }
+    },
+    {
+      isEqual: (a, b) =>
+        a === b ||
+        (a !== null &&
+          b !== null &&
+          a.start.getTime() === b.start.getTime() &&
+          a.end.getTime() === b.end.getTime()),
+    }
+  )
+
   return (
     <div
       data-slot="event-calendar-all-day-cell"
@@ -760,7 +783,14 @@ function EventCalendarAllDayCell({ day }: { day: Date }) {
         viewConfig.dayClassName?.(day),
         // No drop-target bg fill on move/resize (see month view) - a subtle
         // dashed inset outline below marks the target instead.
-        inDraft && cn("bg-primary/10", viewConfig.classNames?.slotDraft),
+        inDraft &&
+          cn(
+            EVENT_CALENDAR_SLOT_DRAFT.surface,
+            EVENT_CALENDAR_SLOT_DRAFT.segment,
+            inDraft.isStart && EVENT_CALENDAR_SLOT_DRAFT.segmentStart,
+            inDraft.isEnd && EVENT_CALENDAR_SLOT_DRAFT.segmentEnd,
+            viewConfig.classNames?.slotDraft
+          ),
         viewConfig.classNames?.allDayCell
       )}
       onPointerDown={(e) => {
@@ -775,7 +805,29 @@ function EventCalendarAllDayCell({ day }: { day: Date }) {
           settings.onSlotClick?.({ date: dayStart, allDay: true, view }, e)
         }
       }}
-    ></div>
+    >
+      {/* Only on the first cell of the selection, same rule as the month grid,
+          so a three-day all-day drag labels itself once rather than three
+          times. pointer-events-none keeps the cell's own pointerdown guard
+          (`e.target === e.currentTarget`) intact. */}
+      {inDraft?.isStart && allDayDraftRange && (
+        <span
+          aria-hidden
+          className={cn(
+            "pointer-events-none absolute inset-x-1 top-1/2 -translate-y-1/2",
+            EVENT_CALENDAR_SLOT_DRAFT.label
+          )}
+        >
+          {settings.i18n.functions.formatDayRange(
+            {
+              start: toZoned(allDayDraftRange.start, settings.timeZone),
+              end: toZoned(allDayDraftRange.end, settings.timeZone),
+            },
+            { locale: settings.locale }
+          )}
+        </span>
+      )}
+    </div>
   )
 }
 
@@ -965,6 +1017,28 @@ function EventCalendarDayColumn({
     {
       isEqual: (a, b) =>
         a === b || (a !== null && b !== null && a[0] === b[0] && a[1] === b[1]),
+    }
+  )
+
+  // The draft's true instants, kept separate from `draftWindow` above because
+  // that one is clipped to this column's day bounds - the readout has to show
+  // what the user actually drew, not the clipped remainder.
+  const draftRange = useEventCalendarSelector<
+    unknown,
+    { start: Date; end: Date } | null
+  >(
+    (state) => {
+      const draft = state.slotDraft
+      if (!draft || draft.allDay) return null
+      return { start: draft.start, end: draft.end }
+    },
+    {
+      isEqual: (a, b) =>
+        a === b ||
+        (a !== null &&
+          b !== null &&
+          a.start.getTime() === b.start.getTime() &&
+          a.end.getTime() === b.end.getTime()),
     }
   )
 
@@ -1164,7 +1238,8 @@ function EventCalendarDayColumn({
         <div
           data-slot="event-calendar-slot-draft"
           className={cn(
-            "border-primary/40 bg-primary/5 pointer-events-none absolute inset-x-0.5 z-40 rounded-sm border border-dashed",
+            EVENT_CALENDAR_SLOT_DRAFT.box,
+            "pointer-events-none absolute inset-x-0.5 z-40 overflow-hidden",
             viewConfig.classNames?.slotDraft
           )}
           style={minuteBlockStyle(
@@ -1172,7 +1247,25 @@ function EventCalendarDayColumn({
             draftWindow[1],
             boundsStartMin
           )}
-        />
+        >
+          {/* Live range readout while dragging, the way Outlook and Google
+              Calendar do it: the entire point of the gesture is to pick a
+              time, so show the time being picked instead of an empty box.
+              Reuses `formatEventTime`, the same formatter the chips use, so
+              locale, time zone and 12/24-hour all match the rest of the
+              calendar for free. `truncate` plus the wrapper's overflow-hidden
+              keeps a 15-minute draft from spilling past its own border. */}
+          {draftRange && (
+            <span className={cn("block", EVENT_CALENDAR_SLOT_DRAFT.label)}>
+              {settings.i18n.functions.formatEventTime(
+                toZoned(draftRange.start, timeZone),
+                toZoned(draftRange.end, timeZone),
+                false,
+                { locale: settings.locale }
+              )}
+            </span>
+          )}
+        </div>
       )}
     </div>
   )

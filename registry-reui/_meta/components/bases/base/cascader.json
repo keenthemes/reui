@@ -1,0 +1,645 @@
+{
+  "items": [
+    {
+      "name": "c-cascader-1",
+      "type": "registry:block",
+      "title": "Nested attribute picker with drill-down navigation.",
+      "categories": [
+        "cascader"
+      ],
+      "description": "Nested attribute picker with drill-down navigation.",
+      "registryDependencies": [
+        "button",
+        "cascader",
+        "cascader-item",
+        "cascader-nav",
+        "cascader-types"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/cascader/c-cascader-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-cascader-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1
+      }
+    },
+    {
+      "name": "c-cascader-2",
+      "type": "registry:block",
+      "title": "Multi-select permissions with checkboxes and a selection cap.",
+      "categories": [
+        "cascader"
+      ],
+      "description": "Multi-select permissions with checkboxes and a selection cap.",
+      "registryDependencies": [
+        "button",
+        "cascader",
+        "cascader-footer",
+        "cascader-item",
+        "cascader-nav",
+        "cascader-types"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/cascader/c-cascader-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-cascader-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-cascader-3",
+      "type": "registry:block",
+      "title": "Deep search across every level with path-annotated results.",
+      "categories": [
+        "cascader"
+      ],
+      "description": "Deep search across every level with path-annotated results.",
+      "registryDependencies": [
+        "button",
+        "cascader",
+        "cascader-item",
+        "cascader-nav",
+        "cascader-types"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/cascader/c-cascader-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-cascader-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-cascader-4",
+      "type": "registry:block",
+      "title": "Pinned footer with a side-anchored import flyout.",
+      "categories": [
+        "cascader"
+      ],
+      "description": "Pinned footer with a side-anchored import flyout.",
+      "registryDependencies": [
+        "button",
+        "cascader",
+        "cascader-footer",
+        "cascader-item",
+        "cascader-nav",
+        "cascader-types"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/cascader/c-cascader-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-cascader-4.tsx"
+        },
+        {
+          "path": "../../../components/ui/svgs/dropbox.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/svgs/dropbox.tsx"
+        },
+        {
+          "path": "../../../components/ui/svgs/githubDark.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/svgs/githubDark.tsx"
+        },
+        {
+          "path": "../../../components/ui/svgs/githubLight.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/svgs/githubLight.tsx"
+        },
+        {
+          "path": "../../../components/ui/svgs/googleDrive.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/svgs/googleDrive.tsx"
+        },
+        {
+          "path": "../../../components/ui/svgs/redis.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/svgs/redis.tsx"
+        },
+        {
+          "path": "../../../components/ui/svgs/slack.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/svgs/slack.tsx"
+        },
+        {
+          "path": "../../../components/ui/svgs/stripe.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/svgs/stripe.tsx"
+        },
+        {
+          "path": "../../../components/ui/svgs/supabase.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/svgs/supabase.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
+      "name": "c-cascader-5",
+      "type": "registry:block",
+      "title": "Custom rows with avatars and role badges.",
+      "categories": [
+        "cascader"
+      ],
+      "description": "Custom rows pairing avatars with outline role badges that color-code seniority.",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "cascader",
+        "cascader-item",
+        "cascader-nav",
+        "cascader-types"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/cascader/c-cascader-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-cascader-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5
+      }
+    },
+    {
+      "name": "c-cascader-6",
+      "type": "registry:block",
+      "title": "Trigger path formatting and collapsing.",
+      "categories": [
+        "cascader"
+      ],
+      "description": "Trigger path formatting and collapsing.",
+      "registryDependencies": [
+        "button",
+        "cascader",
+        "cascader-item",
+        "cascader-nav",
+        "cascader-types",
+        "toggle-group"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/cascader/c-cascader-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-cascader-6.tsx"
+        },
+        {
+          "path": "../../../components/ui/svgs/discord.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/svgs/discord.tsx"
+        },
+        {
+          "path": "../../../components/ui/svgs/dropbox.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/svgs/dropbox.tsx"
+        },
+        {
+          "path": "../../../components/ui/svgs/githubDark.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/svgs/githubDark.tsx"
+        },
+        {
+          "path": "../../../components/ui/svgs/githubLight.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/svgs/githubLight.tsx"
+        },
+        {
+          "path": "../../../components/ui/svgs/googleDrive.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/svgs/googleDrive.tsx"
+        },
+        {
+          "path": "../../../components/ui/svgs/loom.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/svgs/loom.tsx"
+        },
+        {
+          "path": "../../../components/ui/svgs/slack.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/svgs/slack.tsx"
+        },
+        {
+          "path": "../../../components/ui/svgs/stripe.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/svgs/stripe.tsx"
+        },
+        {
+          "path": "../../../components/ui/svgs/zoom.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/svgs/zoom.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6
+      }
+    },
+    {
+      "name": "c-cascader-7",
+      "type": "registry:block",
+      "title": "Embedded panel without a popover.",
+      "categories": [
+        "cascader"
+      ],
+      "description": "Embedded panel without a popover.",
+      "registryDependencies": [
+        "card",
+        "cascader",
+        "cascader-item",
+        "cascader-nav",
+        "cascader-types"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/cascader/c-cascader-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-cascader-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7
+      }
+    },
+    {
+      "name": "c-cascader-8",
+      "type": "registry:block",
+      "title": "Flat adjacency data with a parent pointer.",
+      "categories": [
+        "cascader"
+      ],
+      "description": "Flat adjacency data with a parent pointer.",
+      "registryDependencies": [
+        "button",
+        "cascader",
+        "cascader-footer",
+        "cascader-item",
+        "cascader-nav",
+        "cascader-types"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/cascader/c-cascader-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-cascader-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8
+      }
+    },
+    {
+      "name": "c-cascader-9",
+      "type": "registry:block",
+      "title": "Controlled path, value, query and open state.",
+      "categories": [
+        "cascader"
+      ],
+      "description": "External buttons jump the panel to a level, reset it to the root and clear the selection, with all four controlled props printed under the control.",
+      "registryDependencies": [
+        "button",
+        "cascader",
+        "cascader-item",
+        "cascader-nav",
+        "cascader-types"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/cascader/c-cascader-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-cascader-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9
+      }
+    },
+    {
+      "name": "c-cascader-10",
+      "type": "registry:block",
+      "title": "Translated labels across a country picker.",
+      "categories": [
+        "cascader"
+      ],
+      "description": "A German country picker where every string the primitive renders comes from labels, including the live-region announcements, with each flag in an IconTile.",
+      "registryDependencies": [
+        "button",
+        "cascader",
+        "cascader-item",
+        "cascader-nav",
+        "cascader-types"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/cascader/c-cascader-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-cascader-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10
+      }
+    },
+    {
+      "name": "c-cascader-11",
+      "type": "registry:block",
+      "title": "Two-line rows with descriptions and a disabled option.",
+      "categories": [
+        "cascader"
+      ],
+      "description": "Two-line rows with descriptions and a disabled option.",
+      "registryDependencies": [
+        "button",
+        "cascader",
+        "cascader-item",
+        "cascader-nav",
+        "cascader-types",
+        "icon-tile"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/cascader/c-cascader-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-cascader-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11
+      }
+    },
+    {
+      "name": "c-cascader-12",
+      "type": "registry:block",
+      "title": "Form field that submits like a native input.",
+      "categories": [
+        "cascader"
+      ],
+      "description": "Form field that submits like a native input.",
+      "registryDependencies": [
+        "button",
+        "cascader",
+        "cascader-item",
+        "cascader-nav",
+        "cascader-types",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/cascader/c-cascader-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-cascader-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12
+      }
+    },
+    {
+      "name": "c-cascader-13",
+      "type": "registry:block",
+      "title": "Columns mode with independently scrolling panels.",
+      "categories": [
+        "cascader"
+      ],
+      "description": "A media library in Miller columns where all three panes overflow and each scrolls on its own.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "cascader",
+        "cascader-columns",
+        "cascader-nav",
+        "cascader-types",
+        "icon-tile"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/cascader/c-cascader-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-cascader-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13
+      }
+    },
+    {
+      "name": "c-cascader-14",
+      "type": "registry:block",
+      "title": "Tree mode with inline expand and multi-select scopes.",
+      "categories": [
+        "cascader"
+      ],
+      "description": "Tree mode with inline expand and multi-select scopes.",
+      "registryDependencies": [
+        "button",
+        "cascader",
+        "cascader-item",
+        "cascader-nav",
+        "cascader-types"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/cascader/c-cascader-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-cascader-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14
+      }
+    },
+    {
+      "name": "c-cascader-15",
+      "type": "registry:block",
+      "title": "Async drill-down that loads before it navigates.",
+      "categories": [
+        "cascader"
+      ],
+      "description": "Async drill-down that loads before it navigates.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "cascader",
+        "cascader-item",
+        "cascader-nav",
+        "cascader-types"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/cascader/c-cascader-15.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-cascader-15.tsx"
+        }
+      ],
+      "meta": {
+        "order": 15
+      }
+    },
+    {
+      "name": "c-cascader-16",
+      "type": "registry:block",
+      "title": "Virtualized level with thousands of rows.",
+      "categories": [
+        "cascader"
+      ],
+      "description": "Six unevenly sized regions of country markets, windowed so only the visible rows ever mount.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "cascader",
+        "cascader-nav",
+        "cascader-types",
+        "cascader-virtual",
+        "spinner"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/cascader/c-cascader-16.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-cascader-16.tsx"
+        }
+      ],
+      "meta": {
+        "order": 16
+      }
+    },
+    {
+      "name": "c-cascader-17",
+      "type": "registry:block",
+      "title": "Consumer-rendered removable chips with path-aware labels.",
+      "categories": [
+        "cascader"
+      ],
+      "description": "Chips rendered outside the primitive from useCascaderSelection, each carrying its full path so repeated column names stay distinct.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "cascader",
+        "cascader-item",
+        "cascader-nav",
+        "cascader-types"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/cascader/c-cascader-17.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-cascader-17.tsx"
+        }
+      ],
+      "meta": {
+        "order": 17
+      }
+    },
+    {
+      "name": "c-cascader-18",
+      "type": "registry:block",
+      "title": "Cascading tree multi-select inside a popover.",
+      "categories": [
+        "cascader"
+      ],
+      "description": "A cascading tree with indeterminate branches in a popover, bounded by the positioner's available height.",
+      "registryDependencies": [
+        "button",
+        "cascader",
+        "cascader-item",
+        "cascader-nav",
+        "cascader-types"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/cascader/c-cascader-18.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-cascader-18.tsx"
+        }
+      ],
+      "meta": {
+        "order": 18
+      }
+    },
+    {
+      "name": "c-cascader-19",
+      "type": "registry:block",
+      "title": "Status and priority colour dots via renderLabel.",
+      "categories": [
+        "cascader"
+      ],
+      "description": "Status and priority colour dots via renderLabel.",
+      "registryDependencies": [
+        "button",
+        "cascader",
+        "cascader-footer",
+        "cascader-item",
+        "cascader-nav",
+        "cascader-types"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/cascader/c-cascader-19.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-cascader-19.tsx"
+        }
+      ],
+      "meta": {
+        "order": 19
+      }
+    },
+    {
+      "name": "c-cascader-20",
+      "type": "registry:block",
+      "title": "Expense accounts with a colour inherited down each branch.",
+      "categories": [
+        "cascader"
+      ],
+      "description": "Expense accounts with a colour inherited down each branch.",
+      "registryDependencies": [
+        "button",
+        "cascader",
+        "cascader-item",
+        "cascader-nav",
+        "cascader-types",
+        "icon-tile"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/cascader/c-cascader-20.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-cascader-20.tsx"
+        }
+      ],
+      "meta": {
+        "order": 20
+      }
+    }
+  ]
+}

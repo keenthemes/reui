@@ -23,8 +23,12 @@ import {
   rowPinningFeature,
   rowSelectionFeature,
   rowSortingFeature,
+  sortFn_alphanumeric,
+  sortFn_alphanumericCaseSensitive,
   sortFn_basic,
+  sortFn_datetime,
   sortFn_text,
+  sortFn_textCaseSensitive,
   tableFeatures,
 } from "@tanstack/react-table"
 import type {
@@ -109,10 +113,18 @@ export const dataGridFeatures = tableFeatures({
   expandedRowModel: createExpandedRowModel(),
   facetedRowModel: createFacetedRowModel(),
   facetedUniqueValues: createFacetedUniqueValues(),
-  // Only the built-ins the registry names by string. v9 resolves string
-  // sortFn names against this map alone, and registering them one by one
-  // keeps every other built-in out of the bundle.
-  sortFns: { basic: sortFn_basic, text: sortFn_text },
+  // Every built-in v9 ships. A string `sortFn` resolves against this map
+  // alone, and `sortFn: "auto"` infers a name ("alphanumeric", "text" or
+  // "datetime") from the first row's value - so a partial map makes auto
+  // sorting warn and silently fall back on ordinary string columns.
+  sortFns: {
+    alphanumeric: sortFn_alphanumeric,
+    alphanumericCaseSensitive: sortFn_alphanumericCaseSensitive,
+    basic: sortFn_basic,
+    datetime: sortFn_datetime,
+    text: sortFn_text,
+    textCaseSensitive: sortFn_textCaseSensitive,
+  },
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   columnMeta: metaHelper<DataGridColumnMeta<any>>(),
 })

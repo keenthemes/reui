@@ -18,8 +18,7 @@
     "@tanstack/react-table": "^9.0.0",
     "@tanstack/react-virtual": "^3.14.3",
     "class-variance-authority": "^0.7.1",
-    "date-fns": "^4.1.0",
-    "zod": "^4.3.6"
+    "date-fns": "^4.1.0"
   },
   "peerDependencies": {
     "react": ">=18",

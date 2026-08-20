@@ -1,86 +1,98 @@
 [
   {
     "name": "c-filters-1",
-    "title": "Filters with various field types",
-    "description": "Filters with various field types",
+    "title": "Everything in one filter bar",
+    "description": "Multi-select, nested fields, async options and stacked values.",
     "order": 1,
-    "gridSize": 1
+    "gridSize": 1,
+    "previewHeight": "560"
   },
   {
     "name": "c-filters-2",
-    "title": "Filters with input validation",
-    "description": "Filters with input validation",
+    "title": "Nested attributes at workspace scale",
+    "description": "Drill-down groups, a filterable branch and deep search.",
     "order": 2,
-    "gridSize": 1
+    "gridSize": 1,
+    "previewHeight": "360"
   },
   {
     "name": "c-filters-3",
-    "title": "Filters with custom trigger button",
-    "description": "Filters with custom trigger button",
+    "title": "Status and priority colour badges",
+    "description": "Colour-coded options and badges in the chip.",
     "order": 3,
-    "gridSize": 1
+    "gridSize": 1,
+    "previewHeight": "360"
   },
   {
     "name": "c-filters-4",
-    "title": "Filters with small size controls",
-    "description": "Filters with small size controls",
+    "title": "Avatars, paging and a restored view",
+    "description": "Avatar options, results paged over the wire and a saved view.",
     "order": 4,
-    "gridSize": 1
+    "gridSize": 1,
+    "previewHeight": "360"
   },
   {
     "name": "c-filters-5",
-    "title": "Filters with large size controls",
-    "description": "Filters with large size controls",
+    "title": "A date and a date range editor",
+    "description": "Consumer-owned date and date range controls.",
     "order": 5,
-    "gridSize": 1
+    "gridSize": 1,
+    "previewHeight": "432"
   },
   {
     "name": "c-filters-6",
-    "title": "Filters with custom controls",
-    "description": "Filters with custom controls",
+    "title": "Sliders as the value editor",
+    "description": "One slider editor for range and single-value operators.",
     "order": 6,
-    "gridSize": 1
+    "gridSize": 1,
+    "previewHeight": "360"
   },
   {
     "name": "c-filters-7",
-    "title": "Filters with data grid",
-    "description": "Filters with data grid",
+    "title": "Filtering a table",
+    "description": "The query tree compiled to a row predicate.",
     "order": 7,
-    "gridSize": 1
+    "gridSize": 1,
+    "previewHeight": "520"
   },
   {
     "name": "c-filters-8",
-    "title": "Filters with data grid and async mode",
-    "description": "Filters with data grid and async mode",
+    "title": "Choice controls as editors",
+    "description": "Toggle group, radios, checkboxes, select and switch.",
     "order": 8,
-    "gridSize": 1
+    "gridSize": 1,
+    "previewHeight": "360"
   },
   {
     "name": "c-filters-9",
-    "title": "Filters with i18n support",
-    "description": "Filters with i18n support",
+    "title": "Typed values in shadcn inputs",
+    "description": "An input group, a term list, code slots and a validated domain.",
     "order": 9,
-    "gridSize": 1
+    "gridSize": 1,
+    "previewHeight": "360"
   },
   {
     "name": "c-filters-10",
-    "title": "Filters with virtualized large lists",
-    "description": "Filters with virtualized large lists",
+    "title": "Nested groups in a popover",
+    "description": "A data grid paged, sorted and totalled under a popover builder.",
     "order": 10,
-    "gridSize": 1
+    "gridSize": 1,
+    "previewHeight": "600"
   },
   {
     "name": "c-filters-11",
-    "title": "Filters with prefetched async options",
-    "description": "Filters with prefetched async options",
+    "title": "Nested groups inline, walked back out",
+    "description": "The builder inline, beside its own tree read back as an expression.",
     "order": 11,
-    "gridSize": 1
+    "gridSize": 1,
+    "previewHeight": "720"
   },
   {
     "name": "c-filters-12",
-    "title": "Filters with async server-side search",
-    "description": "Filters with async server-side search",
+    "title": "Controlled, sized and translated",
+    "description": "One controlled query, three locales and every change reported.",
     "order": 12,
-    "gridSize": 1
+    "gridSize": 1,
+    "previewHeight": "440"
   }
 ]

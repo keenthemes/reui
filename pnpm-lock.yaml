@@ -132,6 +132,9 @@ importers:
       '@reui/components-base-carousel':
         specifier: workspace:*
         version: link:packages/registry/bases/base/components/carousel
+      '@reui/components-base-cascader':
+        specifier: workspace:*
+        version: link:packages/registry/bases/base/components/cascader
       '@reui/components-base-chart':
         specifier: workspace:*
         version: link:packages/registry/bases/base/components/chart
@@ -348,6 +351,9 @@ importers:
       '@reui/components-radix-carousel':
         specifier: workspace:*
         version: link:packages/registry/bases/radix/components/carousel
+      '@reui/components-radix-cascader':
+        specifier: workspace:*
+        version: link:packages/registry/bases/radix/components/cascader
       '@reui/components-radix-chart':
         specifier: workspace:*
         version: link:packages/registry/bases/radix/components/chart
@@ -917,6 +923,24 @@ importers:
         specifier: '>=18'
         version: 19.2.7(react@19.2.7)
 
+  packages/registry/bases/base/components/cascader:
+    dependencies:
+      '@base-ui/react':
+        specifier: 1.5.0
+        version: 1.5.0(@date-fns/tz@1.5.0)(@types/react@19.2.17)(date-fns@4.4.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@tanstack/react-virtual':
+        specifier: ^3.14.3
+        version: 3.14.5(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      class-variance-authority:
+        specifier: ^0.7.1
+        version: 0.7.1
+      react:
+        specifier: '>=18'
+        version: 19.2.7
+      react-dom:
+        specifier: '>=18'
+        version: 19.2.7(react@19.2.7)
+
   packages/registry/bases/base/components/chart:
     dependencies:
       '@base-ui/react':
@@ -1180,9 +1204,6 @@ importers:
       react-dom:
         specifier: '>=18'
         version: 19.2.7(react@19.2.7)
-      zod:
-        specifier: ^4.3.6
-        version: 4.4.3
 
   packages/registry/bases/base/components/frame:
     dependencies:
@@ -1967,6 +1988,27 @@ importers:
         specifier: '>=18'
         version: 19.2.7(react@19.2.7)
 
+  packages/registry/bases/radix/components/cascader:
+    dependencies:
+      '@base-ui/react':
+        specifier: 1.5.0
+        version: 1.5.0(@date-fns/tz@1.5.0)(@types/react@19.2.17)(date-fns@4.4.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@tanstack/react-virtual':
+        specifier: ^3.14.3
+        version: 3.14.5(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      class-variance-authority:
+        specifier: ^0.7.1
+        version: 0.7.1
+      radix-ui:
+        specifier: ^1.4.3
+        version: 1.6.2(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react:
+        specifier: '>=18'
+        version: 19.2.7
+      react-dom:
+        specifier: '>=18'
+        version: 19.2.7(react@19.2.7)
+
   packages/registry/bases/radix/components/chart:
     dependencies:
       class-variance-authority:
@@ -2209,6 +2251,9 @@ importers:
 
   packages/registry/bases/radix/components/filters:
     dependencies:
+      '@base-ui/react':
+        specifier: 1.5.0
+        version: 1.5.0(@date-fns/tz@1.5.0)(@types/react@19.2.17)(date-fns@4.4.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       '@tanstack/react-table':
         specifier: ^9.0.0
         version: 9.0.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
@@ -2230,9 +2275,6 @@ importers:
       react-dom:
         specifier: '>=18'
         version: 19.2.7(react@19.2.7)
-      zod:
-        specifier: ^4.3.6
-        version: 4.4.3
 
   packages/registry/bases/radix/components/frame:
     dependencies:
@@ -7434,8 +7476,8 @@ packages:
   sonner@2.0.7:
     resolution: {integrity: sha512-W6ZN4p58k8aDKA4XPcx2hpIQXBRAgyiWVkYhT7CvK6D3iAu7xjvVyhQHg2/iaKJZ1XVJ4r7XuwGL+WGEK37i9w==}
     peerDependencies:
-      react: 19.2.7
-      react-dom: 19.2.7
+      react: ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+      react-dom: ^18.0.0 || ^19.0.0 || ^19.0.0-rc
 
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}

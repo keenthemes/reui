@@ -1626,6 +1626,134 @@
       ]
     }
   },
+  "cascader": {
+    "description": "{{count}} free shadcn cascader components for nested multi-level selection. Drill-down, Miller columns, tree mode, multi-select. Copy-ready React with Tailwind CSS.",
+    "intro": "Browse {{count}} production-ready shadcn cascader components for hierarchical selection. Covers drill-down attribute pickers, Miller columns, tree mode, multi-select with cascading branches, per-level and deep search, async levels with paging, virtualized levels, removable chips, custom rows, flat adjacency data, and an embedded panel with no popover.",
+    "keywords": [
+      "shadcn cascader",
+      "react cascader component",
+      "nested combobox react",
+      "multi level select react",
+      "cascading dropdown react",
+      "react tree select",
+      "react cascader multi select",
+      "miller columns react",
+      "react country state city picker",
+      "lazy load select options react",
+      "tailwind cascader component",
+      "accessible cascader react",
+      "nested select next.js",
+      "shadcn create",
+      "reui cascader examples"
+    ],
+    "content": {
+      "title": "Shadcn Cascader: Nested Multi-Level Selection",
+      "summary": [
+        "ReUI Cascader is a custom shadcn component for choosing a value out of a tree rather than a flat list. It is built on the same Base UI combobox foundation as the shadcn combobox, so it inherits the ARIA combobox roles, `aria-activedescendant` list navigation, typeahead and dismiss behavior, then adds level navigation on top.",
+        "One `mode` prop picks how the tree is presented: `drill` replaces the level as you go deeper, `columns` lays the open trail out side by side as Miller columns, and `tree` expands branches in place. The data, the keyboard model, the search and the selection rules are the same in all three."
+      ],
+      "sections": [
+        {
+          "title": "What is a Shadcn Cascader?",
+          "paragraphs": [
+            "A cascader is a select whose options form a tree. Instead of scrolling one long list you drill from a category into its children and commit a value at the depth that matters, which is what attribute pickers, category trees, org charts, region pickers, permission scopes and file paths need. Pressing a branch opens it instead of committing a selection, the popup stays open, and a breadcrumb and a back control say where you are.",
+            "ReUI Cascader is a custom shadcn component rather than part of base shadcn/ui. It wraps Base UI's combobox primitives directly instead of the shadcn combobox wrapper, which clamps the popup to the trigger width, and it spells out every ReUI style's radius, density and hover treatment as plain Tailwind, so an installed copy needs no extra CSS. The trigger renders the selection's full path, because in a nested picker a leaf label alone is often ambiguous."
+          ]
+        },
+        {
+          "title": "Nested Data, a Parent Pointer, or a Server",
+          "paragraphs": [
+            "Items can be a nested tree where each node carries `children`, or a flat adjacency list where each row carries a parent id and you pass `getParent`. Both normalize into the same internal index in a single linear pass, which is what keeps a normalized dataset cheap to render: rows may arrive in any order, an unknown parent makes a node a root rather than dropping it, and duplicate values are ignored after the first occurrence.",
+            "Levels can also be fetched instead of supplied. `getChildren` asks for exactly the levels that are on screen, returns a page with an optional cursor, and `hasChildren: true` marks a branch before its children exist. Fetched pages are merged on top of `items` rather than folded into it, so a new `items` array never discards what the user already drilled into. Past `virtualizeThreshold` rows a level is windowed by `CascaderVirtualItems`, per column in columns mode, with row heights measured after mount rather than assumed."
+          ]
+        },
+        {
+          "title": "Shadcn Cascader Features",
+          "featureItems": [
+            {
+              "title": "Drill, Columns and Tree Modes.",
+              "description": "One `mode` prop picks the panel layout. Drill replaces the level, columns renders the whole open trail side by side with each pane scrolling on its own, and tree expands branches in place with a leading expander and per-depth indentation."
+            },
+            {
+              "title": "Multi-Select with Cascading Branches.",
+              "description": "`multiple` turns rows into checkboxes and keeps the popup open, `max` caps the selection, and `cascade` selects a whole subtree and reconciles its ancestors, with partly selected branches carrying aria-checked mixed."
+            },
+            {
+              "title": "Per-Level and Deep Search.",
+              "description": "Typing filters the current level. `searchScope=\"deep\"` searches the level you are on and everything under it, trailing each hit with its ancestor path. Node `keywords` add extra matchable terms, and `filter` replaces the matcher outright."
+            },
+            {
+              "title": "Async Levels with Paging and Retry.",
+              "description": "`getChildren` fetches one level at a time with an AbortSignal and an optional cursor. The Load more row is a real keyboard-reachable option, and a press loads before it navigates, so a failure leaves the reader on the level they were reading."
+            },
+            {
+              "title": "Virtualized Levels.",
+              "description": "`CascaderVirtualItems` windows a level past `virtualizeThreshold` rows, and virtualizes per column in columns mode. Row heights are measured after mount rather than assumed, so two-line and deep-search rows do not drift the scroll position."
+            },
+            {
+              "title": "Pinned Footer Actions.",
+              "description": "`CascaderFooter` pins commands below the list, where they survive an empty filter and a level change. A footer row can open a side flyout that is a real menu with roving focus, typeahead and its own Escape."
+            },
+            {
+              "title": "Composable Rows, Trigger and Chips.",
+              "description": "`renderLabel` swaps the label block while the count, chevron and check keep working, `renderItem` replaces the row, `CascaderValue` formats the selected path, and `CascaderChips` or `useCascaderSelection` build a trigger of your own."
+            },
+            {
+              "title": "Native Form Submission.",
+              "description": "`name` submits through a hidden input like a native field, so a plain form action or any form library works without a controller wrapper. `form`, `id`, `required`, `readOnly`, `invalid` and `inputRef` go with it."
+            },
+            {
+              "title": "Full i18n and RTL.",
+              "description": "Every user-facing string, including aria-labels and live-region announcements, comes from the `labels` prop, shallow-merged over the English defaults. The panel mirrors under dir rtl, level keys included."
+            }
+          ]
+        },
+        {
+          "title": "Selection, Cascade, Search and Keyboard",
+          "paragraphs": [
+            "By default only leaves are selectable and branches navigate. Set `selectable=\"any\"` or pass a predicate to let a category be committed too, in which case the chevron becomes its own target so the branch can still be opened. `multiple` turns rows into checkboxes, keeps the popup open while picking, and `max` caps the selection. `cascade` propagates a commit over the pressed node's loaded subtree and reconciles its ancestors, so a branch with some but not all of its subtree selected renders indeterminate, a state that is derived rather than stored.",
+            "Typing filters the current level. With `searchScope=\"deep\"` it searches the level you are on AND everything under it, not the whole tree, and annotates each result with its ancestor path so identically named leaves in different branches stay distinguishable; tree mode always matches at any depth and auto-expands the ancestors of every hit. `onSearch` replaces the local scan with a server query, debounced by `searchDebounce`.",
+            "Arrow Right drills into the highlighted branch when the caret is at the end of the query, Arrow Left steps back out when it is at the start, and Backspace steps back when the query is empty, so the level keys never take caret movement away from an edit. Tree mode follows the ARIA tree keys instead. A polite live region announces each level change, each expand and collapse, and each result count, because the breadcrumb that gives sighted users their bearings is invisible to a screen reader."
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "question": "How is a cascader different from a nested select or a tree view?",
+          "answer": "A nested select flattens the hierarchy into one long list and makes the reader scan it. A tree view is a browsing surface. The cascader is a form control that commits a value: a trigger, a search field, a hidden input that submits, and one level on screen at a time so the list stays short however deep the data goes. `mode=\"tree\"` and `mode=\"columns\"` give you the other two shapes without changing the data or the keyboard model."
+        },
+        {
+          "question": "Does the cascader support multi-select?",
+          "answer": "Yes. `multiple` turns rows into checkboxes and keeps the popup open while picking, and `max` caps the number of selections. Add `cascade` and a commit propagates over the pressed node's loaded subtree and then reconciles its ancestors: a branch is selected exactly when every selectable child of it is, and one with some but not all of its subtree selected renders indeterminate. `cascade` needs `multiple` and committable branches, and warns in development without them."
+        },
+        {
+          "question": "How do I load levels lazily from a server?",
+          "answer": "Pass `getChildren(node, ctx)`. It is called with `null` for the root level and with the branch node for every level below, and returns an array or a result carrying `nextCursor` and `hasMore` for paging. Mark every branch whose children are not fetched yet with `hasChildren: true`, or it renders as a leaf. Loading happens before navigation, so pressing an unloaded branch keeps you on the level you are reading and changes level only once the children arrive, with a retry on the same row if it fails."
+        },
+        {
+          "question": "How does search work across levels?",
+          "answer": "Typing filters the current level by default (`searchScope=\"level\"`). Set `searchScope=\"deep\"` and it searches the level you are on AND everything under it, not the whole tree, annotating each hit with its ancestor path so two leaves with the same name in different branches stay distinguishable. Tree mode always matches at any depth and auto-expands the ancestors of each hit. Node `keywords` add extra matchable terms, `filter` replaces the matcher, and `onSearch` hands the query to your backend, debounced by `searchDebounce`."
+        },
+        {
+          "question": "Is the cascader keyboard accessible and screen-reader ready?",
+          "answer": "Yes. It is built on Base UI's combobox, so the trigger and input carry the correct roles plus `aria-expanded`, `aria-controls` and `aria-activedescendant`. Up and Down move between rows; Right opens the highlighted branch and Left steps back, each only when the caret sits at that edge of the query, so a level key never takes a press away from editing; Backspace steps back on an empty query; Enter commits or opens; Escape closes one layer at a time. Tree mode follows the ARIA tree keys, and `CascaderStatus` is a visually hidden live region announcing level changes, expand and collapse, and result counts."
+        },
+        {
+          "question": "How do the Base UI and Radix versions differ?",
+          "answer": "They are twins, not two implementations. The data index, the selection and cascade rules, the search, the async engine, the keyboard model and the Tailwind classes are identical, and both build on Base UI's combobox foundation. What differs is the composition prop and the surrounding shadcn primitives: the Base UI twin composes with `render`, the Radix twin with `asChild` and a Radix Slot. Pick the twin whose primitives your project already uses."
+        }
+      ]
+    },
+    "relatedComponents": {
+      "title": "Integrating With Other Components",
+      "integrationBody": [
+        "Pair the cascader with [Shadcn Data Grid](/docs/components/base/data-grid) as a column editor or a category cell, where a nested value has to be committed in the space of a table cell, and with [Shadcn Filters](/docs/components/base/filters) when a faceted filter bar needs one field that scopes by category tree rather than by a flat option list.",
+        "Set `inline` and drop `CascaderPanel` into the body of a [Shadcn Dialog](/components/dialog) or [Shadcn Sheet](/components/sheet), where a popover inside a popover would be awkward. In a form, wrap the trigger in a [Shadcn Field](/components/field) with a [Shadcn Label](/components/label): `name` and `id` make it submit and label like a native input.",
+        "[Shadcn Button](/components/button) is the natural trigger through the composition prop, [Shadcn Badge](/docs/components/base/badge) renders removable chips and per-row status, and every level scrolls inside a [Shadcn Scroll Area](/components/scroll-area), which is what gives each Miller column a thumb of its own. Reach for [Shadcn Tree](/components/tree) when the surface is for browsing rather than committing a value, and [Shadcn Combobox](/components/combobox) when the options are a flat list."
+      ]
+    },
+    "inHouse": true
+  },
   "chart": {
     "description": "Shadcn Chart components powered by Recharts and Motion. Bar, area, line, pie, and radar charts with animations, gradients, and responsive layouts. 25 production.",
     "intro": "Browse {{count}} production-ready shadcn chart components built on Recharts and Motion. Covers bar, vertical bar, area, step area, stacked area, line, forecast, donut, pie, radar, and 3D isometric chart types with gradient fills, animation, stripe component overlays, glowing markers, and crosshatch textures.",
@@ -2314,7 +2442,7 @@
         {
           "title": "What is Shadcn Data Grid?",
           "paragraphs": [
-            "ReUI Data Grid is a custom shadcn component built on TanStack Table v9 for state management and TanStack Virtual for row and column virtualization. It exposes the full TanStack Table API: columnDef, getCoreRowModel, getSortedRowModel, getFilteredRowModel, getPaginationRowModel, and more: while wrapping the markup in Tailwind-styled, accessible table primitives that follow shadcn conventions.",
+            "ReUI Data Grid is a custom shadcn component built on TanStack Table v9 for state management and TanStack Virtual for row and column virtualization. It exposes the full TanStack Table API: columnDef, the `dataGridFeatures` bundle, createSortedRowModel, createFilteredRowModel, createPaginatedRowModel, and more: while wrapping the markup in Tailwind-styled, accessible table primitives that follow shadcn conventions.",
             "Components range from simple paginated lists to full CRUD interfaces with drag-and-drop column reordering via `@dnd-kit/sortable`, pinned rows and columns, expandable sub-tables, aggregate footers, loading skeletons, and both local and server-driven infinite scroll. Every layout is shown inside a realistic frame or dashboard container so you judge composition in context."
           ]
         },
@@ -7361,7 +7489,7 @@
   },
   "table": {
     "description": "{{count}} free shadcn table components for data grids, sorting, filtering. Display React tabular data with Tailwind CSS-styled, semantic HTML table components.",
-    "intro": "Browse {{count}} production-ready shadcn table components with sorting, filtering, and pagination powered by TanStack Table (react-table v8). Fully compatible with Radix UI and Shadcn Create style options.",
+    "intro": "Browse {{count}} production-ready shadcn table components with sorting, filtering, and pagination powered by TanStack Table (react-table v9). Fully compatible with Radix UI and Shadcn Create style options.",
     "keywords": [
       "shadcn table",
       "shadcn/ui table",
@@ -7379,7 +7507,7 @@
     "content": {
       "title": "Shadcn Table: Data Grids with Sorting and Filtering",
       "summary": [
-        "Shadcn Table is a semantic HTML table wrapper paired with TanStack Table (react-table v8), a headless library for sorting, filtering, pagination, and column management. Together they handle complex data display without forcing you into a monolithic component.",
+        "Shadcn Table is a semantic HTML table wrapper paired with TanStack Table (react-table v9), a headless library for sorting, filtering, pagination, and column management. Together they handle complex data display without forcing you into a monolithic component.",
         "Define columns, data, and features (sorting, filtering) via TanStack Table API. Render rows and cells using Shadcn Table semantic HTML. Shadcn Create style options apply to table surfaces so your design tokens flow into exported code.",
         "ReUI lists table components inside dashboards, admin interfaces, and data-heavy workflows so you evaluate column density, action menus, and pagination next to real layouts. The sections below explain what it is, why teams use it, which features matter, and how TanStack Table powers the component."
       ],

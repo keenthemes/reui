@@ -72,6 +72,7 @@ export const ComponentCard = React.memo(function ComponentCard({
         title={component.title || component.name}
         base={base}
         category={component.primaryCategory}
+        previewHeight={component.meta?.previewHeight}
       />
     </ComponentCardContainer>
   )

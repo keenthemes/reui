@@ -1,16 +1,19 @@
 ---
 title: Filters
-description: A comprehensive filtering system with multiple filter types, operators, and visual indicators for data organization.
+description: A stepped filter builder with nested attributes, popover value editors and a boolean query tree.
 component: true
-base: base
+base: radix
 ---
 
 <ComponentPreview
-  styleName="base-nova"
+  styleName="radix-nova"
   name="c-filters-1"
-  align="start"
-  className="**:[.preview]:h-auto"
+  previewHeight={420}
 />
+
+Filters turns a schema of attributes into a filter bar. A user picks an attribute, picks a condition, gives it a value, and the result is one boolean query object you compile into a predicate, a query string or a request body.
+
+The state it edits is a TREE, not a list of chips. `FilterQuery` is a group of rules combined by `and` or `or`, and a group may hold another group, so `(A and B) or C` is expressible from day one. The chip row renders the flat case of that tree and the advanced builder renders the whole of it, read and written through the same actions, which is why `variant` picks a chrome rather than a second state model.
 
 ## Installation
 
@@ -18,182 +21,1020 @@ base: base
 npx shadcn@latest add @reui/filters
 ```
 
+**The install target moved.** The old primitive was a single `components/reui/filters.tsx`. The rewrite ships fourteen files under `components/reui/filters/`, so an existing consumer must delete the old single file after installing, or end up with two different `Filters` exports one directory apart.
+
+The registry item pulls six shadcn parts - `button`, `button-group`, `dropdown-menu`, `input`, `popover` and `tooltip` - plus one ReUI item, `cascader`. `@reui/cascader` is the heavy one and brings `@base-ui/react` and `@tanstack/react-virtual` with it, since every list in this primitive is the [cascader](/docs/components/radix/cascader), configured: the attribute picker drills through nested fields, the operator menu and each option editor are the same control run flat, and the keyboard, `aria-activedescendant`, typeahead, RTL keys, windowing and the live region all come from there rather than from a listbox this primitive re-implements. Two npm packages come in directly: `class-variance-authority`, for the bar's size variants, and `date-fns`, used only by `filters-date.tsx`. Nothing in the core imports the date helpers, so that file and its dependency can both be deleted if you do not want a date editor.
+
+Nine of the fourteen files import no UI library at all. `filters-types`, `filters-query`, `filters-lib`, `filters-operators`, `filters-draft`, `filters-i18n`, `filters-context`, `filters-date` and `filters-dnd` pull nothing from Base UI, from `radix-ui` or from the shadcn parts. Eight of those nine touch no DOM either, which is what lets the query, the operator catalog and the step machine be tested in a node environment with no browser at all. `filters-dnd` is the exception: it is a pointer engine, so it is library free but not DOM free.
+
 ## Usage
 
 ```tsx
-import {
-  createFilter,
-  Filters,
-  type Filter,
-  type FilterFieldConfig,
-} from "@/components/reui/filters"
+import { Filters } from "@/components/reui/filters/filters"
+import { createFilterQuery } from "@/components/reui/filters/filters-query"
+import type {
+  FilterField,
+  FilterQuery,
+} from "@/components/reui/filters/filters-types"
 ```
 
 ```tsx
-const [filters, setFilters] = useState<Filter[]>([
-  createFilter("priority", "is_any_of", ["low", "medium"]),
-])
-
-const fields: FilterFieldConfig[] = [
+const fields: FilterField[] = [
+  { id: "title", label: "Title", type: "text" },
   {
-    key: "priority",
-    label: "Priority",
-    type: "multiselect",
+    id: "status",
+    label: "Status",
+    type: "select",
     options: [
-      { value: "low", label: "Low" },
-      { value: "medium", label: "Medium" },
-      { value: "high", label: "High" },
+      { value: "active", label: "Active" },
+      { value: "archived", label: "Archived" },
     ],
   },
 ]
 
-return <Filters filters={filters} fields={fields} onChange={setFilters} />
+export function Toolbar() {
+  const [query, setQuery] = useState<FilterQuery>(() => createFilterQuery())
+
+  return <Filters fields={fields} query={query} onQueryChange={setQuery} />
+}
+```
+
+`fields` is the only required prop. Leave `query` off and the bar keeps its own state, seeded from `defaultQuery`.
+
+Choosing an attribute commits the rule straight away, so the chip appears reading "Select condition", and picking a condition advances the same popover to the value editor. Escape keeps an unfinished rule rather than dropping it, drawn with a dashed outline, and `flattenFilterConditions` skips it so a half-built rule can never silently filter nothing.
+
+### The query is a tree
+
+A query is always a group, never a bare array. The root holds rules and other groups in order, and its `combinator` says how they join.
+
+```tsx
+const query: FilterQuery = {
+  id: "root",
+  type: "group",
+  combinator: "and",
+  rules: [
+    {
+      id: "r1",
+      type: "rule",
+      path: ["status"],
+      operator: "is",
+      value: "active",
+    },
+  ],
+}
+```
+
+### Basic and advanced
+
+`variant` picks the chrome. Both read and write the same `query`, so a saved view built in one opens in the other with nothing converted on the way.
+
+```tsx
+// A flat pill row, for a toolbar over a table.
+<Filters fields={fields} />
+
+// The condition builder, hung off a trigger that carries the rule count.
+<Filters fields={fields} variant="advanced" />
+
+// The same builder rendered in place, for a sidebar or a settings page.
+<Filters fields={fields} variant="advanced" advancedMode="inline" />
+```
+
+### Nested attributes [#filters-nested-attributes]
+
+A field carrying `fields` renders as a branch the picker drills into. A rule stores the whole path, root first.
+
+```tsx
+const fields: FilterField[] = [
+  {
+    id: "name",
+    label: "Name",
+    fields: [
+      { id: "full", label: "Full name", type: "text" },
+      { id: "first", label: "First name", type: "text" },
+    ],
+  },
+]
+
+// A rule on "First name" stores path: ["name", "first"]
+```
+
+### The None option [#filters-none-option]
+
+An option marked `exclusive` is the row that means NONE OF THE ABOVE. Picking it clears every other pick, and picking anything else clears it.
+
+```tsx
+options: [
+  { value: "ada", label: "Ada" },
+  { value: "unassigned", label: "Unassigned", exclusive: true },
+]
+```
+
+### Taking the query somewhere [#filters-serialising]
+
+The primitive stops at the tree and compiles nothing. There is no SQL here, and that is deliberate: the tree is the integration surface, and SQL is one target beside Prisma, Drizzle, a REST query string and Elasticsearch, none of which a browser serves well.
+
+The query is plain JSON, so it goes on the wire as it stands - no class instances, no functions, and no `Date` objects, since a date rule stores a relative token. `flattenFilterConditions` gives you `{ path, field, operator, values, negated }` per rule when a flat conjunction is all you need; walk the tree yourself when the parentheses carry meaning.
+
+Operator arity, custom value editors, date tokens, validation helpers and the full export list are in the [API Reference](#api-reference) below.
+
+## Prompt for the query tree migration
+
+If you already have Filters installed, paste the prompt below into your coding agent.
+It covers both cases: a session with the [ReUI MCP](/docs/mcp) connected, and a plain
+project where the primitive is reinstalled from the registry.
+
+```text
+Migrate ReUI Filters from the flat filter array to the query tree.
+
+STEP 1 - Replace the Filters primitive from the registry.
+
+  Case A, the ReUI MCP is available in this session:
+    - Call search("filters"), then get_component("filters") to read the current API.
+    - Call get_examples("filters") to see real composition.
+    - Run the command returned by get_install_command("filters") and overwrite when prompted.
+
+  Case B, no ReUI MCP:
+    - Run: npx shadcn@latest add @reui/filters
+    - Answer yes when asked to overwrite the existing files.
+
+  Every filters file must come from the registry. Do not hand-patch them, do not merge
+  them by hand, and do not keep a local fork of any of them.
+
+STEP 2 - Delete the old single file.
+
+  - The install target moved from components/reui/filters.tsx to the components/reui/filters/
+    directory. The installer does not remove the file it replaces.
+  - Delete components/reui/filters.tsx once the install has finished.
+  - Do not continue until it is gone. If both survive, the project has two different
+    Filters exports one directory apart, and which one an import resolves to depends on
+    module resolution order, so the app can typecheck and build and still render the old
+    primitive against the new props.
+
+STEP 3 - Convert the state from a flat array to a query tree.
+
+  - The old state was Filter[], each { id, field, operator, values }, joined by an
+    implicit AND that was never written down anywhere.
+  - The new state is a single FilterQuery, which is ALWAYS a group:
+      { id, type: "group", combinator: "and" | "or", rules: FilterNode[] }
+    A FilterNode is either a rule or another group, so nesting is the same shape again.
+  - Each old filter becomes a rule:
+      { id, type: "rule", path: string[], operator: string, value, negated?: boolean }
+  - Two of those are shape changes, not renames, and both need conversion code:
+      1. field: string becomes path: string[], root first. A flat field is a one-element
+         path, so field: "status" becomes path: ["status"]. Nested attributes are the
+         reason it is an array.
+      2. values: T[] becomes a single value. A multiselect keeps its array AS that one
+         value; a single-value operator takes the scalar itself, not a one-element array.
+  - Wrap the converted rules in a root group with combinator "and". That reproduces the
+    old implicit-AND behaviour exactly, so existing saved views keep their meaning.
+  - Anything that persisted filters (localStorage, a saved-view table, a URL param) holds
+    the OLD shape. Convert on read, and decide explicitly whether to write the new shape
+    back or to keep converting, because a half-migrated store is the failure mode here.
+
+STEP 4 - Update the component props.
+
+  - filters and onChange become query (or defaultQuery for uncontrolled) and onQueryChange.
+    onQueryChange receives (query, details), where details carries the reason it fired:
+    add, update, remove, duplicate, negate, reorder, combinator or clear.
+  - fields changed shape. FilterFieldsConfig, which accepted either a field array or a
+    group array, becomes a plain FilterField[]. Per field, key becomes id, and id and
+    label are both REQUIRED now rather than optional.
+  - A field's type survives the name but not the values. The old union was
+    "select" | "multiselect" | "text" | "custom" | "separator". The new FilterValueType is
+    "text" | "number" | "range" | "select" | "multiselect" | "boolean". There is no
+    "custom" - register an editor and name it with the field's editor prop - and no
+    "separator", which was a rendering hint rather than a value type.
+  - Field groups are gone as a separate concept. A field carrying its own fields IS a
+    branch that the picker drills into, and the rule stores the whole path.
+  - variant survives the name but changed meaning entirely: "solid" | "default" became
+    "basic" | "advanced". "basic" is the chip row, "advanced" is the nested condition
+    builder. If variant="solid" was passed for appearance, delete it rather than mapping it.
+  - i18n becomes labels, with the operator wording split out into operatorLabels.
+  - Removed with no replacement: radius, showSearchInput, allowMultiple, menuPopupClassName,
+    collapseAddButton, enableShortcut, shortcutKey and shortcutLabel.
+  - Unchanged: size, trigger and className.
+
+STEP 5 - Prove the migration is complete.
+
+  Search the whole project. Every one of these must return zero results:
+    components/reui/filters.tsx
+    variant="solid"
+    showSearchInput
+    allowMultiple
+    collapseAddButton
+    enableShortcut
+    shortcutKey
+  Then check every <Filters> element: none may still pass filters= or onChange=.
+  Any hit is a call site that was missed.
+
+STEP 6 - Verify it actually runs.
+
+  Typecheck must pass with no errors. Then open each filter bar and confirm: adding a
+  condition, editing its value in place, removing it, and that a previously saved or
+  seeded query still loads with the same meaning it had before. If variant="advanced" is
+  used anywhere, also confirm nested groups render, that switching a group between AND and
+  OR works, and - if you passed `reorderable` - that drag reordering works.
 ```
 
 ## Examples
 
-### Validation
+### Nested Attributes
 
-<ComponentPreview styleName="base-nova" name="c-filters-2" align="start" />
+<ComponentPreview styleName="radix-nova" name="c-filters-2" />
 
-### Trigger Button
+### Table Filtering
 
-<ComponentPreview styleName="base-nova" name="c-filters-3" align="start" />
+<ComponentPreview styleName="radix-nova" name="c-filters-7" />
 
-### Small Size
+### Choice Editors
 
-<ComponentPreview styleName="base-nova" name="c-filters-4" align="start" />
+<ComponentPreview styleName="radix-nova" name="c-filters-8" />
 
-### Large Size
+### Advanced In A Popover
 
-<ComponentPreview styleName="base-nova" name="c-filters-5" align="start" />
+<ComponentPreview styleName="radix-nova" name="c-filters-10" />
 
-### Custom Controls
+### Nested Groups Inline
 
-<ComponentPreview styleName="base-nova" name="c-filters-6" align="start" />
+<ComponentPreview styleName="radix-nova" name="c-filters-11" />
 
-### Data Grid
+The other six ship exactly as these do and stay browsable on the
+[Filters components page](/components/filters): status and priority color
+badges, avatar options paged over the wire, a date and a date range editor,
+sliders as the value editor, typed values in shadcn inputs, and a controlled
+bar across three sizes and three locales.
 
-<ComponentPreview
-  styleName="base-nova"
-  name="c-filters-7"
-  className="**:[.preview]:h-auto"
-  align="start"
-/>
-
-### With i18n Support
-
-<ComponentPreview styleName="base-nova" name="c-filters-9" align="start" />
-
-### Virtualized Large Lists
-
-<ComponentPreview styleName="base-nova" name="c-filters-10" align="start" />
-
-### Prefetched Async Options
-
-<ComponentPreview styleName="base-nova" name="c-filters-11" align="start" />
-
-### Async Server-side Search
-
-<ComponentPreview styleName="base-nova" name="c-filters-12" align="start" />
-
-## API Reference
+## API Reference [#api-reference]
 
 ### Filters
 
-The main component for displaying and managing a collection of active filters.
+The root. Provides every context and renders the chrome `variant` selects, unless you pass `children`.
 
-| Prop                 | Type                             | Default     | Description                                                             |
-| :------------------- | :------------------------------- | :---------- | :---------------------------------------------------------------------- |
-| `filters`            | `Filter<T>[]`                    | -           | `Required`. The array of active filters.                                |
-| `fields`             | `FilterFieldsConfig<T>`          | -           | `Required`. The configuration for available filter fields.              |
-| `onChange`           | `(filters: Filter<T>[]) => void` | -           | `Required`. Callback fired when filters are added, updated, or removed. |
-| `size`               | `"sm" \| "default" \| "lg"`      | `"default"` | The size of the filter items and controls.                              |
-| `trigger`            | `ReactNode`                      | -           | Custom element to trigger the "Add Filter" menu.                        |
-| `showSearchInput`    | `boolean`                        | `true`      | Whether to show the search input in the "Add Filter" menu.              |
-| `allowMultiple`      | `boolean`                        | `true`      | Whether to allow multiple filters for the same field.                   |
-| `enableShortcut`     | `boolean`                        | `false`     | Whether to enable the keyboard shortcut to open the filter menu.        |
-| `shortcutKey`        | `string`                         | `"f"`       | The key used for the shortcut (e.g., "f").                              |
-| `shortcutLabel`      | `string`                         | `"F"`       | The label to display in the shortcut indicator.                         |
-| `i18n`               | `Partial<FilterI18nConfig>`      | -           | Custom labels and operators for internationalization.                   |
-| `className`          | `string`                         | -           | Additional CSS classes for the container.                               |
-| `menuPopupClassName` | `string`                         | -           | Additional CSS classes for the filter dropdown menu.                    |
+| Prop                   | Type                                                      | Default     | Description                                                                                                                                                                                                                                                                                                              |
+| :--------------------- | :-------------------------------------------------------- | :---------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `fields`               | `FilterField<V, O>[]`                                     | -           | `Required`. The attribute schema, nested through each field's own `fields`.                                                                                                                                                                                                                                              |
+| `query`                | `FilterQuery<V>`                                          | -           | Controlled query.                                                                                                                                                                                                                                                                                                        |
+| `defaultQuery`         | `FilterQuery<V>`                                          | empty       | Uncontrolled initial query.                                                                                                                                                                                                                                                                                              |
+| `onQueryChange`        | `(query, details: FilterChangeDetails<V, O>) => void`     | -           | Fires on every change, with the reason, the rule and its field.                                                                                                                                                                                                                                                          |
+| `labels`               | `Partial<FilterLabels>`                                   | English     | Chrome copy, including the live-region announcements. Merged shallowly.                                                                                                                                                                                                                                                  |
+| `operatorLabels`       | `Record<string, string>`                                  | English     | Wording for the BUILT-IN operator catalog, keyed by operator value and merged over the defaults. A field that supplies its own `operators` carries its own `label` and is untouched by this.                                                                                                                             |
+| `editors`              | `FilterEditorRegistry`                                    | built-ins   | Extra or replacement value editors, merged over the defaults and resolved by a field's `editor` name.                                                                                                                                                                                                                    |
+| `variant`              | `"basic" \| "advanced"`                                   | `"basic"`   | The flat chip row, or the nested condition builder. Both read and write the same `query` through the same actions, so a saved view built in one opens in the other and nothing is converted on the way.                                                                                                                  |
+| `advancedMode`         | `"popover" \| "inline"`                                   | `"popover"` | Where the advanced builder lives: hung off a trigger carrying the rule count, or rendered in place for a sidebar or a settings page. Ignored in basic mode.                                                                                                                                                              |
+| `reorderable`          | `boolean`                                                 | `false`     | Whether the advanced builder's rows can be REORDERED - the drag handle, a pointer drop, Alt with the arrow keys, and the row menu's Move to items. Off by default: reordering never changes what a query MEANS, so it costs a control on every row for nothing on a builder whose rows are read rather than arranged.    |
+| `renderEmpty`          | `(context: FilterEmptyStateContext) => ReactNode`         | -           | Replaces the advanced builder's empty state. The default is a glyph plus `labels.builderEmpty` and `labels.builderEmptyHint`; return `null` for a genuinely blank panel. The context carries the labels, `readOnly`, the mode, and the footer's own `addFilter` and `addGroup` actions.                                  |
+| `pathCollapse`         | `"none" \| "start" \| "middle"`                           | `"none"`    | How a nested attribute path is shortened when it does not fit. The full path stays the cell's accessible name, and the ellipsis segment carries it as a tooltip.                                                                                                                                                         |
+| `maxPathSegments`      | `number`                                                  | `3`         | How many path segments to draw before `pathCollapse` applies.                                                                                                                                                                                                                                                            |
+| `size`                 | `"sm" \| "default"`                                       | `"default"` | The density of the WHOLE bar: the chips, both triggers, Clear, and every control in the advanced builder. See [the size ladder](#filters-size-ladder). `lg` was removed - the bar is a toolbar over a table, so its ceiling is the style's own default control height.                                                   |
+| `disabled`             | `boolean`                                                 | `false`     | The bar is off: every control takes the native `disabled` attribute and leaves the tab order, the conditions stay readable, and every mutator refuses. See the note below.                                                                                                                                               |
+| `readOnly`             | `boolean`                                                 | `false`     | The query can be read and navigated but not changed. Every mutator refuses, and every mutating control keeps its tab stop while announcing itself unavailable. See the note below.                                                                                                                                       |
+| `trigger`              | `ReactNode`                                               | -           | Replaces the Add filter button, or the advanced builder's own trigger.                                                                                                                                                                                                                                                   |
+| `showClear`            | `boolean`                                                 | `false`     | Renders a Clear button once the query holds anything. Basic mode only.                                                                                                                                                                                                                                                   |
+| `renderValue`          | `(context: FilterValueDisplayContext<V, O>) => ReactNode` | -           | Replaces the value display for every field. A field's own `renderValue` is the narrower form.                                                                                                                                                                                                                            |
+| `renderChip`           | `(rule: FilterRule<V>) => ReactNode`                      | -           | Replaces a whole chip, ROVING WIRING INCLUDED: carry `data-slot="filter-chip"`, `data-rule-id` and the tab-stop `tabIndex` on your root, or the row's arrows, Home/End and Delete cannot reach it. The focus hooks below rebuild the rest.                                                                               |
+| `className`            | `string`                                                  | -           | Applied to the rendered chrome.                                                                                                                                                                                                                                                                                          |
+| `onBeforeQueryChange`  | `(query, details) => boolean \| void`                     | -           | ONE VETO POINT for every change. Return `false` to refuse; return anything else and it commits. `details.reason` says which action asked, so per-action logic is a `switch` in one place. It sits BEHIND the lock - a disabled or read-only bar never calls it - so it can refuse but never approve. See the note below. |
+| `onConvertToAdvanced`  | `() => void`                                              | -           | Adds an `Advanced editor` row to every chip's kebab. The prop IS the switch: `variant` is yours to set, so a flag without a handler would draw a row that does nothing. Suppressed automatically while `variant` is already `"advanced"`.                                                                                |
+| `menuClassName`        | `string`                                                  | -           | Classes for every dropdown MENU the primitive draws - the chip kebab, the advanced row and group kebabs, and the panel's own menu. Merged after `FILTER_MENU_CLASS`, so a `w-*` here wins through tailwind-merge.                                                                                                        |
+| `fieldPickerClassName` | `string`                                                  | -           | Classes for the field PICKER panel, in both chromes that mount it. Merged after `FILTER_FIELD_PICKER_CLASS`.                                                                                                                                                                                                             |
+| `children`             | `ReactNode`                                               | -           | Replaces the default chrome entirely, keeping every context, so you can assemble your own bar from the exported parts.                                                                                                                                                                                                   |
 
----
+`V` is the stored value type and `O` the option payload; both flow into every callback.
 
-### FilterFieldConfig
+**`disabled` and `readOnly` are not two words for one state, and both are enforced at the action boundary.** Every one of the fourteen query writes, plus `openCreate`, `openAmend` and `dispatchDraft`, returns without writing while either flag is set, so no route reaches the query: not the triggers, not a chip's kebab, not `Delete` or `Backspace`, not `Alt`+arrow, not a drag, and not a chrome you compose yourself through `children`. `addGroup` is the one mutator that reports the refusal, by returning an empty string, because its callers move focus onto the id it hands back.
 
-Configuration for an individual filterable field.
+What the two flags differ in is what a person can still DO with the bar:
 
-| Property              | Type                                                                 | Description                                                                                                                                                                                                                                                                |
-| :-------------------- | :------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `key`                 | `string`                                                             | `Required`. Unique identifier for the field.                                                                                                                                                                                                                               |
-| `label`               | `string`                                                             | `Required`. Human-readable label for the field.                                                                                                                                                                                                                            |
-| `type`                | `"text" \| "select" \| "multiselect" \| "custom" \| "separator"`     | The type of filter input to use.                                                                                                                                                                                                                                           |
-| `icon`                | `ReactNode`                                                          | Optional icon to display next to the field label.                                                                                                                                                                                                                          |
-| `options`             | `FilterOption<T>[]`                                                  | List of options for `select` and `multiselect` fields.                                                                                                                                                                                                                     |
-| `loadOptions`         | `(query: string) => FilterOption<T>[] \| Promise<FilterOption<T>[]>` | Async options loader for large or remote lists. Called with the current search query - return a prefetched list (ignore the query) or server-side search results. Debounced, with loading/error states and a value-to-label cache. `options` still seeds the initial view. |
-| `renderOptionList`    | `(props: FilterOptionListRenderProps<T>) => ReactNode`               | Bring-your-own rendering for the options list, e.g. virtualization with a windowing library of your choice. Receives `{ options, highlightedIndex, renderOption }`; render the scrollable list and call `renderOption` for each row. Omit for the default plain list.      |
-| `operators`           | `FilterOperator[]`                                                   | Custom operators for this specific field.                                                                                                                                                                                                                                  |
-| `defaultOperator`     | `string`                                                             | The operator to select by default when adding this field.                                                                                                                                                                                                                  |
-| `placeholder`         | `string`                                                             | Placeholder text for text inputs.                                                                                                                                                                                                                                          |
-| `searchable`          | `boolean`                                                            | Whether the options list should be searchable.                                                                                                                                                                                                                             |
-| `maxSelections`       | `number`                                                             | Maximum number of items allowed in `multiselect`.                                                                                                                                                                                                                          |
-| `prefix`              | `ReactNode \| string`                                                | Prefix element for the input field.                                                                                                                                                                                                                                        |
-| `suffix`              | `ReactNode \| string`                                                | Suffix element for the input field.                                                                                                                                                                                                                                        |
-| `pattern`             | `string`                                                             | Regex pattern for text input validation.                                                                                                                                                                                                                                   |
-| `validation`          | `(value) => boolean \| object`                                       | Custom validation function.                                                                                                                                                                                                                                                |
-| `customRenderer`      | `(props) => ReactNode`                                               | Custom renderer for the filter value selector.                                                                                                                                                                                                                             |
-| `customValueRenderer` | `(values, options) => ReactNode`                                     | Custom renderer for the active filter value display.                                                                                                                                                                                                                       |
-| `fields`              | `FilterFieldConfig<T>[]`                                             | Nested fields if this is a group configuration.                                                                                                                                                                                                                            |
-| `group`               | `string`                                                             | Group label if this is a group configuration.                                                                                                                                                                                                                              |
-| `className`           | `string`                                                             | Additional CSS classes for the field components.                                                                                                                                                                                                                           |
+- `disabled` turns it off. Every control takes the native `disabled` attribute and leaves the tab order.
+- `readOnly` keeps it readable. Every mutating control stays focusable and carries `aria-disabled="true"` plus `data-readonly`, so `Tab` still reaches the bar, the arrows still rove across the chips and across the builder's cells, and every chip and row keeps its accessible name. The chip row says so through the toolbar's `aria-description` and the advanced panel through a visible line, both from `labels.readOnly`; `aria-readonly` is deliberately not used, because it is not an allowed attribute on `role="toolbar"`, `role="group"` or `role="button"`. The advanced builder's own trigger stays live under `readOnly` on purpose: opening the panel is reading, and it is the only place a nested query is legible in full.
 
----
+Controls that would open an editor refuse to open it rather than opening a surface whose every action is a no-op. Because that closes the one route to a value the display had summarized, a locked value control is NAMED with the whole list instead: a chip that shows "2 selected" announces "2 selected: Active, Archived", from `labels.valueDetail`, and carries the same string as its `title` in both modes. Editable, the name stays the short form, since pressing the segment is the answer.
+
+Your own trigger is covered too. The `trigger` you pass to the chip row or to the advanced builder receives the same state the default button gets, so it dims and announces itself without your having to read `actions` at all. `isFilterLocked(actions)` and `filterReadOnlyProps(actions)` are exported for the rest of a chrome you compose yourself.
+
+One thing the flags do NOT do is make the shipped chrome the enforcement point. The refusal lives at the action boundary, so it holds from the render that sets the flag: a consumer effect that calls `removeNode` in the same commit that turns `readOnly` on is refused, not run one frame late.
+
+**`onBeforeQueryChange` is the same boundary, opened up.** Every write in this component goes through one emitter, so a hook there covers the chip row's `Delete`, the builder's `Alt`+arrow, a pointer drop, a menu item and a chrome you composed yourself through `children` - one hook rather than fourteen props. Return `false` to refuse the change; return anything else, including nothing, and it commits. `details.reason` names the action that asked, so per-action policy is a `switch` in one place:
+
+```tsx
+<Filters
+  fields={fields}
+  onBeforeQueryChange={(next, details) => {
+    if (details.reason === "clear") return confirm("Clear every filter?")
+    if (countFilterRules(next) > 10) return false
+  }}
+/>
+```
+
+It sits BEHIND the lock, and the ordering is deliberate: a `disabled` or `readOnly` bar never asks, so the hook can refuse a change but can never approve one the flags have already refused. A refusal is silent by design - nothing is announced and the roving tab stop does not move, because an add the boundary turned down mints no id for focus to land on.
+
+**`onConvertToAdvanced` is the route from a chip row to the builder.** The prop IS the switch: `variant` belongs to you, so a boolean without a handler would draw a menu row that does nothing. Supply one and every chip's kebab grows an `Advanced editor` item (`labels.convertToAdvanced`), which is suppressed automatically once `variant` is already `"advanced"` - the one place the row would be an offer to go where the user already is.
+
+### The query model
+
+A query is always a group, never a bare array. `FilterQuery<V>` IS a `FilterGroupNode<V>`, and a `FilterNode<V>` is either a rule or a group.
+
+| Field        | Type                | On    | Description                                                                                                                                                                                    |
+| :----------- | :------------------ | :---- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`         | `string`            | both  | Stable identity. Addressed by every writer.                                                                                                                                                    |
+| `type`       | `"rule" \| "group"` | both  | The discriminant.                                                                                                                                                                              |
+| `path`       | `string[]`          | rule  | Field path, root first. An ARRAY rather than a key, because a field may nest: `["name", "first"]` maps one to one onto what the picker commits.                                                |
+| `operator`   | `string`            | rule  | The operator's `value`. Empty while the chip still reads "Select condition".                                                                                                                   |
+| `value`      | `V \| undefined`    | rule  | SINGULAR, and shaped by the operator's arity: a scalar, an array, `[from, to]`, or `undefined`. Read-side normalisation is `flattenFilterConditions`, not a permanent tax on the stored shape. |
+| `negated`    | `boolean`           | rule  | Flips the rule's meaning without changing its operator, so your own compiler negates the operator's predicate rather than needing a second operator for it.                                    |
+| `combinator` | `"and" \| "or"`     | group | How the rules inside this group combine.                                                                                                                                                       |
+| `rules`      | `FilterNode<V>[]`   | group | Rules and nested groups, in order.                                                                                                                                                             |
+
+### FilterChangeDetails
+
+`onQueryChange` receives the new query and this object, so you never diff two trees to find out what happened.
+
+| Field    | Type                                                                                               | Description                                                   |
+| :------- | :------------------------------------------------------------------------------------------------- | :------------------------------------------------------------ |
+| `reason` | `"add" \| "update" \| "remove" \| "duplicate" \| "negate" \| "reorder" \| "combinator" \| "clear"` | Why `onQueryChange` fired.                                    |
+| `rule`   | `FilterRule<V> \| null`                                                                            | The rule that changed, or `null` for a whole-query change.    |
+| `field`  | `FilterField<V, O> \| null`                                                                        | That rule's field, resolved. `null` when the path is unknown. |
+
+### Query helpers
+
+Every writer is pure and returns a new tree with structural sharing, so a branch that did not change comes back BY IDENTITY. That is what makes `React.memo` on a chip hold: editing one filter in a bar of forty re-renders one chip. All of them live in `filters-query`, and the ones a consumer reaches for most are re-exported from `filters` as well.
+
+| Helper                                                               | What it does                                                                                                                                                                                                                                                                              |
+| :------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `createFilterQuery(rules?, combinator?, id?)`                        | An empty or seeded query. The root defaults to `"root"` and `and`.                                                                                                                                                                                                                        |
+| `createFilterRule({ id, path, operator, value?, negated? })`         | One rule. `id` is REQUIRED, never generated: a generated id is non-deterministic, and a non-deterministic id inside a server-rendered component is a hydration mismatch on every page that ships default filters. Inside the primitive ids come from a factory seeded with `React.useId`. |
+| `createFilterGroup({ id, combinator?, rules? })`                     | A nested group. `combinator` defaults to `and`.                                                                                                                                                                                                                                           |
+| `isFilterRule(node)` / `isFilterGroup(node)`                         | The two type guards over `FilterNode`.                                                                                                                                                                                                                                                    |
+| `isFilterRuleComplete(rule)`                                         | Whether the rule has an operator yet. Both readers below skip a rule that does not.                                                                                                                                                                                                       |
+| `updateFilterRule(query, id, updates)`                               | Replaces a rule's fields. An unknown id returns the query unchanged.                                                                                                                                                                                                                      |
+| `removeFilterNode(query, id)`                                        | Removes a node, and prunes any group it emptied, all the way up. The root survives empty.                                                                                                                                                                                                 |
+| `insertFilterNode(query, node, parentId?, index?)`                   | Inserts into a group, defaulting to the root and to the end.                                                                                                                                                                                                                              |
+| `duplicateFilterNode(query, id, nextId: () => string)`               | Copies a node in beside the original. `nextId` is an id FACTORY, called once per cloned node so a copied group's children get fresh ids too.                                                                                                                                              |
+| `moveFilterNode(query, id, delta)`                                   | Moves within its own group. Out of range moves are no-ops.                                                                                                                                                                                                                                |
+| `moveFilterNodeTo(query, id, parentId, index)`                       | Moves ACROSS groups, at an index. Refuses to move a group into its own descendant.                                                                                                                                                                                                        |
+| `copyFilterNodeTo(query, id, parentId, index, nextId: () => string)` | COPIES across groups, leaving the original. May target the node's own subtree, since the clone is taken before the insert.                                                                                                                                                                |
+| `setFilterCombinator` / `toggleFilterCombinator`                     | Sets or flips one group's combinator.                                                                                                                                                                                                                                                     |
+| `wrapFilterNodeInGroup(query, id, groupId, combinator?)`             | Nests one node in a new group. The keyboard path to nesting. `combinator` defaults to `or`, because wrapping exists to express `a AND (b OR c)`.                                                                                                                                          |
+| `unwrapFilterGroup(query, id)`                                       | Dissolves a group, splicing its conditions into the parent at the position the group held. Undoes a wrap in one press. The root cannot be unwrapped.                                                                                                                                      |
+| `clearFilterQuery(query)`                                            | Empties the root, keeping its id and its combinator.                                                                                                                                                                                                                                      |
+| `pruneFilterQuery(query)`                                            | Drops groups holding nothing, and replaces a group whose only child is itself a GROUP with that child. A group holding one rule is left alone. Never called automatically: a user mid-edit may legitimately hold an almost-empty group, so consumers call it on the way to storage.       |
+| `findFilterRule` / `findFilterNode`                                  | Locates a node, with its parent and index.                                                                                                                                                                                                                                                |
+| `flattenFilterConditions(query)`                                     | `[{ path, field, operator, values, negated }, ...]`. Normalises `value` to an array and drops the group structure. LOSSY on purpose, so `a AND (b OR c)` reads back as `a AND b AND c`; walk the tree when the groups matter.                                                             |
+| `flattenFilterRules(query)`                                          | The rules, whole, at any depth.                                                                                                                                                                                                                                                           |
+| `countFilterRules(query)` / `isFilterQueryEmpty(query)`              | Counts at any depth, and the empty check.                                                                                                                                                                                                                                                 |
+
+### FilterField
+
+A field is a leaf or a branch, and there is no separate group type: a field carrying `fields` renders as a branch the picker drills into.
+
+| Property          | Type                                                                      | Description                                                                                                                                                                                                                                                    |
+| :---------------- | :------------------------------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | `string`                                                                  | `Required`. Unique among its siblings; the full path must be unique.                                                                                                                                                                                           |
+| `label`           | `string`                                                                  | `Required`. What the picker and the chip show.                                                                                                                                                                                                                 |
+| `icon`            | `ReactNode`                                                               | Leading glyph on the picker row and on the chip.                                                                                                                                                                                                               |
+| `description`     | `string`                                                                  | Second line on the picker row.                                                                                                                                                                                                                                 |
+| `keywords`        | `string[]`                                                                | Extra terms matched by search alongside the label.                                                                                                                                                                                                             |
+| `count`           | `number`                                                                  | Trailing count on a branch row. Falls back to the number of known children, so set it explicitly only when the real total is known before the children are fetched.                                                                                            |
+| `fields`          | `FilterField<V, O>[]`                                                     | Nested sub-attributes. A field with these renders as a branch. Search spans every level and each result carries its path, so "Primary location > Postcode" stays distinguishable from another "Postcode" elsewhere.                                            |
+| `selectable`      | `boolean`                                                                 | Whether a BRANCH declares itself filterable. The SHIPPED pickers ignore it (they read `isFilterFieldPickable`, which is leaves only) and it is honoured by `isFilterFieldSelectable` for a consumer's own picker with a chrome where the two actions separate. |
+| `disabled`        | `boolean`                                                                 | Stays rendered and `aria-disabled` rather than being dropped.                                                                                                                                                                                                  |
+| `type`            | `"text" \| "number" \| "range" \| "select" \| "multiselect" \| "boolean"` | Picks the default operator catalog and the default editor. A DEFAULT, not a constraint. Falls back to `"text"`.                                                                                                                                                |
+| `options`         | `FilterOption<O>[]`                                                       | Static options. Also seeds the value-to-label cache for an async field, and is what a chip resolves a stored value's LABEL from even when a custom editor draws its own rows.                                                                                  |
+| `loadOptions`     | `(query, context: FilterLoadContext) => options \| result \| Promise`     | Async options, with an abort signal and cursor paging.                                                                                                                                                                                                         |
+| `resolveValues`   | `(values: string[]) => options \| Promise<options>`                       | Resolves stored values the loader has never returned, so a restored saved view reads "John Doe" and not an id.                                                                                                                                                 |
+| `operators`       | `FilterOperator[] \| ((field) => FilterOperator[])`                       | Operators for this field. Wins outright over the catalog for its `type`, and carries its own labels, which `operatorLabels` does not touch.                                                                                                                    |
+| `defaultOperator` | `string`                                                                  | The operator a new rule starts on. Falls back to the first visible one when it names an unavailable operator. Set it to a `"many"` operator to start a `select` field on a multi-value pick, with no change to the field's `type`.                             |
+| `editor`          | `string \| FilterEditor<V, O>`                                            | Overrides the editor chosen from `type`. A registered name, or a component.                                                                                                                                                                                    |
+| `renderValue`     | `(context: FilterValueDisplayContext<V, O>) => ReactNode`                 | Overrides how a committed value is drawn. A different job from the editor: this is display, and it receives the already-resolved options so it can collapse several picks into overlapping dots or faces plus a count without looking an id back up.           |
+| `valueText`       | `(context: FilterValueDisplayContext<V, O>) => string`                    | The committed value as PLAIN TEXT, for accessible names and titles. Required beside `renderValue` whenever the stored value does not stringify, or an object value announces as "[object Object]".                                                             |
+| `placeholder`     | `string`                                                                  | Placeholder for the value editor's input, for an option editor's search field, AND for the chip's own value segment while it is empty. One word covers all three, so the chip never reads differently from the input it opens.                                 |
+| `searchable`      | `boolean`                                                                 | Whether an option editor SHOWS its search box. Defaults to `true`; the field is always kept, visually hidden, because it owns focus and `aria-activedescendant`. Turn it off for a list read at a glance, keep it for one that is not scanned by eye.          |
+| `pinSelected`     | `boolean`                                                                 | Whether an option editor STACKS the picks at the top of its list, in their own group above the rest with a rule between. Defaults to `false`, so rows stay where the schema declared them. Turn it on where the fold is a real problem: a long or paged list.  |
+| `validate`        | `(context: FilterValidateContext<V, O>) => string \| null`                | Returns a MESSAGE to mark this field's value invalid, or nothing when it is fine. A string rather than a schema keeps the primitive library-agnostic. Runs only after the built-in checks pass, and is drawn once the user has committed a value to that rule. |
+| `sortSelected`    | `"none" \| "label" \| "snapshot"`                                         | Order of an option list, and under `pinSelected` the order INSIDE each group. `"none"` (default) keeps the schema's order; `"label"` sorts locale-aware; `"snapshot"` freezes the partition at open, which is the same as `"none"` when unpinned.              |
+| `className`       | `string`                                                                  | Passed to the value editor's PANEL, which is where its width lives. Merged last through tailwind-merge, so a `w-*` here beats the default rather than losing to it on source order.                                                                            |
+| `column`          | `string`                                                                  | The storage column, when it differs from the UI path. Carried through untouched and never read by the primitive: it is there for whatever you compile the conditions into.                                                                                     |
+| `data`            | `unknown`                                                                 | Arbitrary payload, carried through every render callback. The primitive never reads it.                                                                                                                                                                        |
+
+**The schema is indexed by signature, not by identity.** Fields are almost always an inline array literal, so a memo keyed on the array's identity would miss on every parent render. The primitive computes a cheap content signature each render (ids, labels, types, default operators, option values and labels, operator names, keywords, counts and the presence of each callback) and rebuilds the index only when that changes. Render props are deliberately excluded, because inline JSX recreates them every render, so **changing ONLY a render prop with no structural change anywhere will keep serving the previous field objects.** Change something structural alongside it, or give `fields` a stable identity, when a render prop has to update on its own.
+
+### FilterOperator
+
+Each value type has a catalog. A field's own `operators` wins outright; otherwise the catalog for its `type` applies. There is no implicit promotion from select to multiselect based on how many values happen to be picked: the same field offers the same operators at every moment.
+
+| `type`          | Operators                                                                                    |
+| :-------------- | :------------------------------------------------------------------------------------------- |
+| `"text"`        | `contains`, `not_contains`, `starts_with`, `ends_with`, `is`, `is_not`, `empty`, `not_empty` |
+| `"number"`      | `eq`, `neq`, `gt`, `gte`, `lt`, `lte`, `between`, `not_between`, `empty`, `not_empty`        |
+| `"range"`       | `between`, `not_between`, `empty`, `not_empty`                                               |
+| `"select"`      | `is`, `is_not`, `is_any_of`, `is_none_of`, `empty`, `not_empty`                              |
+| `"multiselect"` | `has_any_of`, `has_all_of`, `has_none_of`, `empty`, `not_empty`                              |
+| `"boolean"`     | `is`, `is_not`, `empty`, `not_empty`                                                         |
+
+| Property  | Type                                   | Description                                                                                                                                                                                                                                         |
+| :-------- | :------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `value`   | `string`                               | `Required`. Stored on the rule.                                                                                                                                                                                                                     |
+| `label`   | `string`                               | `Required`. What the menu and the chip read.                                                                                                                                                                                                        |
+| `arity`   | `"none" \| "one" \| "many" \| "range"` | How many values it takes, and the only thing that decides whether there is a value at all. `"one"` (the default) holds a scalar, `"many"` an array, `"range"` a `[from, to]` tuple, and `"none"` no value editor and no value segment on the chip.  |
+| `inverse` | `string`                               | The operator that means the opposite. Powers the menu's Negate, so "contains" becomes "does not contain" in the words the user reads. An operator with no inverse sets `rule.negated` instead and the chip renders `labels.negated(operatorLabel)`. |
+| `hidden`  | `boolean`                              | Hidden from the menu, but still valid in a restored query.                                                                                                                                                                                          |
+
+In the built-in catalog `empty` and `not_empty` carry `arity: "none"`, `between` and `not_between` carry `"range"`, and the `is_any_of` / `is_none_of` / `has_*` family carry `"many"`. Everything else is `"one"`. `starts_with`, `ends_with` and `has_all_of` are the built-ins with no `inverse`, so negating one of them sets `rule.negated` rather than swapping the operator. Two of the three sit on `"text"`, which is the default field type, so a consumer reading a query with `flattenFilterConditions` has to honour `negated` rather than treat it as a rare case.
 
 ### FilterOption
 
-Structure for options in `select` and `multiselect` fields.
+| Property      | Type        | Description                                                                                                                                                                                                                              |
+| :------------ | :---------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `value`       | `string`    | `Required`. What the rule stores.                                                                                                                                                                                                        |
+| `label`       | `string`    | `Required`. What the row and the chip read.                                                                                                                                                                                              |
+| `icon`        | `ReactNode` | Drawn on the row, and in front of a single-value chip.                                                                                                                                                                                   |
+| `description` | `string`    | Second line on the row.                                                                                                                                                                                                                  |
+| `keywords`    | `string[]`  | Extra terms matched by search.                                                                                                                                                                                                           |
+| `disabled`    | `boolean`   | Stays in the accessibility tree.                                                                                                                                                                                                         |
+| `exclusive`   | `boolean`   | The NONE OF THE ABOVE row: Unassigned, No label, No due date. Picking it clears every other pick, picking anything else clears it, and it is drawn last, apart from the rest, under a rule. See [The None option](#filters-none-option). |
+| `data`        | `O`         | Arbitrary payload, carried untouched through callbacks.                                                                                                                                                                                  |
 
-| Property    | Type        | Description                                      |
-| :---------- | :---------- | :----------------------------------------------- |
-| `value`     | `T`         | `Required`. The internal value of the option.    |
-| `label`     | `string`    | `Required`. Human-readable label for the option. |
-| `icon`      | `ReactNode` | Optional icon to display next to the option.     |
-| `className` | `string`    | Additional CSS classes for the option item.      |
+### Value editors
 
----
+Which editor renders is decided highest first: the field's own `editor`, as a component or as a name in the `editors` registry; then the operator's ARITY, where `"range"` takes the range editor and `"many"` takes the multi-select editor WHEN the field is option backed; then the field's `type`, falling back to `text`. An `arity: "none"` operator takes no editor at all, and a `"many"` operator on a field with no options keeps the editor its `type` chose and receives an ARRAY.
 
-### Filter
+Arity outranks type because "between" on a number field wants two boxes whatever the field said, and "is any of" on a select wants several picks even though the field is single valued.
 
-The structure of an active filter object.
+By default a built-in select or multi-select leaves its rows exactly where the schema declared them, ticked or not. The check marks already say what is chosen, and most option lists are short semantic sequences (To do, In progress, In review, Done) that a reader learns the shape of, so reordering one under the reader costs more than it buys. A field that wants the picks stacked at the top asks for it with `pinSelected: true`, and gets the partition described here. Reach for it where the fold is a real problem: 120 countries, a directory paged over the wire, a tag cloud.
 
-| Property   | Type     | Description                                      |
-| :--------- | :------- | :----------------------------------------------- |
-| `id`       | `string` | Unique identifier for the filter instance.       |
-| `field`    | `string` | The `key` of the associated field configuration. |
-| `operator` | `string` | The selected operator (e.g., "is", "contains").  |
-| `values`   | `T[]`    | The current value(s) of the filter.              |
+Under `pinSelected` the rows are partitioned into SELECTED then unselected with a full-bleed rule between the two groups, so a long list never hides what is already chosen. Inside each group the order is the schema's, which is a partition and not a sort, so `sortSelected: "label"` stays opt-in for a people or country list whose order carries no meaning. The pinned group re-partitions LIVE, carrying the highlight across the reorder BY VALUE so nothing scrolls, and `sortSelected: "snapshot"` freezes the partition at open for a list where a steady pointer target matters more. The partition is memoized on the selection rather than on the query, so typing in a 4,000 row async field filters over the wire without re-partitioning on every keystroke, and the rule between the groups is hidden while a query is narrowing the list, since "your picks, then the rest" is a claim about the whole list. `sortSelected` works without `pinSelected` too: with one group it orders that group, which is the whole list.
 
----
+### FilterEditorProps
 
-### FilterI18nConfig
+What every value editor receives.
 
-Configuration for internationalization and custom labels.
+| Prop             | Type                                                    | Description                                                                                                                                                                                                                                                          |
+| :--------------- | :------------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `field`          | `FilterField<V, O>`                                     | The field being filtered on.                                                                                                                                                                                                                                         |
+| `operator`       | `FilterOperator`                                        | The chosen operator. Its `arity` is what decides the value's shape.                                                                                                                                                                                                  |
+| `value`          | `V \| undefined`                                        | The DRAFT value the host holds, not the committed one. Editing a draft is what keeps a text filter from dispatching once per keystroke through a fully controlled parent.                                                                                            |
+| `onValueChange`  | `(value: V \| undefined) => void`                       | Updates the draft. Never writes into the query.                                                                                                                                                                                                                      |
+| `host`           | `"create" \| "amend"`                                   | Which surface the editor is on. Branch on it for chrome, never for behaviour. The shipped chrome edits through the chip and the row, so it is `"amend"` there; `"create"` is what a wizard panel of your own passes, and the built-ins read it to drop their footer. |
+| `autoFocusProps` | `{ ref: RefCallback<HTMLElement>; autoFocus: boolean }` | Spread onto whichever element should take focus when the editor opens. Focus comes from the HOST, so no editor reaches for `setTimeout` to focus itself. A callback ref, so it lands on any element without a cast.                                                  |
+| `commit`         | `(value?: V, options?: { close?: boolean }) => void`    | Accepts the draft. `{ close: false }` writes through WITHOUT dismissing, which is what makes several picks one gesture and why the built-in select editors have no Apply button. Additive: an editor that commits once and is done keeps calling `commit(value)`.    |
+| `cancel`         | `() => void`                                            | Discard the draft and close.                                                                                                                                                                                                                                         |
+| `back`           | `() => void`                                            | Step back. Only meaningful when `host === "create"`.                                                                                                                                                                                                                 |
+| `options`        | `FilterOptionsState<O>`                                 | The shared option service, so a custom editor never re-implements debounced search, aborting, paging or label resolution.                                                                                                                                            |
+| `labels`         | `FilterLabels`                                          | Every string the editor needs.                                                                                                                                                                                                                                       |
 
-| Property       | Type     | Description                                |
-| :------------- | :------- | :----------------------------------------- |
-| `addFilter`    | `string` | Label for the "Add Filter" button.         |
-| `searchFields` | `string` | Placeholder for the field search input.    |
-| `operators`    | `object` | Map of operator keys to localized strings. |
-| `validation`   | `object` | Map of validation error messages.          |
-| `placeholders` | `object` | Map of dynamic placeholder templates.      |
+### FilterOptionsState
 
----
+Returned by `useFilterOptions`, and handed to every editor as `options`.
 
-### Helpers
+| Field      | Type                                              | Description                                                     |
+| :--------- | :------------------------------------------------ | :-------------------------------------------------------------- |
+| `items`    | `FilterOption<O>[]`                               | The current page, already filtered for a static field.          |
+| `loading`  | `boolean`                                         | A request is in flight.                                         |
+| `error`    | `boolean`                                         | The last request failed, and was not merely aborted.            |
+| `hasMore`  | `boolean`                                         | Another page is available.                                      |
+| `query`    | `string`                                          | Current search text. Debounced before it reaches `loadOptions`. |
+| `setQuery` | `(query: string) => void`                         | Updates the search text.                                        |
+| `loadMore` | `() => void`                                      | Appends the next page.                                          |
+| `retry`    | `() => void`                                      | Re-runs the last request.                                       |
+| `resolve`  | `(value: string) => FilterOption<O> \| undefined` | A stored value's option, from the schema or the cache.          |
 
-| Function            | Signature                                             | Description                                   |
-| :------------------ | :---------------------------------------------------- | :-------------------------------------------- |
-| `createFilter`      | `(field, operator?, values?) => Filter`               | Creates a new filter object with a unique ID. |
-| `createFilterGroup` | `(id, label, fields, initialFilters?) => FilterGroup` | Creates a filter group configuration.         |
+### FilterLoadContext and FilterLoadResult
+
+| Field        | Type             | Description                                                              |
+| :----------- | :--------------- | :----------------------------------------------------------------------- |
+| `signal`     | `AbortSignal`    | Aborted when the query changes, the editor closes, or a load supersedes. |
+| `cursor`     | `string`         | Cursor returned by the previous page, or `undefined` for the first.      |
+| `items`      | `FilterOption[]` | The page. A bare array is accepted in place of the whole result.         |
+| `nextCursor` | `string`         | Cursor for the next page.                                                |
+| `hasMore`    | `boolean`        | Defaults to whether `nextCursor` was supplied.                           |
+
+### FilterValueDisplayContext
+
+Handed to `renderValue`, to `valueText` and to the default display.
+
+| Field      | Type                | Description                                                                     |
+| :--------- | :------------------ | :------------------------------------------------------------------------------ |
+| `value`    | `V \| undefined`    | The committed value, in the operator's own shape.                               |
+| `values`   | `unknown[]`         | The same value normalised to an array, since a display usually counts or joins. |
+| `field`    | `FilterField<V, O>` | The field.                                                                      |
+| `operator` | `FilterOperator`    | The operator.                                                                   |
+| `options`  | `FilterOption<O>[]` | The options already resolved for `value`, for drawing a color or an avatar.     |
+| `labels`   | `FilterLabels`      | Every string.                                                                   |
+
+### FiltersRow
+
+The chip row, rendered by default in basic mode.
+
+| Prop        | Type        | Default | Description                                           |
+| :---------- | :---------- | :------ | :---------------------------------------------------- |
+| `trigger`   | `ReactNode` | -       | Replaces the Add filter button.                       |
+| `showClear` | `boolean`   | `false` | Renders a Clear button once the query holds anything. |
+| `className` | `string`    | -       | Applied to the row.                                   |
+
+### FiltersBuilder
+
+The Add filter popover and the attribute picker inside it. Collapses to an icon-only button once the query holds a filter, keeping its accessible name.
+
+| Prop        | Type        | Default | Description                     |
+| :---------- | :---------- | :------ | :------------------------------ |
+| `trigger`   | `ReactNode` | -       | Replaces the default button.    |
+| `className` | `string`    | -       | Applied to the popover content. |
+
+One popup, ONE panel: the field step. Picking a field commits the rule immediately and the operator menu opens on the chip that was just created, so the popover never holds a second or third step the user has to walk. The draft reducer still models `operator` and `value` steps with a Back between them, because they are the headless surface a consumer-composed wizard drives.
+
+### FiltersAdvanced
+
+| Prop        | Type                           | Default     | Description                                                  |
+| :---------- | :----------------------------- | :---------- | :----------------------------------------------------------- |
+| `mode`      | `"popover" \| "inline"`        | `"popover"` | Hang the panel off a trigger, or render it in place.         |
+| `trigger`   | `ReactNode`                    | -           | Replaces the default trigger. Ignored inline.                |
+| `align`     | `"start" \| "center" \| "end"` | `"start"`   | Popover alignment.                                           |
+| `reorderable` | `boolean`                      | `false`     | Whether rows can be reordered. See `FiltersProps.reorderable`. |
+| `className` | `string`                       | -           | Applied to the popover content, or to the panel when inline. |
+
+### FiltersAdvancedPanel
+
+The builder itself, with no popup of its own.
+
+**Anatomy.** The body and a footer. There is NO header strip: it lost its title (a popover opened from a button reading "Advanced filter" does not need to be told what it is), then its subtitle ("In this view, show records" described the first row's own "Where" a second time), and what was left was a rule count the rows already show, a validation summary, and a kebab whose two actions both have another route - the root combinator is the second row's own And/Or toggle, and Clear all is a footer button. The panel keeps the programmatic name - `role="group"` plus `aria-label={labels.advancedFilter}` - so a reader who arrows into the popup from somewhere else still meets it.
+
+A condition is a row of TWO BANDS. The content band - `[attribute] [condition] [value]` - is packed against the leading edge after the combinator column and sized to itself; the action band - `[grip] [menu]` - is pinned to the trailing edge, with four pixels of room after the kebab. Whatever is left over sits between them. ONE action per row, not three: the trash it used to sit beside duplicated the menu's own destructive Remove, and the grip survives because it is what ARMS the drag, which the row itself cannot do without turning every text selection into a gesture. The pair is drawn as one piece of chrome at muted weight, lifting to `bg-background` with a hairline under a pointer and while its menu is open.
+
+The footer carries Add filter and Add group as OUTLINE buttons - they are what the footer is for, and as ghosts they read as a caption under a builder full of outlined cells - then, on the trailing edge, the validation summary when there is one and Clear all once the query holds anything. All of them refuse to shrink, so a narrow panel wraps them rather than clipping a label.
+
+| Prop        | Type                    | Default     | Description                                                                                                                                   |
+| :---------- | :---------------------- | :---------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
+| `mode`      | `"popover" \| "inline"` | `"popover"` | Which box the panel sits in, which is the only thing deciding whether it pads itself. See [the panel has no surface](#filters-panel-surface). |
+| `reorderable` | `boolean`               | `false`     | Whether rows can be reordered. See `FiltersProps.reorderable`.                                                                                |
+| `renderEmpty` | `(context: FilterEmptyStateContext) => ReactNode` | -           | Replaces the empty state for this panel only. Wins over `Filters.renderEmpty`.                                                                |
+| `className` | `string`                | -           | Applied to the panel.                                                                                                                         |
+
+#### Cell widths [#filters-cell-widths]
+
+The three content cells ask for their own width rather than for a share of the row, and the default is three custom properties declared on the panel:
+
+| Property                  | Default | Cell               |
+| :------------------------ | :------ | :----------------- |
+| `--filter-field-width`    | `11rem` | The attribute path |
+| `--filter-operator-width` | `9rem`  | The condition      |
+| `--filter-value-width`    | `12rem` | The value          |
+
+Each is written as a FALLBACK inside the cell's own `flex-basis`, not as a declaration on the panel, so the nearest ancestor that names the property wins and there is nothing in between to beat. All of these work:
+
+```tsx
+// Inline: className reaches the panel itself.
+<Filters variant="advanced" advancedMode="inline" className="[--filter-field-width:14rem]" fields={fields} />
+
+// Popover: className reaches the popup that CONTAINS the panel, and the value inherits down.
+<Filters variant="advanced" className="[--filter-value-width:16rem]" fields={fields} />
+
+// Or on the box you wrapped it in, or in a stylesheet. The cells read the value as inherited, so any ancestor works.
+<Card className="[--filter-operator-width:7rem]">
+  <Filters variant="advanced" advancedMode="inline" fields={fields} />
+</Card>
+```
+
+Each is a `flex-basis` and never a `min-width`, and the difference is the whole reason the trailing controls line up. A binding floor makes a row wider than its box, and a nested row is indented, so it overflows by MORE and the column of kebabs goes ragged; a basis is a preference the cell gives up entirely before the row overflows. Below the default the cells shrink in proportion to it and their labels truncate; above it they do not stretch, which is what leaves the empty space between the content band and the actions.
+
+#### The panel has no surface [#filters-panel-surface]
+
+The panel draws no border, no background and no radius of its own, and there is no prop that hands it one. In popover mode the popover is the surface. Inline, the surface is yours and you make it the ordinary way: wrap the builder in whatever the page already uses.
+
+```tsx
+<Card className="w-full">
+  <Filters variant="advanced" advancedMode="inline" fields={fields} />
+</Card>
+```
+
+This used to be an `advancedSurface` prop that the panel rendered itself AS, so the consumer's element became the panel. It worked, and a wrapper gets the same result with nothing to explain: no rule about which way `className` merges, no list of the props the panel has to keep stamping onto an element it does not own, and no requirement that your component forward the props it is handed. Two boxes is the honest shape - yours owns the surface and the spacing, the primitive owns everything inside it.
+
+Inline, the panel pads itself by **nothing**, so your wrapper's padding is the only padding and the builder reads as one box rather than as an inset inside a card. That is the `--filter-panel-pad` variable: `0.75rem` in popover mode, where the popup's content is `p-0` and the panel's own padding is what keeps the rows off the popover's edge, and `0px` inline. Every strip - the body, the footer, the read-only note - reads that one number, which is what keeps the column of kebabs and the Clear all button on one axis. Override it on either mode if your wrapper wants the padding to come from the primitive instead:
+
+```tsx
+<Filters
+  variant="advanced"
+  advancedMode="inline"
+  className="[--filter-panel-pad:1rem]"
+  fields={fields}
+/>
+```
+
+The container queries the rows measure themselves against are declared on the panel's BODY and on every group's list of children, both inside the panel, so a wrapper with its own padding changes how much room a row has and never which element answers the question.
+
+With no conditions at all the panel draws its own empty state - a muted glyph, `labels.builderEmpty` and, unless the bar is read-only, `labels.builderEmptyHint` - above the footer rather than leaving the two footer buttons floating in a blank popup. A builder is empty most often because somebody just pressed Clear all, and that press deserves a confirmation.
+
+#### The size ladder [#filters-size-ladder]
+
+Every control in the builder derives its size from ONE ladder keyed off the root's `size`, so the row cells, the icon buttons and the footer agree at every rung. Nothing in the primitive names a height: each shadcn size name resolves to its own per-style padding and its own icon size, so a hardcoded `h-8` would be the one control in the app ignoring the style the user picked.
+
+| `size`      | Text controls (`Button size`) | Icon controls (`Button size`) |
+| :---------- | :---------------------------- | :---------------------------- |
+| `"sm"`      | `sm`                          | `icon-sm`                     |
+| `"default"` | `default`                     | `icon`                        |
+
+Text controls are the combinator pill, the attribute, condition and value cells, the panel's footer buttons and a value editor's Discard and Apply. Icon controls are every grip and every kebab. `filterControlSizes(actions)` is exported for a chrome you assemble yourself, so your own cell lands on the same rung.
+
+The chip row's own GAP reads the resolved rung too, not the raw prop, which is what stops the bar's rhythm and the controls in it from answering separately: a `size` TypeScript would have refused - `"lg"` from a codebase that has not upgraded - resolves to the default rung once, and the spacing and the heights both follow it.
+
+THE CHIPS RIDE THE SAME LADDER, which they did not before. The argument for exempting them was that `ButtonGroup` has no size variant, so there was nothing to thread; the flaw in it was that a chip is the largest thing in the bar, so a `size` that moved everything except the chips looked like a `size` that did nothing. The thread turned out not to need a variant: the group is `items-stretch` and no style gives a group's text segment a height, so the pill takes the height of its one definite-height child - the kebab - and sizing the kebab off the icon rung sizes the whole chip. The segments stay one element each, which is what `ButtonGroup`'s direct-child fusion selectors require.
+
+`FiltersProps.size` deliberately does NOT offer `xs`, even though the shadcn button ladder has `xs` and `icon-xs`. The builder's row is a form, not a toolbar: `xs` resolves to a 20 to 24px control depending on the style, which is under the 24px minimum WCAG 2.2 Target Size (Minimum) asks of a pointer target that is not inline in a sentence, and this row has two icon buttons sitting side by side at its right edge. `sm` is already the dense rung, and it now reaches the chip row too, which is where a genuinely dense bar is wanted. `xs` stays out for a second reason as well: a chip's height comes from its kebab, and `icon-xs` is a 20 to 24px square in most styles, so an `xs` bar would be a row of pills whose segments no longer clear their own labels. Adding it is one line in `FILTER_CONTROL_SIZES` if your own style ladder makes `xs` big enough.
+
+#### The combinator toggle
+
+Only ONE combinator cell per group is interactive, and that is what makes the model SQL-standard rather than per-row mixing. A group has exactly one combinator, so the first row's cell is the static word "Where", the SECOND row's cell is the control that flips the whole group, and every later row echoes the result. Three editable "and"s down a column would imply three independent choices, and a query that mixed them would need precedence rules this model deliberately does not have.
+
+The control is a compact outlined button carrying the word and NOTHING ELSE. It has no disclosure caret, because a combinator is a two-value toggle and a caret would promise a list that does not exist; it no longer has the swap glyph that stood in for one either, because the glyph and the word were centred TOGETHER, which left the word about ten pixels to the left of the two static words in the same column. The outline is what says this one is pressable: it is the only box in the column, and the two static slots are plain muted text with none, because a word that looks pressable and is not is worse than no affordance. Its accessible name is `labels.combinatorLabel(word)`, which puts the word FIRST - the track is fixed and no fixed track fits every language, so a locale whose word overflows draws "a..." and a name of "Change combinator" alone would leave a pointer user unable to find out which of the two it says. Pressing it announces the group's new description through the live region, since the toggle rewrites a whole group and its own label is the only thing on screen that changes.
+
+#### Groups
+
+Mixing is what a nested GROUP is for. A group renders as a bordered card with its combinator pill OUTSIDE it on the leading edge, an eight-pixel drop strip at the top, its children, and a footer holding Add filter on the leading edge and the group's own grip and kebab on the trailing one. The pill is centred against the CARD, not against the card's first row: a group is taller than a condition, so centring is measured off the flex line the card sits on and stays right at every depth and at every number of children. There is no headline: "Any of the following are true..." said what the pill beside it already says, at ten times the width. The sentence survives as the card's accessible NAME through `labels.groupLabel`, and as the group's description in every announcement.
+
+Delete is in the group's kebab (`labels.removeGroup`), not inline in the footer. A destructive control in a nested footer is the one thing in the panel a pointer crosses on its way somewhere else.
+
+The card wears an inset RING rather than a border, and that is the whole answer to the trailing controls lining up. A border pushes the content edge inward by a pixel at every level, so the column of kebabs sloped away from the right edge the deeper you read. A ring is painted, not laid out, so a card nested three deep still ends exactly where the panel's content ends. Everything indentation costs is spent on the LEADING edge.
+
+Add filter appends to the ROOT group, a group's own add button appends into that group, and each appends a rule on the first pickable leaf field with its default operator already resolved, then opens the attribute picker on it. That differs from the chip flow deliberately: a row shows all of its cells at once, so an unset condition would draw a row with a hole in it.
+
+#### Nesting, and what happens at depth
+
+Groups nest to any depth over the same tree the chips read. Each level costs the combinator gutter beside the card plus the card's own leading padding, and the gutter is the expensive half and the one that COMPOUNDS.
+
+Below a threshold the group's row WRAPS: the combinator takes the line above the card instead of the column beside it, the level drops from about 76 pixels of indentation to six, and nothing else changes. It is a container query on the list a row actually sits in, not a viewport breakpoint and not a depth budget, because the same panel holds a 650px list at the top level and a 260px one three groups down. The threshold is what a row measures - a 4rem combinator track, four gaps and the trailing pair leave 134px gone before a cell draws anything - so a group whose own list is narrower than 26rem stops charging its children for the gutter.
+
+That is also the answer to extreme depth. Each level shrinks the next list until one falls under the threshold; every level after that costs six pixels, so the indentation converges rather than running off the side, and what deep nesting costs from there is vertical, which is the direction a panel can scroll. Measured on a three-deep query at panel widths from 1104px down to 260px, and at a real 375px phone viewport: the column of kebabs stays on ONE axis at every width, and nothing overflows the body.
+
+A cell sheds decoration before it sheds text. Below 7rem it drops its disclosure caret, below 5rem its attribute type icon: a caret says a list opens here, which the cell being a button already says, and an icon says what kind of attribute this is, which the name says better. The name is the thing that cannot be reconstructed from anything else on the row, and the full path is on the cell's `aria-label` and `title` regardless.
+
+#### The row menu
+
+One kebab per row, named `labels.chipMenu(fieldLabel)`, holding everything that can be done TO a condition:
+
+| Item                        | Label                                            | What it does                                                                                   |
+| :-------------------------- | :----------------------------------------------- | :--------------------------------------------------------------------------------------------- |
+| Duplicate                   | `labels.duplicate`                               | Copies the rule in place, the same edit an Alt-drag performs.                                  |
+| Negate                      | `labels.negate`                                  | Swaps the operator for its opposite where the catalog has one.                                 |
+| Wrap in group               | `labels.wrapInGroup`                             | Nests this rule in a NEW group. Builder only, and the whole keyboard path to `a AND (b OR c)`. |
+| Move to top / Move to group | `labels.moveToTopLevel`, `labels.moveToGroup(n)` | Moves it across groups through the same mutators a pointer drop uses. Builder only.            |
+| Remove                      | `labels.remove`                                  | Destructive, and last.                                                                         |
+
+The group's kebab (`labels.groupMenu`) carries Duplicate, Ungroup, the same Move to items, and a destructive Remove group. Both menus are sized `w-max min-w-32 max-w-[min(24rem,calc(100vw-2rem))]`, so an item is as wide as its own longest label and never wraps mid-word - `Remove condition group` used to render as `...dition group` on a second line, and English is the shortest case, so the German and Japanese labels in the i18n example are what this is measured against. The rows are short on purpose (`Ungroup`, `Move to top`), which is what makes an 8rem floor and an auto width read as a compact menu instead of a wide one drawn mostly empty; the upper bound is what keeps a long translation inside a narrow viewport. Past the cap the label TRUNCATES rather than wrapping, because a wrapped row changes height and moves every row under it - including the destructive one - out from under the pointer. Each label is a `span` with `min-w-0` and `truncate` on it, since a flex child's floor is its own content and `text-overflow` needs a block box to draw an ellipsis in.
+
+Both are `FILTER_MENU_CLASS`, exported, and `menuClassName` on the root is merged AFTER it, so a `w-*` of your own wins through tailwind-merge and reaches all four mount points at once - the chip's kebab, the builder's row and group kebabs, and any menu you compose from `FilterRuleMenuItems`. The attribute picker's panel is the same arrangement one class along: `FILTER_FIELD_PICKER_CLASS` is `w-auto` over a `min-w-56` floor, and `fieldPickerClassName` overrides it in both chromes that mount it.
+
+#### Validation
+
+The panel derives what is unfinished ONCE, from the whole query, through `collectFilterIssues`. Per row would be the obvious place and it is the wrong one: an empty group is a fact about a group and not about any row inside it, and the summary needs a count no single row can produce.
+
+| Reason             | Applies to                                              | Message                  |
+| :----------------- | :------------------------------------------------------ | :----------------------- |
+| `missing-operator` | A rule with no operator chosen                          | `labels.issueOperator`   |
+| `missing-value`    | An operator of arity `one` or `many` with nothing in it | `labels.issueValue`      |
+| `incomplete-range` | A `range` operator with only one bound                  | `labels.issueRange`      |
+| `reversed-range`   | A `range` whose end comes before its start              | `labels.issueRangeOrder` |
+| `empty-group`      | A non-root group with no children                       | `labels.issueEmptyGroup` |
+
+A group with exactly ONE child is deliberately not an issue: `(a)` is `a`, it compiles correctly, and flagging it would put a red ring on the intermediate state of every single nesting gesture. A rule whose field the schema no longer has is not judged at all, because it draws neither an operator cell nor a value cell, and a marker pointing at a control that is not on screen is a marker nobody can act on. It is already flagged as broken in its own way.
+
+**These reasons are REPORTED, not DRAWN.** `collectFilterIssues` returns all five so the predicate you compile and the panel read one answer, but the builder no longer marks any of them. Every one describes a row that is HALF BUILT, which is the normal state of a row somebody is filling in: pressing Add filter mints a condition with no value, so flagging it turned the happy path red, and error styling that fires when nothing is wrong is error styling people learn to ignore.
+
+What the builder draws is a field's own `validate` saying no - a rule the PRODUCT considers wrong, which is the only thing worth interrupting for. A schema with no validators shows no errors at all.
+
+It surfaces in three places:
+
+- **On the offending cell.** `aria-invalid`, a `data-invalid` styling hook, and the message as `aria-description` for a screen reader. The visible mark is an error icon INSIDE the value container with the sentence in a tooltip, plus a quiet ring on the cell - a ring and not a border, so a cell turning invalid does not nudge every cell beside it by a pixel.
+- **Only after the user has committed a value to that rule.** A saved query that opens with a failing value says nothing until it is edited, and re-picking a rule's attribute resets that - the message would otherwise be about a field they just navigated away from.
+- **In the live region**, on a RISE only, counting what is DRAWN rather than every issue the tree holds, and only when nothing else spoke for the same change. An add already announces its own count.
+- **In whatever you compile the query into**, from the same notion of complete rather than a parallel one. `isFilterRuleComplete` is the primitive's ONE completeness rule and it is exported, so the predicate you build and the panel read one answer instead of two implementations of it. `collectFilterIssues` is exported beside it for the whole list, already carrying the `nodeId` and the `column` each issue belongs to.
+
+There is NO panel-level summary button. A count in the footer was a second place to learn the same thing, phrased as a number, about rows that may be three groups down - and it existed to count the built-in reasons the panel no longer draws. `labels.issueSummary` survives for the live region and for a consumer building their own.
+
+`readOnly` does not gate any of it. The flag refuses writes, not reading, and a read-only view of a saved query is exactly where somebody needs to be told why it returns what it does.
+
+#### Reordering and drop targets
+
+**Reordering is OPT-IN.** Pass `reorderable` to the bar (or to `FiltersAdvanced` / `FiltersAdvancedPanel` directly) and rows grow a drag handle, accept a pointer drop, and move under `Alt+ArrowUp` / `Alt+ArrowDown`. Without it there is no handle, the arrow gesture is refused, and the row menu's Move to items are not drawn - all three routes answer to the one switch, so the capability is never off for a pointer and quietly on from a menu.
+
+It is off by default because reordering never changes what a query MEANS: a group is a set joined by one operator, so moving a condition inside its group returns the same rows in the same order. What it costs is a control on every row and a gesture a touch user can start by accident, which is a bad trade for the many builders whose rows are read rather than arranged. Turn it on where the ORDER is part of how people read the query.
+
+Even on, a handle is drawn only where a move could change the tree. The sole row at the root has nowhere to go - every other destination is inside it, and the slots left name the position it already occupies - so it gets none. A nested row always keeps its handle, because it can always move out to the top level.
+
+Reordering never changes depth from the keyboard. `Alt+ArrowUp` and `Alt+ArrowDown` move the focused row or group within its own parent; the row menu's Move to top and Move to group N move a condition across groups through the same mutators a pointer drop uses, Wrap in group nests it in a new group, and the group menu's Ungroup dissolves one. The same gesture on an arrow key would otherwise mean two different things depending on where the row happened to sit.
+
+A drop draws two answers, told apart by STYLE:
+
+| State            | Means                                 | Drawn as                                                                                                                          |
+| :--------------- | :------------------------------------ | :--------------------------------------------------------------------------------------------------------------------------------- |
+| `data-drop-edge` | Between two rows, `before` or `after` | A 2px INSERTION RULE across the list in the accent colour, centred on the boundary it names.                                       |
+| `data-drop-into` | Inside a group                        | A solid ring around the whole group CARD, over a faint wash.                                                                       |
+| `data-drop-noop` | A release that would change nothing   | Nothing. The source is already faded and blurred and no rule is drawn, which says "it stays here" without adding a mark to read.   |
+
+The insertion marker is a LINE rather than a box, and that follows from the geometry: rects are captured once at pointer-down, so a placeholder that pushed rows aside would leave every frozen hit-target a full row from where its row now appears. A line lives in the gap, which is empty by definition, so the list stays legible for the whole gesture and the picture never disagrees with where a release actually lands.
+
+Dashed is not used for either destination. It was, while the marker was a small pad distinguishable from a group outline by size; once the marker became row-wide, a dashed rule and a dashed card were the same picture at two scales. The group takes a solid ring - a boundary around something that exists - and the accent colour carries the line, which is the one place accent belongs, since a 2px rule in a neutral reads as one of the panel's own dividers. All of it is outlines and pseudo-elements: a real border would push every row below it by two pixels on every pointer move.
+
+The carry that follows the pointer is a real CLONE of the row at its own size, anchored so the point under the finger stays the point that was grabbed. It has no border, no ring and no shadow: it already contains the row's own controls, each with its own boundary, so a box around them is a second frame the original never had. An invalid carry takes a destructive ring, the only chrome it ever gains.
+
+### FilterAdvancedRow
+
+One rule as a row. Memoized.
+
+| Prop       | Type            | Default | Description                                                                                    |
+| :--------- | :-------------- | :------ | :--------------------------------------------------------------------------------------------- |
+| `rule`     | `FilterRule<V>` | -       | The rule to draw.                                                                              |
+| `position` | `RowPosition`   | -       | `{ index, parentId, combinator, depth }`, passed DOWN rather than read from the state context. |
+
+`position` is a prop and not a subscription on purpose: a row that read the query from context would re-render on every edit anywhere in it, which is the memoization this primitive is built on being given away.
+
+### FilterChip
+
+One rule as a chip. Memoized.
+
+| Prop    | Type            | Default | Description                                   |
+| :------ | :-------------- | :------ | :-------------------------------------------- |
+| `rule`  | `FilterRule<V>` | -       | The rule to draw.                             |
+| `index` | `number`        | -       | Position in the row, for the roving tabindex. |
+
+### FilterFieldPicker
+
+The attribute picker, fully controlled so the same picker serves both chromes.
+
+| Prop            | Type                                                        | Default | Description                                                                                |
+| :-------------- | :---------------------------------------------------------- | :------ | :----------------------------------------------------------------------------------------- |
+| `path`          | `string[]`                                                  | -       | The level being BROWSED. Not the chosen field.                                             |
+| `onPathChange`  | `(path: string[]) => void`                                  | -       | Fires on every level change.                                                               |
+| `query`         | `string`                                                    | -       | Controlled search text.                                                                    |
+| `onQueryChange` | `(query: string) => void`                                   | -       | Fires as the query changes.                                                                |
+| `onSelect`      | `(path: string[], defaultOperator: string \| null) => void` | -       | A field was chosen, with its starting operator already resolved.                           |
+| `maxHeight`     | `number`                                                    | `260`   | Viewport height before the list scrolls.                                                   |
+| `labels`        | `Partial<CascaderLabels>`                                   | -       | Cascader strings beyond the `FilterLabels` bridge (keyboard hint, level announcements).    |
+| `actions`       | `CascaderActionItem[]`                                      | -       | Pinned footer rows under the list ("Create custom field..."), kept out of the option ring. |
+
+The picker WINDOWS its rows (`CascaderVirtualItems`), so a 2,000 field level or a deep search over one keeps only the visible slice in the DOM; below the cascader's threshold it renders plain rows and small schemas pay nothing. The option menus deliberately do not window: their lists either page from a server or, under `pinSelected`, stack selected rows, and that stack needs the whole list mounted to carry the highlight across a live re-pin. The field schema itself is static and local by design, so a REMOTE schema is a custom-picker concern: compose one with `toCascaderNodes`, re-exported from `filters-builder`, plus the cascader's own `getChildren`, and commit through `onSelect`.
+
+### FilterOperatorPopover
+
+The condition menu, and the step after it: choosing a condition advances this SAME popover to the value editor rather than opening a second one anchored elsewhere. Every open starts on the condition list.
+
+| Prop        | Type                | Default | Description                                                                                                                                                                                                                                                                                        |
+| :---------- | :------------------ | :------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `rule`      | `FilterRule<V>`     | -       | The rule whose operator is being chosen.                                                                                                                                                                                                                                                           |
+| `field`     | `FilterField<V, O>` | -       | That rule's field, resolved.                                                                                                                                                                                                                                                                       |
+| `trigger`   | `ReactElement`      | -       | The element that opens it, with its own children, rather than a wrapper of the popover's own. That is what lets one implementation serve both chromes: a chip segment has to be a DIRECT child of its `ButtonGroup` for the pill to fuse, while an advanced cell is a bordered box in a grid cell. |
+| `className` | `string`            | -       | Applied to the popover content.                                                                                                                                                                                                                                                                    |
+
+There is deliberately no `FilterFieldPopover`. A chip's attribute is fixed for its lifetime; the advanced row re-picks with `FilterFieldPicker` instead.
+
+### FilterValuePopover
+
+Renders the resolved editor in a popover anchored to its trigger, holding the draft, for a value the user aims at directly. Returns the trigger alone when the operator takes no value.
+
+| Prop        | Type                          | Default | Description                                       |
+| :---------- | :---------------------------- | :------ | :------------------------------------------------ |
+| `rule`      | `FilterRule<V>`               | -       | The rule being edited.                            |
+| `field`     | `FilterField<V, O>`           | -       | That rule's field, resolved.                      |
+| `operator`  | `FilterOperator \| undefined` | -       | The current operator. Decides which editor opens. |
+| `trigger`   | `ReactElement`                | -       | The element that opens it, with its own children. |
+| `className` | `string`                      | -       | Applied to the popover content.                   |
+
+### FilterRuleMenuItems
+
+The per-rule actions (Duplicate, Negate, Remove) without the trigger that opens them, so a chip's kebab and a row's kebab share one implementation.
+
+| Prop            | Type      | Default | Description                                                           |
+| :-------------- | :-------- | :------ | :-------------------------------------------------------------------- |
+| `ruleId`        | `string`  | -       | The rule they act on.                                                 |
+| `allowGrouping` | `boolean` | `false` | Also offer Wrap in condition group. On in the builder, off on a chip. |
+
+The chip row leaves it off because a chip row has nowhere to draw the group the action would create, so the item would appear to do nothing. In the builder it is on, where it is the only way to nest an existing condition without dragging, and the same menu carries Move to top and Move to group N for a rule that already sits in one.
+
+### FilterMenu
+
+The one accessible list behind the operator menu and every option editor. It is the cascader, configured.
+
+| Prop                | Type                                                                                   | Default  | Description                                                                                             |
+| :------------------ | :------------------------------------------------------------------------------------- | :------- | :------------------------------------------------------------------------------------------------------ |
+| `items`             | `FilterListItem[]`                                                                     | -        | The rows: `{ value, label, icon?, description?, keywords?, disabled? }`.                                |
+| `selected`          | `string[]`                                                                             | -        | Committed values. Drives the check mark, and the pinned group when pinned.                              |
+| `multiple`          | `boolean`                                                                              | `false`  | Several picks, with the panel staying open.                                                             |
+| `onSelectionChange` | `(values: string[]) => void`                                                           | -        | Receives the FULL next selection, so no caller re-derives it.                                           |
+| `labels`            | `FilterLabels`                                                                         | -        | Chrome copy for the panel.                                                                              |
+| `ariaLabel`         | `string`                                                                               | -        | Names the listbox and the panel.                                                                        |
+| `searchPlaceholder` | `string`                                                                               | -        | Overrides `labels.searchOptions`.                                                                       |
+| `searchable`        | `boolean`                                                                              | `true`   | Whether the search field is VISIBLE. It is always rendered; it owns the keyboard.                       |
+| `maxHeight`         | `number`                                                                               | `256`    | Viewport height before the list scrolls.                                                                |
+| `pinSelected`       | `boolean`                                                                              | `false`  | Pin selected rows above the rest, re-partitioned live, with a rule between groups.                      |
+| `sortSelected`      | `"none" \| "label" \| "snapshot"`                                                      | `"none"` | Order INSIDE each group: the schema's, alphabetical, or the schema's with the partition frozen at open. |
+| `preFiltered`       | `boolean`                                                                              | `false`  | The caller already applied the query, so the list must not filter a second time.                        |
+| `autoFocusProps`    | `FilterEditorProps["autoFocusProps"]`                                                  | -        | Spread onto the search field.                                                                           |
+| `query`             | `string`                                                                               | -        | Controlled search text. Pair with `onQueryChange`.                                                      |
+| `onQueryChange`     | `(query: string) => void`                                                              | -        | Fires as the query changes.                                                                             |
+| `state`             | `Pick<FilterOptionsState, "loading" \| "error" \| "hasMore" \| "loadMore" \| "retry">` | -        | Async chrome, when the caller has an option service.                                                    |
+
+### FilterLabels
+
+Every user-facing string comes from `labels`, and operator wording from `operatorLabels`. They are two surfaces on purpose: chrome copy is translated once per app, while operator wording is routinely reworded per domain without touching anything else. Pass a partial; the merge is SHALLOW, so replacing a function-valued label replaces it whole rather than leaving the default to leak back in for the arguments you did not think about.
+
+```tsx
+<Filters
+  fields={fields}
+  labels={{
+    addFilter: "Filter hinzufügen",
+    where: "Wo",
+    and: "und",
+    or: "oder",
+  }}
+  operatorLabels={{ contains: "enthält", is: "ist" }}
+/>
+```
+
+| Key                               | Default                                                                                | Where it reads                                                                                                                                                                                                                                                           |
+| :-------------------------------- | :------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `addFilter`                       | `"Add filter"`                                                                         | The chip row's Add filter trigger.                                                                                                                                                                                                                                       |
+| `advancedFilter`                  | `"Advanced filter"`                                                                    | THREE things, all of them programmatic: the accessible name of the builder's trigger, of the popup that trigger opens (a `role="dialog"` that would otherwise announce as "dialog" and nothing else), and of the panel itself. The panel has no visible title.           |
+| `showRecords`                     | `"In this view, show records"`                                                         | Read by NOTHING in the shipped chrome. It was the builder's subtitle until the panel lost its header, and it is kept, translated and published because a consumer heading their own panel wants exactly that sentence.                                                   |
+| `builderEmpty`                    | `"No filters yet"`                                                                     | The advanced builder's own empty state, shown when the query has no conditions. Always shown, including under `readOnly`.                                                                                                                                                |
+| `builderEmptyHint`                | `"Add a filter to narrow down what you see."`                                          | The line under it. Withheld under `readOnly`, where the two buttons it points at are disabled.                                                                                                                                                                           |
+| `selectPlaceholder`               | `"Select..."`                                                                          | The empty word for an OPTION-backed value. A select is picked from, not typed into, so `valuePlaceholder` would name the one interaction it does not offer.                                                                                                              |
+| `moveAnnouncement`                | `` (label, destination, position, total) => `${label} moved into ${destination}, position ${position} of ${total}` `` | A cross-group move. The destination comes first, because it is the half a plain reorder cannot say and the half the user cannot see once the row has stopped moving.                                                                                                     |
+| `issueOperator`                   | `"Choose a condition"`                                                                 | The `missing-operator` sentence. REPORTED, not drawn - the builder no longer marks the built-in reasons, so this is for a consumer rendering `collectFilterIssues` themselves.                                                                                           |
+| `issueValue`                      | `"Enter a value"`                                                                      | The `missing-value` sentence. Same: reported rather than drawn.                                                                                                                                                                                                          |
+| `issueRange`                      | `"Enter both ends of the range"`                                                       | The `incomplete-range` sentence. Same.                                                                                                                                                                                                                                   |
+| `issueRangeOrder`                 | `"The end of the range comes before its start"`                                        | The `reversed-range` sentence. Same.                                                                                                                                                                                                                                     |
+| `issueEmptyGroup`                 | `"This group has no conditions yet"`                                                   | The `empty-group` sentence. Same.                                                                                                                                                                                                                                        |
+| `addCondition`                    | `"Add filter"`                                                                         | Appends to the ROOT group, from the builder's footer.                                                                                                                                                                                                                    |
+| `addConditionGroup`               | `"Add group"`                                                                          | Appends an empty nested group.                                                                                                                                                                                                                                           |
+| `addToGroup`                      | `"Add filter to this group"`                                                           | A group footer's own add button. The LONG form of a short visible label, which is the way round WCAG's Label in Name asks for.                                                                                                                                           |
+| `removeGroup`                     | `"Remove group"`                                                                       | A group's own menu, last and destructive.                                                                                                                                                                                                                                |
+| `wrapInGroup`                     | `"Wrap in group"`                                                                      | Row menu. Nests a condition in a NEW group.                                                                                                                                                                                                                              |
+| `ungroup`                         | `"Ungroup"`                                                                            | A group's own menu. The inverse of `wrapInGroup`, and the pair keeps the noun so the two read as a pair.                                                                                                                                                                 |
+| `moveToTopLevel`                  | `"Move to top"`                                                                        | Row menu. Moves a nested condition to the root group.                                                                                                                                                                                                                    |
+| `moveToGroup`                     | `` (position) => `Move to group ${position}` ``                                        | Row menu. Groups numbered in document order, one-based.                                                                                                                                                                                                                  |
+| `reorder`                         | `"Reorder"`                                                                            | A row's or a group's drag handle.                                                                                                                                                                                                                                        |
+| `reorderHint`                     | `"Press Alt with Arrow Up or Arrow Down to reorder"`                                   | The drag handle's description, teaching the Alt+Arrow model.                                                                                                                                                                                                             |
+| `groupAll`                        | `"All of the following are true..."`                                                   | A group's DESCRIPTION when its combinator is `and`. There is no visible headline: the sentence is the card's accessible name through `groupLabel`, and the group's description in every announcement.                                                                    |
+| `groupAny`                        | `"Any of the following are true..."`                                                   | And when it is `or`.                                                                                                                                                                                                                                                     |
+| `groupPlaceholder`                | `"Drag filters here"`                                                                  | Inside a group holding nothing yet.                                                                                                                                                                                                                                      |
+| `rowLabel`                        | `` (condition, depth) => `${condition}, level ${depth}` ``                             | One builder row. The depth is in the NAME because indentation shows nesting on screen and nothing at all to a screen reader.                                                                                                                                             |
+| `groupLabel`                      | `` (description, depth) => `${description} level ${depth}` ``                          | One group, for the same reason.                                                                                                                                                                                                                                          |
+| `groupAnnouncement`               | `(added) => added ? "Group added" : "Group removed"`                                   | The live region after a group is added or removed. One key, both directions, because a group's removal takes an unknown number of conditions with it and a count alone does not say what happened.                                                                       |
+| `reorderAnnouncement`             | `` (label, position, total) => `${label} moved to position ${position} of ${total}` `` | The live region after a reorder, Alt+Arrow and a pointer drop alike. One-based `position`, and the only edit with nothing else to speak for it.                                                                                                                          |
+| `clearAll`                        | `"Clear all"`                                                                          | The advanced panel's footer.                                                                                                                                                                                                                                             |
+| `convertToAdvanced`               | `"Advanced editor"`                                                                    | A chip kebab's route to the builder. Drawn only when `onConvertToAdvanced` is supplied, and never while `variant` is already `"advanced"`.                                                                                                                               |
+| `groupMenu`                       | `"Group options"`                                                                      | A nested group's kebab. A third name beside `chipMenu` on purpose: a reader must not hear the same button twice in one panel.                                                                                                                                            |
+| `combinatorLabel`                 | `` (word) => `${word}, change combinator` ``                                           | The combinator pill's accessible name and its `title`. The WORD first, because the track is fixed and a locale whose word overflows draws "a...".                                                                                                                        |
+| `issueSummary`                    | `` (count) => `${count} rows need attention` ``                                        | The validation button in the panel footer. "Row" rather than "condition", because an empty group is counted here too and a group is not a condition.                                                                                                                     |
+| `searchFields`                    | `"Search attributes..."`                                                               | The attribute picker's search field.                                                                                                                                                                                                                                     |
+| `searchOperators`                 | `"Search operators..."`                                                                | The operator menu's search field.                                                                                                                                                                                                                                        |
+| `searchOptions`                   | `"Search..."`                                                                          | An option editor's search field, when the field sets no placeholder.                                                                                                                                                                                                     |
+| `back`                            | `"Back"`                                                                               | The attribute picker's back control, and a custom wizard panel's.                                                                                                                                                                                                        |
+| `clear`                           | `"Clear"`                                                                              | The chip row's Clear button.                                                                                                                                                                                                                                             |
+| `apply` / `discard`               | `"Apply"` / `"Discard changes"`                                                        | An amend-host editor's confirm and cancel. On the single-input editors the pair is drawn as two icon buttons fused onto the field, and these are their accessible names.                                                                                                 |
+| `empty`                           | `"No results"`                                                                         | An empty list.                                                                                                                                                                                                                                                           |
+| `loading`                         | `"Loading..."`                                                                         | A list waiting on its first page.                                                                                                                                                                                                                                        |
+| `loadingMore` / `loadMore`        | `"Loading more..."` / `"Load more"`                                                    | The paging row, fetching and at rest.                                                                                                                                                                                                                                    |
+| `error` / `retry`                 | `"Could not load"` / `"Retry"`                                                         | A failed request, and the retry command.                                                                                                                                                                                                                                 |
+| `where`                           | `"Where"`                                                                              | The leading word before a group's first condition.                                                                                                                                                                                                                       |
+| `and` / `or`                      | `"And"` / `"Or"`                                                                       | The combinator word in the builder. Capitalized like `where` beside it: the leading column holds three things at three widths - `Where`, the echoed word and the pill - and they are the labels of one control column, not words in a sentence. The chip row draws none. |
+| `combinator`                      | `"Change combinator"`                                                                  | The combinator toggle.                                                                                                                                                                                                                                                   |
+| `duplicate` / `negate` / `remove` | `"Duplicate"` / `"Negate"` / `"Remove"`                                                | Rule menu, and a row's delete button.                                                                                                                                                                                                                                    |
+| `chipMenu`                        | `` (label) => `${label} filter options` ``                                             | A chip's and a row's kebab. Different from `groupMenu` on purpose: one acts on a rule and one on a whole group, and a reader must not hear the same button twice in one panel.                                                                                           |
+| `filtersLabel`                    | `"Filters"`                                                                            | The chip row toolbar.                                                                                                                                                                                                                                                    |
+| `filterLabel`                     | `(condition) => condition`                                                             | One chip, given the rendered condition.                                                                                                                                                                                                                                  |
+| `readOnly`                        | `"Read only. These filters cannot be changed."`                                        | How a read-only bar says so: the chip row toolbar's `aria-description`, and a visible line in the advanced panel.                                                                                                                                                        |
+| `pathSeparator`                   | `" > "`                                                                                | Between ancestors in a nested path, as TEXT. On screen the separator is a decorative chevron; this string joins the chip's accessible name, its `title` and the builder's truncated attribute cell.                                                                      |
+| `valuePlaceholder`                | `"enter text..."`                                                                      | A value segment with nothing in it yet, and the value editor's own input, when the field declares no `placeholder`.                                                                                                                                                      |
+| `noValue`                         | `"no value"`                                                                           | Spoken in place of the value in an empty chip's NAME.                                                                                                                                                                                                                    |
+| `selectCondition`                 | `"Select condition"`                                                                   | An operator segment before a condition is chosen.                                                                                                                                                                                                                        |
+| `incomplete`                      | `"incomplete filter"`                                                                  | Appended to the accessible name of a chip that still has no condition.                                                                                                                                                                                                   |
+| `branchAffordance`                | `"opens a list"`                                                                       | Appended to a branch row's accessible name in the picker.                                                                                                                                                                                                                |
+| `exclusiveHint`                   | `"cannot be combined with the other options"`                                          | Appended to an [exclusive](#filters-none-option) option row's accessible name, before the press. Set it to `""` to render nothing.                                                                                                                                       |
+| `exclusiveAnnouncement`           | `` (label, cleared) => `${label} selected. ${cleared} other selections cleared.` ``    | Announced after an exclusive pick clears the others, or an ordinary pick clears the exclusive one. The one-cleared case reads "1 other selection cleared".                                                                                                               |
+| `itemCount`                       | `` (count) => `${count} items` ``                                                      | A branch row's trailing count in the picker.                                                                                                                                                                                                                             |
+| `fieldsLabel`                     | `"Attributes"`                                                                         | The picker's root level and its panel.                                                                                                                                                                                                                                   |
+| `resultsAnnouncement`             | `` (count) => `${count} results` ``                                                    | The live region as a query narrows the picker or an option list. Pluralises at one.                                                                                                                                                                                      |
+| `actionsLabel`                    | `"Actions"`                                                                            | An option menu's footer (Load more, Retry), and the picker's when it has one.                                                                                                                                                                                            |
+| `stepAnnouncement`                | `(step, label) => string`                                                              | For a consumer-composed create wizard. The shipped flow commits on field selection and announces counts instead, so this is headless surface rather than chrome copy.                                                                                                    |
+| `countAnnouncement`               | `` (count) => `${count} filters applied` ``                                            | The live region after an add, a remove or a clear. Pluralises at one.                                                                                                                                                                                                    |
+| `valueCount`                      | `` (count) => `${count} selected` ``                                                   | The default display for a multi-value rule.                                                                                                                                                                                                                              |
+| `valueDetail`                     | `` (summary, values) => `${summary}: ${values.join(", ")}` ``                          | The list behind that count, for the value control's `title` and for its accessible name while the bar is locked. Takes the summary as well, so the composed string still contains the visible text.                                                                      |
+| `valueRange`                      | `` (from, to) => `${from} to ${to}` ``                                                 | The default display for a range.                                                                                                                                                                                                                                         |
+| `rangeFrom` / `rangeTo`           | `` (label) => `${label} from` `` / `` (label) => `${label} to` ``                      | The range editor's two bounds.                                                                                                                                                                                                                                           |
+| `rangeSeparator`                  | `"to"`                                                                                 | The word drawn between the range editor's inputs.                                                                                                                                                                                                                        |
+| `negated`                         | `` (label) => `not ${label}` ``                                                        | Wraps the operator label on a negated rule.                                                                                                                                                                                                                              |
+
+Two strings are outside `FilterLabels` on purpose. The boolean editor's "True" and "False" are constants, because the chip's own display spells the same two words and a key read from two places that must agree is one more thing to keep in step. And the attribute picker is a cascader with a labels bridge: its search placeholder, back control, empty state, path separator, branch counts and results announcement all read from `FilterLabels`, so one `labels` prop translates it with the rest of the chrome, while the deeper cascader strings it does not mirror are translated through `FilterFieldPicker`'s own `labels` prop.
+
+### Hooks
+
+Inside `children`, these are how a custom bar reads and writes the same state the shipped chromes do. `useFilterRuleDisplay` in particular gives you the same path, operator and value text both chromes render, so a custom chip cannot disagree with a built-in row about how one rule reads.
+
+| Hook                                            | Returns                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| :---------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `useFilterActions<V, O>()`                      | The stable action set (`addRule`, `addGroup`, `updateRule`, `removeNode`, `duplicateNode`, `negateRule`, `moveNode`, `moveNodeTo`, `copyNodeTo`, `wrapNodeInGroup`, `unwrapGroup`, `setCombinator`, `toggleCombinator`, `clearQuery`, plus the draft actions `openCreate`, `openAmend`, `closeDraft` and `dispatchDraft`), and alongside it `index`, `labels`, `operatorCatalog`, `editors`, `size`, `disabled`, `readOnly`, `resolveOperators`, `resolveEditor`, `resolution`, `getQuery`, `getDraft` and `nextId`. Stable across edits and keystrokes, so it is safe in a dependency array: it republishes only when the schema or a config prop changes, `disabled` and `readOnly` included. |
+| `useFilterState<V>()`                           | `{ query, draft, ruleCount, announcement }`. Volatile: it republishes on every edit.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `useFilterFocus()`                              | `{ id, segment, autoOpen }` from the external focus store, subscribed with `useSyncExternalStore`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `useFilterRuleDisplay(rule, field, operator)`   | `{ pathText, pathLabel, operatorLabel, valueLabel, valueText, valueFullText, valueEmpty }`. `valueLabel` is what is drawn (a `renderValue` node when the field supplies one); `valueText` is always the plain-text form, which is what the accessible names are built from; `valueFullText` is that text with a collapsed count spelled out through `labels.valueDetail`, and the same string again when there was nothing to spell out.                                                                                                                                                                                                                                                        |
+| `useFilterOptions(field, enabled, debounceMs?)` | A `FilterOptionsState`. `enabled` gates the fetch, so a chip that only needs a label costs no request. Everything an instance learns is shared through the root's resolution store, so a label the editor fetched is readable by the chip's display instance.                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `useFilterValueResolution(field, values)`       | Resolves committed values no loaded page has covered through the field's `resolveValues`, into the shared store, once per root however many chips hold them. The display path calls it for you; call it yourself from a custom chip.                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `useFilterChipFocused(id)`                      | Whether this rule owns the row's tab stop. For a custom `renderChip`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `useFilterChipAutoOpen(id)`                     | The segment of THIS chip that should open itself, or null. Consume it by writing `autoOpen: false` back.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `useFilterSegmentFocus(id)`                     | Which segment of this rule owns the tab stop. The advanced row's (row, column) half.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `useFilterFocusEmpty()`                         | Whether the row holds no focus at all, which is when the FIRST chip is the fallback tab stop.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `useFilterFocusStore()`                         | The store itself, for event handlers that write without subscribing.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `useFilterRender()`                             | The `renderValue` / `renderChip` overrides, on their own channel.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+
+Two plain helpers ship beside them, so a chrome composed through `children` draws the locked state exactly as the shipped one does rather than inventing a second answer.
+
+| Helper                         | Returns                                                                                                                                                                                                                                                                                    |
+| :----------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `isFilterLocked(actions)`      | Whether the bar refuses every mutation, whichever flag caused it. The same predicate the mutators are gated on.                                                                                                                                                                            |
+| `filterReadOnlyProps(actions)` | `{ "aria-disabled": true, "data-readonly": "" }` while the bar is read only, and `null` otherwise, including while it is disabled, where the native attribute already says it. Spread it onto a mutating control that should stay focusable; keep `disabled={actions.disabled}` beside it. |
+
+### Right to left
+
+The chip row's arrow keys and the advanced grid's are logical, not physical: under `dir="rtl"` the forward and backward keys swap. The value check mark inside every menu is pinned with logical properties, so it stays on the inline end without a mirror.
+
+### Development warnings
+
+Logged once each, in development only, and never thrown: a schema arriving from a server should degrade to a usable picker rather than blank the page.
+
+| Warning                                                      | Cause                                                  |
+| :----------------------------------------------------------- | :----------------------------------------------------- |
+| `duplicate sibling field ids are ignored after the first`    | Two siblings share an `id`. Only the first is indexed. |
+| `every field needs a non-empty id`                           | A field's `id` is `""`.                                |
+| `defaultOperator names an operator the field does not offer` | The default falls back to the first visible operator.  |
+
+## Keyboard
+
+### Chip row
+
+The row is a toolbar with a roving tabindex, so it is ONE tab stop no matter how many filters it holds. Keys pressed inside an open popover belong to that popover, so none of these fires while a menu or an editor is up.
+
+| Key                    | Action                                                                                                  |
+| :--------------------- | :------------------------------------------------------------------------------------------------------ |
+| `Tab`                  | Enter the row, at the focused chip or the first one.                                                    |
+| `→` / `←`              | Next or previous chip. Mirrored under `dir="rtl"`.                                                      |
+| `Alt` + `→` / `←`      | Move the focused filter along the row.                                                                  |
+| `Home` / `End`         | First or last chip.                                                                                     |
+| `Enter` / `Space`      | Resume the focused filter at its unfinished step: the condition while it has none, otherwise the value. |
+| `Backspace` / `Delete` | Remove the focused filter. Focus moves to the chip that takes its place.                                |
+
+### Menus and option editors
+
+The operator menu and every option-backed editor are the cascader run flat, so they inherit its keyboard whole.
+
+| Key       | Action                                                                                      |
+| :-------- | :------------------------------------------------------------------------------------------ |
+| `↓` / `↑` | Move between rows.                                                                          |
+| `Enter`   | Commit the highlighted row.                                                                 |
+| `Esc`     | Close the panel, leaving the filter as it was. Focus returns to the segment it opened from. |
+| a-z       | Typeahead, and typing narrows the list even when the search field is hidden.                |
+| `Tab`     | Move to the panel's footer commands, when the list has any.                                 |
+
+### Text, number and range editors
+
+| Key     | Action                                                                                  |
+| :------ | :-------------------------------------------------------------------------------------- |
+| `Enter` | Commit the draft and close. Ignored mid-composition, so an IME candidate is not stolen. |
+| `Esc`   | Discard the draft and close. The event stops there, so a surrounding dialog stays open. |
+
+### Advanced builder
+
+The builder keeps ONE tab stop for the whole tree, however deep it goes, which is what stops a builder of six rows from being thirty tab presses deep before the footer.
+
+| Key                     | Action                                                                                                                                                          |
+| :---------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `→` / `←`               | Next or previous cell in the row, stopping at its ends. Mirrored under `dir="rtl"`.                                                                             |
+| `↓` / `↑`               | The same COLUMN in the next row of the same band, or the nearest column that row actually has.                                                                  |
+| `Alt` + `↓` / `↑`       | Move the row up or down INSIDE its own group. A whole group moves the same way.                                                                                 |
+| `Home` / `End`          | First or last cell in the row.                                                                                                                                  |
+| `Ctrl` + `Home` / `End` | First cell of the first row, or last cell of the last row.                                                                                                      |
+| `Backspace` / `Delete`  | Remove the row, or the whole group when one of its own cells holds focus. Focus moves to the row that takes its place, or to Add filter when the last row goes. |
+
+Vertical movement is by column NAME rather than by position, because rows are ragged: the first row of a group draws no combinator control, an `arity: "none"` rule draws no value cell, a group draws an add button and no operator, so a positional index would drift one column per ragged row. The columns sit in two BANDS, content (`combinator`, `field`, `operator`, `value`) and actions (`drag`, `menu`, `add`, `remove`), and the fallback searches the source cell's own band first, so ArrowDown from a value cell can never land on a group's delete button. Within a band, backward wins a tie.
+
+Each band is walked in the order its CELLS are painted, not in the order the rows appear in the document, and the two stopped being the same thing when the group's controls moved to its footer. A group's row element opens before the rows it holds, while its own grip, kebab and add button now close after them - so a row walk sent ArrowDown backwards up the panel, measured at two of five presses on a three-deep query. Reading the cells instead needs no traversal and no geometry, because the document already holds the answer: a group's footer cells come after its children's and its combinator comes before them. Rows with no cell in the current band are simply not in it, so ArrowDown from a value cell lands on the next VALUE below rather than on a group's footer button a whole card further down.
+
+One key never reaches the builder at all: a menu button owns ArrowDown, which is how every menu button opens, so the row menu opens rather than moving the tab stop down a row.
+
+## Accessibility
+
+- The advanced builder is a tree of `role="group"` elements, one per condition and one per group, with a roving tabindex over their cells. It is deliberately NOT a `role="grid"`: rows sit at four different depths, and a grid whose rows disagree about their column count is one no assistive technology can describe. A row keeps its value cell even when the operator takes no value, holding nothing, because dropping the box would shift the trailing buttons into the value column on that row alone.
+- The chip row is a `role="toolbar"` named by `labels.filtersLabel`, with a roving tabindex. Each chip is a `role="group"` whose accessible name is `labels.filterLabel(condition)`, built from the resolved path, the operator and the value text, so a screen reader hears the whole condition rather than three unrelated buttons.
+- Every INTERACTIVE chip segment is a real `<button>` and a direct child of the group, which is what fuses the pill visually and why there is no button nested inside a button anywhere in a chip. The attribute segment is not one of them: it is plain text, because a chip's attribute cannot be changed, and a button that only reads back what it says costs a screen reader user a press for nothing.
+- The value segment is named by `valueText` rather than by its own contents, because the contents are whatever the field chose to draw: a row of avatars, color dots, a "+2" badge. A button whose name is "plus two" tells a screen reader nothing about the two people it stands for.
+- A chip whose condition has not been chosen yet carries `data-incomplete`, a dashed outline and `labels.incomplete` appended to its accessible name. It is kept rather than removed, and left out of `flattenFilterConditions`, so a rule that filters nothing can neither disappear silently nor pass for one that filters something. The value segment is not rendered before a condition is chosen, and not at all for an `arity: "none"` operator, so nothing announces an input that cannot be filled.
+- The operator menu and every option editor are the cascader, so they carry its combobox roles, `aria-activedescendant` navigation, typeahead, RTL keys and its own visually hidden live region. Each list is named after the field it belongs to, so a reader hears "Priority" rather than a generic "Options", and selection is marked with a check in single and multi select alike, drawn in the gutter every style already reserves. The check's color is pinned, because the shared row style repaints descendant icons on the highlighted row and a selection mark is state rather than decoration.
+- `searchable: false` hides the search field VISUALLY and never removes it: that input owns focus and `aria-activedescendant` for the list, so removing it would take the whole keyboard with it. Typing still narrows the list, exactly as typing into a native `<select>` does.
+- A group rule, whether it divides the stack from the rest or the exclusive row from everything above it, is a decorative, `aria-hidden` mark rather than a separator NODE, and paging and retry are real buttons in the panel footer rather than option rows. A node in either position would join the option ring: counted by typeahead, filtered away by a query, and announced as a row.
+- An [exclusive](#filters-none-option) option row appends `labels.exclusiveHint` to its accessible NAME, because the rule that sets it apart is exactly the decorative `aria-hidden` mark above. Without the suffix a screen reader hears a row identical to its neighbours and then loses four selections to it, which is the surprise the rule exists to prevent, delivered to the people least able to recover from it. It is said before the press, not after, and it is a text node inside the row rather than an `aria-describedby`, so it arrives with the label rather than late or not at all. The rows it hides behind a `sr-only` class and nothing else, so `:has([data-slot=filter-menu-exclusive-hint])` is also how you style the row.
+- The CLEARING is announced afterwards through the bar's polite live region with `labels.exclusiveAnnouncement`, because nothing else reports it: the row that was pressed keeps its name, the search box keeps its text, focus never moved, and the check marks that vanished are on rows nobody is reading. An ordinary additive pick announces nothing, since the row the user is on says it itself, and so does toggling the exclusive row back off, which clears nothing.
+- The attribute cell's accessible name carries the FULL path even though the cell truncates it, because "Primary loca... > State" identifies nothing.
+- A `readOnly` bar stays navigable, which is the whole point of the flag: its mutating controls keep their tab stops and carry `aria-disabled` rather than the native attribute, exactly as the cascader's commands do, because the ARIA authoring practices ask a toolbar to keep its unavailable controls discoverable and because the builder's roving tab stop would otherwise sit on an element nothing can focus. `disabled` is the flag that takes the controls out of the tab order.
+- The builder never leaves focus on the document. Every route that destroys the control holding it - a menu item, Clear all removing itself, `Delete` on the last row - ends with focus back on the roving tab stop's cell, then on the first cell in the builder, then on Add filter, which is the one control that exists at every query. A menu restores focus to its trigger on close, and each of those actions unmounts that trigger in the same commit, so the restore lands on nothing. It is guarded three ways, because moving focus unasked is its own bug: it runs only after a committed change, only when the panel held focus going into it, and only when focus actually ended up nowhere. A user who clicks another control keeps it.
+- The roving tab stop is repaired against the COMMITTED query, once, wherever the change came from. A store naming a node that no longer exists is neither "focused" nor "empty", so the fallback that re-pins row one never fired and every cell stayed at `tabIndex="-1"`. That covers the mutators and, more importantly, a consumer's own `setQuery`: a Reset button, a saved view or an undo replaces the whole tree without going through any mutator at all.
+- A `readOnly` bar also has to stay READABLE, which is a second thing. A value control that cannot open its editor is named with the whole list rather than the count standing in for it, so "2 selected" does not become the end of the road, and a refused action never moves the roving tab stop onto something that was not created: an add the boundary turns down mints no id and hands the focus store nothing, because a store pointing at a row that does not exist leaves every cell at `tabIndex="-1"` and takes `Tab` away from the one person the flag exists for.
+- Adding, removing and clearing announce the new count through a polite live region using `labels.countAnnouncement`, and a group announces `labels.groupAnnouncement` instead, because a group's removal takes an unknown number of conditions with it. A reorder announces `labels.reorderAnnouncement`, since it is the one edit that changes neither the count nor where focus sits.
+- The panel is named by `labels.advancedFilter` and DESCRIBED by its own rule count, so a reader who merely arrives at a saved query is told what is in it. The count used to reach assistive technology only through the default popover trigger's badge, which meant inline mode said nothing and a consumer-supplied trigger dropped it, and the live region only speaks on a change. In popover mode the popup carries the same name as the panel, because a `role="dialog"` with no name announces as "dialog"; the trigger's name carries the count as a sentence (`labels.countAnnouncement`) while the badge itself is `aria-hidden`, since a bare numeral read out after a label says what it counts to nobody. Under `readOnly` the panel's description carries `labels.readOnly` as well, which is the same sentence the visible line shows: `aria-readonly` is not allowed on `role="group"`, and a description is both legal and spoken on entry.
+- A rule whose field the schema no longer has renders as a removable stub rather than vanishing. Dropping it silently would lose a saved view's data on a schema change, and rendering nothing would leave an invisible condition still filtering the data. It is a real drop TARGET like any other row, so it draws the same drop indicator: the slot beside it was resolvable long before it was visible, which meant a row could land somewhere the user was never shown.

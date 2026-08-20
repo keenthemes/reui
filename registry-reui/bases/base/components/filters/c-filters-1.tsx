@@ -1,777 +1,664 @@
 "use client"
 
-import { useCallback, useState } from "react"
+import { useState } from "react"
+import { Filters } from "@/registry-reui/bases/base/reui/filters/filters"
 import {
-  createFilter,
-  Filters,
-  type Filter,
-  type FilterFieldConfig,
-} from "@/registry-reui/bases/base/reui/filters"
+  createFilterQuery,
+  createFilterRule,
+} from "@/registry-reui/bases/base/reui/filters/filters-query"
+import type {
+  FilterField,
+  FilterOption,
+  FilterQuery,
+} from "@/registry-reui/bases/base/reui/filters/filters-types"
 
 import { cn } from "@/registry/bases/base/lib/utils"
 import {
   Avatar,
   AvatarFallback,
+  AvatarGroup,
   AvatarImage,
 } from "@/registry/bases/base/ui/avatar"
-import { Button } from "@/registry/bases/base/ui/button"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
-// Priority icon component
-const PriorityIcon = ({ priority }: { priority: string }) => {
-  const colors = {
-    low: "bg-green-500",
-    medium: "bg-yellow-500",
-    high: "bg-violet-500",
-    urgent: "bg-orange-500",
-    critical: "bg-red-500",
-  }
+/* -------------------------------------------------------------------------- */
+/*                                  Fixtures                                  */
+/* -------------------------------------------------------------------------- */
+
+function Dot({ className }: { className: string }) {
+  return <span className={cn("size-2 shrink-0 rounded-full", className)} />
+}
+
+/**
+ * Priority's swatch, and the reason it is a star rather than a second `Dot`:
+ * Status and Priority are both "pick some of a short list", so drawing both
+ * with a coloured circle made one chip read as the other. A rank is not a
+ * state.
+ *
+ * OUTLINE in all five icon sets, deliberately. lucide, tabler and hugeicons
+ * draw their star with a stroke and would take a `fill-current`, but phosphor
+ * and remixicon draw theirs as an already filled RING, which no class can
+ * solidify. Filling would therefore give three libraries a solid star and two a
+ * hollow one, so all five stay hollow.
+ *
+ * The colour arrives with its own `!`, and the paths are pinned to inherit it,
+ * because every style sheet repaints a highlighted row's descendants with
+ * `color: var(--accent-foreground)` at a specificity no plain utility beats.
+ * Unpinned, the star greys out under the cursor, and each path's `currentColor`
+ * resolves against the repaint rather than against the star. Dots never met
+ * this: a `bg-*` swatch has no `color` to repaint.
+ */
+function Star({ className }: { className: string }) {
   return (
-    <div
-      className={cn(
-        "size-2.25 shrink-0 rounded-full",
-        colors[priority as keyof typeof colors]
-      )}
+    <IconPlaceholder
+      lucide="StarIcon"
+      tabler="IconStar"
+      hugeicons="StarIcon"
+      phosphor="StarIcon"
+      remixicon="RiStarLine"
+      className={cn("shrink-0 **:text-inherit!", className)}
     />
   )
 }
 
-const countryFlags = [
-  { code: "AF", name: "Afghanistan" },
-  { code: "AL", name: "Albania" },
-  { code: "DZ", name: "Algeria" },
-  { code: "AS", name: "American Samoa" },
-  { code: "AD", name: "Andorra" },
-  { code: "AO", name: "Angola" },
-  { code: "AI", name: "Anguilla" },
-  { code: "AG", name: "Antigua and Barbuda" },
-  { code: "AR", name: "Argentina" },
-  { code: "AM", name: "Armenia" },
-  { code: "AU", name: "Australia" },
-  { code: "AT", name: "Austria" },
-  { code: "AZ", name: "Azerbaijan" },
-  { code: "BS", name: "Bahamas" },
-  { code: "BH", name: "Bahrain" },
-  { code: "BD", name: "Bangladesh" },
-  { code: "BB", name: "Barbados" },
-  { code: "BY", name: "Belarus" },
-  { code: "BE", name: "Belgium" },
-  { code: "BZ", name: "Belize" },
-  { code: "BJ", name: "Benin" },
-  { code: "BM", name: "Bermuda" },
-  { code: "BT", name: "Bhutan" },
-  { code: "BO", name: "Bolivia" },
-  { code: "BA", name: "Bosnia and Herzegovina" },
-  { code: "BW", name: "Botswana" },
-  { code: "BR", name: "Brazil" },
-  { code: "IO", name: "British Indian Ocean Territory" },
-  { code: "BN", name: "Brunei Darussalam" },
-  { code: "BG", name: "Bulgaria" },
-  { code: "BF", name: "Burkina Faso" },
-  { code: "BI", name: "Burundi" },
-  { code: "KH", name: "Cambodia" },
-  { code: "CM", name: "Cameroon" },
-  { code: "CA", name: "Canada" },
-  { code: "CV", name: "Cape Verde" },
-  { code: "KY", name: "Cayman Islands" },
-  { code: "CF", name: "Central African Republic" },
-  { code: "TD", name: "Chad" },
-  { code: "CL", name: "Chile" },
-  { code: "CN", name: "China" },
-  { code: "CO", name: "Colombia" },
-  { code: "KM", name: "Comoros" },
-  { code: "CG", name: "Congo" },
-  { code: "CR", name: "Costa Rica" },
-  { code: "CI", name: "Cote D'Ivoire" },
-  { code: "HR", name: "Croatia" },
-  { code: "CU", name: "Cuba" },
-  { code: "CY", name: "Cyprus" },
-  { code: "CZ", name: "Czech Republic" },
-  { code: "DK", name: "Denmark" },
-  { code: "DJ", name: "Djibouti" },
-  { code: "DM", name: "Dominica" },
-  { code: "DO", name: "Dominican Republic" },
-  { code: "EC", name: "Ecuador" },
-  { code: "EG", name: "Egypt" },
-  { code: "SV", name: "El Salvador" },
-  { code: "GQ", name: "Equatorial Guinea" },
-  { code: "ER", name: "Eritrea" },
-  { code: "EE", name: "Estonia" },
-  { code: "SZ", name: "Eswatini" },
-  { code: "ET", name: "Ethiopia" },
-  { code: "FI", name: "Finland" },
-  { code: "FR", name: "France" },
-  { code: "GA", name: "Gabon" },
-  { code: "GM", name: "Gambia" },
-  { code: "GE", name: "Georgia" },
-  { code: "DE", name: "Germany" },
-  { code: "GH", name: "Ghana" },
-  { code: "GR", name: "Greece" },
-  { code: "GD", name: "Grenada" },
-  { code: "GT", name: "Guatemala" },
-  { code: "GN", name: "Guinea" },
-  { code: "GW", name: "Guinea-Bissau" },
-  { code: "GY", name: "Guyana" },
-  { code: "HT", name: "Haiti" },
-  { code: "HN", name: "Honduras" },
-  { code: "HK", name: "Hong Kong" },
-  { code: "HU", name: "Hungary" },
-  { code: "IS", name: "Iceland" },
-  { code: "IN", name: "India" },
-  { code: "ID", name: "Indonesia" },
-  { code: "IR", name: "Iran" },
-  { code: "IQ", name: "Iraq" },
-  { code: "IE", name: "Ireland" },
-  { code: "IL", name: "Israel" },
-  { code: "IT", name: "Italy" },
-  { code: "JM", name: "Jamaica" },
-  { code: "JP", name: "Japan" },
-  { code: "JO", name: "Jordan" },
-  { code: "KZ", name: "Kazakhstan" },
-  { code: "KE", name: "Kenya" },
-  { code: "KR", name: "South Korea" },
-  { code: "KW", name: "Kuwait" },
-  { code: "KG", name: "Kyrgyzstan" },
-  { code: "LA", name: "Laos" },
-  { code: "LV", name: "Latvia" },
-  { code: "LB", name: "Lebanon" },
-  { code: "LS", name: "Lesotho" },
-  { code: "LR", name: "Liberia" },
-  { code: "LY", name: "Libya" },
-  { code: "LT", name: "Lithuania" },
-  { code: "LU", name: "Luxembourg" },
-  { code: "MO", name: "Macao" },
-  { code: "MG", name: "Madagascar" },
-  { code: "MW", name: "Malawi" },
-  { code: "MY", name: "Malaysia" },
-  { code: "MV", name: "Maldives" },
-  { code: "ML", name: "Mali" },
-  { code: "MT", name: "Malta" },
-  { code: "MH", name: "Marshall Islands" },
-  { code: "MR", name: "Mauritania" },
-  { code: "MU", name: "Mauritius" },
-  { code: "MX", name: "Mexico" },
-  { code: "FM", name: "Micronesia" },
-  { code: "MD", name: "Moldova" },
-  { code: "MC", name: "Monaco" },
-  { code: "MN", name: "Mongolia" },
-  { code: "ME", name: "Montenegro" },
-  { code: "MA", name: "Morocco" },
-  { code: "MZ", name: "Mozambique" },
-  { code: "MM", name: "Myanmar" },
-  { code: "NA", name: "Namibia" },
-  { code: "NP", name: "Nepal" },
-  { code: "NL", name: "Netherlands" },
-  { code: "NZ", name: "New Zealand" },
-  { code: "NI", name: "Nicaragua" },
-  { code: "NG", name: "Nigeria" },
-  { code: "NO", name: "Norway" },
-  { code: "OM", name: "Oman" },
-  { code: "PK", name: "Pakistan" },
-  { code: "PA", name: "Panama" },
-  { code: "PG", name: "Papua New Guinea" },
-  { code: "PY", name: "Paraguay" },
-  { code: "PE", name: "Peru" },
-  { code: "PH", name: "Philippines" },
-  { code: "PL", name: "Poland" },
-  { code: "PT", name: "Portugal" },
-  { code: "QA", name: "Qatar" },
-  { code: "RO", name: "Romania" },
-  { code: "RU", name: "Russia" },
-  { code: "RW", name: "Rwanda" },
-  { code: "WS", name: "Samoa" },
-  { code: "SM", name: "San Marino" },
-  { code: "SA", name: "Saudi Arabia" },
-  { code: "SN", name: "Senegal" },
-  { code: "RS", name: "Serbia" },
-  { code: "SG", name: "Singapore" },
-  { code: "SK", name: "Slovakia" },
-  { code: "SI", name: "Slovenia" },
-  { code: "ZA", name: "South Africa" },
-  { code: "ES", name: "Spain" },
-  { code: "LK", name: "Sri Lanka" },
-  { code: "SE", name: "Sweden" },
-  { code: "CH", name: "Switzerland" },
-  { code: "SY", name: "Syria" },
-  { code: "TW", name: "Taiwan" },
-  { code: "TJ", name: "Tajikistan" },
-  { code: "TZ", name: "Tanzania" },
-  { code: "TH", name: "Thailand" },
-  { code: "TR", name: "Turkey" },
-  { code: "UG", name: "Uganda" },
-  { code: "UA", name: "Ukraine" },
-  { code: "AE", name: "United Arab Emirates" },
-  { code: "GB", name: "United Kingdom" },
-  { code: "US", name: "United States" },
-  { code: "UY", name: "Uruguay" },
-  { code: "UZ", name: "Uzbekistan" },
-  { code: "VN", name: "Vietnam" },
-  { code: "ZM", name: "Zambia" },
-  { code: "ZW", name: "Zimbabwe" },
+function Person({ img, name }: { img: string; name: string }) {
+  return (
+    <Avatar className="size-5">
+      <AvatarImage
+        src={`https://randomuser.me/api/portraits/${img}.jpg`}
+        alt={name}
+      />
+      <AvatarFallback className="text-[10px]">
+        {name
+          .split(" ")
+          .map((part) => part[0])
+          .join("")}
+      </AvatarFallback>
+    </Avatar>
+  )
+}
+
+/**
+ * Nobody, as a real `Avatar` rather than a lookalike span.
+ *
+ * `AvatarGroup` rings and overlaps its `[data-slot=avatar]` children only, so a
+ * hand-rolled circle would sit in the stack without the ring the others get.
+ */
+function Unassigned() {
+  return (
+    <Avatar className="size-5">
+      <AvatarFallback className="text-muted-foreground [&_svg]:size-3">
+        <IconPlaceholder
+          lucide="UserMinusIcon"
+          tabler="IconUserMinus"
+          hugeicons="UserRemove01Icon"
+          phosphor="UserMinusIcon"
+          remixicon="RiUserUnfollowLine"
+        />
+      </AvatarFallback>
+    </Avatar>
+  )
+}
+
+// The colour class each entry wears is named for the glyph that wears it, so a
+// swatch and a rank can never be read off the same key by accident.
+const STATUSES = [
+  { value: "todo", label: "To Do", dot: "bg-zinc-400" },
+  { value: "in-progress", label: "In Progress", dot: "bg-amber-500" },
+  { value: "review", label: "In Review", dot: "bg-sky-500" },
+  { value: "done", label: "Done", dot: "bg-emerald-500" },
+  { value: "cancelled", label: "Cancelled", dot: "bg-destructive" },
+]
+
+// Priority is a ramp rather than a set of labels, so its tones run one way and
+// the star wears them as `text-*` carrying its own `!`. Cool to hot by hue
+// (160, 83, 44, 17 in OKLCH) and rising in chroma the whole way, which is what
+// puts the four in an order the eye can take without reading the words.
+//
+// The top step is `rose-500` and NOT the theme's own `destructive`, which is
+// the obvious pick and the wrong one: destructive measures hue 22 in light and
+// dark, so it lands BETWEEN High and Urgent and a ladder ending on it doubles
+// back. In dark mode it is lighter and less saturated than the step below it
+// too, so the worst rank would read as the milder colour. A ramp's last step
+// has to be its most intense in every theme, and only a fixed palette step
+// promises that.
+const PRIORITIES = [
+  { value: "low", label: "Low", star: "text-emerald-500!" },
+  { value: "medium", label: "Medium", star: "text-yellow-500!" },
+  { value: "high", label: "High", star: "text-orange-500!" },
+  { value: "urgent", label: "Urgent", star: "text-rose-500!" },
+]
+
+// Long enough that the menu scrolls, which is the point: this is the field
+// that opts into both the pinned stack and a taller panel, and neither is
+// legible on a list that fits whole.
+const TEAM = [
+  { value: "ada", label: "Ada Lovelace", img: "women/1" },
+  { value: "grace", label: "Grace Hopper", img: "women/2" },
+  { value: "alan", label: "Alan Turing", img: "men/3" },
+  { value: "katherine", label: "Katherine Johnson", img: "women/4" },
+  { value: "edsger", label: "Edsger Dijkstra", img: "men/5" },
+  { value: "barbara", label: "Barbara Liskov", img: "women/6" },
+  { value: "tim", label: "Tim Berners-Lee", img: "men/7" },
+  { value: "margaret", label: "Margaret Hamilton", img: "women/8" },
+  { value: "donald", label: "Donald Knuth", img: "men/9" },
+  { value: "radia", label: "Radia Perlman", img: "women/10" },
+  { value: "linus", label: "Linus Torvalds", img: "men/11" },
+  { value: "anita", label: "Anita Borg", img: "women/12" },
+  { value: "ken", label: "Ken Thompson", img: "men/13" },
+  { value: "frances", label: "Frances Allen", img: "women/14" },
+  { value: "dennis", label: "Dennis Ritchie", img: "men/15" },
+  { value: "shafi", label: "Shafi Goldwasser", img: "women/16" },
+  { value: "vint", label: "Vint Cerf", img: "men/17" },
+  { value: "carol", label: "Carol Shaw", img: "women/18" },
+  { value: "guido", label: "Guido van Rossum", img: "men/19" },
+  { value: "jean", label: "Jean Bartik", img: "women/20" },
+]
+
+/** 120 rows, so the list genuinely searches and scrolls. */
+const COUNTRIES: FilterOption[] = [
+  "Afghanistan","Albania","Algeria","Andorra","Angola","Argentina","Armenia",
+  "Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados",
+  "Belarus","Belgium","Belize","Benin","Bhutan","Bolivia","Botswana","Brazil",
+  "Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada",
+  "Chad","Chile","China","Colombia","Comoros","Congo","Costa Rica","Croatia",
+  "Cuba","Cyprus","Czechia","Denmark","Djibouti","Dominica","Ecuador","Egypt",
+  "Estonia","Eswatini","Ethiopia","Fiji","Finland","France","Gabon","Gambia",
+  "Georgia","Germany","Ghana","Greece","Grenada","Guatemala","Guinea","Guyana",
+  "Haiti","Honduras","Hungary","Iceland","India","Indonesia","Iran","Iraq",
+  "Ireland","Israel","Italy","Jamaica","Japan","Jordan","Kazakhstan","Kenya",
+  "Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya",
+  "Lithuania","Luxembourg","Madagascar","Malawi","Malaysia","Maldives","Mali",
+  "Malta","Mexico","Moldova","Monaco","Mongolia","Morocco","Mozambique",
+  "Namibia","Nepal","Netherlands","New Zealand","Nicaragua","Nigeria","Norway",
+  "Oman","Pakistan","Panama","Paraguay","Peru","Philippines","Poland",
+  "Portugal","Qatar","Romania","Rwanda","Senegal","Serbia","Singapore",
+].map((name) => ({ value: name.toLowerCase().replace(/\s+/g, "-"), label: name }))
+
+/** A directory too large to ship to the client, so it pages over the wire. */
+const DIRECTORY: FilterOption[] = Array.from({ length: 4000 }, (_, index) => ({
+  value: `u-${index}`,
+  label: `Contact ${index + 1}`,
+}))
+
+function searchDirectory(query: string, signal: AbortSignal, cursor?: string) {
+  const needle = query.trim().toLowerCase()
+  const matches = DIRECTORY.filter((option) =>
+    option.label.toLowerCase().includes(needle)
+  )
+  const start = cursor ? Number(cursor) : 0
+  const page = matches.slice(start, start + 25)
+  const next = start + 25
+  return new Promise<{ items: FilterOption[]; nextCursor?: string }>(
+    (resolve, reject) => {
+      const timer = setTimeout(
+        () =>
+          resolve({
+            items: page,
+            nextCursor: next < matches.length ? String(next) : undefined,
+          }),
+        260
+      )
+      signal.addEventListener("abort", () => {
+        clearTimeout(timer)
+        reject(new DOMException("Aborted", "AbortError"))
+      })
+    }
+  )
+}
+
+/* -------------------------------------------------------------------------- */
+/*                        Stacked value display renderers                     */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Overlapping swatches plus a count, instead of "3 selected".
+ *
+ * Status only. Priority used to share this renderer behind an `empty` prop,
+ * which meant sharing the lookup too: both branches searched
+ * `STATUSES.concat(PRIORITIES)` and took the first hit, so the day the two
+ * tables happened to share a value one field would silently have worn the
+ * other's colour. Each renderer now reads its own table, and since one table
+ * keys its class as `dot` and the other as `star`, that concat no longer even
+ * type-checks.
+ */
+function StackedDots({ options }: { options: FilterOption[] }) {
+  if (options.length === 0) return <>any status</>
+  if (options.length === 1) {
+    const only = STATUSES.find((entry) => entry.value === options[0].value)
+    return (
+      <span className="flex items-center gap-1.5">
+        <Dot className={only?.dot ?? "bg-muted-foreground"} />
+        {options[0].label}
+      </span>
+    )
+  }
+  return (
+    <span className="flex items-center gap-1.5">
+      <span className="flex items-center">
+        {options.slice(0, 4).map((option) => {
+          const entry = STATUSES.find(
+            (candidate) => candidate.value === option.value
+          )
+          return (
+            <span
+              key={option.value}
+              className={cn(
+                "ring-background -ml-1 size-2.5 rounded-full ring-2 first:ml-0",
+                entry?.dot ?? "bg-muted-foreground"
+              )}
+            />
+          )
+        })}
+      </span>
+      <span className="text-muted-foreground text-xs tabular-nums">
+        {options.length}
+      </span>
+    </span>
+  )
+}
+
+/**
+ * The same three branches as `StackedDots`, in the other visual language.
+ *
+ * Split rather than parameterised because the two glyphs do not stack the same
+ * way. A dot cuts itself out of its neighbour with `ring-2 ring-background`; a
+ * ring around a star draws a rounded RECTANGLE around the icon's box, so these
+ * lean on each other far less instead and keep their outlines readable. Folding
+ * that into one renderer would have meant passing the swatch, the table, the
+ * overlap and the empty word, which is the entire component as arguments.
+ * `StackedPeople` below already settled this question the same way.
+ *
+ * Priority is one field with one ladder, so this renderer, the table it reads
+ * and the empty word it falls back to are kept identical here and in
+ * c-filters-7. One concept, one implementation, across both examples.
+ */
+function StackedStars({ options }: { options: FilterOption[] }) {
+  if (options.length === 0) return <>any priority</>
+  if (options.length === 1) {
+    const only = PRIORITIES.find((entry) => entry.value === options[0].value)
+    return (
+      <span className="flex items-center gap-1.5">
+        <Star
+          className={cn("size-3.5", only?.star ?? "text-muted-foreground")}
+        />
+        {options[0].label}
+      </span>
+    )
+  }
+  return (
+    <span className="flex items-center gap-1.5">
+      <span className="flex items-center">
+        {options.slice(0, 4).map((option) => {
+          const entry = PRIORITIES.find(
+            (candidate) => candidate.value === option.value
+          )
+          return (
+            <Star
+              key={option.value}
+              className={cn(
+                "-ml-0.5 size-3.5 first:ml-0",
+                entry?.star ?? "text-muted-foreground"
+              )}
+            />
+          )
+        })}
+      </span>
+      <span className="text-muted-foreground text-xs tabular-nums">
+        {options.length}
+      </span>
+    </span>
+  )
+}
+
+/** A teammate's face, or the icon that stands in for nobody. */
+function Face({ option }: { option: FilterOption }) {
+  const entry = TEAM.find((candidate) => candidate.value === option.value)
+  return entry ? <Person img={entry.img} name={entry.label} /> : <Unassigned />
+}
+
+/**
+ * A real `AvatarGroup`, plus an overflow count.
+ *
+ * The group keeps its default `ring-2`, which reads as a wider collar once the
+ * faces drop to 16px, and the two overrides both follow from that size: the
+ * stack tightens to `-space-x-1`, because the default `-space-x-2` hides half
+ * of a 16px face, and `size-4` beats `Person`'s own `size-5` on specificity
+ * exactly as the group's own ring does. The count appears only on genuine
+ * overflow, so three picks show three faces and no redundant "3" beside them.
+ */
+function StackedPeople({ options }: { options: FilterOption[] }) {
+  if (options.length === 0) return <>anyone</>
+  if (options.length === 1) {
+    return (
+      <span className="flex items-center gap-1.5">
+        <Face option={options[0]} />
+        {options[0].label}
+      </span>
+    )
+  }
+
+  const overflow = options.length - 3
+
+  return (
+    <span className="flex items-center gap-1.5">
+      <AvatarGroup className="-space-x-1 *:data-[slot=avatar]:size-4">
+        {options.slice(0, 3).map((option) => (
+          <Face key={String(option.value)} option={option} />
+        ))}
+      </AvatarGroup>
+      {overflow > 0 ? (
+        <span className="text-muted-foreground text-xs tabular-nums">
+          +{overflow}
+        </span>
+      ) : null}
+    </span>
+  )
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   Schema                                   */
+/* -------------------------------------------------------------------------- */
+
+// Icon names are written out per field rather than built by a helper: the
+// shadcn CLI rewrites these attributes to a real import at install time and
+// only accepts string literals, so a shared `icon(...)` factory would break
+// `shadcn add` for everyone installing this example.
+const fields: FilterField[] = [
+  {
+    id: "description",
+    label: "Description",
+    type: "text",
+    icon: (
+      <IconPlaceholder
+        lucide="TypeIcon"
+        tabler="IconLetterT"
+        hugeicons="TextIcon"
+        phosphor="TextTIcon"
+        remixicon="RiText"
+      />
+    ),
+  },
+  {
+    id: "status",
+    label: "Status",
+    type: "select",
+    defaultOperator: "is_any_of",
+    icon: (
+      <IconPlaceholder
+        lucide="CircleDotIcon"
+        tabler="IconCircleDot"
+        hugeicons="RecordIcon"
+        phosphor="CircleIcon"
+        remixicon="RiRecordCircleLine"
+      />
+    ),
+    options: STATUSES.map((entry) => ({
+      value: entry.value,
+      label: entry.label,
+      icon: <Dot className={entry.dot} />,
+    })),
+    // The one field here that turns its search box off, so the treatment is
+    // visible next to the two that keep theirs. The input is still rendered,
+    // only visually hidden: it is what owns focus and `aria-activedescendant`,
+    // so removing it would take the keyboard with it, and typing still narrows
+    // exactly as it does in a native select. Priority below keeps its box, and
+    // Country needs one, because 120 rows are not scanned by eye.
+    searchable: false,
+    // Stack the picks at the top, with a rule under them. Off by default in
+    // the primitive, because a list short enough to read whole should not
+    // reorder itself under the reader; this example turns it on across every
+    // option field so the treatment can be compared on a five row status, a
+    // people list with an exclusive row, 120 countries and a paged directory.
+    pinSelected: true,
+    renderValue: ({ options }) => <StackedDots options={options} />,
+  },
+  {
+    id: "priority",
+    label: "Priority",
+    // A task has ONE priority, so this is a select - and `is`, the SINGLE-valued
+    // operator, is what says so. `is any of` is a question about a set, which
+    // reads oddly against a rank a row can only hold one of; it is still in the
+    // menu for anyone filtering on two of them at once. Assignee below is the
+    // real multiselect, because a task can genuinely carry several people.
+    type: "select",
+    defaultOperator: "is",
+    // The value menu's search box, named for the list under it instead of the
+    // generic "Search...".
+    //
+    // The primitive will not compose this for you, on purpose: a built in
+    // `Search ${label}...` is hardcoded English that no `labels` override can
+    // reach, and lowercasing a label is locale hostile besides (Turkish dotted
+    // i, German nouns). So the wording is the schema's to give, and every
+    // searchable field here gives it.
+    placeholder: "Search priority...",
+    // A star, matching the glyph its options wear. The field icon rides in the
+    // chip and in the attribute list, so a flag here would announce one thing
+    // and the menu under it another.
+    icon: (
+      <IconPlaceholder
+        lucide="StarIcon"
+        tabler="IconStar"
+        hugeicons="StarIcon"
+        phosphor="StarIcon"
+        remixicon="RiStarLine"
+      />
+    ),
+    options: PRIORITIES.map((entry) => ({
+      value: entry.value,
+      label: entry.label,
+      icon: <Star className={cn("size-3.5", entry.star)} />,
+    })),
+    pinSelected: true,
+    renderValue: ({ options }) => <StackedStars options={options} />,
+  },
+  {
+    id: "assignee",
+    label: "Assignee",
+    type: "multiselect",
+    placeholder: "Search people...",
+    icon: (
+      <IconPlaceholder
+        lucide="UserRoundCheckIcon"
+        tabler="IconUserCheck"
+        hugeicons="UserCheck01Icon"
+        phosphor="UserCheckIcon"
+        remixicon="RiUserFollowLine"
+      />
+    ),
+    options: [
+      ...TEAM.map((person) => ({
+        value: person.value,
+        label: person.label,
+        icon: <Person img={person.img} name={person.label} />,
+      })),
+      // "Nobody" is a real filter, not the absence of one, and `exclusive` is
+      // what makes it behave like one: it clears the other picks, they clear
+      // it, and it sits under a rule of its own below the people.
+      {
+        value: "unassigned",
+        label: "Unassigned",
+        icon: <Unassigned />,
+        exclusive: true,
+      },
+    ],
+    pinSelected: true,
+    // Inside each group the order is the schema's by default, because option
+    // order is usually semantic - Priority reads Low to Urgent above and
+    // sorting it would destroy that. A list of PEOPLE carries no such order,
+    // so this one opts into alphabetical. "Unassigned" sits outside both
+    // groups either way: it is grouped by role, not by whether it is ticked.
+    sortSelected: "label",
+    // BIGGER on both axes than the defaults, because this is the one field where
+    // the stack has to be readable and the rows are the widest the primitive
+    // draws: an avatar, then a full name. At the panel's own `w-48` a name like
+    // "Katherine Johnson" truncates, and at the default height the rule under
+    // the pinned picks lands near the bottom edge with barely a row of "the
+    // rest" below it. Both land on the panel after the primitive's own, so a
+    // `w-*` and the height variable simply win.
+    className: "w-64 [--cascader-max-height:26rem]",
+    renderValue: ({ options }) => <StackedPeople options={options} />,
+  },
+  {
+    id: "country",
+    label: "Country",
+    type: "select",
+    defaultOperator: "is_any_of",
+    placeholder: "Search countries...",
+    // 120 options, so the editor shows its search box and the list scrolls.
+    // This is the length the stack is actually for: without it a pick made an
+    // hour ago is somewhere behind a scrollbar.
+    options: COUNTRIES,
+    pinSelected: true,
+    icon: (
+      <IconPlaceholder
+        lucide="GlobeIcon"
+        tabler="IconWorld"
+        hugeicons="Globe02Icon"
+        phosphor="GlobeSimpleIcon"
+        remixicon="RiGlobalLine"
+      />
+    ),
+  },
+  {
+    id: "contact",
+    label: "Contact",
+    type: "select",
+    defaultOperator: "is_any_of",
+    placeholder: "Search contacts...",
+    // Paged over the wire, with abort and a Load more row.
+    loadOptions: (query, { signal, cursor }) =>
+      searchDirectory(query, signal, cursor),
+    // Load more APPENDS, so without the stack a pick made on the first page
+    // sinks a little further with every page fetched after it. Pinning holds
+    // it at the top of whatever has been loaded. It cannot do more than that:
+    // an async list only ever shows the pages it has, so a pick that is in no
+    // loaded page is not a row here at all, stacked or otherwise. The chip
+    // still draws it, off the resolved-option cache.
+    pinSelected: true,
+    icon: (
+      <IconPlaceholder
+        lucide="BookUserIcon"
+        tabler="IconAddressBook"
+        hugeicons="ContactBookIcon"
+        phosphor="AddressBookIcon"
+        remixicon="RiContactsBookLine"
+      />
+    ),
+  },
+  {
+    id: "company",
+    label: "Company",
+    icon: (
+      <IconPlaceholder
+        lucide="Building2Icon"
+        tabler="IconBuilding"
+        hugeicons="Building02Icon"
+        phosphor="BuildingsIcon"
+        remixicon="RiBuilding2Line"
+      />
+    ),
+    // Nested. A branch NAVIGATES: pressing it opens its attributes, which is
+    // what its chevron and its count promise, and it never commits a filter on
+    // itself. Filtering on the company as a whole is the explicit leaf below.
+    fields: [
+      { id: "name", label: "Name", type: "text" },
+      { id: "domain", label: "Domain", type: "text" },
+      {
+        id: "team",
+        label: "Team",
+        count: 26,
+        fields: [
+          { id: "lead", label: "Lead", type: "text" },
+          { id: "size", label: "Size", type: "number" },
+        ],
+      },
+      {
+        id: "location",
+        label: "Primary location",
+        count: 3,
+        fields: [
+          { id: "city", label: "City", type: "text" },
+          { id: "country", label: "Country", type: "text" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "score",
+    label: "Score",
+    type: "number",
+    icon: (
+      <IconPlaceholder
+        lucide="HashIcon"
+        tabler="IconHash"
+        hugeicons="HashtagIcon"
+        phosphor="HashIcon"
+        remixicon="RiHashtag"
+      />
+    ),
+  },
+  {
+    id: "archived",
+    label: "Archived",
+    type: "boolean",
+    icon: (
+      <IconPlaceholder
+        lucide="ArchiveIcon"
+        tabler="IconArchive"
+        hugeicons="Archive02Icon"
+        phosphor="ArchiveIcon"
+        remixicon="RiArchiveLine"
+      />
+    ),
+  },
 ]
 
 export default function Pattern() {
-  // Example: All Possible Filter Field Types with Grouping
-  const fields: FilterFieldConfig[] = [
-    {
-      group: "Basic",
-      fields: [
-        {
-          key: "text",
-          label: "Text",
-          type: "text",
-          icon: (
-            <IconPlaceholder
-              lucide="MailIcon"
-              tabler="IconMail"
-              hugeicons="MailIcon"
-              phosphor="EnvelopeIcon"
-              remixicon="RiMailLine"
-            />
-          ),
-          placeholder: "Search text...",
-        },
-        {
-          key: "email",
-          label: "Email",
-          type: "text",
-          icon: (
-            <IconPlaceholder
-              lucide="TypeIcon"
-              tabler="IconLetterT"
-              hugeicons="TextIcon"
-              phosphor="TextTIcon"
-              remixicon="RiText"
-            />
-          ),
-          placeholder: "user@example.com",
-        },
-        {
-          key: "website",
-          label: "Website",
-          icon: (
-            <IconPlaceholder
-              lucide="GlobeIcon"
-              tabler="IconWorld"
-              hugeicons="Globe02Icon"
-              phosphor="GlobeSimpleIcon"
-              remixicon="RiGlobalLine"
-            />
-          ),
-          type: "text",
-          placeholder: "https://example.com",
-        },
-        {
-          key: "phone",
-          label: "Phone",
-          icon: (
-            <IconPlaceholder
-              lucide="PhoneIcon"
-              tabler="IconPhone"
-              hugeicons="Call02Icon"
-              phosphor="PhoneIcon"
-              remixicon="RiPhoneLine"
-            />
-          ),
-          type: "text",
-          placeholder: "+1 (123) 456-7890",
-        },
-      ],
-    },
-    {
-      group: "Select",
-      fields: [
-        {
-          key: "status",
-          label: "Status",
-          icon: (
-            <IconPlaceholder
-              lucide="BellIcon"
-              tabler="IconBell"
-              hugeicons="NotificationIcon"
-              phosphor="BellIcon"
-              remixicon="RiNotificationLine"
-            />
-          ),
-          type: "select",
-          searchable: false,
-          className: "w-[200px]",
-          options: [
-            {
-              value: "todo",
-              label: "To Do",
-              icon: (
-                <IconPlaceholder
-                  lucide="ClockIcon"
-                  tabler="IconClock"
-                  hugeicons="ClockIcon"
-                  phosphor="ClockIcon"
-                  remixicon="RiTimeLine"
-                  className="stroke-violet-500"
-                />
-              ),
-            },
-            {
-              value: "in-progress",
-              label: "In Progress",
-              icon: (
-                <IconPlaceholder
-                  lucide="CircleAlertIcon"
-                  tabler="IconAlertCircle"
-                  hugeicons="AlertCircleIcon"
-                  phosphor="WarningCircleIcon"
-                  remixicon="RiErrorWarningLine"
-                  className="stroke-yellow-500"
-                />
-              ),
-            },
-            {
-              value: "done",
-              label: "Done",
-              icon: (
-                <IconPlaceholder
-                  lucide="CircleCheckIcon"
-                  tabler="IconCircleCheck"
-                  hugeicons="CheckmarkCircle01Icon"
-                  phosphor="CheckCircleIcon"
-                  remixicon="RiCheckboxCircleLine"
-                  className="stroke-green-500"
-                />
-              ),
-            },
-            {
-              value: "cancelled",
-              label: "Cancelled",
-              icon: (
-                <IconPlaceholder
-                  lucide="BanIcon"
-                  tabler="IconBan"
-                  hugeicons="UnavailableIcon"
-                  phosphor="ProhibitIcon"
-                  remixicon="RiProhibitedLine"
-                  className="stroke-destructive"
-                />
-              ),
-            },
-          ],
-        },
-        {
-          key: "priority",
-          label: "Priority",
-          icon: (
-            <IconPlaceholder
-              lucide="BanIcon"
-              tabler="IconBan"
-              hugeicons="UnavailableIcon"
-              phosphor="ProhibitIcon"
-              remixicon="RiProhibitedLine"
-            />
-          ),
-          type: "multiselect",
-          className: "w-[180px]",
-          options: [
-            {
-              value: "low",
-              label: "Low",
-              icon: <PriorityIcon priority="low" />,
-            },
-            {
-              value: "medium",
-              label: "Medium",
-              icon: <PriorityIcon priority="medium" />,
-            },
-            {
-              value: "high",
-              label: "High",
-              icon: <PriorityIcon priority="high" />,
-            },
-            {
-              value: "urgent",
-              label: "Urgent",
-              icon: <PriorityIcon priority="urgent" />,
-            },
-            {
-              value: "critical",
-              label: "Critical",
-              icon: <PriorityIcon priority="critical" />,
-            },
-          ],
-        },
-        {
-          key: "assignee",
-          label: "Assignee",
-          icon: (
-            <IconPlaceholder
-              lucide="UserRoundCheckIcon"
-              tabler="IconUserCheck"
-              hugeicons="UserCheck01Icon"
-              phosphor="UserCheckIcon"
-              remixicon="RiUserFollowLine"
-            />
-          ),
-          type: "multiselect",
-          maxSelections: 5,
-          options: [
-            {
-              value: "john",
-              label: "John Doe",
-              icon: (
-                <Avatar className="size-5 border">
-                  <AvatarImage
-                    src="https://randomuser.me/api/portraits/men/1.jpg"
-                    alt="John Doe"
-                  />
-                  <AvatarFallback>JD</AvatarFallback>
-                </Avatar>
-              ),
-            },
-            {
-              value: "jane",
-              label: "Jane Smith",
-              icon: (
-                <Avatar className="size-5">
-                  <AvatarImage
-                    src="https://randomuser.me/api/portraits/women/2.jpg"
-                    alt="Jane Smith"
-                  />
-                  <AvatarFallback>JS</AvatarFallback>
-                </Avatar>
-              ),
-            },
-            {
-              value: "bob",
-              label: "Bob Johnson",
-              icon: (
-                <Avatar className="size-5">
-                  <AvatarImage
-                    src="https://randomuser.me/api/portraits/men/3.jpg"
-                    alt="Bob Johnson"
-                  />
-                  <AvatarFallback>BJ</AvatarFallback>
-                </Avatar>
-              ),
-            },
-            {
-              value: "alice",
-              label: "Alice Brown",
-              icon: (
-                <Avatar className="size-5">
-                  <AvatarImage
-                    src="https://randomuser.me/api/portraits/women/4.jpg"
-                    alt="Alice Brown"
-                  />
-                  <AvatarFallback>AB</AvatarFallback>
-                </Avatar>
-              ),
-            },
-            {
-              value: "nick",
-              label: "Nick Bold",
-              icon: (
-                <Avatar className="size-5">
-                  <AvatarImage
-                    src="https://randomuser.me/api/portraits/men/4.jpg"
-                    alt="Nick Bold"
-                  />
-                  <AvatarFallback>NB</AvatarFallback>
-                </Avatar>
-              ),
-            },
-            {
-              value: "sarah",
-              label: "Sarah Wilson",
-              icon: (
-                <Avatar className="size-5">
-                  <AvatarImage
-                    src="https://randomuser.me/api/portraits/women/5.jpg"
-                    alt="Sarah Wilson"
-                  />
-                  <AvatarFallback>SW</AvatarFallback>
-                </Avatar>
-              ),
-            },
-            {
-              value: "michael",
-              label: "Michael Scott",
-              icon: (
-                <Avatar className="size-5">
-                  <AvatarImage
-                    src="https://randomuser.me/api/portraits/men/6.jpg"
-                    alt="Michael Scott"
-                  />
-                  <AvatarFallback>MS</AvatarFallback>
-                </Avatar>
-              ),
-            },
-            {
-              value: "emily",
-              label: "Emily Blunt",
-              icon: (
-                <Avatar className="size-5">
-                  <AvatarImage
-                    src="https://randomuser.me/api/portraits/women/7.jpg"
-                    alt="Emily Blunt"
-                  />
-                  <AvatarFallback>EB</AvatarFallback>
-                </Avatar>
-              ),
-            },
-            {
-              value: "david",
-              label: "David Gandy",
-              icon: (
-                <Avatar className="size-5">
-                  <AvatarImage
-                    src="https://randomuser.me/api/portraits/men/8.jpg"
-                    alt="David Gandy"
-                  />
-                  <AvatarFallback>DG</AvatarFallback>
-                </Avatar>
-              ),
-            },
-            {
-              value: "laura",
-              label: "Laura Palmer",
-              icon: (
-                <Avatar className="size-5">
-                  <AvatarImage
-                    src="https://randomuser.me/api/portraits/women/9.jpg"
-                    alt="Laura Palmer"
-                  />
-                  <AvatarFallback>LP</AvatarFallback>
-                </Avatar>
-              ),
-            },
-            {
-              value: "kevin",
-              label: "Kevin Hart",
-              icon: (
-                <Avatar className="size-5">
-                  <AvatarImage
-                    src="https://randomuser.me/api/portraits/men/10.jpg"
-                    alt="Kevin Hart"
-                  />
-                  <AvatarFallback>KH</AvatarFallback>
-                </Avatar>
-              ),
-            },
-            {
-              value: "anna",
-              label: "Anna Kendrick",
-              icon: (
-                <Avatar className="size-5">
-                  <AvatarImage
-                    src="https://randomuser.me/api/portraits/women/11.jpg"
-                    alt="Anna Kendrick"
-                  />
-                  <AvatarFallback>AK</AvatarFallback>
-                </Avatar>
-              ),
-            },
-            {
-              value: "tom",
-              label: "Tom Cruise",
-              icon: (
-                <Avatar className="size-5">
-                  <AvatarImage
-                    src="https://randomuser.me/api/portraits/men/12.jpg"
-                    alt="Tom Cruise"
-                  />
-                  <AvatarFallback>TC</AvatarFallback>
-                </Avatar>
-              ),
-            },
-            {
-              value: "lisa",
-              label: "Lisa Kudrow",
-              icon: (
-                <Avatar className="size-5">
-                  <AvatarImage
-                    src="https://randomuser.me/api/portraits/women/13.jpg"
-                    alt="Lisa Kudrow"
-                  />
-                  <AvatarFallback>LK</AvatarFallback>
-                </Avatar>
-              ),
-            },
-            {
-              value: "james",
-              label: "James Bond",
-              icon: (
-                <Avatar className="size-5">
-                  <AvatarImage
-                    src="https://randomuser.me/api/portraits/men/14.jpg"
-                    alt="James Bond"
-                  />
-                  <AvatarFallback>JB</AvatarFallback>
-                </Avatar>
-              ),
-            },
-            {
-              value: "unassigned",
-              label: "Unassigned",
-              icon: (
-                <Avatar className="size-5">
-                  <AvatarFallback>
-                    <IconPlaceholder
-                      lucide="UserRoundXIcon"
-                      tabler="IconUserX"
-                      hugeicons="UserRemove01Icon"
-                      phosphor="UserGearIcon"
-                      remixicon="RiUserUnfollowLine"
-                    />
-                  </AvatarFallback>
-                </Avatar>
-              ),
-            },
-          ],
-        },
-        {
-          key: "userType",
-          label: "User Type",
-          icon: (
-            <IconPlaceholder
-              lucide="UsersIcon"
-              tabler="IconUsers"
-              hugeicons="UserMultiple02Icon"
-              phosphor="UsersIcon"
-              remixicon="RiGroupLine"
-            />
-          ),
-          type: "select",
-          searchable: false,
-          className: "w-[200px]",
-          options: [
-            {
-              value: "premium",
-              label: "Premium",
-              icon: (
-                <IconPlaceholder
-                  lucide="StarIcon"
-                  tabler="IconStar"
-                  hugeicons="StarIcon"
-                  phosphor="StarIcon"
-                  remixicon="RiStarLine"
-                  className="size-3 text-yellow-500"
-                />
-              ),
-            },
-            {
-              value: "standard",
-              label: "Standard",
-              icon: (
-                <IconPlaceholder
-                  lucide="BuildingIcon"
-                  tabler="IconBuilding"
-                  hugeicons="Building02Icon"
-                  phosphor="BuildingIcon"
-                  remixicon="RiBuilding4Line"
-                  className="size-3 text-blue-500"
-                />
-              ),
-            },
-            {
-              value: "trial",
-              label: "Trial",
-              icon: (
-                <IconPlaceholder
-                  lucide="ClockIcon"
-                  tabler="IconClock"
-                  hugeicons="ClockIcon"
-                  phosphor="ClockIcon"
-                  remixicon="RiTimeLine"
-                  className="size-3 text-gray-500"
-                />
-              ),
-            },
-          ],
-        },
-        {
-          key: "country",
-          label: "Country",
-          icon: (
-            <IconPlaceholder
-              lucide="GlobeIcon"
-              tabler="IconWorld"
-              hugeicons="Globe02Icon"
-              phosphor="GlobeSimpleIcon"
-              remixicon="RiGlobalLine"
-            />
-          ),
-          type: "select",
-          searchable: true,
-          className: "w-[220px]",
-          options: countryFlags.map((country) => ({
-            value: country.code,
-            label: country.name,
-            icon: (
-              <img
-                src={`https://flagcdn.com/${country.code.toLowerCase()}.svg`}
-                alt={country.code}
-                className="size-4 rounded-full object-cover"
-              />
-            ),
-          })),
-        },
-      ],
-    },
-  ]
-
-  const [filters, setFilters] = useState<Filter[]>([
-    createFilter("priority", "is_any_of", ["low", "medium", "critical"]),
-  ])
-
-  const handleFiltersChange = useCallback((filters: Filter[]) => {
-    setFilters(filters)
-  }, [])
+  const [query, setQuery] = useState<FilterQuery>(() =>
+    createFilterQuery([
+      // Two chips, because the two stacked treatments are the thing on show and
+      // neither survives a screenshot of an empty bar. Four assignees overflow
+      // the group and print the "+1", two priorities collapse to overlapping
+      // stars and a count, so a reader arriving at the closed bar can already
+      // see both languages and how each one counts.
+      createFilterRule({
+        id: "seed-1",
+        path: ["assignee"],
+        operator: "has_any_of",
+        value: ["ada", "grace", "alan", "katherine"],
+      }),
+      createFilterRule({
+        id: "seed-2",
+        path: ["priority"],
+        // `is`, matching the field's own default: a rank a row can only hold
+        // one of reads oddly under a question about a set.
+        operator: "is",
+        value: ["urgent"],
+      }),
+    ])
+  )
 
   return (
-    <div className="flex grow content-start items-start gap-2.5 self-start">
-      <div className="grow space-y-5">
-        {/* Filters Section */}
-        <div className="flex items-start gap-2.5">
-          <div className="flex-1">
-            <Filters
-              filters={filters}
-              fields={fields}
-              onChange={handleFiltersChange}
-              shortcutKey="f"
-              shortcutLabel="F"
-              enableShortcut={true}
-              trigger={
-                <Button variant="outline">
-                  <IconPlaceholder
-                    lucide="ListFilterIcon"
-                    tabler="IconFilter2"
-                    hugeicons="FilterMailIcon"
-                    phosphor="FunnelSimpleIcon"
-                    remixicon="RiFilter3Line"
-                  />
-                  Add Filter
-                </Button>
-              }
-            />
-          </div>
+    <div className="flex w-full flex-col gap-5">
+      <Filters
+        fields={fields}
+        query={query}
+        onQueryChange={setQuery}
+        showClear
+      />
 
-          {filters.length > 0 && (
-            <Button variant="outline" onClick={() => setFilters([])}>
-              <IconPlaceholder
-                lucide="FunnelXIcon"
-                tabler="IconFilterX"
-                hugeicons="FilterRemoveIcon"
-                phosphor="FunnelXIcon"
-                remixicon="RiFilterOffLine"
-              />
-              Clear
-            </Button>
-          )}
-        </div>
-
-        {/* Debug Block */}
-        <pre className="bg-muted dark:bg-muted/60 mt-2 max-h-[400px] w-full max-w-[500px] overflow-auto overflow-x-auto rounded-md border p-3 text-xs">
-          {JSON.stringify(filters, null, 2)}
-        </pre>
-      </div>
+      {/*
+        `max-h-80` is the largest step that still clears the frame. Measured in
+        sera, the tallest style, at the narrowest card: the bar wraps to three
+        rows and stops there at 136px, which puts this box at y=160 inside the
+        560px `previewHeight`. 320px of readout leaves an 80px cushion. Going
+        further would clip the box off the bottom SILENTLY, because the preview
+        frame hides its own scrollbar, so re-measure before raising it again.
+      */}
+      <pre className="bg-muted dark:bg-muted/60 max-h-80 w-full overflow-auto rounded-md border p-3 text-xs">
+        {JSON.stringify(query, null, 2)}
+      </pre>
     </div>
   )
 }

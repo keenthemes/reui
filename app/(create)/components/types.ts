@@ -15,6 +15,9 @@ export interface Component {
     colSpan?: number
     gridSize?: GridSize
     order?: number
+    // Optional frame height for iframe-backed previews. See
+    // lib/component-preview-frame.ts.
+    previewHeight?: string
   }
   // Pre-computed for fast search (optional for backwards compatibility)
   searchText?: string

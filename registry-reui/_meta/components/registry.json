@@ -79,6 +79,12 @@
       "count": 11
     },
     {
+      "name": "cascader",
+      "label": "Cascader",
+      "description": "Nested multi-level selection with drill-down navigation, breadcrumbs, search and custom rows.",
+      "count": 20
+    },
+    {
       "name": "chart",
       "label": "Chart",
       "description": "Open-source shadcn chart components for analytics dashboards, KPI tracking, and reports.",
@@ -433,5 +439,5 @@
       "count": 7
     }
   ],
-  "totalComponents": 1052
+  "totalComponents": 1072
 }
