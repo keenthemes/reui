@@ -19,7 +19,7 @@ export const siteConfig = {
    * GitHub star count shown in the header + footer. Maintained by hand (no
    * live GitHub API call) - update this string when the real count moves.
    */
-  githubStars: "3.3k",
+  githubStars: "3.4k",
 }
 
 export const META_THEME_COLORS = {

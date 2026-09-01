@@ -3,6 +3,103 @@ title: Changelog
 description: Latest updates and announcements.
 ---
 
+## v2.5.2 - 1 September, 2026.
+
+**New: Data Grid Editing API and Localization.**
+
+- `DataGridCellSelection` gains `apiRef` with `focusCell(rowId, columnId, { edit })`, landing cell focus, DOM focus and `aria-activedescendant` together on rows still mounting - [Docs](/docs/components/base/data-grid#datagridcellselection).
+- Fill handle looks via `tableLayout.cellFillHandleVariant`: the default solid dot, an Excel-style square, or a Sheets-style hollow ring on the selection corner - [Docs](/docs/components/base/data-grid#datagrid).
+- `tableClassNames.rowPinned`, `rowCreate` and `cellFillHandle` override the pinned-row chrome, the add-row affordance and the fill handle - [Docs](/docs/components/base/data-grid#datagridtableclassnames).
+- New `getDataGridVisibleSelectedCellCount` helper keeps a selection count consistent with the painted range - [Docs](/docs/components/base/data-grid#datagridcellselection).
+- The virtual layout renders `onRowCreate` and `appendRow`, matching the standard body - [Docs](/docs/components/base/data-grid#datagridtablevirtual).
+- `onCellSelectionChange` delivers a resolved selection snapshot: the focused cell, every bound, the active bound and the visible cell count - [Docs](/docs/components/base/data-grid#datagrid).
+- Per-row editability: `cellEdit.editable` accepts a function of the row, locking rows across paste, fill, clear and the editors - [Docs](/docs/components/base/data-grid#datagridcellselection).
+- New `invertDataGridCellsChange` helper derives the undo batch from any `onCellsChange` payload - [Docs](/docs/components/base/data-grid#datagridcellselection).
+- The imperative api gains `clearSelection` and `scrollToCell`, and the add-row label is localizable via `rowCreateLabel` - [Docs](/docs/components/base/data-grid#datagridcellselection).
+- Copy and cut now work from the keyboard on every platform: Cmd/Ctrl+C and X write through the async clipboard API, since browsers never fire a native copy for a focused grid - [Docs](/docs/components/base/data-grid#datagridcellselection).
+- Opt-in single-click editing via `tableLayout.cellEditMode: "click"`; double-click stays the default - [Docs](/docs/components/base/data-grid#datagrid).
+- The selection edge beside a pinned column is painted once, inside the cell, so browser zoom and fractional widths can no longer double it into a 2px blur - [Preview](/components/data-grid).
+- In-cell controls follow the two-step gesture: the first click on an unfocused cell only focuses it, the second activates the select, date or combobox, matching editor cells - [Docs](/docs/components/base/data-grid#datagridcellselection).
+- Pinned columns now show the row hover and selected tints, premixed over their opaque background - [Preview](/components/data-grid).
+- Selected rows no longer draw the 2px start bar; the checkbox and row tint carry the state - [Preview](/components/data-grid).
+- `i18n` on DataGrid replaces every built-in string in one place, menu items and aria labels included, with function labels for interpolated copy - [Docs](/docs/components/base/data-grid#internationalization).
+- Opt-in column virtualization for `DataGridTableVirtual`: only the horizontal window of center columns renders, pinned columns stay mounted, with controlled `scrollToColumnIndex` - [Docs](/docs/components/base/data-grid#datagridtablevirtual).
+- `onCellsCopy` reports every clipboard write with the copied grid and a cut flag, for toast confirmations - [Docs](/docs/components/base/data-grid#datagrid).
+- `tableLayout.cellEditEnterAdvance` restores the Sheets move-down; an Enter commit now keeps focus on the edited cell by default - [Docs](/docs/components/base/data-grid#datagrid).
+- `data-cell-control` marks a custom widget whose active surface is wider than its buttons, so a press anywhere on it follows the two-step gesture - [Docs](/docs/components/base/data-grid#datagridcellselection).
+- 3 new examples: a localized grid with an EN / DE / JA switch, a 36-column virtualized matrix, and a server side paginated grid with a debounced search and a status filter, taking the Data Grid to 34 examples per base - [Preview](/components/data-grid).
+- Server side pagination is documented end to end: pass the server total twice, as `rowCount` on `useTable` for the page buttons and as `recordCount` on `DataGrid` for the info text - [Docs](/docs/components/base/data-grid#server-side-pagination).
+
+**Fixes & Improvements:**
+
+- `DataGridCellSelection`: Sheets-style chrome, with a lighter tint, a solid perimeter that tracks the drag, an unfilled anchor cell and a dashed fill marquee - [Preview](/components/data-grid).
+- `DataGridCellSelection`: the perimeter's top line is clamped inside the first row, so a sticky header cannot paint over it - [Preview](/components/data-grid).
+- `DataGridCellSelection`: the perimeter survives the first and last column and the last row, and the fill handle stays inside the grid - [Preview](/components/data-grid).
+- `DataGridCellSelection`: the built-in editor sits exactly on the cell, so opening it no longer grows the row by 2px, and it is named after its column - [Preview](/components/data-grid).
+- `DataGridCellSelection`: copy, cut, clear, paste and fill act only on visible rows, so a page-boundary range cannot write hidden ones - [Docs](/docs/components/base/data-grid#datagridcellselection).
+- `DataGridCellSelection`: a fill across columns runs the target's `parse` and reports rejections, like a paste - [Docs](/docs/components/base/data-grid#datagridcellselection).
+- `DataGridCellSelection`: Shift and arrows still extend a range after a modifier click on a control cell - [Docs](/docs/components/base/data-grid#datagridcellselection).
+- `DataGridCellSelection`: Escape on an in-cell control returns focus to the grid, and AltGr chords type instead of selecting all - [Docs](/docs/components/base/data-grid#datagridcellselection).
+- `DataGridTable`: `columnsResizeMode: "onChange"` writes widths to the table element, so a drag costs no React render per move - [Docs](/docs/components/base/data-grid#datagrid).
+- `DataGridTable`: pinned header cells stay put under a sticky header, so the corner no longer scrolls away - [Preview](/components/data-grid).
+- `DataGridTable`: the resize handle is its own `data-slot` span, so an end-aligned header cannot swallow the menu click - [Docs](/docs/components/base/data-grid#datagridtable).
+- `DataGridTable`: `aria-rowcount` counts pinned extras and `aria-multiselectable` follows the selection mode - [Preview](/components/data-grid).
+- `DataGridTableVirtual`: rows and the header row are memoized, so a scroll frame renders only what enters the window - [Docs](/docs/components/base/data-grid#datagridtablevirtual).
+- `DataGrid`: `meta.autoSize` columns reflow with the container down to `minSize`, and leave a dragged width alone - [Docs](/docs/components/base/data-grid#datagrid).
+- `DataGrid`: `onRowCreate` hands focus to the grid when a draft replaces it, and its click survives a multi-cell selection - [Docs](/docs/components/base/data-grid#datagrid).
+- `DataGridPagination`: the page-size select no longer clips 3-digit sizes, and page buttons carry accessible names - [Docs](/docs/components/base/data-grid#datagridpagination).
+- `DataGridTableRowPin`: bottom-pinned rows cast their boundary shadow upward - [Docs](/docs/components/base/data-grid#datagridtablerowpin).
+- `Combobox`: chips in the spreadsheet editing example are outline badges with an avatar and a remove button - [Preview](/components/data-grid).
+
+## v2.5.0 - 26 August, 2026.
+
+**New: Data Grid Spreadsheet Editing.**
+
+- Cell range selection with drag, Shift and Ctrl ranges and full keyboard navigation, opt-in via `tableLayout.cellSelection` - [Docs](/docs/components/base/data-grid#datagridcellselection).
+- Clipboard copy, cut and paste with Excel and Google Sheets TSV round-trip, including bulk paste across a range - [Docs](/docs/components/base/data-grid#datagridcellselection).
+- Fill handle repeats the selection down or right, with a live drag preview - [Preview](/components/data-grid).
+- One batched `onCellsChange` write contract plus per-column `meta.cellEdit` parse, format and clear rules - [Docs](/docs/components/base/data-grid#datagridcellselection).
+- Notion-style editing flow: built-in text and textarea cell editors via `cellEdit.control`, opened by Enter, F2, typing or double-click - [Docs](/docs/components/base/data-grid#datagridcellselection).
+- Consumer editors keep the same keystrokes through `onCellEditRequest` for custom controls like selects - [Docs](/docs/components/base/data-grid#datagridcellselection).
+- Full spreadsheet keyboard map: Ctrl+Arrows, Home/End, PageUp/PageDown jumps with Shift extension - [Docs](/docs/components/base/data-grid#datagridcellselection).
+- ARIA grid semantics: role, row and column indexes, aria-sort, aria-selected and aria-activedescendant tracking for screen readers - [Docs](/docs/components/base/data-grid#datagridcellselection).
+- Optional CRUD affordances: an `onRowCreate` add-row, `getRowStatus` row tints and `getCellStatus` corner marks - [Docs](/docs/components/base/data-grid#datagridcellselection).
+- One column can absorb the resize filler strip via `meta.fillWidth`, keeping the grid full-width - [Docs](/docs/components/base/data-grid#datagridcellselection).
+- New `DataGridSelectionBar` shell for bulk edits over row selection - [Docs](/docs/components/base/data-grid#datagridselectionbar).
+- Works alongside sorting, pagination, resizable and pinned columns; existing grids render byte-identically with the flag off - [Docs](/docs/components/base/data-grid#datagridcellselection).
+
+**New Components:**
+
+- New spreadsheet editing example: inline editors, a team member combobox, a date picker, quick add-row and a bulk edit bar, taking the Data Grid to 31 examples per base - [Preview](/components/data-grid).
+
+**Fixes & Improvements:**
+
+- `DataGridTable`: cell borders no longer float against the resize filler strip when `cellBorder` meets `columnsResizable` - [Preview](/components/data-grid).
+- `DataGridTable`: resize handles no longer double the header separators when `cellBorder` is on - [Preview](/components/data-grid).
+- `DataGridTable`: end-pinned columns resize from their start edge, indicator on the correct side - [Preview](/components/data-grid).
+- `DataGridTable`: the viewport no longer draws a browser focus outline during keyboard navigation - [Preview](/components/data-grid).
+- `DataGridCellSelection`: the focused cell ring is a quiet 1px border-tone outline, and the editor keeps text exactly in place - [Preview](/components/data-grid).
+
+## v2.4.0 - 25 August, 2026.
+
+**New: Shadcn Code Block.**
+
+- New Code Block primitive: Shiki highlighting, a copy button, wrap and expand controls, and per-line action groups - [Docs](/docs/components/base/code-block).
+- Streams as tokens arrive, with a caret, stick-to-bottom, and markdown fence splitting for AI chat - [Docs](/docs/components/base/code-block#streaming-and-ai-sdk).
+- Diffs from props or real git patches via `parseUnifiedDiff`, plus indentation-based code folding in any language - [Preview](/components/code-block).
+- Server rendering with no client bundle, no WebAssembly, and no `'wasm-unsafe-eval'` in your CSP - [Docs](/docs/components/base/code-block#bundle-and-csp).
+- Theming via `github-light` / `github-dark`, any shiki theme, or `--code-token-*` design tokens - [Docs](/docs/components/base/code-block#theming).
+- 27 examples per base, taking the registry to 22 primitives - [Preview](/components/code-block).
+
+**Gantt dependencies and milestones:**
+
+- Finish-to-start dependency arrows drawn from each event's `dependencies`, off with `dependencyLines={false}` - [Docs](/docs/components/base/gantt#dependencies-and-milestones).
+- Zero-duration events render as milestone diamonds - [Preview](/components/gantt).
+
+**Fixes & Improvements:**
+
+- Component docs pages paint sooner, and their first preview reserves its height instead of growing from a spinner - [Docs](/docs).
+
 ## v2.3.0 - 19 August, 2026.
 
 **New component - Cascader:**
