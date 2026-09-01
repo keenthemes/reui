@@ -3,10 +3,13 @@
 
 import { expandRecurrence } from "@/registry-reui/bases/base/reui/gantt/gantt-recurrence"
 import type {
+  GanttBaseline,
+  GanttBaselineVariance,
   GanttDateRange,
   GanttEvent,
   GanttOccurrence,
   GanttOffDaysConfig,
+  GanttRecurrenceRule,
   GanttResource,
   GanttScale,
   GanttSegment,
@@ -142,10 +145,105 @@ function eventsOverlap(
   return a.start < b.end && a.end > b.start
 }
 
+/**
+ * Range visibility for an occurrence: half-open like rangesIntersect, except
+ * a zero-length occurrence (a milestone). The plain test can never admit an
+ * instant sitting exactly on the range start, so milestones compare the
+ * start closed; the end stays exclusive - an instant on the range end
+ * belongs to the next period. gantt-recurrence inlines this same rule
+ * (importing it back here would cycle the modules).
+ */
+function occurrenceIntersects(
+  occ: { start: Date; end: Date },
+  range: GanttDateRange
+): boolean {
+  if (occ.end.getTime() === occ.start.getTime()) {
+    return occ.start >= range.start && occ.start < range.end
+  }
+  return rangesIntersect(occ, range)
+}
+
 function spansMultipleDays(occ: { start: Date; end: Date }): boolean {
   // An event ending exactly at the next midnight is still single-day
   // (exclusive end), so compare against a strictly-later instant.
   return occ.end.getTime() - occ.start.getTime() > 24 * 60 * 60 * 1000
+}
+
+/**
+ * The subject's validated planned window, or null: both instants present,
+ * end not before start, and (for events) non-recurring - a series has no
+ * single planned window. An edited single occurrence (recurringEventId
+ * without its own rule) is a plain event here and keeps its baseline.
+ * Structural on purpose: a GanttResource node's own baseline pair resolves
+ * through the same rule.
+ */
+function resolveEventBaseline(subject: {
+  baselineStart?: Date
+  baselineEnd?: Date
+  recurrence?: GanttRecurrenceRule | string
+}): GanttBaseline | null {
+  if (!subject.baselineStart || !subject.baselineEnd || subject.recurrence) {
+    return null
+  }
+  const startMs = subject.baselineStart.getTime()
+  const endMs = subject.baselineEnd.getTime()
+  if (endMs < startMs) return null
+  return {
+    start: subject.baselineStart,
+    end: subject.baselineEnd,
+    milestone: endMs === startMs,
+  }
+}
+
+interface GanttDependencyGeometry {
+  /** Orthogonal elbow path for the connector line, in the caller's units. */
+  line: string
+  /** Filled arrowhead at the target anchor, pointing along +x. */
+  arrow: string
+}
+
+/**
+ * Finish-to-start connector geometry from a predecessor's END anchor to a
+ * successor's START anchor, in whatever units the caller works in (the view
+ * passes rem). A target with room ahead takes the classic Z route: out by
+ * `clearance`, across to the target lane, in. A target at or behind the
+ * source's exit loops instead: out, hop `laneStep` toward the target's side
+ * (down when level - below reads as "later"), back past the target, in.
+ * The line stops `arrowSize` short of the anchor so it never pokes through
+ * the head. The exit stub can sit under an outside-after bar label; a
+ * consumer that shows those widens the label's start margin instead of the
+ * routing changing shape (a drop-first exit was tried and read worse
+ * everywhere else).
+ */
+function buildDependencyPath(
+  from: { x: number; y: number },
+  to: { x: number; y: number },
+  opts: { clearance: number; laneStep: number; arrowSize: number }
+): GanttDependencyGeometry {
+  const { clearance, laneStep, arrowSize } = opts
+  const lineEndX = to.x - arrowSize
+  const arrow = `M ${to.x} ${to.y} L ${lineEndX} ${to.y - arrowSize * 0.6} L ${lineEndX} ${to.y + arrowSize * 0.6} Z`
+  if (lineEndX >= from.x + clearance) {
+    return {
+      line: `M ${from.x} ${from.y} H ${from.x + clearance} V ${to.y} H ${lineEndX}`,
+      arrow,
+    }
+  }
+  const midY = to.y >= from.y ? from.y + laneStep : from.y - laneStep
+  return {
+    line: `M ${from.x} ${from.y} H ${from.x + clearance} V ${midY} H ${to.x - clearance} V ${to.y} H ${lineEndX}`,
+    arrow,
+  }
+}
+
+/** Actual end against the planned end; null when no valid baseline exists. */
+function getBaselineVariance<TData>(
+  event: GanttEvent<TData>
+): GanttBaselineVariance | null {
+  const baseline = resolveEventBaseline(event)
+  if (!baseline) return null
+  const deltaMs = event.end.getTime() - baseline.end.getTime()
+  return deltaMs > 0 ? "late" : deltaMs < 0 ? "early" : "on-time"
 }
 
 interface PackedPosition {
@@ -413,7 +511,12 @@ function buildEventIndex<TData>(
     if (custom) {
       custom.forEach((occ, i) => {
         if (replaced?.has(occ.start.getTime())) return
-        if (!rangesIntersect({ start: occ.start, end: occ.end }, visibleRange))
+        if (
+          !occurrenceIntersects(
+            { start: occ.start, end: occ.end },
+            visibleRange
+          )
+        )
           return
         occurrences.push({
           key: `${event.id}::${occ.start.toISOString()}`,
@@ -558,20 +661,24 @@ function resolveOffDay(
 }
 
 export {
+  buildDependencyPath,
   buildEventIndex,
   defaultEventOrder,
   eventsOverlap,
   findResource,
   flattenResources,
+  getBaselineVariance,
   getDayKey,
   getDayTotalMinutes,
   getGanttDateRange,
   getLaneKey,
   getRangeKey,
   MIN_PACK_SLOT,
+  occurrenceIntersects,
   packTimedSegments,
   rangesIntersect,
   reorderResources,
+  resolveEventBaseline,
   resolveOffDay,
   snapMinutes,
   spansMultipleDays,
@@ -581,6 +688,7 @@ export {
 }
 export type {
   BuildIndexOptions,
+  GanttDependencyGeometry,
   GanttIndex,
   GanttLaneMemo,
   PackOptions,

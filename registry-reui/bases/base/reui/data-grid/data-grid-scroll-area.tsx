@@ -19,8 +19,11 @@ const INITIAL_METRICS = {
   trackHeight: 0,
 } as const
 
+// Track footprint, measured: horizontal is 8px tall and vertical 6px wide, and
+// each loses 1px to its transparent border plus 2px to p-px, so the thumbs land
+// at 5px and 3px. Shrink these further and the thumb stops being a grab target.
 const SCROLLBAR_CLASSNAME =
-  "flex touch-none p-px transition-colors select-none data-[orientation=horizontal]:h-2.5 data-[orientation=horizontal]:flex-col data-[orientation=horizontal]:border-t data-[orientation=horizontal]:border-t-transparent data-[orientation=vertical]:h-full data-[orientation=vertical]:w-2 data-[orientation=vertical]:border-s data-[orientation=vertical]:border-s-transparent"
+  "flex touch-none p-px transition-colors select-none data-[orientation=horizontal]:h-2 data-[orientation=horizontal]:flex-col data-[orientation=horizontal]:border-t data-[orientation=horizontal]:border-t-transparent data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1.5 data-[orientation=vertical]:border-s data-[orientation=vertical]:border-s-transparent"
 
 const SCROLLBAR_THUMB_CLASSNAME = "bg-border rounded-full relative flex-1"
 
@@ -454,12 +457,12 @@ function DataGridScrollArea({
           className="pointer-events-none absolute inset-e-0 top-(--data-grid-scrollbar-header-height) z-20 h-(--data-grid-scrollbar-track-height)"
         >
           <div
-            className="pointer-events-auto relative h-full w-2 touch-none p-px"
+            className="pointer-events-auto relative h-full w-1.5 touch-none p-px"
             onPointerDown={handleTrackPointerDown}
           >
             <div
               className={cn(
-                "bg-border absolute end-px w-2",
+                "bg-border absolute end-px w-1.5",
                 "top-(--data-grid-scrollbar-thumb-top) h-(--data-grid-scrollbar-thumb-height)",
                 "rounded-full"
               )}

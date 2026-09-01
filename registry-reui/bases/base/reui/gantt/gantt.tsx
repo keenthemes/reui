@@ -34,6 +34,8 @@ import {
 } from "@/registry-reui/bases/base/reui/gantt/gantt-lib"
 import type {
   GanttBarId,
+  GanttBaseline,
+  GanttBaselineVariance,
   GanttDateRange,
   GanttDragState,
   GanttEvent,
@@ -175,6 +177,13 @@ interface UseGanttStateOptions<TData = unknown> extends GanttCallbacks<TData> {
    * scheduleMode rejects regardless.
    */
   overlap?: GanttOverlapPolicy
+  /**
+   * Make canDropEvent binding: releasing a gesture whose last verdict was
+   * invalid reverts it, like the "reject" overlap policy, instead of
+   * committing anyway. Default false - canDropEvent alone stays advisory
+   * (it styles the ghost; onEventUpdate is the commit gate).
+   */
+  enforceCanDrop?: boolean
   getEventPriority?: (event: GanttEvent<TData>) => number
   eventOrder?: (a: GanttOccurrence<TData>, b: GanttOccurrence<TData>) => number
   getOccurrences?: (
@@ -201,6 +210,7 @@ interface GanttSettings<TData = unknown> extends GanttCallbacks<TData> {
   maxRangeWindow?: number
   resources: GanttResource[]
   overlap: GanttOverlapPolicy
+  enforceCanDrop?: boolean
   getEventPriority: (event: GanttEvent<TData>) => number
   eventOrder: (a: GanttOccurrence<TData>, b: GanttOccurrence<TData>) => number
   getOccurrences?: (
@@ -788,6 +798,7 @@ function createGanttStore<TData>(
     "maxRangeWindow",
     "resources",
     "overlap",
+    "enforceCanDrop",
     "getEventPriority",
     "eventOrder",
     "getOccurrences",
@@ -1092,6 +1103,10 @@ interface GanttClassNames {
   /** The gantt body (tree + track). */
   view?: string
   event?: string
+  /** The planned-window (baseline) ghost drawn behind a bar. */
+  baseline?: string
+  /** The dependency-arrow layer (an SVG; color flows from currentColor). */
+  dependencies?: string
 }
 
 /** Row context handed to tree-panel column and label renderers. */
@@ -1180,6 +1195,12 @@ interface GanttMetrics {
   rowPadding?: number
   /** Minimum row height. Default 2.5. */
   minRowHeight?: number
+  /**
+   * Drag-drop indicator height, centered in its lane band and published on
+   * the ghost as --gantt-ghost-height so consumer styling can read the same
+   * number. Default 1.25.
+   */
+  ghostHeight?: number
   /** barLabel "auto" flips the title outside below this bar width. Default 7. */
   autoLabelMin?: number
   /** Unit width at zoom 1, per scale. Day scale = width per interval unit. */
@@ -1198,6 +1219,9 @@ interface GanttDragIndicatorProps<TData = unknown> {
   start: Date
   end: Date
   valid: boolean
+  /** The event's planned (baseline) window, so a custom overlay can keep
+   * drawing it mid-gesture; null when the event carries none. */
+  baseline: GanttBaseline | null
 }
 
 /** Slot handed to a custom schedule-hint renderer. */
@@ -1213,6 +1237,28 @@ interface GanttSummaryProps {
   start: Date
   end: Date
   progress: number | null
+}
+
+/** Planned window handed to a custom baseline renderer. */
+interface GanttBaselineProps<TData = unknown> {
+  event: GanttEvent<TData>
+  start: Date
+  end: Date
+  /** Planned start and end coincide: a point in the plan, not a window. */
+  milestone: boolean
+  variance: GanttBaselineVariance
+}
+
+/** Planned NODE window handed to a custom row-baseline renderer. */
+interface GanttRowBaselineProps {
+  resource: GanttResource
+  start: Date
+  end: Date
+  /** Planned start and end coincide: a point in the plan, not a window. */
+  milestone: boolean
+  /** Latest actual end across the node's (and, for a group, its subtree's)
+   * events against the planned end; null when there is nothing to compare. */
+  variance: GanttBaselineVariance | null
 }
 
 /** Left tree-panel sizing and splitter behavior. */
@@ -1371,6 +1417,23 @@ interface GanttViewConfig<TData = unknown> {
    */
   summaryBars: boolean
   /**
+   * As-built comparison: the planned window of every bar carrying
+   * baselineStart/baselineEnd, ghosted behind it on its own lane (equal
+   * instants draw a planned milestone diamond), and of every NODE whose
+   * GanttResource carries the same pair, drawn as a band behind its lanes.
+   * Display only - dragging a bar moves the actual dates and never its
+   * baseline. Default true; rows and events without baseline data draw
+   * nothing.
+   */
+  baselineBars: boolean
+  /**
+   * Finish-to-start arrows between bars whose events name `dependencies`.
+   * Drawn from the predecessor's end into the dependent's start, under the
+   * bars; endpoints on hidden rows are skipped. Default true; nothing
+   * renders when no visible event names a dependency.
+   */
+  dependencyLines: boolean
+  /**
    * How many schedules a tree node may hold. "multiple" (default) stacks
    * concurrent schedules into stable lanes and grows the row; "single" keeps
    * one track per node - the task-gantt shape. Any node can override it with
@@ -1429,6 +1492,17 @@ interface GanttViewConfig<TData = unknown> {
   /** Replaces the parent rollup strip (the positioned wrapper stays gantt-owned). */
   renderSummary?: (props: GanttSummaryProps) => ReactNode
   /**
+   * Replaces the baseline ghost's content, the milestone diamond included
+   * (props.milestone forks the two). The positioned, pointer-transparent
+   * wrapper stays gantt-owned.
+   */
+  renderBaseline?: (props: GanttBaselineProps<TData>) => ReactNode
+  /**
+   * Replaces the ROW baseline band's content (same wrapper contract as
+   * renderBaseline).
+   */
+  renderRowBaseline?: (props: GanttRowBaselineProps) => ReactNode
+  /**
    * Replaces the rollup MATH: return 0-100 (or null to hide) for a group
    * from its descendant events. Default: duration-weighted mean progress.
    */
@@ -1458,6 +1532,8 @@ const DEFAULT_VIEW_CONFIG: GanttViewConfig = {
   rowCheckboxes: true,
   parentScheduling: false,
   summaryBars: true,
+  baselineBars: true,
+  dependencyLines: true,
   scheduleMode: "multiple",
   rowAlign: "start",
 }
@@ -1506,6 +1582,8 @@ const VIEW_CONFIG_KEYS: Array<keyof GanttViewConfig> = [
   "onZoomChange",
   "parentScheduling",
   "summaryBars",
+  "baselineBars",
+  "dependencyLines",
   "scheduleMode",
   "rowAlign",
   "classNames",
@@ -1518,6 +1596,8 @@ const VIEW_CONFIG_KEYS: Array<keyof GanttViewConfig> = [
   "renderResizeIndicator",
   "renderScheduleHint",
   "renderSummary",
+  "renderBaseline",
+  "renderRowBaseline",
   "getSummaryProgress",
 ]
 
@@ -1556,6 +1636,7 @@ const OPTION_KEYS: Array<keyof UseGanttStateOptions> = [
   "maxRangeWindow",
   "resources",
   "overlap",
+  "enforceCanDrop",
   "getEventPriority",
   "eventOrder",
   "getOccurrences",
@@ -1718,6 +1799,7 @@ export {
 export type {
   GanttActivationConfig,
   GanttApi,
+  GanttBaselineProps,
   GanttCallbacks,
   GanttClassNames,
   GanttColumn,
@@ -1731,6 +1813,7 @@ export type {
   GanttProps,
   GanttRenderEventProps,
   GanttResolvedLines,
+  GanttRowBaselineProps,
   GanttScheduleHintProps,
   GanttSettings,
   GanttSummaryProps,

@@ -14,7 +14,9 @@ export default function Pattern() {
   return (
     <div className="flex items-center justify-center">
       <Drawer>
-        <DrawerTrigger render={<Button variant="outline">Open Drawer</Button>} />
+        <DrawerTrigger
+          render={<Button variant="outline">Open Drawer</Button>}
+        />
         <DrawerContent className="max-h-[80vh]">
           <DrawerHeader>
             <DrawerTitle>Move Goal</DrawerTitle>

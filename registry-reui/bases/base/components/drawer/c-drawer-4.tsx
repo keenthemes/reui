@@ -13,7 +13,9 @@ import {
 export default function Pattern() {
   return (
     <div className="flex items-center justify-center">
-      <Drawer direction="top">
+      {/* swipeDirection names the gesture that dismisses the drawer, which is
+          also the edge it is anchored to, so a top drawer is "up" not "top". */}
+      <Drawer swipeDirection="up">
         <DrawerTrigger render={<Button variant="outline">Top Drawer</Button>} />
         <DrawerContent className="max-h-[80vh]">
           <DrawerHeader>
@@ -22,10 +24,7 @@ export default function Pattern() {
           </DrawerHeader>
           <div className="no-scrollbar overflow-y-auto px-4">
             {Array.from({ length: 10 }).map((_, index) => (
-              <p
-                key={index}
-                className="mb-4 leading-normal"
-              >
+              <p key={index} className="mb-4 leading-normal">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris

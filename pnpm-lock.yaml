@@ -141,6 +141,9 @@ importers:
       '@reui/components-base-checkbox':
         specifier: workspace:*
         version: link:packages/registry/bases/base/components/checkbox
+      '@reui/components-base-code-block':
+        specifier: workspace:*
+        version: link:packages/registry/bases/base/components/code-block
       '@reui/components-base-collapsible':
         specifier: workspace:*
         version: link:packages/registry/bases/base/components/collapsible
@@ -360,6 +363,9 @@ importers:
       '@reui/components-radix-checkbox':
         specifier: workspace:*
         version: link:packages/registry/bases/radix/components/checkbox
+      '@reui/components-radix-code-block':
+        specifier: workspace:*
+        version: link:packages/registry/bases/radix/components/code-block
       '@reui/components-radix-collapsible':
         specifier: workspace:*
         version: link:packages/registry/bases/radix/components/collapsible
@@ -977,6 +983,24 @@ importers:
         specifier: '>=18'
         version: 19.2.7(react@19.2.7)
 
+  packages/registry/bases/base/components/code-block:
+    dependencies:
+      '@base-ui/react':
+        specifier: 1.5.0
+        version: 1.5.0(@date-fns/tz@1.5.0)(@types/react@19.2.17)(date-fns@4.4.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      class-variance-authority:
+        specifier: ^0.7.1
+        version: 0.7.1
+      react:
+        specifier: '>=18'
+        version: 19.2.7
+      react-dom:
+        specifier: '>=18'
+        version: 19.2.7(react@19.2.7)
+      shiki:
+        specifier: ^4.0.2
+        version: 4.3.1
+
   packages/registry/bases/base/components/collapsible:
     dependencies:
       '@base-ui/react':
@@ -1060,6 +1084,9 @@ importers:
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
+      date-fns:
+        specifier: ^4.1.0
+        version: 4.4.0
       react:
         specifier: '>=18'
         version: 19.2.7
@@ -2045,6 +2072,24 @@ importers:
         specifier: '>=18'
         version: 19.2.7(react@19.2.7)
 
+  packages/registry/bases/radix/components/code-block:
+    dependencies:
+      class-variance-authority:
+        specifier: ^0.7.1
+        version: 0.7.1
+      radix-ui:
+        specifier: ^1.4.3
+        version: 1.6.2(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react:
+        specifier: '>=18'
+        version: 19.2.7
+      react-dom:
+        specifier: '>=18'
+        version: 19.2.7(react@19.2.7)
+      shiki:
+        specifier: ^4.0.2
+        version: 4.3.1
+
   packages/registry/bases/radix/components/collapsible:
     dependencies:
       class-variance-authority:
@@ -2128,6 +2173,9 @@ importers:
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
+      date-fns:
+        specifier: ^4.1.0
+        version: 4.4.0
       radix-ui:
         specifier: ^1.4.3
         version: 1.6.2(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
@@ -7198,7 +7246,7 @@ packages:
     engines: {node: '>=10'}
     peerDependencies:
       '@types/react': '*'
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+      react: 19.2.7
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -7476,8 +7524,8 @@ packages:
   sonner@2.0.7:
     resolution: {integrity: sha512-W6ZN4p58k8aDKA4XPcx2hpIQXBRAgyiWVkYhT7CvK6D3iAu7xjvVyhQHg2/iaKJZ1XVJ4r7XuwGL+WGEK37i9w==}
     peerDependencies:
-      react: ^18.0.0 || ^19.0.0 || ^19.0.0-rc
-      react-dom: ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+      react: 19.2.7
+      react-dom: 19.2.7
 
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}

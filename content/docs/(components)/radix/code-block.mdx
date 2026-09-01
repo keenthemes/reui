@@ -1,0 +1,643 @@
+---
+title: Code Block
+description: A shadcn code block with Shiki syntax highlighting, streaming, diffs, code folding and per-line interaction for AI chat and agent UIs.
+component: true
+base: radix
+---
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-code-block-1"
+  previewHeight={250}
+  className="**:[.preview]:h-auto"
+/>
+
+## Installation
+
+```bash
+npx shadcn@latest add @reui/code-block
+```
+
+The only npm dependency is `shiki`. Grammars and themes load lazily, one chunk
+per language, and nothing loads at all when you pass pre-highlighted lines or
+turn highlighting off.
+
+## Usage
+
+```tsx
+import {
+  CodeBlock,
+  CodeBlockCopyButton,
+  CodeBlockHeader,
+  CodeBlockLanguage,
+  CodeBlockTitle,
+} from "@/components/reui/code-block/code-block"
+```
+
+```tsx
+<CodeBlock code={code} language="tsx" />
+```
+
+That is a complete block. Everything else is composition:
+
+```tsx
+<CodeBlock code={code} language="tsx" showLineNumbers>
+  <CodeBlockHeader>
+    <CodeBlockTitle>use-totals.ts</CodeBlockTitle>
+    <CodeBlockLanguage />
+    <CodeBlockCopyButton className="ml-auto" />
+  </CodeBlockHeader>
+</CodeBlock>
+```
+
+## Anatomy
+
+`CodeBlock` renders the code surface itself; with the default surface,
+children are chrome (a header, a copy button, an expand control) and their
+order never matters. Composing `CodeBlockContent` makes the surface one of
+the children, and from then on order is DOM order.
+
+```tsx
+<CodeBlock>
+  <CodeBlockHeader>
+    <CodeBlockTitle />
+    <CodeBlockLanguage />
+    <CodeBlockWrapToggle />
+    <CodeBlockCopyButton />
+  </CodeBlockHeader>
+  <CodeBlockContent /> {/* optional: compose inside your own ScrollArea */}
+  <CodeBlockExpandButton />
+  <CodeBlockLineActions>{({ line }) => null}</CodeBlockLineActions>
+</CodeBlock>
+```
+
+A `CodeBlockCopyButton` inside a header is a normal flex child. Outside one it
+pins itself over the surface and stays put under both vertical and horizontal
+scrolling.
+
+## Framing
+
+The default variant draws a bordered surface. Use `variant="ghost"` when
+something else already provides the chrome, so you do not get a doubled
+border. Ghost keeps the block's own padding; a flush fit is the container's
+job (`p-0` on the panel, as the framed examples do).
+
+```tsx
+<Card>
+  <CardContent>
+    <CodeBlock code={code} language="tsx" variant="ghost" />
+  </CardContent>
+</Card>
+```
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-code-block-14"
+  previewHeight={170}
+  className="**:[.preview]:h-auto"
+/>
+
+## Scrolling
+
+`CodeBlockContent` is the code surface as a composable part: place it inside
+your own scroll container and the block stops scrolling internally - the
+ancestor owns both axes.
+
+By default the block scrolls with a plain `overflow: auto` container of its
+own - no ScrollArea dependency, native thin scrollbars, and `maxLines` caps
+it.
+
+To own the scrolling yourself, compose `CodeBlockContent` inside your own
+scroll container. The ancestor takes BOTH axes - the surface scrolls
+nothing itself - and a header above the area never scrolls away. The sticky
+line numbers anchor to the ancestor's viewport, and stick-to-bottom during
+streaming follows it automatically. Pass a `ScrollBar orientation="horizontal"`
+child for the horizontal bar; Base UI positions it against the scroll area's
+root, so it stays pinned even though it sits among the children.
+
+```tsx
+<CodeBlock code={code} language="tsx" showLineNumbers>
+  <CodeBlockHeader>
+    <CodeBlockTitle>use-totals.ts</CodeBlockTitle>
+    <CodeBlockCopyButton className="ml-auto" />
+  </CodeBlockHeader>
+  <ScrollArea className="rounded-[inherit] **:data-[slot=scroll-area-viewport]:max-h-72">
+    <CodeBlockContent />
+    <ScrollBar orientation="horizontal" />
+  </ScrollArea>
+</CodeBlock>
+```
+
+Use `max-h-*`, not a fixed height, so a short file does not leave dead space,
+and put it on the ScrollArea VIEWPORT (as above): the viewport is height-100%
+of the root, and a percentage against a max-height-only parent resolves to
+auto, so a root-level cap clips without ever scrolling.
+`maxLines` still marks the block collapsible, so `CodeBlockExpandButton`
+works either way; only the height cap itself belongs to the built-in
+viewport. To collapse a composed surface, read `expanded` from
+`useCodeBlockConfig` and cap your own ScrollArea, as the expand example does.
+`CodeBlockContent` must appear in the JSX you pass to `CodeBlock` - any
+depth, any wrapper, your own components included. It is invisible only when a
+child component CONSTRUCTS it internally instead of receiving it as children,
+and development logs an error if that happens.
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-code-block-19"
+  previewHeight={200}
+  className="**:[.preview]:h-auto"
+/>
+
+The inverse composition also works - default-mode blocks that size to content,
+listed inside one outer ScrollArea that scrolls the whole set - and ships as a
+changed-file list on the
+[Code Block components page](/components/code-block).
+
+## Server rendering
+
+`highlightCode` lives in its own module with no `"use client"` directive, so a
+server component can call it. The result is plain JSON, so it crosses the
+boundary as data and the browser never downloads a grammar.
+
+```tsx
+import { CodeBlock } from "@/components/reui/code-block/code-block"
+import { highlightCode } from "@/components/reui/code-block/code-block-highlight"
+
+export default async function Page() {
+  const lines = await highlightCode(source, { language: "tsx" })
+
+  return (
+    <CodeBlock lines={lines} showLineNumbers>
+      <CodeBlockHeader>
+        <CodeBlockCopyButton value={source} />
+      </CodeBlockHeader>
+    </CodeBlock>
+  )
+}
+```
+
+The same shape works without React Server Components. In Remix or TanStack
+Start, return `lines` from a loader and pass them to the component.
+
+```tsx
+export async function loader() {
+  return { lines: await highlightCode(source, { language: "tsx" }) }
+}
+```
+
+<Callout>
+  `lines` is a plain array, so any highlighter can produce it. If you already
+  use Prism or highlight.js, map its output to `CodeBlockLine[]` and the
+  component never loads shiki.
+</Callout>
+
+## Streaming and AI SDK
+
+Pass a `code` string that grows. The component re-tokenizes on a deferred
+value, and the highlighter returns the same line objects for lines that did not
+change, so an appended chunk re-renders one line rather than the whole file.
+Lines past what the highlighter has caught up to render as plain text, so the
+newest token is visible immediately.
+
+```tsx
+<CodeBlock code={partial} language="tsx" streaming={status === "streaming"} />
+```
+
+`streaming` is presentational: it shows an underline caret, sticks the
+viewport to the bottom until the reader scrolls up, sets `aria-busy`, and
+turns on motion. New lines slide in once; tokens deliberately do not animate,
+because the highlighter runs a chunk behind the stream and replaces plain
+lines with tokenized ones - colour arriving instantly reads as highlighting,
+while a mount-keyed fade re-flashed lines that were already readable. The
+animation is compositor-only and honours `prefers-reduced-motion`.
+Incremental rendering is always memoized, so forgetting the prop costs
+correctness nothing.
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-code-block-3"
+  previewHeight={350}
+  className="**:[.preview]:h-auto"
+/>
+
+### Markdown code fences
+
+Most AI chat UIs do not hold a raw code string. They hold a markdown message
+with fenced blocks in it. Two helpers cover both routes.
+
+Rendering a message yourself, `markdownFences` splits it into prose and code
+and reports a fence whose closing delimiter has not streamed in yet:
+
+```tsx
+{
+  markdownFences(message.text).map((part, index) =>
+    part.type === "text" ? (
+      <p key={index}>{part.content}</p>
+    ) : (
+      <CodeBlock
+        key={index}
+        code={part.content}
+        language={part.language}
+        streaming={part.open}
+      >
+        <CodeBlockCopyButton />
+      </CodeBlock>
+    )
+  )
+}
+```
+
+Using react-markdown or Streamdown, `markdownCodeProps` reads the language and
+the source out of the props given to `pre`:
+
+```tsx
+function MarkdownPre(props: React.ComponentProps<"pre">) {
+  const { code, language } = markdownCodeProps(props)
+  return (
+    <CodeBlock code={code} language={language}>
+      <CodeBlockCopyButton />
+    </CodeBlock>
+  )
+}
+
+;<ReactMarkdown components={{ pre: MarkdownPre }}>{message.text}</ReactMarkdown>
+```
+
+An unknown language and an unterminated fence both render as plain text rather
+than throwing, which is what a half-streamed message always looks like.
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-code-block-4"
+  previewHeight={280}
+  className="**:[.preview]:h-auto"
+/>
+
+## Bundle and CSP
+
+The highlighter uses shiki's JavaScript regex engine, not oniguruma. There is
+no WebAssembly, so installing this does not force `'wasm-unsafe-eval'` into
+your Content Security Policy.
+
+- shiki loads on first highlight, never on import.
+- Each language is its own chunk, resolved through a static map.
+- `highlight={false}` and the `lines` prop never request any of it.
+
+## Adding a language
+
+Languages are a written-out map in `code-block-highlight.tsx`. Add a line:
+
+```tsx
+export const codeBlockLanguages = {
+  // ...
+  elixir: () => import("shiki/langs/elixir.mjs"),
+}
+```
+
+Aliases resolve first, so shorthands live one map up: add `ex: "elixir"` to
+`LANGUAGE_ALIASES` and both names work. An entry does not have to come from
+shiki either - `mylang: () => import("./my-grammar.json")` registers a custom
+TextMate grammar, since the loader feeds `loadLanguage` directly. Anything
+unresolved renders as plain text.
+
+The map is written out on purpose. Building the specifier from a template
+literal instead makes bundlers emit a context module containing every grammar
+shiki ships, which quietly turns a lean install into a very large one.
+
+## Theming
+
+Three levels, from zero effort to full control:
+
+1. **Defaults.** Blocks ship with `github-light` / `github-dark` and switch with
+   your site theme automatically.
+2. **Any shiki theme.** Register it in `codeBlockThemes` in the copied
+   `code-block-highlight.tsx` (one line, lazy-loaded), then pass
+   `themes={{ light: "vitesse-light", dark: "vitesse-dark" }}`. Changing the
+   two defaults in that file restyles every block at once. An unregistered
+   name falls back to its side's default and warns in development - check the
+   `codeBlockThemes` entry first when a block renders in the wrong palette.
+3. **Design tokens.** Pass the built-in `css-variables` theme and the palette
+   moves into your stylesheet: every token colour becomes a
+   `var(--code-token-*)` reference, so highlighting follows your design system
+   in both modes with no theme JSON at all.
+
+```tsx
+<CodeBlock
+  code={code}
+  language="tsx"
+  themes={{ light: "css-variables", dark: "css-variables" }}
+/>
+```
+
+```css
+:root {
+  --code-token-keyword: var(--color-rose-600);
+  --code-token-function: var(--color-violet-600);
+  --code-token-string: var(--color-emerald-600);
+  --code-token-constant: var(--color-sky-600);
+  --code-token-parameter: var(--color-amber-600);
+  --code-token-comment: var(--color-muted-foreground);
+  --code-token-punctuation: var(--color-foreground);
+}
+.dark {
+  --code-token-keyword: var(--color-rose-400);
+  /* ...and so on for the dark side of each token */
+}
+```
+
+The full variable set: `--code-foreground`, and
+`--code-token-constant`, `-string`, `-comment`, `-keyword`, `-parameter`,
+`-function`, `-string-expression`, `-punctuation`, `-link`.
+
+Blocks with different `themes` props coexist on one page; each theme loads
+once, by name, on first use.
+
+The design-token example is the one embedded under
+[Scrolling](#scrolling) above, and it also lives on the
+[Code Block components page](/components/code-block).
+
+### Dark Theme
+
+Code often stays dark even on a light page. Wrap the block in a `dark` scope
+and every semantic token inside follows; the primitive needs nothing.
+
+```tsx
+<div className="dark">
+  <CodeBlock code={code} language="tsx" />
+</div>
+```
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-code-block-20"
+  previewHeight={420}
+  className="**:[.preview]:h-auto"
+/>
+
+## Examples
+
+A representative six. Every example on this page installs the same way, and
+the rest stay browsable on the [Code Block components page](/components/code-block).
+
+### Pinned copy button
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-code-block-2"
+  previewHeight={250}
+  className="**:[.preview]:h-auto"
+/>
+
+### Diff
+
+Line state comes straight from props here - the simplest form. For a real
+patch, see the unified parse below.
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-code-block-5"
+  previewHeight={280}
+  className="**:[.preview]:h-auto"
+/>
+
+### Nested code folding
+
+Regions come from indentation rather than the grammar, so folding works in
+every language the block can render. Folding an outer region swallows the
+inner toggles and leaves their own state untouched underneath.
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-code-block-23"
+  previewHeight={350}
+  className="**:[.preview]:h-auto"
+/>
+
+### Fix with AI on the failing line
+
+The render prop receives each line's state, so one action group serves the
+whole block and still only offers the fix where a diagnostic actually sits.
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-code-block-24"
+  previewHeight={200}
+  className="**:[.preview]:h-auto"
+/>
+
+### Reference lines in chat
+
+`side="gutter"` moves the control into the channel beside the line number,
+where an editor puts it. Pressing it turns the hovered line, or the current
+selection via `useCodeBlockSelection`, into `file:line` reference badges in
+the composer below.
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-code-block-25"
+  previewHeight={630}
+  className="**:[.preview]:h-auto"
+/>
+
+### Unified patch review
+
+`parseUnifiedDiff` turns a git patch into per-file lines: tints, `+`/`-`
+glyphs and the dual old/new gutter numbers all come from the parse, and the
+download button saves each file's patch.
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-code-block-18"
+  previewHeight={470}
+  className="**:[.preview]:h-auto"
+/>
+
+### The rest
+
+The other fifteen ship exactly as these do and stay browsable on the
+[Code Block components page](/components/code-block): ANSI terminal output,
+a tool-call payload, live search with a match counter, focus walkthroughs,
+line selection, soft wrap, an expand control over a long file, pre-highlighted
+server lines, before-and-after panes, a language switcher, a shiki transformer
+diff, highlighted words, a dark terminal, patch review with accept and reject
+actions, and a changed-file list inside one scroll area.
+
+## API Reference
+
+### CodeBlock
+
+The root. Renders the code surface; children are chrome.
+
+| Prop                    | Type                              | Default                        | Description                                                            |
+| :---------------------- | :-------------------------------- | :----------------------------- | :--------------------------------------------------------------------- |
+| `code`                  | `string`                          | -                              | The source to render.                                                  |
+| `language`              | `string`                          | -                              | Grammar to use. Unknown values render as plain text.                   |
+| `lines`                 | `CodeBlockLine[]`                 | -                              | Pre-highlighted lines. Skips the client highlighter entirely.          |
+| `highlight`             | `boolean`                         | `true`                         | `false` renders plain text and never loads shiki.                      |
+| `themes`                | `{ light: string; dark: string }` | `github-light` / `github-dark` | Theme pair.                                                            |
+| `showLineNumbers`       | `boolean`                         | `false`                        | Renders the gutter as a CSS counter.                                   |
+| `startLine`             | `number`                          | `1`                            | First displayed line number.                                           |
+| `wrap`                  | `boolean`                         | -                              | Soft wrap, controlled.                                                 |
+| `defaultWrap`           | `boolean`                         | `false`                        | Soft wrap, uncontrolled.                                               |
+| `onWrapChange`          | `(wrap: boolean) => void`         | -                              | Fired when wrap changes.                                               |
+| `maxLines`              | `number`                          | -                              | Collapses taller content.                                              |
+| `variant`               | `"default" \| "ghost"`            | `"default"`                    | `ghost` removes the border and background; padding stays.              |
+| `label`                 | `string`                          | derived                        | Accessible name for the scroll region.                                 |
+| `highlightedLines`      | `number[] \| string`              | -                              | Source lines to mark, as `[2,3]` or `"2-4,7"`.                         |
+| `highlightedWords`      | `(string \| { word, lines })[]`   | -                              | Words to mark.                                                         |
+| `focusedLines`          | `number[] \| string`              | -                              | Lines to keep sharp; the rest dim.                                     |
+| `diff`                  | `{ added?, removed? }`            | -                              | Diff lines.                                                            |
+| `lineLevels`            | `{ error?, warning?, info? }`     | -                              | Diagnostic lines.                                                      |
+| `transformers`          | `ShikiTransformer[]`              | -                              | Passed to shiki. Line classes become line state.                       |
+| `streaming`             | `boolean`                         | `false`                        | Caret, stick-to-bottom, `aria-busy`.                                   |
+| `expanded`              | `boolean`                         | -                              | Collapsed state under `maxLines`, controlled.                          |
+| `defaultExpanded`       | `boolean`                         | `false`                        | Collapsed state, uncontrolled.                                         |
+| `onExpandedChange`      | `(expanded: boolean) => void`     | -                              | Fired when the expand control toggles.                                 |
+| `completeAnnouncement`  | `string`                          | derived                        | Screen-reader text when a stream finishes, for localisation.           |
+| `selectable`            | `boolean`                         | `false`                        | Enables line selection.                                                |
+| `foldRegions`           | `CodeBlockFoldRegion[]`           | derived                        | Replaces the indentation heuristic with your own regions.              |
+| `foldable`              | `boolean`                         | `false`                        | Detects fold regions from indentation and renders a toggle per region. |
+| `folded`                | `number[]`                        | -                              | Folded regions by start line, controlled.                              |
+| `defaultFolded`         | `number[]`                        | `[]`                           | Folded regions by start line, uncontrolled.                            |
+| `onFoldedChange`        | `(folded: number[]) => void`      | -                              | Fired when a region folds or unfolds.                                  |
+| `selectedLines`         | `number[]`                        | -                              | Selected lines, controlled.                                            |
+| `defaultSelectedLines`  | `number[]`                        | `[]`                           | Selected lines, uncontrolled.                                          |
+| `onSelectedLinesChange` | `(lines: number[]) => void`       | -                              | Fired on selection change.                                             |
+
+Line specs address source lines, 1-based within `code`, so changing `startLine`
+never invalidates them.
+
+### CodeBlockContent
+
+The code surface as a standalone part. Compose it inside your own scroll
+container and the block renders no internal scroller; omit it and the block
+scrolls itself exactly as before. Takes only `className`.
+
+### CodeBlockCopyButton
+
+| Prop            | Type                             | Default     | Description                                     |
+| :-------------- | :------------------------------- | :---------- | :---------------------------------------------- |
+| `value`         | `string`                         | root `code` | Text to copy. Notation comments are stripped.   |
+| `onCopy`        | `(value: string) => void`        | -           | Fired after a successful copy.                  |
+| `timeout`       | `number`                         | `2000`      | How long the copied state lasts. `0` keeps it.  |
+| `position`      | `"auto" \| "pinned" \| "inline"` | `"auto"`    | `auto` is inline in a header, pinned elsewhere. |
+| `onCopyError`   | `(error: unknown) => void`       | -           | Fired when the clipboard write rejects.         |
+| `labels`        | `{ copy?, copied? }`             | English     | Accessible names, for localisation.             |
+| `alwaysVisible` | `boolean`                        | `false`     | Skips the hover reveal when pinned.             |
+
+### CodeBlockDownloadButton
+
+Saves the block's code as a file - the sibling of the copy button for
+builder-style output. Same `position` contract; `filename` defaults to
+`code.<ext>` from the block's language.
+
+| Prop         | Type                             | Default    | Description                        |
+| :----------- | :------------------------------- | :--------- | :--------------------------------- |
+| `value`      | `string`                         | block code | Text to save, notation stripped.   |
+| `filename`   | `string`                         | derived    | Name for the saved file.           |
+| `onDownload` | `(filename: string) => void`     | -          | Fired after the save starts.       |
+| `position`   | `"auto" \| "pinned" \| "inline"` | `"auto"`   | Same placement contract as copy.   |
+| `label`      | `string`                         | English    | Accessible name, for localisation. |
+
+### CodeBlockLineActions
+
+| Prop       | Default | Type                                   | Description                                                                                                                                                                                                                                |
+| :--------- | :------ | :------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `children` | -       | `({ line, text, state }) => ReactNode` | Rendered on the active line.                                                                                                                                                                                                               |
+| `side`     | `"end"` | `"end" \| "gutter"`                    | `end` floats the group over the end of the row; `gutter` centres it on the row's start edge, half over the numbers, without reserving any space. A fold toggle owns that edge, so a gutter action on a fold-start row falls back to `end`. |
+
+### CodeBlockExpandButton
+
+Renders nothing when the content is shorter than `maxLines`, so it is always
+safe to compose.
+
+### useCodeBlockConfig
+
+`useCodeBlockConfig(partName)` - the string only names your component in the
+"must be used within a CodeBlock" error. Returns the block's own config for
+anything composed inside it: `code`, `language`, `resolvedLanguage`,
+`showLineNumbers`, `wrap` / `setWrap`, `expanded` / `setExpanded`,
+`collapsible`, `streaming` and `contentId`.
+
+### useCodeBlockFolding
+
+Live folding for anything composed inside the block: `regions`,
+`foldedStarts`, `toggleFold`, `foldAll`, `unfoldAll` and `foldable`. Numbers
+are source-based like every line spec.
+
+### useCodeBlockSelection
+
+Live selection for anything composed inside the block - a line action or a
+header control. Returns `selectedLines` (sorted), `toggleLine`,
+`clearSelection` and `selectable`, so an "add selection to chat" affordance
+can act on the whole range instead of only the hovered line.
+
+### Helpers
+
+| Export                  | From                   | Signature                                     | Description                                             |
+| :---------------------- | :--------------------- | :-------------------------------------------- | :------------------------------------------------------ |
+| `highlightCode`         | `code-block-highlight` | `(code, options) => Promise<CodeBlockLine[]>` | Isomorphic. Safe in a server component.                 |
+| `markdownFences`        | `code-block`           | `(markdown) => CodeBlockMarkdownPart[]`       | Splits prose from fenced code; flags an unclosed fence. |
+| `markdownCodeProps`     | `code-block`           | `(preProps) => { code, language }`            | Reads a react-markdown `pre`.                           |
+| `parseLineSpec`         | `code-block-highlight` | `(spec) => Set<number>`                       | `"2-4,7"` to line numbers.                              |
+| `stripNotationComments` | `code-block-highlight` | `(code) => string`                            | Removes `[!code ...]` comments.                         |
+| `ansiToLines`           | `code-block`           | `(text, startLine?) => CodeBlockLine[]`       | Terminal SGR colours to renderable lines.               |
+| `parseUnifiedDiff`      | `code-block`           | `(patch) => CodeBlockPatchFile[]`             | A git patch to per-file lines with dual gutters.        |
+
+## Data attributes
+
+State is published as attributes, so styling never needs `!important` and never
+needs a `:has()` selector.
+
+| Attribute                       | On              | Values                                           |
+| :------------------------------ | :-------------- | :----------------------------------------------- |
+| `data-variant`                  | root            | `default`, `ghost`                               |
+| `data-has-header`               | root            | present when a header is composed                |
+| `data-streaming`                | root            | present while streaming                          |
+| `data-has-diff`                 | root            | present when any line carries diff state         |
+| `data-foldable`                 | root            | present when folding is enabled                  |
+| `data-gutter-channel`           | root            | present when folding reserves the gutter channel |
+| `data-code-line`                | line            | the displayed line number                        |
+| `data-highlighted`              | line            | present when marked                              |
+| `data-diff`                     | line            | `add`, `remove`                                  |
+| `data-focused` / `data-blurred` | line            | focus mode                                       |
+| `data-level`                    | line            | `error`, `warning`, `info`                       |
+| `data-selected`                 | line            | present when selected                            |
+| `data-active`                   | line            | present under the keyboard/hover cursor          |
+| `data-gutter`                   | line            | a verbatim gutter label (patch old/new pairs)    |
+| `data-code-line-numbers`        | pre             | present when the gutter renders                  |
+| `data-wrap`                     | pre             | present while soft-wrapping                      |
+| `data-selectable`               | pre             | present when line selection is on                |
+| `data-word`                     | token           | the matched word on a marked token               |
+| `data-position`                 | copy / download | `pinned`, `inline`                               |
+| `data-copied`                   | copy button     | present during the copied beat                   |
+| `data-copy-failed`              | copy button     | present for 2s after a rejected write            |
+| `data-state`                    | fold toggle     | `folded`, `unfolded`                             |
+| `data-state`                    | wrap toggle     | `on`, `off`                                      |
+| `data-state`                    | expand          | `expanded`, `collapsed`                          |
+| `data-side`                     | line actions    | `end`, `gutter`                                  |
+
+## Keyboard
+
+| Key                                          | Action                                                    |
+| :------------------------------------------- | :-------------------------------------------------------- |
+| <Kbd>Tab</Kbd>                               | Moves into the scroll region, which is a tab stop.        |
+| <Kbd>↑</Kbd> <Kbd>↓</Kbd>                    | Moves the active line when `selectable`.                  |
+| <Kbd>Shift</Kbd> + <Kbd>↑</Kbd> <Kbd>↓</Kbd> | Extends the selection.                                    |
+| <Kbd>Enter</Kbd> <Kbd>Space</Kbd>            | Toggles the active line's selection in place.             |
+| <Kbd>Home</Kbd> <Kbd>End</Kbd>               | Moves the active line to the first or last rendered line. |
+| <Kbd>Esc</Kbd>                               | Clears the active line, when `selectable`.                |
+| <Kbd>Enter</Kbd> <Kbd>Space</Kbd>            | Folds or unfolds the region when a fold toggle has focus. |
+
+## Accessibility
+
+- With the built-in surface, the scroll container is a labelled `region` and
+  a tab stop, so it can be scrolled without a pointer. Composed, the keyboard
+  scroll stop is your own container, which then needs its own accessible name.
+- With `selectable`, the code is a `listbox` and each line an `option` carrying
+  `aria-selected`. The region wrapper holds the only `tabIndex={0}`, so the block is a single tab stop; with `selectable`, arrow keys move the active option and `aria-activedescendant` on that wrapper exposes it to assistive tech.
+- Line numbers and diff glyphs are generated content, so they are outside the
+  accessibility tree and outside text selection: copying gives exact source.
+- Streaming sets `aria-busy` and announces completion once through a polite
+  status. The code is deliberately not a live region, which would otherwise
+  narrate every token.

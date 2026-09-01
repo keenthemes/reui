@@ -23,6 +23,8 @@ import {
 } from "@/registry-reui/bases/radix/reui/gantt/gantt-dnd"
 import {
   flattenResources,
+  getBaselineVariance,
+  resolveEventBaseline,
   toZoned,
 } from "@/registry-reui/bases/radix/reui/gantt/gantt-lib"
 import type {
@@ -155,6 +157,16 @@ function GanttBar<TData = unknown>({
       ? Math.min(Math.max(Math.round(event.progress), 0), 100)
       : null
 
+  // A zero-duration occurrence is a MILESTONE: the button stays the
+  // interactive shell (click, select, menu, move), the diamond replaces the
+  // tinted bar body, and the view keeps the title outside.
+  const milestone = occurrence.end.getTime() === occurrence.start.getTime()
+
+  // The bar only LABELS its baseline (attributes, tooltip, aria); the ghost
+  // itself is view-owned chrome, because its range differs from this bar's.
+  const baseline = viewConfig.baselineBars ? resolveEventBaseline(event) : null
+  const baselineVariance = baseline ? getBaselineVariance(event) : null
+
   const defaultContent = (
     <>
       {occurrence.isRecurring && (
@@ -186,7 +198,7 @@ function GanttBar<TData = unknown>({
   const content =
     children ??
     viewConfig.renderEvent?.(renderProps) ??
-    (labelOutside ? null : defaultContent)
+    (labelOutside || milestone ? null : defaultContent)
   // Consumer-owned content owns the WHOLE inner visualization: the built-in
   // progress fill and done mark yield so custom bars start from a blank
   // canvas (progress stays readable via data-progress/data-completed).
@@ -197,6 +209,33 @@ function GanttBar<TData = unknown>({
     toZoned(occurrence.end, settings.timeZone),
     occurrence.allDay,
     settings.locale
+  )
+  // Memoized: a second full formatEventTime per render would double the
+  // bar's formatting cost, and it cannot wait for the tooltip because the
+  // label also feeds aria-label. Keyed on the instants, not the baseline
+  // object - resolveEventBaseline allocates a fresh one every render.
+  const baselineStartMs = baseline?.start.getTime()
+  const baselineEndMs = baseline?.end.getTime()
+  const plannedLabel = useMemo(
+    () =>
+      baselineStartMs === undefined || baselineEndMs === undefined
+        ? undefined
+        : settings.i18n.labels.planned(
+            settings.i18n.functions.formatEventTime(
+              toZoned(new Date(baselineStartMs), settings.timeZone),
+              toZoned(new Date(baselineEndMs), settings.timeZone),
+              occurrence.allDay,
+              settings.locale
+            )
+          ),
+    [
+      baselineStartMs,
+      baselineEndMs,
+      occurrence.allDay,
+      settings.i18n,
+      settings.timeZone,
+      settings.locale,
+    ]
   )
   // name the row too: the split-pane layout carries no grid semantics.
   // The prop path is O(1); the lookup fallback is memoized so external
@@ -256,6 +295,7 @@ function GanttBar<TData = unknown>({
     <Comp
       type="button"
       data-slot="gantt-bar"
+      data-milestone={milestone || undefined}
       data-all-day={occurrence.allDay || undefined}
       data-recurring={occurrence.isRecurring || undefined}
       data-selected={isSelected || undefined}
@@ -265,14 +305,18 @@ function GanttBar<TData = unknown>({
       data-label-outside={labelOutside || undefined}
       data-progress={progress ?? undefined}
       data-completed={progress === 100 || undefined}
+      data-baseline={!!baseline || undefined}
+      data-baseline-variance={baselineVariance ?? undefined}
       aria-label={settings.i18n.functions.formatEventAriaLabel({
         title: event.title,
         timeLabel,
+        milestoneLabel: milestone ? settings.i18n.labels.milestone : undefined,
         rowTitle,
         progressLabel:
           progress !== null
             ? settings.i18n.labels.progress(progress)
             : undefined,
+        plannedLabel,
         continues: segment.continuesBefore || segment.continuesAfter,
       })}
       style={
@@ -306,6 +350,10 @@ function GanttBar<TData = unknown>({
         // placeholder behind the dashed preview - no dramatic restyle
         "data-[drag-kind=resize-end]:opacity-40 data-[drag-kind=resize-start]:opacity-40",
         "data-selected:bg-(--gantt-event-color)/30",
+        /* the diamond is the milestone's body, so the shell sheds its own
+           tinted fill and centers the glyph on the instant */
+        milestone &&
+          "justify-center bg-transparent px-0 hover:bg-transparent data-selected:bg-transparent",
         segment.continuesBefore && "rounded-s-none",
         segment.continuesAfter && "rounded-e-none",
         viewConfig.classNames?.event,
@@ -313,7 +361,20 @@ function GanttBar<TData = unknown>({
       )}
       {...props}
     >
-      {progress !== null && (
+      {milestone && !consumerOwnsContent && (
+        // the filled diamond IS the milestone's body - chrome, so a custom
+        // renderEvent still starts from a blank canvas (data-milestone
+        // keeps the fact readable there)
+        <span
+          aria-hidden
+          data-slot="gantt-bar-milestone"
+          className={cn(
+            "size-2.5 shrink-0 rotate-45 rounded-[2px] border border-(--gantt-event-color) bg-(--gantt-event-color)/80",
+            isSelected && "ring-ring/50 ring-2"
+          )}
+        />
+      )}
+      {progress !== null && !milestone && (
         // Chrome, not content: it is an absolutely-positioned layer BEHIND
         // whatever the bar renders, so a consumer bar (renderEvent) keeps its
         // completion fill instead of silently losing it. The inline done-mark
@@ -326,7 +387,7 @@ function GanttBar<TData = unknown>({
           style={{ width: `${progress}%` }}
         />
       )}
-      {progress === 100 && !consumerOwnsContent && (
+      {progress === 100 && !consumerOwnsContent && !milestone && (
         // done mark: completion chrome like the fill itself, so it shows
         // for outside-label bars too (where the inner content is empty)
         <IconPlaceholder
@@ -376,6 +437,7 @@ function GanttBar<TData = unknown>({
           <TooltipContent side="top" className="pointer-events-none">
             <div className="font-medium">{event.title}</div>
             <div className="opacity-80">{timeLabel}</div>
+            {plannedLabel && <div className="opacity-80">{plannedLabel}</div>}
           </TooltipContent>
         )}
       </Tooltip>

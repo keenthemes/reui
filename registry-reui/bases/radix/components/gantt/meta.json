@@ -16,7 +16,7 @@
   {
     "name": "c-gantt-3",
     "title": "Gantt chart with quarter roadmap and rollups",
-    "description": "Quarter-scale roadmap where workstream groups form swimlanes and parent rows roll children into one summary bar. Toolbar button calls addEvent via apiRef to schedule backlog items. ReUI Gantt, GanttNav, GanttToolbar, GanttView; shadcn Card, Button.",
+    "description": "Gantt chart with quarter roadmap and rollups",
     "order": 3,
     "gridSize": 1
   },
@@ -32,6 +32,20 @@
     "title": "Gantt chart with task table and progress",
     "description": "Gantt chart with task table and progress",
     "order": 5,
+    "gridSize": 1
+  },
+  {
+    "name": "c-gantt-6",
+    "title": "Gantt chart with as-built baseline tracking",
+    "description": "Gantt chart with as-built baseline tracking",
+    "order": 6,
+    "gridSize": 1
+  },
+  {
+    "name": "c-gantt-7",
+    "title": "Gantt chart with dependency arrows and milestones",
+    "description": "Gantt chart with dependency arrows and milestones",
+    "order": 7,
     "gridSize": 1
   }
 ]

@@ -36,8 +36,15 @@ export const COMPONENT_PREVIEW_FRAME_CATEGORIES: Record<
   ComponentPreviewSurface,
   readonly string[]
 > = {
-  catalog: ["data-grid", "event-calendar", "filters", "gantt"],
-  docs: ["cascader", "data-grid", "event-calendar", "filters", "gantt"],
+  catalog: ["code-block", "data-grid", "event-calendar", "filters", "gantt"],
+  docs: [
+    "cascader",
+    "code-block",
+    "data-grid",
+    "event-calendar",
+    "filters",
+    "gantt",
+  ],
 }
 
 /**
@@ -57,6 +64,17 @@ export function shouldFrameComponentPreview(
 }
 
 /**
+ * code-block is framed on BOTH surfaces, and it is the category this mechanism
+ * was built for even though it arrived last.
+ *
+ * A code block is the densest DOM in the registry per unit of visible area: one
+ * element per token, so a 30-line sample is hundreds of nodes before any
+ * chrome. The catalog page mounts 27 of them and the docs page 12, which is the
+ * ~1,200 `:has()` selector recalculation described above running over a tree
+ * that no other category comes close to. Highlighting itself is done at build
+ * time, so this is entirely a DOM-size problem, which is exactly the problem a
+ * separate document solves.
+ *
  * Fallback frame heights, used when neither the MDX `previewHeight` prop nor
  * the example's `previewHeight` meta supplies one. Sized from the demos
  * themselves: the gantt and event-calendar examples set their own explicit
@@ -110,6 +128,21 @@ const DEFAULT_FRAME_HEIGHT: Record<string, number> = {
   // note below for why that per-example override only works while the floor
   // stays under it.
   cascader: 520,
+  /**
+   * UNMEASURED, and deliberately generous. Every other number in this table was
+   * measured at a 560px frame; this one could not be, so it is set high on the
+   * table's own rule that erring tall costs whitespace while erring short costs
+   * correctness - a clipped frame hides its scrollbar, so a reader gets no hint
+   * that code is missing.
+   *
+   * It matters more here than anywhere else in this table: all 27 code-block
+   * examples ship with NO `previewHeight` of their own, so unlike gantt or
+   * event-calendar this is not a backstop for an unauthored example, it is the
+   * height every example actually gets. Measure the tallest example narrow and
+   * bring this down, and give the long samples their own `previewHeight` in the
+   * MDX - the docs surface can be exact where the catalog cannot.
+   */
+  "code-block": 720,
 }
 
 /**

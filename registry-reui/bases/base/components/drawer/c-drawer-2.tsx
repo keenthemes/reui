@@ -13,8 +13,10 @@ import {
 export default function Pattern() {
   return (
     <div className="flex items-center justify-center">
-      <Drawer direction="right">
-        <DrawerTrigger render={<Button variant="outline">Right Drawer</Button>} />
+      <Drawer swipeDirection="right">
+        <DrawerTrigger
+          render={<Button variant="outline">Right Drawer</Button>}
+        />
         <DrawerContent>
           <DrawerHeader>
             <DrawerTitle>Move Goal</DrawerTitle>

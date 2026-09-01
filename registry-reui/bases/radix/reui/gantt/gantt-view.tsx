@@ -34,18 +34,23 @@ import {
   wasRecentDrag,
 } from "@/registry-reui/bases/radix/reui/gantt/gantt-dnd"
 import {
+  buildDependencyPath,
+  getBaselineVariance,
   getDayKey,
   getLaneKey,
   getRangeKey,
   MIN_PACK_SLOT,
   packTimedSegments,
   reorderResources,
+  resolveEventBaseline,
   resolveOffDay,
   toZoned,
   zonedStartOfDay,
   type GanttLaneMemo,
 } from "@/registry-reui/bases/radix/reui/gantt/gantt-lib"
 import type {
+  GanttBaseline,
+  GanttBaselineVariance,
   GanttDateRange,
   GanttEvent,
   GanttOccurrence,
@@ -194,8 +199,32 @@ function trackFraction(el: HTMLElement, clientX: number): number {
 const LANE_HEIGHT_REM = 1.25
 const LANE_GAP_REM = 0.1875
 const ROW_PADDING_REM = 0.5
-/** Drop-indicator height (h-5); it is centered inside its lane band. */
+/** Default drop-indicator height, centered inside its lane band; a consumer
+ * overrides it with metrics.ghostHeight (published as --gantt-ghost-height). */
 const GHOST_HEIGHT_REM = 1.25
+
+/**
+ * The ONE lane-pitch formula: top of lane `lane` inside a row. Every overlay
+ * that rides a lane (bar, baseline ghost, drag ghost, hint ring, slot draft)
+ * reads it, so their vertical positions can never drift apart.
+ */
+function laneTopRem(
+  laneOffsetRem: number,
+  lane: number,
+  laneHeightRem: number,
+  laneGapRem: number
+): number {
+  return laneOffsetRem + lane * (laneHeightRem + laneGapRem)
+}
+
+/** Height of a stack of `count` lanes, inter-lane gaps included. */
+function laneBlockRem(
+  count: number,
+  laneHeightRem: number,
+  laneGapRem: number
+): number {
+  return count * laneHeightRem + (count - 1) * laneGapRem
+}
 /** Bars narrower than this flip their title outside in barLabel "auto". */
 const AUTO_LABEL_MIN_REM = 7
 const DEFAULT_TREE_PANEL = {
@@ -236,10 +265,44 @@ interface TimelineRow {
   collapsed: boolean
 }
 
+/** One planned window resolved against the visible range, ready to position. */
+interface RowBaseline {
+  event: GanttEvent
+  baseline: GanttBaseline
+  /** Minutes from the range start, clamped to the range like segment minutes. */
+  startMin: number
+  endMin: number
+  /** The lane of the event's own bar, so the ghost sits under it. An orphan
+   * (its bar slipped out of the range) takes the lowest lane free for its
+   * window instead; the layout pass drops it when the row has none. */
+  lane: number
+  variance: GanttBaselineVariance
+}
+
+/** The NODE's own planned window, resolved against the visible range. */
+interface RowLevelBaseline {
+  baseline: GanttBaseline
+  startMin: number
+  endMin: number
+  /** Latest actual end (subtree included for groups) vs the planned end;
+   * null when the node has no events to compare. */
+  variance: GanttBaselineVariance | null
+}
+
 /** Per-row packed bars plus the extents the off-screen chips need. */
 interface TimelineRowBars {
   segments: GanttSegment[]
   laneCount: number
+  /**
+   * Planned windows ghosted behind this row's bars. Derived from EVENTS, not
+   * occurrences, so a bar that slipped entirely out of the visible range
+   * still shows the plan it missed. Empty when baselineBars is off. Never an
+   * input to packing or row height - a baseline changes no geometry.
+   */
+  baselines: RowBaseline[]
+  /** The node's own planned window band; null without one (or with
+   * baselineBars off). Same no-geometry rule as the per-event ghosts. */
+  rowBaseline: RowLevelBaseline | null
   /**
    * Lane a drag-create in flight would land on, or null when none is aimed at
    * this row. The row reserves the track, so it grows exactly as it will on
@@ -281,6 +344,22 @@ interface TimelineReorderState {
   top: number
   valid: boolean
   proposal: GanttResourceReorder | null
+}
+
+/** Shared empty set so rows without dependency data never churn on identity. */
+const EMPTY_ID_SET: ReadonlySet<string> = new Set()
+
+/** One finish-to-start arrow, both anchors in track rem coordinates. */
+interface DependencyEdge {
+  key: string
+  /** Predecessor and dependent event ids, so a gesture can re-anchor its own
+   * endpoints live. */
+  fromId: string
+  toId: string
+  fromX: number
+  fromY: number
+  toX: number
+  toY: number
 }
 
 interface GanttViewProps extends HTMLAttributes<HTMLDivElement> {
@@ -355,6 +434,7 @@ function GanttView({
   const rowPaddingRem = metrics?.rowPadding ?? ROW_PADDING_REM
   const laneGapRem = metrics?.laneGap ?? LANE_GAP_REM
   const minRowRem = metrics?.minRowHeight ?? 2.5
+  const ghostHeightRem = metrics?.ghostHeight ?? GHOST_HEIGHT_REM
   const minTimelineWidth = metrics?.minTimelineWidth ?? MIN_TIMELINE_WIDTH
   const infiniteEdgePx = metrics?.infiniteScrollEdge ?? INFINITE_EDGE_PX
   const timeZone = settings.timeZone
@@ -787,6 +867,40 @@ function GanttView({
         env.toMin = Math.max(env.toMin, toMin)
       }
     }
+    // Planned windows group by node in a pass of their own, over EVENTS: an
+    // event whose actual bar slipped clear of the range has no occurrence
+    // above, but its plan should still show where it was missed. The same
+    // pass records each node's latest actual end (all-time, like the summary
+    // rollup) for the row-baseline variance readout.
+    const baselinesByResource = new Map<
+      string,
+      Array<{ event: GanttEvent; baseline: GanttBaseline }>
+    >()
+    const latestEndByResource = new Map<string, number>()
+    if (viewConfig.baselineBars) {
+      for (const event of allEvents) {
+        if (!event.resourceId) continue
+        const endMsActual = event.end.getTime()
+        const prev = latestEndByResource.get(event.resourceId)
+        if (prev === undefined || endMsActual > prev) {
+          latestEndByResource.set(event.resourceId, endMsActual)
+        }
+        const baseline = resolveEventBaseline(event)
+        if (!baseline) continue
+        const startMs = baseline.start.getTime()
+        const endMs = baseline.end.getTime()
+        // half-open like the bars; the closed compare keeps a planned
+        // milestone sitting exactly on a range edge visible
+        const visible = baseline.milestone
+          ? startMs >= rangeStartMs && startMs <= rangeEndMs
+          : startMs < rangeEndMs && endMs > rangeStartMs
+        if (!visible) continue
+        const list = baselinesByResource.get(event.resourceId)
+        const entry = { event, baseline }
+        if (list) list.push(entry)
+        else baselinesByResource.set(event.resourceId, [entry])
+      }
+    }
     for (const row of rows) {
       const mine = byResource.get(row.resource.id) ?? []
       const segments: GanttSegment[] = mine.map((occurrence) => ({
@@ -818,6 +932,57 @@ function GanttView({
         (max, segment) => Math.max(max, (segment.column ?? 0) + 1),
         1
       )
+      // The ghost rides its bar's settled lane so plan and actual read as one
+      // task; pure overlay geometry, never an input to packing or laneCount.
+      const plans = baselinesByResource.get(row.resource.id)
+      const laneByEvent = plans
+        ? new Map(
+            segments.map((segment) => [
+              segment.occurrence.eventId,
+              segment.column ?? 0,
+            ])
+          )
+        : null
+      const baselines: RowBaseline[] = plans
+        ? plans.flatMap(({ event, baseline }) => {
+            // An ORPHAN plan (its bar slipped clear of the range) cannot ride
+            // its bar's lane. Lane 0 would pin it under whatever unrelated bar
+            // sits there, silently mis-attributing the plan, so it takes the
+            // lowest lane that is FREE for its window - and when the row has
+            // no free lane, it is omitted: absence beats a false attribution.
+            // "single" keeps one shared track, so 0 is honest there.
+            let lane = laneByEvent?.get(event.id)
+            if (lane === undefined) {
+              if (mode === "single" || segments.length === 0) {
+                lane = 0
+              } else {
+                const free = lowestFreeLane(
+                  segments,
+                  baseline.start.getTime(),
+                  baseline.end.getTime()
+                )
+                if (free >= laneCount) return []
+                lane = free
+              }
+            }
+            return [
+              {
+                event,
+                baseline,
+                startMin: Math.max(
+                  (baseline.start.getTime() - rangeStartMs) / 60000,
+                  0
+                ),
+                endMin: Math.min(
+                  (baseline.end.getTime() - rangeStartMs) / 60000,
+                  totalMin
+                ),
+                lane,
+                variance: getBaselineVariance(event) ?? "on-time",
+              },
+            ]
+          })
+        : []
       let from = Infinity
       let to = -Infinity
       for (const segment of segments) {
@@ -848,17 +1013,59 @@ function GanttView({
         }
       }
 
+      // The node's OWN planned window: a band behind all of its lanes.
+      // Variance reads the latest actual end - the subtree's for a group,
+      // matching the summary rollup's all-time philosophy.
+      let rowBaseline: RowLevelBaseline | null = null
+      if (viewConfig.baselineBars) {
+        const plan = resolveEventBaseline(row.resource)
+        if (plan) {
+          const planStartMs = plan.start.getTime()
+          const planEndMs = plan.end.getTime()
+          const planVisible = plan.milestone
+            ? planStartMs >= rangeStartMs && planStartMs <= rangeEndMs
+            : planStartMs < rangeEndMs && planEndMs > rangeStartMs
+          if (planVisible) {
+            const ids = row.isGroup
+              ? [row.resource.id, ...(descendantIds.get(row.resource.id) ?? [])]
+              : [row.resource.id]
+            let latest: number | undefined
+            for (const id of ids) {
+              const end = latestEndByResource.get(id)
+              if (end !== undefined && (latest === undefined || end > latest)) {
+                latest = end
+              }
+            }
+            rowBaseline = {
+              baseline: plan,
+              startMin: Math.max((planStartMs - rangeStartMs) / 60000, 0),
+              endMin: Math.min((planEndMs - rangeStartMs) / 60000, totalMin),
+              variance:
+                latest === undefined
+                  ? null
+                  : latest > planEndMs
+                    ? "late"
+                    : latest < planEndMs
+                      ? "early"
+                      : "on-time",
+            }
+          }
+        }
+      }
+
       // The stack, then the row's own padding around it. Centering the block
       // in the resulting height gives an equal inset top and bottom, and it
       // is also what keeps a lone bar on the tree label's centerline when a
       // short row is held open by minRowHeight.
-      const blockRem = laneCount * laneHeightRem + (laneCount - 1) * laneGapRem
+      const blockRem = laneBlockRem(laneCount, laneHeightRem, laneGapRem)
       const heightRem = Math.max(minRowRem, blockRem + 2 * rowPaddingRem)
       const laneOffsetRem = (heightRem - blockRem) / 2
 
       map.set(row.resource.id, {
         segments,
         laneCount,
+        baselines,
+        rowBaseline,
         draftLane: null,
         scheduleMode: mode,
         heightRem,
@@ -895,10 +1102,12 @@ function GanttView({
   }, [
     rows,
     occurrences,
+    allEvents,
     rangeStartMs,
     rangeEndMs,
     settings.i18n,
     viewConfig.summaryBars,
+    viewConfig.baselineBars,
     descendantIds,
     subtreeProgress,
     laneHeightRem,
@@ -949,8 +1158,7 @@ function GanttView({
       draftLayout.endMs
     )
     const trackCount = Math.max(base.laneCount, draftLane + 1)
-    const draftBlockRem =
-      trackCount * laneHeightRem + (trackCount - 1) * laneGapRem
+    const draftBlockRem = laneBlockRem(trackCount, laneHeightRem, laneGapRem)
     next.set(draftLayout.resourceId, {
       ...base,
       draftLane,
@@ -961,6 +1169,101 @@ function GanttView({
     })
     return next
   }, [baseRowBars, draftLayout, laneHeightRem, laneGapRem])
+
+  // Dependency arrows: resolve every visible bar's anchors in track
+  // coordinates (x rem from the range start, y rem from the rows-block top).
+  // Row heights come from rowBars, so transient draft growth shifts the
+  // arrows with the rows; endpoints without a visible bar are skipped -
+  // an arrow to a hidden row would point at nothing.
+  // Which events an arrow DEPARTS from (something else lists them as a
+  // predecessor). Feeds label spacing only, and membership is data-driven
+  // rather than render-driven on purpose: a temporarily hidden dependent
+  // still reserves the gap, so the label never jumps when its arrow scrolls
+  // back into range. Stable across gestures - it only changes with events.
+  const dependencySourceIds = useMemo(() => {
+    if (!viewConfig.dependencyLines) return EMPTY_ID_SET
+    let ids: Set<string> | null = null
+    for (const event of allEvents) {
+      if (!event.dependencies?.length) continue
+      for (const id of event.dependencies) {
+        if (!ids) ids = new Set()
+        ids.add(id)
+      }
+    }
+    return ids ?? EMPTY_ID_SET
+  }, [allEvents, viewConfig.dependencyLines])
+
+  const dependencyEdges = useMemo(() => {
+    const none = { edges: [] as DependencyEdge[], totalRem: 0 }
+    if (!viewConfig.dependencyLines) return none
+    const totalMin = (rangeEndMs - rangeStartMs) / 60000
+    if (totalMin <= 0) return none
+    type Pending = {
+      id: string
+      dependencies: string[]
+      startX: number
+      y: number
+    }
+    const anchors = new Map<string, { endX: number; y: number }>()
+    const pending: Pending[] = []
+    let topRem = 0
+    for (const row of rows) {
+      const bars = rowBars.get(row.resource.id)
+      if (bars) {
+        for (const segment of bars.segments) {
+          const occ = segment.occurrence
+          // a recurring instance has no single edge to anchor a plan on
+          if (occ.isRecurring) continue
+          const lane = segment.column ?? 0
+          const y =
+            topRem +
+            laneTopRem(bars.laneOffsetRem, lane, laneHeightRem, laneGapRem) +
+            laneHeightRem / 2
+          const startX = ((segment.startMin ?? 0) / totalMin) * trackRemWidth
+          const endX = ((segment.endMin ?? 0) / totalMin) * trackRemWidth
+          anchors.set(occ.eventId, { endX, y })
+          if (occ.event.dependencies?.length) {
+            pending.push({
+              id: occ.eventId,
+              dependencies: occ.event.dependencies,
+              startX,
+              y,
+            })
+          }
+        }
+      }
+      topRem += bars?.heightRem ?? minRowRem
+    }
+    if (pending.length === 0) return none
+    const edges: DependencyEdge[] = []
+    for (const item of pending) {
+      for (const depId of item.dependencies) {
+        if (depId === item.id) continue
+        const from = anchors.get(depId)
+        if (!from) continue
+        edges.push({
+          key: `${depId}->${item.id}`,
+          fromId: depId,
+          toId: item.id,
+          fromX: from.endX,
+          fromY: from.y,
+          toX: item.startX,
+          toY: item.y,
+        })
+      }
+    }
+    return { edges, totalRem: topRem }
+  }, [
+    rows,
+    rowBars,
+    rangeStartMs,
+    rangeEndMs,
+    trackRemWidth,
+    laneHeightRem,
+    laneGapRem,
+    minRowRem,
+    viewConfig.dependencyLines,
+  ])
 
   const showCreateTask =
     viewConfig.displayCreateTaskHint &&
@@ -2200,6 +2503,21 @@ function GanttView({
             <GanttNowLine rangeStartMs={rangeStartMs} rangeEndMs={rangeEndMs} />
           )}
         </div>
+        {/* Dependency arrows: after the backdrop, before the rows, so they
+            run above the off-day wash but under every bar. Its own component
+            because it follows drags per snap step, and that subscription must
+            re-render a few paths, never this whole view. */}
+        {dependencyEdges.edges.length > 0 && (
+          <GanttDependencyLayer
+            edges={dependencyEdges.edges}
+            totalRem={dependencyEdges.totalRem}
+            trackRemWidth={trackRemWidth}
+            rangeStartMs={rangeStartMs}
+            rangeEndMs={rangeEndMs}
+            laneHeightRem={laneHeightRem}
+            laneGapRem={laneGapRem}
+          />
+        )}
         {rows.map((row, rowIndex) => (
           <GanttTimelineRow
             key={row.resource.id}
@@ -2217,6 +2535,8 @@ function GanttView({
             laneHeightRem={laneHeightRem}
             laneGapRem={laneGapRem}
             minRowRem={minRowRem}
+            ghostHeightRem={ghostHeightRem}
+            dependencySourceIds={dependencySourceIds}
           />
         ))}
         {rows.length === 0 && viewConfig.renderNoResources && (
@@ -2393,7 +2713,11 @@ function GanttView({
           {viewConfig.zoomControl && (
             <div
               data-slot="gantt-zoom"
-              className="bg-background absolute end-3 bottom-5 z-40 flex flex-col rounded-md border shadow-sm"
+              /* --gantt-zoom-shift comes from the offscreen-chips measure
+                 pass: the control glides inward while a chip occupies its
+                 band, because the chips' position IS their meaning and this
+                 corner spot is merely a habit */
+              className="bg-background absolute end-[calc(0.75rem+var(--gantt-zoom-shift,0px))] bottom-5 z-40 flex flex-col rounded-md border shadow-sm transition-[inset-inline-end] duration-200"
             >
               {/* aria-disabled instead of disabled: the not-allowed cursor
                   must still show at the zoom limits */}
@@ -2618,10 +2942,140 @@ function GanttCustomDragLayer() {
         start: drag.proposedStart,
         end: drag.proposedEnd,
         valid: drag.valid,
+        // the plan rides along so a custom overlay can keep drawing it
+        // mid-gesture (the resting ghost is hidden with the original bar)
+        baseline: resolveEventBaseline(drag.occurrence.event),
       })}
     </div>
   )
 }
+
+/**
+ * The dependency-arrow overlay: one SVG whose user unit is 1rem at the
+ * track's natural width (the viewBox mirrors it), stretched to w-full so its
+ * mapping tracks the bars' percentage positions when the zoomed track is
+ * narrower than the pane. While a gesture is in flight the dragged event's
+ * own endpoints re-derive from the proposed range and its edges go dashed -
+ * the arrows point at the drop indicator's landing, never at stale data.
+ * A component of its own so the per-snap drag subscription re-renders a few
+ * paths instead of the whole view.
+ */
+const GanttDependencyLayer = memo(function GanttDependencyLayer({
+  edges,
+  totalRem,
+  trackRemWidth,
+  rangeStartMs,
+  rangeEndMs,
+  laneHeightRem,
+  laneGapRem,
+}: {
+  edges: DependencyEdge[]
+  totalRem: number
+  trackRemWidth: number
+  rangeStartMs: number
+  rangeEndMs: number
+  laneHeightRem: number
+  laneGapRem: number
+}) {
+  const viewConfig = useGanttViewConfig()
+  // one snapshot per SNAP STEP (the engine already gates setDrag on those);
+  // value-equal at rest, so resting renders never repeat
+  const dragLink = useGanttSelector<
+    unknown,
+    { eventId: string; startMs: number; endMs: number } | null
+  >(
+    (state) =>
+      state.drag
+        ? {
+            eventId: state.drag.occurrence.eventId,
+            startMs: state.drag.proposedStart.getTime(),
+            endMs: state.drag.proposedEnd.getTime(),
+          }
+        : null,
+    {
+      isEqual: (a, b) =>
+        a === b ||
+        (a !== null &&
+          b !== null &&
+          a.eventId === b.eventId &&
+          a.startMs === b.startMs &&
+          a.endMs === b.endMs),
+    }
+  )
+  const totalMin = (rangeEndMs - rangeStartMs) / 60000
+  // clamped exactly like segment minutes, so a live anchor can never leave
+  // the coordinate space the resting anchors were computed in
+  const liveX = (ms: number) =>
+    (Math.min(Math.max((ms - rangeStartMs) / 60000, 0), totalMin) / totalMin) *
+    trackRemWidth
+  return (
+    <svg
+      aria-hidden
+      data-slot="gantt-dependencies"
+      // w-full, NOT the track's rem width: rows fill the pane when the
+      // zoomed track is narrower (min-w-full), and bars position as a
+      // percentage of that STRETCHED box - so the viewBox mapping must
+      // stretch with them or every arrow drifts off its bar. The
+      // non-uniform scale is neutralized on strokes below; arrowheads
+      // lengthen slightly with the fill, which tracks the bars.
+      className={cn(
+        "text-muted-foreground/70 pointer-events-none absolute start-0 top-0 w-full overflow-visible rtl:-scale-x-100",
+        viewConfig.classNames?.dependencies
+      )}
+      style={{ height: `${totalRem}rem` }}
+      viewBox={`0 0 ${trackRemWidth} ${totalRem}`}
+      preserveAspectRatio="none"
+    >
+      {edges.map((edge) => {
+        // y never moves: a gesture stays on its own row and lane
+        const dragged =
+          dragLink !== null &&
+          (edge.fromId === dragLink.eventId || edge.toId === dragLink.eventId)
+        const fromX =
+          dragged && edge.fromId === dragLink.eventId
+            ? liveX(dragLink.endMs)
+            : edge.fromX
+        const toX =
+          dragged && edge.toId === dragLink.eventId
+            ? liveX(dragLink.startMs)
+            : edge.toX
+        const geometry = buildDependencyPath(
+          { x: fromX, y: edge.fromY },
+          { x: toX, y: edge.toY },
+          {
+            clearance: 0.625,
+            // the loop route hops just past the lane edge
+            laneStep: laneHeightRem / 2 + laneGapRem,
+            arrowSize: 0.375,
+          }
+        )
+        return (
+          <g
+            key={edge.key}
+            data-slot="gantt-dependency"
+            data-dragging={dragged || undefined}
+            // in-flight edges stay SOLID - they still describe a real link -
+            // and drop to a lower tone, arrowhead included, while the
+            // endpoint is provisional
+            className={dragged ? "opacity-50" : undefined}
+          >
+            <path
+              d={geometry.line}
+              fill="none"
+              stroke="currentColor"
+              // screen-space px via non-scaling-stroke, matching the
+              // view's 1px gridlines; a viewBox-unit width would fatten
+              // vertical runs whenever the track stretches
+              strokeWidth={1.5}
+              vectorEffect="non-scaling-stroke"
+            />
+            <path d={geometry.arrow} fill="currentColor" />
+          </g>
+        )
+      })}
+    </svg>
+  )
+})
 
 /** Memoized: only rows whose props actually changed re-render. */
 const GanttTreeRow = memo(function GanttTreeRow({
@@ -2854,6 +3308,8 @@ const GanttTimelineRow = memo(function GanttTimelineRow({
   laneHeightRem,
   laneGapRem,
   minRowRem,
+  ghostHeightRem,
+  dependencySourceIds,
 }: {
   row: TimelineRow
   rowIndex: number
@@ -2871,6 +3327,8 @@ const GanttTimelineRow = memo(function GanttTimelineRow({
   laneHeightRem: number
   laneGapRem: number
   minRowRem: number
+  ghostHeightRem: number
+  dependencySourceIds: ReadonlySet<string>
 }) {
   const instance = useGantt()
   const settings = useGanttSettings()
@@ -2924,7 +3382,8 @@ const GanttTimelineRow = memo(function GanttTimelineRow({
     : 0
   const hintLane = bars?.scheduleMode === "single" ? 0 : hintFreeLane
   const hintTopRem = Math.min(
-    laneOffsetRem + hintLane * (laneHeightRem + laneGapRem) + laneHeightRem / 2,
+    laneTopRem(laneOffsetRem, hintLane, laneHeightRem, laneGapRem) +
+      laneHeightRem / 2,
     Math.max(heightRem - laneHeightRem / 2, laneHeightRem / 2)
   )
   // Single source of truth for "the add affordance is live at this spot". The
@@ -2966,6 +3425,7 @@ const GanttTimelineRow = memo(function GanttTimelineRow({
       title: string
       kind: string
       occurrenceKey: string
+      milestone: boolean
     } | null
   >(
     (state) => {
@@ -2979,6 +3439,9 @@ const GanttTimelineRow = memo(function GanttTimelineRow({
         title: drag.occurrence.event.title,
         kind: drag.kind,
         occurrenceKey: drag.occurrence.key,
+        // real zero duration, not from==to: clamped fractions also coincide
+        // for a bar dragged clear past a range edge
+        milestone: drag.proposedEnd.getTime() === drag.proposedStart.getTime(),
       }
     },
     {
@@ -3036,7 +3499,7 @@ const GanttTimelineRow = memo(function GanttTimelineRow({
    */
   const draftLane = bars?.draftLane ?? 0
   const draftTopRem = Math.min(
-    laneOffsetRem + draftLane * (laneHeightRem + laneGapRem),
+    laneTopRem(laneOffsetRem, draftLane, laneHeightRem, laneGapRem),
     Math.max(heightRem - laneHeightRem, 0)
   )
   // the range you are painting, named while you paint it - a drag that shows
@@ -3084,9 +3547,8 @@ const GanttTimelineRow = memo(function GanttTimelineRow({
       )?.column ?? 0)
     : 0
   const ghostLaneOffsetRem =
-    laneOffsetRem +
-    ghostLane * (laneHeightRem + laneGapRem) +
-    (laneHeightRem - GHOST_HEIGHT_REM) / 2
+    laneTopRem(laneOffsetRem, ghostLane, laneHeightRem, laneGapRem) +
+    (laneHeightRem - ghostHeightRem) / 2
 
   return (
     <div
@@ -3245,18 +3707,147 @@ const GanttTimelineRow = memo(function GanttTimelineRow({
         className="pointer-events-none absolute inset-0"
         style={{ contentVisibility: "auto" }}
       >
+        {/* The node's own planned window: a band behind ALL of its lanes,
+            first in the layer so even the per-event ghosts paint over it. */}
+        {bars?.rowBaseline &&
+          (() => {
+            const plan = bars.rowBaseline
+            const from = fractionOf(rangeStartMs + plan.startMin * 60000)
+            const to = fractionOf(rangeStartMs + plan.endMin * 60000)
+            const bandRemHeight = laneBlockRem(
+              laneCount,
+              laneHeightRem,
+              laneGapRem
+            )
+            const content = viewConfig.renderRowBaseline?.({
+              resource: row.resource,
+              start: plan.baseline.start,
+              end: plan.baseline.end,
+              milestone: plan.baseline.milestone,
+              variance: plan.variance,
+            })
+            return (
+              <div
+                data-slot="gantt-row-baseline"
+                data-milestone={plan.baseline.milestone || undefined}
+                data-variance={plan.variance ?? undefined}
+                aria-hidden
+                className={cn(
+                  "absolute",
+                  plan.baseline.milestone
+                    ? "flex items-center justify-center"
+                    : "px-px",
+                  viewConfig.classNames?.baseline
+                )}
+                style={
+                  {
+                    "--gantt-event-color":
+                      row.resource.color ?? "var(--color-primary)",
+                    insetInlineStart: plan.baseline.milestone
+                      ? `clamp(0rem, ${from * 100}% - ${laneHeightRem / 2}rem, 100% - ${laneHeightRem}rem)`
+                      : `${from * 100}%`,
+                    width: plan.baseline.milestone
+                      ? `${laneHeightRem}rem`
+                      : `${Math.max((to - from) * 100, 0.5)}%`,
+                    top: `${laneOffsetRem}rem`,
+                    height: `${bandRemHeight}rem`,
+                  } as CSSProperties
+                }
+              >
+                {content ??
+                  (plan.baseline.milestone ? (
+                    // hollow diamond marking the node's planned instant
+                    <span className="size-2.5 rotate-45 rounded-[2px] border border-(--gantt-event-color)/60 bg-(--gantt-event-color)/15" />
+                  ) : (
+                    // fainter than a per-event ghost: a whole-row context
+                    // band must never compete with the bars on it
+                    <span className="relative block h-full w-full rounded-sm border border-(--gantt-event-color)/25 bg-(--gantt-event-color)/6" />
+                  ))}
+              </div>
+            )
+          })()}
+        {/* Baseline ghosts BEFORE the bars, with no z-index: DOM order keeps
+            them painting under every bar (z 10+), and the layer's pointer
+            transparency means they can never catch a press or a drop. */}
+        {bars?.baselines.map((plan) => {
+          const from = fractionOf(rangeStartMs + plan.startMin * 60000)
+          const to = fractionOf(rangeStartMs + plan.endMin * 60000)
+          const content = viewConfig.renderBaseline?.({
+            event: plan.event,
+            start: plan.baseline.start,
+            end: plan.baseline.end,
+            milestone: plan.baseline.milestone,
+            variance: plan.variance,
+          })
+          return (
+            <div
+              key={`baseline-${plan.event.id}`}
+              data-slot="gantt-baseline"
+              data-milestone={plan.baseline.milestone || undefined}
+              data-variance={plan.variance}
+              aria-hidden
+              // a milestone is a POINT: the wrapper centers on the instant
+              // (flex centering, so RTL needs no translate gymnastics), while
+              // a window mirrors the bar wrapper's px-px breathing room
+              className={cn(
+                "absolute",
+                plan.baseline.milestone
+                  ? "flex items-center justify-center"
+                  : "px-px",
+                viewConfig.classNames?.baseline
+              )}
+              style={
+                {
+                  "--gantt-event-color":
+                    plan.event.color ?? "var(--color-primary)",
+                  /* clamped into the row box: the layer's paint containment
+                     slices anything that overhangs it, which would cut an
+                     edge milestone's diamond in half - so it nudges inward
+                     instead, at most half a lane off its instant */
+                  insetInlineStart: plan.baseline.milestone
+                    ? `clamp(0rem, ${from * 100}% - ${laneHeightRem / 2}rem, 100% - ${laneHeightRem}rem)`
+                    : `${from * 100}%`,
+                  width: plan.baseline.milestone
+                    ? `${laneHeightRem}rem`
+                    : `${Math.max((to - from) * 100, 0.5)}%`,
+                  top: `${laneTopRem(laneOffsetRem, plan.lane, laneHeightRem, laneGapRem)}rem`,
+                  height: `${laneHeightRem}rem`,
+                } as CSSProperties
+              }
+            >
+              {content ??
+                (plan.baseline.milestone ? (
+                  // hollow diamond marking the planned instant
+                  <span className="size-2 rotate-45 rounded-[2px] border border-(--gantt-event-color)/60 bg-(--gantt-event-color)/15" />
+                ) : (
+                  // block child (not inset-0) so the px-px padding holds and
+                  // the outline lands exactly on the bar's own box
+                  <span className="relative block h-full w-full rounded-sm border border-(--gantt-event-color)/40 bg-(--gantt-event-color)/10" />
+                ))}
+            </div>
+          )
+        })}
         {segments.map((segment, segmentIndex) => {
           const from = fractionOf(
             rangeStartMs + (segment.startMin ?? 0) * 60000
           )
           const to = fractionOf(rangeStartMs + (segment.endMin ?? 0) * 60000)
-          if (to <= from) return null
+          // Zero duration = an actual MILESTONE: it renders as a diamond
+          // centered on its instant instead of a zero-width (invisible) bar.
+          const milestone =
+            segment.occurrence.end.getTime() ===
+            segment.occurrence.start.getTime()
+          if (to <= from && !milestone) return null
           const lane = segment.column ?? 0
           // Title placement: outside beside the bar when configured (or too
           // short in "auto"), flipped before the bar near the range end, and
-          // back inside when the bar spans the whole view.
-          const barRemWidth = (to - from) * trackRemWidth
+          // back inside when the bar spans the whole view. A milestone has
+          // no room inside its diamond, so its title is always outside.
+          const barRemWidth = milestone
+            ? laneHeightRem
+            : (to - from) * trackRemWidth
           const wantsOutside =
+            milestone ||
             viewConfig.barLabel === "outside" ||
             (viewConfig.barLabel === "auto" &&
               barRemWidth <
@@ -3280,6 +3871,7 @@ const GanttTimelineRow = memo(function GanttTimelineRow({
             <div
               key={segment.occurrence.key}
               data-drag-kind={segDragKind}
+              data-milestone={milestone || undefined}
               // lane position is headless state: a consumer can read it to
               // label the bar ("2 of 4") or drive its own manage UI
               data-lane={lane}
@@ -3296,9 +3888,16 @@ const GanttTimelineRow = memo(function GanttTimelineRow({
               // insetInlineStart, not left: in RTL the axis mirrors and bars
               // must mirror with it (fractions measure from the range start)
               style={{
-                insetInlineStart: `${from * 100}%`,
-                width: `${Math.max((to - from) * 100, 0.5)}%`,
-                top: `${laneOffsetRem + lane * (laneHeightRem + laneGapRem)}rem`,
+                /* a milestone wrapper is a lane-height square centered on the
+                   instant, clamped into the row box exactly like the planned
+                   milestone diamond */
+                insetInlineStart: milestone
+                  ? `clamp(0rem, ${from * 100}% - ${laneHeightRem / 2}rem, 100% - ${laneHeightRem}rem)`
+                  : `${from * 100}%`,
+                width: milestone
+                  ? `${laneHeightRem}rem`
+                  : `${Math.max((to - from) * 100, 0.5)}%`,
+                top: `${laneTopRem(laneOffsetRem, lane, laneHeightRem, laneGapRem)}rem`,
                 height: `${laneHeightRem}rem`,
                 // one track means every lane is 0, so paint order (not the
                 // lane) is what keeps overlapping bars individually reachable
@@ -3322,7 +3921,14 @@ const GanttTimelineRow = memo(function GanttTimelineRow({
                     // one label at a time: the resize ghost carries it while
                     // this bar is the faded placeholder
                     "group-data-[drag-kind^=resize]/gantt-seg:opacity-0",
-                    placement === "after" ? "start-full ms-2" : "end-full me-2"
+                    /* a departing dependency arrow drops its corner just past
+                       the bar's end, so exactly those labels reserve extra
+                       room; everything else keeps the tight default */
+                    placement === "after"
+                      ? dependencySourceIds.has(segment.occurrence.eventId)
+                        ? "start-full ms-4"
+                        : "start-full ms-2"
+                      : "end-full me-2"
                   )}
                 >
                   {segment.occurrence.event.title}
@@ -3386,13 +3992,16 @@ const GanttTimelineRow = memo(function GanttTimelineRow({
           <div
             data-slot="gantt-drag-ghost"
             data-kind={ghost.kind}
+            data-milestone={ghost.milestone || undefined}
             data-drop-invalid={!ghost.valid || undefined}
             className={cn(
               // Slight dashed indicator, never a dramatic restyle. Move shows a
               // faint drop-target placeholder (the smooth cursor clone carries
               // the visual); resize shows the event at its new size in its own
               // color with just a dashed border.
-              "pointer-events-none absolute z-40 h-5 rounded-sm border border-dashed font-medium",
+              /* height via the class, not an inline style, so a consumer's
+                 own selector can still outrank it */
+              "pointer-events-none absolute z-40 h-(--gantt-ghost-height) rounded-sm border border-dashed font-medium",
               !ghost.valid &&
                 "border-destructive bg-destructive/10 text-destructive",
               ghost.valid &&
@@ -3400,20 +4009,45 @@ const GanttTimelineRow = memo(function GanttTimelineRow({
                 "border-(--gantt-event-color)/50 bg-(--gantt-event-color)/8",
               ghost.valid &&
                 ghost.kind !== "move" &&
-                "text-foreground border-(--gantt-event-color)/70 bg-(--gantt-event-color)/22"
+                "text-foreground border-(--gantt-event-color)/70 bg-(--gantt-event-color)/22",
+              /* a milestone's landing marker keeps the milestone's SHAPE: the
+                 wrapper sheds its own dashed box and centers a dashed diamond
+                 instead - a dashed rectangle read as a different object */
+              ghost.milestone &&
+                "flex items-center justify-center rounded-none border-0 bg-transparent"
             )}
             style={
               {
-                insetInlineStart: `${ghost.from * 100}%`,
-                width: `${Math.max((ghost.to - ghost.from) * 100, 0.5)}%`,
+                /* a milestone drop lands as a lane-height square CENTERED on
+                   the instant (same clamp as the diamond); the generic 0.5%
+                   floor would anchor a sliver at the instant's left instead */
+                insetInlineStart: ghost.milestone
+                  ? `clamp(0rem, ${ghost.from * 100}% - ${laneHeightRem / 2}rem, 100% - ${laneHeightRem}rem)`
+                  : `${ghost.from * 100}%`,
+                width: ghost.milestone
+                  ? `${laneHeightRem}rem`
+                  : `${Math.max((ghost.to - ghost.from) * 100, 0.5)}%`,
                 // sit on the dragged schedule's OWN lane. Centering the ghost
                 // in the row put it on no lane at all once a node stacked, so
                 // a 3-lane row showed the drop target floating in the middle.
                 top: `${ghostLaneOffsetRem}rem`,
+                /* metrics-driven, and published so a consumer can size
+                   against the SAME number instead of hardcoding 1.25 */
+                "--gantt-ghost-height": `${ghostHeightRem}rem`,
                 "--gantt-event-color": ghost.color ?? "var(--color-primary)",
               } as CSSProperties
             }
           >
+            {ghost.milestone && (
+              <span
+                className={cn(
+                  "size-2.5 rotate-45 rounded-[2px] border border-dashed",
+                  ghost.valid
+                    ? "border-(--gantt-event-color)/70 bg-(--gantt-event-color)/10"
+                    : "border-destructive bg-destructive/10"
+                )}
+              />
+            )}
             {ghost.kind !== "move" && (
               // label rides OUTSIDE after the bar, exactly like the resting
               // outside placement - never inside the schedule
@@ -3590,8 +4224,6 @@ interface OffscreenChip {
   startMs: number | null
   /** scrollLeft that brings the bar back into view. */
   target: number
-  /** End-chip inset in px, widened to clear the zoom control when they overlap. */
-  insetEnd: number
 }
 
 function sameChips(a: OffscreenChip[], b: OffscreenChip[]): boolean {
@@ -3602,8 +4234,7 @@ function sameChips(a: OffscreenChip[], b: OffscreenChip[]): boolean {
         chip.id === b[i].id &&
         chip.side === b[i].side &&
         chip.top === b[i].top &&
-        chip.target === b[i].target &&
-        chip.insetEnd === b[i].insetEnd
+        chip.target === b[i].target
     )
   )
 }
@@ -3644,16 +4275,21 @@ function GanttOffscreenChips({
       const trackW = viewport.scrollWidth
       const visibleStart = getScrollStart(viewport)
       const visibleEnd = visibleStart + viewport.clientWidth
-      // the floating zoom control shares the right edge (higher z); end chips
-      // whose row center falls in its band shift left so they stay clickable
+      // The floating zoom control shares the right edge. The chips stay in
+      // their column - a shifted chip reads as misaligned, and its position
+      // IS its meaning - so it is the ZOOM CONTROL that glides inward while
+      // any end chip occupies its band (published as --gantt-zoom-shift,
+      // written imperatively like the rest of this measure pass). The band
+      // test uses the control's VERTICAL extent only, which a horizontal
+      // dodge never changes, so the loop cannot oscillate.
       const zoomEl = pane.querySelector<HTMLElement>("[data-slot=gantt-zoom]")
       const zoom = zoomEl
         ? {
             top: zoomEl.getBoundingClientRect().top - paneRect.top - 8,
             bottom: zoomEl.getBoundingClientRect().bottom - paneRect.top + 8,
-            inset: paneRect.right - zoomEl.getBoundingClientRect().left + 8,
           }
         : null
+      let chipInZoomBand = false
       const next: OffscreenChip[] = []
       for (const rowEl of viewport.querySelectorAll<HTMLElement>(
         "[data-gantt-row]"
@@ -3679,18 +4315,23 @@ function GanttOffscreenChips({
             ...base,
             side: "start",
             target: startPx - 24,
-            insetEnd: 14,
           })
         } else if (startPx >= visibleEnd - 2) {
-          const overlapsZoom = zoom && top >= zoom.top && top <= zoom.bottom
+          if (zoom && top >= zoom.top && top <= zoom.bottom) {
+            chipInZoomBand = true
+          }
           next.push({
             ...base,
             side: "end",
             target: endPx - viewport.clientWidth + 24,
-            insetEnd: overlapsZoom ? Math.max(14, zoom.inset) : 14,
           })
         }
       }
+      // 28px clears the 20px chip column plus breathing room on both sides
+      zoomEl?.style.setProperty(
+        "--gantt-zoom-shift",
+        chipInZoomBand ? "28px" : "0px"
+      )
       setChips((prev) => (sameChips(prev, next) ? prev : next))
     }
     const schedule = () => {
@@ -3704,6 +4345,10 @@ function GanttOffscreenChips({
       viewport.removeEventListener("scroll", schedule)
       observer.disconnect()
       if (raf) cancelAnimationFrame(raf)
+      // the zoom control returns to its corner once no chip can collide
+      pane
+        .querySelector<HTMLElement>("[data-slot=gantt-zoom]")
+        ?.style.removeProperty("--gantt-zoom-shift")
     }
   }, [paneRef, occurrences, refreshKey])
 
@@ -3744,7 +4389,7 @@ function GanttOffscreenChips({
                   top: chip.top,
                   ...(chip.side === "start"
                     ? { insetInlineStart: "0.5rem" }
-                    : { insetInlineEnd: chip.insetEnd }),
+                    : { insetInlineEnd: "0.875rem" }),
                 }}
                 onClick={() => scrollTo(chip)}
               >

@@ -30,6 +30,9 @@ import { isSameOriginEmbed } from "@/app/(create)/hooks/use-iframe-sync"
  * `preventDefault()` (so the browser cannot also chain and double the distance)
  * and post the pixel delta to the parent, which applies it to the page.
  *
+ * The single exception is an open modal, which is allowed to keep the gesture
+ * so the page cannot scroll behind it - see `refusesChaining`.
+ *
  * This is the same forward-to-parent contract as `PreviewShortcutForwarder`:
  * same-origin only, posted with an explicit target origin, and validated again
  * on the receiving side.
@@ -78,25 +81,41 @@ function canScrollFurther(element: Element, direction: number): boolean {
 
 /**
  * `overscroll-behavior: contain | none` is an explicit "do not chain out of me"
- * from whoever wrote that element, so we honour it and stop walking. The
- * document root is the exception: the provider sets `none` there precisely
- * BECAUSE the parent owns the scroll, which is the case this component exists
- * to serve.
+ * from whoever wrote that element. The document root is exempt: the provider
+ * sets `none` there precisely BECAUSE the parent owns the scroll, which is the
+ * case this component exists to serve.
  *
- * KNOWN LIMITATION. Inside these previews the document is itself scroll-locked,
- * so an inner `contain` has no chain target left and degenerates into `none`:
- * the gesture is swallowed and neither the preview nor the host page moves. A
- * block whose own scroller is exhausted therefore stays a dead zone (the
- * onboarding blocks, whose `<main>` is `overflow-y-auto overscroll-contain`,
- * are the real case). Forwarding anyway would fix it, but the same relaxation
- * would let a wheel over a preview's scroll-TRAPPING overlay (a modal that
- * uses `contain` to hold the background still) scroll the host page behind it.
- * Left as-is deliberately: honouring the author's opt-out is the safer default,
- * and picking the other side of that trade is a product call, not a bug fix.
+ * THE LIMITATION THIS USED TO HAVE, and why it no longer does. An inner
+ * `contain` was honoured unconditionally, and inside these previews the
+ * document is itself scroll-locked - so `contain` had no chain target left and
+ * degenerated into `none`: the gesture was swallowed and neither the preview
+ * nor the host page moved. Any block whose own scroller ran out was a dead
+ * zone. That is every AI chat block, because `MessageScrollerViewport` ships
+ * `overscroll-contain`: measured on /blocks/ai-agents/ai-chat, the transcript
+ * in ai-chat-1 has 690px of travel and then stops the page dead.
+ *
+ * `contain` means "scroll me, then stop" - it is a statement about the
+ * BROWSER's chaining, and the element saying it has no idea it is sitting in a
+ * preview iframe whose host page owns the real scroll. So it is now honoured
+ * only where the author could plausibly have meant it: a scroll-TRAPPING
+ * OVERLAY, which is the one case where chaining out is visibly wrong (a wheel
+ * over an open modal must not scroll the page behind it). Everywhere else an
+ * exhausted `contain` hands the gesture up, which is what a reader expects
+ * when they keep scrolling over a preview.
+ *
+ * An element that can still move never reaches this test - `canScrollFurther`
+ * returns first - so nothing that has scrolling left to do is affected.
  */
+function isScrollTrappingOverlay(element: Element): boolean {
+  return Boolean(
+    element.closest('[aria-modal="true"], [role="dialog"], [role="alertdialog"]')
+  )
+}
+
 function refusesChaining(element: Element): boolean {
   const behavior = getComputedStyle(element).overscrollBehaviorY
-  return behavior === "contain" || behavior === "none"
+  if (behavior !== "contain" && behavior !== "none") return false
+  return isScrollTrappingOverlay(element)
 }
 
 export function PreviewScrollForwarder() {

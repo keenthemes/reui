@@ -4,23 +4,7 @@ import * as React from "react"
 
 import { Spinner } from "@/components/ui/spinner"
 import { ComponentLivePreviewRuntime } from "@/app/(create)/components/components/component-live-preview-runtime"
-
-/**
- * Tells the host that the example has mounted, so it can cross-fade its
- * spinner away. Mirrors the block preview's signal, including the
- * same-origin target so the message is not broadcast to arbitrary embedders.
- */
-function PreviewReadySignal() {
-  React.useEffect(() => {
-    if (typeof window === "undefined" || window.parent === window) {
-      return
-    }
-
-    window.parent.postMessage({ type: "iframe-ready" }, window.location.origin)
-  }, [])
-
-  return null
-}
+import { PreviewReadyMarker } from "@/app/(create)/preview/preview-ready-marker"
 
 /**
  * Chromeless render target for a single c-* example.
@@ -51,7 +35,23 @@ export function ComponentExampleFrame({
   category?: string
 }) {
   return (
-    <div className="w-full p-1" data-slot="component-example">
+    /*
+      Centred, matching the INLINE preview this frame replaces.
+      `component-preview-tabs` renders its `.preview` wrapper with
+      `flex w-full justify-center`, so an example narrower than the surface -
+      a code block capped at `max-w-2xl`, say - sits in the middle. This
+      wrapper was plain `w-full`, so the same example rendered hard against
+      the left edge the moment its category was added to the frame allowlist,
+      and the two surfaces disagreed for no reason a reader could see.
+
+      Harmless for the full-width examples: a child that is already `w-full`
+      fills the row whether or not the parent centres it, so data-grid, gantt
+      and event-calendar are unaffected.
+    */
+    <div
+      className="flex w-full justify-center p-1"
+      data-slot="component-example"
+    >
       <React.Suspense
         fallback={
           <div className="flex w-full items-center justify-center py-8">
@@ -64,8 +64,12 @@ export function ComponentExampleFrame({
           base={base}
           category={category}
         />
+        {/* INSIDE the boundary. This used to sit below `</React.Suspense>` as a
+            sibling, and React commits a suspended boundary's siblings right
+            away, so it announced readiness while the spinner above was still
+            on screen. See the docblock on PreviewReadyMarker. */}
+        <PreviewReadyMarker />
       </React.Suspense>
-      <PreviewReadySignal />
     </div>
   )
 }

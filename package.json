@@ -1,6 +1,6 @@
 {
   "name": "reui",
-  "version": "2.3.0",
+  "version": "2.5.2",
   "private": true,
   "type": "module",
   "scripts": {
@@ -68,6 +68,7 @@
     "@reui/components-base-cascader": "workspace:*",
     "@reui/components-base-chart": "workspace:*",
     "@reui/components-base-checkbox": "workspace:*",
+    "@reui/components-base-code-block": "workspace:*",
     "@reui/components-base-collapsible": "workspace:*",
     "@reui/components-base-combobox": "workspace:*",
     "@reui/components-base-command": "workspace:*",
@@ -141,6 +142,7 @@
     "@reui/components-radix-cascader": "workspace:*",
     "@reui/components-radix-chart": "workspace:*",
     "@reui/components-radix-checkbox": "workspace:*",
+    "@reui/components-radix-code-block": "workspace:*",
     "@reui/components-radix-collapsible": "workspace:*",
     "@reui/components-radix-combobox": "workspace:*",
     "@reui/components-radix-command": "workspace:*",

@@ -1,13 +1,13 @@
-import type { SVGProps } from "react"
+import type { SVGProps } from "react";
 
 const Dropbox = (props: SVGProps<SVGSVGElement>) => (
-  <svg {...props} viewBox="0 0 64 56">
-    <path fill="#0061FF" d="M16 0 0 10.5 16 21l16-10.5L16 0Z" />
-    <path fill="#0061FF" d="m48 0-16 10.5L48 21l16-10.5L48 0Z" />
-    <path fill="#0061FF" d="M16 21 0 31.5 16 42l16-10.5L16 21Z" />
-    <path fill="#0061FF" d="M48 21 32 31.5 48 42l16-10.5L48 21Z" />
-    <path fill="#0061FF" d="M32 35 16 45.5 32 56l16-10.5L32 35Z" />
+  <svg {...props} fill="none" viewBox="0 0 128 128">
+    <path fill="#0061FE" d="M0 0h128v128H0z" />
+    <path
+      fill="#F7F5F2"
+      d="M43.7 32 23.404 44.75 43.701 57.5 64 44.75 84.3 57.5l20.298-12.75L84.299 32 64.002 44.75 43.7 32Zm0 51L23.404 70.25 43.701 57.5 64 70.25 43.702 83Zm20.302-12.75L84.299 57.5l20.298 12.75L84.299 83 64.002 70.25Zm0 29.75L43.7 87.25 64 74.5l20.3 12.75L64.002 100Z"
+    />
   </svg>
-)
+);
 
-export { Dropbox }
+export { Dropbox };

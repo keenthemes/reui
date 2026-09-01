@@ -3,6 +3,7 @@ export const CANONICAL_COMPONENT_DOC_SLUGS = [
   "autocomplete",
   "badge",
   "cascader",
+  "code-block",
   "data-grid",
   "date-selector",
   "event-calendar",

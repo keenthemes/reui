@@ -1979,6 +1979,99 @@
       ]
     }
   },
+  "code-block": {
+    "title": "Shadcn Code Block: Highlight, Streaming, Diffs, AI Chat and more",
+    "description": "{{count}} free shadcn code block components for AI chat, agent patch review, streaming code, diffs, terminal output, and docs. Copy-ready for React and Next.js. Syntax highlighting with Shiki and Tailwind CSS.",
+    "intro": "Browse {{count}} production-ready shadcn code block components for streaming agent responses, AI chat with markdown code fences, diff review, focus walkthroughs, line selection, gutter actions, terminal output, and multi-file patches: a custom ReUI component built on Shiki and composable with Card, Frame, Tabs, and Badge.",
+    "keywords": [
+      "shadcn code block",
+      "react code block component",
+      "shadcn/ui code block",
+      "react syntax highlighter",
+      "shiki react component",
+      "streaming code block react",
+      "ai chat code block",
+      "react code diff viewer",
+      "next.js code block",
+      "tailwind code block",
+      "react code block copy button",
+      "code block line numbers react",
+      "react server component syntax highlighting",
+      "markdown code fence react",
+      "reui code block examples",
+      "shadcn code block highlight",
+      "code block streaming ai",
+      "shadcn diff code block"
+    ],
+    "content": {
+      "title": "Shadcn Code Block: Streaming, Diffs, and AI Chat",
+      "summary": [
+        "ReUI Code Block is a custom shadcn component, not part of the base shadcn/ui library, for rendering source code with syntax highlighting from Shiki. It handles the cases an AI product actually needs: code streaming in token by token, agent-proposed diffs, diagnostics on specific lines, and per-line actions, alongside the ordinary documentation cases.",
+        "Eighteen components cover the range: a streaming agent response with a caret and stick-to-bottom scrolling, an AI chat message that renders markdown code fences as they arrive, diff review with added and removed lines, focus walkthroughs, line selection for asking an assistant about a range, terminal output with no highlighting, and multi-file patches in tabs.",
+        "The component is composable rather than configured. The root renders the code surface and children supply the chrome, so the same block works bare, inside a shadcn Card, or inside a ReUI Frame without a doubled border."
+      ],
+      "sections": [
+        {
+          "title": "What is Shadcn Code Block?",
+          "paragraphs": [
+            "ReUI Code Block renders source code as real React elements rather than as an HTML string. Shiki tokenizes the code and the result is normalized into a plain array of lines, which is what makes per-line interaction possible: hover actions in the gutter, click and shift-click line selection, diff markers, and diagnostic backgrounds all attach to elements instead of being baked into markup.",
+            "The happy path is one tag. Pass code and a language and you get a complete block with syntax highlighting in both light and dark themes. Everything else, the header, the filename, the language label, the copy button, the wrap toggle and the expand control, is composed as children."
+          ]
+        },
+        {
+          "title": "Streaming code and AI chat",
+          "paragraphs": [
+            "When code arrives from a model it grows one chunk at a time. The component re-tokenizes against a deferred value and the highlighter returns the same line objects for lines that did not change, so appending a token re-renders one line rather than the whole file. Lines the highlighter has not caught up to render as plain text, so the newest token is on screen immediately and gains color a frame later.",
+            "Most chat UIs hold a markdown message rather than a raw code string. Two helpers cover that: markdownFences splits a message into prose and fenced code and reports a fence whose closing delimiter has not streamed in yet, and markdownCodeProps reads the language and source out of the props react-markdown gives a pre element. An unknown language and a half-finished fence both render as plain text instead of throwing."
+          ]
+        },
+        {
+          "title": "Server rendering and bundle cost",
+          "paragraphs": [
+            "The Shiki engine lives in its own module with no client directive, so a React Server Component can call highlightCode and pass the resulting lines down as plain JSON. The browser then never downloads a grammar. The same shape works without React Server Components: return lines from a Remix or TanStack Start loader and pass them to the component.",
+            "Highlighting uses Shiki's JavaScript regex engine rather than the WebAssembly one, so installing the component does not force wasm-unsafe-eval into your Content Security Policy. Shiki loads on first highlight and never on import, each language is its own chunk resolved through a static map, and passing pre-highlighted lines or turning highlighting off requests none of it."
+          ]
+        },
+        {
+          "title": "Diffs, highlights, and focus",
+          "paragraphs": [
+            "Line state can come from props or from Shiki notation comments. Highlighted lines, highlighted words, added and removed diff lines, focused lines and error, warning or info levels all accept either an array of line numbers or a range string such as 2-4,7. The transformers prop is passed straight to Shiki, so the notation comments from @shikijs/transformers produce the same state without a second code path.",
+            "Every piece of state is published as a data attribute on the line, which means restyling any of it is a plain CSS selector and never needs an important flag. Line numbers and diff glyphs are generated content, so they stay out of text selection: selecting code and pasting it gives exact source with no gutter digits."
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "question": "Does the code block work in React Server Components?",
+          "answer": "Yes. The Shiki engine is a separate module with no client directive, so a server component can await highlightCode and pass the resulting lines to the component. The lines are plain JSON, so the browser never downloads a grammar or the highlighter. The same approach works in Remix and TanStack Start through a loader."
+        },
+        {
+          "question": "How do I render code from an AI chat message?",
+          "answer": "Use markdownFences to split the message into prose and fenced code, or markdownCodeProps with react-markdown to override the pre element. Both tolerate a fence that is still streaming, so a half-finished block renders as plain text rather than throwing. Pass streaming to show a caret and keep the viewport pinned to the newest line."
+        },
+        {
+          "question": "Will installing this make my bundle large?",
+          "answer": "Shiki is the only npm dependency and it loads on first highlight, never on import. Each language is a separate chunk resolved through a static map, so you download only the grammars you render. Passing pre-highlighted lines or setting highlight to false requests nothing at all."
+        },
+        {
+          "question": "Does it need wasm-unsafe-eval in my Content Security Policy?",
+          "answer": "No. Highlighting uses Shiki's JavaScript regex engine rather than the WebAssembly Oniguruma engine, so there is no WebAssembly to allow. This matters for teams with a strict CSP, where a WebAssembly-based highlighter would otherwise force a policy change."
+        },
+        {
+          "question": "How do I add a language or change the theme?",
+          "answer": "Languages are a written-out map in code-block-highlight.tsx. Add one line importing the grammar from shiki/langs and it becomes available. Themes work the same way in the themes map; changing the two defaults there restyles every block. The map is deliberately not a template import, because that would make bundlers include every grammar Shiki ships."
+        },
+        {
+          "question": "Can I use my own syntax highlighter instead of Shiki?",
+          "answer": "Yes. The component renders from a plain array of lines, each holding tokens with a light and a dark color. Map the output of Prism, highlight.js or anything else into that shape, pass it as the lines prop, and Shiki is never loaded."
+        },
+        {
+          "question": "Does copying include the line numbers?",
+          "answer": "No. Line numbers and diff glyphs are CSS generated content rather than DOM elements, so they cannot enter a text selection. Selecting the code and copying gives exact source, and the copy button additionally strips any Shiki notation comments from the payload."
+        }
+      ]
+    }
+  },
   "collapsible": {
     "description": "Shadcn Collapsible components for expandable sections. Single disclosure region with icons, badges, and nested support. Works in sidebars, file trees, and.",
     "intro": "Browse {{count}} production-ready shadcn collapsible components for sidebar navigation, expandable sections, file trees, and nested content. Shadcn Collapsible is compatible with Radix UI and Base UI interaction models and is fully aligned with Shadcn Create style options so your previews match your design tokens.",
@@ -2411,8 +2504,8 @@
     }
   },
   "data-grid": {
-    "description": "Shadcn Data Grid components using TanStack React Table with virtual scrolling. Sortable, filterable columns, row selection, column resizing. 29 examples.",
-    "intro": "Browse {{count}} production-ready shadcn data grid components built on TanStack Table v9 and TanStack Virtual. Covers pagination, sorting, column resizing, drag-and-drop rows and columns, row and column pinning, infinite scroll, CRUD, expandable rows, footer aggregates, and virtualized rendering: fully compatible with Shadcn Create style tokens.",
+    "description": "Shadcn Data Grid components using TanStack React Table with virtual scrolling. Spreadsheet cell selection, clipboard, inline editing, sortable and filterable columns, i18n. 33 examples.",
+    "intro": "Browse {{count}} production-ready shadcn data grid components built on TanStack Table v9 and TanStack Virtual. Sorting, filtering, pagination, pinning, column resizing, drag and drop, tree rows, CRUD, infinite scroll, row and column virtualization, spreadsheet cell selection with clipboard and inline editing, and localized labels through one i18n prop.",
     "keywords": [
       "shadcn data grid",
       "shadcn/ui data grid",
@@ -2428,9 +2521,15 @@
       "react table infinite scroll",
       "react table virtualization",
       "shadcn create",
-      "reui data grid examples"
+      "reui data grid examples",
+      "react data grid cell selection",
+      "react table copy paste excel",
+      "shadcn editable data grid",
+      "react data grid fill handle",
+      "react data grid i18n",
+      "react table column virtualization"
     ],
-    "docsDescription": "Explore ReUI datagrid examples with sorting, filtering, pagination, virtualization, row pinning, drag-and-drop, and infinite scroll.",
+    "docsDescription": "Explore ReUI datagrid examples with spreadsheet cell selection, clipboard, inline editing, sorting, filtering, pagination, row and column virtualization, pinning, drag-and-drop, infinite scroll, and localized labels.",
     "content": {
       "title": "Shadcn Data Grid: TanStack Table, Virtual, and DnD",
       "summary": [

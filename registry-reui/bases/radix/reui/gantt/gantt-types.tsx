@@ -37,6 +37,13 @@ interface GanttResource {
   color?: string
   /** Per-node cardinality; falls back to the view-level default. */
   scheduleMode?: GanttScheduleMode
+  /**
+   * Planned (as-built baseline) window for the WHOLE node, ghosted as a
+   * band behind its lanes - independent of any per-event baselines. Half
+   * open; set both or neither. Equal instants mark a planned milestone.
+   */
+  baselineStart?: Date
+  baselineEnd?: Date
   children?: GanttResource[]
 }
 
@@ -87,9 +94,25 @@ interface GanttEvent<TData = unknown> {
   priority?: number
   /** Completion 0-100, not 0-1. */
   progress?: number
+  /**
+   * Planned (as-built baseline) window, drawn behind the bar so the actual
+   * start/end read against it. Half-open like start/end; set both or
+   * neither. Equal instants mark a planned milestone. A recurring series
+   * has no single planned window, so events with `recurrence` render none.
+   */
+  baselineStart?: Date
+  baselineEnd?: Date
   /** Explicit stacking override; wins over the computed z. */
   zIndex?: number
   resourceId?: string
+  /**
+   * Ids of the events this one waits on (finish-to-start). The view draws an
+   * elbow arrow from each named event's end into this one's start; unknown
+   * ids, recurring series, and endpoints on hidden rows are skipped.
+   * Rendering only - the gantt never reschedules dependents; enforcement
+   * stays consumer territory (canDropEvent/onEventUpdate).
+   */
+  dependencies?: GanttBarId[]
   data?: TData
 }
 
@@ -121,6 +144,16 @@ interface GanttSegment<TData = unknown> {
   columnCount?: number
   columnSpan?: number
 }
+
+/** A validated planned window; `milestone` when start and end coincide. */
+interface GanttBaseline {
+  start: Date
+  end: Date
+  milestone: boolean
+}
+
+/** Actual end against the planned end: before it, after it, or exactly on it. */
+type GanttBaselineVariance = "early" | "late" | "on-time"
 
 interface GanttSelection {
   eventKeys: string[]
@@ -223,6 +256,8 @@ interface GanttDataAdapter<TData = unknown> {
 }
 
 export type {
+  GanttBaseline,
+  GanttBaselineVariance,
   GanttEvent,
   GanttDataAdapter,
   GanttDateRange,

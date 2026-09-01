@@ -7,6 +7,8 @@ export const componentPreviewLoaders = {
   "c-gantt-3": () => import("@/registry-reui/bases/base/components/gantt/c-gantt-3.tsx"),
   "c-gantt-4": () => import("@/registry-reui/bases/base/components/gantt/c-gantt-4.tsx"),
   "c-gantt-5": () => import("@/registry-reui/bases/base/components/gantt/c-gantt-5.tsx"),
+  "c-gantt-6": () => import("@/registry-reui/bases/base/components/gantt/c-gantt-6.tsx"),
+  "c-gantt-7": () => import("@/registry-reui/bases/base/components/gantt/c-gantt-7.tsx"),
 } as const
 
 export type ComponentName = keyof typeof componentPreviewLoaders

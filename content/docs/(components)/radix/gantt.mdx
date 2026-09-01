@@ -110,6 +110,28 @@ A people-centric weekly view. Each row is a teammate rendered with an avatar lab
 
 A report on the month scale. Owner and Status columns sit beside each phase in the tree panel via the `columns` prop and every bar carries a progress fill. Drag, resize, and slot-select are disabled so the plan can't be shifted by dragging, while the toolbar appends new tasks as their own rows with controlled `resources`.
 
+### As-Built Baseline Tracking
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-gantt-6"
+  align="start"
+  previewClassName="h-auto p-0"
+/>
+
+Planned versus actual. Every bar carries `baselineStart` and `baselineEnd`, so the frozen plan ghosts behind the actual dates on the same lane, and equal baseline instants render a planned milestone diamond. Dragging a bar re-times the actual dates while the ghost holds still; the tooltip names the planned range and each bar exposes `data-baseline-variance="early|late|on-time"` for consumer styling. The Implementation group also carries a NODE-level plan, drawn as a faint band behind the whole row (`GanttResource.baselineStart`/`baselineEnd`). Turn the ghosts off with `baselineBars={false}` or restyle them via `classNames.baseline`, `renderBaseline`, and `renderRowBaseline`.
+
+### Dependencies and Milestones
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-gantt-7"
+  align="start"
+  previewClassName="h-auto p-0"
+/>
+
+A chained rollout plan. Each event's `dependencies` array names its predecessors, and the view draws a finish-to-start elbow arrow from every predecessor's end into the dependent's start, under the bars. The zero-duration "Sign-off" event renders as a milestone diamond: it moves like any bar (the move keeps it a point) but has no resize edges, its title always sits beside it, and screen readers hear the `milestone` clause. Turn the arrows off with `dependencyLines={false}` or restyle the layer via `classNames.dependencies`.
+
 ## API Reference
 
 ### Gantt
@@ -261,7 +283,7 @@ One schedulable bar. `TData` is a fully generic consumer payload.
 | `id`               | `string`                        | -       | `Required`. Stable event id.                                         |
 | `title`            | `string`                        | -       | `Required`. Bar title.                                               |
 | `start`            | `Date`                          | -       | `Required`. Plain instant; consumers parse ISO strings themselves.   |
-| `end`              | `Date`                          | -       | `Required`. Exclusive; must be greater than or equal to `start`.     |
+| `end`              | `Date`                          | -       | `Required`. Exclusive; must be greater than or equal to `start`. Equal to `start` renders the event as a milestone diamond. |
 | `allDay`           | `boolean`                       | -       | Whether the event is date-based rather than timed.                   |
 | `recurrence`       | `GanttRecurrenceRule \| string` | -       | Structured rule or a raw `"RRULE:..."` line.                         |
 | `recurringEventId` | `string`                        | -       | This event is an edited single occurrence of that series.            |
@@ -272,8 +294,11 @@ One schedulable bar. `TData` is a fully generic consumer payload.
 | `resizable`        | `boolean`                       | -       | Per-event override; default comes from `interactions.resize`.        |
 | `priority`         | `number`                        | -       | Packing prominence; feeds `getEventPriority` ordering.               |
 | `progress`         | `number`                        | -       | Completion 0-100; renders as a subtle fill inside the bar.           |
+| `baselineStart`    | `Date`                          | -       | Planned (as-built baseline) start, ghosted behind the bar. Set with `baselineEnd` or not at all. |
+| `baselineEnd`      | `Date`                          | -       | Planned end, exclusive like `end`. Equal to `baselineStart` marks a planned milestone diamond. Recurring events render no baseline. |
 | `zIndex`           | `number`                        | -       | Explicit stacking override; wins over the computed z.                |
 | `resourceId`       | `string`                        | -       | Resource row this bar belongs to.                                    |
+| `dependencies`     | `GanttBarId[]`                  | -       | Predecessor event ids (finish-to-start); each draws an elbow arrow into this bar's start. Rendering only - the gantt never reschedules dependents. |
 | `data`             | `TData`                         | -       | Consumer payload, fully generic.                                     |
 
 ---
@@ -287,6 +312,9 @@ A row of the gantt tree (task, person, equipment). Nesting via `children` render
 | `id`       | `string`          | -       | `Required`. Stable resource id.                 |
 | `title`    | `string`          | -       | `Required`. Row title.                          |
 | `color`    | `string`          | -       | Token or CSS color used for subtle row accents. |
+| `scheduleMode` | `"single" \| "multiple"` | -  | Per-node cardinality override; falls back to the view-level `scheduleMode`. |
+| `baselineStart` | `Date`       | -       | Planned window start for the WHOLE node, ghosted as a band behind its lanes. Set with `baselineEnd` or not at all. |
+| `baselineEnd` | `Date`         | -       | Planned node window end, exclusive; equal to `baselineStart` marks a planned milestone. |
 | `children` | `GanttResource[]` | -       | Child rows; presence makes this row a group.    |
 
 ---
@@ -516,6 +544,7 @@ Live gesture snapshot handed to `renderDragPreview` and `renderResizeIndicator`;
 | `start`      | `Date`                                     | Proposed (snapped) start of the current step. |
 | `end`        | `Date`                                     | Proposed (snapped) end of the current step.   |
 | `valid`      | `boolean`                                  | Last `canDropEvent` verdict.                  |
+| `baseline`   | `GanttBaseline \| null`                    | The event's planned window, so a custom overlay can keep drawing it mid-gesture. |
 
 ---
 
@@ -541,6 +570,46 @@ Parent rollup handed to a custom `renderSummary` renderer.
 | `start`    | `Date`           | Envelope start of the descendant bars.         |
 | `end`      | `Date`           | Envelope end of the descendant bars.           |
 | `progress` | `number \| null` | Duration-weighted progress, or `null` to hide. |
+
+---
+
+### GanttBaseline
+
+A validated planned window, as returned by `resolveEventBaseline`.
+
+| Property    | Type      | Description                                                        |
+| :---------- | :-------- | :----------------------------------------------------------------- |
+| `start`     | `Date`    | Planned start.                                                     |
+| `end`       | `Date`    | Planned end, exclusive.                                            |
+| `milestone` | `boolean` | Planned start and end coincide: a point in the plan, not a window. |
+
+---
+
+### GanttBaselineProps
+
+Planned window handed to a custom `renderBaseline` renderer. The positioned, pointer-transparent wrapper stays gantt-owned; the renderer replaces its content, the milestone diamond included.
+
+| Property    | Type                    | Description                                                        |
+| :---------- | :---------------------- | :----------------------------------------------------------------- |
+| `event`     | `GanttEvent<TData>`     | The event whose plan is being drawn.                               |
+| `start`     | `Date`                  | Planned start.                                                     |
+| `end`       | `Date`                  | Planned end, exclusive.                                            |
+| `milestone` | `boolean`               | Planned start and end coincide: a point in the plan, not a window. |
+| `variance`  | `GanttBaselineVariance` | Actual end against the planned end: `"early" \| "late" \| "on-time"`. |
+
+---
+
+### GanttRowBaselineProps
+
+Planned NODE window handed to a custom `renderRowBaseline` renderer; same wrapper contract as `renderBaseline`.
+
+| Property    | Type                            | Description                                                                        |
+| :---------- | :------------------------------ | :--------------------------------------------------------------------------------- |
+| `resource`  | `GanttResource`                 | The node whose plan is being drawn.                                                |
+| `start`     | `Date`                          | Planned start.                                                                     |
+| `end`       | `Date`                          | Planned end, exclusive.                                                            |
+| `milestone` | `boolean`                       | Planned start and end coincide: a point in the plan, not a window.                 |
+| `variance`  | `GanttBaselineVariance \| null` | Latest actual end (subtree included for groups) vs the planned end; `null` without events to compare. |
 
 ---
 
@@ -608,6 +677,10 @@ Pure, React-free helpers exported from `gantt-lib.tsx`, the gesture utilities fr
 | `eventsOverlap`      | `(a: { start, end }, b: { start, end }) => boolean`                                                 | Half-open range overlap test.                                                                |
 | `rangesIntersect`    | `(a: GanttDateRange, b: GanttDateRange) => boolean`                                                 | Half-open range intersection test.                                                           |
 | `spansMultipleDays`  | `(occ: { start, end }) => boolean`                                                                  | True past 24h (an event ending exactly at the next midnight is single-day).                  |
+| `resolveEventBaseline` | `(subject: { baselineStart?, baselineEnd?, recurrence? }) => GanttBaseline \| null`               | The subject's validated planned window, or `null` (missing pair, inverted, or recurring). Structural: events and resources both resolve. |
+| `getBaselineVariance` | `(event: GanttEvent<TData>) => GanttBaselineVariance \| null`                                      | Actual end against the planned end; `null` when no valid baseline exists.                    |
+| `occurrenceIntersects` | `(occ: { start, end }, range: GanttDateRange) => boolean`                                         | Half-open visibility, except a zero-length (milestone) occurrence on the range start stays in. |
+| `buildDependencyPath` | `(from: { x, y }, to: { x, y }, opts: { clearance, laneStep, arrowSize }) => GanttDependencyGeometry` | Orthogonal finish-to-start connector geometry (line + arrowhead paths), unit-agnostic.       |
 | `getDayKey`          | `(date: Date, timeZone: string) => string`                                                          | Stable per-day key in the display time zone.                                                 |
 | `getDayTotalMinutes` | `(dayStart: Date, timeZone: string) => number`                                                      | Day length in minutes; 1380/1500 on DST transition days.                                     |
 | `getRangeKey`        | `(range: GanttDateRange) => string`                                                                 | Cheap cache key for a range.                                                                 |
@@ -662,6 +735,7 @@ State and configuration options accepted by `useGanttState` and, as flat props, 
 | `activation`          | `GanttActivationConfig`                                                                  | -                     | Pointer-activation threshold overrides for drag/resize/create.                                    |
 | `maxRangeWindow`      | `number`                                                                                 | `12`                  | Infinite-scroll growth cap in whole periods per side; past it the anchor slides instead.          |
 | `resources`           | `GanttResource[]`                                                                        | `[]`                  | Resource rows of the gantt tree.                                                                  |
+| `enforceCanDrop`      | `boolean`                                                                                | `false`               | Make `canDropEvent` binding: releasing an invalid gesture reverts it instead of committing anyway. |
 | `getEventPriority`    | `(event: GanttEvent<TData>) => number`                                                   | `event.priority ?? 0` | Packing prominence per event.                                                                     |
 | `eventOrder`          | `(a: GanttOccurrence<TData>, b: GanttOccurrence<TData>) => number`                       | priority-aware        | Occurrence sort; the default orders higher `getEventPriority` first, then start/duration/key.     |
 | `getOccurrences`      | `(event, range, ctx: { timeZone: string }) => Array<{ start: Date; end: Date }> \| null` | -                     | Escape hatch for exotic recurrence: return the expanded occurrences yourself.                     |
@@ -677,7 +751,7 @@ All callbacks live beside the state options on `useGanttState` and `<Gantt>`.
 | `onEventClick`            | `(occurrence, e: React.MouseEvent) => void`                  | Bar click (the click that ends a drag is ignored).                                                                       |
 | `onEventDoubleClick`      | `(occurrence, e: React.MouseEvent) => void`                  | Bar double click.                                                                                                        |
 | `onEventUpdate`           | `(update: GanttProposedUpdate<TData>) => GanttUpdateResult`  | Commit gate for every timing change; return `false` to reject, an object to adjust.                                      |
-| `canDropEvent`            | `(update: GanttProposedUpdate<TData>) => boolean`            | Live validity predicate while dragging or resizing; drives the destructive indicator.                                    |
+| `canDropEvent`            | `(update: GanttProposedUpdate<TData>) => boolean`            | Live validity predicate while dragging or resizing; drives the destructive indicator. Advisory unless `enforceCanDrop`.  |
 | `onSlotClick`             | `(slot: GanttSlotInfo, e: React.MouseEvent) => void`         | Click on empty schedulable track (also the schedule-hint activation).                                                    |
 | `onSelectSlot`            | `(slot: GanttSlotDraft) => void`                             | Drag-create commit.                                                                                                      |
 | `canSelectSlot`           | `(slot: GanttSlotDraft) => boolean`                          | Live validity predicate for the drag-create rectangle.                                                                   |
@@ -735,7 +809,9 @@ Display props and render overrides. These live on `<Gantt>` as flat props (and `
 | `onZoomChange`            | `(zoom: number) => void`                                                            | -                      | Zoom changed.                                                                                                          |
 | `parentScheduling`        | `boolean`                                                                           | `false`                | Allow drag-create and slot clicks on rows that have children; off means parents aggregate their subtree.               |
 | `summaryBars`             | `boolean`                                                                           | `true`                 | Rollup strips on parent rows without bars of their own: descendant envelope with duration-weighted progress.           |
-| `classNames`              | `GanttClassNames`                                                                   | -                      | Class overrides for nav, toolbar, view, and event.                                                                     |
+| `baselineBars`            | `boolean`                                                                           | `true`                 | Planned-window ghosts behind bars (and row bands behind nodes) carrying `baselineStart`/`baselineEnd`; display only.   |
+| `dependencyLines`         | `boolean`                                                                           | `true`                 | Finish-to-start arrows between bars whose events name `dependencies`, drawn under the bars.                            |
+| `classNames`              | `GanttClassNames`                                                                   | -                      | Class overrides for nav, toolbar, view, event, baseline, and dependencies.                                             |
 | `renderEvent`             | `(props: GanttRenderEventProps<TData>) => ReactNode`                                | -                      | Replaces the default bar content; the interactive wrapper stays gantt-owned.                                           |
 | `renderEventMenu`         | `(props: GanttRenderEventProps<TData>) => ReactNode`                                | -                      | Right-click menu for a bar: return shadcn ContextMenu items; omit for no menu.                                         |
 | `renderResourceLabel`     | `(props: GanttColumnContext) => ReactNode`                                          | -                      | Tree-node label; return any rich content (icons, badges). Default is the plain title.                                  |
@@ -745,6 +821,8 @@ Display props and render overrides. These live on `<Gantt>` as flat props (and `
 | `renderResizeIndicator`   | `(props: GanttDragIndicatorProps<TData>) => ReactNode`                              | -                      | Replaces the resize edge line and status chip; same positioning contract as `renderDragPreview`.                       |
 | `renderScheduleHint`      | `(props: GanttScheduleHintProps) => ReactNode`                                      | -                      | Replaces the schedule-hint tile and bubble inside the snapped, validated, pointer-transparent wrapper.                 |
 | `renderSummary`           | `(props: GanttSummaryProps) => ReactNode`                                           | -                      | Replaces the parent rollup strip (the positioned wrapper stays gantt-owned).                                           |
+| `renderBaseline`          | `(props: GanttBaselineProps<TData>) => ReactNode`                                   | -                      | Replaces the baseline ghost's content, the milestone diamond included (the positioned wrapper stays gantt-owned).      |
+| `renderRowBaseline`       | `(props: GanttRowBaselineProps) => ReactNode`                                       | -                      | Replaces the ROW baseline band's content (same wrapper contract as `renderBaseline`).                                  |
 | `getSummaryProgress`      | `(ctx: { resource: GanttResource; events: GanttEvent<TData>[] }) => number \| null` | -                      | Replaces the rollup math: return 0-100 (or `null` to hide). Default: duration-weighted mean progress.                  |
 
 ---
@@ -810,9 +888,11 @@ Layout metrics (rem unless noted); every knob falls back to its default.
 
 | Property             | Type                                  | Default | Description                                                                                                                                          |
 | :------------------- | :------------------------------------ | :------ | :--------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `laneHeight`         | `number`                              | `1.75`  | Bar lane height.                                                                                                                                     |
+| `laneHeight`         | `number`                              | `1.25`  | Bar lane height.                                                                                                                                     |
+| `laneGap`            | `number`                              | `0.1875` | Gap between stacked lanes in one row.                                                                                                               |
 | `rowPadding`         | `number`                              | `0.5`   | Vertical padding around a row's lane block.                                                                                                          |
 | `minRowHeight`       | `number`                              | `2.5`   | Minimum row height.                                                                                                                                  |
+| `ghostHeight`        | `number`                              | `1.25`  | Drag-drop indicator height, centered in its lane band and published on the ghost as `--gantt-ghost-height`.                                          |
 | `autoLabelMin`       | `number`                              | `7`     | `barLabel` `"auto"` flips the title outside below this bar width.                                                                                    |
 | `unitWidths`         | `Partial<Record<GanttScale, number>>` | -       | Unit width at zoom 1 per scale (day scale = width per interval unit; defaults: day 5 at a 60-minute interval, week 10, month 4, quarter 8, year 10). |
 | `minTimelineWidth`   | `number`                              | `200`   | Minimum timeline pane width in px.                                                                                                                   |
@@ -837,12 +917,14 @@ Pointer-activation thresholds; unset keys keep the dnd-kit parity defaults.
 
 Class overrides for the composed parts.
 
-| Property  | Type     | Default | Description                                |
-| :-------- | :------- | :------ | :----------------------------------------- |
-| `nav`     | `string` | -       | Classes for `GanttNav`.                    |
-| `toolbar` | `string` | -       | Classes for `GanttToolbar`.                |
-| `view`    | `string` | -       | Classes for the gantt body (tree + track). |
-| `event`   | `string` | -       | Classes for every bar.                     |
+| Property   | Type     | Default | Description                                            |
+| :--------- | :------- | :------ | :----------------------------------------------------- |
+| `nav`      | `string` | -       | Classes for `GanttNav`.                                |
+| `toolbar`  | `string` | -       | Classes for `GanttToolbar`.                            |
+| `view`     | `string` | -       | Classes for the gantt body (tree + track).             |
+| `event`    | `string` | -       | Classes for every bar.                                 |
+| `baseline` | `string` | -       | Classes for every planned-window (baseline) ghost.     |
+| `dependencies` | `string` | -   | Classes for the dependency-arrow SVG layer (color flows from `currentColor`). |
 
 ---
 
@@ -876,6 +958,8 @@ The `i18n` option takes a `GanttI18nOverrides` object: a deep-partial of `GanttI
 | `progress`     | `(percent: number) => string`    | `` `${percent}% complete` ``              |
 | `durationDays` | `(days: number) => string`       | `"1 day"` / `` `${days} days` ``          |
 | `continues`    | `string`                         | `"continues"`                             |
+| `planned`      | `(rangeLabel: string) => string` | `` `Planned ${rangeLabel}` ``             |
+| `milestone`    | `string`                         | `"milestone"`                             |
 | `scales`       | `Record<GanttScale, string>`     | `Day`, `Week`, `Month`, `Quarter`, `Year` |
 
 `formats` are date-fns format strings, applied with the gantt `locale`:
@@ -894,4 +978,4 @@ The `i18n` option takes a `GanttI18nOverrides` object: a deep-partial of `GanttI
 | `formatTitle`          | `(scale, ctx: { date, activeRange, visibleRange, locale? }) => string`                   | The nav title per scale (week gets a smart range label).                       |
 | `formatEventTime`      | `(start: Date, end: Date, allDay: boolean, locale?: Locale) => string`                   | Bar time/range labels; all-day bars show their date range.                     |
 | `formatDayRange`       | `(range: GanttDateRange, locale?: Locale) => string`                                     | Compact day-range label.                                                       |
-| `formatEventAriaLabel` | `(parts: { title, timeLabel, rowTitle?, progressLabel?, continues: boolean }) => string` | Composes the bar screen-reader label; appends `labels.continues` when clipped. |
+| `formatEventAriaLabel` | `(parts: { title, timeLabel, milestoneLabel?, rowTitle?, progressLabel?, plannedLabel?, continues: boolean }) => string` | Composes the bar screen-reader label; appends `labels.continues` when clipped. |

@@ -238,5 +238,37 @@
     "order": 30,
     "gridSize": 1,
     "previewHeight": "608"
+  },
+  {
+    "name": "c-data-grid-31",
+    "title": "Data grid with spreadsheet editing",
+    "description": "Data grid with spreadsheet editing",
+    "order": 31,
+    "gridSize": 1,
+    "previewHeight": "560"
+  },
+  {
+    "name": "c-data-grid-32",
+    "title": "Data grid with column virtualization",
+    "description": "Data grid with column virtualization",
+    "order": 32,
+    "gridSize": 1,
+    "previewHeight": "620"
+  },
+  {
+    "name": "c-data-grid-33",
+    "title": "Data grid with localized labels",
+    "description": "Data grid with localized labels",
+    "order": 33,
+    "gridSize": 1,
+    "previewHeight": "480"
+  },
+  {
+    "name": "c-data-grid-34",
+    "title": "Data grid with server side pagination",
+    "description": "Data grid with server side pagination, sorting, search and status filter",
+    "order": 34,
+    "gridSize": 1,
+    "previewHeight": "500"
   }
 ]

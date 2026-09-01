@@ -1,0 +1,718 @@
+{
+  "items": [
+    {
+      "name": "c-code-block-1",
+      "type": "registry:block",
+      "title": "Basic code block",
+      "categories": [
+        "code-block"
+      ],
+      "description": "Code block with header, filename, language and copy button.",
+      "registryDependencies": [
+        "code-block"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/code-block/c-code-block-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1,
+        "gridSize": 1,
+        "previewHeight": "270"
+      }
+    },
+    {
+      "name": "c-code-block-2",
+      "type": "registry:block",
+      "title": "Pinned copy button",
+      "categories": [
+        "code-block"
+      ],
+      "description": "Headerless block with a pinned copy button and dual-axis scrolling.",
+      "registryDependencies": [
+        "code-block",
+        "scroll-area"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/code-block/c-code-block-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2,
+        "gridSize": 1,
+        "previewHeight": "260"
+      }
+    },
+    {
+      "name": "c-code-block-3",
+      "type": "registry:block",
+      "title": "Streaming agent response",
+      "categories": [
+        "code-block"
+      ],
+      "description": "Agent writing code in real time with a caret and stick-to-bottom.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "code-block",
+        "scroll-area"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/code-block/c-code-block-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3,
+        "gridSize": 1,
+        "previewHeight": "350"
+      }
+    },
+    {
+      "name": "c-code-block-4",
+      "type": "registry:block",
+      "title": "AI chat with code fences",
+      "categories": [
+        "code-block"
+      ],
+      "description": "Streaming assistant message rendering markdown code fences.",
+      "registryDependencies": [
+        "avatar",
+        "code-block",
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/code-block/c-code-block-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4,
+        "gridSize": 1,
+        "previewHeight": "280"
+      }
+    },
+    {
+      "name": "c-code-block-5",
+      "type": "registry:block",
+      "title": "Diff with change summary",
+      "categories": [
+        "code-block"
+      ],
+      "description": "A props-driven diff with added and removed lines and a change summary.",
+      "registryDependencies": [
+        "code-block"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/code-block/c-code-block-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5,
+        "gridSize": 1,
+        "previewHeight": "290"
+      }
+    },
+    {
+      "name": "c-code-block-6",
+      "type": "registry:block",
+      "title": "Diff via shiki transformers",
+      "categories": [
+        "code-block"
+      ],
+      "description": "A diff expressed through a shiki transformer instead of props.",
+      "registryDependencies": [
+        "code-block"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/code-block/c-code-block-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6,
+        "gridSize": 1,
+        "previewHeight": "190"
+      }
+    },
+    {
+      "name": "c-code-block-7",
+      "type": "registry:block",
+      "title": "Highlighted lines and words",
+      "categories": [
+        "code-block"
+      ],
+      "description": "Line ranges and word matches highlighted together.",
+      "registryDependencies": [
+        "code-block"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/code-block/c-code-block-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7,
+        "gridSize": 1,
+        "previewHeight": "270"
+      }
+    },
+    {
+      "name": "c-code-block-8",
+      "type": "registry:block",
+      "title": "Focus walkthrough",
+      "categories": [
+        "code-block"
+      ],
+      "description": "Stepping through regions of a file with the rest dimmed.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "code-block"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/code-block/c-code-block-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8,
+        "gridSize": 1,
+        "previewHeight": "360"
+      }
+    },
+    {
+      "name": "c-code-block-9",
+      "type": "registry:block",
+      "title": "Terminal output",
+      "categories": [
+        "code-block"
+      ],
+      "description": "Unhighlighted command output with a wrap toggle.",
+      "registryDependencies": [
+        "code-block"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/code-block/c-code-block-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9,
+        "gridSize": 1,
+        "previewHeight": "370"
+      }
+    },
+    {
+      "name": "c-code-block-10",
+      "type": "registry:block",
+      "title": "Long file with expand",
+      "categories": [
+        "code-block"
+      ],
+      "description": "Collapsed at a line budget with an expand control and a line offset.",
+      "registryDependencies": [
+        "code-block",
+        "scroll-area"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/code-block/c-code-block-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10,
+        "gridSize": 1,
+        "previewHeight": "280"
+      }
+    },
+    {
+      "name": "c-code-block-11",
+      "type": "registry:block",
+      "title": "Line actions and diagnostics",
+      "categories": [
+        "code-block"
+      ],
+      "description": "Error and warning lines with an action button on the active line.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "code-block"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/code-block/c-code-block-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11,
+        "gridSize": 1,
+        "previewHeight": "220"
+      }
+    },
+    {
+      "name": "c-code-block-12",
+      "type": "registry:block",
+      "title": "Line selection",
+      "categories": [
+        "code-block"
+      ],
+      "description": "Selecting lines to ask an assistant about them.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "code-block"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/code-block/c-code-block-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12,
+        "gridSize": 1,
+        "previewHeight": "310"
+      }
+    },
+    {
+      "name": "c-code-block-13",
+      "type": "registry:block",
+      "title": "Search in file",
+      "categories": [
+        "code-block"
+      ],
+      "description": "Live search marking every match, with a counter that reads the block through useCodeBlockConfig.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "button-group",
+        "code-block",
+        "input",
+        "scroll-area"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/code-block/c-code-block-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13,
+        "gridSize": 1,
+        "previewHeight": "360"
+      }
+    },
+    {
+      "name": "c-code-block-14",
+      "type": "registry:block",
+      "title": "File tabs in a dense frame",
+      "categories": [
+        "code-block"
+      ],
+      "description": "A framed file switcher loading one grammar chunk per selected language.",
+      "registryDependencies": [
+        "code-block",
+        "frame",
+        "tabs"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/code-block/c-code-block-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14,
+        "gridSize": 1,
+        "previewHeight": "180"
+      }
+    },
+    {
+      "name": "c-code-block-15",
+      "type": "registry:block",
+      "title": "Pre-highlighted lines",
+      "categories": [
+        "code-block"
+      ],
+      "description": "Lines built without shiki, the shape a server component passes down.",
+      "registryDependencies": [
+        "code-block"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/code-block/c-code-block-15.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-15.tsx"
+        }
+      ],
+      "meta": {
+        "order": 15,
+        "gridSize": 1,
+        "previewHeight": "220"
+      }
+    },
+    {
+      "name": "c-code-block-16",
+      "type": "registry:block",
+      "title": "Before and after",
+      "categories": [
+        "code-block"
+      ],
+      "description": "Two blocks stacked in a frame for a refactor review.",
+      "registryDependencies": [
+        "code-block",
+        "frame"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/code-block/c-code-block-16.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-16.tsx"
+        }
+      ],
+      "meta": {
+        "order": 16,
+        "gridSize": 1,
+        "previewHeight": "390"
+      }
+    },
+    {
+      "name": "c-code-block-17",
+      "type": "registry:block",
+      "title": "Soft wrap",
+      "categories": [
+        "code-block"
+      ],
+      "description": "Long single-line content with a wrap toggle.",
+      "registryDependencies": [
+        "badge",
+        "code-block",
+        "separator"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/code-block/c-code-block-17.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-17.tsx"
+        }
+      ],
+      "meta": {
+        "order": 17,
+        "gridSize": 1,
+        "previewHeight": "190"
+      }
+    },
+    {
+      "name": "c-code-block-18",
+      "type": "registry:block",
+      "title": "Unified patch review",
+      "categories": [
+        "code-block"
+      ],
+      "description": "A git patch parsed into files with dual old/new gutters, counters and a download.",
+      "registryDependencies": [
+        "badge",
+        "code-block"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/code-block/c-code-block-18.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-18.tsx"
+        }
+      ],
+      "meta": {
+        "order": 18,
+        "gridSize": 1,
+        "previewHeight": "510"
+      }
+    },
+    {
+      "name": "c-code-block-19",
+      "type": "registry:block",
+      "title": "Design-token theme",
+      "categories": [
+        "code-block"
+      ],
+      "description": "Syntax colors driven by CSS variables mapped to design tokens.",
+      "registryDependencies": [
+        "code-block",
+        "scroll-area"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/code-block/c-code-block-19.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-19.tsx"
+        }
+      ],
+      "meta": {
+        "order": 19,
+        "gridSize": 1,
+        "previewHeight": "220"
+      }
+    },
+    {
+      "name": "c-code-block-20",
+      "type": "registry:block",
+      "title": "Always-dark block",
+      "categories": [
+        "code-block"
+      ],
+      "description": "A block that stays dark in both site themes, with window chrome and every line state.",
+      "registryDependencies": [
+        "code-block"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/code-block/c-code-block-20.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-20.tsx"
+        }
+      ],
+      "meta": {
+        "order": 20,
+        "gridSize": 1,
+        "previewHeight": "430"
+      }
+    },
+    {
+      "name": "c-code-block-21",
+      "type": "registry:block",
+      "title": "Dark terminal",
+      "categories": [
+        "code-block"
+      ],
+      "description": "ANSI-style colored terminal output built from plain lines.",
+      "registryDependencies": [
+        "code-block"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/code-block/c-code-block-21.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-21.tsx"
+        }
+      ],
+      "meta": {
+        "order": 21,
+        "gridSize": 1,
+        "previewHeight": "360"
+      }
+    },
+    {
+      "name": "c-code-block-22",
+      "type": "registry:block",
+      "title": "Patch review actions",
+      "categories": [
+        "code-block"
+      ],
+      "description": "Agent-proposed diff with accept and reject actions.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "card",
+        "code-block"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/code-block/c-code-block-22.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-22.tsx"
+        }
+      ],
+      "meta": {
+        "order": 22,
+        "gridSize": 1,
+        "previewHeight": "320"
+      }
+    },
+    {
+      "name": "c-code-block-23",
+      "type": "registry:block",
+      "title": "Nested code folding",
+      "categories": [
+        "code-block"
+      ],
+      "description": "Fold regions detected from indentation, with nesting and fold-all controls.",
+      "registryDependencies": [
+        "button",
+        "code-block",
+        "scroll-area",
+        "separator"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/code-block/c-code-block-23.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-23.tsx"
+        }
+      ],
+      "meta": {
+        "order": 23,
+        "gridSize": 1,
+        "previewHeight": "360"
+      }
+    },
+    {
+      "name": "c-code-block-24",
+      "type": "registry:block",
+      "title": "Fix with AI on the failing line",
+      "categories": [
+        "code-block"
+      ],
+      "description": "A line action scoped to the diagnostic line that applies the patch.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "code-block"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/code-block/c-code-block-24.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-24.tsx"
+        }
+      ],
+      "meta": {
+        "order": 24,
+        "gridSize": 1,
+        "previewHeight": "220"
+      }
+    },
+    {
+      "name": "c-code-block-25",
+      "type": "registry:block",
+      "title": "Reference lines in chat",
+      "categories": [
+        "code-block"
+      ],
+      "description": "A gutter button that turns lines or a selection into file:line reference badges in a chat composer.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "card",
+        "code-block"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/code-block/c-code-block-25.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-25.tsx"
+        }
+      ],
+      "meta": {
+        "order": 25,
+        "gridSize": 1,
+        "previewHeight": "640"
+      }
+    },
+    {
+      "name": "c-code-block-26",
+      "type": "registry:block",
+      "title": "Framed by an external ScrollArea",
+      "categories": [
+        "code-block"
+      ],
+      "description": "A changed-file list where one shadcn ScrollArea scrolls every block at once.",
+      "registryDependencies": [
+        "badge",
+        "card",
+        "code-block",
+        "scroll-area"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/code-block/c-code-block-26.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-26.tsx"
+        }
+      ],
+      "meta": {
+        "order": 26,
+        "gridSize": 1,
+        "previewHeight": "420"
+      }
+    },
+    {
+      "name": "c-code-block-27",
+      "type": "registry:block",
+      "title": "ANSI terminal output",
+      "categories": [
+        "code-block"
+      ],
+      "description": "Agent stdout with SGR colour codes parsed by ansiToLines, retintable via --code-ansi-* variables.",
+      "registryDependencies": [
+        "code-block"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/code-block/c-code-block-27.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-27.tsx"
+        }
+      ],
+      "meta": {
+        "order": 27,
+        "gridSize": 1,
+        "previewHeight": "310"
+      }
+    }
+  ]
+}

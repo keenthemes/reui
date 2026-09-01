@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react"
 import { Badge } from "@/registry-reui/bases/base/reui/badge"
+import { useDataGrid } from "@/registry-reui/bases/base/reui/data-grid/data-grid"
 import type { DataGridFeatures } from "@/registry-reui/bases/base/reui/data-grid/data-grid"
 import type { Column } from "@tanstack/react-table"
 
@@ -31,6 +32,7 @@ function DataGridColumnFilter<TData extends object, TValue>({
   title,
   options,
 }: DataGridColumnFilterProps<TData, TValue>) {
+  const { i18n } = useDataGrid()
   const facets = column?.getFacetedUniqueValues()
   const filterValue = column?.getFilterValue()
   const selectedValues = new Set(
@@ -71,7 +73,7 @@ function DataGridColumnFilter<TData extends object, TValue>({
                 <div className="hidden space-x-1 lg:flex">
                   {selectedValues.size > 2 ? (
                     <Badge variant="secondary" className="px-1 font-normal">
-                      {selectedValues.size} selected
+                      {i18n.labels.filterSelectedCount(selectedValues.size)}
                     </Badge>
                   ) : (
                     options
@@ -104,7 +106,7 @@ function DataGridColumnFilter<TData extends object, TValue>({
         <div className="max-h-[300px] overflow-y-auto">
           {filteredOptions.length === 0 ? (
             <div className="text-muted-foreground py-6 text-center text-sm">
-              No results found.
+              {i18n.labels.filterNoResults}
             </div>
           ) : (
             <div className="p-1">
@@ -187,7 +189,7 @@ function DataGridColumnFilter<TData extends object, TValue>({
                   }}
                   className="hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground style-vega:rounded-sm style-nova:rounded-md style-maia:rounded-xl style-lyra:rounded-none style-mira:rounded-md style-luma:rounded-2xl style-sera:rounded-none style-rhea:rounded-2xl relative flex cursor-pointer items-center justify-center px-2 py-1.5 text-sm outline-hidden select-none"
                 >
-                  Clear filters
+                  {i18n.labels.filterClear}
                 </div>
               </div>
             </>

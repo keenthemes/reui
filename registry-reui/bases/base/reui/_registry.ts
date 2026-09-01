@@ -340,6 +340,90 @@ export const reui: Registry["items"] = [
     ]
   },
   {
+    "name": "code-block-highlight",
+    "type": "registry:ui",
+    "title": "Isomorphic shiki engine and pure helpers for the code block.",
+    "description": "Isomorphic shiki engine and pure helpers for the code block.",
+    "registryDependencies": [],
+    "dependencies": [
+      "shiki"
+    ],
+    "files": [
+      {
+        "path": "reui/code-block/code-block-highlight.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/code-block/code-block-highlight.tsx"
+      }
+    ]
+  },
+  {
+    "name": "code-block",
+    "type": "registry:ui",
+    "title": "Shadcn code block with Shiki highlighting, streaming, diffs, folding and per-line interaction for AI chat UIs.",
+    "description": "Shadcn code block with Shiki highlighting, streaming, diffs, folding and per-line interaction for AI chat UIs.",
+    "registryDependencies": [
+      "button"
+    ],
+    "dependencies": [
+      "shiki"
+    ],
+    "files": [
+      {
+        "path": "reui/code-block/code-block-highlight.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/code-block/code-block-highlight.tsx"
+      },
+      {
+        "path": "reui/code-block/code-block.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/code-block/code-block.tsx"
+      }
+    ],
+    "cssVars": {
+      "light": {
+        "destructive-foreground": "var(--color-red-800)",
+        "success": "var(--color-emerald-500)",
+        "success-foreground": "var(--color-emerald-900)",
+        "info": "var(--color-violet-500)",
+        "info-foreground": "var(--color-violet-900)",
+        "warning": "var(--color-yellow-500)",
+        "warning-foreground": "var(--color-yellow-900)",
+        "invert": "var(--color-zinc-900)",
+        "invert-foreground": "var(--color-zinc-50)"
+      },
+      "dark": {
+        "destructive-foreground": "var(--color-red-600)",
+        "success": "var(--color-emerald-500)",
+        "success-foreground": "var(--color-emerald-600)",
+        "info": "var(--color-violet-500)",
+        "info-foreground": "var(--color-violet-600)",
+        "warning": "var(--color-yellow-500)",
+        "warning-foreground": "var(--color-yellow-600)",
+        "invert": "var(--color-zinc-700)",
+        "invert-foreground": "var(--color-zinc-50)"
+      }
+    }
+  },
+  {
+    "name": "data-grid-cell-selection",
+    "type": "registry:ui",
+    "title": "Data Grid Cell Selection",
+    "description": "",
+    "registryDependencies": [
+      "button"
+    ],
+    "dependencies": [
+      "@tanstack/react-table"
+    ],
+    "files": [
+      {
+        "path": "reui/data-grid/data-grid-cell-selection.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/data-grid/data-grid-cell-selection.tsx"
+      }
+    ]
+  },
+  {
     "name": "data-grid-column-filter",
     "type": "registry:ui",
     "title": "Data Grid Column Filter",
@@ -398,6 +482,21 @@ export const reui: Registry["items"] = [
         "path": "reui/data-grid/data-grid-column-visibility.tsx",
         "type": "registry:ui",
         "target": "components/reui/data-grid/data-grid-column-visibility.tsx"
+      }
+    ]
+  },
+  {
+    "name": "data-grid-i18n",
+    "type": "registry:ui",
+    "title": "Data Grid I18n",
+    "description": "",
+    "registryDependencies": [],
+    "dependencies": [],
+    "files": [
+      {
+        "path": "reui/data-grid/data-grid-i18n.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/data-grid/data-grid-i18n.tsx"
       }
     ]
   },
@@ -508,6 +607,7 @@ export const reui: Registry["items"] = [
     "title": "Data Grid Table",
     "description": "",
     "registryDependencies": [
+      "button",
       "checkbox",
       "spinner"
     ],
@@ -550,6 +650,11 @@ export const reui: Registry["items"] = [
     ],
     "files": [
       {
+        "path": "reui/data-grid/data-grid-cell-selection.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/data-grid/data-grid-cell-selection.tsx"
+      },
+      {
         "path": "reui/data-grid/data-grid-column-filter.tsx",
         "type": "registry:ui",
         "target": "components/reui/data-grid/data-grid-column-filter.tsx"
@@ -563,6 +668,11 @@ export const reui: Registry["items"] = [
         "path": "reui/data-grid/data-grid-column-visibility.tsx",
         "type": "registry:ui",
         "target": "components/reui/data-grid/data-grid-column-visibility.tsx"
+      },
+      {
+        "path": "reui/data-grid/data-grid-i18n.tsx",
+        "type": "registry:ui",
+        "target": "components/reui/data-grid/data-grid-i18n.tsx"
       },
       {
         "path": "reui/data-grid/data-grid-pagination.tsx",

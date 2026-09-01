@@ -8467,6 +8467,639 @@
       }
     },
     {
+      "name": "c-code-block-1",
+      "type": "registry:block",
+      "title": "Basic code block",
+      "description": "Code block with header, filename, language and copy button.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@reui/code-block"
+      ],
+      "files": [
+        {
+          "path": "c-code-block-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1,
+        "gridSize": 1,
+        "previewHeight": "270"
+      }
+    },
+    {
+      "name": "c-code-block-10",
+      "type": "registry:block",
+      "title": "Long file with expand",
+      "description": "Collapsed at a line budget with an expand control and a line offset.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@reui/code-block",
+        "scroll-area"
+      ],
+      "files": [
+        {
+          "path": "c-code-block-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10,
+        "gridSize": 1,
+        "previewHeight": "280"
+      }
+    },
+    {
+      "name": "c-code-block-11",
+      "type": "registry:block",
+      "title": "Line actions and diagnostics",
+      "description": "Error and warning lines with an action button on the active line.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@reui/badge",
+        "button",
+        "@reui/code-block"
+      ],
+      "files": [
+        {
+          "path": "c-code-block-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11,
+        "gridSize": 1,
+        "previewHeight": "220"
+      }
+    },
+    {
+      "name": "c-code-block-12",
+      "type": "registry:block",
+      "title": "Line selection",
+      "description": "Selecting lines to ask an assistant about them.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@reui/badge",
+        "button",
+        "@reui/code-block"
+      ],
+      "files": [
+        {
+          "path": "c-code-block-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12,
+        "gridSize": 1,
+        "previewHeight": "310"
+      }
+    },
+    {
+      "name": "c-code-block-13",
+      "type": "registry:block",
+      "title": "Search in file",
+      "description": "Live search marking every match, with a counter that reads the block through useCodeBlockConfig.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@reui/badge",
+        "button",
+        "button-group",
+        "@reui/code-block",
+        "input",
+        "scroll-area"
+      ],
+      "files": [
+        {
+          "path": "c-code-block-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13,
+        "gridSize": 1,
+        "previewHeight": "360"
+      }
+    },
+    {
+      "name": "c-code-block-14",
+      "type": "registry:block",
+      "title": "File tabs in a dense frame",
+      "description": "A framed file switcher loading one grammar chunk per selected language.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@reui/code-block",
+        "@reui/frame",
+        "tabs"
+      ],
+      "files": [
+        {
+          "path": "c-code-block-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14,
+        "gridSize": 1,
+        "previewHeight": "180"
+      }
+    },
+    {
+      "name": "c-code-block-15",
+      "type": "registry:block",
+      "title": "Pre-highlighted lines",
+      "description": "Lines built without shiki, the shape a server component passes down.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@reui/code-block"
+      ],
+      "files": [
+        {
+          "path": "c-code-block-15.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-15.tsx"
+        }
+      ],
+      "meta": {
+        "order": 15,
+        "gridSize": 1,
+        "previewHeight": "220"
+      }
+    },
+    {
+      "name": "c-code-block-16",
+      "type": "registry:block",
+      "title": "Before and after",
+      "description": "Two blocks stacked in a frame for a refactor review.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@reui/code-block",
+        "@reui/frame"
+      ],
+      "files": [
+        {
+          "path": "c-code-block-16.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-16.tsx"
+        }
+      ],
+      "meta": {
+        "order": 16,
+        "gridSize": 1,
+        "previewHeight": "390"
+      }
+    },
+    {
+      "name": "c-code-block-17",
+      "type": "registry:block",
+      "title": "Soft wrap",
+      "description": "Long single-line content with a wrap toggle.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@reui/badge",
+        "@reui/code-block",
+        "separator"
+      ],
+      "files": [
+        {
+          "path": "c-code-block-17.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-17.tsx"
+        }
+      ],
+      "meta": {
+        "order": 17,
+        "gridSize": 1,
+        "previewHeight": "190"
+      }
+    },
+    {
+      "name": "c-code-block-18",
+      "type": "registry:block",
+      "title": "Unified patch review",
+      "description": "A git patch parsed into files with dual old/new gutters, counters and a download.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@reui/badge",
+        "@reui/code-block"
+      ],
+      "files": [
+        {
+          "path": "c-code-block-18.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-18.tsx"
+        }
+      ],
+      "meta": {
+        "order": 18,
+        "gridSize": 1,
+        "previewHeight": "510"
+      }
+    },
+    {
+      "name": "c-code-block-19",
+      "type": "registry:block",
+      "title": "Design-token theme",
+      "description": "Syntax colors driven by CSS variables mapped to design tokens.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@reui/code-block",
+        "scroll-area"
+      ],
+      "files": [
+        {
+          "path": "c-code-block-19.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-19.tsx"
+        }
+      ],
+      "meta": {
+        "order": 19,
+        "gridSize": 1,
+        "previewHeight": "220"
+      }
+    },
+    {
+      "name": "c-code-block-2",
+      "type": "registry:block",
+      "title": "Pinned copy button",
+      "description": "Headerless block with a pinned copy button and dual-axis scrolling.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@reui/code-block",
+        "scroll-area"
+      ],
+      "files": [
+        {
+          "path": "c-code-block-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2,
+        "gridSize": 1,
+        "previewHeight": "260"
+      }
+    },
+    {
+      "name": "c-code-block-20",
+      "type": "registry:block",
+      "title": "Always-dark block",
+      "description": "A block that stays dark in both site themes, with window chrome and every line state.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@reui/code-block"
+      ],
+      "files": [
+        {
+          "path": "c-code-block-20.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-20.tsx"
+        }
+      ],
+      "meta": {
+        "order": 20,
+        "gridSize": 1,
+        "previewHeight": "430"
+      }
+    },
+    {
+      "name": "c-code-block-21",
+      "type": "registry:block",
+      "title": "Dark terminal",
+      "description": "ANSI-style colored terminal output built from plain lines.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@reui/code-block"
+      ],
+      "files": [
+        {
+          "path": "c-code-block-21.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-21.tsx"
+        }
+      ],
+      "meta": {
+        "order": 21,
+        "gridSize": 1,
+        "previewHeight": "360"
+      }
+    },
+    {
+      "name": "c-code-block-22",
+      "type": "registry:block",
+      "title": "Patch review actions",
+      "description": "Agent-proposed diff with accept and reject actions.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@reui/badge",
+        "button",
+        "card",
+        "@reui/code-block"
+      ],
+      "files": [
+        {
+          "path": "c-code-block-22.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-22.tsx"
+        }
+      ],
+      "meta": {
+        "order": 22,
+        "gridSize": 1,
+        "previewHeight": "320"
+      }
+    },
+    {
+      "name": "c-code-block-23",
+      "type": "registry:block",
+      "title": "Nested code folding",
+      "description": "Fold regions detected from indentation, with nesting and fold-all controls.",
+      "dependencies": [],
+      "registryDependencies": [
+        "button",
+        "@reui/code-block",
+        "scroll-area",
+        "separator"
+      ],
+      "files": [
+        {
+          "path": "c-code-block-23.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-23.tsx"
+        }
+      ],
+      "meta": {
+        "order": 23,
+        "gridSize": 1,
+        "previewHeight": "360"
+      }
+    },
+    {
+      "name": "c-code-block-24",
+      "type": "registry:block",
+      "title": "Fix with AI on the failing line",
+      "description": "A line action scoped to the diagnostic line that applies the patch.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@reui/badge",
+        "button",
+        "@reui/code-block"
+      ],
+      "files": [
+        {
+          "path": "c-code-block-24.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-24.tsx"
+        }
+      ],
+      "meta": {
+        "order": 24,
+        "gridSize": 1,
+        "previewHeight": "220"
+      }
+    },
+    {
+      "name": "c-code-block-25",
+      "type": "registry:block",
+      "title": "Reference lines in chat",
+      "description": "A gutter button that turns lines or a selection into file:line reference badges in a chat composer.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@reui/badge",
+        "button",
+        "card",
+        "@reui/code-block"
+      ],
+      "files": [
+        {
+          "path": "c-code-block-25.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-25.tsx"
+        }
+      ],
+      "meta": {
+        "order": 25,
+        "gridSize": 1,
+        "previewHeight": "640"
+      }
+    },
+    {
+      "name": "c-code-block-26",
+      "type": "registry:block",
+      "title": "Framed by an external ScrollArea",
+      "description": "A changed-file list where one shadcn ScrollArea scrolls every block at once.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@reui/badge",
+        "card",
+        "@reui/code-block",
+        "scroll-area"
+      ],
+      "files": [
+        {
+          "path": "c-code-block-26.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-26.tsx"
+        }
+      ],
+      "meta": {
+        "order": 26,
+        "gridSize": 1,
+        "previewHeight": "420"
+      }
+    },
+    {
+      "name": "c-code-block-27",
+      "type": "registry:block",
+      "title": "ANSI terminal output",
+      "description": "Agent stdout with SGR colour codes parsed by ansiToLines, retintable via --code-ansi-* variables.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@reui/code-block"
+      ],
+      "files": [
+        {
+          "path": "c-code-block-27.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-27.tsx"
+        }
+      ],
+      "meta": {
+        "order": 27,
+        "gridSize": 1,
+        "previewHeight": "310"
+      }
+    },
+    {
+      "name": "c-code-block-3",
+      "type": "registry:block",
+      "title": "Streaming agent response",
+      "description": "Agent writing code in real time with a caret and stick-to-bottom.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@reui/badge",
+        "button",
+        "@reui/code-block",
+        "scroll-area"
+      ],
+      "files": [
+        {
+          "path": "c-code-block-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3,
+        "gridSize": 1,
+        "previewHeight": "350"
+      }
+    },
+    {
+      "name": "c-code-block-4",
+      "type": "registry:block",
+      "title": "AI chat with code fences",
+      "description": "Streaming assistant message rendering markdown code fences.",
+      "dependencies": [],
+      "registryDependencies": [
+        "avatar",
+        "@reui/code-block",
+        "@reui/frame"
+      ],
+      "files": [
+        {
+          "path": "c-code-block-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4,
+        "gridSize": 1,
+        "previewHeight": "280"
+      }
+    },
+    {
+      "name": "c-code-block-5",
+      "type": "registry:block",
+      "title": "Diff with change summary",
+      "description": "A props-driven diff with added and removed lines and a change summary.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@reui/code-block"
+      ],
+      "files": [
+        {
+          "path": "c-code-block-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5,
+        "gridSize": 1,
+        "previewHeight": "290"
+      }
+    },
+    {
+      "name": "c-code-block-6",
+      "type": "registry:block",
+      "title": "Diff via shiki transformers",
+      "description": "A diff expressed through a shiki transformer instead of props.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@reui/code-block"
+      ],
+      "files": [
+        {
+          "path": "c-code-block-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6,
+        "gridSize": 1,
+        "previewHeight": "190"
+      }
+    },
+    {
+      "name": "c-code-block-7",
+      "type": "registry:block",
+      "title": "Highlighted lines and words",
+      "description": "Line ranges and word matches highlighted together.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@reui/code-block"
+      ],
+      "files": [
+        {
+          "path": "c-code-block-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7,
+        "gridSize": 1,
+        "previewHeight": "270"
+      }
+    },
+    {
+      "name": "c-code-block-8",
+      "type": "registry:block",
+      "title": "Focus walkthrough",
+      "description": "Stepping through regions of a file with the rest dimmed.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@reui/badge",
+        "button",
+        "@reui/code-block"
+      ],
+      "files": [
+        {
+          "path": "c-code-block-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8,
+        "gridSize": 1,
+        "previewHeight": "360"
+      }
+    },
+    {
+      "name": "c-code-block-9",
+      "type": "registry:block",
+      "title": "Terminal output",
+      "description": "Unhighlighted command output with a wrap toggle.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@reui/code-block"
+      ],
+      "files": [
+        {
+          "path": "c-code-block-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-code-block-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9,
+        "gridSize": 1,
+        "previewHeight": "370"
+      }
+    },
+    {
       "name": "c-collapsible-1",
       "type": "registry:block",
       "title": "Basic collapsible",
@@ -10448,6 +11081,145 @@
         "order": 30,
         "gridSize": 1,
         "previewHeight": "608"
+      }
+    },
+    {
+      "name": "c-data-grid-31",
+      "type": "registry:block",
+      "title": "Data grid with spreadsheet editing",
+      "description": "Data grid with spreadsheet editing",
+      "dependencies": [
+        "@tanstack/react-table",
+        "date-fns",
+        "sonner"
+      ],
+      "registryDependencies": [
+        "alert-dialog",
+        "avatar",
+        "@reui/badge",
+        "button",
+        "calendar",
+        "card",
+        "combobox",
+        "context-menu",
+        "@reui/data-grid",
+        "@reui/data-grid-cell-selection",
+        "@reui/data-grid-column-header",
+        "@reui/data-grid-pagination",
+        "@reui/data-grid-scroll-area",
+        "@reui/data-grid-table",
+        "popover",
+        "select"
+      ],
+      "files": [
+        {
+          "path": "c-data-grid-31.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-31.tsx"
+        }
+      ],
+      "meta": {
+        "order": 31,
+        "gridSize": 1,
+        "previewHeight": "560"
+      }
+    },
+    {
+      "name": "c-data-grid-32",
+      "type": "registry:block",
+      "title": "Data grid with column virtualization",
+      "description": "Data grid with column virtualization",
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "card",
+        "@reui/data-grid",
+        "@reui/data-grid-column-header",
+        "@reui/data-grid-scroll-area",
+        "@reui/data-grid-table-virtual"
+      ],
+      "files": [
+        {
+          "path": "c-data-grid-32.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-32.tsx"
+        }
+      ],
+      "meta": {
+        "order": 32,
+        "gridSize": 1,
+        "previewHeight": "620"
+      }
+    },
+    {
+      "name": "c-data-grid-33",
+      "type": "registry:block",
+      "title": "Data grid with localized labels",
+      "description": "Data grid with localized labels",
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "registryDependencies": [
+        "avatar",
+        "@reui/badge",
+        "card",
+        "@reui/data-grid",
+        "@reui/data-grid-column-header",
+        "@reui/data-grid-i18n",
+        "@reui/data-grid-pagination",
+        "@reui/data-grid-scroll-area",
+        "@reui/data-grid-table",
+        "toggle-group"
+      ],
+      "files": [
+        {
+          "path": "c-data-grid-33.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-33.tsx"
+        }
+      ],
+      "meta": {
+        "order": 33,
+        "gridSize": 1,
+        "previewHeight": "480"
+      }
+    },
+    {
+      "name": "c-data-grid-34",
+      "type": "registry:block",
+      "title": "Data grid with server side pagination",
+      "description": "Data grid with server side pagination, sorting, search and status filter",
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "registryDependencies": [
+        "avatar",
+        "@reui/badge",
+        "button",
+        "card",
+        "@reui/data-grid",
+        "@reui/data-grid-column-header",
+        "@reui/data-grid-pagination",
+        "@reui/data-grid-scroll-area",
+        "@reui/data-grid-table",
+        "input",
+        "select",
+        "skeleton"
+      ],
+      "files": [
+        {
+          "path": "c-data-grid-34.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-34.tsx"
+        }
+      ],
+      "meta": {
+        "order": 34,
+        "gridSize": 1,
+        "previewHeight": "500"
       }
     },
     {
@@ -13289,7 +14061,7 @@
       "name": "c-gantt-3",
       "type": "registry:block",
       "title": "Gantt chart with quarter roadmap and rollups",
-      "description": "Quarter-scale roadmap where workstream groups form swimlanes and parent rows roll children into one summary bar. Toolbar button calls addEvent via apiRef to schedule backlog items. ReUI Gantt, GanttNav, GanttToolbar, GanttView; shadcn Card, Button.",
+      "description": "Gantt chart with quarter roadmap and rollups",
       "dependencies": [
         "date-fns"
       ],
@@ -13369,6 +14141,60 @@
       ],
       "meta": {
         "order": 5,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-gantt-6",
+      "type": "registry:block",
+      "title": "Gantt chart with as-built baseline tracking",
+      "description": "Gantt chart with as-built baseline tracking",
+      "dependencies": [
+        "date-fns"
+      ],
+      "registryDependencies": [
+        "card",
+        "@reui/gantt",
+        "@reui/gantt-nav",
+        "@reui/gantt-types",
+        "@reui/gantt-view"
+      ],
+      "files": [
+        {
+          "path": "c-gantt-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-gantt-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-gantt-7",
+      "type": "registry:block",
+      "title": "Gantt chart with dependency arrows and milestones",
+      "description": "Gantt chart with dependency arrows and milestones",
+      "dependencies": [
+        "date-fns"
+      ],
+      "registryDependencies": [
+        "card",
+        "@reui/gantt",
+        "@reui/gantt-nav",
+        "@reui/gantt-types",
+        "@reui/gantt-view"
+      ],
+      "files": [
+        {
+          "path": "c-gantt-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-gantt-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7,
         "gridSize": 1
       }
     },
@@ -23989,6 +24815,72 @@
       ]
     },
     {
+      "name": "code-block",
+      "type": "registry:ui",
+      "title": "Shadcn code block with Shiki highlighting, streaming, diffs, folding and per-line interaction for AI chat UIs.",
+      "description": "Shadcn code block with Shiki highlighting, streaming, diffs, folding and per-line interaction for AI chat UIs.",
+      "dependencies": [
+        "shiki"
+      ],
+      "registryDependencies": [
+        "button",
+        "@reui/code-block-highlight"
+      ],
+      "files": [
+        {
+          "path": "code-block-highlight.tsx",
+          "type": "registry:ui",
+          "target": "components/reui/code-block/code-block-highlight.tsx"
+        },
+        {
+          "path": "code-block.tsx",
+          "type": "registry:ui",
+          "target": "components/reui/code-block/code-block.tsx"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "destructive-foreground": "var(--color-red-800)",
+          "success": "var(--color-emerald-500)",
+          "success-foreground": "var(--color-emerald-900)",
+          "info": "var(--color-violet-500)",
+          "info-foreground": "var(--color-violet-900)",
+          "warning": "var(--color-yellow-500)",
+          "warning-foreground": "var(--color-yellow-900)",
+          "invert": "var(--color-zinc-900)",
+          "invert-foreground": "var(--color-zinc-50)"
+        },
+        "dark": {
+          "destructive-foreground": "var(--color-red-600)",
+          "success": "var(--color-emerald-500)",
+          "success-foreground": "var(--color-emerald-600)",
+          "info": "var(--color-violet-500)",
+          "info-foreground": "var(--color-violet-600)",
+          "warning": "var(--color-yellow-500)",
+          "warning-foreground": "var(--color-yellow-600)",
+          "invert": "var(--color-zinc-700)",
+          "invert-foreground": "var(--color-zinc-50)"
+        }
+      }
+    },
+    {
+      "name": "code-block-highlight",
+      "type": "registry:ui",
+      "title": "Isomorphic shiki engine and pure helpers for the code block.",
+      "description": "Isomorphic shiki engine and pure helpers for the code block.",
+      "dependencies": [
+        "shiki"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "code-block-highlight.tsx",
+          "type": "registry:ui",
+          "target": "components/reui/code-block/code-block-highlight.tsx"
+        }
+      ]
+    },
+    {
       "name": "data-grid",
       "type": "registry:ui",
       "title": "Data Grid",
@@ -24006,6 +24898,7 @@
         "@reui/badge",
         "button",
         "checkbox",
+        "@reui/data-grid-i18n",
         "@reui/data-grid-table",
         "dropdown-menu",
         "input",
@@ -24016,6 +24909,11 @@
         "spinner"
       ],
       "files": [
+        {
+          "path": "data-grid-cell-selection.tsx",
+          "type": "registry:ui",
+          "target": "components/reui/data-grid/data-grid-cell-selection.tsx"
+        },
         {
           "path": "data-grid-column-filter.tsx",
           "type": "registry:ui",
@@ -24030,6 +24928,11 @@
           "path": "data-grid-column-visibility.tsx",
           "type": "registry:ui",
           "target": "components/reui/data-grid/data-grid-column-visibility.tsx"
+        },
+        {
+          "path": "data-grid-i18n.tsx",
+          "type": "registry:ui",
+          "target": "components/reui/data-grid/data-grid-i18n.tsx"
         },
         {
           "path": "data-grid-pagination.tsx",
@@ -24065,6 +24968,26 @@
           "path": "data-grid.tsx",
           "type": "registry:ui",
           "target": "components/reui/data-grid/data-grid.tsx"
+        }
+      ]
+    },
+    {
+      "name": "data-grid-cell-selection",
+      "type": "registry:ui",
+      "title": "Data Grid Cell Selection",
+      "description": "",
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "registryDependencies": [
+        "button",
+        "@reui/data-grid"
+      ],
+      "files": [
+        {
+          "path": "data-grid-cell-selection.tsx",
+          "type": "registry:ui",
+          "target": "components/reui/data-grid/data-grid-cell-selection.tsx"
         }
       ]
     },
@@ -24134,6 +25057,21 @@
       ]
     },
     {
+      "name": "data-grid-i18n",
+      "type": "registry:ui",
+      "title": "Data Grid I18n",
+      "description": "",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "data-grid-i18n.tsx",
+          "type": "registry:ui",
+          "target": "components/reui/data-grid/data-grid-i18n.tsx"
+        }
+      ]
+    },
+    {
       "name": "data-grid-pagination",
       "type": "registry:ui",
       "title": "Data Grid Pagination",
@@ -24181,6 +25119,7 @@
         "@tanstack/react-table"
       ],
       "registryDependencies": [
+        "button",
         "checkbox",
         "@reui/data-grid",
         "spinner"

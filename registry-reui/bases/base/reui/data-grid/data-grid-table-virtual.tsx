@@ -1,6 +1,6 @@
 "use client"
 
-import { memo, useCallback, useEffect, useRef, useState } from "react"
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import type { CSSProperties, ReactNode } from "react"
 import { useDataGrid } from "@/registry-reui/bases/base/reui/data-grid/data-grid"
 import type {
@@ -8,6 +8,7 @@ import type {
   DataGridTableInstance,
 } from "@/registry-reui/bases/base/reui/data-grid/data-grid"
 import {
+  DataGridTableAddRow,
   DataGridTableBase,
   DataGridTableBody,
   DataGridTableEmpty,
@@ -50,6 +51,33 @@ type DataGridTableVirtualizerInstance = Virtualizer<
 >
 
 type DataGridTableVirtualScrollAlignment = "auto" | "center" | "start" | "end"
+
+interface DataGridTableColumnVirtualizerOptions {
+  /** Off unless explicitly true; a column window is opt-in. */
+  enabled?: boolean
+  overscan?: number
+}
+
+type DataGridTableColumnScrollRequest = {
+  align: DataGridTableVirtualScrollAlignment
+  behavior: ScrollBehavior
+  columnId: string | undefined
+  columnIndex: number
+  scrollElement: HTMLElement
+}
+
+function isSameDataGridTableColumnScrollRequest(
+  previous: DataGridTableColumnScrollRequest | null,
+  next: DataGridTableColumnScrollRequest
+) {
+  return (
+    previous?.align === next.align &&
+    previous.behavior === next.behavior &&
+    previous.columnId === next.columnId &&
+    previous.columnIndex === next.columnIndex &&
+    previous.scrollElement === next.scrollElement
+  )
+}
 
 type DataGridTableVirtualScrollRequest = {
   align: DataGridTableVirtualScrollAlignment
@@ -269,6 +297,17 @@ interface DataGridTableVirtualProps<TData extends object> {
   scrollToRowAlign?: DataGridTableVirtualScrollAlignment
   /** Index within the center (non-pinned) row section to reveal. */
   scrollToRowIndex?: number
+  /**
+   * Opt-in horizontal virtualization of the CENTER columns. Activates only
+   * under a fixed table layout with a single ungrouped header row; pinned
+   * columns stay mounted, and anything else falls back to full-column
+   * rendering. `scrollBehavior` is shared with controlled row scrolling.
+   */
+  columnVirtualizerOptions?: DataGridTableColumnVirtualizerOptions
+  /** Alignment used when revealing a controlled target column. */
+  scrollToColumnAlign?: DataGridTableVirtualScrollAlignment
+  /** Index within the center (non-pinned) visible leaf columns to reveal. */
+  scrollToColumnIndex?: number
   footerContent?: ReactNode
   renderHeader?: boolean
   onFetchMore?: () => void
@@ -292,6 +331,7 @@ interface VirtualBodyProps<TData extends object> {
   loadingMoreMessage: ReactNode
   allRowsLoadedMessage: ReactNode
   measureRowRef?: (element: HTMLTableRowElement | null) => void
+  centerColumnWindow?: { start: number; end: number }
 }
 
 function DataGridTableVirtualPinnedPlaceholderCell<TData extends object>({
@@ -426,6 +466,24 @@ function DataGridTableVirtualStatusRow<TData extends object>({
   )
 }
 
+/**
+ * A scroll frame only shifts the window, so every surviving row's inputs are
+ * identical and its last render is reused; the per-frame cost is the rows
+ * entering the window, not all mounted rows. Cell-level state (selection,
+ * focus, row checks) repaints through each cell's own Subscribe, and any real
+ * data change rebuilds the row wrappers, so identity comparison is safe.
+ */
+const MemoizedRenderedRow = memo(
+  DataGridTableRenderedRow,
+  (prev, next) =>
+    prev.row === next.row &&
+    prev.rowIndex === next.rowIndex &&
+    prev.rowRef === next.rowRef &&
+    prev.pinnedBoundary === next.pinnedBoundary &&
+    prev.centerWindow?.start === next.centerWindow?.start &&
+    prev.centerWindow?.end === next.centerWindow?.end
+) as typeof DataGridTableRenderedRow
+
 function DataGridTableVirtualBody<TData extends object>({
   table,
   topRows,
@@ -440,6 +498,7 @@ function DataGridTableVirtualBody<TData extends object>({
   loadingMoreMessage,
   allRowsLoadedMessage,
   measureRowRef,
+  centerColumnWindow,
 }: VirtualBodyProps<TData>) {
   const { isLoading } = useDataGrid()
   const totalRows = topRows.length + centerRows.length + bottomRows.length
@@ -481,9 +540,10 @@ function DataGridTableVirtualBody<TData extends object>({
 
   topRows.forEach((row, index) => {
     renderedRows.push(
-      <DataGridTableRenderedRow
+      <MemoizedRenderedRow
         key={row.id}
         row={row}
+        centerWindow={centerColumnWindow}
         pinnedBoundary={
           index === topRows.length - 1 && hasMiddleSection ? "top" : undefined
         }
@@ -508,11 +568,12 @@ function DataGridTableVirtualBody<TData extends object>({
       if (!row) return
 
       renderedRows.push(
-        <DataGridTableRenderedRow
+        <MemoizedRenderedRow
           key={row.id}
           row={row}
           rowRef={measureRowRef}
           rowIndex={virtualRow.index}
+          centerWindow={centerColumnWindow}
         />
       )
     })
@@ -529,7 +590,12 @@ function DataGridTableVirtualBody<TData extends object>({
   } else {
     centerRows.forEach((row, rowIndex) => {
       renderedRows.push(
-        <DataGridTableRenderedRow key={row.id} row={row} rowIndex={rowIndex} />
+        <MemoizedRenderedRow
+          key={row.id}
+          row={row}
+          rowIndex={rowIndex}
+          centerWindow={centerColumnWindow}
+        />
       )
     })
   }
@@ -559,9 +625,10 @@ function DataGridTableVirtualBody<TData extends object>({
 
   bottomRows.forEach((row, index) => {
     renderedRows.push(
-      <DataGridTableRenderedRow
+      <MemoizedRenderedRow
         key={row.id}
         row={row}
+        centerWindow={centerColumnWindow}
         pinnedBoundary={
           index === 0 && (topRows.length > 0 || hasMiddleSection)
             ? "bottom"
@@ -578,10 +645,15 @@ function DataGridTableVirtualBody<TData extends object>({
  * Memoized virtual body: skip re-renders during active column resize.
  * Column widths update via CSS variables on the <table> element,
  * so the browser handles width changes without React re-renders.
+ * A cell-selection drag gets the same treatment: painting goes through each
+ * cell's own Subscribe, and the virtualizer re-renders itself from inside the
+ * memo boundary, so parent-driven reconciliation during the drag is waste.
  */
 const MemoizedVirtualBody = memo(
   DataGridTableVirtualBody,
-  (_prev, next) => !!next.table.state.columnResizing.isResizingColumn
+  (_prev, next) =>
+    !!next.table.state.columnResizing.isResizingColumn ||
+    next.table._isSelectingCells === true
 ) as typeof DataGridTableVirtualBody
 
 function DataGridTableVirtual<TData extends object>({
@@ -591,6 +663,9 @@ function DataGridTableVirtual<TData extends object>({
   scrollBehavior = "auto",
   scrollToRowAlign = "auto",
   scrollToRowIndex,
+  columnVirtualizerOptions,
+  scrollToColumnAlign = "auto",
+  scrollToColumnIndex,
   footerContent,
   renderHeader = true,
   onFetchMore,
@@ -599,9 +674,22 @@ function DataGridTableVirtual<TData extends object>({
   fetchMoreOffset = 0,
   virtualizerOptions,
 }: DataGridTableVirtualProps<TData>) {
-  const { table, props } = useDataGrid<TData>()
+  const { i18n, table, props } = useDataGrid<TData>()
   const mergedHeaderGroups = getDataGridTableMergedHeaderGroups(table)
   const hasRightPinnedColumns = hasDataGridTableRightPinnedColumns(table)
+  const centerVisibleColumns = table.getCenterVisibleLeafColumns()
+  // Column windows only where the geometry is provable: a fixed table
+  // layout (undefined defaults to fixed; the colgroup then owns every
+  // width, so colSpan spacers cannot drift) and a single ungrouped header
+  // row (a colSpan group cannot be windowed). Anything else falls back to
+  // full-column rendering silently, the same posture as row virtualization
+  // toward unsupported shapes.
+  const columnVirtualizationActive =
+    columnVirtualizerOptions?.enabled === true &&
+    props.tableLayout?.width !== "auto" &&
+    mergedHeaderGroups.length === 1 &&
+    (mergedHeaderGroups[0]?.headers.every((header) => header.colSpan <= 1) ??
+      false)
   const { topRows, centerRows, bottomRows } = getDataGridTableRowSections(
     table,
     props.tableLayout?.rowsPinnable
@@ -624,9 +712,9 @@ function DataGridTableVirtual<TData extends object>({
 
   const isVirtualizationEnabled = virtualizerOptions?.enabled !== false
   const loadingMoreMessage =
-    props.fetchingMoreMessage || props.loadingMessage || "Loading..."
+    props.fetchingMoreMessage || props.loadingMessage || i18n.labels.loading
   const allRowsLoadedMessage =
-    props.allRowsLoadedMessage || "All records loaded"
+    props.allRowsLoadedMessage || i18n.labels.allRowsLoaded
 
   const handleViewportRef = useCallback((node: HTMLDivElement | null) => {
     setViewportElements({
@@ -681,6 +769,69 @@ function DataGridTableVirtual<TData extends object>({
     ...virtualizerOptionsRest,
   }) as DataGridTableVirtualizerInstance
 
+  // Horizontal offsets invert in RTL; the virtualizer must be told.
+  const isRtl = useMemo(
+    () =>
+      viewportElements.containerElement
+        ? getComputedStyle(viewportElements.containerElement).direction ===
+          "rtl"
+        : false,
+    [viewportElements.containerElement]
+  )
+
+  const resolveColumnKey = useCallback(
+    (index: number) => centerVisibleColumns[index]?.id ?? index,
+    [centerVisibleColumns]
+  )
+
+  const resolveColumnEstimateSize = useCallback(
+    (index: number) => centerVisibleColumns[index]?.getSize() ?? 0,
+    [centerVisibleColumns]
+  )
+
+  const columnVirtualizer = useVirtualizer({
+    horizontal: true,
+    isRtl,
+    count: columnVirtualizationActive ? centerVisibleColumns.length : 0,
+    getScrollElement: resolveScrollElement,
+    getItemKey: resolveColumnKey,
+    estimateSize: resolveColumnEstimateSize,
+    overscan: columnVirtualizerOptions?.overscan ?? 3,
+  })
+
+  // Column sizes are exact reads of getSize(), never DOM-measured, so a
+  // resize commit or a visibility/order/pinning change must resync the
+  // virtualizer's cached sizes by hand.
+  useEffect(() => {
+    if (columnVirtualizationActive) columnVirtualizer.measure()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    columnVirtualizationActive,
+    columnVirtualizer,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    table.state.columnSizing,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    table.state.columnVisibility,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    table.state.columnOrder,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    table.state.columnPinning,
+  ])
+
+  const virtualColumns = columnVirtualizationActive
+    ? columnVirtualizer.getVirtualItems()
+    : []
+  // The window is a contiguous inclusive [start, end] over the center
+  // columns; before the scroll element resolves the item list is empty and
+  // the grid renders full-width for that first frame.
+  const centerColumnWindow =
+    columnVirtualizationActive && virtualColumns.length > 0
+      ? {
+          start: virtualColumns[0]!.index,
+          end: virtualColumns[virtualColumns.length - 1]!.index,
+        }
+      : undefined
+
   const virtualItems = isVirtualizationEnabled
     ? virtualizer.getVirtualItems()
     : []
@@ -707,6 +858,51 @@ function DataGridTableVirtual<TData extends object>({
   // before the consumer flips isFetchingMore, and loops at end-of-data when
   // hasMore is never set.
   const fetchMoreFiredAtCountRef = useRef<number | null>(null)
+  const lastColumnScrollRequestRef =
+    useRef<DataGridTableColumnScrollRequest | null>(null)
+
+  // Controlled column reveal: same dedupe posture as the row request - the
+  // signature keeps ordinary renders from re-scrolling, and exact column
+  // sizes mean no post-measure follow-up pass is needed.
+  useEffect(() => {
+    if (
+      !columnVirtualizationActive ||
+      scrollToColumnIndex === undefined ||
+      scrollToColumnIndex < 0 ||
+      scrollToColumnIndex >= centerVisibleColumns.length ||
+      !viewportElements.scrollElement
+    ) {
+      return
+    }
+    const request: DataGridTableColumnScrollRequest = {
+      align: scrollToColumnAlign,
+      behavior: scrollBehavior,
+      columnId: centerVisibleColumns[scrollToColumnIndex]?.id,
+      columnIndex: scrollToColumnIndex,
+      scrollElement: viewportElements.scrollElement,
+    }
+    if (
+      isSameDataGridTableColumnScrollRequest(
+        lastColumnScrollRequestRef.current,
+        request
+      )
+    ) {
+      return
+    }
+    lastColumnScrollRequestRef.current = request
+    columnVirtualizer.scrollToIndex(scrollToColumnIndex, {
+      align: scrollToColumnAlign,
+      behavior: scrollBehavior === "smooth" ? "smooth" : "auto",
+    })
+  }, [
+    columnVirtualizationActive,
+    columnVirtualizer,
+    centerVisibleColumns,
+    scrollToColumnAlign,
+    scrollToColumnIndex,
+    scrollBehavior,
+    viewportElements.scrollElement,
+  ])
 
   // Resolve after every commit so a stable getter can expose a replaced ref;
   // the request signature prevents duplicate scrolling on ordinary renders.
@@ -849,30 +1045,79 @@ function DataGridTableVirtual<TData extends object>({
     virtualItems,
   ])
 
-  return (
-    <DataGridTableViewport
-      viewportRef={handleViewportRef}
-      className={!usesExternalScrollArea ? "block" : undefined}
-      style={
-        usesExternalScrollArea
-          ? undefined
-          : {
-              height,
-              overflow: "auto",
-              position: "relative",
-              // Standalone mode: this node IS the scroll container, so it
-              // must stay at its parent's width (not the resizable table
-              // width) or horizontal scrolling becomes impossible.
-              width: "auto",
-            }
-      }
-    >
-      <DataGridTableBase>
-        {renderHeader && (
-          <DataGridTableHead>
-            {mergedHeaderGroups.map((headerGroup) => (
-              <DataGridTableHeadRow key={headerGroup.id} rowId={headerGroup.id}>
-                {headerGroup.headers
+  // The header re-renders only when its real inputs move: the table
+  // wrapper (any table state change recreates it), the layout props, and
+  // the column window. A scroll frame changes none of them, so the whole
+  // sortable-header subtree is reused instead of rebuilt per frame.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const headerNode = useMemo(
+    () =>
+      renderHeader && (
+        <DataGridTableHead>
+          {mergedHeaderGroups.map((headerGroup) => (
+            <DataGridTableHeadRow key={headerGroup.id} rowId={headerGroup.id}>
+              {/* Under an active column window the single ungrouped header
+                        row is bucketed start / windowed center / end, with each
+                        off-window flank one colSpan spacer sized by the intact
+                        colgroup - the same shape the body rows take. */}
+              {centerColumnWindow
+                ? headerGroup.headers
+                    .filter((header) => header.column.getIsPinned() === "start")
+                    .map((header) => (
+                      <DataGridTableHeadRowCell header={header} key={header.id}>
+                        {header.isPlaceholder
+                          ? null
+                          : flexRender(
+                              header.column.columnDef.header,
+                              header.getContext()
+                            )}
+                        {props.tableLayout?.columnsResizable &&
+                          header.column.getCanResize() && (
+                            <DataGridTableHeadRowCellResize header={header} />
+                          )}
+                      </DataGridTableHeadRowCell>
+                    ))
+                : null}
+              {centerColumnWindow && centerColumnWindow.start > 0 ? (
+                <th
+                  aria-hidden="true"
+                  data-slot="data-grid-table-virtual-col-spacer"
+                  colSpan={centerColumnWindow.start}
+                  className="p-0"
+                />
+              ) : null}
+              {centerColumnWindow
+                ? headerGroup.headers
+                    .filter((header) => !header.column.getIsPinned())
+                    .slice(centerColumnWindow.start, centerColumnWindow.end + 1)
+                    .map((header) => (
+                      <DataGridTableHeadRowCell header={header} key={header.id}>
+                        {header.isPlaceholder
+                          ? null
+                          : flexRender(
+                              header.column.columnDef.header,
+                              header.getContext()
+                            )}
+                        {props.tableLayout?.columnsResizable &&
+                          header.column.getCanResize() && (
+                            <DataGridTableHeadRowCellResize header={header} />
+                          )}
+                      </DataGridTableHeadRowCell>
+                    ))
+                : null}
+              {centerColumnWindow &&
+              centerVisibleColumns.length - 1 - centerColumnWindow.end > 0 ? (
+                <th
+                  aria-hidden="true"
+                  data-slot="data-grid-table-virtual-col-spacer"
+                  colSpan={
+                    centerVisibleColumns.length - 1 - centerColumnWindow.end
+                  }
+                  className="p-0"
+                />
+              ) : null}
+              {!centerColumnWindow &&
+                headerGroup.headers
                   .filter((header) => header.column.getIsPinned() !== "end")
                   .map((header) => {
                     const { column } = header
@@ -892,38 +1137,66 @@ function DataGridTableVirtual<TData extends object>({
                       </DataGridTableHeadRowCell>
                     )
                   })}
-                {props.tableLayout?.columnsResizable &&
-                hasRightPinnedColumns ? (
-                  <DataGridTableFillHeadCell />
-                ) : null}
-                {headerGroup.headers
-                  .filter((header) => header.column.getIsPinned() === "end")
-                  .map((header) => {
-                    const { column } = header
+              {props.tableLayout?.columnsResizable && hasRightPinnedColumns ? (
+                <DataGridTableFillHeadCell />
+              ) : null}
+              {headerGroup.headers
+                .filter((header) => header.column.getIsPinned() === "end")
+                .map((header) => {
+                  const { column } = header
 
-                    return (
-                      <DataGridTableHeadRowCell header={header} key={header.id}>
-                        {header.isPlaceholder
-                          ? null
-                          : flexRender(
-                              header.column.columnDef.header,
-                              header.getContext()
-                            )}
-                        {props.tableLayout?.columnsResizable &&
-                          column.getCanResize() && (
-                            <DataGridTableHeadRowCellResize header={header} />
+                  return (
+                    <DataGridTableHeadRowCell header={header} key={header.id}>
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
                           )}
-                      </DataGridTableHeadRowCell>
-                    )
-                  })}
-                {props.tableLayout?.columnsResizable &&
-                !hasRightPinnedColumns ? (
-                  <DataGridTableFillHeadCell />
-                ) : null}
-              </DataGridTableHeadRow>
-            ))}
-          </DataGridTableHead>
-        )}
+                      {props.tableLayout?.columnsResizable &&
+                        column.getCanResize() && (
+                          <DataGridTableHeadRowCellResize header={header} />
+                        )}
+                    </DataGridTableHeadRowCell>
+                  )
+                })}
+              {props.tableLayout?.columnsResizable && !hasRightPinnedColumns ? (
+                <DataGridTableFillHeadCell />
+              ) : null}
+            </DataGridTableHeadRow>
+          ))}
+        </DataGridTableHead>
+      ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [
+      renderHeader,
+      table,
+      props.tableLayout,
+      centerColumnWindow,
+      hasRightPinnedColumns,
+    ]
+  )
+
+  return (
+    <DataGridTableViewport
+      viewportRef={handleViewportRef}
+      className={!usesExternalScrollArea ? "block" : undefined}
+      style={
+        usesExternalScrollArea
+          ? undefined
+          : {
+              height,
+              overflow: "auto",
+              position: "relative",
+              // Standalone mode: this node IS the scroll container, so it
+              // must stay at its parent's width (not the resizable table
+              // width) or horizontal scrolling becomes impossible.
+              width: "auto",
+            }
+      }
+    >
+      <DataGridTableBase>
+        {headerNode}
 
         {renderHeader &&
           (props.tableLayout?.stripped || !props.tableLayout?.rowBorder) && (
@@ -945,7 +1218,12 @@ function DataGridTableVirtual<TData extends object>({
             loadingMoreMessage={loadingMoreMessage}
             allRowsLoadedMessage={allRowsLoadedMessage}
             measureRowRef={measureRowRef}
+            centerColumnWindow={centerColumnWindow}
           />
+          {/* Same appended region as the standard body, so onRowCreate and
+              a consumer draft work in the virtual layout too. */}
+          {props.appendRow}
+          <DataGridTableAddRow />
         </DataGridTableBody>
 
         {footerContent && (

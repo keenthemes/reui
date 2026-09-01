@@ -75,7 +75,7 @@
       "categories": [
         "gantt"
       ],
-      "description": "Quarter-scale roadmap where workstream groups form swimlanes and parent rows roll children into one summary bar. Toolbar button calls addEvent via apiRef to schedule backlog items. ReUI Gantt, GanttNav, GanttToolbar, GanttView; shadcn Card, Button.",
+      "description": "Gantt chart with quarter roadmap and rollups",
       "registryDependencies": [
         "button",
         "card",
@@ -161,6 +161,66 @@
       ],
       "meta": {
         "order": 5,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-gantt-6",
+      "type": "registry:block",
+      "title": "Gantt chart with as-built baseline tracking",
+      "categories": [
+        "gantt"
+      ],
+      "description": "Gantt chart with as-built baseline tracking",
+      "registryDependencies": [
+        "card",
+        "gantt",
+        "gantt-nav",
+        "gantt-types",
+        "gantt-view"
+      ],
+      "dependencies": [
+        "date-fns"
+      ],
+      "files": [
+        {
+          "path": "components/gantt/c-gantt-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-gantt-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-gantt-7",
+      "type": "registry:block",
+      "title": "Gantt chart with dependency arrows and milestones",
+      "categories": [
+        "gantt"
+      ],
+      "description": "Gantt chart with dependency arrows and milestones",
+      "registryDependencies": [
+        "card",
+        "gantt",
+        "gantt-nav",
+        "gantt-types",
+        "gantt-view"
+      ],
+      "dependencies": [
+        "date-fns"
+      ],
+      "files": [
+        {
+          "path": "components/gantt/c-gantt-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-gantt-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7,
         "gridSize": 1
       }
     }

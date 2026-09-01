@@ -1024,6 +1024,157 @@
         "gridSize": 1,
         "previewHeight": "608"
       }
+    },
+    {
+      "name": "c-data-grid-31",
+      "type": "registry:block",
+      "title": "Data grid with spreadsheet editing",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with spreadsheet editing",
+      "registryDependencies": [
+        "alert-dialog",
+        "avatar",
+        "badge",
+        "button",
+        "calendar",
+        "card",
+        "combobox",
+        "context-menu",
+        "data-grid",
+        "data-grid-cell-selection",
+        "data-grid-column-header",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table",
+        "popover",
+        "select",
+        "toast"
+      ],
+      "dependencies": [
+        "@tanstack/react-table",
+        "date-fns"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-31.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-31.tsx"
+        }
+      ],
+      "meta": {
+        "order": 31,
+        "gridSize": 1,
+        "previewHeight": "560"
+      }
+    },
+    {
+      "name": "c-data-grid-32",
+      "type": "registry:block",
+      "title": "Data grid with column virtualization",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with column virtualization",
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "card",
+        "data-grid",
+        "data-grid-column-header",
+        "data-grid-scroll-area",
+        "data-grid-table-virtual"
+      ],
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-32.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-32.tsx"
+        }
+      ],
+      "meta": {
+        "order": 32,
+        "gridSize": 1,
+        "previewHeight": "620"
+      }
+    },
+    {
+      "name": "c-data-grid-33",
+      "type": "registry:block",
+      "title": "Data grid with localized labels",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with localized labels",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "card",
+        "data-grid",
+        "data-grid-column-header",
+        "data-grid-i18n",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table",
+        "toggle-group"
+      ],
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-33.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-33.tsx"
+        }
+      ],
+      "meta": {
+        "order": 33,
+        "gridSize": 1,
+        "previewHeight": "480"
+      }
+    },
+    {
+      "name": "c-data-grid-34",
+      "type": "registry:block",
+      "title": "Data grid with server side pagination",
+      "categories": [
+        "data-grid"
+      ],
+      "description": "Data grid with server side pagination, sorting, search and status filter",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "data-grid",
+        "data-grid-column-header",
+        "data-grid-pagination",
+        "data-grid-scroll-area",
+        "data-grid-table",
+        "input",
+        "select",
+        "skeleton"
+      ],
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
+      "files": [
+        {
+          "path": "components/data-grid/c-data-grid-34.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-data-grid-34.tsx"
+        }
+      ],
+      "meta": {
+        "order": 34,
+        "gridSize": 1,
+        "previewHeight": "500"
+      }
     }
   ]
 }

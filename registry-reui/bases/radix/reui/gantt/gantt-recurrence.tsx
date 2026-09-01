@@ -175,7 +175,14 @@ function expandRecurrence<TData>(
   const allDay = event.allDay ?? false
 
   if (!event.recurrence) {
-    if (event.start < range.end && event.end > range.start) {
+    // Same rule as occurrenceIntersects in gantt-lib, inlined (importing it
+    // back would cycle the modules): half-open, except a zero-length
+    // milestone sitting exactly on the range start stays visible.
+    const visible =
+      event.end.getTime() === event.start.getTime()
+        ? event.start >= range.start && event.start < range.end
+        : event.start < range.end && event.end > range.start
+    if (visible) {
       return [
         {
           key: `${event.id}::${event.start.toISOString()}`,
@@ -293,7 +300,13 @@ function expandRecurrence<TData>(
     const start = new Date(rawStart.getTime())
     if (exTimes.has(start.getTime())) return
     const end = new Date(start.getTime() + durationMs)
-    if (start < range.end && end > range.start) {
+    // zero-length instances (milestones) keep the closed-start visibility
+    // rule; see the non-recurring branch above
+    const visible =
+      durationMs === 0
+        ? start >= range.start && start < range.end
+        : start < range.end && end > range.start
+    if (visible) {
       occurrences.push({
         key: `${event.id}::${start.toISOString()}`,
         eventId: event.id,
@@ -356,7 +369,12 @@ function expandRecurrence<TData>(
       const start = new Date(rDate.getTime())
       if (seen.has(start.getTime()) || exTimes.has(start.getTime())) continue
       const end = new Date(start.getTime() + durationMs)
-      if (start >= range.end || end <= range.start) continue
+      // mirrored visibility rule: zero-length RDATEs stay closed at the start
+      const hidden =
+        durationMs === 0
+          ? start < range.start || start >= range.end
+          : start >= range.end || end <= range.start
+      if (hidden) continue
       seen.add(start.getTime())
       occurrences.push({
         key: `${event.id}::${start.toISOString()}`,

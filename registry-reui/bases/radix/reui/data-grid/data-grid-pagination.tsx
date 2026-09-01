@@ -33,18 +33,17 @@ interface DataGridPaginationProps {
 }
 
 function DataGridPagination(props: DataGridPaginationProps): JSX.Element {
-  const { table, recordCount, isLoading } = useDataGrid()
+  const { i18n, table, recordCount, isLoading } = useDataGrid()
 
   const defaultProps: Partial<DataGridPaginationProps> = {
     sizes: [5, 10, 25, 50, 100],
     sizesSkeleton: <Skeleton className="h-8 w-44" />,
     moreLimit: 5,
-    info: "{from} - {to} of {count}",
     infoSkeleton: <Skeleton className="h-8 w-60" />,
-    rowsPerPageLabel: "Rows per page",
-    previousPageLabel: "Go to previous page",
-    nextPageLabel: "Go to next page",
-    ellipsisText: "...",
+    rowsPerPageLabel: i18n.labels.rowsPerPage,
+    previousPageLabel: i18n.labels.previousPage,
+    nextPageLabel: i18n.labels.nextPage,
+    ellipsisText: i18n.labels.paginationEllipsis,
   }
 
   const mergedProps: DataGridPaginationProps = { ...defaultProps, ...props }
@@ -57,13 +56,14 @@ function DataGridPagination(props: DataGridPaginationProps): JSX.Element {
   const to = Math.min((pageIndex + 1) * pageSize, recordCount)
   const pageCount = table.getPageCount()
 
-  // Replace placeholders in paginationInfo
+  // A supplied `info` keeps its placeholder-template contract; the default
+  // routes through the i18n label function, where word order is free.
   const paginationInfo = mergedProps.info
     ? mergedProps.info
         .replaceAll("{from}", from.toString())
         .replaceAll("{to}", to.toString())
         .replaceAll("{count}", recordCount.toString())
-    : `${from} - ${to} of ${recordCount}`
+    : i18n.labels.paginationInfo({ from, to, count: recordCount })
 
   // Pagination limit logic
   const paginationMoreLimit = mergedProps.moreLimit || 5
@@ -85,6 +85,8 @@ function DataGridPagination(props: DataGridPaginationProps): JSX.Element {
           key={i}
           size="icon-sm"
           variant="ghost"
+          aria-label={i18n.labels.goToPage(i + 1)}
+          aria-current={pageIndex === i ? "page" : undefined}
           className={cn(btnBaseClasses, "text-muted-foreground", {
             "bg-accent text-accent-foreground": pageIndex === i,
           })}
@@ -158,7 +160,15 @@ function DataGridPagination(props: DataGridPaginationProps): JSX.Element {
                 table.setPageSize(newPageSize)
               }}
             >
-              <SelectTrigger className="w-16" size="sm">
+              {/* w-fit with a min, never a fixed width: a fixed w-16 clipped
+                  the value "100" by 1px at nova's paddings, while fit-content
+                  grows the trigger for 3-digit sizes and the min keeps the
+                  1-2 digit ones from collapsing narrower than 64px. */}
+              <SelectTrigger
+                aria-label={mergedProps.rowsPerPageLabel}
+                className="w-fit min-w-16"
+                size="sm"
+              >
                 <SelectValue />
               </SelectTrigger>
               <SelectContent

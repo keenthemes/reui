@@ -312,11 +312,26 @@ function beginGesture<TData>(config: BeginGestureConfig<TData>) {
     adoptRootTypography(overlay)
     overlay.style.height = `${barHeight}px`
     const barEl = document.createElement("div")
-    barEl.className = "shrink-0 rounded-sm shadow-lg"
-    barEl.style.width = `${barWidth}px`
-    barEl.style.height = "100%"
-    barEl.style.background = `color-mix(in oklab, ${color} 22%, var(--color-background))`
-    barEl.style.outline = `1px solid color-mix(in oklab, ${color} 55%, transparent)`
+    if (occurrence.end.getTime() === occurrence.start.getTime()) {
+      // a MILESTONE stays a diamond while it travels: the resting glyph,
+      // lifted with a shadow - a rectangle here reads as a different object
+      barEl.className = "flex shrink-0 items-center justify-center"
+      barEl.style.width = `${barWidth}px`
+      barEl.style.height = "100%"
+      const diamond = document.createElement("span")
+      diamond.className = "rotate-45 rounded-[2px] shadow-lg"
+      diamond.style.width = "10px"
+      diamond.style.height = "10px"
+      diamond.style.background = `color-mix(in oklab, ${color} 80%, var(--color-background))`
+      diamond.style.border = `1px solid ${color}`
+      barEl.appendChild(diamond)
+    } else {
+      barEl.className = "shrink-0 rounded-sm shadow-lg"
+      barEl.style.width = `${barWidth}px`
+      barEl.style.height = "100%"
+      barEl.style.background = `color-mix(in oklab, ${color} 22%, var(--color-background))`
+      barEl.style.outline = `1px solid color-mix(in oklab, ${color} 55%, transparent)`
+    }
     overlay.appendChild(barEl)
     const label = document.createElement("span")
     label.className = "text-foreground truncate font-medium whitespace-nowrap"
@@ -547,7 +562,11 @@ function beginGesture<TData>(config: BeginGestureConfig<TData>) {
       // (72h +/- 1h), never drifting to a 23:00 end. Sub-day events keep
       // their exact ms duration.
       let end: Date
-      if (
+      if (occurrence.end.getTime() === occurrence.start.getTime()) {
+        // a milestone is an instant: moving it moves the point - the
+        // day-span branch below would silently stretch it to a full day
+        end = start
+      } else if (
         tl.snapMin >= 24 * 60 &&
         (occurrence.allDay ||
           (midnightAligned(occurrence.start) &&
@@ -647,7 +666,8 @@ function beginGesture<TData>(config: BeginGestureConfig<TData>) {
         kind === "move" ? "drag" : (kind as "resize-start" | "resize-end"),
     }
     // "reject" is the one veto the engine owns: it both styles the ghost AND
-    // blocks the commit below. canDropEvent stays advisory, as documented.
+    // blocks the commit below. canDropEvent stays advisory unless the
+    // consumer opts into enforceCanDrop, which is checked at release.
     overlapRejected =
       overlapPolicy === "reject" &&
       overlapsNeighbour(proposal.start, proposal.end)
@@ -822,6 +842,10 @@ function beginGesture<TData>(config: BeginGestureConfig<TData>) {
     if (!drag || !occurrence) return
     // the node refuses concurrency: revert instead of committing an overlap
     if (overlapRejected) return
+    // enforceCanDrop makes the advisory verdict binding: a release whose
+    // last canDropEvent answer was false reverts exactly like "reject" -
+    // the red ghost becomes a promise instead of a suggestion
+    if (settings.enforceCanDrop && !drag.valid) return
     const unchanged =
       drag.proposedStart.getTime() === occurrence.start.getTime() &&
       drag.proposedEnd.getTime() === occurrence.end.getTime() &&
@@ -921,7 +945,13 @@ function useGanttGestures<TData = unknown>() {
     (segment: GanttSegment<TData>) => {
       const { interactions } = instance.getState()
       const event = segment.occurrence.event
-      return interactions.resize && !event.readOnly && event.resizable !== false
+      return (
+        interactions.resize &&
+        !event.readOnly &&
+        event.resizable !== false &&
+        // a milestone is an instant: it has no edges to resize
+        segment.occurrence.end.getTime() > segment.occurrence.start.getTime()
+      )
     },
     [instance]
   )

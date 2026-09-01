@@ -1,0 +1,218 @@
+[
+  {
+    "name": "c-code-block-1",
+    "title": "Basic code block",
+    "description": "Code block with header, filename, language and copy button.",
+    "order": 1,
+    "gridSize": 1,
+    "previewHeight": "270"
+  },
+  {
+    "name": "c-code-block-2",
+    "title": "Pinned copy button",
+    "description": "Headerless block with a pinned copy button and dual-axis scrolling.",
+    "order": 2,
+    "gridSize": 1,
+    "previewHeight": "260"
+  },
+  {
+    "name": "c-code-block-3",
+    "title": "Streaming agent response",
+    "description": "Agent writing code in real time with a caret and stick-to-bottom.",
+    "order": 3,
+    "gridSize": 1,
+    "previewHeight": "350"
+  },
+  {
+    "name": "c-code-block-4",
+    "title": "AI chat with code fences",
+    "description": "Streaming assistant message rendering markdown code fences.",
+    "order": 4,
+    "gridSize": 1,
+    "previewHeight": "280"
+  },
+  {
+    "name": "c-code-block-5",
+    "title": "Diff with change summary",
+    "description": "A props-driven diff with added and removed lines and a change summary.",
+    "order": 5,
+    "gridSize": 1,
+    "previewHeight": "290"
+  },
+  {
+    "name": "c-code-block-6",
+    "title": "Diff via shiki transformers",
+    "description": "A diff expressed through a shiki transformer instead of props.",
+    "order": 6,
+    "gridSize": 1,
+    "previewHeight": "190"
+  },
+  {
+    "name": "c-code-block-7",
+    "title": "Highlighted lines and words",
+    "description": "Line ranges and word matches highlighted together.",
+    "order": 7,
+    "gridSize": 1,
+    "previewHeight": "270"
+  },
+  {
+    "name": "c-code-block-8",
+    "title": "Focus walkthrough",
+    "description": "Stepping through regions of a file with the rest dimmed.",
+    "order": 8,
+    "gridSize": 1,
+    "previewHeight": "360"
+  },
+  {
+    "name": "c-code-block-9",
+    "title": "Terminal output",
+    "description": "Unhighlighted command output with a wrap toggle.",
+    "order": 9,
+    "gridSize": 1,
+    "previewHeight": "370"
+  },
+  {
+    "name": "c-code-block-10",
+    "title": "Long file with expand",
+    "description": "Collapsed at a line budget with an expand control and a line offset.",
+    "order": 10,
+    "gridSize": 1,
+    "previewHeight": "280"
+  },
+  {
+    "name": "c-code-block-11",
+    "title": "Line actions and diagnostics",
+    "description": "Error and warning lines with an action button on the active line.",
+    "order": 11,
+    "gridSize": 1,
+    "previewHeight": "220"
+  },
+  {
+    "name": "c-code-block-12",
+    "title": "Line selection",
+    "description": "Selecting lines to ask an assistant about them.",
+    "order": 12,
+    "gridSize": 1,
+    "previewHeight": "310"
+  },
+  {
+    "name": "c-code-block-13",
+    "title": "Search in file",
+    "description": "Live search marking every match, with a counter that reads the block through useCodeBlockConfig.",
+    "order": 13,
+    "gridSize": 1,
+    "previewHeight": "360"
+  },
+  {
+    "name": "c-code-block-14",
+    "title": "File tabs in a dense frame",
+    "description": "A framed file switcher loading one grammar chunk per selected language.",
+    "order": 14,
+    "gridSize": 1,
+    "previewHeight": "180"
+  },
+  {
+    "name": "c-code-block-15",
+    "title": "Pre-highlighted lines",
+    "description": "Lines built without shiki, the shape a server component passes down.",
+    "order": 15,
+    "gridSize": 1,
+    "previewHeight": "220"
+  },
+  {
+    "name": "c-code-block-16",
+    "title": "Before and after",
+    "description": "Two blocks stacked in a frame for a refactor review.",
+    "order": 16,
+    "gridSize": 1,
+    "previewHeight": "390"
+  },
+  {
+    "name": "c-code-block-17",
+    "title": "Soft wrap",
+    "description": "Long single-line content with a wrap toggle.",
+    "order": 17,
+    "gridSize": 1,
+    "previewHeight": "190"
+  },
+  {
+    "name": "c-code-block-18",
+    "title": "Unified patch review",
+    "description": "A git patch parsed into files with dual old/new gutters, counters and a download.",
+    "order": 18,
+    "gridSize": 1,
+    "previewHeight": "510"
+  },
+  {
+    "name": "c-code-block-19",
+    "title": "Design-token theme",
+    "description": "Syntax colors driven by CSS variables mapped to design tokens.",
+    "order": 19,
+    "gridSize": 1,
+    "previewHeight": "220"
+  },
+  {
+    "name": "c-code-block-20",
+    "title": "Always-dark block",
+    "description": "A block that stays dark in both site themes, with window chrome and every line state.",
+    "order": 20,
+    "gridSize": 1,
+    "previewHeight": "430"
+  },
+  {
+    "name": "c-code-block-21",
+    "title": "Dark terminal",
+    "description": "ANSI-style colored terminal output built from plain lines.",
+    "order": 21,
+    "gridSize": 1,
+    "previewHeight": "360"
+  },
+  {
+    "name": "c-code-block-22",
+    "title": "Patch review actions",
+    "description": "Agent-proposed diff with accept and reject actions.",
+    "order": 22,
+    "gridSize": 1,
+    "previewHeight": "320"
+  },
+  {
+    "name": "c-code-block-23",
+    "title": "Nested code folding",
+    "description": "Fold regions detected from indentation, with nesting and fold-all controls.",
+    "order": 23,
+    "gridSize": 1,
+    "previewHeight": "360"
+  },
+  {
+    "name": "c-code-block-24",
+    "title": "Fix with AI on the failing line",
+    "description": "A line action scoped to the diagnostic line that applies the patch.",
+    "order": 24,
+    "gridSize": 1,
+    "previewHeight": "220"
+  },
+  {
+    "name": "c-code-block-25",
+    "title": "Reference lines in chat",
+    "description": "A gutter button that turns lines or a selection into file:line reference badges in a chat composer.",
+    "order": 25,
+    "gridSize": 1,
+    "previewHeight": "640"
+  },
+  {
+    "name": "c-code-block-26",
+    "title": "Framed by an external ScrollArea",
+    "description": "A changed-file list where one shadcn ScrollArea scrolls every block at once.",
+    "order": 26,
+    "gridSize": 1,
+    "previewHeight": "420"
+  },
+  {
+    "name": "c-code-block-27",
+    "title": "ANSI terminal output",
+    "description": "Agent stdout with SGR colour codes parsed by ansiToLines, retintable via --code-ansi-* variables.",
+    "order": 27,
+    "gridSize": 1,
+    "previewHeight": "310"
+  }
+]

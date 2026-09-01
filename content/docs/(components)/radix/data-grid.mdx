@@ -1,6 +1,6 @@
 ---
 title: Data Grid
-description: A powerful TanStack Table v9 data grid with sorting, filtering, pagination, footer rows, drag-and-drop, virtualization, infinite scroll, row pinning, and tree rows.
+description: A powerful TanStack Table v9 data grid with sorting, filtering, pagination, footer rows, drag-and-drop, row and column virtualization, infinite scroll, row pinning, tree rows, spreadsheet-style cell selection with clipboard and inline editing, and localized labels through one i18n prop.
 component: true
 base: radix
 links:
@@ -14,7 +14,7 @@ links:
   align="start"
 />
 
-The current `data-grid` package ships the shared grid context, table renderers, pagination, column controls, drag-and-drop helpers, virtualization, infinite scroll, footer helpers, row-pinning support, and tree rows. Footer components (`DataGridTableFoot`, `DataGridTableFootRow`, `DataGridTableFootRowCell`) plus the `DataGridTableRowPin` and `DataGridTableRowExpand` toggles are exported from `data-grid-table.tsx`.
+The current `data-grid` package ships the shared grid context, table renderers, pagination, column controls, drag-and-drop helpers, virtualization, infinite scroll, footer helpers, row-pinning support, tree rows, and spreadsheet-style cell selection with clipboard and editing support (`data-grid-cell-selection.tsx`). Footer components (`DataGridTableFoot`, `DataGridTableFootRow`, `DataGridTableFootRowCell`) plus the `DataGridTableRowPin` and `DataGridTableRowExpand` toggles are exported from `data-grid-table.tsx`.
 
 The radix build ships the shared grid context, footer helpers, virtualization support, row pinning helpers, and the dedicated `data-grid-scroll-area.tsx` wrapper used by the latest sticky-header and infinite-scroll demos.
 
@@ -58,7 +58,7 @@ Two entries in the bundle are neither features nor row models:
   comparator by extending the bundle with `tableFeatures({ ...dataGridFeatures, sortFns: { ...} })`, or pass a
   function directly as `sortFn`.
 - `columnMeta`, which types `columnDef.meta` as `DataGridColumnMeta` (`headerTitle`, `headerClassName`,
-  `cellClassName`, `skeleton`, `expandedContent`, `autoSize`). A features-level `columnMeta` slot wins over the
+  `cellClassName`, `skeleton`, `expandedContent`, `autoSize`, `fillWidth`, `cellEdit`). A features-level `columnMeta` slot wins over the
   global `ColumnMeta` interface, so the v8 `declare module` augmentation is ignored on any table built with
   `dataGridFeatures`. Add your own fields to `DataGridColumnMeta` in the installed `data-grid.tsx` instead.
 
@@ -92,7 +92,7 @@ const features = tableFeatures({
 })
 ```
 
-or hand over a leaner one of your own when you want a smaller bundle. `<DataGrid>` is the generic one: its
+or hand over a leaner one of your own when you want a smaller bundle. One dependency to keep: `cellSelectionFeature` gates the whole spreadsheet layer, and with a bundle that omits it `tableLayout.cellSelection` is silently inert (both the controller and the cell renderer check `table.atoms.cellSelection`, not the flag). `<DataGrid>` is the generic one: its
 `table` prop is `Table<TFeatures, TData>` for any `TFeatures`, and the instance is widened internally exactly
 once. The sub-components that take a `column`, `row` or `table` prop (`DataGridColumnHeader`,
 `DataGridColumnFilter`, `DataGridColumnVisibility`, `DataGridTableRowSelect`, `DataGridTableRowPin`,
@@ -204,6 +204,11 @@ cell: ({ row }) => (
 Note the standalone `Subscribe` rather than `table.Subscribe`: inside a column definition the `table` you receive
 is typed as the core `Table` from `@tanstack/table-core`, and only the `ReactTable` that `useTable` returns
 declares `Subscribe`, so `row.table.Subscribe` does not type-check.
+
+The same rule applies to cell selection: a custom cell template reading `cell.getIsSelected()`,
+`cell.getIsFocused()` or `cell.getSelectionEdges()` must subscribe to `row.table.atoms.cellSelection`, the same
+shape as the row-selection snippet above. The grid's own cell renderer already does this for the attributes it
+paints.
 
 ## Usage
 
@@ -323,10 +328,76 @@ Use `DataGridTableRowPin` inside a column definition to let users pin rows, swap
   align="start"
 />
 
+### Spreadsheet Editing
+
+Cell range selection, clipboard copy / cut / paste with Excel and Google Sheets
+round-trip, a fill handle, inline editors, and a bulk edit bar over row
+selection, all in one grid alongside sorting, pagination, resizable and pinned
+columns.
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-31"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Column Virtualization
+
+36 metric columns over 1,000 rows with both axes virtualized: only the
+horizontal window of center columns is in the DOM, the pinned edge columns stay
+mounted, and the header buttons jump the window through
+`scrollToColumnIndex`.
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-32"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Localized Labels
+
+One `i18n` prop swaps every built-in string, so the header menu, the row
+select and pagination aria labels, and the pagination copy follow the language
+switch. The column titles and cell text stay the consumer's own, alongside a
+locale-aware `Intl.NumberFormat`.
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-33"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
+### Server Side Pagination
+
+The end-to-end pattern for a grid backed by a large server-side dataset: the
+table holds exactly one page, and pagination, sorting, and a debounced search
+are sent to the server, which returns the page plus the total after filtering.
+The demo simulates the server with an in-file async function over 487 records;
+replace its body with a fetch to your own API and keep the return shape.
+
+The contract that makes the controls work: pass the server-side total **twice**.
+`rowCount` on `useTable` drives `table.getPageCount()`, so the page buttons know
+how many pages exist beyond the loaded rows; `recordCount` on `DataGrid` drives
+the "1 - 5 of 487" info text. With `manualPagination` and only `recordCount`
+set, the info text claims the full count while the buttons collapse to a single
+page. `isLoading` renders the built-in skeleton rows during each fetch, and a
+request id guard keeps a slow response from overwriting a newer one.
+
+<ComponentPreview
+  styleName="radix-nova"
+  name="c-data-grid-34"
+  className="**:[.preview]:h-auto"
+  align="start"
+/>
+
 For the full set of variations (expandable rows, sub-grids, tree rows, sortable / movable /
 draggable / resizable / pinnable columns, sticky header, column controls and
 visibility, loading skeleton, CRUD in frame, footer totals / summary /
-aggregates, infinite scroll, and row pinning) browse the
+aggregates, infinite scroll, server side pagination, row pinning, and
+spreadsheet editing) browse the
 [Data Grid components](/components/data-grid).
 
 ## API Reference
@@ -338,7 +409,7 @@ The root component that provides the table context.
 | Prop                   | Type                      | Default                | Description                                                            |
 | :--------------------- | :------------------------ | :--------------------- | :--------------------------------------------------------------------- |
 | `table`                | `Table<TFeatures, TData>` | -                      | `Required`. The TanStack Table instance.                               |
-| `recordCount`          | `number`                  | -                      | `Required`. Total number of records.                                   |
+| `recordCount`          | `number`                  | -                      | `Required`. Total number of records. Drives the pagination info text only; with `manualPagination`, also pass the same total to `useTable` as `rowCount` so `table.getPageCount()` sees it. |
 | `isLoading`            | `boolean`                 | `false`                | Whether the table is in a loading state.                               |
 | `loadingMode`          | `"skeleton" \| "spinner"` | `"skeleton"`           | The visual style of the loading state.                                 |
 | `loadingMessage`       | `ReactNode \| string`     | `"Loading..."`         | Message to display when `loadingMode` is `"spinner"`.                  |
@@ -346,6 +417,16 @@ The root component that provides the table context.
 | `allRowsLoadedMessage` | `ReactNode \| string`     | `"All records loaded"` | Message to display when virtual infinite scroll reaches the end.       |
 | `emptyMessage`         | `ReactNode \| string`     | `"No data available"`  | Message to display when the table is empty.                            |
 | `onRowClick`           | `(row: TData) => void`    | -                      | Callback function triggered when a row is clicked.                     |
+| `onCellsChange`        | `(details: DataGridCellsChangeDetails<TData>) => void` | - | Receives every spreadsheet write batch (paste, cut, clear, fill, edit). See `DataGridCellSelection`. |
+| `onCellEditRequest`    | `(request: DataGridCellEditRequest<TData>) => void` | - | Opens your editor from the keyboard: Enter, F2, or typing on the focused cell. See `DataGridCellSelection`. |
+| `onCellSelectionChange` | `(snapshot: DataGridCellSelectionSnapshot) => void` | - | Fires on every selection change with the focused cell, the bounds, the active bound and the visible cell count, so a count or formula bar needs no TanStack internals. |
+| `onCellsCopy`          | `(details: DataGridCopyDetails) => void` | - | Fires after the grid writes the clipboard (Cmd/Ctrl+C or X, native copy or cut) with the text, the grid of fields and a cut flag, e.g. to confirm with a toast. |
+| `i18n`                 | `DataGridI18nOverrides` | - | Overrides for every built-in string; see Internationalization below. |
+| `onRowCreate`          | `() => void` | - | Renders an "Add row" affordance as the body's last row; the click is your cue to append a row. |
+| `rowCreateLabel`       | `ReactNode` | `"Add row"` | Label of the `onRowCreate` affordance, e.g. for localization. |
+| `appendRow`            | `ReactNode` | - | Rows rendered after the data rows and before the add-row affordance, e.g. a custom draft row; the keyboard walks into them with ArrowDown. |
+| `getRowStatus`         | `(row: TData) => "new" \| "dirty" \| "deleted" \| undefined` | - | Optional CRUD indication per row: tints and, for deleted, mutes and strikes. |
+| `getCellStatus`        | `(row: TData, columnId: string) => "dirty" \| "invalid" \| undefined` | - | Optional per-cell corner mark for edited or invalid cells. |
 | `tableLayout`          | `DataGridTableLayout`     | -                      | Configuration for table layout and features.                           |
 | `tableClassNames`      | `DataGridTableClassNames` | -                      | Custom CSS classes for various table parts.                            |
 | `className`            | `string`                  | -                      | Additional CSS classes for the root grid component.                    |
@@ -362,7 +443,7 @@ The root component that provides the table context.
 | `headerBackground`  | `boolean`               | `false`   | Whether to show a background color for the header.          |
 | `footerBackground`  | `boolean`               | `false`   | Whether to show a background color for footer rows.         |
 | `headerBorder`      | `boolean`               | `true`    | Whether to show a border below the header.                  |
-| `headerSticky`      | `boolean`               | `false`   | Whether the header should be sticky during scroll.          |
+| `headerSticky`      | `boolean`               | `false`   | Whether the header should be sticky during scroll. With pinned columns, give the class `z-40`: pinned body cells are sticky at z-30 and a lower band lets them paint over the header; the pinned header cells themselves pin both axes automatically. |
 | `width`             | `"auto" \| "fixed"`     | `"fixed"` | The table layout algorithm (`table-auto` vs `table-fixed`). |
 | `columnsVisibility` | `boolean`               | `false`   | Enables column visibility toggling.                         |
 | `columnsResizable`  | `boolean`               | `false`   | Enables column resizing.                                    |
@@ -372,6 +453,12 @@ The root component that provides the table context.
 | `columnsDraggable`  | `boolean`               | `false`   | Enables drag-and-drop for columns.                          |
 | `rowsDraggable`     | `boolean`               | `false`   | Enables drag-and-drop for rows.                             |
 | `rowsPinnable`      | `boolean`               | `false`   | Enables row pinning (top/bottom).                           |
+| `cellSelection`     | `boolean`               | `false`   | Enables spreadsheet cell range selection and its chrome.    |
+| `cellSelectionMode` | `"single" \| "range"` | `"range"` | `"single"` collapses every grow gesture (drag, Shift, Ctrl/Cmd, Shift+keys) to one focused cell, and Ctrl/Cmd+A is inert. |
+| `cellFillHandle`    | `boolean`               | `false`   | Renders the drag-to-fill handle on the selection corner. Requires `cellSelection`. |
+| `cellFillHandleVariant` | `"dot" \| "ring" \| "square"` | `"dot"` | Handle look: a solid dot or an Excel-style square inside the corner, or the Sheets-style hollow ring riding the corner point; the ring straddles the corner and clamps back inside at the grid's boundary, while dot and square sit inside the cell and need no clamps. |
+| `cellEditMode`      | `"dblclick" \| "click"` | `"dblclick"` | How the mouse opens an editor: the spreadsheet standard (first click focuses, second edits), or single-click editing; modifier clicks and drags still select. |
+| `cellEditEnterAdvance` | `boolean` | `false` | Enter-commit moves down and Shift+Enter up, the Sheets flow. Off, a commit keeps focus on the edited cell; Tab always commits and moves across. |
 
 `columnsResizeMode` is resolved by the grid, not by TanStack. Left unset, the grid reads the table's own `columnResizeMode` and falls back to `"onEnd"` when that is undefined, which on v9 is the normal case: `useTable` hands back the options object you passed, so feature defaults never show up on `table.options`.
 
@@ -391,6 +478,12 @@ Custom CSS classes for different parts of the table.
 | `bodyRow`      | `string` | -       | CSS classes for body rows.                         |
 | `footer`       | `string` | -       | CSS classes for the `<tfoot>` element.             |
 | `edgeCell`     | `string` | -       | CSS classes for the first and last cells in a row. |
+| `rowNew`       | `string` | -       | Overrides the `getRowStatus` "new" tint (default: green muted). |
+| `rowDirty`     | `string` | -       | Overrides the `getRowStatus` "dirty" tint (default: warning muted). |
+| `rowDeleted`   | `string` | -       | Overrides the `getRowStatus` "deleted" treatment (default: destructive muted, struck). |
+| `rowPinned`    | `string` | -       | Overrides the pinned-row chrome (muted tint, boundary shadow), e.g. so a pinned create-draft reads as an active row. |
+| `rowCreate`    | `string` | -       | The `onRowCreate` affordance row, e.g. `[&_button]:h-11` to match the grid's row height. |
+| `cellFillHandle` | `string` | -     | The fill handle, e.g. to restyle or resize it beyond the built-in variants. |
 
 ---
 
@@ -616,6 +709,28 @@ Together these cover cross-parent (re-parenting) drops: drop `restrictToVertical
 
 ---
 
+### Internationalization
+
+Every built-in string - the header menu items, aria labels for row pin / select / expand and the drag handles, the pagination copy, the loading, empty and end-of-list states, and the faceted filter's texts - is replaceable in one place through `i18n` on `DataGrid`. Labels that interpolate are functions, so pluralization and word order live in the label rather than in string concatenation:
+
+```tsx
+<DataGrid
+  i18n={{
+    labels: {
+      sortAscending: "Aufsteigend",
+      pinColumnStart: "Links anheften",
+      rowsPerPage: "Zeilen pro Seite",
+      paginationInfo: ({ from, to, count }) => `${from}-${to} von ${count}`,
+      goToPage: (page) => `Seite ${page}`,
+    },
+  }}
+>
+```
+
+The merge is shallow per section: untouched keys keep their defaults, and a more specific component prop that predates `i18n` (`rowCreateLabel`, `loadingMessage`, `emptyMessage`, the `DataGridPagination` label props, the row-DnD `disabledLabel`) still wins over its `i18n` counterpart, so adopting `i18n` is never a breaking change. The full key set with defaults ships in `data-grid-i18n.tsx`; `DataGridI18nLabels`, `DataGridI18nConfig`, `DataGridI18nOverrides` and `mergeDataGridI18n` are exported from it.
+
+---
+
 ### DataGridTableVirtual
 
 A virtualized table renderer using `@tanstack/react-virtual` for row virtualization, infinite scroll, optional footer rows, and pinned rows when `rowsPinnable` is enabled. The wrapper manages row count and the scroll element for you, while `virtualizerOptions` lets you customize the underlying TanStack Virtual instance. Set `scrollToRowIndex` to reveal a controlled center row; `"auto"` alignment keeps already-visible rows in place and accounts for sticky headers.
@@ -635,10 +750,151 @@ A virtualized table renderer using `@tanstack/react-virtual` for row virtualizat
 | `hasMore`            | `boolean`                                | -        | Whether there are more records available to fetch.                                                                                   |
 | `fetchMoreOffset`    | `number`                                 | `0`      | How many rows before the end should trigger `onFetchMore`.                                                                           |
 | `virtualizerOptions` | `DataGridTableVirtualizerOptions<TData>` | -        | Optional passthrough for TanStack Virtual settings like `enabled`, `getItemKey`, `measureElement`, `rangeExtractor`, and `onChange`. |
+| `columnVirtualizerOptions` | `{ enabled?: boolean; overscan?: number }` | - | Opt-in horizontal virtualization of the CENTER columns; `overscan` defaults to 3. See the constraints below. |
+| `scrollToColumnAlign` | `"auto" \| "center" \| "start" \| "end"` | `"auto"` | Alignment used when revealing `scrollToColumnIndex`. |
+| `scrollToColumnIndex` | `number` | - | Index within the center (non-pinned) visible leaf columns to reveal; `scrollBehavior` is shared with row scrolling. |
+
+**Column virtualization.** With `columnVirtualizerOptions={{ enabled: true }}`, only the center columns inside the horizontal window render; each off-window flank collapses into one `colSpan` spacer (`data-slot="data-grid-table-virtual-col-spacer"`) whose width comes from the intact colgroup, so a fixed table layout cannot drift. It activates only under `tableLayout.width: "fixed"` (the default) with a single ungrouped header row; grouped headers or `width: "auto"` silently fall back to full-column rendering. Start- and end-pinned columns stay mounted outside the window, the footer always renders in full, both virtualizers share the grid's resolved scroll element, and RTL mirrors automatically. Windowed body cells carry `data-column-index` with their center-column index. Combining a column window with `cellSelection` is not supported yet: keyboard ranges can span unmounted columns.
 
 **Set `manualPagination: true`.** A virtualized grid renders every row, and `dataGridFeatures` registers `paginatedRowModel`, which is the one row model in the bundle that is not inert: `table.getRowModel()` is sliced to `pageSize` (default `10`) unless the table opts out. Without it an otherwise correct virtual grid renders ten rows and stops. `manualPagination: true` is v9's way to say the data already is the page, so it keeps the pagination APIs while leaving the rows unsliced.
 
 ---
+
+### DataGridCellSelection
+
+The headless spreadsheet controller: keyboard navigation, clipboard, delete-to-clear, and the fill-handle drag session. Mount it once inside `DataGridContainer`, next to the table, and turn the feature on with `tableLayout={{ cellSelection: true }}`. It renders a hidden anchor plus the built-in editor overlay while an edit is open; listeners attach to the grid's own body viewport, while DOM focus sits on the `<table>` inside it, so a virtualized row unmounting can never strand keyboard focus.
+
+| Prop        | Type      | Default | Description                                              |
+| :---------- | :-------- | :------ | :------------------------------------------------------- |
+| `clipboard` | `boolean` | `true`  | Copy, cut and paste: the Cmd/Ctrl+C and X chords plus the native copy, cut and paste events. The chords ride the grid's keydown handler, so they also need `keyboard`. |
+| `keyboard`  | `boolean` | `true`  | Arrows, Home/End, PageUp/PageDown, Enter, F2, type-to-edit, Tab, Ctrl/Cmd+A, Delete, Escape handling. |
+| `apiRef`    | `RefObject<DataGridCellSelectionApi \| null>` | - | Receives the controller's imperative API once wired; null while `cellSelection` is off. |
+
+Mouse selection itself (click, Shift-click, Ctrl/Cmd-click for extra regions, and drag) is wired by the cell renderer whenever `cellSelection` is on; the controller adds everything that needs a listener beyond the cells.
+
+**The imperative API.** A create-row flow cannot focus the new row's cell through state alone: `setFocusedCell` needs the row in the table model, DOM focus needs the grid's focus target, and both race the commit that mounts the row. `apiRef` hands you `focusCell(rowId, columnId, { edit? })`, which retries briefly until the row renders, then sets the focused cell, focuses the grid, scrolls the cell into view and points `aria-activedescendant` at it; `edit: true` also opens the cell's editor the way Enter would. Call it after appending a row (or saving a draft) and the user can type immediately. The api also carries `clearSelection()` and `scrollToCell(rowId, columnId)` for rendered cells.
+
+**Accessibility.** With `cellSelection` on, the table is an ARIA grid: `role="grid"` with `aria-multiselectable`, `aria-rowcount` behind pagination, `aria-rowindex`/`aria-colindex` on rows and cells, `aria-sort` on sortable headers (present with or without `cellSelection`), and `aria-selected` on every body cell, `true` or `false`. DOM focus stays on the table (the container-focus model) while `aria-activedescendant` tracks the focused cell, so screen readers announce every move; keys from a focused in-cell control (a button, link, checkbox, select trigger) always stay with that control, and Escape hands focus back to the grid. `aria-multiselectable` reflects `cellSelectionMode`, and the built-in editor is named after its column's header. Keyboard navigation itself lives in the body cells; header controls are reached with Tab and keep their native keyboard.
+
+**Keyboard map.**
+
+| Keys                                    | Action                                                              |
+| :-------------------------------------- | :------------------------------------------------------------------ |
+| <kbd>Arrow keys</kbd>                   | Move the focused cell, collapsing the range.                        |
+| <kbd>Shift</kbd> + <kbd>Arrow keys</kbd> | Extend the range from its anchor.                                   |
+| <kbd>Ctrl/Cmd</kbd> + <kbd>Arrow keys</kbd> | Jump to the grid edge in that direction; with <kbd>Shift</kbd>, extend to it. |
+| <kbd>Home</kbd> / <kbd>End</kbd>        | First / last cell of the row; with <kbd>Ctrl/Cmd</kbd>, the grid's corners; with <kbd>Shift</kbd>, extend. |
+| <kbd>PageUp</kbd> / <kbd>PageDown</kbd> | Jump a viewport's worth of rows; with <kbd>Shift</kbd>, extend. Jumps clamp to the paginated page; under virtualization they scroll the target row into view. |
+| <kbd>Enter</kbd> / <kbd>Shift</kbd> + <kbd>Enter</kbd> | Move down / up; on a writable cell with an editor available, Enter opens it instead, and on a cell whose content is an interactive control (a select trigger, a combobox, a checkbox, a button) Enter activates it. |
+| <kbd>F2</kbd>                           | Open the editor on the focused writable cell, or activate the control it holds. |
+| Any printable character                 | Open the editor seeded with the typed character, replacing the value (the Notion/Airtable flow). Typing never activates a control, only an editor that can hold the character. |
+| <kbd>Space</kbd>                        | Toggle a checkbox rendered in the focused cell (the row-select idiom); on a writable cell it counts as a printable character and opens the editor seeded with a space; otherwise swallowed so the page never scrolls. |
+| <kbd>ArrowDown</kbd> into the appended region | From the last rendered row, focus moves into `appendRow` content or the "Add row" button; ArrowUp from its first row returns to the grid. |
+| Double-click                            | Open the editor on the focused cell, or activate its control: the first click focuses, the second edits, for editor and custom-control cells alike (mouse counterpart of Enter). |
+| <kbd>Tab</kbd> / <kbd>Shift</kbd> + <kbd>Tab</kbd> | Move right / left; at the grid edge, focus leaves the grid. |
+| <kbd>Ctrl/Cmd</kbd> + <kbd>A</kbd>      | Select every selectable cell.                                       |
+| <kbd>Ctrl/Cmd</kbd> + <kbd>C</kbd> / <kbd>X</kbd> / <kbd>V</kbd> | Copy and cut write through the async clipboard API (a native copy event never fires for a focused grid), carrying a `text/plain` TSV plus a `text/html` table so Excel and Sheets keep type fidelity, with plain-text fallbacks for non-secure contexts; paste rides the native event. All platforms. |
+| <kbd>Delete</kbd> / <kbd>Backspace</kbd> | Clear writable cells in the selection.                             |
+| <kbd>Escape</kbd>                       | Clear the selection; from a focused in-cell control, return focus to the grid (the ARIA grid exit gesture). |
+
+In RTL, ArrowLeft and ArrowRight mirror to the visual direction; Tab and Shift+Tab do not - Tab always means the next or previous cell in display order, matching DOM tab order.
+
+**The write contract.** The grid never mutates data. Every write path (paste, cut, clear, fill, and your own editors if you route them the same way) produces one batched call to `onCellsChange` on `DataGrid`, and your state update is the single owner of the rows:
+
+```tsx
+interface DataGridCellsChangeDetails<TData> {
+  source: "paste" | "cut" | "clear" | "fill" | "edit"
+  changes: Array<{
+    rowId: string
+    columnId: string
+    row: TData // the row object, no lookup needed
+    previousValue: unknown // enables an undo stack
+    value: unknown
+  }>
+  rejected: Array<{
+    rowId: string
+    columnId: string
+    raw: string
+    reason: "readonly" | "invalid"
+  }>
+}
+```
+
+Without `onCellsChange`, copy still works and every write path is a no-op.
+
+Batches act on what the view can show. Selection bounds live in pre-paginated display order, so a range whose corners are both visible can still span off-page rows in between (a page-tail cell extended to a bottom-pinned draft row); copy, cut, clear, paste and fill skip rows outside the page slice plus rendered pinned rows, so the cells a batch touches are exactly the cells the selection paints. A fill that crosses into a different column round-trips each value through the source's `format` and the target's `parse` - the paste contract - and reports failures in `rejected`; a same-column fill keeps raw values.
+
+**Per-column editing via `meta.cellEdit`.** Presence marks the column writable; every field is optional:
+
+```tsx
+meta: {
+  cellEdit: {
+    editable: true, // false: formats clipboard output but never writes; a function decides per row
+    parse: (raw, row) => Number(raw) || undefined, // undefined rejects the cell
+    format: (value, row) => String(value), // clipboard output
+    clearValue: 0, // Delete/cut value, default null
+    control: "text", // built-in editor: "text" | "textarea", optional
+  }
+}
+```
+
+Copy uses `format` on any column, so a select column can emit labels and map them back in `parse`. Function-form `editable` locks individual rows (archived, another user's, a totals row): every write path treats a locked row's cell as read-only, the fill preview never tints it, and paste reports it in `rejected`. A column without `parse` receives the raw pasted string unchanged. A column without `cellEdit` is read-only: pastes over it land in `rejected` with `"readonly"` instead of changing data.
+
+**Built-in editors.** A column with `cellEdit.control` gets the grid's own free-text editor: an overlay flush over the focused cell, opened by Enter, F2, typing, or double-click, with the cell's own font, alignment and padding so the text keeps its exact place, and one primary border - the overlay covers the cell's focus chrome, so opening it reads as the focused box becoming editable. `"text"` is a single-line input; `"textarea"` grows downward as the text wraps, the Sheets model. Enter commits and keeps focus on the cell so the result can be reviewed in place (`tableLayout.cellEditEnterAdvance` restores the Sheets move-down, with Shift+Enter up), Tab commits and moves across, Escape cancels, blur commits; Shift/Alt+Enter inserts a newline in a textarea, the caret opens at the end of the value, an unchanged commit dispatches nothing, and rows changing under an open editor cancel it rather than committing blind. Commits arrive as one `onCellsChange` batch with source `"edit"`, `parse` applied and rejections reported, so the write path is the same one paste and fill use.
+
+**CRUD affordances.** All optional and prop-gated. `onRowCreate` renders a quick-create "Add row" as the body's last row, the Notion/Airtable idiom; what the click creates stays yours. It follows `tableLayout.dense`, accepts `tableClassNames.rowCreate` for row-height alignment, renders in the virtual layout too (as does `appendRow`), and when creating unmounts it (a draft row takes its place) it hands DOM focus to the grid so the keyboard stays live. `getRowStatus` tints rows the consumer tracks as `"new"` or `"dirty"` and mutes plus strikes `"deleted"` ones; `getCellStatus` draws the classic corner mark on `"dirty"` (amber) or `"invalid"` (destructive) cells. Omit any of them and nothing renders - a read-only grid carries zero CRUD chrome.
+
+**Consumer editors.** Columns without `control` hand the same keystrokes to yours instead; `onCellEditRequest` on `DataGrid` is how the keyboard asks it to open. It fires only when the column is writable via `meta.cellEdit`. Without it, Enter, F2 and double-click fall back to activating whatever interactive content the cell renders, focusing it and clicking it exactly as a mouse would, so a select, combobox or checkbox in a cell is keyboard-reachable with no wiring at all; a cell holding plain text keeps the Excel move-down. Typing a character never activates a control:
+
+```tsx
+interface DataGridCellEditRequest<TData> {
+  rowId: string
+  columnId: string
+  row: TData
+  previousValue: unknown
+  initialText?: string // the typed character; absent for Enter and F2
+}
+```
+
+Seed your input with `initialText` when it is present so typing replaces the value, the way Notion and Airtable start an edit; commit the result through the same state update as `onCellsChange` batches, and hand focus back to the grid when the editor closes: focus the `[data-slot="data-grid-table"]` element inside it, or simply call `apiRef.current?.focusCell(rowId, columnId)`, which is what the controller itself does.
+
+**Exports.** Alongside the components, the module exports the pure pieces so a consumer can build custom flows on the same contracts: `getDataGridVisibleSelectedCellCount(table, viewport)` (the selection count that matches what is painted), `invertDataGridCellsChange(details)` (the undo batch: values and previous values swapped, so feeding it through your `onCellsChange` state update implements undo, and inverting the inverse is redo), `getDataGridActiveRegionGrid`, `buildDataGridClearDetails`, `buildDataGridPasteDetails`, `parseDataGridClipboardText`, `serializeDataGridClipboardText`, `tileDataGridClipboardBlock`, and the types `DataGridCellSelectionApi`, `DataGridFocusCellOptions` and `DataGridPasteTarget` (`DataGridCellSelectionSnapshot`, `DataGridCellSelectionBound` and `DataGridCopyDetails` come from the `data-grid` module). Every `viewport` argument is the grid's body scroll viewport, `[data-slot="data-grid-table-viewport"]` inside `DataGridContainer`; passing null falls back to full-range math that can span off-page rows. For a custom cell renderer, the `data-grid` module exports `getDataGridCellSelectionCellAttrs(cell)`, the whole td contract (`aria-selected`, `data-col-id`, `data-cell-selected`, `data-cell-focused` and the four `data-cell-edge-*` sides), and `dataGridCellSelectionCellClasses`, the chrome those attributes drive; read both inside a `Subscribe source={table.atoms.cellSelection}` render. `DataGridTableAddRow` is exported from the table module for custom layouts. The selection overlay's boundary clamps are driven by the custom properties `--data-grid-overlay-start`, `--data-grid-overlay-end` and `--data-grid-overlay-bottom` (each defaults to -1px), which `dataGridCellSelectionCellClasses` consumers can zero out at their own boundaries.
+
+**`meta.autoSize`.** One column can absorb the container's free space into its committed width, and the absorbed width reflows LIVE with the container: growing the window widens the column, shrinking hands the space back down to its `minSize` (or its starting width when none is set), and a streaming window drag is coalesced into a leading commit plus one settle commit. A width the user dragged is never touched; a double-click reset on its handle re-arms the fill.
+
+**`meta.fillWidth`.** Under `columnsResizable`, one column can absorb the free space the filler strip would otherwise hold, so the grid always reads full-width and the built-in editor covers the whole cell. While free space remains, manually resizing that column is visually a no-op (the absorbed space compensates), the usual flex-column trade-off.
+
+**Paste semantics** follow Excel: a 1x1 block fills the whole selected range; a block tiles when the range is an exact multiple of it; otherwise it pastes once from the range's top-left, clamped at the grid edges (rows are never grown). The pasted region becomes the selection (under `cellSelectionMode: "single"` the focused cell is kept instead). Cut copies the active region, then clears its writable cells.
+
+**Fill handle.** With `cellFillHandle` on, dragging the corner handle down or right repeats the source range over the dragged extent (dominant axis, like Excel), then grows the selection over source plus filled cells. A same-column fill copies raw values; a fill crossing into a different column round-trips through the source's `format` and the target's `parse`, rejecting failures into the batch. Cells that cannot be written are skipped and never tinted by the preview, a multi-region selection refuses the drag entirely, Escape cancels it, and under virtualization the drag can only target rendered rows. `tableLayout.cellFillHandleVariant` picks the handle's look, `tableClassNames.cellFillHandle` restyles it freely, and the handle hides while an editor session is open.
+
+**Interplay with grid features.**
+
+- Utility columns (checkboxes, expand toggles, action buttons) opt out with `enableCellSelection: false` on the column definition; ranges, keyboard stepping and select-all skip them.
+- In-cell controls follow the editor's two-step gesture: the first click on an UNFOCUSED cell only focuses it (the control does not activate), the second click activates it, so moving the focus around can never fire actions. Checkboxes keep their one-click toggle (the row-select idiom), modifier presses are selection gestures, drags select as usual, and `cellEditMode: "click"` makes everything single-click. Keys inside an editable element never move the selection; Escape hands focus back to the grid unless the control consumed it with `preventDefault`. For custom widgets built from other elements, put `data-cell-interactive` on the widget's root to opt out entirely, or `data-cell-control` on a widget whose active surface is bigger than its buttons (a combobox opened by its whole chips strip) to make a press anywhere on it two-step.
+- Editing grids should pass `autoResetPageIndex: false` to `useTable`; every commit replaces `data`, and the TanStack default would snap a paginated grid back to page 1 on each write.
+- With `cellSelection` on, the grid sets `autoResetCellSelection: false` on your table, overriding the TanStack default: every write batch replaces `data`, and the default would wipe the selection after each commit.
+- A page change clears the cell selection. Sorting and filtering keep it: ranges anchor to row ids, and rows that leave the view drop out of the selection bounds until they return.
+- With `rowsPinnable`, keyboard navigation and every batch walk rendered rows, so pinned rows (a bottom-pinned create draft) select, edit and fill like any other row; only the selection bounds are stored in data order.
+- Undo is intentionally left to the consumer: every change carries `previousValue`, so an undo stack is a list of batches replayed through the same state update with `value` and `previousValue` swapped.
+
+---
+
+### DataGridSelectionBar
+
+A thin bulk-edit shell over row selection: selected count, a slot for your controls, and a clear action. Hidden while nothing is selected, and presented as a floating toolbar the Google Sheets way: auto width, centered, elevated, sticky to the viewport bottom with breathing room. What the controls do stays yours; apply bulk updates with your own state update over `table.getSelectedRowModel().rows`.
+
+| Prop         | Type                         | Default        | Description                                 |
+| :----------- | :--------------------------- | :------------- | :------------------------------------------ |
+| `children`   | `ReactNode`                  | -              | Your bulk action controls.                  |
+| `label`      | `(count: number) => ReactNode` | `N selected` | Custom count label.                         |
+| `clearLabel` | `ReactNode`                  | `"Clear"`      | Label of the clear button.                  |
+| `onClear`    | `() => void`                 | -              | Called after the clear button resets row selection. |
+| `className`  | `string`                     | -              | Additional CSS classes.                     |
+
+---
+
+### DataGridTableRowPin
 
 A pin/unpin toggle button for use in column definitions to enable row pinning.
 
@@ -715,6 +971,18 @@ These values were `left` / `right` before TanStack Table v9. v9 moves column pin
 | `data-pinned`           | `"start" \| "end"` | Which edge the column is pinned to. Omitted entirely when the column is not pinned.                                 |
 | `data-last-col`         | `"start" \| "end"` | Marks the inner boundary of a pinned group - the last start-pinned or first end-pinned column. Carries the divider. |
 | `data-outer-pinned-col` | `"start" \| "end"` | Marks the outer edge of a pinned group. Header cells only; used for background clipping.                            |
+
+Rows carry `data-row-status` (`"new" | "dirty" | "deleted"`, from `getRowStatus`) and cells `data-cell-status` (`"dirty" | "invalid"`, from `getCellStatus`) whenever those props are wired, independent of `cellSelection`; they drive the CRUD tints and corner marks. With `tableLayout.cellSelection` on, body cells additionally carry the spreadsheet contract below (plus `aria-selected` on every body cell, `true` or `false`, with `role="grid"` and `aria-multiselectable` on the table). None of these render while the flag is off.
+
+| Attribute               | Value    | Description                                                                                        |
+| :---------------------- | :------- | :------------------------------------------------------------------------------------------------- |
+| `data-col-id`           | `string` | The TanStack column id, used by the fill session to resolve drop targets.                          |
+| `data-cell-selected`    | `"true"` | Present while the cell is inside a positive selection region.                                      |
+| `data-cell-focused`     | `"true"` | Present on the focused cell.                                                                       |
+| `data-cell-edge-top`    | `"true"` | The cell sits on its region's top edge. Same for `-right`, `-bottom`, `-left` (logical in RTL).    |
+| `data-cell-fill-target` | `"true"` | Toggled imperatively on target cells during a fill drag, for the preview styling.                  |
+
+The selection chrome is the Sheets model: a light background tint marks membership, a solid primary perimeter wraps the range and follows it LIVE while a drag or Shift+arrows grow it, the anchor cell stays unfilled so the typing target reads at a glance, and a lone focused cell draws its box with no fill at all. While a fill drag is live, one dashed border (the Sheets fill marquee) wraps the whole pending region - the source plus the extension - and the source's own chrome rests, so the drag reads as one growing region. Every line except the fill marquee is each cell's own `::before` overlay driven purely by the data attributes above, so the whole language can be restyled with `data-[cell-...]` variants on the cell. The fill handle is `data-slot="data-grid-cell-fill-handle"` on the region's bottom-right cell, the marquee is `data-slot="data-grid-cell-fill-preview"` (one positioned element appended to the viewport for the session), and the built-in editor overlay is `data-slot="data-grid-cell-editor"`. The body scroll viewport (`[data-slot="data-grid-table-viewport"]`) carries one session attribute per gesture: `data-cell-selecting` while a drag-selection is in progress (the fill handle hides), `data-cell-filling` for the duration of a fill drag (every selected cell's own chrome rests, so the marquee is the only painter), and `data-cell-editing` while the built-in editor is open (the edited cell's chrome and the fill handle hide).
 
 While a column is being resized the grid also renders a full-height vertical line at the pointer, with a cap in the header. It is only shown in `onEnd` mode - the default - because that is the mode where the column width does not move until you release, so the line is the only feedback the drag produces. Target it with `[data-slot="data-grid-table-resize-indicator"]`.
 
