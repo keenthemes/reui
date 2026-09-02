@@ -384,7 +384,10 @@ how many pages exist beyond the loaded rows; `recordCount` on `DataGrid` drives
 the "1 - 5 of 487" info text. With `manualPagination` and only `recordCount`
 set, the info text claims the full count while the buttons collapse to a single
 page. `isLoading` renders the built-in skeleton rows during each fetch, and a
-request id guard keeps a slow response from overwriting a newer one.
+request `AbortController` cancels superseded work so a slow response cannot
+overwrite a newer one. The example also consumes the exported
+`DataGridApiFetchParams` and `DataGridApiResponse` types, applies every entry in
+the controlled sorting state, and leaves the loading state on request failure.
 
 <ComponentPreview
   styleName="base-nova"
