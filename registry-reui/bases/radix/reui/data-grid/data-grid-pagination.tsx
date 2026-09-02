@@ -32,6 +32,54 @@ interface DataGridPaginationProps {
   ellipsisText?: string
 }
 
+type PaginationItem =
+  | { type: "page"; index: number }
+  | { type: "ellipsis"; direction: "previous" | "next" }
+
+function getPaginationItems(
+  pageIndex: number,
+  pageCount: number
+): PaginationItem[] {
+  if (pageCount <= 7) {
+    return Array.from({ length: pageCount }, (_, index) => ({
+      type: "page",
+      index,
+    }))
+  }
+
+  if (pageIndex <= 3) {
+    return [
+      ...Array.from({ length: 5 }, (_, index) => ({
+        type: "page" as const,
+        index,
+      })),
+      { type: "ellipsis", direction: "next" },
+      { type: "page", index: pageCount - 1 },
+    ]
+  }
+
+  if (pageIndex >= pageCount - 4) {
+    return [
+      { type: "page", index: 0 },
+      { type: "ellipsis", direction: "previous" },
+      ...Array.from({ length: 5 }, (_, offset) => ({
+        type: "page" as const,
+        index: pageCount - 5 + offset,
+      })),
+    ]
+  }
+
+  return [
+    { type: "page", index: 0 },
+    { type: "ellipsis", direction: "previous" },
+    { type: "page", index: pageIndex - 1 },
+    { type: "page", index: pageIndex },
+    { type: "page", index: pageIndex + 1 },
+    { type: "ellipsis", direction: "next" },
+    { type: "page", index: pageCount - 1 },
+  ]
+}
+
 function DataGridPagination(props: DataGridPaginationProps): JSX.Element {
   const { i18n, table, recordCount, isLoading } = useDataGrid()
 
@@ -65,83 +113,13 @@ function DataGridPagination(props: DataGridPaginationProps): JSX.Element {
         .replaceAll("{count}", recordCount.toString())
     : i18n.labels.paginationInfo({ from, to, count: recordCount })
 
-  // Pagination limit logic
-  const paginationMoreLimit = mergedProps.moreLimit || 5
-
-  // Determine the start and end of the pagination group
-  const currentGroupStart =
-    Math.floor(pageIndex / paginationMoreLimit) * paginationMoreLimit
-  const currentGroupEnd = Math.min(
-    currentGroupStart + paginationMoreLimit,
-    pageCount
-  )
-
-  // Render page buttons based on the current group
-  const renderPageButtons = () => {
-    const buttons = []
-    for (let i = currentGroupStart; i < currentGroupEnd; i++) {
-      buttons.push(
-        <Button
-          key={i}
-          size="icon-sm"
-          variant="ghost"
-          aria-label={i18n.labels.goToPage(i + 1)}
-          aria-current={pageIndex === i ? "page" : undefined}
-          className={cn(btnBaseClasses, "text-muted-foreground", {
-            "bg-accent text-accent-foreground": pageIndex === i,
-          })}
-          onClick={() => {
-            if (pageIndex !== i) {
-              table.setPageIndex(i)
-            }
-          }}
-        >
-          {i + 1}
-        </Button>
-      )
-    }
-    return buttons
-  }
-
-  // Render a "previous" ellipsis button if there are previous pages to show
-  const renderEllipsisPrevButton = () => {
-    if (currentGroupStart > 0) {
-      return (
-        <Button
-          size="icon-sm"
-          className={btnBaseClasses}
-          variant="ghost"
-          onClick={() => table.setPageIndex(currentGroupStart - 1)}
-        >
-          {mergedProps.ellipsisText}
-        </Button>
-      )
-    }
-    return null
-  }
-
-  // Render a "next" ellipsis button if there are more pages to show after the current group
-  const renderEllipsisNextButton = () => {
-    if (currentGroupEnd < pageCount) {
-      return (
-        <Button
-          className={btnBaseClasses}
-          variant="ghost"
-          size="icon-sm"
-          onClick={() => table.setPageIndex(currentGroupEnd)}
-        >
-          {mergedProps.ellipsisText}
-        </Button>
-      )
-    }
-    return null
-  }
+  const paginationItems = getPaginationItems(pageIndex, pageCount)
 
   return (
     <div
       data-slot="data-grid-pagination"
       className={cn(
-        "flex grow flex-col flex-wrap items-center justify-between gap-2.5 py-2.5 sm:flex-row sm:py-0",
+        "flex grow flex-col flex-wrap items-center justify-between gap-2.5 py-2.5 sm:flex-row sm:flex-nowrap sm:py-0",
         mergedProps.className
       )}
     >
@@ -186,16 +164,16 @@ function DataGridPagination(props: DataGridPaginationProps): JSX.Element {
           </>
         )}
       </div>
-      <div className="order-1 flex flex-col items-center justify-center gap-2.5 pt-2.5 sm:order-2 sm:flex-row sm:justify-end sm:pt-0">
+      <div className="order-1 flex w-full flex-col items-center justify-center gap-2.5 pt-2.5 sm:order-2 sm:w-auto sm:flex-row sm:justify-end sm:pt-0">
         {isLoading ? (
           mergedProps.infoSkeleton
         ) : (
           <>
-            <div className="text-muted-foreground order-2 text-sm text-nowrap sm:order-1">
+            <div className="text-muted-foreground order-2 w-full text-center text-sm text-nowrap sm:order-1 sm:w-auto sm:text-start">
               {paginationInfo}
             </div>
             {pageCount > 1 && (
-              <div className="order-1 flex items-center space-x-1">
+              <div className="order-1 flex w-full flex-wrap items-center justify-center gap-1 sm:w-auto sm:flex-nowrap">
                 <Button
                   size="icon-sm"
                   variant="ghost"
@@ -216,11 +194,42 @@ function DataGridPagination(props: DataGridPaginationProps): JSX.Element {
                   />
                 </Button>
 
-                {renderEllipsisPrevButton()}
-
-                {renderPageButtons()}
-
-                {renderEllipsisNextButton()}
+                {paginationItems.map((item) =>
+                  item.type === "page" ? (
+                    <Button
+                      key={`page-${item.index}`}
+                      size="icon-sm"
+                      variant="ghost"
+                      className={cn(btnBaseClasses, "text-muted-foreground", {
+                        "bg-accent text-accent-foreground":
+                          pageIndex === item.index,
+                      })}
+                      onClick={() => {
+                        if (pageIndex !== item.index) {
+                          table.setPageIndex(item.index)
+                        }
+                      }}
+                    >
+                      {item.index + 1}
+                    </Button>
+                  ) : (
+                    <Button
+                      key={`ellipsis-${item.direction}`}
+                      size="icon-sm"
+                      className={btnBaseClasses}
+                      variant="ghost"
+                      onClick={() => {
+                        const target =
+                          item.direction === "previous"
+                            ? Math.max(0, pageIndex - 3)
+                            : Math.min(pageCount - 1, pageIndex + 3)
+                        table.setPageIndex(target)
+                      }}
+                    >
+                      {mergedProps.ellipsisText}
+                    </Button>
+                  )
+                )}
 
                 <Button
                   size="icon-sm"
