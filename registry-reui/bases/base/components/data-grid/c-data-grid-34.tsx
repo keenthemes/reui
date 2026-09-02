@@ -1,10 +1,12 @@
 "use client"
 
-import { useEffect, useMemo, useRef, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { Badge } from "@/registry-reui/bases/base/reui/badge"
 import {
   DataGrid,
   dataGridFeatures,
+  type DataGridApiFetchParams,
+  type DataGridApiResponse,
   type DataGridFeatures,
 } from "@/registry-reui/bases/base/reui/data-grid/data-grid"
 import { DataGridColumnHeader } from "@/registry-reui/bases/base/reui/data-grid/data-grid-column-header"
@@ -54,6 +56,10 @@ interface IData {
 }
 
 type StatusFilter = "all" | IData["status"]
+
+type ServerFetchParams = DataGridApiFetchParams & {
+  status: StatusFilter
+}
 
 const avatars = [
   "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=96&h=96&dpr=2&q=80",
@@ -118,17 +124,25 @@ const serverRecords: IData[] = Array.from(
  * slice. Replace the whole body with a fetch to your own API and keep the
  * return shape - one page of rows plus the total AFTER filtering.
  */
-async function fetchServerPage(params: {
-  pageIndex: number
-  pageSize: number
-  sorting: SortingState
-  search: string
-  status: StatusFilter
-}): Promise<{ rows: IData[]; total: number }> {
+async function fetchServerPage(
+  params: ServerFetchParams,
+  signal: AbortSignal
+): Promise<DataGridApiResponse<IData>> {
   // Latency, so the built-in skeleton state is actually visible in the demo.
-  await new Promise((resolve) => setTimeout(resolve, 500))
+  await new Promise<void>((resolve, reject) => {
+    const timeoutId = window.setTimeout(resolve, 500)
 
-  const search = params.search.toLowerCase()
+    signal.addEventListener(
+      "abort",
+      () => {
+        window.clearTimeout(timeoutId)
+        reject(new DOMException("Request aborted", "AbortError"))
+      },
+      { once: true }
+    )
+  })
+
+  const search = params.searchQuery?.toLowerCase() ?? ""
   let rows = serverRecords
   if (params.status !== "all") {
     rows = rows.filter((record) => record.status === params.status)
@@ -141,23 +155,35 @@ async function fetchServerPage(params: {
     )
   }
 
-  const sort = params.sorting[0]
-  if (sort) {
-    const direction = sort.desc ? -1 : 1
-    rows = [...rows].sort((a, b) => {
-      const left = a[sort.id as keyof IData]
-      const right = b[sort.id as keyof IData]
-      if (typeof left === "number" && typeof right === "number") {
-        return (left - right) * direction
+  if (params.sorting?.length) {
+    rows = [...rows].sort((leftRow, rightRow) => {
+      for (const sort of params.sorting ?? []) {
+        const left = leftRow[sort.id as keyof IData]
+        const right = rightRow[sort.id as keyof IData]
+        const comparison =
+          typeof left === "number" && typeof right === "number"
+            ? left - right
+            : String(left).localeCompare(String(right))
+
+        if (comparison !== 0) {
+          return sort.desc ? -comparison : comparison
+        }
       }
-      return String(left).localeCompare(String(right)) * direction
+
+      return 0
     })
   }
 
   const start = params.pageIndex * params.pageSize
+  const data = rows.slice(start, start + params.pageSize)
+
   return {
-    rows: rows.slice(start, start + params.pageSize),
-    total: rows.length,
+    data,
+    empty: rows.length === 0,
+    pagination: {
+      total: rows.length,
+      page: params.pageIndex,
+    },
   }
 }
 
@@ -170,9 +196,29 @@ export default function Pattern() {
   const [searchInput, setSearchInput] = useState("")
   const [search, setSearch] = useState("")
   const [status, setStatus] = useState<StatusFilter>("all")
-  const [data, setData] = useState<IData[]>([])
-  const [total, setTotal] = useState(0)
-  const [isLoading, setIsLoading] = useState(true)
+  const [result, setResult] = useState<DataGridApiResponse<IData>>({
+    data: [],
+    empty: false,
+    pagination: { total: 0, page: 0 },
+  })
+  const request = useMemo<ServerFetchParams>(
+    () => ({
+      pageIndex: pagination.pageIndex,
+      pageSize: pagination.pageSize,
+      sorting,
+      searchQuery: search,
+      status,
+    }),
+    [pagination.pageIndex, pagination.pageSize, search, sorting, status]
+  )
+  const requestKey = JSON.stringify(request)
+  const [loadState, setLoadState] = useState<{
+    requestKey: string
+    error?: string
+  }>()
+  const isLoading = loadState?.requestKey !== requestKey
+  const error =
+    loadState?.requestKey === requestKey ? loadState.error : undefined
 
   const hasActiveFilters = searchInput.trim() !== "" || status !== "all"
 
@@ -193,25 +239,29 @@ export default function Pattern() {
     return () => window.clearTimeout(timeoutId)
   }, [searchInput])
 
-  // One fetch per settled query state. The request id guards against a slow
-  // response landing after a newer one and overwriting fresher rows.
-  const requestIdRef = useRef(0)
+  // One fetch per settled query state. Cleanup aborts superseded requests so a
+  // slow response cannot overwrite fresher rows or waste backend work.
   useEffect(() => {
-    const requestId = ++requestIdRef.current
-    setIsLoading(true)
-    fetchServerPage({
-      pageIndex: pagination.pageIndex,
-      pageSize: pagination.pageSize,
-      sorting,
-      search,
-      status,
-    }).then((response) => {
-      if (requestId !== requestIdRef.current) return
-      setData(response.rows)
-      setTotal(response.total)
-      setIsLoading(false)
-    })
-  }, [pagination.pageIndex, pagination.pageSize, sorting, search, status])
+    const controller = new AbortController()
+
+    fetchServerPage(request, controller.signal)
+      .then((response) => {
+        setResult(response)
+        setLoadState({ requestKey })
+      })
+      .catch((fetchError: unknown) => {
+        if (
+          !(
+            fetchError instanceof DOMException &&
+            fetchError.name === "AbortError"
+          )
+        ) {
+          setLoadState({ requestKey, error: "Could not load records" })
+        }
+      })
+
+    return () => controller.abort()
+  }, [request, requestKey])
 
   const columns = useMemo<ColumnDef<DataGridFeatures, IData>[]>(
     () => [
@@ -324,7 +374,7 @@ export default function Pattern() {
   const table = useTable({
     features: dataGridFeatures,
     columns,
-    data,
+    data: result.data,
     // Server-side mode: `data` is exactly one page, so paging and sorting are
     // the server's job instead of the row models'.
     manualPagination: true,
@@ -333,7 +383,7 @@ export default function Pattern() {
     // getPageCount() is derived from the one loaded page and the pagination
     // buttons collapse to a single page, while the info text still claims the
     // full count. recordCount only drives the "1 - 5 of N" text.
-    rowCount: total,
+    rowCount: result.pagination.total,
     getRowId: (row: IData) => row.id,
     state: {
       pagination,
@@ -346,7 +396,7 @@ export default function Pattern() {
   return (
     <DataGrid
       table={table}
-      recordCount={total}
+      recordCount={result.pagination.total}
       isLoading={isLoading}
       tableLayout={{ columnsResizable: true }}
     >
@@ -354,8 +404,12 @@ export default function Pattern() {
         <CardHeader className="items-center px-3.5">
           <CardTitle className="flex items-center gap-2">
             Users
-            <Badge variant="secondary" size="sm" className="tabular-nums">
-              {total}
+            <Badge
+              variant={error ? "destructive" : "secondary"}
+              size="sm"
+              className="tabular-nums"
+            >
+              {error ?? result.pagination.total}
             </Badge>
           </CardTitle>
           <CardAction className="flex flex-wrap items-center justify-end gap-2">
