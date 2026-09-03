@@ -1,0 +1,14 @@
+[
+  {
+    "name": "c-music-key-field-1",
+    "title": "Simple key grid",
+    "description": "Open 2×6 pitch grid with sharp/flat spelling",
+    "order": 1
+  },
+  {
+    "name": "c-music-key-field-2",
+    "title": "Complex key dropdown",
+    "description": "Popover with Major/Minor and NOTES grid plus clear",
+    "order": 2
+  }
+]

@@ -1,0 +1,14 @@
+[
+  {
+    "name": "c-locale-field-1",
+    "title": "Multilingual single field",
+    "description": "Locale tabs with fill dots and soft master border",
+    "order": 1
+  },
+  {
+    "name": "c-locale-field-2",
+    "title": "Multilingual first + last name",
+    "description": "Name pair with partial fill state on a locale",
+    "order": 2
+  }
+]
