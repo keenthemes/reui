@@ -206,16 +206,20 @@ function DataGridPagination(props: DataGridPaginationProps): JSX.Element {
                   item.type === "page" ? (
                     <Button
                       key={`page-${item.index}`}
-                      size="icon-sm"
+                      size="sm"
                       variant="ghost"
                       aria-label={i18n.labels.goToPage(item.index + 1)}
                       aria-current={
                         pageIndex === item.index ? "page" : undefined
                       }
-                      className={cn(btnBaseClasses, "text-muted-foreground", {
-                        "bg-accent text-accent-foreground":
-                          pageIndex === item.index,
-                      })}
+                      className={cn(
+                        "min-w-8 px-2 text-sm",
+                        "text-muted-foreground",
+                        {
+                          "bg-accent text-accent-foreground":
+                            pageIndex === item.index,
+                        }
+                      )}
                       onClick={() => {
                         if (pageIndex !== item.index) {
                           table.setPageIndex(item.index)
