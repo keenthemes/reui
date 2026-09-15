@@ -32,6 +32,7 @@ import {
   EventCalendarEvent,
 } from "@/registry-reui/bases/base/reui/event-calendar/event-calendar-event"
 import {
+  CALENDAR_EVENTS_RIGHT_PADDING,
   getDayKey,
   getDayTotalMinutes,
   getRangeKey,
@@ -1101,9 +1102,10 @@ function EventCalendarDayColumn({
         viewConfig.classNames?.dayColumn
       )}
       style={{
+        '--column-width': `calc(100% - ${CALENDAR_EVENTS_RIGHT_PADDING}px)`,
         height: `calc(var(--ec-hour-height) * ${boundsMinutes / 60})`,
         backgroundImage: `repeating-linear-gradient(to bottom, transparent, transparent calc(var(--ec-hour-height) * ${interval / 60} - var(--ec-slot-line-width, 1px)), var(--ec-slot-line-color, var(--color-border)) calc(var(--ec-hour-height) * ${interval / 60} - var(--ec-slot-line-width, 1px)), var(--ec-slot-line-color, var(--color-border)) calc(var(--ec-hour-height) * ${interval / 60}))`,
-      }}
+      } as CSSProperties}
       onPointerDown={(e) => {
         if (e.target === e.currentTarget) gestures.beginCreate(e, day, false)
       }}
@@ -1149,8 +1151,8 @@ function EventCalendarDayColumn({
             style={
               {
                 ...minuteBlockStyle(startMin, endMin, boundsStartMin),
-                left: `${column * colPct}%`,
-                width: `${span * colPct}%`,
+                left: `calc(var(--column-width) / 100 * ${column} * ${colPct})`,
+                width: `calc(var(--column-width) / 100 * ${span} * ${colPct})`,
                 "--ec-z": zIndex,
               } as CSSProperties
             }

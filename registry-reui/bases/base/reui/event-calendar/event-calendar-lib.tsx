@@ -29,6 +29,8 @@ type WeekStartsOn = 0 | 1 | 2 | 3 | 4 | 5 | 6
 /** Packing-effective minimum in minutes so tiny events do not stack invisibly. */
 const MIN_PACK_SLOT = 30
 
+const CALENDAR_EVENTS_RIGHT_PADDING = 12;
+
 /** The instant re-expressed in the display time zone (TZDate extends Date). */
 function toZoned(date: Date, timeZone: string): TZDate {
   return new TZDate(date.getTime(), timeZone)
@@ -658,6 +660,7 @@ export {
   getViewDateRange,
   isBarOccurrence,
   MIN_PACK_SLOT,
+  CALENDAR_EVENTS_RIGHT_PADDING,
   packTimedSegments,
   packWeekRowLanes,
   rangesIntersect,
