@@ -226,6 +226,8 @@ function CascaderVirtualRows({
   estimateSize,
   overscan,
 }: CascaderVirtualItemsProps) {
+  "use no memo";
+
   const {
     estimateRowSize,
     overscan: rootOverscan,
@@ -376,6 +378,8 @@ function CascaderVirtualColumnRows({
   overscan,
   activeIndex,
 }: CascaderVirtualColumnProps & { activeIndex: number }) {
+  "use no memo";
+
   const {
     estimateRowSize,
     overscan: rootOverscan,
