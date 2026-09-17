@@ -2682,7 +2682,8 @@ export type CascaderPanelProps = useRender.ComponentProps<"div">
  * and the panel is the only ancestor of both ends of that move in BOTH shapes.
  */
 function CascaderPanel({ className, ...props }: CascaderPanelProps) {
-  const { mode } = useCascaderActions()
+  const { inline, mode } = useCascaderActions()
+  const { renderedItems } = useCascaderState()
 
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -2707,10 +2708,17 @@ function CascaderPanel({ className, ...props }: CascaderPanelProps) {
   const defaultProps = {
     "data-slot": "cascader-panel",
     "data-mode": mode,
+    // Inline panels replace `CascaderContent`, so they publish the same
+    // named-group contract that makes `CascaderEmpty` visible in a popup.
+    ...(inline && renderedItems.length === 0 ? { "data-empty": "" } : null),
     // In `defaultProps`, not around `props.onKeyDown`: `mergeProps` chains
     // right to left, so a consumer's handler runs FIRST and can drop this one.
     onKeyDown: handleKeyDown,
-    className: cn("flex max-h-full min-h-0 w-full flex-col", className),
+    className: cn(
+      "flex max-h-full min-h-0 w-full flex-col",
+      inline && "group/combobox-content",
+      className
+    ),
   }
 
   return useRender({

@@ -2689,7 +2689,8 @@ function CascaderPanel({
   onKeyDown,
   ...props
 }: CascaderPanelProps) {
-  const { mode } = useCascaderActions()
+  const { inline, mode } = useCascaderActions()
+  const { renderedItems } = useCascaderState()
   const Comp = asChild ? Slot.Root : "div"
 
   const handleKeyDown = React.useCallback(
@@ -2715,12 +2716,19 @@ function CascaderPanel({
     [onKeyDown]
   )
 
+  // Inline panels replace `CascaderContent`, so they publish the same
+  // named-group contract that makes `CascaderEmpty` visible in a popup.
   return (
     <Comp
       data-slot="cascader-panel"
       data-mode={mode}
+      {...(inline && renderedItems.length === 0 ? { "data-empty": "" } : null)}
       onKeyDown={handleKeyDown}
-      className={cn("flex max-h-full min-h-0 w-full flex-col", className)}
+      className={cn(
+        "flex max-h-full min-h-0 w-full flex-col",
+        inline && "group/combobox-content",
+        className
+      )}
       {...props}
     >
       {children}
