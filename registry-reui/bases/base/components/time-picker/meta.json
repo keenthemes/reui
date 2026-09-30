@@ -1,0 +1,27 @@
+[
+  {
+    "name": "c-time-picker-1",
+    "title": "Basic 24-hour time picker",
+    "description": "Standard 2-column 24-hour time picker with now, clear, and confirm actions",
+    "order": 1,
+    "gridSize": 1
+  },
+  {
+    "name": "c-time-picker-2",
+    "title": "12-hour time picker with seconds",
+    "description": "4-column 12-hour time picker with seconds and AM/PM selector",
+    "order": 2
+  },
+  {
+    "name": "c-time-picker-3",
+    "title": "Stepped intervals and operating bounds",
+    "description": "15-minute stepped interval picker with min and max business hour constraints",
+    "order": 3
+  },
+  {
+    "name": "c-time-picker-4",
+    "title": "Composable raw time picker layout",
+    "description": "Fully headless composable primitives with custom trigger and action layout",
+    "order": 4
+  }
+]

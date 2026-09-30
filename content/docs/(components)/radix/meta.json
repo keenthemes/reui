@@ -24,6 +24,7 @@
     "sortable",
     "stepper",
     "timeline",
+    "time-picker",
     "tree"
   ]
 }

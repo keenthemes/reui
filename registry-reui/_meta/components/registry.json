@@ -415,6 +415,12 @@
       "count": 6
     },
     {
+      "name": "time-picker",
+      "label": "Time Picker",
+      "description": "Open-source shadcn time picker components for scheduling, appointment booking, and time intervals.",
+      "count": 4
+    },
+    {
       "name": "timeline",
       "label": "Timeline",
       "description": "Open-source shadcn timeline components for activity feeds, roadmaps, and event history.",
@@ -445,5 +451,5 @@
       "count": 7
     }
   ],
-  "totalComponents": 1105
+  "totalComponents": 1109
 }

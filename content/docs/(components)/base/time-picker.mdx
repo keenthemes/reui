@@ -1,0 +1,69 @@
+---
+title: Time Picker
+description: A composable, accessible time picker primitive supporting 12/24-hour modes, step intervals, and min/max constraints.
+component: true
+base: base
+---
+
+<ComponentPreview styleName="base-nova" name="c-time-picker-1" align="start" />
+
+## Installation
+
+```bash
+npx shadcn@latest add @reui/time-picker
+```
+
+## Usage
+
+```tsx
+import { TimePicker } from "@/components/reui/time-picker"
+```
+
+```tsx
+const [time, setTime] = useState<string>("09:30")
+
+return <TimePicker value={time} onChange={setTime} placeholder="Select time" />
+```
+
+## Examples
+
+### 12-Hour Format with Seconds
+
+<ComponentPreview styleName="base-nova" name="c-time-picker-2" />
+
+### Stepped Intervals and Operating Bounds
+
+<ComponentPreview styleName="base-nova" name="c-time-picker-3" />
+
+### Composable Primitives
+
+<ComponentPreview styleName="base-nova" name="c-time-picker-4" />
+
+## API Reference
+
+### TimePicker
+
+Root component that acts as either a convenient one-line picker or a context provider for subcomponents.
+
+| Prop           | Type                            | Default         | Description                                                   |
+| :------------- | :------------------------------ | :-------------- | :------------------------------------------------------------ |
+| `value`        | `string`                        | -               | Controlled time string (`"HH:mm"` or `"HH:mm:ss"`).           |
+| `defaultValue` | `string`                        | `""`            | Initial uncontrolled value.                                   |
+| `onChange`     | `(value: string) => void`       | -               | Callback invoked when time changes.                           |
+| `use12Hours`   | `boolean`                       | `false`         | Whether to display 12-hour format with AM/PM column.          |
+| `showSeconds`  | `boolean`                       | `false`         | Whether to display seconds column.                            |
+| `hourStep`     | `number`                        | `1`             | Interval between selectable hours.                            |
+| `minuteStep`   | `number`                        | `1`             | Interval between selectable minutes (e.g. 5, 15, 30).         |
+| `secondStep`   | `number`                        | `1`             | Interval between selectable seconds.                          |
+| `minTime`      | `string`                        | -               | Earliest selectable time (`"HH:mm"` or `"HH:mm:ss"`).         |
+| `maxTime`      | `string`                        | -               | Latest selectable time (`"HH:mm"` or `"HH:mm:ss"`).           |
+| `disabled`     | `boolean`                       | `false`         | Disables trigger and interaction.                             |
+| `size`         | `"sm" \| "default" \| "lg"`     | `"default"`     | Size variant for trigger button.                              |
+| `locale`       | `"en" \| "zh"`                  | `"en"`          | Language preset for column headers, buttons, and ARIA labels. |
+| `i18n`         | `Partial<TimePickerI18nConfig>` | -               | Custom label and ARIA overrides.                              |
+| `placeholder`  | `string`                        | `"Select time"` | Placeholder displayed when value is empty.                    |
+| `clearable`    | `boolean`                       | `true`          | Shows clear button in footer.                                 |
+| `nowButton`    | `boolean`                       | `true`          | Shows "Now" shortcut button in footer.                        |
+| `open`         | `boolean`                       | -               | Controlled popover open state.                                |
+| `onOpenChange` | `(open: boolean) => void`       | -               | Callback when popover opens/closes.                           |
+| `align`        | `"start" \| "center" \| "end"`  | `"start"`       | Popover alignment.                                            |

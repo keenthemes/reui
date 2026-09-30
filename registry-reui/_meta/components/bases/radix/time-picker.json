@@ -1,0 +1,102 @@
+{
+  "items": [
+    {
+      "name": "c-time-picker-1",
+      "type": "registry:block",
+      "title": "Basic 24-hour time picker",
+      "categories": [
+        "time-picker"
+      ],
+      "description": "Standard 2-column 24-hour time picker with now, clear, and confirm actions",
+      "descriptionLong": "Basic 24-hour time picker. Built with the Time Picker component. A free, open source shadcn time picker example you can install with npx shadcn@latest add @reui/c-time-picker-1 and edit as your own code.",
+      "registryDependencies": [
+        "time-picker"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/time-picker/c-time-picker-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-time-picker-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-time-picker-2",
+      "type": "registry:block",
+      "title": "12-hour time picker with seconds",
+      "categories": [
+        "time-picker"
+      ],
+      "description": "4-column 12-hour time picker with seconds and AM/PM selector",
+      "descriptionLong": "12-hour time picker with seconds. Built with the Time Picker component. A free, open source shadcn time picker example you can install with npx shadcn@latest add @reui/c-time-picker-2 and edit as your own code.",
+      "registryDependencies": [
+        "time-picker"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/time-picker/c-time-picker-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-time-picker-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-time-picker-3",
+      "type": "registry:block",
+      "title": "Stepped intervals and operating bounds",
+      "categories": [
+        "time-picker"
+      ],
+      "description": "15-minute stepped interval picker with min and max business hour constraints",
+      "descriptionLong": "Stepped intervals and operating bounds. Built with the Time Picker component. A free, open source shadcn time picker example you can install with npx shadcn@latest add @reui/c-time-picker-3 and edit as your own code.",
+      "registryDependencies": [
+        "time-picker"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/time-picker/c-time-picker-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-time-picker-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-time-picker-4",
+      "type": "registry:block",
+      "title": "Composable raw time picker layout",
+      "categories": [
+        "time-picker"
+      ],
+      "description": "Fully headless composable primitives with custom trigger and action layout",
+      "descriptionLong": "Composable raw time picker layout. Built by composing Button, Time Picker. A free, open source shadcn time picker example you can install with npx shadcn@latest add @reui/c-time-picker-4 and edit as your own code.",
+      "registryDependencies": [
+        "button",
+        "time-picker"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/time-picker/c-time-picker-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-time-picker-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    }
+  ]
+}

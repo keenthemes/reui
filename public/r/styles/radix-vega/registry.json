@@ -2022,6 +2022,27 @@
       ]
     },
     {
+      "name": "time-picker",
+      "type": "registry:ui",
+      "title": "Time Picker",
+      "description": "Composable and accessible time picker component supporting 12/24-hour modes, step intervals, and min/max constraints.",
+      "dependencies": [
+        "class-variance-authority",
+        "cn"
+      ],
+      "registryDependencies": [
+        "button",
+        "popover"
+      ],
+      "files": [
+        {
+          "path": "time-picker.tsx",
+          "type": "registry:ui",
+          "target": "components/reui/time-picker.tsx"
+        }
+      ]
+    },
+    {
       "name": "timeline",
       "type": "registry:ui",
       "title": "Timeline",

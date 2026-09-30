@@ -23345,6 +23345,88 @@
       }
     },
     {
+      "name": "c-time-picker-1",
+      "type": "registry:block",
+      "title": "Basic 24-hour time picker",
+      "description": "Standard 2-column 24-hour time picker with now, clear, and confirm actions",
+      "dependencies": [],
+      "registryDependencies": [
+        "@reui/time-picker"
+      ],
+      "files": [
+        {
+          "path": "c-time-picker-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-time-picker-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1,
+        "gridSize": 1
+      }
+    },
+    {
+      "name": "c-time-picker-2",
+      "type": "registry:block",
+      "title": "12-hour time picker with seconds",
+      "description": "4-column 12-hour time picker with seconds and AM/PM selector",
+      "dependencies": [],
+      "registryDependencies": [
+        "@reui/time-picker"
+      ],
+      "files": [
+        {
+          "path": "c-time-picker-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-time-picker-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2
+      }
+    },
+    {
+      "name": "c-time-picker-3",
+      "type": "registry:block",
+      "title": "Stepped intervals and operating bounds",
+      "description": "15-minute stepped interval picker with min and max business hour constraints",
+      "dependencies": [],
+      "registryDependencies": [
+        "@reui/time-picker"
+      ],
+      "files": [
+        {
+          "path": "c-time-picker-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-time-picker-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3
+      }
+    },
+    {
+      "name": "c-time-picker-4",
+      "type": "registry:block",
+      "title": "Composable raw time picker layout",
+      "description": "Fully headless composable primitives with custom trigger and action layout",
+      "dependencies": [],
+      "registryDependencies": [
+        "button",
+        "@reui/time-picker"
+      ],
+      "files": [
+        {
+          "path": "c-time-picker-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-time-picker-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4
+      }
+    },
+    {
       "name": "c-timeline-1",
       "type": "registry:block",
       "title": "Basic timeline.",
@@ -26631,6 +26713,27 @@
           "path": "stepper.tsx",
           "type": "registry:ui",
           "target": "components/reui/stepper.tsx"
+        }
+      ]
+    },
+    {
+      "name": "time-picker",
+      "type": "registry:ui",
+      "title": "Time Picker",
+      "description": "Composable and accessible time picker component supporting 12/24-hour modes, step intervals, and min/max constraints.",
+      "dependencies": [
+        "class-variance-authority",
+        "cn"
+      ],
+      "registryDependencies": [
+        "button",
+        "popover"
+      ],
+      "files": [
+        {
+          "path": "time-picker.tsx",
+          "type": "registry:ui",
+          "target": "components/reui/time-picker.tsx"
         }
       ]
     },
