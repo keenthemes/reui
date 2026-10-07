@@ -19,11 +19,66 @@ function ComboboxValue({ ...props }: ComboboxPrimitive.Value.Props) {
   return <ComboboxPrimitive.Value data-slot="combobox-value" {...props} />
 }
 
+function ComboboxClear({
+  className,
+  children,
+  render,
+  ...props
+}: ComboboxPrimitive.Clear.Props) {
+  const isCustomRender = render !== undefined
+  return (
+    <ComboboxPrimitive.Clear
+      data-slot="combobox-clear"
+      aria-label="Clear selection"
+      nativeButton={isCustomRender ? false : undefined}
+      render={render ?? <InputGroupButton variant="ghost" size="icon-xs" />}
+      onPointerDown={(e) => {
+        e.stopPropagation()
+        props.onPointerDown?.(e)
+      }}
+      onMouseDown={(e) => {
+        e.stopPropagation()
+        props.onMouseDown?.(e)
+      }}
+      onClick={(e) => {
+        e.stopPropagation()
+        props.onClick?.(e)
+      }}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.stopPropagation()
+        }
+        props.onKeyDown?.(e)
+      }}
+      className={cn("cn-combobox-clear", className)}
+      {...props}
+    >
+      {children ?? (
+        <IconPlaceholder
+          lucide="XIcon"
+          tabler="IconX"
+          hugeicons="Cancel01Icon"
+          phosphor="XIcon"
+          remixicon="RiCloseLine"
+          className="cn-combobox-clear-icon pointer-events-none"
+        />
+      )}
+    </ComboboxPrimitive.Clear>
+  )
+}
+
 function ComboboxTrigger({
   className,
   children,
+  clearable = false,
+  clearAriaLabel,
+  showArrow = true,
   ...props
-}: ComboboxPrimitive.Trigger.Props) {
+}: ComboboxPrimitive.Trigger.Props & {
+  clearable?: boolean
+  clearAriaLabel?: string
+  showArrow?: boolean
+}) {
   return (
     <ComboboxPrimitive.Trigger
       data-slot="combobox-trigger"
@@ -31,35 +86,28 @@ function ComboboxTrigger({
       {...props}
     >
       {children}
-      <IconPlaceholder
-        lucide="ChevronDownIcon"
-        tabler="IconChevronDown"
-        hugeicons="ArrowDown01Icon"
-        phosphor="CaretDownIcon"
-        remixicon="RiArrowDownSLine"
-        className="cn-combobox-trigger-icon pointer-events-none"
-      />
+      {(clearable || showArrow) && (
+        <span className="flex shrink-0 items-center gap-1">
+          {clearable && (
+            <ComboboxClear
+              aria-label={clearAriaLabel ?? "Clear selection"}
+              render={<span role="button" tabIndex={0} />}
+              className="inline-flex size-4 shrink-0 cursor-pointer items-center justify-center rounded-full text-muted-foreground/70 transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring"
+            />
+          )}
+          {showArrow && (
+            <IconPlaceholder
+              lucide="ChevronDownIcon"
+              tabler="IconChevronDown"
+              hugeicons="ArrowDown01Icon"
+              phosphor="CaretDownIcon"
+              remixicon="RiArrowDownSLine"
+              className="cn-combobox-trigger-icon pointer-events-none"
+            />
+          )}
+        </span>
+      )}
     </ComboboxPrimitive.Trigger>
-  )
-}
-
-function ComboboxClear({ className, ...props }: ComboboxPrimitive.Clear.Props) {
-  return (
-    <ComboboxPrimitive.Clear
-      data-slot="combobox-clear"
-      render={<InputGroupButton variant="ghost" size="icon-xs" />}
-      className={cn("cn-combobox-clear", className)}
-      {...props}
-    >
-      <IconPlaceholder
-        lucide="XIcon"
-        tabler="IconX"
-        hugeicons="Cancel01Icon"
-        phosphor="XIcon"
-        remixicon="RiCloseLine"
-        className="cn-combobox-clear-icon pointer-events-none"
-      />
-    </ComboboxPrimitive.Clear>
   )
 }
 
@@ -321,5 +369,6 @@ export {
   ComboboxChipsInput,
   ComboboxTrigger,
   ComboboxValue,
+  ComboboxClear,
   useComboboxAnchor,
 }

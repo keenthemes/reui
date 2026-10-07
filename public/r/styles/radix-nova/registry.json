@@ -10202,6 +10202,28 @@
       }
     },
     {
+      "name": "c-combobox-29",
+      "type": "registry:block",
+      "title": "A combobox trigger with an inline clear button",
+      "description": "A combobox trigger with an inline clear button",
+      "dependencies": [],
+      "registryDependencies": [
+        "button",
+        "combobox",
+        "field"
+      ],
+      "files": [
+        {
+          "path": "c-combobox-29.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-combobox-29.tsx"
+        }
+      ],
+      "meta": {
+        "order": 29
+      }
+    },
+    {
       "name": "c-combobox-3",
       "type": "registry:block",
       "title": "A combobox in an invalid state",

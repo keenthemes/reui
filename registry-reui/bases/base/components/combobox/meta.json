@@ -166,5 +166,11 @@
     "title": "An assignee selection combobox",
     "description": "An assignee selection combobox",
     "order": 28
+  },
+  {
+    "name": "c-combobox-29",
+    "title": "A combobox trigger with an inline clear button",
+    "description": "A combobox trigger with an inline clear button",
+    "order": 29
   }
 ]

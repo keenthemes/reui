@@ -30,6 +30,7 @@ export const componentPreviewLoaders = {
   "c-combobox-26": () => import("@/registry-reui/bases/base/components/combobox/c-combobox-26.tsx"),
   "c-combobox-27": () => import("@/registry-reui/bases/base/components/combobox/c-combobox-27.tsx"),
   "c-combobox-28": () => import("@/registry-reui/bases/base/components/combobox/c-combobox-28.tsx"),
+  "c-combobox-29": () => import("@/registry-reui/bases/base/components/combobox/c-combobox-29.tsx"),
 } as const
 
 export type ComponentName = keyof typeof componentPreviewLoaders
