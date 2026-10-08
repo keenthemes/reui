@@ -750,6 +750,32 @@
       "meta": {
         "order": 28
       }
+    },
+    {
+      "name": "c-combobox-29",
+      "type": "registry:block",
+      "title": "A combobox trigger with an inline clear button",
+      "categories": [
+        "combobox"
+      ],
+      "description": "A combobox trigger with an inline clear button",
+      "descriptionLong": "A combobox trigger with an inline clear button. Built by composing Button, Combobox, Field. A free, open source shadcn combobox example you can install with npx shadcn@latest add @reui/c-combobox-29 and edit as your own code.",
+      "registryDependencies": [
+        "button",
+        "combobox",
+        "field"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/combobox/c-combobox-29.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-combobox-29.tsx"
+        }
+      ],
+      "meta": {
+        "order": 29
+      }
     }
   ]
 }

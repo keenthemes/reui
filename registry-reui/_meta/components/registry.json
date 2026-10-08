@@ -124,7 +124,7 @@
       "name": "combobox",
       "label": "Combobox",
       "description": "Open-source shadcn combobox components for searchable selection, async lookup, and command menus.",
-      "count": 28
+      "count": 29
     },
     {
       "name": "command",
@@ -499,5 +499,5 @@
       "count": 7
     }
   ],
-  "totalComponents": 1175
+  "totalComponents": 1176
 }
