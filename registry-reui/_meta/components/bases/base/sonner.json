@@ -23,7 +23,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Basic"
       }
     },
     {
@@ -49,7 +50,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "With Description"
       }
     },
     {
@@ -75,7 +77,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Positions"
       }
     },
     {
@@ -101,7 +104,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Variant Icons"
       }
     },
     {
@@ -127,7 +131,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "Durations"
       }
     },
     {
@@ -153,7 +158,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "Action Button"
       }
     },
     {
@@ -179,7 +185,8 @@
         }
       ],
       "meta": {
-        "order": 7
+        "order": 7,
+        "label": "Promise"
       }
     },
     {
@@ -205,7 +212,8 @@
         }
       ],
       "meta": {
-        "order": 8
+        "order": 8,
+        "label": "Action & Cancel"
       }
     },
     {
@@ -232,7 +240,8 @@
         }
       ],
       "meta": {
-        "order": 9
+        "order": 9,
+        "label": "Rich Content"
       }
     },
     {
@@ -259,7 +268,8 @@
         }
       ],
       "meta": {
-        "order": 10
+        "order": 10,
+        "label": "Upload Progress"
       }
     },
     {
@@ -285,7 +295,8 @@
         }
       ],
       "meta": {
-        "order": 11
+        "order": 11,
+        "label": "Status Alert"
       }
     },
     {
@@ -311,7 +322,8 @@
         }
       ],
       "meta": {
-        "order": 12
+        "order": 12,
+        "label": "Accent Border"
       }
     },
     {
@@ -337,7 +349,8 @@
         }
       ],
       "meta": {
-        "order": 13
+        "order": 13,
+        "label": "Invert Success"
       }
     },
     {
@@ -364,7 +377,8 @@
         }
       ],
       "meta": {
-        "order": 14
+        "order": 14,
+        "label": "Invert Error"
       }
     },
     {
@@ -391,7 +405,8 @@
         }
       ],
       "meta": {
-        "order": 15
+        "order": 15,
+        "label": "Invert Info"
       }
     },
     {
@@ -417,7 +432,8 @@
         }
       ],
       "meta": {
-        "order": 16
+        "order": 16,
+        "label": "Invert Warning"
       }
     },
     {
@@ -445,7 +461,8 @@
         }
       ],
       "meta": {
-        "order": 17
+        "order": 17,
+        "label": "Invert Avatar Group"
       }
     },
     {
@@ -471,7 +488,8 @@
         }
       ],
       "meta": {
-        "order": 18
+        "order": 18,
+        "label": "Close Top Right"
       }
     },
     {
@@ -497,7 +515,8 @@
         }
       ],
       "meta": {
-        "order": 19
+        "order": 19,
+        "label": "Custom Icon"
       }
     },
     {
@@ -524,7 +543,8 @@
         }
       ],
       "meta": {
-        "order": 20
+        "order": 20,
+        "label": "Integration"
       }
     },
     {
@@ -551,7 +571,8 @@
         }
       ],
       "meta": {
-        "order": 21
+        "order": 21,
+        "label": "Updatable"
       }
     }
   ]

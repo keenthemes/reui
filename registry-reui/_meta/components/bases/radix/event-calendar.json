@@ -36,7 +36,8 @@
       ],
       "meta": {
         "order": 1,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "All Views"
       }
     },
     {
@@ -68,7 +69,8 @@
       ],
       "meta": {
         "order": 2,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Room Bookings"
       }
     },
     {
@@ -106,7 +108,8 @@
       ],
       "meta": {
         "order": 3,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Event Form Dialog"
       }
     },
     {
@@ -138,7 +141,8 @@
       ],
       "meta": {
         "order": 4,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Custom Event Chips"
       }
     },
     {
@@ -171,7 +175,8 @@
       ],
       "meta": {
         "order": 5,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Drag-to-Book"
       }
     }
   ]

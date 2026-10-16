@@ -11,30 +11,35 @@
 // Membership is the signal. The value is the tooltip and the screen-reader
 // label, so it has to read as a sentence on its own.
 //
-// CURRENTLY REFLECTING: v2.8.0 - 11 October, 2026.
-//   New Color Picker, Emoji Picker and File Type primitives, with 15, 8 and 14
-//   examples per base: each carries the dot in the docs sidebar and in the
-//   components sidebar. Stepper gained 29 examples, so it carries both as
-//   well. Data Grid gained grouped and spanning headers and scrolling fixes but
-//   no new examples, so it carries the docs dot only.
+// CURRENTLY REFLECTING: v2.8.1 - 15 October, 2026.
+//   The Data Grid, Event Calendar, Gantt and Date Selector docs carry the dot
+//   for their React Compiler fixes, the Cascader for its closed-trigger
+//   resolveValue fix, and File Type for its 72 new formats (also in the
+//   components sidebar, with its new example). The new Trace category carries
+//   it in the components sidebar; it is a shadcn component, so it has no docs
+//   page here.
 //   Everything the previous release marked is cleared, per the rule above.
 
 /** Which DOCS pages carry the dot. Keys are doc slugs. */
 export const DOCS_MENU_UPDATES = {
-  "color-picker": "New Color Picker docs",
-  "emoji-picker": "New Emoji Picker docs",
-  "file-type": "New File Type docs",
-  stepper: "Added 29 new Stepper examples, 44 in all",
   "data-grid":
-    "Data Grid adds grouped and spanning headers, scrolls faster, and its scrollbar stops above a sticky footer",
+    "Data Grid works in apps that run React Compiler, with resizing, edits and callbacks kept live",
+  "event-calendar":
+    "Event Calendar keeps today and the agenda current in apps that run React Compiler",
+  gantt:
+    "Gantt keeps its Today button and tooltip current in apps that run React Compiler",
+  "date-selector":
+    "Date Selector keeps its year list and Today button current in apps that run React Compiler",
+  cascader:
+    "Cascader keeps a saved selection's full path, popup open or closed",
+  "file-type": "File Type knows 171 formats, .env and Dockerfile included",
 } as const
 
 /** Which COMPONENT categories carry the dot. Keys are category slugs. */
 export const COMPONENTS_MENU_UPDATES = {
-  "color-picker": "New Color Picker category with 15 examples",
-  "emoji-picker": "New Emoji Picker category with 8 examples",
-  "file-type": "New File Type category with 14 examples",
-  stepper: "Added 29 new Stepper examples, 44 in all",
+  trace: "New Trace category with 22 examples",
+  "file-type":
+    "Added 72 developer file formats and a Dotfiles & Build Names example",
 } as const
 
 /**

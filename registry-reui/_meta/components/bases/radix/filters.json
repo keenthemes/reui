@@ -28,7 +28,8 @@
       "meta": {
         "order": 1,
         "gridSize": 1,
-        "previewHeight": "560"
+        "previewHeight": "560",
+        "label": "Full Filter Bar"
       }
     },
     {
@@ -56,7 +57,8 @@
       "meta": {
         "order": 2,
         "gridSize": 1,
-        "previewHeight": "360"
+        "previewHeight": "360",
+        "label": "Nested Attributes"
       }
     },
     {
@@ -87,7 +89,8 @@
       "meta": {
         "order": 3,
         "gridSize": 1,
-        "previewHeight": "360"
+        "previewHeight": "360",
+        "label": "Status Badges"
       }
     },
     {
@@ -117,7 +120,8 @@
       "meta": {
         "order": 4,
         "gridSize": 1,
-        "previewHeight": "360"
+        "previewHeight": "360",
+        "label": "Avatars & Paging"
       }
     },
     {
@@ -149,7 +153,8 @@
       "meta": {
         "order": 5,
         "gridSize": 1,
-        "previewHeight": "432"
+        "previewHeight": "432",
+        "label": "Date Editors"
       }
     },
     {
@@ -179,7 +184,8 @@
       "meta": {
         "order": 6,
         "gridSize": 1,
-        "previewHeight": "360"
+        "previewHeight": "360",
+        "label": "Slider Editor"
       }
     },
     {
@@ -218,7 +224,8 @@
       "meta": {
         "order": 7,
         "gridSize": 1,
-        "previewHeight": "520"
+        "previewHeight": "520",
+        "label": "Table Filtering"
       }
     },
     {
@@ -255,7 +262,8 @@
       "meta": {
         "order": 8,
         "gridSize": 1,
-        "previewHeight": "360"
+        "previewHeight": "360",
+        "label": "Choice Controls"
       }
     },
     {
@@ -290,7 +298,8 @@
       "meta": {
         "order": 9,
         "gridSize": 1,
-        "previewHeight": "360"
+        "previewHeight": "360",
+        "label": "Typed Inputs"
       }
     },
     {
@@ -331,7 +340,8 @@
       "meta": {
         "order": 10,
         "gridSize": 1,
-        "previewHeight": "600"
+        "previewHeight": "600",
+        "label": "Popover Builder"
       }
     },
     {
@@ -364,7 +374,8 @@
       "meta": {
         "order": 11,
         "gridSize": 1,
-        "previewHeight": "720"
+        "previewHeight": "720",
+        "label": "Inline Builder"
       }
     },
     {
@@ -398,7 +409,8 @@
       "meta": {
         "order": 12,
         "gridSize": 1,
-        "previewHeight": "440"
+        "previewHeight": "440",
+        "label": "Controlled & Translated"
       }
     }
   ]

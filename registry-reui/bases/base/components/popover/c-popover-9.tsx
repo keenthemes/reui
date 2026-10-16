@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Badge } from "@/registry-reui/bases/radix/reui/badge"
+import { Badge } from "@/registry-reui/bases/base/reui/badge"
 import { format, formatDistanceToNow } from "date-fns"
 
 import {

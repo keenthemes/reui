@@ -1,9 +1,9 @@
+import { Card, CardContent } from "@/registry/bases/radix/ui/card"
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/components/ui/collapsible"
-import { Card, CardContent } from "@/registry/bases/radix/ui/card"
+} from "@/registry/bases/radix/ui/collapsible"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function Pattern() {
@@ -21,10 +21,10 @@ export default function Pattern() {
                 phosphor="CaretDownIcon"
                 remixicon="RiArrowDownSLine"
                 aria-hidden="true"
-                className="text-muted-foreground size-4 shrink-0 transition-transform in-data-[state=open]:rotate-180"
+                className="text-muted-foreground size-4 shrink-0 transition-transform in-aria-expanded:rotate-180"
               />
             </CollapsibleTrigger>
-            <CollapsibleContent className="data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
+            <CollapsibleContent className="data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down overflow-hidden motion-reduce:animate-none">
               <div className="text-muted-foreground pt-3 text-sm">
                 You can reset your password by clicking the &quot;Forgot
                 Password&quot; link on the login page. We&apos;ll send you an

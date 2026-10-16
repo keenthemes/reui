@@ -20,7 +20,7 @@
       }
     ],
     "agentNotes": [
-      "Base UI parts flag open state with `data-open` on root and panel and `data-panel-open` on the trigger, while Radix parts set a state attribute",
+      "The trigger's `aria-expanded` carries open state in both twins and stays scoped when collapsibles nest, so key chevrons and fills on it",
       "A closed `CollapsibleContent` renders none of its children in either twin, so that text is missing from the server HTML",
       "Base UI `CollapsibleTrigger` swaps its element through `render` and the Radix one through `asChild`; each reads only its own prop"
     ]

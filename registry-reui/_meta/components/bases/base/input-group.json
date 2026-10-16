@@ -22,7 +22,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Basic"
       }
     },
     {
@@ -47,7 +48,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "Disabled"
       }
     },
     {
@@ -72,7 +74,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Invalid"
       }
     },
     {
@@ -97,7 +100,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Prefix Icon"
       }
     },
     {
@@ -122,7 +126,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "Suffix Icon"
       }
     },
     {
@@ -147,7 +152,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "Prefix Suffix Icons"
       }
     },
     {
@@ -172,7 +178,8 @@
         }
       ],
       "meta": {
-        "order": 7
+        "order": 7,
+        "label": "Prefix Text"
       }
     },
     {
@@ -197,7 +204,8 @@
         }
       ],
       "meta": {
-        "order": 8
+        "order": 8,
+        "label": "Suffix Text"
       }
     },
     {
@@ -222,7 +230,8 @@
         }
       ],
       "meta": {
-        "order": 9
+        "order": 9,
+        "label": "Prefix Suffix Text"
       }
     },
     {
@@ -247,7 +256,8 @@
         }
       ],
       "meta": {
-        "order": 10
+        "order": 10,
+        "label": "Action Button"
       }
     },
     {
@@ -274,7 +284,8 @@
         }
       ],
       "meta": {
-        "order": 11
+        "order": 11,
+        "label": "Icon Button"
       }
     },
     {
@@ -300,7 +311,8 @@
         }
       ],
       "meta": {
-        "order": 12
+        "order": 12,
+        "label": "Dropdown Select"
       }
     },
     {
@@ -326,7 +338,8 @@
         }
       ],
       "meta": {
-        "order": 13
+        "order": 13,
+        "label": "Keyboard Shortcut"
       }
     },
     {
@@ -352,7 +365,8 @@
         }
       ],
       "meta": {
-        "order": 14
+        "order": 14,
+        "label": "Tooltip Action"
       }
     },
     {
@@ -378,7 +392,8 @@
         }
       ],
       "meta": {
-        "order": 15
+        "order": 15,
+        "label": "Loading Spinner"
       }
     },
     {
@@ -403,7 +418,8 @@
         }
       ],
       "meta": {
-        "order": 16
+        "order": 16,
+        "label": "Block-Start Addon"
       }
     },
     {
@@ -428,7 +444,8 @@
         }
       ],
       "meta": {
-        "order": 17
+        "order": 17,
+        "label": "Character Limit"
       }
     },
     {
@@ -455,7 +472,8 @@
         }
       ],
       "meta": {
-        "order": 18
+        "order": 18,
+        "label": "AI Chat Toolbar"
       }
     },
     {
@@ -481,7 +499,8 @@
         }
       ],
       "meta": {
-        "order": 19
+        "order": 19,
+        "label": "AI Chat Attachments"
       }
     },
     {
@@ -506,7 +525,8 @@
         }
       ],
       "meta": {
-        "order": 20
+        "order": 20,
+        "label": "Label Usage"
       }
     },
     {
@@ -533,7 +553,8 @@
         }
       ],
       "meta": {
-        "order": 21
+        "order": 21,
+        "label": "Multiple End Actions"
       }
     },
     {
@@ -559,7 +580,8 @@
         }
       ],
       "meta": {
-        "order": 22
+        "order": 22,
+        "label": "Popover Trigger"
       }
     },
     {
@@ -585,7 +607,8 @@
         }
       ],
       "meta": {
-        "order": 23
+        "order": 23,
+        "label": "Sparkles Shortcut"
       }
     },
     {
@@ -610,7 +633,8 @@
         }
       ],
       "meta": {
-        "order": 24
+        "order": 24,
+        "label": "Success Indicator"
       }
     },
     {
@@ -635,7 +659,8 @@
         }
       ],
       "meta": {
-        "order": 25
+        "order": 25,
+        "label": "Results Count"
       }
     },
     {
@@ -660,7 +685,8 @@
         }
       ],
       "meta": {
-        "order": 26
+        "order": 26,
+        "label": "Textarea Actions"
       }
     },
     {
@@ -686,7 +712,8 @@
         }
       ],
       "meta": {
-        "order": 27
+        "order": 27,
+        "label": "Button Group"
       }
     },
     {
@@ -712,7 +739,8 @@
         }
       ],
       "meta": {
-        "order": 28
+        "order": 28,
+        "label": "Three Dot Menu"
       }
     },
     {
@@ -738,7 +766,8 @@
         }
       ],
       "meta": {
-        "order": 29
+        "order": 29,
+        "label": "Pill Category"
       }
     },
     {
@@ -763,7 +792,8 @@
         }
       ],
       "meta": {
-        "order": 30
+        "order": 30,
+        "label": "Inline Addons"
       }
     },
     {
@@ -788,7 +818,8 @@
         }
       ],
       "meta": {
-        "order": 31
+        "order": 31,
+        "label": "Inline Block-End"
       }
     },
     {
@@ -815,7 +846,8 @@
         }
       ],
       "meta": {
-        "order": 32
+        "order": 32,
+        "label": "Member Row"
       }
     },
     {
@@ -842,7 +874,8 @@
       ],
       "meta": {
         "order": 33,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Project Save"
       }
     },
     {
@@ -869,7 +902,8 @@
       ],
       "meta": {
         "order": 34,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Pill AI Prompt"
       }
     },
     {
@@ -894,7 +928,8 @@
         }
       ],
       "meta": {
-        "order": 35
+        "order": 35,
+        "label": "Password Toggle"
       }
     },
     {
@@ -922,7 +957,8 @@
         }
       ],
       "meta": {
-        "order": 36
+        "order": 36,
+        "label": "API Request"
       }
     },
     {
@@ -950,7 +986,8 @@
         }
       ],
       "meta": {
-        "order": 37
+        "order": 37,
+        "label": "Order Search"
       }
     },
     {
@@ -976,7 +1013,8 @@
         }
       ],
       "meta": {
-        "order": 38
+        "order": 38,
+        "label": "Company Search"
       }
     },
     {
@@ -1005,7 +1043,8 @@
         }
       ],
       "meta": {
-        "order": 39
+        "order": 39,
+        "label": "Contact Search"
       }
     },
     {
@@ -1031,7 +1070,8 @@
         }
       ],
       "meta": {
-        "order": 40
+        "order": 40,
+        "label": "Share Link"
       }
     }
   ]

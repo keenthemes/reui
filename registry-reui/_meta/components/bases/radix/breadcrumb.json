@@ -21,7 +21,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Basic"
       }
     },
     {
@@ -47,7 +48,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "Dropdown Menu"
       }
     },
     {
@@ -71,7 +73,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Router Link"
       }
     },
     {
@@ -95,7 +98,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Slash Separator"
       }
     },
     {
@@ -119,7 +123,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "Item Icons"
       }
     },
     {
@@ -143,7 +148,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "Static Ellipsis"
       }
     },
     {
@@ -168,7 +174,8 @@
         }
       ],
       "meta": {
-        "order": 7
+        "order": 7,
+        "label": "Avatars"
       }
     },
     {
@@ -192,7 +199,8 @@
         }
       ],
       "meta": {
-        "order": 8
+        "order": 8,
+        "label": "Double Chevron"
       }
     },
     {
@@ -217,7 +225,8 @@
         }
       ],
       "meta": {
-        "order": 9
+        "order": 9,
+        "label": "In Card"
       }
     },
     {
@@ -242,7 +251,8 @@
         }
       ],
       "meta": {
-        "order": 10
+        "order": 10,
+        "label": "Pill In Frame"
       }
     },
     {
@@ -267,7 +277,8 @@
         }
       ],
       "meta": {
-        "order": 11
+        "order": 11,
+        "label": "Count Badge"
       }
     },
     {
@@ -292,7 +303,8 @@
         }
       ],
       "meta": {
-        "order": 12
+        "order": 12,
+        "label": "Home Icon Button"
       }
     },
     {
@@ -316,7 +328,8 @@
         }
       ],
       "meta": {
-        "order": 13
+        "order": 13,
+        "label": "Bar Separator"
       }
     },
     {
@@ -341,7 +354,8 @@
         }
       ],
       "meta": {
-        "order": 14
+        "order": 14,
+        "label": "Button Style"
       }
     },
     {
@@ -367,7 +381,8 @@
         }
       ],
       "meta": {
-        "order": 15
+        "order": 15,
+        "label": "Project & Document"
       }
     }
   ]

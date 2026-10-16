@@ -22,7 +22,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Basic"
       }
     },
     {
@@ -47,7 +48,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "Icons"
       }
     },
     {
@@ -72,7 +74,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Grouped Labels"
       }
     },
     {
@@ -97,7 +100,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Large List"
       }
     },
     {
@@ -122,7 +126,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "Small Trigger"
       }
     },
     {
@@ -148,7 +153,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "Plan Picker"
       }
     },
     {
@@ -173,7 +179,8 @@
         }
       ],
       "meta": {
-        "order": 7
+        "order": 7,
+        "label": "Disabled Item"
       }
     },
     {
@@ -198,7 +205,8 @@
         }
       ],
       "meta": {
-        "order": 8
+        "order": 8,
+        "label": "Field With Label"
       }
     },
     {
@@ -223,7 +231,8 @@
         }
       ],
       "meta": {
-        "order": 9
+        "order": 9,
+        "label": "Invalid"
       }
     },
     {
@@ -248,7 +257,8 @@
         }
       ],
       "meta": {
-        "order": 10
+        "order": 10,
+        "label": "Disabled"
       }
     },
     {
@@ -275,7 +285,8 @@
         }
       ],
       "meta": {
-        "order": 11
+        "order": 11,
+        "label": "In Dialog"
       }
     },
     {
@@ -300,7 +311,8 @@
         }
       ],
       "meta": {
-        "order": 12
+        "order": 12,
+        "label": "Multiple Selection"
       }
     },
     {
@@ -325,7 +337,8 @@
         }
       ],
       "meta": {
-        "order": 13
+        "order": 13,
+        "label": "Inline With Input"
       }
     },
     {
@@ -350,7 +363,8 @@
         }
       ],
       "meta": {
-        "order": 14
+        "order": 14,
+        "label": "With Button"
       }
     },
     {
@@ -375,7 +389,8 @@
         }
       ],
       "meta": {
-        "order": 15
+        "order": 15,
+        "label": "Item Aligned"
       }
     },
     {
@@ -400,7 +415,8 @@
         }
       ],
       "meta": {
-        "order": 16
+        "order": 16,
+        "label": "Access Levels"
       }
     },
     {
@@ -427,7 +443,8 @@
         }
       ],
       "meta": {
-        "order": 17
+        "order": 17,
+        "label": "Status Bullets"
       }
     },
     {
@@ -453,7 +470,8 @@
         }
       ],
       "meta": {
-        "order": 18
+        "order": 18,
+        "label": "User Avatars"
       }
     },
     {
@@ -479,7 +497,8 @@
         }
       ],
       "meta": {
-        "order": 19
+        "order": 19,
+        "label": "Status Badges"
       }
     },
     {
@@ -504,7 +523,8 @@
         }
       ],
       "meta": {
-        "order": 20
+        "order": 20,
+        "label": "Left Indicator"
       }
     },
     {
@@ -531,7 +551,8 @@
         }
       ],
       "meta": {
-        "order": 21
+        "order": 21,
+        "label": "Clear Button"
       }
     },
     {
@@ -556,7 +577,8 @@
         }
       ],
       "meta": {
-        "order": 22
+        "order": 22,
+        "label": "Custom Chevrons"
       }
     },
     {
@@ -584,7 +606,8 @@
         }
       ],
       "meta": {
-        "order": 23
+        "order": 23,
+        "label": "Overlapping Dots"
       }
     },
     {
@@ -609,7 +632,8 @@
         }
       ],
       "meta": {
-        "order": 24
+        "order": 24,
+        "label": "Grouped Separators"
       }
     },
     {
@@ -634,7 +658,8 @@
         }
       ],
       "meta": {
-        "order": 25
+        "order": 25,
+        "label": "Country Flags"
       }
     },
     {
@@ -659,7 +684,8 @@
         }
       ],
       "meta": {
-        "order": 26
+        "order": 26,
+        "label": "Status Filter"
       }
     },
     {
@@ -684,7 +710,8 @@
         }
       ],
       "meta": {
-        "order": 27
+        "order": 27,
+        "label": "Option Descriptions"
       }
     },
     {
@@ -709,7 +736,8 @@
         }
       ],
       "meta": {
-        "order": 28
+        "order": 28,
+        "label": "Timezone Offsets"
       }
     },
     {
@@ -735,7 +763,8 @@
         }
       ],
       "meta": {
-        "order": 29
+        "order": 29,
+        "label": "Team Assignment"
       }
     },
     {
@@ -761,7 +790,8 @@
         }
       ],
       "meta": {
-        "order": 30
+        "order": 30,
+        "label": "Priority Badges"
       }
     },
     {
@@ -786,7 +816,8 @@
         }
       ],
       "meta": {
-        "order": 31
+        "order": 31,
+        "label": "Font Preview"
       }
     },
     {
@@ -811,7 +842,8 @@
         }
       ],
       "meta": {
-        "order": 32
+        "order": 32,
+        "label": "Category Icons"
       }
     },
     {
@@ -836,7 +868,8 @@
         }
       ],
       "meta": {
-        "order": 33
+        "order": 33,
+        "label": "Size Scale"
       }
     }
   ]

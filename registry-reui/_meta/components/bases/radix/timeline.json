@@ -22,7 +22,8 @@
       ],
       "meta": {
         "order": 1,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Basic"
       }
     },
     {
@@ -47,7 +48,8 @@
       ],
       "meta": {
         "order": 2,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Roadmap"
       }
     },
     {
@@ -72,7 +74,8 @@
       ],
       "meta": {
         "order": 3,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Order Status"
       }
     },
     {
@@ -97,7 +100,8 @@
       ],
       "meta": {
         "order": 4,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Git Activity"
       }
     },
     {
@@ -124,7 +128,8 @@
       ],
       "meta": {
         "order": 5,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Milestones"
       }
     },
     {
@@ -156,7 +161,8 @@
       ],
       "meta": {
         "order": 6,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Pipeline Steps"
       }
     },
     {
@@ -183,7 +189,8 @@
       ],
       "meta": {
         "order": 7,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Roadmap Items"
       }
     },
     {
@@ -208,7 +215,8 @@
       ],
       "meta": {
         "order": 8,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Horizontal"
       }
     },
     {
@@ -233,7 +241,8 @@
       ],
       "meta": {
         "order": 9,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Leading Labels"
       }
     },
     {
@@ -261,7 +270,8 @@
       ],
       "meta": {
         "order": 10,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Deployment Log"
       }
     },
     {
@@ -287,7 +297,8 @@
       ],
       "meta": {
         "order": 11,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Avatar Activity"
       }
     },
     {
@@ -315,7 +326,8 @@
       ],
       "meta": {
         "order": 12,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Compact Milestones"
       }
     }
   ]

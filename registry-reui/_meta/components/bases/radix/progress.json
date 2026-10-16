@@ -21,7 +21,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Basic"
       }
     },
     {
@@ -45,7 +46,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "Small"
       }
     },
     {
@@ -69,7 +71,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Large"
       }
     },
     {
@@ -93,7 +96,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Status Messages"
       }
     },
     {
@@ -118,7 +122,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "File Uploads"
       }
     },
     {
@@ -143,7 +148,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "With Slider"
       }
     },
     {
@@ -167,7 +173,8 @@
         }
       ],
       "meta": {
-        "order": 7
+        "order": 7,
+        "label": "Multi-Step"
       }
     },
     {
@@ -191,7 +198,8 @@
         }
       ],
       "meta": {
-        "order": 8
+        "order": 8,
+        "label": "Custom Colors"
       }
     }
   ]

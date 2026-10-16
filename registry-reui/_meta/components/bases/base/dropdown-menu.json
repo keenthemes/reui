@@ -22,7 +22,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Basic"
       }
     },
     {
@@ -47,7 +48,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "Opening Positions"
       }
     },
     {
@@ -72,7 +74,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Icons"
       }
     },
     {
@@ -97,7 +100,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Keyboard Shortcuts"
       }
     },
     {
@@ -122,7 +126,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "Nested Submenus"
       }
     },
     {
@@ -147,7 +152,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "Checkboxes"
       }
     },
     {
@@ -172,7 +178,8 @@
         }
       ],
       "meta": {
-        "order": 7
+        "order": 7,
+        "label": "Radio Groups"
       }
     },
     {
@@ -197,7 +204,8 @@
         }
       ],
       "meta": {
-        "order": 8
+        "order": 8,
+        "label": "All Item Types"
       }
     },
     {
@@ -223,7 +231,8 @@
         }
       ],
       "meta": {
-        "order": 9
+        "order": 9,
+        "label": "User Profile"
       }
     },
     {
@@ -264,7 +273,8 @@
         }
       ],
       "meta": {
-        "order": 10
+        "order": 10,
+        "label": "Workspace Switcher"
       }
     },
     {
@@ -291,7 +301,8 @@
         }
       ],
       "meta": {
-        "order": 11
+        "order": 11,
+        "label": "Notification Feed"
       }
     },
     {
@@ -316,7 +327,8 @@
         }
       ],
       "meta": {
-        "order": 12
+        "order": 12,
+        "label": "Record Actions"
       }
     },
     {
@@ -341,7 +353,8 @@
         }
       ],
       "meta": {
-        "order": 13
+        "order": 13,
+        "label": "Share & Export"
       }
     },
     {
@@ -371,7 +384,8 @@
         }
       ],
       "meta": {
-        "order": 14
+        "order": 14,
+        "label": "Theme & Status"
       }
     },
     {
@@ -398,7 +412,8 @@
         }
       ],
       "meta": {
-        "order": 15
+        "order": 15,
+        "label": "User & Create"
       }
     },
     {
@@ -423,7 +438,8 @@
         }
       ],
       "meta": {
-        "order": 16
+        "order": 16,
+        "label": "Quick Actions"
       }
     },
     {
@@ -448,7 +464,8 @@
         }
       ],
       "meta": {
-        "order": 17
+        "order": 17,
+        "label": "Notification Items"
       }
     },
     {
@@ -493,7 +510,8 @@
         }
       ],
       "meta": {
-        "order": 18
+        "order": 18,
+        "label": "AI Model Selector"
       }
     }
   ]

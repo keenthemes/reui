@@ -21,7 +21,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Pinned Actions"
       }
     },
     {
@@ -47,7 +48,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "Undo & Redo"
       }
     },
     {
@@ -74,7 +76,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Form Validation"
       }
     },
     {
@@ -105,7 +108,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Signing Workspace"
       }
     },
     {
@@ -132,7 +136,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "Export Formats"
       }
     },
     {
@@ -161,7 +166,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "Draw or Type"
       }
     },
     {
@@ -190,7 +196,8 @@
         }
       ],
       "meta": {
-        "order": 7
+        "order": 7,
+        "label": "Agreement Card"
       }
     },
     {
@@ -217,7 +224,8 @@
         }
       ],
       "meta": {
-        "order": 8
+        "order": 8,
+        "label": "In Dialog"
       }
     },
     {
@@ -244,7 +252,8 @@
         }
       ],
       "meta": {
-        "order": 9
+        "order": 9,
+        "label": "Stylus Mode"
       }
     },
     {
@@ -271,7 +280,8 @@
         }
       ],
       "meta": {
-        "order": 10
+        "order": 10,
+        "label": "Clause Initials"
       }
     },
     {
@@ -300,7 +310,8 @@
         }
       ],
       "meta": {
-        "order": 11
+        "order": 11,
+        "label": "Proof of Delivery"
       }
     },
     {
@@ -325,7 +336,8 @@
         }
       ],
       "meta": {
-        "order": 12
+        "order": 12,
+        "label": "File Upload"
       }
     }
   ]

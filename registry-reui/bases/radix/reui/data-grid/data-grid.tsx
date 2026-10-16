@@ -1,12 +1,22 @@
 "use client"
 
+// Opts the grid out of React Compiler. Its parts read state through builder
+// calls on rows, columns and headers that keep their identity across renders
+// (row.getIsExpanded(), column.getIsResizing()); compiled, those reads are
+// cached against the unchanged object and never run again. The grid memoizes
+// by hand instead, and the component that renders it still compiles.
+"use no memo"
+
 import {
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useId,
+  useLayoutEffect,
   useMemo,
   useRef,
+  useSyncExternalStore,
 } from "react"
 import type { ReactNode } from "react"
 import {
@@ -978,6 +988,88 @@ function useDataGrid<
   return context
 }
 
+type DataGridStateAtom<TValue> = {
+  get: () => TValue
+  subscribe: (listener: () => void) => { unsubscribe: () => void }
+}
+
+const noopUnsubscribe = () => {}
+
+/**
+ * Re-renders the caller when one table state atom changes, without waiting
+ * for a render from above. The context holds still while a column resize is
+ * in flight (see DataGridProvider), and React Compiler caches a consumer's
+ * `<DataGridTable />` element, so whatever a drag must keep live (the width
+ * variables, the resize line and indicator) subscribes here. `select` must
+ * return the slice itself or a primitive, or every write re-renders.
+ */
+function useDataGridAtom<TValue, TSelected = TValue | undefined>(
+  atom: DataGridStateAtom<TValue> | undefined,
+  select: (value: TValue | undefined) => TSelected = (value) =>
+    value as TSelected
+): TSelected {
+  const subscribe = useCallback(
+    (onChange: () => void) => {
+      if (!atom) return noopUnsubscribe
+      const subscription = atom.subscribe(onChange)
+      return () => subscription.unsubscribe()
+    },
+    [atom]
+  )
+  const getSnapshot = () => select(atom?.get())
+  return useSyncExternalStore(subscribe, getSnapshot, getSnapshot)
+}
+
+// Slices kept out of the inputs: cells paint cell selection through their
+// own Subscribe, and a resize drag paints through useDataGridAtom.
+const DATA_GRID_UNPUBLISHED_STATE = new Set(["cellSelection", "columnResizing"])
+
+const isDataGridPropNode = (value: unknown) =>
+  value !== null &&
+  typeof value === "object" &&
+  !Array.isArray(value) &&
+  ("$$typeof" in value || Object.getPrototypeOf(value) !== Object.prototype)
+
+// Functions and React nodes count by presence here; their identity is a
+// callback input.
+function dataGridPropsSignatureReplacer(_key: string, value: unknown) {
+  if (typeof value === "function") return "fn"
+  if (isDataGridPropNode(value)) return "node"
+  return value
+}
+
+// Inputs that always publish: every state slice but the two above, `data`
+// and `columns` (TanStack needs both stable already), and props by value.
+function getDataGridStateInputs<TData extends object>(
+  table: DataGridTableInstance<TData>,
+  props: DataGridLayoutProps<TData>,
+  autoSize: DataGridAutoSizeController
+): unknown[] {
+  const inputs: unknown[] = [
+    autoSize,
+    table.options.data,
+    table.options.columns,
+    JSON.stringify(props, dataGridPropsSignatureReplacer),
+  ]
+  for (const [key, slice] of Object.entries(table.state)) {
+    if (!DATA_GRID_UNPUBLISHED_STATE.has(key)) inputs.push(key, slice)
+  }
+  return inputs
+}
+
+// Every callback and React node prop, compared by identity.
+function getDataGridCallbackInputs<TData extends object>(
+  props: DataGridLayoutProps<TData>
+): unknown[] {
+  return Object.values(props).filter(
+    (value) => typeof value === "function" || isDataGridPropNode(value)
+  )
+}
+
+const isSameDataGridInputs = (previous: unknown[], next: unknown[]) =>
+  previous.length === next.length &&
+  next.every((input, index) => Object.is(input, previous[index]))
+
 function DataGridProvider<TData extends object>({
   children,
   table,
@@ -986,23 +1078,17 @@ function DataGridProvider<TData extends object>({
   table: DataGridTableInstance<TData>
   children?: ReactNode
 }) {
-  // Latest-props ref: context reads always resolve fresh props through the
-  // getter below without the memoized context value depending on unstable
   // Stable for the grid's lifetime; ARIA ids and relations hang off it.
   const gridId = useId()
-  // ReactNode/function prop identities (inline emptyMessage/onRowClick would
-  // otherwise publish a new context value on every consumer render - at
-  // mousemove rate during a resize drag, piercing the body-rows memo).
+  // Latest-value refs behind the context getters: a reader always gets the
+  // current props, labels and table, while the published value changes only
+  // when its inputs do (below). v9 re-creates the table on every state
+  // change, including each resize tick.
   const propsRef = useRef(props)
   propsRef.current = props
   const i18n = mergeDataGridI18n(props.i18n)
   const i18nRef = useRef(i18n)
   i18nRef.current = i18n
-
-  // Same treatment for the table itself, which v9 - unlike v8 - re-creates on
-  // every state change. Depending on it directly would republish the context
-  // on each resize tick, which is exactly what the memo below exists to
-  // prevent; the getter still hands every consumer the current instance.
   const tableRef = useRef(table)
   tableRef.current = table
 
@@ -1058,56 +1144,65 @@ function DataGridProvider<TData extends object>({
     [table.store]
   )
 
-  const tableState = table.state
-
-  // Memoize context value so consumers don't re-render during column resize.
-  // Column sizing state is intentionally excluded from deps -- CSS variables
-  // on the <table> element handle width updates without React re-renders.
-  // ReactNode/function props (messages, onRowClick) are also excluded: they
-  // are served fresh through the props getter, so unstable inline identities
-  // cannot invalidate the context value.
-  // `cellSelection` state is excluded on purpose too: a drag writes it once
-  // per cell crossed, and nothing reads it through context - cells and the
-  // selection bar subscribe to `table.atoms.cellSelection` directly.
-  const value = useMemo(
-    () => ({
-      get props() {
-        return propsRef.current
-      },
-      get table() {
-        return tableRef.current
-      },
-      get i18n() {
-        return i18nRef.current
-      },
-      recordCount: props.recordCount,
-      isLoading: props.isLoading || false,
-      gridId,
-      autoSize,
-    }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [
-      autoSize,
-      props.recordCount,
-      props.isLoading,
-      props.loadingMode,
-      props.className,
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      JSON.stringify(props.tableLayout),
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      JSON.stringify(props.tableClassNames),
-      tableState.sorting,
-      tableState.pagination,
-      tableState.columnFilters,
-      tableState.rowSelection,
-      tableState.rowPinning,
-      tableState.expanded,
-      tableState.columnVisibility,
-      tableState.columnOrder,
-      tableState.columnPinning,
-      tableState.globalFilter,
-    ]
-  )
+  // A new context value re-renders every useDataGrid reader, every cell
+  // included, past any memo, and it is the only update a part gets when React
+  // Compiler cached the element above it. The grid publishes one when a state
+  // input changes. Callback inputs publish only for a consumer that memoizes
+  // its useTable options, as the compiler does: its callbacks then change
+  // only when they really change. A consumer that is not compiled builds new
+  // options and new inline callbacks on every render, re-renders the grid
+  // from above anyway, and would otherwise re-render every memoized virtual
+  // row. Not the children's identity: the compiler caches the elements
+  // inside children separately, so fresh children can wrap a cached table.
+  // While a column resize is in flight the value holds still: the drag's own
+  // visuals subscribe through useDataGridAtom, and the render after it
+  // publishes what it changed.
+  const committedOptionsRef = useRef(table.options)
+  const hasMemoizedOptions = committedOptionsRef.current === table.options
+  useLayoutEffect(() => {
+    committedOptionsRef.current = table.options
+  })
+  const isResizing = !!table.state.columnResizing?.isResizingColumn
+  const publishedRef = useRef<{
+    stateInputs: unknown[]
+    callbackInputs: unknown[]
+    value: DataGridContextProps<TData>
+  } | null>(null)
+  let published = publishedRef.current
+  if (!published || !isResizing) {
+    const stateInputs = getDataGridStateInputs(table, props, autoSize)
+    const callbackInputs = getDataGridCallbackInputs(props)
+    const stateChanged =
+      !published || !isSameDataGridInputs(published.stateInputs, stateInputs)
+    const callbacksChanged =
+      !published ||
+      !isSameDataGridInputs(published.callbackInputs, callbackInputs)
+    if (published && !stateChanged && callbacksChanged && !hasMemoizedOptions) {
+      published.callbackInputs = callbackInputs
+    } else if (stateChanged || callbacksChanged) {
+      published = {
+        stateInputs,
+        callbackInputs,
+        value: {
+          get props() {
+            return propsRef.current
+          },
+          get table() {
+            return tableRef.current
+          },
+          get i18n() {
+            return i18nRef.current
+          },
+          recordCount: props.recordCount,
+          isLoading: props.isLoading || false,
+          gridId,
+          autoSize,
+        },
+      }
+      publishedRef.current = published
+    }
+  }
+  const value = published!.value
 
   return (
     // One React context serves every TData, but v9 declares both TFeatures and
@@ -1220,4 +1315,10 @@ function DataGridContainer({
   )
 }
 
-export { useDataGrid, DataGridProvider, DataGrid, DataGridContainer }
+export {
+  useDataGrid,
+  useDataGridAtom,
+  DataGridProvider,
+  DataGrid,
+  DataGridContainer,
+}

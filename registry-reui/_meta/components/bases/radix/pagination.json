@@ -21,7 +21,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Basic"
       }
     },
     {
@@ -45,7 +46,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "No Labels"
       }
     },
     {
@@ -69,7 +71,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Hover Border"
       }
     },
     {
@@ -96,7 +99,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Circle Buttons"
       }
     },
     {
@@ -121,7 +125,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "Compact Go-To"
       }
     },
     {
@@ -146,7 +151,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "In Card"
       }
     },
     {
@@ -170,7 +176,8 @@
         }
       ],
       "meta": {
-        "order": 7
+        "order": 7,
+        "label": "Arrow Links"
       }
     },
     {
@@ -194,7 +201,8 @@
         }
       ],
       "meta": {
-        "order": 8
+        "order": 8,
+        "label": "Centered Page Info"
       }
     },
     {
@@ -218,7 +226,8 @@
         }
       ],
       "meta": {
-        "order": 9
+        "order": 9,
+        "label": "Left Page Info"
       }
     },
     {
@@ -242,7 +251,8 @@
         }
       ],
       "meta": {
-        "order": 10
+        "order": 10,
+        "label": "Trailing Ellipsis"
       }
     },
     {
@@ -266,7 +276,8 @@
         }
       ],
       "meta": {
-        "order": 11
+        "order": 11,
+        "label": "Outline Strip"
       }
     },
     {
@@ -291,7 +302,8 @@
         }
       ],
       "meta": {
-        "order": 12
+        "order": 12,
+        "label": "Rows Per Page"
       }
     },
     {
@@ -316,7 +328,8 @@
         }
       ],
       "meta": {
-        "order": 13
+        "order": 13,
+        "label": "Page Select"
       }
     },
     {
@@ -341,7 +354,8 @@
         }
       ],
       "meta": {
-        "order": 14
+        "order": 14,
+        "label": "Full Width Go-To"
       }
     },
     {
@@ -367,7 +381,8 @@
       ],
       "meta": {
         "order": 15,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Info & Per-Page"
       }
     }
   ]

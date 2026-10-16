@@ -150,6 +150,8 @@ export interface CascaderActionsContextValue<T = unknown> {
   /** Next page of a level. Latched: a page with nothing new is not re-asked. */
   loadMore: (parentKey: string) => void
   retryLevel: (parentKey: string) => void
+  /** Re-runs a failed server search (`onSearch`) for the current query. */
+  retrySearch: () => void
   /**
    * Evicts one level's async cache, `null` for the root, so membership reads
    * never-loaded. A level that is on screen when evicted refetches at once.

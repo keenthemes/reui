@@ -26,7 +26,8 @@
       ],
       "meta": {
         "order": 1,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Basic"
       }
     },
     {
@@ -55,7 +56,8 @@
       ],
       "meta": {
         "order": 2,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Line Variant"
       }
     },
     {
@@ -84,7 +86,8 @@
       ],
       "meta": {
         "order": 3,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Vertical"
       }
     },
     {
@@ -113,7 +116,8 @@
       ],
       "meta": {
         "order": 4,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Vertical Line"
       }
     },
     {
@@ -142,7 +146,8 @@
       ],
       "meta": {
         "order": 5,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Icons"
       }
     },
     {
@@ -168,7 +173,8 @@
       ],
       "meta": {
         "order": 6,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Full Width Icons"
       }
     },
     {
@@ -195,7 +201,8 @@
       ],
       "meta": {
         "order": 7,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Badge Counts"
       }
     },
     {
@@ -222,7 +229,8 @@
       ],
       "meta": {
         "order": 8,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Side List Icons"
       }
     },
     {
@@ -248,7 +256,8 @@
       ],
       "meta": {
         "order": 9,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Segmented Control"
       }
     }
   ]

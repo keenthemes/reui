@@ -21,7 +21,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Default"
       }
     },
     {
@@ -45,7 +46,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "Secondary"
       }
     },
     {
@@ -69,7 +71,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Destructive"
       }
     },
     {
@@ -93,7 +96,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Success"
       }
     },
     {
@@ -117,7 +121,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "Info"
       }
     },
     {
@@ -141,7 +146,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "Warning"
       }
     },
     {
@@ -165,7 +171,8 @@
         }
       ],
       "meta": {
-        "order": 7
+        "order": 7,
+        "label": "Outline"
       }
     },
     {
@@ -189,7 +196,8 @@
         }
       ],
       "meta": {
-        "order": 8
+        "order": 8,
+        "label": "Primary Outline"
       }
     },
     {
@@ -213,7 +221,8 @@
         }
       ],
       "meta": {
-        "order": 9
+        "order": 9,
+        "label": "Destructive Outline"
       }
     },
     {
@@ -237,7 +246,8 @@
         }
       ],
       "meta": {
-        "order": 10
+        "order": 10,
+        "label": "Info Outline"
       }
     },
     {
@@ -261,7 +271,8 @@
         }
       ],
       "meta": {
-        "order": 11
+        "order": 11,
+        "label": "Success Outline"
       }
     },
     {
@@ -285,7 +296,8 @@
         }
       ],
       "meta": {
-        "order": 12
+        "order": 12,
+        "label": "Warning Outline"
       }
     },
     {
@@ -309,7 +321,8 @@
         }
       ],
       "meta": {
-        "order": 13
+        "order": 13,
+        "label": "Primary Light"
       }
     },
     {
@@ -333,7 +346,8 @@
         }
       ],
       "meta": {
-        "order": 14
+        "order": 14,
+        "label": "Destructive Light"
       }
     },
     {
@@ -357,7 +371,8 @@
         }
       ],
       "meta": {
-        "order": 15
+        "order": 15,
+        "label": "Success Light"
       }
     },
     {
@@ -381,7 +396,8 @@
         }
       ],
       "meta": {
-        "order": 16
+        "order": 16,
+        "label": "Info Light"
       }
     },
     {
@@ -405,7 +421,8 @@
         }
       ],
       "meta": {
-        "order": 17
+        "order": 17,
+        "label": "Warning Light"
       }
     },
     {
@@ -429,7 +446,8 @@
         }
       ],
       "meta": {
-        "order": 18
+        "order": 18,
+        "label": "Sizes"
       }
     },
     {
@@ -453,7 +471,8 @@
         }
       ],
       "meta": {
-        "order": 19
+        "order": 19,
+        "label": "Full Radius"
       }
     },
     {
@@ -477,7 +496,8 @@
         }
       ],
       "meta": {
-        "order": 20
+        "order": 20,
+        "label": "With Icon"
       }
     },
     {
@@ -502,7 +522,8 @@
         }
       ],
       "meta": {
-        "order": 21
+        "order": 21,
+        "label": "Dismiss Button"
       }
     },
     {
@@ -526,7 +547,8 @@
         }
       ],
       "meta": {
-        "order": 22
+        "order": 22,
+        "label": "Status Dot"
       }
     },
     {
@@ -550,7 +572,8 @@
         }
       ],
       "meta": {
-        "order": 23
+        "order": 23,
+        "label": "As Link"
       }
     },
     {
@@ -576,7 +599,8 @@
         }
       ],
       "meta": {
-        "order": 24
+        "order": 24,
+        "label": "With Avatar"
       }
     },
     {
@@ -600,7 +624,8 @@
         }
       ],
       "meta": {
-        "order": 25
+        "order": 25,
+        "label": "With Flag"
       }
     }
   ]

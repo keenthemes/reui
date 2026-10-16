@@ -21,7 +21,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Common Formats"
       }
     },
     {
@@ -45,7 +46,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "Variants"
       }
     },
     {
@@ -69,7 +71,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Sizes"
       }
     },
     {
@@ -93,7 +96,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Family Glyphs"
       }
     },
     {
@@ -119,7 +123,8 @@
       ],
       "meta": {
         "order": 5,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "All Formats"
       }
     },
     {
@@ -150,7 +155,8 @@
       ],
       "meta": {
         "order": 6,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "File Browser"
       }
     },
     {
@@ -176,7 +182,8 @@
         }
       ],
       "meta": {
-        "order": 7
+        "order": 7,
+        "label": "Attachment List"
       }
     },
     {
@@ -203,7 +210,8 @@
         }
       ],
       "meta": {
-        "order": 8
+        "order": 8,
+        "label": "Upload Queue"
       }
     },
     {
@@ -231,7 +239,8 @@
         }
       ],
       "meta": {
-        "order": 9
+        "order": 9,
+        "label": "Resolve From Name"
       }
     },
     {
@@ -256,7 +265,8 @@
         }
       ],
       "meta": {
-        "order": 10
+        "order": 10,
+        "label": "Custom Labels"
       }
     },
     {
@@ -280,7 +290,8 @@
         }
       ],
       "meta": {
-        "order": 11
+        "order": 11,
+        "label": "Custom Colors"
       }
     },
     {
@@ -307,7 +318,8 @@
         }
       ],
       "meta": {
-        "order": 12
+        "order": 12,
+        "label": "Format Picker"
       }
     },
     {
@@ -331,7 +343,8 @@
         }
       ],
       "meta": {
-        "order": 13
+        "order": 13,
+        "label": "Locked & Starred"
       }
     },
     {
@@ -355,7 +368,33 @@
         }
       ],
       "meta": {
-        "order": 14
+        "order": 14,
+        "label": "Restyled Labels"
+      }
+    },
+    {
+      "name": "c-file-type-15",
+      "type": "registry:block",
+      "title": "Dotfiles and build names",
+      "categories": [
+        "file-type"
+      ],
+      "description": "Icons read from names such as .env.local, Dockerfile and Makefile, which carry no usual extension.",
+      "descriptionLong": "Dotfiles and build names. Built with the File Type component. A free, open source shadcn file type example you can install with npx shadcn@latest add @reui/c-file-type-15 and edit as your own code.",
+      "registryDependencies": [
+        "file-type"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/file-type/c-file-type-15.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-file-type-15.tsx"
+        }
+      ],
+      "meta": {
+        "order": 15,
+        "label": "Dotfiles & Build Names"
       }
     }
   ]

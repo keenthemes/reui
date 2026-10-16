@@ -20,15 +20,15 @@ import {
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 // One sample per kind of input getFileType reads: a file name, a path in
-// another case, a MIME type, a folder, a bare name and a URL with a query.
-// The long URL goes last, so the wrap never strands a short chip on a row
-// of its own.
+// another case, a MIME type, a folder, a well-known name and a URL with a
+// query. The long URL goes last, so the wrap never strands a short chip on a
+// row of its own.
 const SAMPLES = [
   "Q3 report.pdf",
   "photos/IMG_2041.HEIC",
   "video/quicktime",
   "assets/",
-  "README",
+  ".env.local",
   "https://example.com/data.csv?v=2",
 ]
 

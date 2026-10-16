@@ -217,5 +217,18 @@
     "guidance": {
       "bestFor": "Each badge recipe printed beside its class string, from a pill and an inverted band to a DRAFT tag in amber"
     }
+  },
+  {
+    "name": "c-file-type-15",
+    "title": "Dotfiles and build names",
+    "label": "Dotfiles & Build Names",
+    "description": "Icons read from names such as .env.local, Dockerfile and Makefile, which carry no usual extension.",
+    "order": 15,
+    "guidance": {
+      "bestFor": "A 2 column list of 12 repository entries, dotfiles and extensionless build scripts among them, each icon read from the name",
+      "agentNotes": [
+        "`FILES` holds bare names; pass full paths to `getFileType` as they are, since it reads only the last segment"
+      ]
+    }
   }
 ]

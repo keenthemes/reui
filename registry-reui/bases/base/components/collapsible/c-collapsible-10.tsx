@@ -63,12 +63,13 @@ function TreeItem({
 
   if (isFolder) {
     return (
-      <Collapsible className="group/collapsible">
+      <Collapsible>
         <CollapsibleTrigger
           render={
             <Item
+              render={<button type="button" />}
               size="xs"
-              className="hover:bg-accent data-[state=open]:bg-accent cursor-pointer py-1.5"
+              className="hover:bg-accent aria-expanded:bg-accent cursor-pointer py-1.5 focus-visible:ring-inset"
               style={{ paddingLeft: `${level * 12 + 8}px` }}
             />
           }
@@ -81,7 +82,7 @@ function TreeItem({
               phosphor="CaretRightIcon"
               remixicon="RiArrowRightSLine"
               aria-hidden="true"
-              className="text-muted-foreground size-3 transition-transform in-data-open:rotate-90"
+              className="text-muted-foreground size-3 transition-transform in-aria-expanded:rotate-90"
             />
             <IconPlaceholder
               lucide="FolderIcon"
@@ -95,8 +96,8 @@ function TreeItem({
           </ItemMedia>
           <ItemTitle className="text-sm">{item.name}</ItemTitle>
         </CollapsibleTrigger>
-        <CollapsibleContent className="data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down overflow-hidden pt-0.5">
-          <div className="flex flex-col gap-0.5 ps-1.5">
+        <CollapsibleContent className="h-(--collapsible-panel-height) overflow-hidden transition-[height] duration-200 ease-out data-ending-style:h-0 data-starting-style:h-0 motion-reduce:transition-none">
+          <div className="flex flex-col gap-0.5 ps-1.5 pt-0.5">
             {item.items.map((child) => (
               <TreeItem
                 key={child.name}

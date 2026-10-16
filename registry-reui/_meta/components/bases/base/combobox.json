@@ -22,7 +22,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Basic"
       }
     },
     {
@@ -47,7 +48,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "Disabled"
       }
     },
     {
@@ -72,7 +74,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Invalid"
       }
     },
     {
@@ -97,7 +100,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Clear Button"
       }
     },
     {
@@ -122,7 +126,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "Auto-Highlight"
       }
     },
     {
@@ -147,7 +152,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "Grouped Options"
       }
     },
     {
@@ -172,7 +178,8 @@
         }
       ],
       "meta": {
-        "order": 7
+        "order": 7,
+        "label": "Group Separators"
       }
     },
     {
@@ -197,7 +204,8 @@
         }
       ],
       "meta": {
-        "order": 8
+        "order": 8,
+        "label": "Large List"
       }
     },
     {
@@ -223,7 +231,8 @@
         }
       ],
       "meta": {
-        "order": 9
+        "order": 9,
+        "label": "Icon Addon"
       }
     },
     {
@@ -249,7 +258,8 @@
         }
       ],
       "meta": {
-        "order": 10
+        "order": 10,
+        "label": "Country Picker"
       }
     },
     {
@@ -277,7 +287,8 @@
         }
       ],
       "meta": {
-        "order": 11
+        "order": 11,
+        "label": "In Form"
       }
     },
     {
@@ -302,7 +313,8 @@
         }
       ],
       "meta": {
-        "order": 12
+        "order": 12,
+        "label": "Multi-Select"
       }
     },
     {
@@ -327,7 +339,8 @@
         }
       ],
       "meta": {
-        "order": 13
+        "order": 13,
+        "label": "Disabled Multi-Select"
       }
     },
     {
@@ -352,7 +365,8 @@
         }
       ],
       "meta": {
-        "order": 14
+        "order": 14,
+        "label": "Invalid Multi-Select"
       }
     },
     {
@@ -377,7 +391,8 @@
         }
       ],
       "meta": {
-        "order": 15
+        "order": 15,
+        "label": "Non-Removable Chips"
       }
     },
     {
@@ -405,7 +420,8 @@
         }
       ],
       "meta": {
-        "order": 16
+        "order": 16,
+        "label": "Custom Items"
       }
     },
     {
@@ -434,7 +450,8 @@
         }
       ],
       "meta": {
-        "order": 17
+        "order": 17,
+        "label": "In Dialog"
       }
     },
     {
@@ -461,7 +478,8 @@
         }
       ],
       "meta": {
-        "order": 18
+        "order": 18,
+        "label": "Custom Trigger Icon"
       }
     },
     {
@@ -488,7 +506,8 @@
         }
       ],
       "meta": {
-        "order": 19
+        "order": 19,
+        "label": "User Tags"
       }
     },
     {
@@ -515,7 +534,8 @@
         }
       ],
       "meta": {
-        "order": 20
+        "order": 20,
+        "label": "Invisible Tags"
       }
     },
     {
@@ -543,7 +563,8 @@
         }
       ],
       "meta": {
-        "order": 21
+        "order": 21,
+        "label": "Status Change"
       }
     },
     {
@@ -571,7 +592,8 @@
         }
       ],
       "meta": {
-        "order": 22
+        "order": 22,
+        "label": "Priority Change"
       }
     },
     {
@@ -601,7 +623,8 @@
         }
       ],
       "meta": {
-        "order": 23
+        "order": 23,
+        "label": "Lead Selection"
       }
     },
     {
@@ -631,7 +654,8 @@
         }
       ],
       "meta": {
-        "order": 24
+        "order": 24,
+        "label": "Member Selection"
       }
     },
     {
@@ -662,7 +686,8 @@
         }
       ],
       "meta": {
-        "order": 25
+        "order": 25,
+        "label": "Date Selection"
       }
     },
     {
@@ -690,7 +715,8 @@
         }
       ],
       "meta": {
-        "order": 26
+        "order": 26,
+        "label": "Label Selection"
       }
     },
     {
@@ -718,7 +744,8 @@
         }
       ],
       "meta": {
-        "order": 27
+        "order": 27,
+        "label": "Team Selection"
       }
     },
     {
@@ -748,7 +775,8 @@
         }
       ],
       "meta": {
-        "order": 28
+        "order": 28,
+        "label": "Assignee Selection"
       }
     }
   ]

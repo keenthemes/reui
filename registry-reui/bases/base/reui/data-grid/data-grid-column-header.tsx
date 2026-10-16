@@ -1,5 +1,8 @@
 "use client"
 
+// Opted out of React Compiler with the rest of the grid (see data-grid.tsx).
+"use no memo"
+
 import { memo, useLayoutEffect, useMemo, useRef } from "react"
 import type { HTMLAttributes, ReactNode } from "react"
 import {
@@ -587,14 +590,12 @@ const DataGridColumnHeaderMemo = memo(DataGridColumnHeaderInner) as <
 
 /**
  * Sort and pin state reaches this header through builder calls on `column`
- * (`getIsSorted()`, `getIsPinned()`), and `column` is a stable reference. That
- * combination is the one v9's fresh-table-per-state-change does NOT cover:
- * React Compiler is free to memoize against the stable column and never
- * re-evaluate those reads, which shows up as frozen sort arrows and pin
- * controls. The `Subscribe` below turns the slices this header actually reads
- * into a real reactive dependency, and threading the selection through as a
- * prop is what lets it past the `memo` - which would otherwise see unchanged
- * props and skip the render anyway.
+ * (`getIsSorted()`, `getIsPinned()`), and `column` keeps its identity across
+ * renders, so anything memoized against it (the `memo` below, or a consumer's
+ * compiled header template) never re-runs those reads: frozen sort arrows and
+ * pin controls. The `Subscribe` below turns the slices this header actually
+ * reads into a real reactive dependency, and threading the selection through
+ * as a prop is what lets it past the `memo`.
  */
 function DataGridColumnHeader<TData extends object, TValue>(
   props: DataGridColumnHeaderProps<TData, TValue>

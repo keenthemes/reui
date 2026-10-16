@@ -24,7 +24,8 @@
       ],
       "meta": {
         "order": 1,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Guided Setup"
       }
     },
     {
@@ -52,7 +53,8 @@
       ],
       "meta": {
         "order": 2,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Multi-Select"
       }
     },
     {
@@ -80,7 +82,8 @@
       ],
       "meta": {
         "order": 3,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Write-In Answer"
       }
     },
     {
@@ -109,7 +112,8 @@
       ],
       "meta": {
         "order": 4,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Segmented Progress"
       }
     },
     {
@@ -139,7 +143,8 @@
       ],
       "meta": {
         "order": 5,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Optional Skip"
       }
     },
     {
@@ -166,7 +171,8 @@
       ],
       "meta": {
         "order": 6,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Cross-Question Rule"
       }
     },
     {
@@ -196,7 +202,8 @@
       ],
       "meta": {
         "order": 7,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Conditional Branch"
       }
     }
   ]

@@ -348,6 +348,9 @@ importers:
       '@reui/components-base-tooltip':
         specifier: workspace:*
         version: link:packages/registry/bases/base/components/tooltip
+      '@reui/components-base-trace':
+        specifier: workspace:*
+        version: link:packages/registry/bases/base/components/trace
       '@reui/components-base-tree':
         specifier: workspace:*
         version: link:packages/registry/bases/base/components/tree
@@ -606,6 +609,9 @@ importers:
       '@reui/components-radix-tooltip':
         specifier: workspace:*
         version: link:packages/registry/bases/radix/components/tooltip
+      '@reui/components-radix-trace':
+        specifier: workspace:*
+        version: link:packages/registry/bases/radix/components/trace
       '@reui/components-radix-tree':
         specifier: workspace:*
         version: link:packages/registry/bases/radix/components/tree
@@ -1315,9 +1321,6 @@ importers:
       cn:
         specifier: ^0.3.0
         version: 0.3.0
-      radix-ui:
-        specifier: ^1.4.3
-        version: 1.6.2(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react:
         specifier: '>=18'
         version: 19.2.7
@@ -1507,9 +1510,6 @@ importers:
       date-fns:
         specifier: ^4.1.0
         version: 4.4.0
-      radix-ui:
-        specifier: ^1.4.3
-        version: 1.6.2(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react:
         specifier: '>=18'
         version: 19.2.7
@@ -1798,6 +1798,9 @@ importers:
 
   packages/registry/bases/base/components/popover:
     dependencies:
+      '@base-ui/react':
+        specifier: 1.5.0
+        version: 1.5.0(@date-fns/tz@1.5.0)(@types/react@19.2.17)(date-fns@4.4.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -1807,9 +1810,6 @@ importers:
       date-fns:
         specifier: ^4.1.0
         version: 4.4.0
-      radix-ui:
-        specifier: ^1.4.3
-        version: 1.6.2(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react:
         specifier: '>=18'
         version: 19.2.7
@@ -2218,6 +2218,27 @@ importers:
       react-dom:
         specifier: '>=18'
         version: 19.2.7(react@19.2.7)
+
+  packages/registry/bases/base/components/trace:
+    dependencies:
+      '@base-ui/react':
+        specifier: 1.5.0
+        version: 1.5.0(@date-fns/tz@1.5.0)(@types/react@19.2.17)(date-fns@4.4.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      class-variance-authority:
+        specifier: ^0.7.1
+        version: 0.7.1
+      cn:
+        specifier: ^0.3.0
+        version: 0.3.0
+      react:
+        specifier: '>=18'
+        version: 19.2.7
+      react-dom:
+        specifier: '>=18'
+        version: 19.2.7(react@19.2.7)
+      shiki:
+        specifier: ^4.3.1
+        version: 4.3.1
 
   packages/registry/bases/base/components/tree:
     dependencies:
@@ -3658,6 +3679,27 @@ importers:
       react-dom:
         specifier: '>=18'
         version: 19.2.7(react@19.2.7)
+
+  packages/registry/bases/radix/components/trace:
+    dependencies:
+      class-variance-authority:
+        specifier: ^0.7.1
+        version: 0.7.1
+      cn:
+        specifier: ^0.3.0
+        version: 0.3.0
+      radix-ui:
+        specifier: ^1.4.3
+        version: 1.6.2(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react:
+        specifier: '>=18'
+        version: 19.2.7
+      react-dom:
+        specifier: '>=18'
+        version: 19.2.7(react@19.2.7)
+      shiki:
+        specifier: ^4.3.1
+        version: 4.3.1
 
   packages/registry/bases/radix/components/tree:
     dependencies:

@@ -22,7 +22,8 @@
       ],
       "meta": {
         "order": 1,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Basic"
       }
     },
     {
@@ -47,7 +48,8 @@
       ],
       "meta": {
         "order": 2,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Completed State"
       }
     },
     {
@@ -72,7 +74,8 @@
       ],
       "meta": {
         "order": 3,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Loading State"
       }
     },
     {
@@ -98,7 +101,8 @@
       ],
       "meta": {
         "order": 4,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Controlled"
       }
     },
     {
@@ -123,7 +127,8 @@
       ],
       "meta": {
         "order": 5,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Labels Below"
       }
     },
     {
@@ -148,7 +153,8 @@
       ],
       "meta": {
         "order": 6,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Left Aligned Titles"
       }
     },
     {
@@ -175,7 +181,8 @@
       ],
       "meta": {
         "order": 7,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Icons & Badges"
       }
     },
     {
@@ -200,7 +207,8 @@
       ],
       "meta": {
         "order": 8,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Descriptions"
       }
     },
     {
@@ -225,7 +233,8 @@
       ],
       "meta": {
         "order": 9,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Inline Titles"
       }
     },
     {
@@ -250,7 +259,8 @@
       ],
       "meta": {
         "order": 10,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Title & Caption"
       }
     },
     {
@@ -275,7 +285,8 @@
       ],
       "meta": {
         "order": 11,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Bar With Titles"
       }
     },
     {
@@ -303,7 +314,8 @@
       ],
       "meta": {
         "order": 12,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Segmented Bar"
       }
     },
     {
@@ -328,7 +340,8 @@
       ],
       "meta": {
         "order": 13,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Vertical Descriptions"
       }
     },
     {
@@ -353,7 +366,8 @@
       ],
       "meta": {
         "order": 14,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Vertical"
       }
     },
     {
@@ -379,7 +393,8 @@
       ],
       "meta": {
         "order": 15,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Vertical Titles"
       }
     },
     {
@@ -410,7 +425,8 @@
       ],
       "meta": {
         "order": 16,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Delivery Stops"
       }
     },
     {
@@ -438,7 +454,8 @@
       ],
       "meta": {
         "order": 17,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Dotted Progress"
       }
     },
     {
@@ -469,7 +486,8 @@
       ],
       "meta": {
         "order": 18,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Stage Details"
       }
     },
     {
@@ -498,7 +516,8 @@
       ],
       "meta": {
         "order": 19,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Frame Icon Tiles"
       }
     },
     {
@@ -531,7 +550,8 @@
       ],
       "meta": {
         "order": 20,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Purchase Orders"
       }
     },
     {
@@ -563,7 +583,8 @@
       ],
       "meta": {
         "order": 21,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Security Checks"
       }
     },
     {
@@ -593,7 +614,8 @@
       ],
       "meta": {
         "order": 22,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Bottom Color Bars"
       }
     },
     {
@@ -622,7 +644,8 @@
       ],
       "meta": {
         "order": 23,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Top Color Bars"
       }
     },
     {
@@ -650,7 +673,8 @@
       ],
       "meta": {
         "order": 24,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Icon Tile Rows"
       }
     },
     {
@@ -678,7 +702,8 @@
       ],
       "meta": {
         "order": 25,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Phase Track"
       }
     },
     {
@@ -706,7 +731,8 @@
       ],
       "meta": {
         "order": 26,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Timestamped Checkpoints"
       }
     },
     {
@@ -734,7 +760,8 @@
       ],
       "meta": {
         "order": 27,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Transit Arrow"
       }
     },
     {
@@ -762,7 +789,8 @@
       ],
       "meta": {
         "order": 28,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Breadcrumb Steps"
       }
     },
     {
@@ -790,7 +818,8 @@
       ],
       "meta": {
         "order": 29,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Compact Inline"
       }
     },
     {
@@ -820,7 +849,8 @@
       ],
       "meta": {
         "order": 30,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Truck Route"
       }
     },
     {
@@ -847,7 +877,8 @@
       ],
       "meta": {
         "order": 31,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Chevron Icon Tiles"
       }
     },
     {
@@ -876,7 +907,8 @@
       ],
       "meta": {
         "order": 32,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Numbered Chevrons"
       }
     },
     {
@@ -905,7 +937,8 @@
       ],
       "meta": {
         "order": 33,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Filled Chevrons"
       }
     },
     {
@@ -934,7 +967,8 @@
       ],
       "meta": {
         "order": 34,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Outlined Chevrons"
       }
     },
     {
@@ -961,7 +995,8 @@
       ],
       "meta": {
         "order": 35,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Flat Chevrons"
       }
     },
     {
@@ -992,7 +1027,8 @@
       ],
       "meta": {
         "order": 36,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Shipping Route"
       }
     },
     {
@@ -1022,7 +1058,8 @@
       ],
       "meta": {
         "order": 37,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Horizontal Step Cards"
       }
     },
     {
@@ -1051,7 +1088,8 @@
       ],
       "meta": {
         "order": 38,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Shipment Progress"
       }
     },
     {
@@ -1082,7 +1120,8 @@
       ],
       "meta": {
         "order": 39,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Vertical Step Cards"
       }
     },
     {
@@ -1110,7 +1149,8 @@
       ],
       "meta": {
         "order": 40,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Side Rail Icons"
       }
     },
     {
@@ -1138,7 +1178,8 @@
       ],
       "meta": {
         "order": 41,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Status List"
       }
     },
     {
@@ -1165,7 +1206,8 @@
       ],
       "meta": {
         "order": 42,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Vertical Status Bars"
       }
     },
     {
@@ -1196,7 +1238,8 @@
       ],
       "meta": {
         "order": 43,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Collapsible Sub-Steps"
       }
     },
     {
@@ -1226,7 +1269,8 @@
       ],
       "meta": {
         "order": 44,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Right-Aligned Sub-Steps"
       }
     }
   ]

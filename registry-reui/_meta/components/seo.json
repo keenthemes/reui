@@ -3990,8 +3990,8 @@
   "file-type": {
     "title": "Shadcn File Type: Format Colors, Variants, Sizes and MIME Types",
     "metaTitle": "Shadcn File Type: File Extension Icons",
-    "description": "{{count}} free shadcn file type icon components for attachment lists, upload queues and file browsers. 99 extensions in brand colors, 4 variants and 6 sizes.",
-    "intro": "Browse {{count}} shadcn file type icon components: 99 extensions in brand and family colors, outline, solid, light and mono variants, and 6 sizes from 18px to 56px.",
+    "description": "{{count}} free shadcn file type icon components for attachment lists, upload queues and file browsers. 171 extensions in brand colors, 4 variants and 6 sizes.",
+    "intro": "Browse {{count}} shadcn file type icon components: 171 extensions in brand and family colors, outline, solid, light and mono variants, and 6 sizes from 18px to 56px.",
     "keywords": [
       "shadcn file type icon",
       "react file type icon",
@@ -4015,8 +4015,8 @@
       "title": "Shadcn File Type: Show What a File Is at a Glance",
       "summary": [
         "ReUI File Type is a custom shadcn component that draws the icon for a file format: a page with a folded corner and the extension in a colored band. Each format takes its brand color, PDF in orange, Word in blue, Excel in green and PowerPoint in red, else its family's color, and formats with neither, such as ZIP or TXT, are grey.",
-        "It knows 99 extensions in 11 families, from documents, spreadsheets and code to archives, design files, applications and fonts, plus a folder and a blank page for things with no extension. getFileType turns a file name, a path, a URL or a MIME type into a type, so an upload or an API row maps to an icon without a lookup table of your own.",
-        "The examples cover the places a file icon actually lands: an attachment list, an upload queue resolved from MIME types, the rows of a sortable data grid and an export format picker. Others show custom labels such as version tags, custom colors, a lock or star in place of the label, restyled labels, and what an unknown extension falls back to."
+        "It knows 171 extensions in 11 families, from documents, spreadsheets, code and config to archives, design files, applications and fonts, plus a folder and a blank page for things with no extension. getFileType turns a file name, a path, a URL or a MIME type into a type, Dockerfile and .env.local included, so an upload or an API row maps to an icon without a lookup table of your own.",
+        "The examples cover the places a file icon actually lands: an attachment list, an upload queue resolved from MIME types, the rows of a sortable data grid and an export format picker. Others show custom labels such as version tags, custom colors, a lock or star in place of the label, restyled labels, dotfiles and build files read by name, and what an unknown extension falls back to."
       ],
       "sections": [
         {
@@ -4050,7 +4050,7 @@
             },
             {
               "title": "Resolve any file reference.",
-              "description": "getFileType reads a file name, a path, a URL with a query or hash, a bare extension or a MIME type. A trailing slash returns folder, and a name with no extension such as README returns empty."
+              "description": "getFileType reads a file name, a path, a URL with a query or hash, a bare extension or a MIME type. A trailing slash returns folder, a well-known name such as Dockerfile or .env.local returns its type, and any other name with no extension returns empty."
             },
             {
               "title": "Families for grouping.",
@@ -4105,7 +4105,7 @@
         },
         {
           "question": "How do I show a folder or a file with no extension?",
-          "answer": "Pass folder as the type, or give getFileType a path that ends in a slash and it returns folder. A file with no extension, such as README or .env, resolves to empty, a blank page named File."
+          "answer": "Pass folder as the type, or give getFileType a path that ends in a slash and it returns folder. A well-known name such as Dockerfile, .env or LICENSE resolves to its type, and any other file with no extension resolves to empty, a blank page named File."
         }
       ]
     },
@@ -9898,6 +9898,135 @@
         "Add tooltips to icon-only [Shadcn Button](/components/button) components to clarify their purpose: `<Button variant=\"ghost\"><HelpIcon /></Button>` with a tooltip hint.",
         "Pair tooltips with [Shadcn Toggle](/components/toggle) and [Shadcn Toggle Group](/components/toggle-group) buttons to explain what each option does.",
         "Use tooltips on disabled form fields to explain why they're unavailable (e.g., 'disabled: complete step 1 first')."
+      ]
+    }
+  },
+  "trace": {
+    "description": "Shadcn Trace components for agent reasoning, tool calls, CI runs and audit logs. {{count}} free Tailwind CSS examples for React and Next.js, compatible with shadcn/ui.",
+    "metaDescription": "Shadcn Trace components for agent tool calls, reasoning, CI runs and audit logs. {{count}} free Tailwind CSS examples for React, compatible with shadcn/ui.",
+    "intro": "Browse {{count}} production-ready Shadcn Trace components for agent turns, live runs, CI pipelines, request spans, data builds and compliance checks. Shadcn Trace ships in a *Radix UI* build and a *Base UI* build and is fully aligned with Shadcn Create style options, so the radius, fonts, and color tokens in these previews match the code you export.",
+    "keywords": [
+      "shadcn trace",
+      "shadcn/ui trace",
+      "shadcn trace component",
+      "react agent tool call ui",
+      "ai reasoning collapsible react",
+      "chain of thought ui react",
+      "react agent steps component",
+      "ci pipeline log ui react",
+      "react expandable log rows",
+      "tailwind run status list",
+      "react request span tree",
+      "next.js agent trace ui",
+      "base ui trace component",
+      "react step list with status",
+      "shadcn create",
+      "reui trace examples"
+    ],
+    "content": {
+      "title": "Shadcn Trace: Agent Steps, Run Logs, and Expandable Activity",
+      "summary": [
+        "Shadcn Trace is a list of one-line steps, each with an icon, a title, an optional description and a status. It has 8 parts: Trace, TraceLine, TraceIcon, TraceTitle, TraceDescription, and TraceCollapsible with its trigger and its content. It ships in a *Radix UI* build and a *Base UI* build, and Shadcn Create radius, font, and color tokens apply to it like any other primitive.",
+        "A line can stay plain text, expand to show its output, or sit inside a link or a Dialog, Sheet or Popover trigger. 3 statuses cover the life of a step: running shimmers the title, error colors the row, and pending dims a step that has not started.",
+        "ReUI shows Trace well beyond the chat window: CI pipelines, request spans, query plans, data builds, webhook deliveries, dependency audits and identity checks, next to [Shadcn Code Block](/components/code-block), [Shadcn Table](/components/table), and [Shadcn Sheet](/components/sheet). The sections below cover what the component is, why teams use it, which features matter, and how it fits into a larger surface."
+      ],
+      "sections": [
+        {
+          "title": "What is Shadcn Trace?",
+          "paragraphs": [
+            "In UI terms, a trace is the record of work: the steps an agent, a pipeline or a job took, in order, one line each. Shadcn Trace fixes the shape of that line so reasoning, tool calls, sources and plans look and behave the same. TraceLine is a span and never a tab stop on its own; it takes its behavior from what wraps it, whether that is a TraceCollapsibleTrigger, a link, or the trigger of a dialog or sheet.",
+            "TraceIcon is hidden from assistive tech, which makes TraceTitle the accessible name, so the title is a sentence that says what happened: Ran pnpm test, Failed to run pnpm lint, Deploy a preview. The {{count}} components here cover every row shape, live runs that stream their steps in, runs nested 3 levels deep, and rows that open a Dialog or a Sheet."
+          ]
+        },
+        {
+          "title": "Why Use Shadcn Trace?",
+          "paragraphs": [
+            "Every product that runs work for its users ends up with this list, and each one rebuilds the chevron, the indent, the running state and the truncation by hand. Trace moves those decisions into the style layer: a running title shimmers and stops for readers who prefer reduced motion, a long title truncates while its description stays whole, and expanded detail sits behind a ruled indent at every level.",
+            "The screens around these rows are in ReUI Pro. The 5 [Agent Activity](/blocks/ai-agents/agent-activity) blocks are run views with live step feeds, approvals, a research trace, an MCP call table and a run report, part of 20 [AI and Agents](/blocks/ai-agents) blocks. None of them imports Trace yet, so the examples on this page are the rows such a screen is made of."
+          ]
+        },
+        {
+          "title": "Shadcn Trace Features",
+          "featureItems": [
+            {
+              "title": "3 Statuses.",
+              "description": "Running shimmers the title, error colors the row and its trigger, and pending dims a step that has not started. A line with no status reads as finished work."
+            },
+            {
+              "title": "Expandable Rows.",
+              "description": "TraceCollapsible builds on [Shadcn Collapsible](/components/collapsible). Its trigger adds a chevron that turns as the row opens, and the content animates its height behind a ruled indent."
+            },
+            {
+              "title": "Nested Runs.",
+              "description": "A Trace inside TraceCollapsibleContent nests a run inside a step. In the *Base UI* build, keepMounted keeps the open state of nested rows while a parent is folded."
+            },
+            {
+              "title": "Controlled Open State.",
+              "description": "open and onOpenChange are required together by the types, so a row can open itself while its step streams and still let the reader's click win."
+            },
+            {
+              "title": "Links and Overlays.",
+              "description": "Wrap a TraceLine in an anchor, or in the trigger of a [Shadcn Dialog](/components/dialog), [Shadcn Sheet](/components/sheet) or [Shadcn Popover](/components/popover), and the list gives that wrapper the same hover color and focus ring as an expanding row."
+            },
+            {
+              "title": "Truncation Rules.",
+              "description": "TraceTitle truncates to one line and TraceDescription never does, so a duration, a diff count or a timestamp stays readable at any width."
+            },
+            {
+              "title": "Accessible by Construction.",
+              "description": "TraceIcon is aria-hidden, an expanding row is a button with aria-expanded, and the running shimmer switches off under prefers-reduced-motion."
+            },
+            {
+              "title": "Shadcn Create Compatible.",
+              "description": "All 8 Shadcn Create styles (Vega, Nova, Maia, Lyra, Mira, Luma, Sera, and Rhea) and the *Radius*, *Font Family*, and *Color Scale* controls apply to trace previews and to the code you export."
+            }
+          ]
+        },
+        {
+          "title": "Shadcn Trace Beyond the Chat Window",
+          "paragraphs": [
+            "In a chat, Trace sits around [Shadcn Message](/components/message) turns: the work folds into one summary row above the answer, and the sources it used sit in a second list below it. Text between steps stays outside the lists, so the reply is never mistaken for a step.",
+            "Outside chat, the same rows read as an operations log. A CI run is jobs that open to steps and a failing log in a [Shadcn Code Block](/components/code-block), a request trace is spans nested under their parent, and a review queue is findings that each open a [Shadcn Sheet](/components/sheet). Let a parent row carry the verdict, such as \"Ran 418 tests, 2 failed\", and keep the rows beneath it muted."
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "question": "What is a Shadcn Trace used for in real products?",
+          "answer": "Agent turns with reasoning and tool calls, the sources behind an answer, CI and deploy runs, data pipeline builds, webhook delivery logs, request spans, and lists of automated checks. Anywhere a screen lists steps that ran, are running or have not started, and some of them open to their output."
+        },
+        {
+          "question": "What is the difference between Trace and Marker?",
+          "answer": "[Shadcn Marker](/components/marker) is one flat line of status text with an icon, plus a separator variant for labeled dividers. Trace adds what a step log needs: a running, error or pending status, rows that expand to their output, and nesting. A plain list of finished steps can be either; once a step opens or runs, Trace is the fit."
+        },
+        {
+          "question": "How do I open a row while it streams and let the user close it?",
+          "answer": "Keep the reader's choice in state that starts undefined, and pass open={choice ?? running} with onOpenChange={setChoice}. The row opens itself while its step runs and folds when the step finishes, and a click in either direction wins from then on."
+        },
+        {
+          "question": "How do I show a step that has not started yet?",
+          "answer": "Set status=\"pending\" on the TraceLine and write the title as an instruction, such as Deploy a preview. The row dims; when the step starts, switch the status to running and the title to the present tense."
+        },
+        {
+          "question": "Can a trace row open a dialog or a sheet instead of expanding?",
+          "answer": "Yes. Put the TraceLine inside the trigger of a [Shadcn Dialog](/components/dialog) or [Shadcn Sheet](/components/sheet). The overlay owns focus, Escape and focus return, and the Trace list styles the trigger like any other row."
+        },
+        {
+          "question": "Does Trace work with the AI SDK?",
+          "answer": "It renders whatever you map onto it. A reasoning part becomes a collapsible Thinking row, each tool part becomes a row whose status follows the part's state, and source parts become link rows under one Used sources row. The examples here use plain data, so they run without an AI provider."
+        },
+        {
+          "question": "How are ReUI Trace components different from a minimal demo?",
+          "answer": "The {{count}} examples put Trace in surfaces that behave like production: a live run with Stop, a Terraform plan behind an approval, a CI run with a re-run, nested request spans, a query plan tree, and an access check that explains its decision. For the assembled agent screens, [Agent Activity](/blocks/ai-agents/agent-activity) in ReUI Pro has 5 run views."
+        }
+      ]
+    },
+    "relatedComponents": {
+      "title": "Integrating With Other Components",
+      "integrationBody": [
+        "Show command output, logs and diffs inside an expanded row with [Shadcn Code Block](/components/code-block), and tabular detail such as rejected rows with [Shadcn Table](/components/table). Put the run's overall state in a parent row or a [Shadcn Badge](/components/badge) beside the list, so the rows keep their muted scale.",
+        "For chat, place Trace between [Shadcn Message](/components/message) and [Shadcn Bubble](/components/bubble) turns inside a [Shadcn Message Scroller](/components/message-scroller), which announces each new line once. Open the larger detail of a step in a [Shadcn Sheet](/components/sheet) or [Shadcn Dialog](/components/dialog), and keep [Shadcn Marker](/components/marker) for flat status lines and labeled dividers between turns.",
+        "For the assembled screens, ReUI Pro ships 5 [Agent Activity](/blocks/ai-agents/agent-activity) blocks with live step feeds, approval steps, a research trace, an MCP call table and a run report, part of 20 [AI and Agents](/blocks/ai-agents) blocks. They are the screen around the rows; the examples on this page are the rows, ready to drop into your own."
       ]
     }
   },

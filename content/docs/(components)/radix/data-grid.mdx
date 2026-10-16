@@ -177,16 +177,20 @@ STEP 5 - Verify it actually runs.
 
 ## React Compiler
 
-TanStack Table v8 returned a stable table instance whose state mutated internally, so React Compiler memoized
-reads against a reference that never changed and state updates could be skipped. That is what the `"use no memo"`
-directive worked around, and **on v9 it is no longer needed here**: `useTable` returns a fresh table reference on
-every state change, which is exactly the signal the compiler needs.
+The grid works in apps that run React Compiler, and the component that renders it is compiled as usual.
 
-One gap remains, and the grid already handles it for you. State is not only read through `table`, it is also read
-through builder calls like `row.getIsSelected()` and `column.getIsPinned()`. Those hide their dependency from the
-compiler, and when a header or cell is rendered by a nested component holding a _stable_ row or column, the
-compiler can memoize that JSX and never re-run the read. ReUI wraps its own such reads - the selection checkboxes
-and the column header - in TanStack's `Subscribe`, so sort arrows, pin controls and checkboxes stay live.
+**The grid's own files opt out.** Each data-grid file starts with a `"use no memo"` directive. The grid reads state
+through builder calls on rows, columns and headers that keep their identity across renders, such as
+`row.getIsExpanded()` and `column.getIsResizing()`, and compiled code would cache those reads against the unchanged
+object and never run them again. The grid is memoized by hand instead. Keep the directive when you edit an installed
+file.
+
+**Your component compiles.** The compiler creates the children of your `<DataGrid>` once and reuses them, so the
+grid never re-renders because your component did. It updates through its own context instead, which changes with
+table state, `data`, `columns`, props and callbacks, and holds still while a column resize is in progress, so cells
+do not re-render on every pointer move. Keep `data` and `columns` stable, as TanStack Table requires; without the
+compiler, a new inline callback on each render re-renders nothing extra. Call `useTable` without a selector: the
+grid needs every state change to reach your component.
 
 **What you must do.** If your own `cell` or `header` template is a named child component that reads state through
 a builder call, subscribe there too:

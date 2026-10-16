@@ -22,7 +22,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Basic"
       }
     },
     {
@@ -46,7 +47,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "Bordered Header"
       }
     },
     {
@@ -71,7 +73,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Border Separation"
       }
     },
     {
@@ -96,7 +99,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Header & Footer"
       }
     },
     {
@@ -121,7 +125,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "Link Action"
       }
     },
     {
@@ -132,10 +137,12 @@
         "card"
       ],
       "description": "Card with dropdown menu",
-      "descriptionLong": "Card with dropdown menu. Built by composing Button, Card. A free, open source shadcn card example you can install with npx shadcn@latest add @reui/c-card-6 and edit as your own code.",
+      "descriptionLong": "Card with dropdown menu. Built by composing Avatar, Button, Card, Dropdown Menu. A free, open source shadcn card example you can install with npx shadcn@latest add @reui/c-card-6 and edit as your own code.",
       "registryDependencies": [
+        "avatar",
         "button",
-        "card"
+        "card",
+        "dropdown-menu"
       ],
       "dependencies": [],
       "files": [
@@ -146,7 +153,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "Dropdown Menu"
       }
     },
     {
@@ -172,7 +180,8 @@
         }
       ],
       "meta": {
-        "order": 7
+        "order": 7,
+        "label": "Inset Image"
       }
     },
     {
@@ -196,7 +205,8 @@
         }
       ],
       "meta": {
-        "order": 8
+        "order": 8,
+        "label": "Image Hover Zoom"
       }
     },
     {
@@ -222,7 +232,8 @@
         }
       ],
       "meta": {
-        "order": 9
+        "order": 9,
+        "label": "Full Image"
       }
     },
     {
@@ -233,8 +244,9 @@
         "card"
       ],
       "description": "Full card with image and shadow fade effect",
-      "descriptionLong": "Full card with image and shadow fade effect. Built by composing Badge, Card. A free, open source shadcn card example you can install with npx shadcn@latest add @reui/c-card-10 and edit as your own code.",
+      "descriptionLong": "Full card with image and shadow fade effect. Built by composing Avatar, Badge, Card. A free, open source shadcn card example you can install with npx shadcn@latest add @reui/c-card-10 and edit as your own code.",
       "registryDependencies": [
+        "avatar",
         "badge",
         "card"
       ],
@@ -247,7 +259,8 @@
         }
       ],
       "meta": {
-        "order": 10
+        "order": 10,
+        "label": "Image Shadow Fade"
       }
     },
     {
@@ -272,7 +285,8 @@
         }
       ],
       "meta": {
-        "order": 11
+        "order": 11,
+        "label": "Stacked Depth"
       }
     },
     {
@@ -300,7 +314,8 @@
         }
       ],
       "meta": {
-        "order": 12
+        "order": 12,
+        "label": "Login Form"
       }
     },
     {
@@ -328,7 +343,8 @@
         }
       ],
       "meta": {
-        "order": 13
+        "order": 13,
+        "label": "Billing Usage"
       }
     },
     {
@@ -354,7 +370,8 @@
         }
       ],
       "meta": {
-        "order": 14
+        "order": 14,
+        "label": "Deployment Status"
       }
     },
     {
@@ -382,7 +399,8 @@
         }
       ],
       "meta": {
-        "order": 15
+        "order": 15,
+        "label": "Stat Trend"
       }
     },
     {
@@ -410,7 +428,8 @@
         }
       ],
       "meta": {
-        "order": 16
+        "order": 16,
+        "label": "Badge & Actions"
       }
     },
     {
@@ -434,7 +453,8 @@
         }
       ],
       "meta": {
-        "order": 17
+        "order": 17,
+        "label": "Icon & Link"
       }
     },
     {
@@ -458,7 +478,8 @@
         }
       ],
       "meta": {
-        "order": 18
+        "order": 18,
+        "label": "Label & Link"
       }
     }
   ]

@@ -23,7 +23,8 @@
       ],
       "meta": {
         "order": 1,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Two-Sided Chat"
       }
     },
     {
@@ -50,7 +51,8 @@
       ],
       "meta": {
         "order": 2,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Avatars"
       }
     },
     {
@@ -76,7 +78,8 @@
       ],
       "meta": {
         "order": 3,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Sender & Status"
       }
     },
     {
@@ -103,7 +106,8 @@
       ],
       "meta": {
         "order": 4,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Reply Actions"
       }
     },
     {
@@ -131,7 +135,8 @@
       ],
       "meta": {
         "order": 5,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Shared Files"
       }
     },
     {
@@ -158,7 +163,8 @@
       ],
       "meta": {
         "order": 6,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Consecutive Messages"
       }
     },
     {
@@ -187,7 +193,8 @@
       ],
       "meta": {
         "order": 7,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Streaming Reply"
       }
     }
   ]

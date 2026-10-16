@@ -21,7 +21,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Basic"
       }
     },
     {
@@ -45,7 +46,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "Disabled"
       }
     },
     {
@@ -69,7 +71,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Multiple Thumbs"
       }
     },
     {
@@ -93,7 +96,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Vertical"
       }
     },
     {
@@ -118,7 +122,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "Controlled Value"
       }
     },
     {
@@ -142,7 +147,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "Range"
       }
     },
     {
@@ -168,7 +174,8 @@
         }
       ],
       "meta": {
-        "order": 7
+        "order": 7,
+        "label": "Number Input"
       }
     },
     {
@@ -193,7 +200,8 @@
         }
       ],
       "meta": {
-        "order": 8
+        "order": 8,
+        "label": "Color Temperature"
       }
     },
     {
@@ -218,7 +226,8 @@
         }
       ],
       "meta": {
-        "order": 9
+        "order": 9,
+        "label": "Reference Labels"
       }
     },
     {
@@ -245,7 +254,8 @@
         }
       ],
       "meta": {
-        "order": 10
+        "order": 10,
+        "label": "Tick Marks"
       }
     },
     {
@@ -270,7 +280,8 @@
         }
       ],
       "meta": {
-        "order": 11
+        "order": 11,
+        "label": "Value Tooltip"
       }
     },
     {
@@ -295,7 +306,8 @@
         }
       ],
       "meta": {
-        "order": 12
+        "order": 12,
+        "label": "Emoji Rating"
       }
     }
   ]

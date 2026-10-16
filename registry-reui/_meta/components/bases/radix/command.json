@@ -22,7 +22,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Basic"
       }
     },
     {
@@ -47,7 +48,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "Shortcuts"
       }
     },
     {
@@ -72,7 +74,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Groups"
       }
     },
     {
@@ -97,7 +100,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Many Groups"
       }
     },
     {
@@ -124,7 +128,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "File Search"
       }
     },
     {
@@ -151,7 +156,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "User Search"
       }
     },
     {
@@ -176,7 +182,8 @@
         }
       ],
       "meta": {
-        "order": 7
+        "order": 7,
+        "label": "Action Palette"
       }
     },
     {
@@ -201,7 +208,8 @@
         }
       ],
       "meta": {
-        "order": 8
+        "order": 8,
+        "label": "Recent & Favorites"
       }
     }
   ]

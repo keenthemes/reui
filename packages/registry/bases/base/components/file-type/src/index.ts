@@ -16,6 +16,7 @@ export const componentPreviewLoaders = {
   "c-file-type-12": () => import("@/registry-reui/bases/base/components/file-type/c-file-type-12.tsx"),
   "c-file-type-13": () => import("@/registry-reui/bases/base/components/file-type/c-file-type-13.tsx"),
   "c-file-type-14": () => import("@/registry-reui/bases/base/components/file-type/c-file-type-14.tsx"),
+  "c-file-type-15": () => import("@/registry-reui/bases/base/components/file-type/c-file-type-15.tsx"),
 } as const
 
 export type ComponentName = keyof typeof componentPreviewLoaders

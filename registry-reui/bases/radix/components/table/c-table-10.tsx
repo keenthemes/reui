@@ -1,5 +1,4 @@
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
-import { Frame, FramePanel } from "@/registry-reui/bases/radix/reui/frame"
 
 import { Button } from "@/registry/bases/radix/ui/button"
 import {

@@ -16,6 +16,7 @@ import {
   CASCADER_ROOT_KEY,
   CASCADER_ROWS_CLASS,
   CASCADER_SCROLL_CLASS,
+  focusCascaderHome,
   warnCascaderOnce,
 } from "@/registry-reui/bases/base/reui/cascader/cascader-lib"
 import { Combobox as ComboboxPrimitive } from "@base-ui/react"
@@ -150,7 +151,12 @@ function CascaderColumnPanel({
         <button
           type="button"
           data-slot="cascader-retry"
-          onClick={() => retryLevel(columnKey)}
+          onClick={(event) => {
+            // Same hand-off as the panel's Retry: a trail column, or an
+            // inline one, can hold focus, and the loading state unmounts this.
+            focusCascaderHome(event.currentTarget)
+            retryLevel(columnKey)
+          }}
           className="text-foreground hover:bg-accent focus-visible:ring-ring/50 rounded-md px-1 font-medium outline-hidden transition-colors focus-visible:ring-2"
         >
           {labels.retry}

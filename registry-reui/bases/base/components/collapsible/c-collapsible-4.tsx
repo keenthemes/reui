@@ -27,7 +27,7 @@ export default function Pattern() {
               </Button>
             </CardAction>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent>
             <div className="bg-muted/60 border-border rounded-lg space-y-2 border p-3">
               <div className="flex justify-between text-sm font-medium">
                 <span>$18.08 / $20</span>
@@ -39,8 +39,8 @@ export default function Pattern() {
               />
             </div>
 
-            <CollapsibleContent className="data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
-              <div className="flex flex-col gap-2.5 pt-2">
+            <CollapsibleContent className="h-(--collapsible-panel-height) overflow-hidden transition-[height] duration-200 ease-out data-ending-style:h-0 data-starting-style:h-0 motion-reduce:transition-none">
+              <div className="flex flex-col gap-2.5 pt-6">
                 {[
                   { label: "Requests", value: "$210.84" },
                   { label: "Active CPU", value: "$21.95" },
@@ -79,7 +79,7 @@ export default function Pattern() {
               phosphor="CaretDownIcon"
               remixicon="RiArrowDownSLine"
               aria-hidden="true"
-              className="size-3.5 transition-transform in-data-panel-open:rotate-180"
+              className="size-3.5 transition-transform in-aria-expanded:rotate-180"
             />
             <span className="sr-only">Toggle details</span>
           </CollapsibleTrigger>

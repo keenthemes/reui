@@ -22,7 +22,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Basic"
       }
     },
     {
@@ -47,7 +48,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "Opening Sides"
       }
     },
     {
@@ -74,7 +76,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Inline Form"
       }
     },
     {
@@ -99,7 +102,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Alignment"
       }
     },
     {
@@ -125,7 +129,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "In Dialog"
       }
     },
     {
@@ -151,7 +156,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "Profile Card"
       }
     },
     {
@@ -176,7 +182,8 @@
         }
       ],
       "meta": {
-        "order": 7
+        "order": 7,
+        "label": "Feature Pitch"
       }
     },
     {
@@ -201,7 +208,8 @@
         }
       ],
       "meta": {
-        "order": 8
+        "order": 8,
+        "label": "Media Preview"
       }
     },
     {
@@ -228,7 +236,8 @@
         }
       ],
       "meta": {
-        "order": 9
+        "order": 9,
+        "label": "Relative Time"
       }
     },
     {
@@ -255,7 +264,8 @@
         }
       ],
       "meta": {
-        "order": 10
+        "order": 10,
+        "label": "Controls"
       }
     },
     {
@@ -280,7 +290,8 @@
         }
       ],
       "meta": {
-        "order": 11
+        "order": 11,
+        "label": "Step Tour"
       }
     }
   ]

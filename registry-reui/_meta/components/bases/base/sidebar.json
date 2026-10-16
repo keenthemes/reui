@@ -30,7 +30,8 @@
       "meta": {
         "order": 1,
         "gridSize": 1,
-        "previewHeight": "560"
+        "previewHeight": "560",
+        "label": "Workspace Switcher"
       }
     },
     {
@@ -60,7 +61,8 @@
       "meta": {
         "order": 2,
         "gridSize": 1,
-        "previewHeight": "560"
+        "previewHeight": "560",
+        "label": "Icon Rail"
       }
     },
     {
@@ -89,7 +91,8 @@
       "meta": {
         "order": 3,
         "gridSize": 1,
-        "previewHeight": "560"
+        "previewHeight": "560",
+        "label": "Docs Navigation"
       }
     },
     {
@@ -119,7 +122,8 @@
       "meta": {
         "order": 4,
         "gridSize": 1,
-        "previewHeight": "560"
+        "previewHeight": "560",
+        "label": "Inspector Panel"
       }
     },
     {
@@ -150,7 +154,8 @@
       "meta": {
         "order": 5,
         "gridSize": 1,
-        "previewHeight": "560"
+        "previewHeight": "560",
+        "label": "Filter & Loading"
       }
     }
   ]

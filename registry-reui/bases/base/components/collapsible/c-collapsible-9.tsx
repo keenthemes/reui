@@ -195,12 +195,13 @@ function NavMenuItem({
 
   if (isFolder) {
     return (
-      <Collapsible className="group/collapsible">
+      <Collapsible>
         <CollapsibleTrigger
           render={
             <Item
+              render={<button type="button" />}
               size="xs"
-              className="hover:bg-accent data-[state=open]:bg-accent group/item cursor-pointer py-1.25"
+              className="hover:bg-accent aria-expanded:bg-accent group/item cursor-pointer py-1.25 focus-visible:ring-inset"
               style={{ paddingLeft: `${level * 12 + 8}px` }}
             />
           }
@@ -210,7 +211,7 @@ function NavMenuItem({
               {item.icon}
             </div>
           </ItemMedia>
-          <ItemTitle className="text-sm group-data-[state=open]/collapsible:font-semibold">
+          <ItemTitle className="text-sm in-aria-expanded:font-semibold">
             {item.name}
           </ItemTitle>
           <IconPlaceholder
@@ -220,11 +221,11 @@ function NavMenuItem({
             phosphor="CaretRightIcon"
             remixicon="RiArrowRightSLine"
             aria-hidden="true"
-            className="text-muted-foreground ml-auto size-4 transition-transform in-data-open:rotate-90"
+            className="text-muted-foreground ml-auto size-4 transition-transform in-aria-expanded:rotate-90"
           />
         </CollapsibleTrigger>
-        <CollapsibleContent className="data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down overflow-hidden pt-0.5">
-          <div className="flex flex-col gap-0.5">
+        <CollapsibleContent className="h-(--collapsible-panel-height) overflow-hidden transition-[height] duration-200 ease-out data-ending-style:h-0 data-starting-style:h-0 motion-reduce:transition-none">
+          <div className="flex flex-col gap-0.5 pt-0.5">
             {item.items?.map((child) => (
               <NavMenuItem
                 key={child.id}

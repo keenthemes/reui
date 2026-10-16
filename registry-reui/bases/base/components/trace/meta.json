@@ -1,0 +1,301 @@
+[
+  {
+    "name": "c-trace-1",
+    "title": "Agent steps",
+    "label": "Agent Steps",
+    "description": "An agent turn with a search, a diff, test output, a lint failure and a fix still running.",
+    "order": 1,
+    "gridSize": 2,
+    "guidance": {
+      "bestFor": "A plain search line, a diff and test output that expand, a lint failure and a running fix, in one bare column",
+      "agentNotes": [
+        "`patch`, `testOutput` and `lintOutput` are sample strings; pass your tool results to the same CodeBlock props"
+      ],
+      "whenNotToUse": [
+        {
+          "when": "Steps that arrive one by one while the run is still going",
+          "instead": "c-trace-2"
+        }
+      ]
+    }
+  },
+  {
+    "name": "c-trace-2",
+    "title": "Streaming agent run",
+    "label": "Streaming Run",
+    "description": "Agent steps that stream in as they happen, with the running step open and Stop or Run again under the steps.",
+    "order": 2,
+    "gridSize": 2,
+    "guidance": {
+      "bestFor": "A run that streams its reasoning and resolves tool steps on a timer, with a Stop button and live rows that open themselves",
+      "agentNotes": [
+        "`STEPS` and the timer in the effect stand in for your stream; drive `finished` and `state` from real events",
+        "Each row passes `openById` first and falls back to `isLive`, so a reader's click overrides the auto open both ways"
+      ]
+    }
+  },
+  {
+    "name": "c-trace-3",
+    "title": "Chat turn with sources",
+    "label": "Chat Turn",
+    "description": "An assistant reply whose SQL queries fold into one summary above the answer, with the dashboards it cited below.",
+    "order": 3,
+    "gridSize": 2,
+    "guidance": {
+      "bestFor": "A chat transcript turn whose 2 SQL queries fold into one summary row above the answer, with cited dashboards below",
+      "agentNotes": [
+        "`QUERIES` and `DASHBOARDS` are sample data; map your message's tool and source parts onto their fields"
+      ]
+    }
+  },
+  {
+    "name": "c-trace-4",
+    "title": "Parallel subagents",
+    "label": "Subagents",
+    "description": "An orchestrator whose summary and status come from 3 subagents, with a retry for the one that failed.",
+    "order": 4,
+    "gridSize": 2,
+    "guidance": {
+      "bestFor": "A parent row over 3 subagents whose status is computed from its children, plus a retry for the failed one",
+      "agentNotes": [
+        "The parent status is derived from `states` on every render; storing it separately lets it drift from the children"
+      ]
+    }
+  },
+  {
+    "name": "c-trace-5",
+    "title": "Terraform change approval",
+    "label": "Change Approval",
+    "description": "Terraform resource changes that move from pending to running to done once someone signs off.",
+    "order": 5,
+    "gridSize": 2,
+    "guidance": {
+      "bestFor": "A human approval gate where planned resource rows switch from pending to running to applied in place after Apply",
+      "agentNotes": [
+        "`answer` moves focus to the status line in `requestAnimationFrame`, because the approval Item unmounts on either answer"
+      ]
+    }
+  },
+  {
+    "name": "c-trace-6",
+    "title": "Answer with citations",
+    "label": "Cited Sources",
+    "description": "Numbered citations in a research answer open the sources and move focus to the cited source.",
+    "order": 6,
+    "gridSize": 2,
+    "guidance": {
+      "bestFor": "Inline citation buttons wired to a controlled sources row, focusing the cited link once its panel mounts",
+      "agentNotes": [
+        "Citations call `showSource`, which opens the row through `sourcesOpen` and focuses a link held in `linkRefs`"
+      ]
+    }
+  },
+  {
+    "name": "c-trace-7",
+    "title": "Support copilot draft",
+    "label": "Support Copilot",
+    "description": "A drafted support reply with the order and policy lookups behind it, and Regenerate replaying them.",
+    "order": 7,
+    "gridSize": 2,
+    "guidance": {
+      "bestFor": "A drafted support reply in its own row after 3 order and policy lookups, with Insert and Regenerate below",
+      "agentNotes": [
+        "The Insert reply button only sets `inserted` and shows a status line; connect it to your reply composer"
+      ]
+    }
+  },
+  {
+    "name": "c-trace-8",
+    "title": "CLI install summary",
+    "label": "Install Summary",
+    "description": "What a shadcn add run resolved, installed and wrote, including a file it kept because it already existed.",
+    "order": 8,
+    "gridSize": 2,
+    "guidance": {
+      "bestFor": "A finished install summary with registry items, packages, created files as links, one kept file and a CSS diff"
+    }
+  },
+  {
+    "name": "c-trace-9",
+    "title": "CI pipeline run",
+    "label": "CI Pipeline",
+    "description": "Jobs that expand to their steps, a failing test log, and a re-run that walks the remaining jobs to done.",
+    "order": 9,
+    "gridSize": 2,
+    "guidance": {
+      "bestFor": "A workflow run of 4 jobs where the failed test job opens to its log and a re-run replays test, build and deploy",
+      "agentNotes": [
+        "`JOBS` holds a title per state for every job, and `RERUN` lists the jobs a re-run repeats, in order"
+      ]
+    }
+  },
+  {
+    "name": "c-trace-10",
+    "title": "Distributed trace spans",
+    "label": "Request Spans",
+    "description": "Request spans nested under their parent with their durations, each opening to its attributes, the slowest one marked.",
+    "order": 10,
+    "gridSize": 2,
+    "guidance": {
+      "bestFor": "Spans nested under their parent, each opening to its OpenTelemetry attributes, with the slowest span marked by its share",
+      "agentNotes": [
+        "`ROOT` is a sample span tree; map your trace onto its `children` by parent span id",
+        "`slowest` picks the span with the largest self time, its duration minus its children's"
+      ]
+    }
+  },
+  {
+    "name": "c-trace-11",
+    "title": "Error breadcrumbs",
+    "label": "Error Breadcrumbs",
+    "description": "The events that led to a crash, the response body of the request behind it, and the stack trace below.",
+    "order": 11,
+    "gridSize": 2,
+    "guidance": {
+      "bestFor": "An exception's timestamped user and network events, a response body in a Dialog and folded React stack lines"
+    }
+  },
+  {
+    "name": "c-trace-12",
+    "title": "SQL query plan",
+    "label": "Query Plan",
+    "description": "An EXPLAIN ANALYZE result opened along the path to the slowest scan, with the index that would remove it.",
+    "order": 12,
+    "gridSize": 2,
+    "guidance": {
+      "bestFor": "A recursive tree of plan nodes, each opening to its numbers and children, with the slowest node flagged by its share",
+      "agentNotes": [
+        "`HOT_ID` is hard coded; compute it from your parsed plan as the node with the largest self time",
+        "`PlanRow` renders itself for each child, so a plan of any depth works without changes"
+      ]
+    }
+  },
+  {
+    "name": "c-trace-13",
+    "title": "Data pipeline run",
+    "label": "Data Pipeline",
+    "description": "A dbt build where a failed uniqueness test shows its duplicates, and a downstream model skips.",
+    "order": 13,
+    "gridSize": 2,
+    "guidance": {
+      "bestFor": "Built models folded into one row, a failing data test open on its duplicate keys, and a skipped downstream model"
+    }
+  },
+  {
+    "name": "c-trace-14",
+    "title": "Webhook delivery attempts",
+    "label": "Webhook Retries",
+    "description": "Delivery attempts for one event, with failures opening to the response and Resend appending a new attempt.",
+    "order": 14,
+    "gridSize": 2,
+    "guidance": {
+      "bestFor": "A delivery log of failed and successful attempts, each opening to its response or payload, plus a Resend action",
+      "agentNotes": [
+        "The resend timer reads the clock inside `setTimeout`, never during render; replace the timer with your API call"
+      ]
+    }
+  },
+  {
+    "name": "c-trace-15",
+    "title": "CSV import",
+    "label": "CSV Import",
+    "description": "A CSV import that counts up while it runs, with rejected records, their problems and a download link.",
+    "order": 15,
+    "gridSize": 2,
+    "guidance": {
+      "bestFor": "A spreadsheet upload whose last step counts up live while rejected rows sit in a Table with a download link"
+    }
+  },
+  {
+    "name": "c-trace-16",
+    "title": "Dependency audit",
+    "label": "Security Audit",
+    "description": "Vulnerable packages that open to the chain that pulled them in, with the upgrade or lockfile update that fixes each.",
+    "order": 16,
+    "gridSize": 2,
+    "guidance": {
+      "bestFor": "A list of 3 advisories with severity badges, each opening to its dependency chain and the one action that fixes it",
+      "agentNotes": [
+        "`fix` only records the advisory in `fixed`; run the upgrade or the lockfile update in your own handler"
+      ]
+    }
+  },
+  {
+    "name": "c-trace-17",
+    "title": "AI review findings",
+    "label": "Review Findings",
+    "description": "Findings from an automated pull request review, each opening the flagged lines and a suggested fix, resolved in place.",
+    "order": 17,
+    "gridSize": 2,
+    "guidance": {
+      "bestFor": "Flagged lines that each open in a Sheet with a suggested diff, then read as applied or dismissed in place",
+      "agentNotes": [
+        "Each Sheet is controlled through `openId`, so `resolve` can close it after Apply or Dismiss"
+      ]
+    }
+  },
+  {
+    "name": "c-trace-18",
+    "title": "Model eval results",
+    "label": "Eval Results",
+    "description": "LLM eval cases where a failure expands to the expected answer, the model's answer and the judge's note.",
+    "order": 18,
+    "gridSize": 2,
+    "guidance": {
+      "bestFor": "Scored cases with a failures only switch, each failure opening to a compact expected, got and judge list"
+    }
+  },
+  {
+    "name": "c-trace-19",
+    "title": "Access decision",
+    "label": "Access Decision",
+    "description": "Why a member can or cannot open a part of the app, rule by rule, with the deciding rule and those never reached.",
+    "order": 19,
+    "gridSize": 2,
+    "guidance": {
+      "bestFor": "A permission decision as the parent row of its rules, recomputed from 2 Selects, with rules after the decider not reached",
+      "agentNotes": [
+        "`evaluate` is a pure function of the member and page ids; swap its rules for your policy engine's decision log"
+      ]
+    }
+  },
+  {
+    "name": "c-trace-20",
+    "title": "Identity verification",
+    "label": "Identity Review",
+    "description": "KYC results for an applicant, where the rejected document opens to its reason and a request for another.",
+    "order": 20,
+    "gridSize": 2,
+    "guidance": {
+      "bestFor": "An applicant review with automated document and screening checks, one rejection and a request for a new document"
+    }
+  },
+  {
+    "name": "c-trace-21",
+    "title": "Domain DNS setup",
+    "label": "Domain Setup",
+    "description": "Sending domain setup with records to copy, a lookup that finds 2 of 3, then the go live step once DNS passes.",
+    "order": 21,
+    "gridSize": 2,
+    "guidance": {
+      "bestFor": "A setup checklist with copyable DNS records, a lookup per record, then a pending go live step",
+      "agentNotes": [
+        "`copy` writes to `navigator.clipboard`, which only works in a secure context"
+      ]
+    }
+  },
+  {
+    "name": "c-trace-22",
+    "title": "Media transcode",
+    "label": "Transcode",
+    "description": "Renditions that encode in parallel with their own percentages, then thumbnails and a CDN publish.",
+    "order": 22,
+    "gridSize": 2,
+    "guidance": {
+      "bestFor": "A media pipeline with 3 renditions encoding in parallel under one row, followed by thumbnail and publish steps",
+      "agentNotes": [
+        "`progress` and `after` are advanced by a timer for the demo; set them from your job's progress events"
+      ]
+    }
+  }
+]

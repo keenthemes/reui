@@ -31,8 +31,9 @@ import { FileType, getFileType } from "@/components/reui/file-type"
 ## Examples
 
 Every built-in format by family, an attachment list, an upload queue, custom
-labels, custom colors and unknown types, an export format picker, custom icons
-and custom badges are on the [File Type](/components/file-type) page.
+labels, custom colors and unknown types, an export format picker, custom icons,
+custom badges and dotfile names are on the [File Type](/components/file-type)
+page.
 
 ### Outline, solid, light and mono
 
@@ -74,6 +75,14 @@ and custom badges are on the [File Type](/components/file-type) page.
   className="**:[.preview]:h-auto **:[.preview]:min-h-[390px]"
 />
 
+### Dotfiles and build names
+
+<ComponentPreview
+  styleName="base-nova"
+  name="c-file-type-15"
+  className="**:[.preview]:h-auto **:[.preview]:min-h-[380px]"
+/>
+
 ## API Reference
 
 `FileType` renders a single `span` with `role="img"`. Inside it, an inline SVG
@@ -87,11 +96,13 @@ and the helpers run on the server or the client.
 
 ### Types and colors
 
-`type` takes 1 of 99 built-in extensions, 1 of 13 family names, or any other
+`type` takes 1 of 171 built-in extensions, 1 of 13 family names, or any other
 string. It ignores case, surrounding spaces and leading dots, so `"PDF"`,
 `".pdf"` and `"pdf"` render the same icon.
 
-- An extension shows its label in upper case, in its color.
+- An extension shows its label in upper case, in its color. A long key shows
+  a short label: `dockerfile` DOCK, `makefile` MAKE, `graphql` GQL, `parquet`
+  PARQ, `safetensors` SAFE and `numbers` NUM.
 - A family name shows the family glyph and no label, in the family color.
 - `"empty"`, or no `type`, shows a blank page.
 - Any other string, such as `"dwg"`, shows a neutral page (`text-zinc-500`)
@@ -100,16 +111,16 @@ string. It ignores case, surrounding spaces and leading dots, so `"PDF"`,
 
 | Family         | Extensions | Color             | Accessible name |
 | :------------- | :--------- | :---------------- | :-------------- |
-| `document`     | 9          | `text-blue-600`   | Document        |
-| `spreadsheet`  | 6          | `text-green-600`  | Spreadsheet     |
+| `document`     | 14         | `text-blue-600`   | Document        |
+| `spreadsheet`  | 10         | `text-green-600`  | Spreadsheet     |
 | `presentation` | 4          | `text-red-600`    | Presentation    |
-| `image`        | 13         | `text-violet-600` | Image           |
-| `video`        | 8          | `text-blue-600`   | Video           |
-| `audio`        | 7          | `text-pink-600`   | Audio file      |
-| `code`         | 26         | `text-blue-600`   | Code file       |
-| `archive`      | 7          | `text-zinc-500`   | Archive         |
+| `image`        | 14         | `text-violet-600` | Image           |
+| `video`        | 9          | `text-blue-600`   | Video           |
+| `audio`        | 8          | `text-pink-600`   | Audio file      |
+| `code`         | 74         | `text-blue-600`   | Code file       |
+| `archive`      | 15         | `text-zinc-500`   | Archive         |
 | `design`       | 8          | `text-purple-600` | Design file     |
-| `executable`   | 7          | `text-zinc-500`   | Application     |
+| `executable`   | 11         | `text-zinc-500`   | Application     |
 | `font`         | 4          | `text-zinc-500`   | Font file       |
 | `folder`       | 0          | `text-violet-600` | Folder          |
 | `empty`        | 0          | `text-zinc-500`   | File            |
@@ -119,105 +130,161 @@ color of its own.
 
 A format takes its brand's color (Word blue, Excel green, PowerPoint red, the
 GitHub language colors for code), else its family's color, and a format with
-neither, such as an archive, plain text, data, an installer or a font, is neutral (`text-zinc-500`). The `mono` variant sets every type in the theme
+neither, such as an archive, plain text, data, config, an installer or a font, is neutral (`text-zinc-500`). The `mono` variant sets every type in the theme
 gray instead. Every brand and family color is the 600 step, so
 the set reads as one palette and the white label text holds 3:1 or better on
 all of them.
-Yellow (`png`, `svg` and JavaScript) is the exception: white text on it stays
+Yellow (`png`, `svg`, JavaScript and `mdx`) is the exception: white text on it stays
 under 3:1 until the 700 step, so it is `text-yellow-500` with dark label text,
 as the JavaScript logo is.
 
-| Extensions            | Family         | Color              |
-| :-------------------- | :------------- | :----------------- |
-| `pdf`                 | `document`     | `text-orange-600`  |
-| `doc`, `docx`         | `document`     | `text-blue-600`    |
-| `odt`                 | `document`     | `text-blue-600`    |
-| `rtf`                 | `document`     | `text-blue-600`    |
-| `pages`               | `document`     | `text-amber-600`   |
-| `txt`                 | `document`     | `text-zinc-500`    |
-| `md`                  | `document`     | `text-zinc-500`    |
-| `log`                 | `document`     | `text-zinc-500`    |
-| `xls`, `xlsx`, `xlsm` | `spreadsheet`  | `text-green-600`   |
-| `ods`                 | `spreadsheet`  | `text-green-600`   |
-| `csv`                 | `spreadsheet`  | `text-green-600`   |
-| `tsv`                 | `spreadsheet`  | `text-green-600`   |
-| `ppt`, `pptx`         | `presentation` | `text-red-600`     |
-| `odp`                 | `presentation` | `text-red-600`     |
-| `key`                 | `presentation` | `text-blue-600`    |
-| `png`                 | `image`        | `text-yellow-500`  |
-| `jpg`, `jpeg`         | `image`        | `text-violet-600`  |
-| `gif`                 | `image`        | `text-violet-600`  |
-| `webp`                | `image`        | `text-violet-600`  |
-| `avif`                | `image`        | `text-violet-600`  |
-| `heic`                | `image`        | `text-violet-600`  |
-| `bmp`                 | `image`        | `text-violet-600`  |
-| `tif`, `tiff`         | `image`        | `text-violet-600`  |
-| `ico`                 | `image`        | `text-violet-600`  |
-| `raw`                 | `image`        | `text-zinc-500`    |
-| `svg`                 | `image`        | `text-yellow-500`  |
-| `mp4`                 | `video`        | `text-blue-600`    |
-| `mov`                 | `video`        | `text-blue-600`    |
-| `avi`                 | `video`        | `text-blue-600`    |
-| `mkv`                 | `video`        | `text-blue-600`    |
-| `webm`                | `video`        | `text-blue-600`    |
-| `mpeg`, `mpg`         | `video`        | `text-blue-600`    |
-| `wmv`                 | `video`        | `text-blue-600`    |
-| `mp3`                 | `audio`        | `text-pink-600`    |
-| `wav`                 | `audio`        | `text-pink-600`    |
-| `aac`                 | `audio`        | `text-pink-600`    |
-| `flac`                | `audio`        | `text-pink-600`    |
-| `ogg`                 | `audio`        | `text-pink-600`    |
-| `m4a`                 | `audio`        | `text-pink-600`    |
-| `aiff`                | `audio`        | `text-pink-600`    |
-| `js`, `mjs`           | `code`         | `text-yellow-500`  |
-| `jsx`                 | `code`         | `text-yellow-500`  |
-| `ts`                  | `code`         | `text-blue-600`    |
-| `tsx`                 | `code`         | `text-blue-600`    |
-| `html`, `htm`         | `code`         | `text-orange-600`  |
-| `css`                 | `code`         | `text-purple-600`  |
-| `scss`                | `code`         | `text-pink-600`    |
-| `json`                | `code`         | `text-zinc-500`    |
-| `xml`                 | `code`         | `text-zinc-500`    |
-| `yaml`, `yml`         | `code`         | `text-zinc-500`    |
-| `sql`                 | `code`         | `text-zinc-500`    |
-| `py`                  | `code`         | `text-blue-600`    |
-| `java`                | `code`         | `text-orange-600`  |
-| `php`                 | `code`         | `text-indigo-600`  |
-| `rb`                  | `code`         | `text-red-600`     |
-| `go`                  | `code`         | `text-cyan-600`    |
-| `rs`                  | `code`         | `text-orange-600`  |
-| `c`                   | `code`         | `text-zinc-500`    |
-| `cpp`                 | `code`         | `text-blue-600`    |
-| `h`                   | `code`         | `text-zinc-500`    |
-| `cs`                  | `code`         | `text-purple-600`  |
-| `sh`                  | `code`         | `text-green-600`   |
-| `rss`                 | `code`         | `text-orange-600`  |
-| `zip`                 | `archive`      | `text-zinc-500`    |
-| `rar`                 | `archive`      | `text-zinc-500`    |
-| `7z`                  | `archive`      | `text-zinc-500`    |
-| `tar`                 | `archive`      | `text-zinc-500`    |
-| `gz`, `tgz`           | `archive`      | `text-zinc-500`    |
-| `bz2`                 | `archive`      | `text-zinc-500`    |
-| `fig`                 | `design`       | `text-purple-600`  |
-| `sketch`              | `design`       | `text-amber-600`   |
-| `psd`                 | `design`       | `text-sky-600`     |
-| `ai`                  | `design`       | `text-orange-600`  |
-| `eps`                 | `design`       | `text-purple-600`  |
-| `indd`                | `design`       | `text-pink-600`    |
-| `aep`                 | `design`       | `text-violet-600`  |
-| `xd`                  | `design`       | `text-fuchsia-600` |
-| `exe`                 | `executable`   | `text-zinc-500`    |
-| `msi`                 | `executable`   | `text-zinc-500`    |
-| `dmg`                 | `executable`   | `text-zinc-500`    |
-| `apk`                 | `executable`   | `text-green-600`   |
-| `deb`                 | `executable`   | `text-rose-600`    |
-| `iso`                 | `executable`   | `text-zinc-500`    |
-| `app`                 | `executable`   | `text-zinc-500`    |
-| `ttf`                 | `font`         | `text-zinc-500`    |
-| `otf`                 | `font`         | `text-zinc-500`    |
-| `woff`, `woff2`       | `font`         | `text-zinc-500`    |
+| Extensions                    | Family         | Color              |
+| :---------------------------- | :------------- | :----------------- |
+| `pdf`                         | `document`     | `text-orange-600`  |
+| `doc`, `docx`                 | `document`     | `text-blue-600`    |
+| `odt`                         | `document`     | `text-blue-600`    |
+| `rtf`                         | `document`     | `text-blue-600`    |
+| `pages`                       | `document`     | `text-amber-600`   |
+| `txt`                         | `document`     | `text-zinc-500`    |
+| `md`                          | `document`     | `text-zinc-500`    |
+| `log`                         | `document`     | `text-zinc-500`    |
+| `mdx`                         | `document`     | `text-yellow-500`  |
+| `mdc`                         | `document`     | `text-zinc-500`    |
+| `eml`                         | `document`     | `text-zinc-500`    |
+| `srt`, `vtt`                  | `document`     | `text-zinc-500`    |
+| `xls`, `xlsx`, `xlsm`         | `spreadsheet`  | `text-green-600`   |
+| `ods`                         | `spreadsheet`  | `text-green-600`   |
+| `csv`                         | `spreadsheet`  | `text-green-600`   |
+| `tsv`                         | `spreadsheet`  | `text-green-600`   |
+| `numbers`                     | `spreadsheet`  | `text-green-600`   |
+| `parquet`                     | `spreadsheet`  | `text-zinc-500`    |
+| `sqlite`                      | `spreadsheet`  | `text-sky-600`     |
+| `db`                          | `spreadsheet`  | `text-zinc-500`    |
+| `ppt`, `pptx`                 | `presentation` | `text-red-600`     |
+| `odp`                         | `presentation` | `text-red-600`     |
+| `key`                         | `presentation` | `text-blue-600`    |
+| `png`                         | `image`        | `text-yellow-500`  |
+| `jpg`, `jpeg`                 | `image`        | `text-violet-600`  |
+| `gif`                         | `image`        | `text-violet-600`  |
+| `webp`                        | `image`        | `text-violet-600`  |
+| `avif`                        | `image`        | `text-violet-600`  |
+| `heic`                        | `image`        | `text-violet-600`  |
+| `bmp`                         | `image`        | `text-violet-600`  |
+| `tif`, `tiff`                 | `image`        | `text-violet-600`  |
+| `ico`                         | `image`        | `text-violet-600`  |
+| `raw`                         | `image`        | `text-zinc-500`    |
+| `svg`                         | `image`        | `text-yellow-500`  |
+| `jxl`                         | `image`        | `text-violet-600`  |
+| `mp4`                         | `video`        | `text-blue-600`    |
+| `mov`                         | `video`        | `text-blue-600`    |
+| `avi`                         | `video`        | `text-blue-600`    |
+| `mkv`                         | `video`        | `text-blue-600`    |
+| `webm`                        | `video`        | `text-blue-600`    |
+| `mpeg`, `mpg`                 | `video`        | `text-blue-600`    |
+| `wmv`                         | `video`        | `text-blue-600`    |
+| `m3u8`                        | `video`        | `text-blue-600`    |
+| `mp3`                         | `audio`        | `text-pink-600`    |
+| `wav`                         | `audio`        | `text-pink-600`    |
+| `aac`                         | `audio`        | `text-pink-600`    |
+| `flac`                        | `audio`        | `text-pink-600`    |
+| `ogg`                         | `audio`        | `text-pink-600`    |
+| `m4a`                         | `audio`        | `text-pink-600`    |
+| `aiff`                        | `audio`        | `text-pink-600`    |
+| `opus`                        | `audio`        | `text-pink-600`    |
+| `js`, `mjs`                   | `code`         | `text-yellow-500`  |
+| `jsx`                         | `code`         | `text-yellow-500`  |
+| `ts`                          | `code`         | `text-blue-600`    |
+| `tsx`                         | `code`         | `text-blue-600`    |
+| `html`, `htm`                 | `code`         | `text-orange-600`  |
+| `css`                         | `code`         | `text-purple-600`  |
+| `scss`                        | `code`         | `text-pink-600`    |
+| `json`                        | `code`         | `text-zinc-500`    |
+| `xml`                         | `code`         | `text-zinc-500`    |
+| `yaml`, `yml`                 | `code`         | `text-zinc-500`    |
+| `sql`                         | `code`         | `text-zinc-500`    |
+| `py`                          | `code`         | `text-blue-600`    |
+| `java`                        | `code`         | `text-orange-600`  |
+| `php`                         | `code`         | `text-indigo-600`  |
+| `rb`                          | `code`         | `text-red-600`     |
+| `go`                          | `code`         | `text-cyan-600`    |
+| `rs`                          | `code`         | `text-orange-600`  |
+| `c`                           | `code`         | `text-zinc-500`    |
+| `cpp`                         | `code`         | `text-blue-600`    |
+| `h`                           | `code`         | `text-zinc-500`    |
+| `cs`                          | `code`         | `text-purple-600`  |
+| `sh`                          | `code`         | `text-green-600`   |
+| `rss`                         | `code`         | `text-orange-600`  |
+| `cjs`                         | `code`         | `text-yellow-500`  |
+| `mts`                         | `code`         | `text-blue-600`    |
+| `vue`                         | `code`         | `text-emerald-600` |
+| `svelte`, `astro`             | `code`         | `text-orange-600`  |
+| `graphql`, `gql`              | `code`         | `text-pink-600`    |
+| `prisma`                      | `code`         | `text-sky-600`     |
+| `wasm`                        | `code`         | `text-indigo-600`  |
+| `map`                         | `code`         | `text-zinc-500`    |
+| `kt`, `kts`                   | `code`         | `text-violet-600`  |
+| `swift`                       | `code`         | `text-red-600`     |
+| `dart`                        | `code`         | `text-teal-600`    |
+| `lua`                         | `code`         | `text-blue-600`    |
+| `r`                           | `code`         | `text-sky-600`     |
+| `scala`                       | `code`         | `text-rose-600`    |
+| `ex`, `exs`                   | `code`         | `text-purple-600`  |
+| `hpp`, `cc`                   | `code`         | `text-blue-600`    |
+| `cu`                          | `code`         | `text-green-600`   |
+| `ps1`                         | `code`         | `text-blue-600`    |
+| `bat`, `bash`, `zsh`          | `code`         | `text-green-600`   |
+| `gradle`                      | `code`         | `text-cyan-600`    |
+| `ipynb`                       | `code`         | `text-orange-600`  |
+| `env`, `toml`, `ini`, `conf`  | `code`         | `text-zinc-500`    |
+| `jsonc`, `lock`, `ignore`     | `code`         | `text-zinc-500`    |
+| `git`                         | `code`         | `text-red-600`     |
+| `dockerfile`                  | `code`         | `text-blue-600`    |
+| `makefile`                    | `code`         | `text-green-600`   |
+| `tf`, `tfvars`, `hcl`         | `code`         | `text-purple-600`  |
+| `proto`                       | `code`         | `text-blue-600`    |
+| `jsonl`, `ndjson`             | `code`         | `text-zinc-500`    |
+| `diff`, `patch`               | `code`         | `text-zinc-500`    |
+| `pem`, `crt`                  | `code`         | `text-zinc-500`    |
+| `zip`                         | `archive`      | `text-zinc-500`    |
+| `rar`                         | `archive`      | `text-zinc-500`    |
+| `7z`                          | `archive`      | `text-zinc-500`    |
+| `tar`                         | `archive`      | `text-zinc-500`    |
+| `gz`, `tgz`                   | `archive`      | `text-zinc-500`    |
+| `bz2`                         | `archive`      | `text-zinc-500`    |
+| `xz`, `zst`                   | `archive`      | `text-zinc-500`    |
+| `jar`                         | `archive`      | `text-orange-600`  |
+| `whl`                         | `archive`      | `text-blue-600`    |
+| `safetensors`, `gguf`, `onnx` | `archive`      | `text-zinc-500`    |
+| `pt`                          | `archive`      | `text-red-600`     |
+| `fig`                         | `design`       | `text-purple-600`  |
+| `sketch`                      | `design`       | `text-amber-600`   |
+| `psd`                         | `design`       | `text-sky-600`     |
+| `ai`                          | `design`       | `text-orange-600`  |
+| `eps`                         | `design`       | `text-purple-600`  |
+| `indd`                        | `design`       | `text-pink-600`    |
+| `aep`                         | `design`       | `text-violet-600`  |
+| `xd`                          | `design`       | `text-fuchsia-600` |
+| `exe`                         | `executable`   | `text-zinc-500`    |
+| `msi`                         | `executable`   | `text-zinc-500`    |
+| `dmg`                         | `executable`   | `text-zinc-500`    |
+| `apk`                         | `executable`   | `text-green-600`   |
+| `deb`                         | `executable`   | `text-rose-600`    |
+| `iso`                         | `executable`   | `text-zinc-500`    |
+| `app`                         | `executable`   | `text-zinc-500`    |
+| `pkg`, `ipa`                  | `executable`   | `text-zinc-500`    |
+| `aab`                         | `executable`   | `text-green-600`   |
+| `rpm`                         | `executable`   | `text-red-600`     |
+| `ttf`                         | `font`         | `text-zinc-500`    |
+| `otf`                         | `font`         | `text-zinc-500`    |
+| `woff`, `woff2`               | `font`         | `text-zinc-500`    |
 
-Both lists are exported: `FILE_TYPE_EXTENSION_NAMES` holds the 99 extensions
+Config, build and infrastructure files (`env`, `toml`, `dockerfile`, `tf`)
+and data formats such as `jsonl` are `code`, as `json` and `yaml` are. Model
+weights (`safetensors`, `gguf`, `onnx`, `pt`) are packed binaries, so they
+take the archive glyph, and `parquet`, `sqlite` and `db` take the spreadsheet
+grid.
+
+Both lists are exported: `FILE_TYPE_EXTENSION_NAMES` holds the 171 extensions
 and `FILE_TYPE_CATEGORIES` the 13 families. `FileTypeName` is the union of
 both, and `type` accepts any string beside it, so an editor still
 autocompletes the built-in names.
@@ -315,7 +382,8 @@ wrapper that needs to match them.
 
 ### Label and glyph
 
-The label band is HTML text, the extension in upper case by default. `label`
+The label band is HTML text, the extension in upper case by default (the
+short form for the 6 long keys, such as DOCK for `dockerfile`). `label`
 replaces it with any node, such as a version tag (`"V3"`) or a document code
 (`"CA-1042"`). A string longer than 4 characters shrinks to fit the band, so
 keep it short. A label that is not a string is sized as 4 characters and
@@ -370,9 +438,10 @@ only when the value does not already end in an extension or a slash
 | `"https://example.com"`              | `"empty"`                   | A bare host, or a URL whose path is `/`, has no type.                                                                |
 | `"assets/"`                          | `"folder"`                  | A value ending in `/` or `\` is a folder, a URL path included.                                                       |
 | `"pdf"`, `".pdf"`, `"image"`         | `"pdf"`, `"pdf"`, `"image"` | A bare extension or family resolves to itself.                                                                       |
-| `"README"`, `".env"`                 | `"empty"`                   | Any other name with no extension has no type.                                                                        |
+| `"Dockerfile"`, `".env.local"`       | `"dockerfile"`, `"env"`     | A well-known name resolves to its type, with no extension or one no type owns. See below.                            |
+| `"notes"`, `".hidden"`               | `"empty"`                   | Any other name with no extension has no type.                                                                        |
 | `"plan.dwg"`                         | `"dwg"`                     | An unknown extension comes back as is and renders neutral.                                                           |
-| `"application/pdf"`                  | `"pdf"`                     | 68 exact MIME types map first. See below.                                                                            |
+| `"application/pdf"`                  | `"pdf"`                     | 94 exact MIME types map first. See below.                                                                            |
 | `"image/photo.png"`                  | `"png"`                     | A subtype with a dot whose last part is a built-in extension is a storage key, not a MIME type.                      |
 | `"image/webp"`, `"font/woff2"`       | `"webp"`, `"woff2"`         | A subtype that is a built-in extension in the same family. Under `application/` and `text/`, any built-in extension. |
 | `"audio/webm"`, `"video/ogg"`        | `"audio"`, `"video"`        | A subtype from another family does not count: WebM is a video format, so `audio/webm` is audio.                      |
@@ -388,7 +457,22 @@ JSON, XML, YAML, RSS, JavaScript, PHP and shell scripts; Windows, Android and
 Debian packages, Apple disk images and ISO images; TTF and WOFF fonts;
 Photoshop, PostScript, JPEG, SVG and icons; QuickTime, AVI, Matroska and WMV;
 MP3, WAV, M4A, FLAC and AIFF; and plain text, Markdown, Python, C, CSV, TSV,
-HTML and CSS.
+HTML and CSS. It also covers Node's CommonJS type, Jupyter notebooks, NDJSON,
+SQLite, HLS playlists, SubRip subtitles and email (`message/rfc822`); Java
+archives, RPM packages, PEM files and X.509 certificates, Zstandard and XZ;
+and C++, Kotlin, Swift, R, Lua, Scala, diffs, patches and makefiles.
+
+Well-known names resolve before the extension. `.env` and every `.env.*` file
+(`.env.local`, `.env.example`) are `env`; `Dockerfile`, `Containerfile` and
+`Dockerfile.*` are `dockerfile`; `Makefile` and `*.mk` are `makefile`;
+`.gitignore`, `.gitattributes` and the other Git files are `git`, and any other
+`.*ignore` file is `ignore`; `bun.lockb` and `go.sum` are `lock`, and `go.mod`
+is `go`; `Gemfile`, `Podfile` and the other Ruby build files are `rb`; shell
+profiles (`.bashrc`, `.zshrc`, `.envrc`) take their shell; `.editorconfig` and
+`.npmrc` are `ini`; and `README`, `LICENSE`, `CHANGELOG`, `CODEOWNERS` and
+version pins such as `.nvmrc` are `txt`. A name pattern holds only while the
+file ends in no known extension of its own, so `Dockerfile.md` is Markdown.
+`.cer` reads as `crt`, and `.sqlite3` as `sqlite`.
 
 ```tsx
 import { FileType, getFileType } from "@/components/reui/file-type"
@@ -499,7 +583,8 @@ text is a child of the badge, so recolor it with `*:text-*`.
 
 - The root is an image named after its type: "PDF file" for an extension,
   unknown ones included ("DWG file"), the family's name for a family type (see
-  Types and colors), and "File" when there is no type. The SVG inside is
+  Types and colors), and "File" when there is no type. A short label is
+  spelled out in the name: DOCK reads "DOCKERFILE file". The SVG inside is
   hidden.
 - A string `label` joins the name ("V3, DOCX file"). Pass `aria-label` to name
   the icon yourself; it replaces the generated one.
@@ -507,12 +592,14 @@ text is a child of the badge, so recolor it with `*:text-*`.
   type, such as a file name in a list row or a family caption, so it is not
   read twice.
 - The label text is small, so WCAG AA asks 4.5:1 for it. In `outline` and
-  `light`, 80 of the 99 extensions meet that, and every one has 3:1 or
-  better. The 600 shades of orange, amber, green and cyan fall between 3:1
-  and 4.5:1 with white text: `pdf`, `html`, `htm`, `java`, `rs`, `rss` and
-  `ai` (3.6:1), `go` (3.6:1), `pages` and `sketch` (3.2:1), the spreadsheets,
-  `sh` and `apk` (3.2:1), and `psd` (4.0:1). `solid` puts the same white
-  text on the type color, so the same ratios hold, except the 27 neutral
+  `light`, 135 of the 171 extensions meet that, and every one has 3:1 or
+  better. The 600 shades of orange, amber, green, emerald, teal, cyan and sky
+  fall between 3:1 and 4.5:1 with white text: `pdf`, `html`, `htm`, `java`,
+  `rs`, `rss`, `svelte`, `astro`, `ipynb`, `jar` and `ai` (3.6:1), `go` and
+  `gradle` (3.6:1), `vue` and `dart` (3.7:1), `pages` and `sketch` (3.2:1),
+  the green spreadsheets, the shells, `cu`, `makefile`, `apk` and `aab`
+  (3.2:1), and `psd`, `sqlite`, `prisma` and `r` (4.0:1). `solid` puts the
+  same white text on the type color, so the same ratios hold, except the 54 neutral
   types: their dark gray label on the lighter page is 4.1:1. Yellow types
   take dark text, 7.6:1. The ratios are for Tailwind's default palette. In `mono` the label is the page color on
   `muted-foreground`: 4.7:1 in light mode and 7.6:1 in dark with the default

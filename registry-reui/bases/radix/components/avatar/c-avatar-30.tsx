@@ -2,18 +2,18 @@
 
 import { useEffect, useState } from "react"
 
-import { Spinner } from "@/components/ui/spinner"
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from "@/registry/bases/radix/ui/avatar"
+import { Spinner } from "@/registry/bases/radix/ui/spinner"
 
 export default function Pattern() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const interval = setInterval(() => setLoading((prev) => !prev), 2000) // Toggle loading state every 3 seconds
+    const interval = setInterval(() => setLoading((prev) => !prev), 2000) // Toggle loading state every 2 seconds
     return () => clearInterval(interval)
   }, [])
 

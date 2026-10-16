@@ -7,7 +7,7 @@ import type { VariantProps } from "class-variance-authority"
 import { cva } from "class-variance-authority"
 
 import { cn } from "cn"
-import { Label } from "@/registry/bases/base/ui/label"
+import { Label } from "@/registry/bases/radix/ui/label"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 const NumberFieldContext = createContext<{

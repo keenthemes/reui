@@ -21,7 +21,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Default"
       }
     },
     {
@@ -45,7 +46,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "Secondary"
       }
     },
     {
@@ -69,7 +71,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Outline"
       }
     },
     {
@@ -93,7 +96,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Ghost"
       }
     },
     {
@@ -117,7 +121,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "Destructive"
       }
     },
     {
@@ -141,7 +146,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "Link"
       }
     },
     {
@@ -165,7 +171,8 @@
         }
       ],
       "meta": {
-        "order": 7
+        "order": 7,
+        "label": "Extra Small"
       }
     },
     {
@@ -189,7 +196,8 @@
         }
       ],
       "meta": {
-        "order": 8
+        "order": 8,
+        "label": "Small"
       }
     },
     {
@@ -213,7 +221,8 @@
         }
       ],
       "meta": {
-        "order": 9
+        "order": 9,
+        "label": "Large"
       }
     },
     {
@@ -237,7 +246,8 @@
         }
       ],
       "meta": {
-        "order": 10
+        "order": 10,
+        "label": "Disabled"
       }
     },
     {
@@ -261,7 +271,8 @@
         }
       ],
       "meta": {
-        "order": 11
+        "order": 11,
+        "label": "Icon Button"
       }
     },
     {
@@ -285,7 +296,8 @@
         }
       ],
       "meta": {
-        "order": 12
+        "order": 12,
+        "label": "Icon Right"
       }
     },
     {
@@ -310,7 +322,8 @@
         }
       ],
       "meta": {
-        "order": 13
+        "order": 13,
+        "label": "Loading State"
       }
     },
     {
@@ -334,7 +347,8 @@
         }
       ],
       "meta": {
-        "order": 14
+        "order": 14,
+        "label": "Icon Left"
       }
     },
     {
@@ -358,7 +372,8 @@
         }
       ],
       "meta": {
-        "order": 15
+        "order": 15,
+        "label": "Invalid State"
       }
     },
     {
@@ -382,7 +397,8 @@
         }
       ],
       "meta": {
-        "order": 16
+        "order": 16,
+        "label": "Secondary Icon Left"
       }
     },
     {
@@ -406,7 +422,8 @@
         }
       ],
       "meta": {
-        "order": 17
+        "order": 17,
+        "label": "Secondary Icon Right"
       }
     },
     {
@@ -430,7 +447,8 @@
         }
       ],
       "meta": {
-        "order": 18
+        "order": 18,
+        "label": "Outline Icon Left"
       }
     },
     {
@@ -454,7 +472,8 @@
         }
       ],
       "meta": {
-        "order": 19
+        "order": 19,
+        "label": "Outline Icon Right"
       }
     },
     {
@@ -478,7 +497,8 @@
         }
       ],
       "meta": {
-        "order": 20
+        "order": 20,
+        "label": "Ghost Icon Left"
       }
     },
     {
@@ -502,7 +522,8 @@
         }
       ],
       "meta": {
-        "order": 21
+        "order": 21,
+        "label": "Ghost Icon Right"
       }
     },
     {
@@ -526,7 +547,8 @@
         }
       ],
       "meta": {
-        "order": 22
+        "order": 22,
+        "label": "Destructive Icon Left"
       }
     },
     {
@@ -550,7 +572,8 @@
         }
       ],
       "meta": {
-        "order": 23
+        "order": 23,
+        "label": "Destructive Icon Right"
       }
     },
     {
@@ -574,7 +597,8 @@
         }
       ],
       "meta": {
-        "order": 24
+        "order": 24,
+        "label": "Extra Small Icon"
       }
     },
     {
@@ -598,7 +622,8 @@
         }
       ],
       "meta": {
-        "order": 25
+        "order": 25,
+        "label": "Small Icon"
       }
     },
     {
@@ -622,7 +647,8 @@
         }
       ],
       "meta": {
-        "order": 26
+        "order": 26,
+        "label": "Large Icon"
       }
     },
     {
@@ -646,7 +672,8 @@
         }
       ],
       "meta": {
-        "order": 27
+        "order": 27,
+        "label": "Next Link"
       }
     },
     {
@@ -670,7 +697,8 @@
         }
       ],
       "meta": {
-        "order": 28
+        "order": 28,
+        "label": "Link Icon Left"
       }
     },
     {
@@ -694,7 +722,8 @@
         }
       ],
       "meta": {
-        "order": 29
+        "order": 29,
+        "label": "Link Icon Right"
       }
     },
     {
@@ -718,7 +747,8 @@
         }
       ],
       "meta": {
-        "order": 30
+        "order": 30,
+        "label": "Large Icon Left"
       }
     },
     {
@@ -742,7 +772,8 @@
         }
       ],
       "meta": {
-        "order": 31
+        "order": 31,
+        "label": "Large Icon Right"
       }
     },
     {
@@ -766,7 +797,8 @@
         }
       ],
       "meta": {
-        "order": 32
+        "order": 32,
+        "label": "Outline Invalid"
       }
     },
     {
@@ -790,7 +822,8 @@
         }
       ],
       "meta": {
-        "order": 33
+        "order": 33,
+        "label": "Ghost Invalid"
       }
     },
     {
@@ -814,7 +847,8 @@
         }
       ],
       "meta": {
-        "order": 34
+        "order": 34,
+        "label": "Email Login"
       }
     },
     {
@@ -838,7 +872,8 @@
         }
       ],
       "meta": {
-        "order": 35
+        "order": 35,
+        "label": "More Less Toggle"
       }
     },
     {
@@ -864,7 +899,8 @@
         }
       ],
       "meta": {
-        "order": 36
+        "order": 36,
+        "label": "Outline Social Icons"
       }
     },
     {
@@ -888,7 +924,8 @@
         }
       ],
       "meta": {
-        "order": 37
+        "order": 37,
+        "label": "Like Count"
       }
     },
     {
@@ -912,7 +949,8 @@
         }
       ],
       "meta": {
-        "order": 38
+        "order": 38,
+        "label": "Star Count"
       }
     },
     {
@@ -937,7 +975,8 @@
         }
       ],
       "meta": {
-        "order": 39
+        "order": 39,
+        "label": "Unread Badge"
       }
     },
     {
@@ -962,7 +1001,8 @@
         }
       ],
       "meta": {
-        "order": 40
+        "order": 40,
+        "label": "Shortcut Keys"
       }
     },
     {
@@ -987,7 +1027,8 @@
         }
       ],
       "meta": {
-        "order": 41
+        "order": 41,
+        "label": "Copy Feedback"
       }
     },
     {
@@ -1013,7 +1054,8 @@
         }
       ],
       "meta": {
-        "order": 42
+        "order": 42,
+        "label": "Icon Copy"
       }
     },
     {
@@ -1039,7 +1081,8 @@
         }
       ],
       "meta": {
-        "order": 43
+        "order": 43,
+        "label": "Hamburger Toggle"
       }
     },
     {
@@ -1064,7 +1107,8 @@
         }
       ],
       "meta": {
-        "order": 44
+        "order": 44,
+        "label": "Async Action"
       }
     },
     {
@@ -1089,7 +1133,8 @@
         }
       ],
       "meta": {
-        "order": 45
+        "order": 45,
+        "label": "Inline Count"
       }
     },
     {
@@ -1113,7 +1158,8 @@
         }
       ],
       "meta": {
-        "order": 46
+        "order": 46,
+        "label": "Status Dot"
       }
     },
     {
@@ -1138,7 +1184,8 @@
         }
       ],
       "meta": {
-        "order": 47
+        "order": 47,
+        "label": "Status Badge"
       }
     },
     {
@@ -1163,7 +1210,8 @@
         }
       ],
       "meta": {
-        "order": 48
+        "order": 48,
+        "label": "Notification Badge"
       }
     },
     {
@@ -1187,7 +1235,8 @@
         }
       ],
       "meta": {
-        "order": 49
+        "order": 49,
+        "label": "Go Back"
       }
     },
     {
@@ -1211,7 +1260,8 @@
         }
       ],
       "meta": {
-        "order": 50
+        "order": 50,
+        "label": "Animated Go Back"
       }
     },
     {
@@ -1235,7 +1285,8 @@
         }
       ],
       "meta": {
-        "order": 51
+        "order": 51,
+        "label": "Expanding Button"
       }
     },
     {
@@ -1259,7 +1310,8 @@
         }
       ],
       "meta": {
-        "order": 52
+        "order": 52,
+        "label": "Title & Description"
       }
     },
     {
@@ -1283,7 +1335,8 @@
         }
       ],
       "meta": {
-        "order": 53
+        "order": 53,
+        "label": "Sliding Arrow"
       }
     },
     {
@@ -1309,7 +1362,8 @@
         }
       ],
       "meta": {
-        "order": 54
+        "order": 54,
+        "label": "Shortcut Tooltip"
       }
     },
     {
@@ -1334,7 +1388,8 @@
         }
       ],
       "meta": {
-        "order": 55
+        "order": 55,
+        "label": "Avatar"
       }
     },
     {
@@ -1359,7 +1414,8 @@
         }
       ],
       "meta": {
-        "order": 56
+        "order": 56,
+        "label": "Outline Avatar"
       }
     },
     {
@@ -1384,7 +1440,8 @@
         }
       ],
       "meta": {
-        "order": 57
+        "order": 57,
+        "label": "Small Avatar"
       }
     },
     {
@@ -1409,7 +1466,8 @@
         }
       ],
       "meta": {
-        "order": 58
+        "order": 58,
+        "label": "Small Outline Avatar"
       }
     },
     {
@@ -1435,7 +1493,8 @@
         }
       ],
       "meta": {
-        "order": 59
+        "order": 59,
+        "label": "Social Login Stack"
       }
     },
     {
@@ -1461,7 +1520,8 @@
         }
       ],
       "meta": {
-        "order": 60
+        "order": 60,
+        "label": "Colored Social Icons"
       }
     },
     {
@@ -1487,7 +1547,8 @@
         }
       ],
       "meta": {
-        "order": 61
+        "order": 61,
+        "label": "Theme Toggle"
       }
     }
   ]

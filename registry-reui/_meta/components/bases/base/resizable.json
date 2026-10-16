@@ -22,7 +22,8 @@
       ],
       "meta": {
         "order": 1,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Horizontal Layout"
       }
     },
     {
@@ -47,7 +48,8 @@
       ],
       "meta": {
         "order": 2,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Vertical Layout"
       }
     },
     {
@@ -72,7 +74,8 @@
       ],
       "meta": {
         "order": 3,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Mixed Directions"
       }
     },
     {
@@ -97,7 +100,8 @@
       ],
       "meta": {
         "order": 4,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Nested Grips"
       }
     },
     {
@@ -122,7 +126,8 @@
       ],
       "meta": {
         "order": 5,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Animated Pill"
       }
     },
     {
@@ -147,7 +152,8 @@
       ],
       "meta": {
         "order": 6,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Spring Pill"
       }
     },
     {
@@ -172,7 +178,8 @@
       ],
       "meta": {
         "order": 7,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Capsule Expansion"
       }
     },
     {
@@ -197,7 +204,8 @@
       ],
       "meta": {
         "order": 8,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Nested Pills"
       }
     },
     {
@@ -222,7 +230,8 @@
       ],
       "meta": {
         "order": 9,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Three Panels"
       }
     },
     {
@@ -247,7 +256,8 @@
       ],
       "meta": {
         "order": 10,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Size Tracking"
       }
     }
   ]

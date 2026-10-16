@@ -115,10 +115,13 @@ function CountrySelect({
   const { variant, popupClassName } = useContext(PhoneInputContext)
   const [searchValue, setSearchValue] = useState("")
 
+  // Only countries with a code render as rows (the library's "International"
+  // option has none), so the rows, the empty state and the list's guard below
+  // count the same entries.
   const filteredCountries = useMemo(() => {
-    if (!searchValue) return countryList
-    return countryList.filter(({ label }) =>
-      label.toLowerCase().includes(searchValue.toLowerCase())
+    const query = searchValue.toLowerCase()
+    return countryList.filter(
+      ({ value, label }) => value && label.toLowerCase().includes(query)
     )
   }, [countryList, searchValue])
 
@@ -170,31 +173,37 @@ function CountrySelect({
         <ComboboxEmpty className="px-4 py-2.5 text-sm">
           No country found.
         </ComboboxEmpty>
-        <ComboboxList>
-          <div className="relative flex max-h-full">
-            <div className="flex max-h-[min(var(--available-height),24rem)] w-full scroll-pt-2 scroll-pb-2 flex-col overscroll-contain">
-              <ScrollArea className="size-full min-h-0 **:data-[slot=scroll-area-scrollbar]:m-0 [&_[data-slot=scroll-area-viewport]]:h-full [&_[data-slot=scroll-area-viewport]]:overscroll-contain">
-                {filteredCountries.map((item: CountryEntry) =>
-                  item.value ? (
-                    <ComboboxItem
-                      key={item.value}
-                      value={item.value}
-                      className="flex items-center gap-2"
-                    >
-                      <FlagComponent
-                        country={item.value}
-                        countryName={item.label}
-                      />
-                      <span className="flex-1 text-sm">{item.label}</span>
-                      <span className="text-foreground/50 text-sm">
-                        {`+${BasePhoneInput.getCountryCallingCode(item.value)}`}
-                      </span>
-                    </ComboboxItem>
-                  ) : null
-                )}
-              </ScrollArea>
+        {/* The rows scroll inside the list's own max height, its per-style
+            padding moved inside, so the last country can be reached; the list
+            itself must not scroll too. Not rendered while nothing matches: an
+            emptied scroll area kept its old thumb below the popup. */}
+        <ComboboxList className="p-0">
+          {filteredCountries.length > 0 && (
+            <div className="relative flex max-h-[inherit]">
+              <div className="style-vega:p-1 style-nova:p-1 style-maia:p-1 style-lyra:p-0 style-mira:p-1 style-luma:p-1.5 style-sera:p-1.5 style-rhea:p-1 flex max-h-[inherit] w-full scroll-pt-2 scroll-pb-2 flex-col overscroll-contain">
+                <ScrollArea className="size-full min-h-0 **:data-[slot=scroll-area-scrollbar]:m-0 [&_[data-slot=scroll-area-viewport]]:h-full [&_[data-slot=scroll-area-viewport]]:overscroll-contain">
+                  {filteredCountries.map((item: CountryEntry) =>
+                    item.value ? (
+                      <ComboboxItem
+                        key={item.value}
+                        value={item.value}
+                        className="flex items-center gap-2"
+                      >
+                        <FlagComponent
+                          country={item.value}
+                          countryName={item.label}
+                        />
+                        <span className="flex-1 text-sm">{item.label}</span>
+                        <span className="text-foreground/50 text-sm">
+                          {`+${BasePhoneInput.getCountryCallingCode(item.value)}`}
+                        </span>
+                      </ComboboxItem>
+                    ) : null
+                  )}
+                </ScrollArea>
+              </div>
             </div>
-          </div>
+          )}
         </ComboboxList>
       </ComboboxContent>
     </Combobox>

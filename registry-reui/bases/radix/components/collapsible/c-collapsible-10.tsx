@@ -63,38 +63,41 @@ function TreeItem({
 
   if (isFolder) {
     return (
-      <Collapsible className="group/collapsible">
+      <Collapsible>
         <CollapsibleTrigger asChild>
           <Item
+            asChild
             size="xs"
-            className="hover:bg-accent data-[state=open]:bg-accent cursor-pointer py-1.5"
+            className="hover:bg-accent aria-expanded:bg-accent cursor-pointer py-1.5 focus-visible:ring-inset"
             style={{ paddingLeft: `${level * 12 + 8}px` }}
           >
-            <ItemMedia variant="icon">
-              <IconPlaceholder
-                lucide="ChevronRightIcon"
-                tabler="IconChevronRight"
-                hugeicons="ArrowRight01Icon"
-                phosphor="CaretRightIcon"
-                remixicon="RiArrowRightSLine"
-                aria-hidden="true"
-                className="text-muted-foreground size-3 transition-transform in-data-[state=open]:rotate-90"
-              />
-              <IconPlaceholder
-                lucide="FolderIcon"
-                tabler="IconFolder"
-                hugeicons="FolderIcon"
-                phosphor="FolderIcon"
-                remixicon="RiFolderLine"
-                aria-hidden="true"
-                className="text-muted-foreground group-hover/item:text-foreground size-3.5"
-              />
-            </ItemMedia>
-            <ItemTitle className="text-sm">{item.name}</ItemTitle>
+            <button type="button">
+              <ItemMedia variant="icon">
+                <IconPlaceholder
+                  lucide="ChevronRightIcon"
+                  tabler="IconChevronRight"
+                  hugeicons="ArrowRight01Icon"
+                  phosphor="CaretRightIcon"
+                  remixicon="RiArrowRightSLine"
+                  aria-hidden="true"
+                  className="text-muted-foreground size-3 transition-transform in-aria-expanded:rotate-90"
+                />
+                <IconPlaceholder
+                  lucide="FolderIcon"
+                  tabler="IconFolder"
+                  hugeicons="FolderIcon"
+                  phosphor="FolderIcon"
+                  remixicon="RiFolderLine"
+                  aria-hidden="true"
+                  className="text-muted-foreground group-hover/item:text-foreground size-3.5"
+                />
+              </ItemMedia>
+              <ItemTitle className="text-sm">{item.name}</ItemTitle>
+            </button>
           </Item>
         </CollapsibleTrigger>
-        <CollapsibleContent className="data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down overflow-hidden pt-0.5">
-          <div className="flex flex-col gap-0.5 ps-1.5">
+        <CollapsibleContent className="data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down overflow-hidden motion-reduce:animate-none">
+          <div className="flex flex-col gap-0.5 ps-1.5 pt-0.5">
             {item.items.map((child) => (
               <TreeItem
                 key={child.name}

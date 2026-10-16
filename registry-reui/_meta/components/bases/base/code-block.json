@@ -23,7 +23,8 @@
       "meta": {
         "order": 1,
         "gridSize": 1,
-        "previewHeight": "270"
+        "previewHeight": "270",
+        "label": "Basic"
       }
     },
     {
@@ -50,7 +51,8 @@
       "meta": {
         "order": 2,
         "gridSize": 1,
-        "previewHeight": "260"
+        "previewHeight": "260",
+        "label": "Pinned Copy"
       }
     },
     {
@@ -79,7 +81,8 @@
       "meta": {
         "order": 3,
         "gridSize": 1,
-        "previewHeight": "350"
+        "previewHeight": "350",
+        "label": "Streaming Agent"
       }
     },
     {
@@ -107,7 +110,8 @@
       "meta": {
         "order": 4,
         "gridSize": 1,
-        "previewHeight": "280"
+        "previewHeight": "280",
+        "label": "AI Chat"
       }
     },
     {
@@ -133,7 +137,8 @@
       "meta": {
         "order": 5,
         "gridSize": 1,
-        "previewHeight": "290"
+        "previewHeight": "290",
+        "label": "Diff Summary"
       }
     },
     {
@@ -159,7 +164,8 @@
       "meta": {
         "order": 6,
         "gridSize": 1,
-        "previewHeight": "190"
+        "previewHeight": "190",
+        "label": "Transformer Diff"
       }
     },
     {
@@ -185,7 +191,8 @@
       "meta": {
         "order": 7,
         "gridSize": 1,
-        "previewHeight": "270"
+        "previewHeight": "270",
+        "label": "Highlights"
       }
     },
     {
@@ -213,7 +220,8 @@
       "meta": {
         "order": 8,
         "gridSize": 1,
-        "previewHeight": "360"
+        "previewHeight": "360",
+        "label": "Focus Walkthrough"
       }
     },
     {
@@ -239,7 +247,8 @@
       "meta": {
         "order": 9,
         "gridSize": 1,
-        "previewHeight": "370"
+        "previewHeight": "370",
+        "label": "Terminal Output"
       }
     },
     {
@@ -268,7 +277,8 @@
       "meta": {
         "order": 10,
         "gridSize": 1,
-        "previewHeight": "280"
+        "previewHeight": "280",
+        "label": "Long File"
       }
     },
     {
@@ -296,7 +306,8 @@
       "meta": {
         "order": 11,
         "gridSize": 1,
-        "previewHeight": "220"
+        "previewHeight": "220",
+        "label": "Diagnostics & Actions"
       }
     },
     {
@@ -324,7 +335,8 @@
       "meta": {
         "order": 12,
         "gridSize": 1,
-        "previewHeight": "310"
+        "previewHeight": "310",
+        "label": "Line Selection"
       }
     },
     {
@@ -355,7 +367,8 @@
       "meta": {
         "order": 13,
         "gridSize": 1,
-        "previewHeight": "360"
+        "previewHeight": "360",
+        "label": "Search In File"
       }
     },
     {
@@ -383,7 +396,8 @@
       "meta": {
         "order": 14,
         "gridSize": 1,
-        "previewHeight": "180"
+        "previewHeight": "180",
+        "label": "File Tabs"
       }
     },
     {
@@ -409,7 +423,8 @@
       "meta": {
         "order": 15,
         "gridSize": 1,
-        "previewHeight": "220"
+        "previewHeight": "220",
+        "label": "Pre-Highlighted Lines"
       }
     },
     {
@@ -436,7 +451,8 @@
       "meta": {
         "order": 16,
         "gridSize": 1,
-        "previewHeight": "390"
+        "previewHeight": "390",
+        "label": "Before & After"
       }
     },
     {
@@ -464,7 +480,8 @@
       "meta": {
         "order": 17,
         "gridSize": 1,
-        "previewHeight": "190"
+        "previewHeight": "190",
+        "label": "Soft Wrap"
       }
     },
     {
@@ -491,7 +508,8 @@
       "meta": {
         "order": 18,
         "gridSize": 1,
-        "previewHeight": "510"
+        "previewHeight": "510",
+        "label": "Unified Patch"
       }
     },
     {
@@ -518,7 +536,8 @@
       "meta": {
         "order": 19,
         "gridSize": 1,
-        "previewHeight": "220"
+        "previewHeight": "220",
+        "label": "Design Token Theme"
       }
     },
     {
@@ -544,7 +563,8 @@
       "meta": {
         "order": 20,
         "gridSize": 1,
-        "previewHeight": "430"
+        "previewHeight": "430",
+        "label": "Always Dark"
       }
     },
     {
@@ -570,7 +590,8 @@
       "meta": {
         "order": 21,
         "gridSize": 1,
-        "previewHeight": "360"
+        "previewHeight": "360",
+        "label": "Dark Terminal"
       }
     },
     {
@@ -599,7 +620,8 @@
       "meta": {
         "order": 22,
         "gridSize": 1,
-        "previewHeight": "320"
+        "previewHeight": "320",
+        "label": "Accept & Reject"
       }
     },
     {
@@ -628,7 +650,8 @@
       "meta": {
         "order": 23,
         "gridSize": 1,
-        "previewHeight": "360"
+        "previewHeight": "360",
+        "label": "Code Folding"
       }
     },
     {
@@ -656,7 +679,8 @@
       "meta": {
         "order": 24,
         "gridSize": 1,
-        "previewHeight": "220"
+        "previewHeight": "220",
+        "label": "Fix With AI"
       }
     },
     {
@@ -685,7 +709,8 @@
       "meta": {
         "order": 25,
         "gridSize": 1,
-        "previewHeight": "640"
+        "previewHeight": "640",
+        "label": "Reference Lines"
       }
     },
     {
@@ -714,7 +739,8 @@
       "meta": {
         "order": 26,
         "gridSize": 1,
-        "previewHeight": "420"
+        "previewHeight": "420",
+        "label": "External Scroll"
       }
     },
     {
@@ -740,7 +766,8 @@
       "meta": {
         "order": 27,
         "gridSize": 1,
-        "previewHeight": "310"
+        "previewHeight": "310",
+        "label": "ANSI Terminal"
       }
     }
   ]

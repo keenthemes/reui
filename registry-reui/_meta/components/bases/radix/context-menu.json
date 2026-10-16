@@ -21,7 +21,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Basic"
       }
     },
     {
@@ -45,7 +46,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "Icons"
       }
     },
     {
@@ -69,7 +71,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Shortcuts"
       }
     },
     {
@@ -93,7 +96,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Nested Submenus"
       }
     },
     {
@@ -117,7 +121,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "Labels & Separators"
       }
     },
     {
@@ -141,7 +146,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "Checkbox Items"
       }
     },
     {
@@ -165,7 +171,8 @@
         }
       ],
       "meta": {
-        "order": 7
+        "order": 7,
+        "label": "Radio Items"
       }
     },
     {
@@ -189,7 +196,8 @@
         }
       ],
       "meta": {
-        "order": 8
+        "order": 8,
+        "label": "Destructive Actions"
       }
     },
     {
@@ -213,7 +221,8 @@
         }
       ],
       "meta": {
-        "order": 9
+        "order": 9,
+        "label": "Alignment Sides"
       }
     },
     {
@@ -239,7 +248,8 @@
         }
       ],
       "meta": {
-        "order": 10
+        "order": 10,
+        "label": "Inside Dialog"
       }
     }
   ]

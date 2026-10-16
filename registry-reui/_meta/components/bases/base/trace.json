@@ -1,0 +1,618 @@
+{
+  "items": [
+    {
+      "name": "c-trace-1",
+      "type": "registry:block",
+      "title": "Agent steps",
+      "categories": [
+        "trace"
+      ],
+      "description": "An agent turn with a search, a diff, test output, a lint failure and a fix still running.",
+      "descriptionLong": "Agent steps. Built by composing Code Block, Trace. A free, open source shadcn trace example you can install with npx shadcn@latest add @reui/c-trace-1 and edit as your own code.",
+      "registryDependencies": [
+        "code-block",
+        "trace"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/trace/c-trace-1.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-trace-1.tsx"
+        }
+      ],
+      "meta": {
+        "order": 1,
+        "gridSize": 2,
+        "label": "Agent Steps"
+      }
+    },
+    {
+      "name": "c-trace-2",
+      "type": "registry:block",
+      "title": "Streaming agent run",
+      "categories": [
+        "trace"
+      ],
+      "description": "Agent steps that stream in as they happen, with the running step open and Stop or Run again under the steps.",
+      "descriptionLong": "Streaming agent run. Built by composing Button, Code Block, Trace. A free, open source shadcn trace example you can install with npx shadcn@latest add @reui/c-trace-2 and edit as your own code.",
+      "registryDependencies": [
+        "button",
+        "code-block",
+        "trace"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/trace/c-trace-2.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-trace-2.tsx"
+        }
+      ],
+      "meta": {
+        "order": 2,
+        "gridSize": 2,
+        "label": "Streaming Run"
+      }
+    },
+    {
+      "name": "c-trace-3",
+      "type": "registry:block",
+      "title": "Chat turn with sources",
+      "categories": [
+        "trace"
+      ],
+      "description": "An assistant reply whose SQL queries fold into one summary above the answer, with the dashboards it cited below.",
+      "descriptionLong": "Chat turn with sources. Built by composing Bubble, Code Block, Message, Trace. A free, open source shadcn trace example you can install with npx shadcn@latest add @reui/c-trace-3 and edit as your own code.",
+      "registryDependencies": [
+        "bubble",
+        "code-block",
+        "message",
+        "trace"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/trace/c-trace-3.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-trace-3.tsx"
+        }
+      ],
+      "meta": {
+        "order": 3,
+        "gridSize": 2,
+        "label": "Chat Turn"
+      }
+    },
+    {
+      "name": "c-trace-4",
+      "type": "registry:block",
+      "title": "Parallel subagents",
+      "categories": [
+        "trace"
+      ],
+      "description": "An orchestrator whose summary and status come from 3 subagents, with a retry for the one that failed.",
+      "descriptionLong": "Parallel subagents. Built by composing Button, Code Block, Trace. A free, open source shadcn trace example you can install with npx shadcn@latest add @reui/c-trace-4 and edit as your own code.",
+      "registryDependencies": [
+        "button",
+        "code-block",
+        "trace"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/trace/c-trace-4.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-trace-4.tsx"
+        }
+      ],
+      "meta": {
+        "order": 4,
+        "gridSize": 2,
+        "label": "Subagents"
+      }
+    },
+    {
+      "name": "c-trace-5",
+      "type": "registry:block",
+      "title": "Terraform change approval",
+      "categories": [
+        "trace"
+      ],
+      "description": "Terraform resource changes that move from pending to running to done once someone signs off.",
+      "descriptionLong": "Terraform change approval. Built by composing Button, Item, Trace. A free, open source shadcn trace example you can install with npx shadcn@latest add @reui/c-trace-5 and edit as your own code.",
+      "registryDependencies": [
+        "button",
+        "item",
+        "trace"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/trace/c-trace-5.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-trace-5.tsx"
+        }
+      ],
+      "meta": {
+        "order": 5,
+        "gridSize": 2,
+        "label": "Change Approval"
+      }
+    },
+    {
+      "name": "c-trace-6",
+      "type": "registry:block",
+      "title": "Answer with citations",
+      "categories": [
+        "trace"
+      ],
+      "description": "Numbered citations in a research answer open the sources and move focus to the cited source.",
+      "descriptionLong": "Answer with citations. Built by composing Badge, Trace. Uses cn alongside the shadcn primitives. A free, open source shadcn trace example you can install with npx shadcn@latest add @reui/c-trace-6 and edit as your own code.",
+      "registryDependencies": [
+        "badge",
+        "trace"
+      ],
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "components/trace/c-trace-6.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-trace-6.tsx"
+        }
+      ],
+      "meta": {
+        "order": 6,
+        "gridSize": 2,
+        "label": "Cited Sources"
+      }
+    },
+    {
+      "name": "c-trace-7",
+      "type": "registry:block",
+      "title": "Support copilot draft",
+      "categories": [
+        "trace"
+      ],
+      "description": "A drafted support reply with the order and policy lookups behind it, and Regenerate replaying them.",
+      "descriptionLong": "Support copilot draft. Built by composing Button, Trace. A free, open source shadcn trace example you can install with npx shadcn@latest add @reui/c-trace-7 and edit as your own code.",
+      "registryDependencies": [
+        "button",
+        "trace"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/trace/c-trace-7.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-trace-7.tsx"
+        }
+      ],
+      "meta": {
+        "order": 7,
+        "gridSize": 2,
+        "label": "Support Copilot"
+      }
+    },
+    {
+      "name": "c-trace-8",
+      "type": "registry:block",
+      "title": "CLI install summary",
+      "categories": [
+        "trace"
+      ],
+      "description": "What a shadcn add run resolved, installed and wrote, including a file it kept because it already existed.",
+      "descriptionLong": "CLI install summary. Built by composing Code Block, Trace. A free, open source shadcn trace example you can install with npx shadcn@latest add @reui/c-trace-8 and edit as your own code.",
+      "registryDependencies": [
+        "code-block",
+        "trace"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/trace/c-trace-8.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-trace-8.tsx"
+        }
+      ],
+      "meta": {
+        "order": 8,
+        "gridSize": 2,
+        "label": "Install Summary"
+      }
+    },
+    {
+      "name": "c-trace-9",
+      "type": "registry:block",
+      "title": "CI pipeline run",
+      "categories": [
+        "trace"
+      ],
+      "description": "Jobs that expand to their steps, a failing test log, and a re-run that walks the remaining jobs to done.",
+      "descriptionLong": "CI pipeline run. Built by composing Button, Code Block, Trace. A free, open source shadcn trace example you can install with npx shadcn@latest add @reui/c-trace-9 and edit as your own code.",
+      "registryDependencies": [
+        "button",
+        "code-block",
+        "trace"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/trace/c-trace-9.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-trace-9.tsx"
+        }
+      ],
+      "meta": {
+        "order": 9,
+        "gridSize": 2,
+        "label": "CI Pipeline"
+      }
+    },
+    {
+      "name": "c-trace-10",
+      "type": "registry:block",
+      "title": "Distributed trace spans",
+      "categories": [
+        "trace"
+      ],
+      "description": "Request spans nested under their parent with their durations, each opening to its attributes, the slowest one marked.",
+      "descriptionLong": "Distributed trace spans. Built by composing Badge, Trace. A free, open source shadcn trace example you can install with npx shadcn@latest add @reui/c-trace-10 and edit as your own code.",
+      "registryDependencies": [
+        "badge",
+        "trace"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/trace/c-trace-10.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-trace-10.tsx"
+        }
+      ],
+      "meta": {
+        "order": 10,
+        "gridSize": 2,
+        "label": "Request Spans"
+      }
+    },
+    {
+      "name": "c-trace-11",
+      "type": "registry:block",
+      "title": "Error breadcrumbs",
+      "categories": [
+        "trace"
+      ],
+      "description": "The events that led to a crash, the response body of the request behind it, and the stack trace below.",
+      "descriptionLong": "Error breadcrumbs. Built by composing Code Block, Dialog, Trace. A free, open source shadcn trace example you can install with npx shadcn@latest add @reui/c-trace-11 and edit as your own code.",
+      "registryDependencies": [
+        "code-block",
+        "dialog",
+        "trace"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/trace/c-trace-11.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-trace-11.tsx"
+        }
+      ],
+      "meta": {
+        "order": 11,
+        "gridSize": 2,
+        "label": "Error Breadcrumbs"
+      }
+    },
+    {
+      "name": "c-trace-12",
+      "type": "registry:block",
+      "title": "SQL query plan",
+      "categories": [
+        "trace"
+      ],
+      "description": "An EXPLAIN ANALYZE result opened along the path to the slowest scan, with the index that would remove it.",
+      "descriptionLong": "SQL query plan. Built by composing Badge, Code Block, Trace. A free, open source shadcn trace example you can install with npx shadcn@latest add @reui/c-trace-12 and edit as your own code.",
+      "registryDependencies": [
+        "badge",
+        "code-block",
+        "trace"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/trace/c-trace-12.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-trace-12.tsx"
+        }
+      ],
+      "meta": {
+        "order": 12,
+        "gridSize": 2,
+        "label": "Query Plan"
+      }
+    },
+    {
+      "name": "c-trace-13",
+      "type": "registry:block",
+      "title": "Data pipeline run",
+      "categories": [
+        "trace"
+      ],
+      "description": "A dbt build where a failed uniqueness test shows its duplicates, and a downstream model skips.",
+      "descriptionLong": "Data pipeline run. Built by composing Card, Table, Trace. A free, open source shadcn trace example you can install with npx shadcn@latest add @reui/c-trace-13 and edit as your own code.",
+      "registryDependencies": [
+        "card",
+        "table",
+        "trace"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/trace/c-trace-13.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-trace-13.tsx"
+        }
+      ],
+      "meta": {
+        "order": 13,
+        "gridSize": 2,
+        "label": "Data Pipeline"
+      }
+    },
+    {
+      "name": "c-trace-14",
+      "type": "registry:block",
+      "title": "Webhook delivery attempts",
+      "categories": [
+        "trace"
+      ],
+      "description": "Delivery attempts for one event, with failures opening to the response and Resend appending a new attempt.",
+      "descriptionLong": "Webhook delivery attempts. Built by composing Button, Code Block, Trace. A free, open source shadcn trace example you can install with npx shadcn@latest add @reui/c-trace-14 and edit as your own code.",
+      "registryDependencies": [
+        "button",
+        "code-block",
+        "trace"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/trace/c-trace-14.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-trace-14.tsx"
+        }
+      ],
+      "meta": {
+        "order": 14,
+        "gridSize": 2,
+        "label": "Webhook Retries"
+      }
+    },
+    {
+      "name": "c-trace-15",
+      "type": "registry:block",
+      "title": "CSV import",
+      "categories": [
+        "trace"
+      ],
+      "description": "A CSV import that counts up while it runs, with rejected records, their problems and a download link.",
+      "descriptionLong": "CSV import. Built by composing Button, Card, Table, Trace. A free, open source shadcn trace example you can install with npx shadcn@latest add @reui/c-trace-15 and edit as your own code.",
+      "registryDependencies": [
+        "button",
+        "card",
+        "table",
+        "trace"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/trace/c-trace-15.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-trace-15.tsx"
+        }
+      ],
+      "meta": {
+        "order": 15,
+        "gridSize": 2,
+        "label": "CSV Import"
+      }
+    },
+    {
+      "name": "c-trace-16",
+      "type": "registry:block",
+      "title": "Dependency audit",
+      "categories": [
+        "trace"
+      ],
+      "description": "Vulnerable packages that open to the chain that pulled them in, with the upgrade or lockfile update that fixes each.",
+      "descriptionLong": "Dependency audit. Built by composing Badge, Button, Trace. A free, open source shadcn trace example you can install with npx shadcn@latest add @reui/c-trace-16 and edit as your own code.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "trace"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/trace/c-trace-16.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-trace-16.tsx"
+        }
+      ],
+      "meta": {
+        "order": 16,
+        "gridSize": 2,
+        "label": "Security Audit"
+      }
+    },
+    {
+      "name": "c-trace-17",
+      "type": "registry:block",
+      "title": "AI review findings",
+      "categories": [
+        "trace"
+      ],
+      "description": "Findings from an automated pull request review, each opening the flagged lines and a suggested fix, resolved in place.",
+      "descriptionLong": "AI review findings. Built by composing Button, Code Block, Sheet, Trace. A free, open source shadcn trace example you can install with npx shadcn@latest add @reui/c-trace-17 and edit as your own code.",
+      "registryDependencies": [
+        "button",
+        "code-block",
+        "sheet",
+        "trace"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/trace/c-trace-17.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-trace-17.tsx"
+        }
+      ],
+      "meta": {
+        "order": 17,
+        "gridSize": 2,
+        "label": "Review Findings"
+      }
+    },
+    {
+      "name": "c-trace-18",
+      "type": "registry:block",
+      "title": "Model eval results",
+      "categories": [
+        "trace"
+      ],
+      "description": "LLM eval cases where a failure expands to the expected answer, the model's answer and the judge's note.",
+      "descriptionLong": "Model eval results. Built by composing Label, Switch, Trace. A free, open source shadcn trace example you can install with npx shadcn@latest add @reui/c-trace-18 and edit as your own code.",
+      "registryDependencies": [
+        "label",
+        "switch",
+        "trace"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/trace/c-trace-18.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-trace-18.tsx"
+        }
+      ],
+      "meta": {
+        "order": 18,
+        "gridSize": 2,
+        "label": "Eval Results"
+      }
+    },
+    {
+      "name": "c-trace-19",
+      "type": "registry:block",
+      "title": "Access decision",
+      "categories": [
+        "trace"
+      ],
+      "description": "Why a member can or cannot open a part of the app, rule by rule, with the deciding rule and those never reached.",
+      "descriptionLong": "Access decision. Built by composing Field, Select, Trace. A free, open source shadcn trace example you can install with npx shadcn@latest add @reui/c-trace-19 and edit as your own code.",
+      "registryDependencies": [
+        "field",
+        "select",
+        "trace"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/trace/c-trace-19.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-trace-19.tsx"
+        }
+      ],
+      "meta": {
+        "order": 19,
+        "gridSize": 2,
+        "label": "Access Decision"
+      }
+    },
+    {
+      "name": "c-trace-20",
+      "type": "registry:block",
+      "title": "Identity verification",
+      "categories": [
+        "trace"
+      ],
+      "description": "KYC results for an applicant, where the rejected document opens to its reason and a request for another.",
+      "descriptionLong": "Identity verification. Built by composing Button, Trace. A free, open source shadcn trace example you can install with npx shadcn@latest add @reui/c-trace-20 and edit as your own code.",
+      "registryDependencies": [
+        "button",
+        "trace"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/trace/c-trace-20.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-trace-20.tsx"
+        }
+      ],
+      "meta": {
+        "order": 20,
+        "gridSize": 2,
+        "label": "Identity Review"
+      }
+    },
+    {
+      "name": "c-trace-21",
+      "type": "registry:block",
+      "title": "Domain DNS setup",
+      "categories": [
+        "trace"
+      ],
+      "description": "Sending domain setup with records to copy, a lookup that finds 2 of 3, then the go live step once DNS passes.",
+      "descriptionLong": "Domain DNS setup. Built by composing Button, Card, Table, Trace. A free, open source shadcn trace example you can install with npx shadcn@latest add @reui/c-trace-21 and edit as your own code.",
+      "registryDependencies": [
+        "button",
+        "card",
+        "table",
+        "trace"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/trace/c-trace-21.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-trace-21.tsx"
+        }
+      ],
+      "meta": {
+        "order": 21,
+        "gridSize": 2,
+        "label": "Domain Setup"
+      }
+    },
+    {
+      "name": "c-trace-22",
+      "type": "registry:block",
+      "title": "Media transcode",
+      "categories": [
+        "trace"
+      ],
+      "description": "Renditions that encode in parallel with their own percentages, then thumbnails and a CDN publish.",
+      "descriptionLong": "Media transcode. Built with the Trace component. A free, open source shadcn trace example you can install with npx shadcn@latest add @reui/c-trace-22 and edit as your own code.",
+      "registryDependencies": [
+        "trace"
+      ],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "components/trace/c-trace-22.tsx",
+          "type": "registry:block",
+          "target": "components/examples/c-trace-22.tsx"
+        }
+      ],
+      "meta": {
+        "order": 22,
+        "gridSize": 2,
+        "label": "Transcode"
+      }
+    }
+  ]
+}

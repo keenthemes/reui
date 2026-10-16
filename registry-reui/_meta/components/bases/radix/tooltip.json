@@ -22,7 +22,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Basic"
       }
     },
     {
@@ -47,7 +48,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "Placements"
       }
     },
     {
@@ -72,7 +74,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Icon Trigger"
       }
     },
     {
@@ -98,7 +101,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Keyboard Shortcut"
       }
     },
     {
@@ -124,7 +128,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "Bell With Count"
       }
     },
     {
@@ -150,7 +155,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "Status Badges"
       }
     },
     {
@@ -175,7 +181,8 @@
         }
       ],
       "meta": {
-        "order": 7
+        "order": 7,
+        "label": "Verified Domain"
       }
     },
     {
@@ -201,7 +208,8 @@
         }
       ],
       "meta": {
-        "order": 8
+        "order": 8,
+        "label": "Toolbar Actions"
       }
     },
     {
@@ -227,7 +235,8 @@
         }
       ],
       "meta": {
-        "order": 9
+        "order": 9,
+        "label": "Warning"
       }
     },
     {
@@ -253,7 +262,8 @@
         }
       ],
       "meta": {
-        "order": 10
+        "order": 10,
+        "label": "Upgrade Prompt"
       }
     },
     {
@@ -279,7 +289,8 @@
         }
       ],
       "meta": {
-        "order": 11
+        "order": 11,
+        "label": "Avatar Role Badge"
       }
     },
     {
@@ -304,7 +315,8 @@
         }
       ],
       "meta": {
-        "order": 12
+        "order": 12,
+        "label": "Disabled Button"
       }
     },
     {
@@ -329,7 +341,8 @@
         }
       ],
       "meta": {
-        "order": 13
+        "order": 13,
+        "label": "Online Status"
       }
     },
     {
@@ -354,7 +367,8 @@
         }
       ],
       "meta": {
-        "order": 14
+        "order": 14,
+        "label": "File Info"
       }
     },
     {
@@ -379,7 +393,8 @@
         }
       ],
       "meta": {
-        "order": 15
+        "order": 15,
+        "label": "Label Badges"
       }
     },
     {
@@ -404,7 +419,8 @@
         }
       ],
       "meta": {
-        "order": 16
+        "order": 16,
+        "label": "Unread Bell"
       }
     }
   ]

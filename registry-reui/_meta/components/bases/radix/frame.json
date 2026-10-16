@@ -21,7 +21,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Basic"
       }
     },
     {
@@ -45,7 +46,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "Separated Panels"
       }
     },
     {
@@ -69,7 +71,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Stacked Panels"
       }
     },
     {
@@ -93,7 +96,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Stacked Dense"
       }
     },
     {
@@ -118,7 +122,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "Collapsible Panels"
       }
     },
     {
@@ -142,7 +147,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "Ghost Variant"
       }
     },
     {
@@ -166,7 +172,8 @@
         }
       ],
       "meta": {
-        "order": 7
+        "order": 7,
+        "label": "Dense Layout"
       }
     },
     {
@@ -190,7 +197,8 @@
         }
       ],
       "meta": {
-        "order": 8
+        "order": 8,
+        "label": "Stacked Rows"
       }
     },
     {
@@ -214,7 +222,8 @@
         }
       ],
       "meta": {
-        "order": 9
+        "order": 9,
+        "label": "Extra Small Spacing"
       }
     },
     {
@@ -238,7 +247,8 @@
         }
       ],
       "meta": {
-        "order": 10
+        "order": 10,
+        "label": "Small Spacing"
       }
     },
     {
@@ -262,7 +272,8 @@
         }
       ],
       "meta": {
-        "order": 11
+        "order": 11,
+        "label": "Default Spacing"
       }
     },
     {
@@ -286,7 +297,8 @@
         }
       ],
       "meta": {
-        "order": 12
+        "order": 12,
+        "label": "Large Spacing"
       }
     },
     {
@@ -310,7 +322,8 @@
         }
       ],
       "meta": {
-        "order": 13
+        "order": 13,
+        "label": "Small Radius"
       }
     },
     {
@@ -334,7 +347,8 @@
         }
       ],
       "meta": {
-        "order": 14
+        "order": 14,
+        "label": "Medium Radius"
       }
     },
     {
@@ -358,7 +372,8 @@
         }
       ],
       "meta": {
-        "order": 15
+        "order": 15,
+        "label": "Large Radius"
       }
     },
     {
@@ -382,7 +397,8 @@
         }
       ],
       "meta": {
-        "order": 16
+        "order": 16,
+        "label": "Default Radius"
       }
     },
     {
@@ -406,7 +422,8 @@
         }
       ],
       "meta": {
-        "order": 17
+        "order": 17,
+        "label": "Extra Large Radius"
       }
     },
     {
@@ -430,7 +447,8 @@
         }
       ],
       "meta": {
-        "order": 18
+        "order": 18,
+        "label": "Content-Only Panels"
       }
     },
     {
@@ -454,7 +472,8 @@
         }
       ],
       "meta": {
-        "order": 19
+        "order": 19,
+        "label": "Stacked Content-Only"
       }
     }
   ]

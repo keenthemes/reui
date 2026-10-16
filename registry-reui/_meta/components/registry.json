@@ -202,7 +202,7 @@
       "name": "file-type",
       "label": "File Type",
       "description": "Open-source shadcn file type icon components for file extensions, export formats, and file browsers.",
-      "count": 14
+      "count": 15
     },
     {
       "name": "file-upload",
@@ -511,11 +511,17 @@
       "count": 16
     },
     {
+      "name": "trace",
+      "label": "Trace",
+      "description": "Open-source shadcn trace components for agent reasoning, tool calls and run steps that expand to their output.",
+      "count": 22
+    },
+    {
       "name": "tree",
       "label": "Tree",
       "description": "Open-source shadcn tree components for file explorers, nested navigation, and hierarchical data.",
       "count": 7
     }
   ],
-  "totalComponents": 1241
+  "totalComponents": 1264
 }

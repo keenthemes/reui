@@ -24,7 +24,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Basic"
       }
     },
     {
@@ -51,7 +52,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "Indent Lines"
       }
     },
     {
@@ -78,7 +80,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Folder File Icons"
       }
     },
     {
@@ -105,7 +108,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Plus Minus Toggles"
       }
     },
     {
@@ -132,7 +136,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "File Explorer"
       }
     },
     {
@@ -160,7 +165,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "Org Chart"
       }
     },
     {
@@ -188,7 +194,8 @@
         }
       ],
       "meta": {
-        "order": 7
+        "order": 7,
+        "label": "Permissions"
       }
     }
   ]

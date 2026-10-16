@@ -22,7 +22,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Basic"
       }
     },
     {
@@ -47,7 +48,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "Positions"
       }
     },
     {
@@ -72,7 +74,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Profile"
       }
     },
     {
@@ -97,7 +100,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Icon"
       }
     },
     {
@@ -122,7 +126,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "Image & Text"
       }
     },
     {
@@ -148,7 +153,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "In Dialog"
       }
     },
     {
@@ -176,7 +182,8 @@
         }
       ],
       "meta": {
-        "order": 7
+        "order": 7,
+        "label": "Live Timestamp"
       }
     },
     {
@@ -202,7 +209,8 @@
         }
       ],
       "meta": {
-        "order": 8
+        "order": 8,
+        "label": "Release Notes"
       }
     }
   ]

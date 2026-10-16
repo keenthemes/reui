@@ -1,6 +1,6 @@
 {
   "name": "reui",
-  "version": "2.8.0",
+  "version": "2.8.1",
   "private": true,
   "type": "module",
   "scripts": {
@@ -139,6 +139,7 @@
     "@reui/components-base-toggle": "workspace:*",
     "@reui/components-base-toggle-group": "workspace:*",
     "@reui/components-base-tooltip": "workspace:*",
+    "@reui/components-base-trace": "workspace:*",
     "@reui/components-base-tree": "workspace:*",
     "@reui/components-radix-accordion": "workspace:*",
     "@reui/components-radix-alert": "workspace:*",
@@ -225,6 +226,7 @@
     "@reui/components-radix-toggle": "workspace:*",
     "@reui/components-radix-toggle-group": "workspace:*",
     "@reui/components-radix-tooltip": "workspace:*",
+    "@reui/components-radix-trace": "workspace:*",
     "@reui/components-radix-tree": "workspace:*",
     "@shadcn/react": "^0.3.1",
     "@tabler/icons-react": "^3.41.1",

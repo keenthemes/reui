@@ -1,5 +1,8 @@
 "use client"
 
+// Opted out of React Compiler with the rest of the grid (see data-grid.tsx).
+"use no memo"
+
 import { useMemo, useState } from "react"
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 import { useDataGrid } from "@/registry-reui/bases/radix/reui/data-grid/data-grid"

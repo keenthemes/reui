@@ -92,6 +92,11 @@ export interface CascaderIndex<T = unknown> {
   roots: CascaderNode<T>[]
   /** Every node in a stable, depth-first order. Used by deep search. */
   all: CascaderNode<T>[]
+  /** Resolved chain nodes listed last in a level that may still return them. */
+  pinned?: ReadonlySet<string>
+  /** Resolved chain nodes whose level loaded completely without them: they
+   * keep their path for the trigger, and are no row, hit or cascade child. */
+  hidden?: ReadonlySet<string>
 }
 
 export interface CascaderFlatNode<T = unknown> {
@@ -133,9 +138,12 @@ export type CascaderLoadReason =
   | "retry"
   | "resolve"
 
-/** Argument handed to `getChildren`. */
+/** Argument handed to `getChildren` and `resolveValue`. */
 export interface CascaderLoadContext {
-  /** Aborted when the request is superseded or the popup closes. */
+  /**
+   * Aborted when the request is superseded, `loadKey` changes or the cascader
+   * unmounts, and for a `getChildren` load also when the popup closes.
+   */
   signal: AbortSignal
   cursor?: string
   reason?: CascaderLoadReason

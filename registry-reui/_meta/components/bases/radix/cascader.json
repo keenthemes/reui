@@ -25,7 +25,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Attribute Picker"
       }
     },
     {
@@ -56,7 +57,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "Multi-Select Cap"
       }
     },
     {
@@ -84,7 +86,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Deep Search"
       }
     },
     {
@@ -153,7 +156,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Footer Flyout"
       }
     },
     {
@@ -185,7 +189,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "Avatar Rows"
       }
     },
     {
@@ -259,7 +264,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "Path Formatting"
       }
     },
     {
@@ -287,7 +293,8 @@
         }
       ],
       "meta": {
-        "order": 7
+        "order": 7,
+        "label": "Embedded Panel"
       }
     },
     {
@@ -316,7 +323,8 @@
         }
       ],
       "meta": {
-        "order": 8
+        "order": 8,
+        "label": "Flat Data"
       }
     },
     {
@@ -344,7 +352,8 @@
         }
       ],
       "meta": {
-        "order": 9
+        "order": 9,
+        "label": "Controlled State"
       }
     },
     {
@@ -372,7 +381,8 @@
         }
       ],
       "meta": {
-        "order": 10
+        "order": 10,
+        "label": "Translated Labels"
       }
     },
     {
@@ -401,7 +411,8 @@
         }
       ],
       "meta": {
-        "order": 11
+        "order": 11,
+        "label": "Two-Line Rows"
       }
     },
     {
@@ -430,7 +441,8 @@
         }
       ],
       "meta": {
-        "order": 12
+        "order": 12,
+        "label": "Native Form Field"
       }
     },
     {
@@ -462,7 +474,8 @@
         }
       ],
       "meta": {
-        "order": 13
+        "order": 13,
+        "label": "Columns Mode"
       }
     },
     {
@@ -490,7 +503,8 @@
         }
       ],
       "meta": {
-        "order": 14
+        "order": 14,
+        "label": "Tree Mode"
       }
     },
     {
@@ -521,7 +535,8 @@
         }
       ],
       "meta": {
-        "order": 15
+        "order": 15,
+        "label": "Async Loading"
       }
     },
     {
@@ -553,7 +568,8 @@
         }
       ],
       "meta": {
-        "order": 16
+        "order": 16,
+        "label": "Virtualized List"
       }
     },
     {
@@ -582,7 +598,8 @@
         }
       ],
       "meta": {
-        "order": 17
+        "order": 17,
+        "label": "Removable Chips"
       }
     },
     {
@@ -610,7 +627,8 @@
         }
       ],
       "meta": {
-        "order": 18
+        "order": 18,
+        "label": "Tree Multi-Select"
       }
     },
     {
@@ -641,7 +659,8 @@
         }
       ],
       "meta": {
-        "order": 19
+        "order": 19,
+        "label": "Color Dots"
       }
     },
     {
@@ -672,7 +691,8 @@
         }
       ],
       "meta": {
-        "order": 20
+        "order": 20,
+        "label": "Inherited Colors"
       }
     },
     {
@@ -701,7 +721,8 @@
         }
       ],
       "meta": {
-        "order": 21
+        "order": 21,
+        "label": "Global Search"
       }
     }
   ]

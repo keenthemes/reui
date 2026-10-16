@@ -22,7 +22,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Inline Panel"
       }
     },
     {
@@ -47,7 +48,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "Popover"
       }
     },
     {
@@ -72,7 +74,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Typable Input"
       }
     },
     {
@@ -97,7 +100,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "12-Hour Seconds"
       }
     },
     {
@@ -122,7 +126,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "Hour Only"
       }
     },
     {
@@ -147,7 +152,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "Opening Hours"
       }
     },
     {
@@ -172,7 +178,8 @@
         }
       ],
       "meta": {
-        "order": 7
+        "order": 7,
+        "label": "Unavailable Slots"
       }
     },
     {
@@ -197,7 +204,8 @@
         }
       ],
       "meta": {
-        "order": 8
+        "order": 8,
+        "label": "Start & End"
       }
     },
     {
@@ -222,7 +230,8 @@
         }
       ],
       "meta": {
-        "order": 9
+        "order": 9,
+        "label": "Time Zone"
       }
     },
     {
@@ -247,7 +256,8 @@
         }
       ],
       "meta": {
-        "order": 10
+        "order": 10,
+        "label": "Confirm Before Apply"
       }
     },
     {
@@ -273,7 +283,8 @@
         }
       ],
       "meta": {
-        "order": 11
+        "order": 11,
+        "label": "Localized"
       }
     },
     {
@@ -299,7 +310,8 @@
         }
       ],
       "meta": {
-        "order": 12
+        "order": 12,
+        "label": "Form Validation"
       }
     },
     {
@@ -327,7 +339,8 @@
       ],
       "meta": {
         "order": 13,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Date & Time"
       }
     }
   ]

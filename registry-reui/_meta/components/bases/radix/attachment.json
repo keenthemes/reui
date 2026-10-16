@@ -22,7 +22,8 @@
       ],
       "meta": {
         "order": 1,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Assistant Reply"
       }
     },
     {
@@ -49,7 +50,8 @@
       ],
       "meta": {
         "order": 2,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Composer Tray"
       }
     },
     {
@@ -74,7 +76,8 @@
       ],
       "meta": {
         "order": 3,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Image Strip"
       }
     },
     {
@@ -99,7 +102,8 @@
       ],
       "meta": {
         "order": 4,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Three Sizes"
       }
     },
     {
@@ -125,7 +129,8 @@
       ],
       "meta": {
         "order": 5,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Upload Queue"
       }
     },
     {
@@ -151,7 +156,8 @@
       ],
       "meta": {
         "order": 6,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "File Picker"
       }
     }
   ]

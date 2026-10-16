@@ -130,7 +130,7 @@
       "bestFor": "A 3 level navigation menu of icon rows where folders open in place and the chosen leaf row stays highlighted",
       "agentNotes": [
         "Replace `navItems` with your routes; a leaf row only sets `selectedId`, so add the link or router call in `onSelect`",
-        "Every row renders `Item` as a div, so Enter and Space never open a folder or pick a leaf; render rows as buttons or links for keyboard use"
+        "Leaf rows render `Item` as a div with only `onClick`, so the keyboard opens folders but never picks a leaf; render leaves as buttons or links"
       ],
       "whenNotToUse": [
         {
@@ -151,7 +151,7 @@
       "agentNotes": [
         "Replace `fileTree` with your files; selection keys on `name`, so give rows a unique id before 2 folders hold the same file name",
         "The download and delete `Button` icons have no handlers, and `TabsList` switches no content, so Outline shows the same files",
-        "Every row renders `Item` as a div, so Enter and Space never open a folder or select a file; render rows as buttons for keyboard use"
+        "File rows render `Item` as a div with only `onClick`, so the keyboard opens folders but never selects a file; give file rows a button"
       ],
       "whenNotToUse": [
         {

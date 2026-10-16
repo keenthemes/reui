@@ -22,7 +22,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Basic"
       }
     },
     {
@@ -47,7 +48,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "No Results"
       }
     },
     {
@@ -73,7 +75,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Search Input"
       }
     },
     {
@@ -98,7 +101,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Add Button"
       }
     },
     {
@@ -124,7 +128,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "Documents"
       }
     },
     {
@@ -149,7 +154,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "Dashed Upload"
       }
     },
     {
@@ -173,7 +179,8 @@
         }
       ],
       "meta": {
-        "order": 7
+        "order": 7,
+        "label": "Inbox"
       }
     },
     {
@@ -199,7 +206,8 @@
         }
       ],
       "meta": {
-        "order": 8
+        "order": 8,
+        "label": "Team Members"
       }
     },
     {
@@ -223,7 +231,8 @@
         }
       ],
       "meta": {
-        "order": 9
+        "order": 9,
+        "label": "No Notifications"
       }
     },
     {
@@ -248,7 +257,8 @@
         }
       ],
       "meta": {
-        "order": 10
+        "order": 10,
+        "label": "Analytics"
       }
     },
     {
@@ -273,7 +283,8 @@
         }
       ],
       "meta": {
-        "order": 11
+        "order": 11,
+        "label": "Bookmarks"
       }
     },
     {
@@ -299,7 +310,8 @@
         }
       ],
       "meta": {
-        "order": 12
+        "order": 12,
+        "label": "Tasks"
       }
     },
     {
@@ -324,7 +336,8 @@
         }
       ],
       "meta": {
-        "order": 13
+        "order": 13,
+        "label": "Automations"
       }
     },
     {
@@ -348,7 +361,8 @@
         }
       ],
       "meta": {
-        "order": 14
+        "order": 14,
+        "label": "Comments Board"
       }
     },
     {
@@ -372,7 +386,8 @@
         }
       ],
       "meta": {
-        "order": 15
+        "order": 15,
+        "label": "Stacked Products"
       }
     },
     {
@@ -396,7 +411,8 @@
         }
       ],
       "meta": {
-        "order": 16
+        "order": 16,
+        "label": "Search File Cards"
       }
     },
     {
@@ -421,7 +437,8 @@
         }
       ],
       "meta": {
-        "order": 17
+        "order": 17,
+        "label": "Chat Bubbles"
       }
     },
     {
@@ -446,7 +463,8 @@
         }
       ],
       "meta": {
-        "order": 18
+        "order": 18,
+        "label": "Credit Card"
       }
     },
     {
@@ -471,7 +489,8 @@
         }
       ],
       "meta": {
-        "order": 19
+        "order": 19,
+        "label": "Connected Nodes"
       }
     },
     {
@@ -496,7 +515,8 @@
         }
       ],
       "meta": {
-        "order": 20
+        "order": 20,
+        "label": "Events Calendar"
       }
     }
   ]

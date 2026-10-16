@@ -1,4 +1,4 @@
-import { Badge } from "@/registry-reui/bases/radix/reui/badge"
+import { Badge } from "@/registry-reui/bases/base/reui/badge"
 
 import {
   Avatar,

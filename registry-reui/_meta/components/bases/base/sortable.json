@@ -25,7 +25,8 @@
       ],
       "meta": {
         "order": 1,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "File List"
       }
     },
     {
@@ -54,7 +55,8 @@
       ],
       "meta": {
         "order": 2,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Grid Layout"
       }
     },
     {
@@ -82,7 +84,8 @@
       ],
       "meta": {
         "order": 3,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Nested Layout"
       }
     },
     {
@@ -109,7 +112,8 @@
       ],
       "meta": {
         "order": 4,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Playlist"
       }
     },
     {
@@ -136,7 +140,8 @@
       ],
       "meta": {
         "order": 5,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Settings Priority"
       }
     },
     {
@@ -163,7 +168,8 @@
       ],
       "meta": {
         "order": 6,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Sidebar Navigation"
       }
     },
     {
@@ -189,7 +195,8 @@
       ],
       "meta": {
         "order": 7,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Image Gallery"
       }
     },
     {
@@ -217,7 +224,8 @@
       ],
       "meta": {
         "order": 8,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Persisted Order"
       }
     }
   ]

@@ -4,7 +4,7 @@ import { Autocomplete as AutocompletePrimitive } from "@base-ui/react/autocomple
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "cn"
-import { ScrollArea } from "@/registry/bases/base/ui/scroll-area"
+import { ScrollArea } from "@/registry/bases/radix/ui/scroll-area"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 const inputVariants = cva(
@@ -112,10 +112,14 @@ function AutocompleteList({
   scrollFade?: boolean
   scrollbarGutter?: boolean
 }) {
+  // Out of the layout while the list renders nothing. Base UI's scroll area
+  // skips measuring 0px tall content, so a list that overflowed and then
+  // filtered to empty kept its old thumb, hanging below the popup. Keyed on
+  // :empty, not data-empty, which a list without `items` always carries.
   return (
     <ScrollArea
       className={cn(
-        "size-full min-h-0 **:data-[slot=scroll-area-viewport]:h-full **:data-[slot=scroll-area-viewport]:overscroll-contain",
+        "size-full min-h-0 has-[[data-slot=autocomplete-list]:empty]:hidden **:data-[slot=scroll-area-viewport]:h-full **:data-[slot=scroll-area-viewport]:overscroll-contain",
         scrollAreaClassName
       )}
     >

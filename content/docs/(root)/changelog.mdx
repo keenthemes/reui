@@ -3,6 +3,47 @@ title: Changelog
 description: Latest updates and announcements.
 ---
 
+## v2.8.1 - 15 October, 2026.
+
+Shadcn Trace arrives with 22 examples, File Type learns 72 more formats, and the Data Grid, Event Calendar, Gantt and Date Selector now work in apps that run React Compiler. This entry covers every free change since v2.8.0.
+
+**New: Shadcn Trace.**
+
+- New Trace category for shadcn's step list: reasoning, tool calls, sources and run logs as one-line rows that expand, link out or open a dialog, with running, failed and pending states - [Preview](/components/trace).
+- 22 examples per base, from a live agent run with Stop and parallel subagents to a Terraform plan behind an approval, a CI re-run, nested request spans, a query plan tree and an access check that explains its decision - [Preview](/components/trace).
+- Command output, logs and diffs inside an expanded row render with Code Block, so failing and changed lines keep their color - [Docs](/docs/components/base/code-block).
+
+**New Free Components:**
+
+- 23 new free examples across Trace and File Type, taking the free catalog from 1,241 to 1,264 - [Preview](/components).
+- File Type knows 72 more formats, 171 in all: config and infrastructure files such as env, TOML, Dockerfile and Terraform, Vue, Svelte, GraphQL, Kotlin, Swift, Dart, notebooks, Parquet and model weights - [Docs](/docs/components/base/file-type#types-and-colors).
+- `getFileType` reads well-known names, where they used to resolve to a blank page: `.env.local` is env, `Dockerfile.dev` a Dockerfile, `.gitignore` git, `go.mod` Go and `LICENSE` text - [Docs](/docs/components/base/file-type#getfiletype).
+- New Dotfiles & Build Names example: 12 repository files, `.env.local` and Dockerfile included, each icon read from the name - [Preview](/components/file-type).
+
+**Fixes & Improvements:**
+
+- Data Grid column resizing works in apps that run React Compiler: the width commits and the resize indicator shows while dragging - [Docs](/docs/components/base/data-grid#react-compiler).
+- Under React Compiler, the Data Grid also shows edited data, a later `onRowCreate` and changed `getRowStatus` answers, and keeps tree toggles and resize lines live - [Docs](/docs/components/base/data-grid#react-compiler).
+- Every Data Grid component file ships with a `"use no memo"` directive, so keep it when you edit an installed file - [Docs](/docs/components/base/data-grid#react-compiler).
+- Data Grid rows call the current `onRowClick` and `onRowCreate`, never the one they rendered with - [Docs](/docs/components/base/data-grid).
+- A Data Grid whose feature bundle leaves out `columnResizingFeature` renders instead of throwing - [Docs](/docs/components/base/data-grid#tanstack-table-v9).
+- Under React Compiler, the Event Calendar's today highlight in the month, week, day and resource views, its Today button and the button's date tooltip move to the new day at midnight, and the agenda shows events as they are added, edited or removed - [Docs](/docs/components/base/event-calendar).
+- The Gantt Today button, its date tooltip and `useGanttNavigation().isToday` re-read the clock on every chart change, so under React Compiler they no longer keep the day the chart opened on - [Docs](/docs/components/base/gantt#hooks).
+- Under React Compiler, the Date Selector's Today button and year list follow the current date, not the one they mounted on - [Docs](/docs/components/base/date-selector).
+- The Cascader runs `resolveValue` with the popup closed and again after a `loadKey` change, so the trigger shows a saved selection's full path without being opened first - [Docs](/docs/components/base/cascader).
+- A failed Cascader `resolveValue` is asked again on the next open or `loadKey` change, not on every parent render, where inline `items` and an `onLoadError` that set state re-requested it in a loop - [Docs](/docs/components/base/cascader).
+- A Cascader selection resolved by `resolveValue` keeps its full path in the trigger and the columns trail when its level's first page leaves it out, and is listed after that level's rows while the level has pages left - [Docs](/docs/components/base/cascader).
+- Opening a Cascader level that a `resolveValue` chain passes through shows its loading state while it fetches, not the resolved node as the level's only row - [Docs](/docs/components/base/cascader).
+- A Cascader level that a `path` or `expanded` deep link opens before the level above it loads, or that a `loadKey` change reloads, is fetched by its own value, where `getChildren` used to get `null` and fill it with the root's rows - [Docs](/docs/components/base/cascader).
+- A Cascader in `mode="tree"` announces its top level on open, not the drill level holding the selection, and says "Loading..." rather than "Loading more..." while its first page loads - [Docs](/docs/components/base/cascader).
+- Pressing a Cascader Retry, in the empty state or in a column, hands focus to the search field (the popup or an inline panel without one), where it used to drop to the page - [Docs](/docs/components/base/cascader).
+- The Cascader's Retry after a failed `onSearch` asks the search again, where it retried the level behind the query and nothing happened - [Docs](/docs/components/base/cascader).
+- Phone Input's country list scrolls with the mouse down to its last country, and a search with no country match shows "No country found." without a leftover scrollbar, where a search matching only "International" used to leave the list blank - [Docs](/docs/components/base/phone-input).
+- An Autocomplete list that filters down to no matches no longer leaves its old scrollbar thumb hanging below the popup - [Preview](/components/autocomplete).
+- Base UI previews of 9 examples render the Base UI parts they install, not Radix ones - [Preview](/components).
+- Collapsible examples animate open and closed in both bases, and the folder rows of c-collapsible-9 and c-collapsible-10 open from the keyboard - [Preview](/components/collapsible).
+- The c-toggle-6 example fills its icon when pressed in the Base UI base too - [Preview](/components/toggle).
+
 ## v2.8.0 - 11 October, 2026.
 
 Three new in-house primitives, Color Picker, Emoji Picker and File Type, 29 new Stepper examples and grouped Data Grid headers. This entry covers every free change since v2.7.0.
@@ -22,7 +63,7 @@ Three new in-house primitives, Color Picker, Emoji Picker and File Type, 29 new 
 **New: Shadcn File Type.**
 
 - New File Type primitive: a file icon for 99 extensions with outline, solid, light and mono variants, and 6 sizes from 18px to 56px or any size from a Tailwind `size-*` class - [Docs](/docs/components/base/file-type).
-- Each format takes its brand color, else its family's, and neutral formats such as ZIP and TXT are gray, with labels legible down to 18px - [Preview](/components/file-type/c-file-type-5).
+- Each format takes its brand color, else its family's, and neutral formats such as ZIP and TXT are gray, with labels legible down to 18px - [Preview](/components/file-type).
 - A custom icon on the page with `icon`, and a label badge restyled through `labelClassName` - [Docs](/docs/components/base/file-type#customization).
 - `getFileType` picks the type from a file name, path, URL or MIME type, and `getFileTypeCategory` groups files by family for lists and filters - [Docs](/docs/components/base/file-type).
 - 14 examples per base, taking the registry to 27 primitives - [Preview](/components/file-type).
@@ -43,17 +84,17 @@ Three new in-house primitives, Color Picker, Emoji Picker and File Type, 29 new 
 
 - 66 new free examples across Color Picker, Emoji Picker, File Type and Stepper, taking the free catalog from 1,175 to 1,241 - [Preview](/components).
 - 29 new Stepper examples, taking Stepper to 44 examples per base - [Preview](/components/stepper).
-- 13 Stepper route trackers and stage bars: delivery stops, truck and sea freight routes, shipment checkpoints, and chevron and breadcrumb steps - [Preview](/components/stepper/c-stepper-30).
-- 16 Stepper layouts with step cards, side rails, status lists, color bars and phase tracks, plus nested sub-steps for checks and tasks - [Preview](/components/stepper/c-stepper-43).
+- 13 Stepper route trackers and stage bars: delivery stops, truck and sea freight routes, shipment checkpoints, and chevron and breadcrumb steps - [Preview](/components/stepper).
+- 16 Stepper layouts with step cards, side rails, status lists, color bars and phase tracks, plus nested sub-steps for checks and tasks - [Preview](/components/stepper).
 
 **Fixes & Improvements:**
 
-- Scrolling sideways through a column-virtualized Data Grid holds 120 fps instead of 29, because a column entering view no longer restyles every cell - [Preview](/components/data-grid/c-data-grid-32).
+- Scrolling sideways through a column-virtualized Data Grid holds 120 fps instead of 29, because a column entering view no longer restyles every cell - [Preview](/components/data-grid).
 - New `data-dragging` attribute on the Data Grid row being dragged, the hook for styling the slot it leaves - [Docs](/docs/components/base/data-grid#dom-attributes).
 - With a sticky header and footer, the Data Grid's vertical scrollbar stops above the footer instead of covering the totals - [Docs](/docs/components/base/data-grid).
-- Pin and unpin work in the column virtualization example, and its column jump stays on the named metric after a pin changes - [Preview](/components/data-grid/c-data-grid-32).
+- Pin and unpin work in the column virtualization example, and its column jump stays on the named metric after a pin changes - [Preview](/components/data-grid).
 - Unpinning a Data Grid column from its header button keeps keyboard focus on that column's menu - [Docs](/docs/components/base/data-grid).
-- The Data Grid's column resize line sits on the column edge instead of inside the header cell, in left-to-right and right-to-left layouts - [Preview](/components/data-grid/c-data-grid-15).
+- The Data Grid's column resize line sits on the column edge instead of inside the header cell, in left-to-right and right-to-left layouts - [Preview](/components/data-grid).
 - Icon Tile installs with one corner radius per style instead of two competing ones, so a class-sorting formatter can no longer change it - [Docs](/docs/components/base/icon-tile).
 
 ## v2.7.0 - 3 October, 2026.

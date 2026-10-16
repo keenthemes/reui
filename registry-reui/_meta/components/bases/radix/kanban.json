@@ -26,7 +26,8 @@
       ],
       "meta": {
         "order": 1,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Placeholder Overlay"
       }
     },
     {
@@ -55,7 +56,8 @@
       ],
       "meta": {
         "order": 2,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Dynamic Overlay"
       }
     },
     {
@@ -82,7 +84,8 @@
       ],
       "meta": {
         "order": 3,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Frame Columns"
       }
     },
     {
@@ -111,7 +114,8 @@
       ],
       "meta": {
         "order": 4,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Stacked Frame"
       }
     },
     {
@@ -141,7 +145,8 @@
       ],
       "meta": {
         "order": 5,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Feature Roadmap"
       }
     },
     {
@@ -171,7 +176,8 @@
       ],
       "meta": {
         "order": 6,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Persisted Moves"
       }
     }
   ]

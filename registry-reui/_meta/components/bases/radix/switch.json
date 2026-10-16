@@ -22,7 +22,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Basic"
       }
     },
     {
@@ -47,7 +48,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "With Description"
       }
     },
     {
@@ -72,7 +74,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Disabled"
       }
     },
     {
@@ -97,7 +100,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Sizes"
       }
     },
     {
@@ -122,7 +126,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "Switch Group"
       }
     },
     {
@@ -149,7 +154,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "Card Separators"
       }
     },
     {
@@ -176,7 +182,8 @@
         }
       ],
       "meta": {
-        "order": 7
+        "order": 7,
+        "label": "Card With Icons"
       }
     },
     {
@@ -203,7 +210,8 @@
         }
       ],
       "meta": {
-        "order": 8
+        "order": 8,
+        "label": "In Frame"
       }
     },
     {
@@ -229,7 +237,8 @@
         }
       ],
       "meta": {
-        "order": 9
+        "order": 9,
+        "label": "Tooltip Info"
       }
     },
     {
@@ -255,7 +264,8 @@
         }
       ],
       "meta": {
-        "order": 10
+        "order": 10,
+        "label": "With Badges"
       }
     },
     {
@@ -280,7 +290,8 @@
         }
       ],
       "meta": {
-        "order": 11
+        "order": 11,
+        "label": "Colored"
       }
     },
     {
@@ -305,7 +316,8 @@
         }
       ],
       "meta": {
-        "order": 12
+        "order": 12,
+        "label": "Destructive Confirm"
       }
     },
     {
@@ -330,7 +342,8 @@
         }
       ],
       "meta": {
-        "order": 13
+        "order": 13,
+        "label": "Compact Table"
       }
     },
     {
@@ -355,7 +368,8 @@
         }
       ],
       "meta": {
-        "order": 14
+        "order": 14,
+        "label": "Card Grid"
       }
     }
   ]

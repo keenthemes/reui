@@ -25,7 +25,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Basic Bars"
       }
     },
     {
@@ -53,7 +54,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "Multi-Dataset Bars"
       }
     },
     {
@@ -81,7 +83,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Diagonal Stripe Bars"
       }
     },
     {
@@ -109,7 +112,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Dotted Bars"
       }
     },
     {
@@ -137,7 +141,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "Striped Solid Bars"
       }
     },
     {
@@ -165,7 +170,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "3D Gradient Bars"
       }
     },
     {
@@ -193,7 +199,8 @@
         }
       ],
       "meta": {
-        "order": 7
+        "order": 7,
+        "label": "Gradient Bars"
       }
     },
     {
@@ -221,7 +228,8 @@
         }
       ],
       "meta": {
-        "order": 8
+        "order": 8,
+        "label": "Isometric Bars"
       }
     },
     {
@@ -249,7 +257,8 @@
         }
       ],
       "meta": {
-        "order": 9
+        "order": 9,
+        "label": "Dotted Solid Bars"
       }
     },
     {
@@ -277,7 +286,8 @@
         }
       ],
       "meta": {
-        "order": 10
+        "order": 10,
+        "label": "Duotone Bars"
       }
     },
     {
@@ -307,7 +317,8 @@
         }
       ],
       "meta": {
-        "order": 11
+        "order": 11,
+        "label": "Animated Monochrome Bars"
       }
     },
     {
@@ -335,7 +346,8 @@
         }
       ],
       "meta": {
-        "order": 12
+        "order": 12,
+        "label": "Horizontal Bars"
       }
     },
     {
@@ -363,7 +375,8 @@
         }
       ],
       "meta": {
-        "order": 13
+        "order": 13,
+        "label": "Gradient Area"
       }
     },
     {
@@ -391,7 +404,8 @@
         }
       ],
       "meta": {
-        "order": 14
+        "order": 14,
+        "label": "Stacked Dashed Area"
       }
     },
     {
@@ -419,7 +433,8 @@
         }
       ],
       "meta": {
-        "order": 15
+        "order": 15,
+        "label": "Dotted Step Area"
       }
     },
     {
@@ -447,7 +462,8 @@
         }
       ],
       "meta": {
-        "order": 16
+        "order": 16,
+        "label": "Glowing Dot Area"
       }
     },
     {
@@ -474,7 +490,8 @@
         }
       ],
       "meta": {
-        "order": 17
+        "order": 17,
+        "label": "Forecast Line"
       }
     },
     {
@@ -502,7 +519,8 @@
         }
       ],
       "meta": {
-        "order": 18
+        "order": 18,
+        "label": "Crosshatch Area"
       }
     },
     {
@@ -529,7 +547,8 @@
         }
       ],
       "meta": {
-        "order": 19
+        "order": 19,
+        "label": "Donut Center Total"
       }
     },
     {
@@ -556,7 +575,8 @@
         }
       ],
       "meta": {
-        "order": 20
+        "order": 20,
+        "label": "Donut Center Stats"
       }
     },
     {
@@ -583,7 +603,8 @@
         }
       ],
       "meta": {
-        "order": 21
+        "order": 21,
+        "label": "Striped Pie"
       }
     },
     {
@@ -610,7 +631,8 @@
         }
       ],
       "meta": {
-        "order": 22
+        "order": 22,
+        "label": "Active Segment Donut"
       }
     },
     {
@@ -637,7 +659,8 @@
         }
       ],
       "meta": {
-        "order": 23
+        "order": 23,
+        "label": "Gradient Radar"
       }
     },
     {
@@ -664,7 +687,8 @@
         }
       ],
       "meta": {
-        "order": 24
+        "order": 24,
+        "label": "Glowing Stroke Radar"
       }
     },
     {
@@ -691,7 +715,8 @@
         }
       ],
       "meta": {
-        "order": 25
+        "order": 25,
+        "label": "Radial Scores"
       }
     }
   ]

@@ -1035,7 +1035,6 @@ const midnightTicker = (() => {
     string,
     { listeners: Set<() => void>; timer: ReturnType<typeof setTimeout> | null }
   >()
-  let version = 0
 
   const arm = (timeZone: string) => {
     const entry = zones.get(timeZone)
@@ -1047,7 +1046,6 @@ const midnightTicker = (() => {
     ).getTime()
     entry.timer = setTimeout(
       () => {
-        version++
         entry.listeners.forEach((listener) => listener())
         arm(timeZone)
       },
@@ -1074,21 +1072,24 @@ const midnightTicker = (() => {
         zones.delete(timeZone)
       }
     },
-    getVersion: () => version,
   }
 })()
 
-/** Re-renders the caller on the next midnight in `timeZone`. */
-function useMidnightTick(timeZone: string): number {
+/**
+ * Today's day key in `timeZone`, re-rendering the caller at the next midnight.
+ * The clock is read in the snapshot, never in render: React Compiler caches a
+ * render-time `new Date()`, so the wake-up re-rendered yesterday's answer.
+ */
+function useTodayKey(timeZone: string): string {
   const subscribe = useCallback(
     (listener: () => void) => midnightTicker.subscribe(timeZone, listener),
     [timeZone]
   )
-  return useSyncExternalStore(
-    subscribe,
-    midnightTicker.getVersion,
-    midnightTicker.getVersion
+  const getSnapshot = useCallback(
+    () => getDayKey(new Date(), timeZone),
+    [timeZone]
   )
+  return useSyncExternalStore(subscribe, getSnapshot, getSnapshot)
 }
 
 function useEventCalendarNavigation(): {
@@ -1121,8 +1122,13 @@ function useEventCalendarNavigation(): {
     }
   )
   useEventCalendarSettingsVersion(instance)
-  useMidnightTick(settings.timeZone)
-  const now = new Date()
+  // The key only wakes this hook at midnight. The range test reads the clock
+  // in a selector, which runs on every render whether compiled or not.
+  useTodayKey(settings.timeZone)
+  const isToday = useEventCalendarSelector((state) => {
+    const now = new Date()
+    return now >= state.activeRange.start && now < state.activeRange.end
+  })
   return {
     date: slice.date,
     title: settings.i18n.functions.formatTitle(slice.view, {
@@ -1137,7 +1143,7 @@ function useEventCalendarNavigation(): {
     prev: instance.api.prev,
     today: instance.api.today,
     goTo: instance.api.goTo,
-    isToday: now >= slice.activeRange.start && now < slice.activeRange.end,
+    isToday,
   }
 }
 
@@ -1225,11 +1231,11 @@ function useEventCalendarDay<TData = unknown>(
       isEqual: (a, b) => getRangeKey(a) === getRangeKey(b),
     }
   )
-  useMidnightTick(timeZone)
+  const todayKey = useTodayKey(timeZone)
   const dayStart = zonedStartOfDay(day, timeZone)
   return {
     segments: bucket,
-    isToday: getDayKey(new Date(), timeZone) === dayKey,
+    isToday: todayKey === dayKey,
     isOutside: dayStart < activeRange.start || dayStart >= activeRange.end,
   }
 }

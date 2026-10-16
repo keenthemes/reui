@@ -98,5 +98,12 @@
     "label": "Restyled Labels",
     "description": "File type extension labels restyled through labelClassName: rounded, outlined, inverted, recolored.",
     "order": 14
+  },
+  {
+    "name": "c-file-type-15",
+    "title": "Dotfiles and build names",
+    "label": "Dotfiles & Build Names",
+    "description": "Icons read from names such as .env.local, Dockerfile and Makefile, which carry no usual extension.",
+    "order": 15
   }
 ]

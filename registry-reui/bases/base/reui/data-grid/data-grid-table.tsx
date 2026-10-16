@@ -1,5 +1,8 @@
 "use client"
 
+// Opted out of React Compiler with the rest of the grid (see data-grid.tsx).
+"use no memo"
+
 import {
   Fragment,
   memo,
@@ -23,6 +26,7 @@ import {
   getDataGridHeaderSpans,
   toDataGridDomId,
   useDataGrid,
+  useDataGridAtom,
 } from "@/registry-reui/bases/base/reui/data-grid/data-grid"
 import type {
   DataGridAutoSizeController,
@@ -31,7 +35,7 @@ import type {
   DataGridTableInstance,
 } from "@/registry-reui/bases/base/reui/data-grid/data-grid"
 import { flexRender, Subscribe } from "@tanstack/react-table"
-import type { Cell, Column, Header, Row, Table } from "@tanstack/react-table"
+import type { Cell, Column, Header, Row } from "@tanstack/react-table"
 import { cn } from "cn"
 
 import { Button } from "@/registry/bases/base/ui/button"
@@ -942,7 +946,8 @@ function DataGridTableFillFootCell() {
  * "+ New" idiom. What the click creates stays consumer-owned.
  */
 function DataGridTableAddRow() {
-  const { i18n, props, table } = useDataGrid()
+  const context = useDataGrid()
+  const { i18n, props, table } = context
 
   if (!props.onRowCreate) return null
 
@@ -982,7 +987,9 @@ function DataGridTableAddRow() {
             // A timer, not rAF: timers also run in background tabs.
             const button = event.currentTarget
             const grid = button.closest("table")
-            props.onRowCreate?.()
+            // Through the getter: this render's props can hold an older
+            // callback, since the context counts callbacks by presence.
+            context.props.onRowCreate?.()
             setTimeout(() => {
               if (
                 !button.isConnected &&
@@ -1014,6 +1021,7 @@ function DataGridTableAddRow() {
 
 function DataGridTableBase({ children }: { children: ReactNode }) {
   const { props, table, recordCount } = useDataGrid()
+  const columnSizing = useDataGridAtom(table.atoms.columnSizing)
   const leftVisibleColumns = table.getStartVisibleLeafColumns()
   const centerVisibleColumns = table.getCenterVisibleLeafColumns()
   const rightVisibleColumns = table.getEndVisibleLeafColumns()
@@ -1050,10 +1058,9 @@ function DataGridTableBase({ children }: { children: ReactNode }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     props.tableLayout?.columnsResizable,
+    columnSizing,
     // Visibility/order/pinning change the flat header set, so a column shown
     // after mount must get its size variable even though sizing is untouched.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    table.state.columnSizing,
     // eslint-disable-next-line react-hooks/exhaustive-deps
     table.state.columnVisibility,
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -1164,6 +1171,8 @@ function DataGridTableViewport({
   style?: CSSProperties
 }) {
   const { props, table, autoSize } = useDataGrid()
+  // The width below and the fill re-sync follow every sizing write.
+  useDataGridAtom(table.atoms.columnSizing)
   const isColumnsResizable = !!props.tableLayout?.columnsResizable
   const viewportNodeRef = useRef<HTMLDivElement | null>(null)
   const fillStateRef = useRef({ containerWidth: 0, appliedFill: -1 })
@@ -1326,6 +1335,8 @@ function DataGridTableHeadRowCell<TData extends object>({
   dndStyle?: CSSProperties
 }) {
   const { props, table } = useDataGrid<TData>()
+  // Pinned offsets and the span width below are read from sizing state.
+  useDataGridAtom(table.atoms.columnSizing)
 
   const { column } = header
   // A group cell spans several leaves, and its own column reads pinned when
@@ -1574,6 +1585,11 @@ function DataGridTableHeadRowCellResize<TData extends object>({
   header: Header<DataGridFeatures, TData, unknown>
 }) {
   const { props, table, autoSize } = useDataGrid<TData>()
+  // Re-renders as a drag starts and ends, for column.getIsResizing() below.
+  useDataGridAtom(
+    table.atoms.columnResizing,
+    (resizing) => resizing?.isResizingColumn
+  )
   const { column } = header
   // A group's handle sits on its edge leaf's boundary: the last leaf, or
   // the first for an end-pinned group, which resizes from its start edge.
@@ -1736,8 +1752,10 @@ function DataGridTableResizeIndicator({
     key: string | false
     value: number
   }>({ key: false, value: 0 })
-  const columnResizing = table.state.columnResizing
-  const resizingColumnId = columnResizing.isResizingColumn
+  const columnResizing =
+    useDataGridAtom(table.atoms.columnResizing) ?? table.state.columnResizing
+  // Absent with a bundle that leaves out columnResizingFeature.
+  const resizingColumnId = columnResizing?.isResizingColumn
   const resizeMode = getDataGridColumnResizeMode(
     props.tableLayout?.columnsResizeMode,
     table.options.columnResizeMode
@@ -1778,7 +1796,7 @@ function DataGridTableResizeIndicator({
       (resizingHeader.column.getIsPinned() === "end")
         ? -1
         : 1
-    const deltaOffset = (columnResizing.deltaOffset ?? 0) * directionMultiplier
+    const deltaOffset = (columnResizing?.deltaOffset ?? 0) * directionMultiplier
 
     const viewportRoot =
       viewportElement ??
@@ -1821,7 +1839,7 @@ function DataGridTableResizeIndicator({
           : anchorRect.right
       indicatorLeft = edgeClientX - viewportRoot.getBoundingClientRect().left
     } else if (
-      typeof columnResizing.startOffset === "number" &&
+      typeof columnResizing?.startOffset === "number" &&
       viewportElement
     ) {
       indicatorLeft =
@@ -2061,7 +2079,8 @@ function DataGridTableBodyRow<TData extends object>({
   dndDragging?: boolean
   dataIndex?: number
 }) {
-  const { props, table } = useDataGrid()
+  const context = useDataGrid()
+  const { props, table } = context
   const isRowPinned = row.getIsPinned()
   const rowStatus = props.getRowStatus?.(row.original)
 
@@ -2097,7 +2116,8 @@ function DataGridTableBodyRow<TData extends object>({
       }
       onClick={(event) => {
         if (isDataGridPortalEvent(event)) return
-        props.onRowClick?.(row.original)
+        // Through the getter, as in DataGridTableAddRow.
+        context.props.onRowClick?.(row.original)
       }}
       className={cn(
         "hover:bg-muted/40 data-[state=selected]:bg-muted/50",
@@ -2648,17 +2668,12 @@ function DataGridTableRowPin<TData extends object>({
 /**
  * Selection cell.
  *
- * The `Subscribe` wrapper is the v9 fix for React Compiler, and it is why this
- * file no longer needs `"use no memo"`. `useTable` hands back a fresh table on
- * every state change, which covers anything read through `table`, but this
- * component reads selection through `row.getIsSelected()` - a builder call
- * that hides its state dependency from the compiler. Rendered inside a column
- * `cell` template it receives a *stable* row, so the compiler is free to
- * memoize this JSX and never re-run those reads, which shows up as checkboxes
- * that do not respond to clicks.
- *
- * Subscribing to the row-selection atom gives the compiler a dependency it can
- * see. Note the standalone `Subscribe` rather than `table.Subscribe`: inside a
+ * Selection is read through `row.getIsSelected()`, a builder call on a row
+ * that keeps its identity across renders. A consumer's compiled component
+ * around this checkbox caches it against that row and never renders it
+ * again, which shows up as checkboxes that do not respond to clicks.
+ * Subscribing to the row-selection atom makes selection a dependency of its
+ * own. Note the standalone `Subscribe` rather than `table.Subscribe`: inside a
  * cell template the `table` handed to the column def is the core `Table`, which
  * has no `Subscribe` attached.
  */
@@ -2898,7 +2913,7 @@ function DataGridTableBodyRows<TData extends object>({
 const MemoizedDataGridTableBodyRows = memo(
   DataGridTableBodyRows,
   (_prev, next) =>
-    !!next.table.state.columnResizing.isResizingColumn ||
+    !!next.table.state.columnResizing?.isResizingColumn ||
     next.table._isSelectingCells === true
 ) as typeof DataGridTableBodyRows
 

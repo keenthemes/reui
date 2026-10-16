@@ -2,7 +2,6 @@
 // Description: Shadcn file type icon in brand and family colors, outline, solid, light and mono variants, sizes down to 18px for data grid rows, and resolution from a file name or MIME type.
 import type { ComponentProps, CSSProperties, ReactNode } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
-
 import { cn } from "cn"
 
 /* -------------------------------------------------------------------------- */
@@ -30,6 +29,8 @@ type FileTypeExtension = {
   category: FileTypeCategory
   /** The format's text color class. */
   color: string
+  /** A short label for a key too long for the band, as DOCK for Dockerfile. */
+  label?: string
 }
 
 /* -------------------------------------------------------------------------- */
@@ -86,9 +87,9 @@ const CATEGORY_NAMES: Record<FileTypeCategory, string> = {
 /**
  * Known extensions. A format takes its brand's color (Word blue, Excel green,
  * the GitHub language colors for code), else its family's, and a format with
- * neither (archives, plain text, data, fonts, installers) is neutral. Every
- * color is the 600 step, so the set reads as one palette with white label
- * text at 3:1 or better.
+ * neither (archives, plain text, data, config, fonts, installers) is neutral.
+ * Every color is the 600 step, so the set reads as one palette with white
+ * label text at 3:1 or better.
  */
 const FILE_TYPE_EXTENSIONS = {
   // Documents
@@ -101,6 +102,11 @@ const FILE_TYPE_EXTENSIONS = {
   txt: { category: "document", color: NEUTRAL },
   md: { category: "document", color: NEUTRAL },
   log: { category: "document", color: NEUTRAL },
+  mdx: { category: "document", color: YELLOW },
+  mdc: { category: "document", color: NEUTRAL },
+  eml: { category: "document", color: NEUTRAL },
+  srt: { category: "document", color: NEUTRAL },
+  vtt: { category: "document", color: NEUTRAL },
   // Spreadsheets
   xls: { category: "spreadsheet", color: "text-green-600" },
   xlsx: { category: "spreadsheet", color: "text-green-600" },
@@ -108,6 +114,10 @@ const FILE_TYPE_EXTENSIONS = {
   ods: { category: "spreadsheet", color: "text-green-600" },
   csv: { category: "spreadsheet", color: "text-green-600" },
   tsv: { category: "spreadsheet", color: "text-green-600" },
+  numbers: { category: "spreadsheet", color: "text-green-600", label: "NUM" },
+  parquet: { category: "spreadsheet", color: NEUTRAL, label: "PARQ" },
+  sqlite: { category: "spreadsheet", color: "text-sky-600" },
+  db: { category: "spreadsheet", color: NEUTRAL },
   // Presentations
   ppt: { category: "presentation", color: "text-red-600" },
   pptx: { category: "presentation", color: "text-red-600" },
@@ -127,6 +137,7 @@ const FILE_TYPE_EXTENSIONS = {
   ico: { category: "image", color: "text-violet-600" },
   raw: { category: "image", color: NEUTRAL },
   svg: { category: "image", color: YELLOW },
+  jxl: { category: "image", color: "text-violet-600" },
   // Video
   mp4: { category: "video", color: "text-blue-600" },
   mov: { category: "video", color: "text-blue-600" },
@@ -136,6 +147,7 @@ const FILE_TYPE_EXTENSIONS = {
   mpeg: { category: "video", color: "text-blue-600" },
   mpg: { category: "video", color: "text-blue-600" },
   wmv: { category: "video", color: "text-blue-600" },
+  m3u8: { category: "video", color: "text-blue-600" },
   // Audio
   mp3: { category: "audio", color: "text-pink-600" },
   wav: { category: "audio", color: "text-pink-600" },
@@ -144,6 +156,7 @@ const FILE_TYPE_EXTENSIONS = {
   ogg: { category: "audio", color: "text-pink-600" },
   m4a: { category: "audio", color: "text-pink-600" },
   aiff: { category: "audio", color: "text-pink-600" },
+  opus: { category: "audio", color: "text-pink-600" },
   // Code and data
   js: { category: "code", color: YELLOW },
   jsx: { category: "code", color: YELLOW },
@@ -171,6 +184,55 @@ const FILE_TYPE_EXTENSIONS = {
   cs: { category: "code", color: "text-purple-600" },
   sh: { category: "code", color: "text-green-600" },
   rss: { category: "code", color: "text-orange-600" },
+  cjs: { category: "code", color: YELLOW },
+  mts: { category: "code", color: "text-blue-600" },
+  vue: { category: "code", color: "text-emerald-600" },
+  svelte: { category: "code", color: "text-orange-600" },
+  astro: { category: "code", color: "text-orange-600" },
+  graphql: { category: "code", color: "text-pink-600", label: "GQL" },
+  gql: { category: "code", color: "text-pink-600" },
+  prisma: { category: "code", color: "text-sky-600" },
+  wasm: { category: "code", color: "text-indigo-600" },
+  map: { category: "code", color: NEUTRAL },
+  kt: { category: "code", color: "text-violet-600" },
+  kts: { category: "code", color: "text-violet-600" },
+  swift: { category: "code", color: "text-red-600" },
+  dart: { category: "code", color: "text-teal-600" },
+  lua: { category: "code", color: "text-blue-600" },
+  r: { category: "code", color: "text-sky-600" },
+  scala: { category: "code", color: "text-rose-600" },
+  ex: { category: "code", color: "text-purple-600" },
+  exs: { category: "code", color: "text-purple-600" },
+  hpp: { category: "code", color: "text-blue-600" },
+  cc: { category: "code", color: "text-blue-600" },
+  cu: { category: "code", color: "text-green-600" },
+  ps1: { category: "code", color: "text-blue-600" },
+  bat: { category: "code", color: "text-green-600" },
+  bash: { category: "code", color: "text-green-600" },
+  zsh: { category: "code", color: "text-green-600" },
+  gradle: { category: "code", color: "text-cyan-600" },
+  ipynb: { category: "code", color: "text-orange-600" },
+  // Config and infrastructure
+  env: { category: "code", color: NEUTRAL },
+  toml: { category: "code", color: NEUTRAL },
+  ini: { category: "code", color: NEUTRAL },
+  conf: { category: "code", color: NEUTRAL },
+  jsonc: { category: "code", color: NEUTRAL },
+  lock: { category: "code", color: NEUTRAL },
+  git: { category: "code", color: "text-red-600" },
+  ignore: { category: "code", color: NEUTRAL },
+  dockerfile: { category: "code", color: "text-blue-600", label: "DOCK" },
+  makefile: { category: "code", color: "text-green-600", label: "MAKE" },
+  tf: { category: "code", color: "text-purple-600" },
+  tfvars: { category: "code", color: "text-purple-600" },
+  hcl: { category: "code", color: "text-purple-600" },
+  proto: { category: "code", color: "text-blue-600" },
+  jsonl: { category: "code", color: NEUTRAL },
+  ndjson: { category: "code", color: NEUTRAL },
+  diff: { category: "code", color: NEUTRAL },
+  patch: { category: "code", color: NEUTRAL },
+  pem: { category: "code", color: NEUTRAL },
+  crt: { category: "code", color: NEUTRAL },
   // Archives
   zip: { category: "archive", color: NEUTRAL },
   rar: { category: "archive", color: NEUTRAL },
@@ -179,6 +241,15 @@ const FILE_TYPE_EXTENSIONS = {
   gz: { category: "archive", color: NEUTRAL },
   tgz: { category: "archive", color: NEUTRAL },
   bz2: { category: "archive", color: NEUTRAL },
+  xz: { category: "archive", color: NEUTRAL },
+  zst: { category: "archive", color: NEUTRAL },
+  jar: { category: "archive", color: "text-orange-600" },
+  whl: { category: "archive", color: "text-blue-600" },
+  // Model weights, packed like an archive
+  safetensors: { category: "archive", color: NEUTRAL, label: "SAFE" },
+  gguf: { category: "archive", color: NEUTRAL },
+  onnx: { category: "archive", color: NEUTRAL },
+  pt: { category: "archive", color: "text-red-600" },
   // Design
   fig: { category: "design", color: "text-purple-600" },
   sketch: { category: "design", color: "text-amber-600" },
@@ -196,6 +267,10 @@ const FILE_TYPE_EXTENSIONS = {
   deb: { category: "executable", color: "text-rose-600" },
   iso: { category: "executable", color: NEUTRAL },
   app: { category: "executable", color: NEUTRAL },
+  pkg: { category: "executable", color: NEUTRAL },
+  ipa: { category: "executable", color: NEUTRAL },
+  aab: { category: "executable", color: "text-green-600" },
+  rpm: { category: "executable", color: "text-red-600" },
   // Fonts
   ttf: { category: "font", color: NEUTRAL },
   otf: { category: "font", color: NEUTRAL },
@@ -266,7 +341,7 @@ function resolveFileType(type?: string): ResolvedFileType {
     return {
       type: key,
       category: extension.category,
-      label: key.toUpperCase(),
+      label: extension.label ?? key.toUpperCase(),
       color: extension.color,
     }
   }
@@ -358,7 +433,111 @@ const MIME_TYPES: Record<string, FileTypeName> = {
   "text/css": "css",
   "text/javascript": "js",
   "text/xml": "xml",
+  "application/node": "cjs",
+  "application/java-archive": "jar",
+  "application/x-ipynb+json": "ipynb",
+  "application/x-ndjson": "ndjson",
+  "application/vnd.sqlite3": "sqlite",
+  "application/x-sqlite3": "sqlite",
+  "application/vnd.apple.mpegurl": "m3u8",
+  "application/x-mpegurl": "m3u8",
+  "application/x-subrip": "srt",
+  "message/rfc822": "eml",
+  "application/x-rpm": "rpm",
+  "application/x-pem-file": "pem",
+  "application/x-x509-ca-cert": "crt",
+  "application/pkix-cert": "crt",
+  "application/zstd": "zst",
+  "application/x-xz": "xz",
+  "text/x-c++src": "cpp",
+  "text/x-c++hdr": "hpp",
+  "text/x-kotlin": "kt",
+  "text/x-swift": "swift",
+  "text/x-rsrc": "r",
+  "text/x-lua": "lua",
+  "text/x-scala": "scala",
+  "text/x-diff": "diff",
+  "text/x-patch": "patch",
+  "text/x-makefile": "makefile",
 }
+
+/**
+ * Names that carry their type with no extension of their own, or with one
+ * that names something else ("go.mod" is not a tracker module).
+ */
+const FILE_NAMES: Record<string, FileTypeName> = {
+  containerfile: "dockerfile",
+  gnumakefile: "makefile",
+  ".dev.vars": "env",
+  ".gitignore": "git",
+  ".gitattributes": "git",
+  ".gitmodules": "git",
+  ".gitkeep": "git",
+  ".gitconfig": "git",
+  ".git-blame-ignore-revs": "git",
+  ".mailmap": "git",
+  "bun.lockb": "lock",
+  "go.sum": "lock",
+  "go.mod": "go",
+  "go.work": "go",
+  gemfile: "rb",
+  rakefile: "rb",
+  brewfile: "rb",
+  podfile: "rb",
+  vagrantfile: "rb",
+  fastfile: "rb",
+  ".bashrc": "bash",
+  ".bash_profile": "bash",
+  ".bash_aliases": "bash",
+  ".bash_logout": "bash",
+  ".zshrc": "zsh",
+  ".zprofile": "zsh",
+  ".zshenv": "zsh",
+  ".zlogin": "zsh",
+  ".envrc": "sh",
+  ".profile": "sh",
+  ".editorconfig": "ini",
+  ".npmrc": "ini",
+  ".pypirc": "ini",
+  ".flake8": "ini",
+  ".pylintrc": "ini",
+  ".coveragerc": "ini",
+  caddyfile: "conf",
+  ".htaccess": "conf",
+  ".babelrc": "json",
+  ".swcrc": "json",
+  ".cursorrules": "md",
+  readme: "txt",
+  license: "txt",
+  licence: "txt",
+  changelog: "txt",
+  codeowners: "txt",
+  ".nvmrc": "txt",
+  ".node-version": "txt",
+  ".python-version": "txt",
+  ".ruby-version": "txt",
+  ".tool-versions": "txt",
+  ".terraform-version": "txt",
+}
+
+/** Other extensions of a known type. */
+const EXTENSION_ALIASES: Record<string, FileTypeName> = {
+  cer: "crt",
+  mak: "makefile",
+  mk: "makefile",
+  sqlite3: "sqlite",
+}
+
+/**
+ * Name families, read only when the name does not end in a known extension:
+ * ".env.local" is an env file and "Dockerfile.dev" a Dockerfile, while
+ * "Dockerfile.md" is Markdown.
+ */
+const NAME_PATTERNS: [RegExp, FileTypeName][] = [
+  [/^\.env\./, "env"],
+  [/^(docker|container)file\./, "dockerfile"],
+  [/^\.[\w-]+ignore$/, "ignore"],
+]
 
 const MIME_FAMILIES: Record<string, FileTypeName> = {
   image: "image",
@@ -379,8 +558,10 @@ const NAME_END = /(\.\d*[a-z][a-z\d]*|[\\/])$/
 
 /**
  * Resolves a file name, path, URL, bare extension or MIME type to a `type`.
- * A path ending in a slash is a folder; a name without an extension is an
- * empty file; an unknown extension is returned as is and renders neutral.
+ * A path ending in a slash is a folder; a well-known name resolves to its
+ * type (Dockerfile, .env.local, go.mod, LICENSE); any other name without an
+ * extension is an empty file; an unknown extension is returned as is and
+ * renders neutral.
  */
 function getFileType(value: string): FileTypeName | (string & {}) {
   let input = value.trim().toLowerCase()
@@ -417,15 +598,21 @@ function getFileType(value: string): FileTypeName | (string & {}) {
   }
 
   const name = input.split(/[\\/]/).pop() ?? ""
+  if (has(FILE_NAMES, name)) return FILE_NAMES[name]
   const dot = name.lastIndexOf(".")
+  const extension = name.slice(dot + 1)
+  if (has(EXTENSION_ALIASES, extension)) return EXTENSION_ALIASES[extension]
+  if (!has(extensions, extension)) {
+    const match = NAME_PATTERNS.find(([pattern]) => pattern.test(name))
+    if (match) return match[1]
+  }
   // No dot, or only a leading one: a bare extension or family ("pdf",
-  // ".pdf", "image") resolves, anything else (README, .env) has no type.
+  // ".pdf", "image") resolves, anything else ("notes", ".hidden") has no type.
   if (dot <= 0) {
-    const bare = name.slice(dot + 1)
-    return resolveFileType(bare).category === "file" ? "empty" : bare
+    return resolveFileType(extension).category === "file" ? "empty" : extension
   }
 
-  return name.slice(dot + 1) || "empty"
+  return extension || "empty"
 }
 
 /** The family of any `type`, for grouping or filtering a file list. */
@@ -711,12 +898,15 @@ function FileType({
   // `null` hides the label like "", where `??` would fall back to it.
   const text = label !== undefined ? label : resolved.label
   const hasText = text !== undefined && text !== null && text !== ""
-  const typeName = resolved.label
-    ? `${resolved.label} file`
+  // The name spells out a key its label shortens (DOCKERFILE, not DOCK).
+  const spelled = resolved.label ? resolved.type.toUpperCase() : undefined
+  const typeName = spelled
+    ? `${spelled} file`
     : CATEGORY_NAMES[resolved.category]
   // A custom string label is part of what the icon says ("V3, DOCX file").
+  const custom = typeof label === "string" ? label.toUpperCase() : ""
   const name =
-    typeof label === "string" && label && label.toUpperCase() !== resolved.label
+    custom && custom !== resolved.label && custom !== spelled
       ? `${label}, ${typeName}`
       : typeName
   const hasIcon = icon !== undefined && icon !== null && icon !== false

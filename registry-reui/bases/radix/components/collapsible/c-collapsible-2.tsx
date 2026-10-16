@@ -36,7 +36,7 @@ export default function Pattern() {
               phosphor="CaretRightIcon"
               remixicon="RiArrowRightSLine"
               aria-hidden="true"
-              className="size-4 group-data-panel-open/button:rotate-90"
+              className="size-4 group-aria-expanded/button:rotate-90"
             />
             <span className="sr-only">Toggle notification settings</span>
             Notification settings

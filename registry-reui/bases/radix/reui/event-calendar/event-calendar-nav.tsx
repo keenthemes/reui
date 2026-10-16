@@ -11,6 +11,7 @@ import {
 } from "react"
 import {
   useEventCalendarNavigation,
+  useEventCalendarSelector,
   useEventCalendarSettings,
   useEventCalendarView,
   useEventCalendarViewConfig,
@@ -139,11 +140,14 @@ function EventCalendarNavToday({
   const settings = useEventCalendarSettings()
   const nav = useNavButtonProps()
   // display-zone "today", like every other today derivation in the calendar
-  // (a system-zone new Date() can name a different day than Today opens)
-  const defaultTooltip = format(
-    toZoned(new Date(), settings.timeZone),
-    settings.i18n.formats.dayTitle,
-    { locale: settings.locale }
+  // (a system-zone new Date() can name a different day than Today opens).
+  // Read in a selector: React Compiler caches a render-time clock read.
+  const defaultTooltip = useEventCalendarSelector(() =>
+    format(
+      toZoned(new Date(), settings.timeZone),
+      settings.i18n.formats.dayTitle,
+      { locale: settings.locale }
+    )
   )
   return (
     <NavTooltip content={tooltip === undefined ? defaultTooltip : tooltip}>

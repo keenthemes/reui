@@ -21,7 +21,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Title & Description"
       }
     },
     {
@@ -45,7 +46,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "Leading Icon"
       }
     },
     {
@@ -70,7 +72,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Icon & Actions"
       }
     },
     {
@@ -94,7 +97,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Payment Failure"
       }
     },
     {
@@ -118,7 +122,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "Info Variant"
       }
     },
     {
@@ -142,7 +147,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "Success Variant"
       }
     },
     {
@@ -166,7 +172,8 @@
         }
       ],
       "meta": {
-        "order": 7
+        "order": 7,
+        "label": "Warning Variant"
       }
     },
     {
@@ -190,7 +197,8 @@
         }
       ],
       "meta": {
-        "order": 8
+        "order": 8,
+        "label": "Error Variant"
       }
     },
     {
@@ -214,7 +222,8 @@
         }
       ],
       "meta": {
-        "order": 9
+        "order": 9,
+        "label": "Invert Variant"
       }
     },
     {
@@ -239,7 +248,8 @@
         }
       ],
       "meta": {
-        "order": 10
+        "order": 10,
+        "label": "Title & Actions"
       }
     },
     {
@@ -264,7 +274,8 @@
         }
       ],
       "meta": {
-        "order": 11
+        "order": 11,
+        "label": "Description & Actions"
       }
     },
     {
@@ -289,7 +300,8 @@
         }
       ],
       "meta": {
-        "order": 12
+        "order": 12,
+        "label": "Frame Reset Borders"
       }
     },
     {
@@ -315,7 +327,8 @@
         }
       ],
       "meta": {
-        "order": 13
+        "order": 13,
+        "label": "Stacked in Frame"
       }
     },
     {
@@ -341,7 +354,8 @@
         }
       ],
       "meta": {
-        "order": 14
+        "order": 14,
+        "label": "Frame With Actions"
       }
     },
     {
@@ -367,7 +381,8 @@
         }
       ],
       "meta": {
-        "order": 15
+        "order": 15,
+        "label": "Pro Upsell"
       }
     },
     {
@@ -393,7 +408,8 @@
         }
       ],
       "meta": {
-        "order": 16
+        "order": 16,
+        "label": "Urgent Billing"
       }
     },
     {
@@ -419,7 +435,8 @@
         }
       ],
       "meta": {
-        "order": 17
+        "order": 17,
+        "label": "Service Status"
       }
     },
     {
@@ -445,7 +462,8 @@
         }
       ],
       "meta": {
-        "order": 18
+        "order": 18,
+        "label": "Feature Discovery"
       }
     },
     {
@@ -472,7 +490,8 @@
         }
       ],
       "meta": {
-        "order": 19
+        "order": 19,
+        "label": "Direct Message"
       }
     },
     {
@@ -499,7 +518,8 @@
         }
       ],
       "meta": {
-        "order": 20
+        "order": 20,
+        "label": "Comment Mention"
       }
     }
   ]

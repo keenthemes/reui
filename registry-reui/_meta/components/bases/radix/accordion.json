@@ -21,7 +21,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Single Expand"
       }
     },
     {
@@ -45,7 +46,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "Plus Minus Icons"
       }
     },
     {
@@ -69,7 +71,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Bordered Rounded"
       }
     },
     {
@@ -95,7 +98,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "In Card"
       }
     },
     {
@@ -119,7 +123,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "Disabled Items"
       }
     },
     {
@@ -144,7 +149,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "Icons & Badges"
       }
     },
     {
@@ -170,7 +176,8 @@
         }
       ],
       "meta": {
-        "order": 7
+        "order": 7,
+        "label": "In Frame"
       }
     },
     {
@@ -194,7 +201,8 @@
         }
       ],
       "meta": {
-        "order": 8
+        "order": 8,
+        "label": "Nested"
       }
     },
     {
@@ -221,7 +229,8 @@
         }
       ],
       "meta": {
-        "order": 9
+        "order": 9,
+        "label": "User List"
       }
     },
     {
@@ -245,7 +254,8 @@
         }
       ],
       "meta": {
-        "order": 10
+        "order": 10,
+        "label": "Rotating Arrow"
       }
     },
     {
@@ -274,7 +284,8 @@
         }
       ],
       "meta": {
-        "order": 11
+        "order": 11,
+        "label": "Setup Steps"
       }
     }
   ]

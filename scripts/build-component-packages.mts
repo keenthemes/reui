@@ -492,6 +492,23 @@ async function createWatchContext(
 }
 
 // ----- App wiring ---------------------------------------------------------
+/**
+ * The "base:category" entries the loaders index maps to a workspace package
+ * today. Source-loader entries are left out: their directories are wiped below.
+ */
+async function readAppLoadersIndex() {
+  const file = path.join(GENERATED_COMPONENT_PREVIEW_LOADERS_DIR, "index.ts")
+  if (!fsSync.existsSync(file)) return new Map<string, string>()
+  const source = await fs.readFile(file, "utf8")
+  return new Map(
+    [
+      ...source.matchAll(
+        /^\s*"([^"]+)": \(\) => import\("(@reui\/components-[^"]+)"\),$/gm
+      ),
+    ].map((match) => [match[1], match[2]] as const)
+  )
+}
+
 async function regenerateAppLoadersIndex(
   categoryToPackage: Map<string, string> // "base:category" -> pkgName
 ) {
@@ -645,6 +662,14 @@ async function main() {
   }
 
   if (wireApp) {
+    // A filtered run rebuilds one package, so every other package entry the
+    // index already maps stays: rewritten from this run alone, the index
+    // dropped to 1 entry and every other preview threw "loader not found".
+    if (onlyKey) {
+      for (const [key, pkg] of await readAppLoadersIndex()) {
+        if (!categoryToPackage.has(key)) categoryToPackage.set(key, pkg)
+      }
+    }
     await regenerateAppLoadersIndex(categoryToPackage)
     if (!onlyKey) await syncAppPackageDeps(packageNames)
     console.log(

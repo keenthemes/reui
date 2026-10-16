@@ -21,7 +21,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Basic"
       }
     },
     {
@@ -45,7 +46,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "Invalid"
       }
     },
     {
@@ -70,7 +72,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "With Label"
       }
     },
     {
@@ -95,7 +98,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "With Description"
       }
     },
     {
@@ -120,7 +124,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "Disabled"
       }
     },
     {
@@ -145,7 +150,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "Auto-Resize Counter"
       }
     }
   ]

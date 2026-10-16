@@ -1,6 +1,10 @@
 import { Badge } from "@/registry-reui/bases/radix/reui/badge"
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/registry/bases/radix/ui/avatar"
 import { Card, CardContent } from "@/registry/bases/radix/ui/card"
 
 const CustomBadge = () => {

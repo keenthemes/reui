@@ -21,7 +21,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Basic"
       }
     },
     {
@@ -45,7 +46,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "Horizontal"
       }
     },
     {
@@ -69,7 +71,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Both Scrollbars"
       }
     },
     {
@@ -95,7 +98,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Fade Edges"
       }
     },
     {
@@ -119,7 +123,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "Scrollbar Gutter"
       }
     }
   ]

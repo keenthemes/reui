@@ -29,7 +29,12 @@ import type {
 /*                                    Types                                   */
 /* -------------------------------------------------------------------------- */
 
-/** Fetches one level. `node` is `null` for the root level. */
+/**
+ * Fetches one level. `node` is `null` for the root level, and only
+ * `{ value, label: value }`, no `data`, for a level on screen whose node has
+ * not loaded: a deep link before the level above loads, or a page-loaded
+ * level after a `loadKey` change.
+ */
 export type CascaderGetChildren<T = unknown> = (
   node: CascaderNode<T> | null,
   context: CascaderLoadContext
@@ -59,6 +64,12 @@ export interface CascaderLoaderStore<T = unknown> {
   states: Map<string, CascaderLoadState>
   /** Keyed by node value: search hits and resolved selections, level-less. */
   detached: Map<string, CascaderNode<T>>
+  /**
+   * A resolved chain's parent links, node value to level key. Kept apart from
+   * `pages`: a level's first real page replaced a chain stub there, and a node
+   * that page left out lost its parent, and the trigger its path.
+   */
+  links: Map<string, string>
 }
 
 export interface UseCascaderLoaderOptions<T = unknown> {
@@ -78,7 +89,11 @@ export interface UseCascaderLoaderOptions<T = unknown> {
     error: unknown,
     context: { parent: string | null; reason: string }
   ) => void
-  /** Whether the panel is live: the popup is open, or the cascader is inline. */
+  /**
+   * Whether the panel is live: the popup is open, or the cascader is inline.
+   * Gates levels, paging and search. `resolveValue` runs regardless, and
+   * retries a failed value when this turns true.
+   */
   enabled: boolean
   query: string
   /** Level keys that are currently on screen. Root is `CASCADER_ROOT_KEY`. */
@@ -103,8 +118,7 @@ export interface CascaderLoader<T = unknown> {
   searchState: CascaderLoadState | null
   /**
    * Fetches a level's FIRST page. No-ops on a `states` entry (in flight,
-   * loaded or failed) or when `items` fills the level; pages are never
-   * consulted, so a `resolveValue` chain still fetches. The level effect fires
+   * loaded or failed) or when `items` fills the level. The level effect fires
    * only for on-screen levels, so a branch merely PRESSED is asked for by hand.
    */
   ensureLevel: (parentKey: string, reason: CascaderLoadReason) => void
@@ -112,6 +126,8 @@ export interface CascaderLoader<T = unknown> {
   loadMore: (parentKey: string) => void
   /** Refires a failed level. No-ops unless that level is in an error state. */
   retryLevel: (parentKey: string) => void
+  /** Refires the server search for the current query. No-ops without one. */
+  retrySearch: () => void
   /** Schedules a speculative fetch. Safe to call on every highlight move. */
   prefetchNode: (node: CascaderNode<T> | null | undefined) => void
   /**
@@ -145,7 +161,12 @@ const NO_STATE: CascaderLoadState = {
 const NO_RESULTS: CascaderNode<never>[] = []
 
 function createStore<T>(): CascaderLoaderStore<T> {
-  return { pages: new Map(), states: new Map(), detached: new Map() }
+  return {
+    pages: new Map(),
+    states: new Map(),
+    detached: new Map(),
+    links: new Map(),
+  }
 }
 
 function sameLoadState(a: CascaderLoadState, b: CascaderLoadState): boolean {
@@ -175,7 +196,7 @@ function withLoadState<T>(
   if (store.states.has(key) && sameLoadState(current, next)) return store
   const states = new Map(store.states)
   states.set(key, next)
-  return { pages: store.pages, states, detached: store.detached }
+  return { ...store, states }
 }
 
 function withPage<T>(
@@ -184,7 +205,6 @@ function withPage<T>(
   items: readonly CascaderNode<T>[],
   options: { append: boolean; hasMore: boolean; cursor?: string }
 ): CascaderLoaderStore<T> {
-  // A fresh level REPLACES its page so a `resolveValue` stub can be superseded.
   const previous = options.append ? (store.pages.get(key) ?? []) : []
   const seen = new Set(previous.map((node) => node.value))
   const merged = previous.slice()
@@ -203,7 +223,7 @@ function withPage<T>(
     hasMore: options.hasMore,
     cursor: options.cursor,
   })
-  return { pages, states, detached: store.detached }
+  return { ...store, pages, states }
 }
 
 function withDetached<T>(
@@ -217,35 +237,30 @@ function withDetached<T>(
     detached.set(item.value, item)
   }
   if (!detached) return store
-  return { pages: store.pages, states: store.states, detached }
+  return { ...store, detached }
 }
 
 /**
- * Places a resolved ancestor chain into `pages`, root first. Writes no
- * `states`, so those levels still read as unloaded and a drill-in still fetches
- * for real. Mirrored into `detached` so the trigger keeps its label.
+ * Records a resolved ancestor chain, root first, as `detached` nodes plus
+ * `links`, never as rows in `pages`: a stub there made an unloaded level read
+ * as loaded. Writes no `states`, so every level on it still fetches for real.
  */
 function withChain<T>(
   store: CascaderLoaderStore<T>,
   chain: readonly CascaderNode<T>[]
 ): CascaderLoaderStore<T> {
   if (chain.length === 0) return store
-  const pages = new Map(store.pages)
   const detached = new Map(store.detached)
+  const links = new Map(store.links)
   let parentKey = CASCADER_ROOT_KEY
 
   for (const node of chain) {
-    const bucket = pages.get(parentKey)
-    if (!bucket) {
-      pages.set(parentKey, [node])
-    } else if (!bucket.some((entry) => entry.value === node.value)) {
-      pages.set(parentKey, [...bucket, node])
-    }
     detached.set(node.value, node)
+    links.set(node.value, parentKey)
     parentKey = node.value
   }
 
-  return { pages, states: store.states, detached }
+  return { ...store, detached, links }
 }
 
 /* -------------------------------------------------------------------------- */
@@ -264,6 +279,7 @@ interface CascaderLoaderLatest<T> {
   ) => void
   prefetch: boolean
   path: string[]
+  query: string
 }
 
 interface CascaderSearchSlice<T> {
@@ -313,6 +329,7 @@ export function useCascaderLoader<T = unknown>({
     onLoadError,
     prefetch,
     path,
+    query,
   })
 
   React.useEffect(() => {
@@ -325,6 +342,7 @@ export function useCascaderLoader<T = unknown>({
       onLoadError,
       prefetch,
       path,
+      query,
     }
   })
 
@@ -344,6 +362,12 @@ export function useCascaderLoader<T = unknown>({
   const moreLatch = React.useRef(new Map<string, string>())
   /** Values `resolveValue` has already been asked about, so it asks once. */
   const attempted = React.useRef(new Set<string>())
+  /**
+   * Values whose resolve failed. They stay `attempted` until the next open
+   * rather than the next values pass: with inline `items` every parent render
+   * is one, and an `onLoadError` that set parent state looped at network speed.
+   */
+  const failed = React.useRef(new Set<string>())
   /** Every node the loader has seen, so a level key can name its own node. */
   const known = React.useRef(new Map<string, CascaderNode<T>>())
   const timers = React.useRef<{
@@ -395,10 +419,15 @@ export function useCascaderLoader<T = unknown>({
       requestIds.current.set(key, requestId)
       const startEpoch = epoch.current
 
+      // A deep link (`path`, `expanded`) can put a level on screen before the
+      // level above it loads, and a `loadKey` reset forgets every node. `null`
+      // is the ROOT's argument, and a loader answered it with the root rows,
+      // so the level gets its value instead.
       const node =
         key === CASCADER_ROOT_KEY
           ? null
-          : (currentBase.byValue.get(key) ?? known.current.get(key) ?? null)
+          : (currentBase.byValue.get(key) ??
+            known.current.get(key) ?? { value: key, label: key })
 
       setStore((prev) =>
         withLoadState(prev, key, (state) => ({
@@ -512,8 +541,9 @@ export function useCascaderLoader<T = unknown>({
   )
 
   /**
-   * `detached` is deliberately untouched: chains and search hits belong to no
-   * level, and the trigger needs their labels while the new page is in flight.
+   * `detached` and `links` are deliberately untouched: chains and search hits
+   * belong to no level, and the trigger needs their path while the new page is
+   * in flight.
    */
   const invalidateLevel = React.useCallback(
     (value: string | null) => {
@@ -528,7 +558,7 @@ export function useCascaderLoader<T = unknown>({
         states.delete(key)
         const pages = new Map(prev.pages)
         pages.delete(key)
-        return { pages, states, detached: prev.detached }
+        return { ...prev, pages, states }
       })
     },
     [abortKey]
@@ -626,6 +656,11 @@ export function useCascaderLoader<T = unknown>({
     [abortKey, remember]
   )
 
+  const retrySearch = React.useCallback(() => {
+    const text = latest.current.query.trim()
+    if (text) runSearch(text)
+  }, [runSearch])
+
   /* --------------------------------- resolve ------------------------------- */
 
   const runResolve = React.useCallback(
@@ -657,10 +692,11 @@ export function useCascaderLoader<T = unknown>({
           setStore((prev) => withChain(prev, chain))
         })
         .catch((error: unknown) => {
+          // Read BEFORE `settle`. A newer ask or a reset that replaced this
+          // request owns the value's retry, so only a live failure is parked.
+          const live = controllers.current.get(key) === controller
           settle()
-          // Un-attempt on failure: `attempted` is written BEFORE the call, so
-          // without this a resolver that failed once could never be retried.
-          attempted.current.delete(value)
+          if (live) failed.current.add(value)
           if (controller.signal.aborted || startEpoch !== epoch.current) return
           latest.current.onLoadError?.(error, {
             parent: null,
@@ -673,10 +709,16 @@ export function useCascaderLoader<T = unknown>({
 
   /* --------------------------------- resets -------------------------------- */
 
-  const cancelAll = React.useCallback(() => {
-    const keys = Array.from(controllers.current.keys())
-    for (const controller of controllers.current.values()) controller.abort()
-    controllers.current.clear()
+  // Aborts what the PANEL asked for. A resolve keeps running: it feeds the
+  // trigger, which shows with the popup closed.
+  const cancelPanel = React.useCallback(() => {
+    const keys = Array.from(controllers.current.keys()).filter(
+      (key) => !key.startsWith(RESOLVE_PREFIX)
+    )
+    for (const key of keys) {
+      controllers.current.get(key)?.abort()
+      controllers.current.delete(key)
+    }
     inflight.current.clear()
 
     const holder = timers.current
@@ -723,6 +765,7 @@ export function useCascaderLoader<T = unknown>({
     // key keeps all three guards independent. The unmount cleanup clears them.
     moreLatch.current.clear()
     attempted.current.clear()
+    failed.current.clear()
     known.current.clear()
 
     const holder = timers.current
@@ -735,27 +778,32 @@ export function useCascaderLoader<T = unknown>({
     setSearch(null)
   }, [loadKey])
 
-  // Closing the popup aborts every request but does NOT drop the cache:
+  // Closing the popup aborts the panel's requests but does NOT drop the cache:
   // reopening onto an already-loaded level is the point of keeping it.
   React.useEffect(() => {
     if (enabled) return
     if (controllers.current.size === 0) return
-    cancelAll()
-  }, [enabled, cancelAll])
+    cancelPanel()
+  }, [enabled, cancelPanel])
 
   React.useEffect(() => {
     const active = controllers.current
     const holder = timers.current
     const pending = inflight.current
     const ids = requestIds.current
+    const tried = attempted.current
+    const parked = failed.current
     return () => {
       for (const controller of active.values()) controller.abort()
       active.clear()
       // Cleared WITH the controllers, for StrictMode's dev remount: a stale
-      // inflight signature would make `runLoad` skip the refetch forever. The
+      // inflight signature would make `runLoad` skip the refetch forever, and
+      // a value still marked as asked would never be resolved again. The
       // aborted promises are stale-guarded, so emptying the ids is safe.
       pending.clear()
       ids.clear()
+      tried.clear()
+      parked.clear()
       if (holder.prefetch) clearTimeout(holder.prefetch)
     }
   }, [])
@@ -794,8 +842,19 @@ export function useCascaderLoader<T = unknown>({
     }
   }, [hasSearch, enabled, trimmed, searchDebounce, abortKey, runSearch])
 
+  // Opening is the retry point for a failed resolve: un-ask it here, and the
+  // values pass below, which also re-runs on `enabled`, asks again.
   React.useEffect(() => {
-    if (!enabled || !hasResolve) return
+    if (!enabled || failed.current.size === 0) return
+    for (const value of failed.current) attempted.current.delete(value)
+    failed.current.clear()
+  }, [enabled])
+
+  // NOT gated on `enabled`: the trigger shows the selection with the popup
+  // closed, so a saved value is pathed on load, not on the first open.
+  // `loadKey` re-runs it, because the reset dropped every resolved chain.
+  React.useEffect(() => {
+    if (!hasResolve) return
     for (const value of values) {
       if (!value) continue
       if (attempted.current.has(value)) continue
@@ -805,7 +864,7 @@ export function useCascaderLoader<T = unknown>({
     }
     // `values` is depended on through `valuesKey`.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [enabled, hasResolve, valuesKey, base, runResolve])
+  }, [enabled, hasResolve, valuesKey, base, runResolve, loadKey])
 
   /* -------------------------------- the value ------------------------------ */
 
@@ -837,6 +896,7 @@ export function useCascaderLoader<T = unknown>({
       ensureLevel,
       loadMore,
       retryLevel,
+      retrySearch,
       invalidateLevel,
       prefetchNode,
     }),
@@ -848,6 +908,7 @@ export function useCascaderLoader<T = unknown>({
       ensureLevel,
       loadMore,
       retryLevel,
+      retrySearch,
       invalidateLevel,
       prefetchNode,
     ]

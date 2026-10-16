@@ -22,7 +22,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Basic"
       }
     },
     {
@@ -47,7 +48,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "Disabled"
       }
     },
     {
@@ -72,7 +74,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Descriptions"
       }
     },
     {
@@ -97,7 +100,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Invalid"
       }
     },
     {
@@ -122,7 +126,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "Colored"
       }
     },
     {
@@ -147,7 +152,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "Legend & Description"
       }
     },
     {
@@ -172,7 +178,8 @@
         }
       ],
       "meta": {
-        "order": 7
+        "order": 7,
+        "label": "Descriptive Cards"
       }
     },
     {
@@ -199,7 +206,8 @@
         }
       ],
       "meta": {
-        "order": 8
+        "order": 8,
+        "label": "Card Separators"
       }
     },
     {
@@ -226,7 +234,8 @@
         }
       ],
       "meta": {
-        "order": 9
+        "order": 9,
+        "label": "Card Icons"
       }
     },
     {
@@ -253,7 +262,8 @@
         }
       ],
       "meta": {
-        "order": 10
+        "order": 10,
+        "label": "In Frame"
       }
     },
     {
@@ -278,7 +288,8 @@
         }
       ],
       "meta": {
-        "order": 11
+        "order": 11,
+        "label": "Grid Layout"
       }
     },
     {
@@ -304,7 +315,8 @@
         }
       ],
       "meta": {
-        "order": 12
+        "order": 12,
+        "label": "Avatar Cards"
       }
     },
     {
@@ -329,7 +341,8 @@
         }
       ],
       "meta": {
-        "order": 13
+        "order": 13,
+        "label": "Payment Methods"
       }
     },
     {
@@ -355,7 +368,8 @@
         }
       ],
       "meta": {
-        "order": 14
+        "order": 14,
+        "label": "Tooltip Info"
       }
     },
     {
@@ -381,7 +395,8 @@
         }
       ],
       "meta": {
-        "order": 15
+        "order": 15,
+        "label": "Badges"
       }
     },
     {
@@ -406,7 +421,8 @@
         }
       ],
       "meta": {
-        "order": 16
+        "order": 16,
+        "label": "Inline Horizontal"
       }
     },
     {
@@ -431,7 +447,8 @@
         }
       ],
       "meta": {
-        "order": 17
+        "order": 17,
+        "label": "Pricing Tiers"
       }
     }
   ]

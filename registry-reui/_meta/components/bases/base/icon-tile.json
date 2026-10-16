@@ -22,7 +22,8 @@
       ],
       "meta": {
         "order": 1,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Default"
       }
     },
     {
@@ -47,7 +48,8 @@
       ],
       "meta": {
         "order": 2,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Elevated"
       }
     },
     {
@@ -72,7 +74,8 @@
       ],
       "meta": {
         "order": 3,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Framed"
       }
     },
     {
@@ -97,7 +100,8 @@
       ],
       "meta": {
         "order": 4,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "All Variants"
       }
     },
     {
@@ -122,7 +126,8 @@
       ],
       "meta": {
         "order": 5,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Sizes"
       }
     },
     {
@@ -147,7 +152,8 @@
       ],
       "meta": {
         "order": 6,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Circular"
       }
     },
     {
@@ -172,7 +178,8 @@
       ],
       "meta": {
         "order": 7,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Custom Sizing"
       }
     },
     {
@@ -197,7 +204,8 @@
       ],
       "meta": {
         "order": 8,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Color Tones"
       }
     },
     {
@@ -222,7 +230,8 @@
       ],
       "meta": {
         "order": 9,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Text Content"
       }
     },
     {
@@ -248,7 +257,8 @@
       ],
       "meta": {
         "order": 10,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "List Row"
       }
     },
     {
@@ -274,7 +284,8 @@
       ],
       "meta": {
         "order": 11,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Feature Card"
       }
     },
     {
@@ -300,7 +311,8 @@
       ],
       "meta": {
         "order": 12,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Empty State"
       }
     },
     {
@@ -325,7 +337,8 @@
       ],
       "meta": {
         "order": 13,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Interactive"
       }
     },
     {
@@ -350,7 +363,8 @@
       ],
       "meta": {
         "order": 14,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Status Overlay"
       }
     },
     {
@@ -375,7 +389,8 @@
       ],
       "meta": {
         "order": 15,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Soft Tones"
       }
     },
     {
@@ -400,7 +415,8 @@
       ],
       "meta": {
         "order": 16,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Solid Tones"
       }
     },
     {
@@ -425,7 +441,8 @@
       ],
       "meta": {
         "order": 17,
-        "gridSize": 2
+        "gridSize": 2,
+        "label": "Brand Colors"
       }
     }
   ]

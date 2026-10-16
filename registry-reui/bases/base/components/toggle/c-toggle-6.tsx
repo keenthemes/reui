@@ -11,7 +11,7 @@ export default function Pattern() {
           hugeicons="Bookmark02Icon"
           phosphor="BookmarkSimpleIcon"
           remixicon="RiBookmarkLine"
-          className="group-data-[state=on]/toggle:fill-accent-foreground"
+          className="group-aria-pressed/toggle:fill-accent-foreground"
         />
         Bookmark
       </Toggle>

@@ -90,6 +90,25 @@ export function getCascaderFooterStops(scope: HTMLElement): HTMLElement[] {
   return getCascaderTabStops(footer)
 }
 
+/**
+ * Hands focus to the panel's search field, or the popup without one. A Retry
+ * button is replaced by the loading state as the retry starts, and a focused
+ * node that unmounts drops focus to the body.
+ */
+export function focusCascaderHome(from: HTMLElement): void {
+  const panel = from.closest<HTMLElement>('[data-slot="cascader-panel"]')
+  const home =
+    panel?.querySelector<HTMLElement>('[data-slot="cascader-input"]') ??
+    from.closest<HTMLElement>('[data-slot="cascader-content"]') ??
+    panel
+  // An inline panel with no search field is the last home left: make it
+  // focusable for this, never a tab stop.
+  if (home && home === panel && !home.hasAttribute("tabindex")) {
+    home.setAttribute("tabindex", "-1")
+  }
+  home?.focus()
+}
+
 /** Where Tab lands, or `null` to let the browser out: focus is never trapped. */
 export function getCascaderTabTarget(
   panel: HTMLElement,
@@ -255,15 +274,37 @@ export function buildCascaderIndex<T = unknown>(
   }
 }
 
+/** One branch-flagged copy per node, so a re-merge keeps row identity. */
+const BRANCH_COPIES = new WeakMap<object, object>()
+
+function asCascaderBranch<T>(node: CascaderNode<T>): CascaderNode<T> {
+  if (node.hasChildren) return node
+  let copy = BRANCH_COPIES.get(node) as CascaderNode<T> | undefined
+  if (!copy) {
+    copy = { ...node, hasChildren: true }
+    BRANCH_COPIES.set(node, copy)
+  }
+  return copy
+}
+
 /**
  * Folds loaded pages into an index built from `items`, so a re-render with a
  * new `items` array keeps what the user drilled into. Static `items` wins;
  * `detached` is `byValue` ONLY, or deep search doubles it and `childrenOf` lies.
+ *
+ * A resolved chain node in `links` that no page placed still gets its parent,
+ * so the trigger keeps its path. While its parent's level is unloaded it is
+ * searchable but no row; while that level has pages left (`paging`) it is
+ * LISTED, last, and in `pinned`; once the level loaded completely without it
+ * (moved, deleted) it is `hidden`: no row, hit or cascade child. A node some
+ * link names as a parent reads as a branch, whatever chain wrote it last.
  */
 export function mergeCascaderIndex<T = unknown>(
   base: CascaderIndex<T>,
   pages: ReadonlyMap<string, readonly CascaderNode<T>[]>,
-  detached?: ReadonlyMap<string, CascaderNode<T>>
+  detached?: ReadonlyMap<string, CascaderNode<T>>,
+  links?: ReadonlyMap<string, string>,
+  paging?: ReadonlySet<string>
 ): CascaderIndex<T> {
   // Identity stability: every downstream `useMemo` is keyed on this index.
   if (pages.size === 0 && !detached?.size) return base
@@ -300,6 +341,23 @@ export function mergeCascaderIndex<T = unknown>(
 
   for (const [parentKey, nodes] of pages) insert(parentKey, nodes)
 
+  const pinned = new Set<string>()
+  const hidden = new Set<string>()
+  const linkParents = new Set(links?.values())
+  for (const [value, parentKey] of links ?? []) {
+    const linked = detached?.get(value)
+    if (!linked || byValue.has(value)) continue
+    const node = linkParents.has(value) ? asCascaderBranch(linked) : linked
+    byValue.set(value, node)
+    parentOf.set(value, parentKey === CASCADER_ROOT_KEY ? null : parentKey)
+    if (paging?.has(parentKey)) {
+      append(parentKey, node)
+      pinned.add(value)
+    } else if (pages.has(parentKey) || base.childrenOf.has(parentKey)) {
+      hidden.add(value)
+    }
+  }
+
   for (const value of byValue.keys()) {
     if (depthOf.has(value)) continue
     let depth = 0
@@ -329,9 +387,10 @@ export function mergeCascaderIndex<T = unknown>(
   }
   walk(roots)
 
-  // A page whose parent never arrived stays searchable rather than vanishing.
+  // A page whose parent never arrived, or a linked node whose level has not
+  // loaded, stays searchable rather than vanishing.
   for (const [value, node] of byValue) {
-    if (visited.has(value)) continue
+    if (visited.has(value) || hidden.has(value)) continue
     visited.add(value)
     all.push(node)
   }
@@ -343,7 +402,50 @@ export function mergeCascaderIndex<T = unknown>(
     }
   }
 
-  return { byValue, childrenOf, parentOf, depthOf, roots, all }
+  return { byValue, childrenOf, parentOf, depthOf, roots, all, pinned, hidden }
+}
+
+/** Per index, so a query does not rebuild it. */
+const LISTED_VALUES = new WeakMap<object, ReadonlySet<string>>()
+
+/**
+ * Values reachable from the roots through `childrenOf`: the nodes a level can
+ * show. A tree query keeps only these, or a resolved node no level lists left
+ * its ancestors expanded over nothing.
+ */
+export function getCascaderListedValues<T>(
+  index: CascaderIndex<T>
+): ReadonlySet<string> {
+  let listed = LISTED_VALUES.get(index)
+  if (listed) return listed
+  const seen = new Set<string>()
+  const walk = (nodes: readonly CascaderNode<T>[]) => {
+    for (const node of nodes) {
+      if (seen.has(node.value)) continue
+      seen.add(node.value)
+      const children = index.childrenOf.get(node.value)
+      if (children?.length) walk(children)
+    }
+  }
+  walk(index.roots)
+  listed = seen
+  LISTED_VALUES.set(index, listed)
+  return listed
+}
+
+/**
+ * A level's rows plus its paging row, placed BEFORE the `pinned` rows, which
+ * sit last: the first row a page appends then takes the paging row's index,
+ * so the highlight Base UI keeps by index lands on it.
+ */
+export function withCascaderMoreRow<T>(
+  rows: readonly CascaderNode<T>[],
+  more: CascaderNode<T>,
+  pinned?: ReadonlySet<string>
+): CascaderNode<T>[] {
+  const at = pinned?.size ? rows.findIndex((row) => pinned.has(row.value)) : -1
+  if (at === -1) return [...rows, more]
+  return [...rows.slice(0, at), more, ...rows.slice(at)]
 }
 
 /** Children of `parent`, or the root level when `parent` is nullish. */
@@ -542,10 +644,27 @@ export function flattenCascaderTree<T>(
     parentKey: string,
     depth: number
   ) => {
-    const sentinel = sentinels?.has(parentKey) ?? false
-    const setSize = nodes.length + (sentinel ? 1 : 0)
-    for (let i = 0; i < nodes.length; i += 1) {
-      const node = nodes[i]
+    const items = sentinels?.has(parentKey)
+      ? withCascaderMoreRow(
+          nodes,
+          createCascaderMoreNode<T>(parentKey, nodes.length),
+          index.pinned
+        )
+      : nodes
+    const setSize = items.length
+    for (let i = 0; i < items.length; i += 1) {
+      const node = items[i]
+      if (isCascaderMoreNode(node)) {
+        rows.push({
+          node,
+          depth,
+          branch: false,
+          expanded: false,
+          setSize,
+          posInSet: i + 1,
+        })
+        continue
+      }
       const branch = isCascaderBranch(index, node)
       const isExpanded = branch && expanded.has(node.value)
       rows.push({
@@ -559,16 +678,6 @@ export function flattenCascaderTree<T>(
       if (isExpanded) {
         walk(index.childrenOf.get(node.value) ?? [], node.value, depth + 1)
       }
-    }
-    if (sentinel) {
-      rows.push({
-        node: createCascaderMoreNode<T>(parentKey, nodes.length),
-        depth,
-        branch: false,
-        expanded: false,
-        setSize,
-        posInSet: setSize,
-      })
     }
   }
 
@@ -615,9 +724,39 @@ export function collapseCascaderPath<T>(
 /*                              Cascade selection                             */
 /* -------------------------------------------------------------------------- */
 
+/** Per index, so a press does not rebuild it. */
+const SELECTION_CHILDREN = new WeakMap<object, Map<string, unknown[]>>()
+
 /**
- * Every LOADED node under `value`, root first. Reaching an unfetched descendant
- * would mean a network request per level of the subtree on every selection.
+ * Children by parent, built from `parentOf`. Unlike `childrenOf` it also holds
+ * a resolved chain node whose level has not loaded, which the selection walks
+ * must see: unchecking an ancestor has to take it along. A `hidden` one is left
+ * out, since its level loaded without it.
+ */
+function getSelectionChildren<T>(
+  index: CascaderIndex<T>
+): Map<string, CascaderNode<T>[]> {
+  let map = SELECTION_CHILDREN.get(index) as
+    | Map<string, CascaderNode<T>[]>
+    | undefined
+  if (map) return map
+  map = new Map()
+  for (const [value, parent] of index.parentOf) {
+    const node = index.byValue.get(value)
+    if (!node || index.hidden?.has(value)) continue
+    const key = parent ?? CASCADER_ROOT_KEY
+    const bucket = map.get(key)
+    if (bucket) bucket.push(node)
+    else map.set(key, [node])
+  }
+  SELECTION_CHILDREN.set(index, map)
+  return map
+}
+
+/**
+ * Every KNOWN node under `value`, root first: loaded, or on a resolved chain.
+ * Reaching an unfetched descendant would mean a network request per level of
+ * the subtree on every selection.
  */
 export function collectCascaderSubtree<T>(
   index: CascaderIndex<T>,
@@ -626,13 +765,14 @@ export function collectCascaderSubtree<T>(
   const root = index.byValue.get(value)
   if (!root) return []
 
+  const childrenOf = getSelectionChildren(index)
   const out: CascaderNode<T>[] = []
   const seen = new Set<string>()
   const walk = (node: CascaderNode<T>) => {
     if (seen.has(node.value)) return
     seen.add(node.value)
     out.push(node)
-    const children = index.childrenOf.get(node.value)
+    const children = childrenOf.get(node.value)
     if (children) for (const child of children) walk(child)
   }
   walk(root)
@@ -640,10 +780,10 @@ export function collectCascaderSubtree<T>(
 }
 
 /**
- * Toggles `value` with its loaded subtree, then reconciles ancestors. One flat
- * array, no hidden "checked" state: a branch is in the selection exactly when
- * every selectable loaded child of it is, which keeps a row's checked state an
- * O(1) lookup. Nodes `isSelectable` rejects are skipped down AND ignored up,
+ * Toggles `value` with its known subtree (loaded, or on a resolved chain), then
+ * reconciles ancestors. One flat array, no hidden "checked" state: a branch is
+ * in the selection exactly when every selectable known child of it is, which
+ * keeps a row's checked state an O(1) lookup. Nodes `isSelectable` rejects are skipped down AND ignored up,
  * the pressed node excepted.
  */
 export function applyCascadeSelection<T>(
@@ -675,7 +815,7 @@ export function applyCascadeSelection<T>(
   while (cursor != null && !seen.has(cursor)) {
     seen.add(cursor)
     const parent = index.byValue.get(cursor)
-    const children = index.childrenOf.get(cursor) ?? []
+    const children = getSelectionChildren(index).get(cursor) ?? []
     const selectable = children.filter((child) => isSelectable(child))
     const full =
       selectable.length > 0 &&
@@ -765,11 +905,15 @@ export function getCascaderCheckedValues<T>(
     })
   }
 
-  return selected.filter((value) => {
-    const children = index.childrenOf.get(value)
-    if (!children?.length) return true
-    return !children.some((child) => set.has(child.value))
-  })
+  // Parents of a selection, from `parentOf`: it holds the resolved chain
+  // nodes no loaded level lists, which `childrenOf` misses.
+  const withSelectedChild = new Set<string>()
+  for (const value of selected) {
+    if (index.hidden?.has(value)) continue
+    const parent = index.parentOf.get(value)
+    if (parent != null) withSelectedChild.add(parent)
+  }
+  return selected.filter((value) => !withSelectedChild.has(value))
 }
 
 /** Values in `nodes` whose label collides, so the chip must show its path. */

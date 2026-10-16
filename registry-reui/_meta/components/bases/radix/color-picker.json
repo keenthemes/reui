@@ -22,7 +22,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Inline Panel"
       }
     },
     {
@@ -47,7 +48,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "Popover"
       }
     },
     {
@@ -72,7 +74,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Color Input"
       }
     },
     {
@@ -98,7 +101,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Opacity"
       }
     },
     {
@@ -126,7 +130,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "Preset Swatches"
       }
     },
     {
@@ -156,7 +161,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "OKLCH Token"
       }
     },
     {
@@ -182,7 +188,8 @@
       ],
       "meta": {
         "order": 7,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Format Converter"
       }
     },
     {
@@ -207,7 +214,8 @@
         }
       ],
       "meta": {
-        "order": 8
+        "order": 8,
+        "label": "Hue Wheel"
       }
     },
     {
@@ -232,7 +240,8 @@
         }
       ],
       "meta": {
-        "order": 9
+        "order": 9,
+        "label": "Recent Colors"
       }
     },
     {
@@ -259,7 +268,8 @@
         }
       ],
       "meta": {
-        "order": 10
+        "order": 10,
+        "label": "Text & Highlight"
       }
     },
     {
@@ -285,7 +295,8 @@
         }
       ],
       "meta": {
-        "order": 11
+        "order": 11,
+        "label": "Channel Sliders"
       }
     },
     {
@@ -310,7 +321,8 @@
         }
       ],
       "meta": {
-        "order": 12
+        "order": 12,
+        "label": "Design Inspector"
       }
     },
     {
@@ -339,7 +351,8 @@
         }
       ],
       "meta": {
-        "order": 13
+        "order": 13,
+        "label": "Contrast Checker"
       }
     },
     {
@@ -366,7 +379,8 @@
         }
       ],
       "meta": {
-        "order": 14
+        "order": 14,
+        "label": "Brand Scale"
       }
     },
     {
@@ -392,7 +406,8 @@
         }
       ],
       "meta": {
-        "order": 15
+        "order": 15,
+        "label": "Form Validation"
       }
     }
   ]

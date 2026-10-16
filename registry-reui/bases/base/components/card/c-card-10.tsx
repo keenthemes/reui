@@ -1,6 +1,10 @@
 import { Badge } from "@/registry-reui/bases/base/reui/badge"
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/registry/bases/base/ui/avatar"
 import { Card, CardContent } from "@/registry/bases/base/ui/card"
 
 const CustomBadge = () => {

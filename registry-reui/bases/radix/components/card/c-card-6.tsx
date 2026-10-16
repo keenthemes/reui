@@ -1,13 +1,8 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/registry/bases/radix/ui/avatar"
 import { Button } from "@/registry/bases/radix/ui/button"
 import {
   Card,
@@ -16,6 +11,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/registry/bases/radix/ui/card"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/registry/bases/radix/ui/dropdown-menu"
 import { IconPlaceholder } from "@/app/(create)/components/icon-placeholder"
 
 export default function Pattern() {

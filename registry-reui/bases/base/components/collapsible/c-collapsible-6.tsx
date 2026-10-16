@@ -29,7 +29,7 @@ export default function Pattern() {
                 phosphor="CaretRightIcon"
                 remixicon="RiArrowRightSLine"
                 aria-hidden="true"
-                className="text-muted-foreground size-4 transition-transform in-data-open:rotate-90"
+                className="text-muted-foreground size-4 transition-transform in-aria-expanded:rotate-90"
               />
             </FrameHeader>
           </CollapsibleTrigger>

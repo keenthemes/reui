@@ -22,7 +22,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Basic"
       }
     },
     {
@@ -50,7 +51,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "Range"
       }
     },
     {
@@ -77,7 +79,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Disabled Dates"
       }
     },
     {
@@ -104,7 +107,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Multiple Days"
       }
     },
     {
@@ -129,7 +133,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "Circular Days"
       }
     },
     {
@@ -157,7 +162,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "Circular Range"
       }
     },
     {
@@ -182,7 +188,8 @@
         }
       ],
       "meta": {
-        "order": 7
+        "order": 7,
+        "label": "Right Navigation"
       }
     },
     {
@@ -210,7 +217,8 @@
         }
       ],
       "meta": {
-        "order": 8
+        "order": 8,
+        "label": "Month Year Select"
       }
     },
     {
@@ -238,7 +246,8 @@
         }
       ],
       "meta": {
-        "order": 9
+        "order": 9,
+        "label": "Year Select"
       }
     },
     {
@@ -265,7 +274,8 @@
         }
       ],
       "meta": {
-        "order": 10
+        "order": 10,
+        "label": "Week Numbers"
       }
     },
     {
@@ -293,7 +303,8 @@
         }
       ],
       "meta": {
-        "order": 11
+        "order": 11,
+        "label": "Current Month Button"
       }
     },
     {
@@ -321,7 +332,8 @@
         }
       ],
       "meta": {
-        "order": 12
+        "order": 12,
+        "label": "Today Button"
       }
     },
     {
@@ -351,7 +363,8 @@
         }
       ],
       "meta": {
-        "order": 13
+        "order": 13,
+        "label": "Year View"
       }
     },
     {
@@ -380,7 +393,8 @@
         }
       ],
       "meta": {
-        "order": 14
+        "order": 14,
+        "label": "Time Slots"
       }
     },
     {
@@ -408,7 +422,8 @@
         }
       ],
       "meta": {
-        "order": 15
+        "order": 15,
+        "label": "Date Presets"
       }
     },
     {
@@ -437,7 +452,8 @@
         }
       ],
       "meta": {
-        "order": 16
+        "order": 16,
+        "label": "Range Presets"
       }
     },
     {
@@ -461,7 +477,8 @@
         }
       ],
       "meta": {
-        "order": 17
+        "order": 17,
+        "label": "Pricing"
       }
     },
     {
@@ -489,7 +506,8 @@
         }
       ],
       "meta": {
-        "order": 18
+        "order": 18,
+        "label": "Forward Presets"
       }
     },
     {
@@ -516,7 +534,8 @@
         }
       ],
       "meta": {
-        "order": 19
+        "order": 19,
+        "label": "Appointment"
       }
     },
     {
@@ -541,7 +560,8 @@
         }
       ],
       "meta": {
-        "order": 20
+        "order": 20,
+        "label": "Two Months"
       }
     },
     {
@@ -568,7 +588,8 @@
         }
       ],
       "meta": {
-        "order": 21
+        "order": 21,
+        "label": "Two Month Range"
       }
     },
     {
@@ -597,7 +618,8 @@
         }
       ],
       "meta": {
-        "order": 22
+        "order": 22,
+        "label": "Event List"
       }
     },
     {
@@ -625,7 +647,8 @@
         }
       ],
       "meta": {
-        "order": 23
+        "order": 23,
+        "label": "Localized"
       }
     },
     {
@@ -654,7 +677,8 @@
         }
       ],
       "meta": {
-        "order": 24
+        "order": 24,
+        "label": "Date Picker"
       }
     },
     {
@@ -685,7 +709,8 @@
         }
       ],
       "meta": {
-        "order": 25
+        "order": 25,
+        "label": "Date Range Picker"
       }
     },
     {
@@ -717,7 +742,8 @@
         }
       ],
       "meta": {
-        "order": 26
+        "order": 26,
+        "label": "Picker Year View"
       }
     },
     {
@@ -748,7 +774,8 @@
         }
       ],
       "meta": {
-        "order": 27
+        "order": 27,
+        "label": "Picker Time Slots"
       }
     },
     {
@@ -778,7 +805,8 @@
         }
       ],
       "meta": {
-        "order": 28
+        "order": 28,
+        "label": "Picker Presets"
       }
     },
     {
@@ -809,7 +837,8 @@
         }
       ],
       "meta": {
-        "order": 29
+        "order": 29,
+        "label": "Range Picker Presets"
       }
     },
     {
@@ -841,7 +870,8 @@
         }
       ],
       "meta": {
-        "order": 30
+        "order": 30,
+        "label": "Date Time Range"
       }
     }
   ]

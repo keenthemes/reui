@@ -415,8 +415,7 @@
     "guidance": {
       "bestFor": "A spinner over a 60 percent background veil on the photo, switched on and off by a demo timer",
       "agentNotes": [
-        "`setInterval` flips `loading` every 2 seconds for the demo; drive `loading` from your real request state",
-        "`Spinner` is imported from `@/components/ui/spinner` and is missing from the item's registry dependencies, so install spinner yourself"
+        "`setInterval` flips `loading` every 2 seconds for the demo; drive `loading` from your real request state"
       ],
       "whenNotToUse": [
         {

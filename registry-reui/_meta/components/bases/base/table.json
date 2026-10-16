@@ -21,7 +21,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Basic"
       }
     },
     {
@@ -45,7 +46,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "With Footer"
       }
     },
     {
@@ -70,7 +72,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Status Badges"
       }
     },
     {
@@ -97,7 +100,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Actions Column"
       }
     },
     {
@@ -123,7 +127,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "Interactive Rows"
       }
     },
     {
@@ -150,7 +155,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "Team Members"
       }
     },
     {
@@ -177,7 +183,8 @@
       ],
       "meta": {
         "order": 7,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Orders"
       }
     },
     {
@@ -204,7 +211,8 @@
       ],
       "meta": {
         "order": 8,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Projects"
       }
     },
     {
@@ -232,7 +240,8 @@
       ],
       "meta": {
         "order": 9,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Activity Log"
       }
     },
     {
@@ -243,11 +252,10 @@
         "table"
       ],
       "description": "Subscriptions table with plan badges and billing info",
-      "descriptionLong": "Subscriptions table with plan badges and billing info. Built by composing Badge, Button, Frame, Table. A free, open source shadcn table example you can install with npx shadcn@latest add @reui/c-table-10 and edit as your own code.",
+      "descriptionLong": "Subscriptions table with plan badges and billing info. Built by composing Badge, Button, Table. A free, open source shadcn table example you can install with npx shadcn@latest add @reui/c-table-10 and edit as your own code.",
       "registryDependencies": [
         "badge",
         "button",
-        "frame",
         "table"
       ],
       "dependencies": [],
@@ -260,7 +268,8 @@
       ],
       "meta": {
         "order": 10,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Subscriptions"
       }
     },
     {
@@ -288,7 +297,8 @@
       ],
       "meta": {
         "order": 11,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Inventory"
       }
     },
     {
@@ -316,7 +326,8 @@
       ],
       "meta": {
         "order": 12,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "API Keys"
       }
     },
     {
@@ -343,7 +354,8 @@
       ],
       "meta": {
         "order": 13,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "File Manager"
       }
     },
     {
@@ -371,7 +383,8 @@
       ],
       "meta": {
         "order": 14,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Issues"
       }
     },
     {
@@ -398,7 +411,8 @@
       ],
       "meta": {
         "order": 15,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Leaderboard"
       }
     },
     {
@@ -425,7 +439,8 @@
       ],
       "meta": {
         "order": 16,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Employee Profile"
       }
     },
     {
@@ -452,7 +467,8 @@
       ],
       "meta": {
         "order": 17,
-        "gridSize": 1
+        "gridSize": 1,
+        "label": "Server Config"
       }
     }
   ]

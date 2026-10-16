@@ -22,7 +22,8 @@
         }
       ],
       "meta": {
-        "order": 1
+        "order": 1,
+        "label": "Two Buttons"
       }
     },
     {
@@ -48,7 +49,8 @@
         }
       ],
       "meta": {
-        "order": 2
+        "order": 2,
+        "label": "Button & Input"
       }
     },
     {
@@ -74,7 +76,8 @@
         }
       ],
       "meta": {
-        "order": 3
+        "order": 3,
+        "label": "Buttons & Badge"
       }
     },
     {
@@ -100,7 +103,8 @@
         }
       ],
       "meta": {
-        "order": 4
+        "order": 4,
+        "label": "Dropdown Menu"
       }
     },
     {
@@ -127,7 +131,8 @@
         }
       ],
       "meta": {
-        "order": 5
+        "order": 5,
+        "label": "Team Activity"
       }
     },
     {
@@ -152,7 +157,8 @@
         }
       ],
       "meta": {
-        "order": 6
+        "order": 6,
+        "label": "Icon Actions"
       }
     },
     {
@@ -178,7 +184,8 @@
         }
       ],
       "meta": {
-        "order": 7
+        "order": 7,
+        "label": "Status Indicator"
       }
     },
     {
@@ -203,7 +210,8 @@
         }
       ],
       "meta": {
-        "order": 8
+        "order": 8,
+        "label": "Like Counter"
       }
     },
     {
@@ -230,7 +238,8 @@
         }
       ],
       "meta": {
-        "order": 9
+        "order": 9,
+        "label": "Nested Groups"
       }
     },
     {
@@ -255,7 +264,8 @@
         }
       ],
       "meta": {
-        "order": 10
+        "order": 10,
+        "label": "Basic Pagination"
       }
     },
     {
@@ -280,7 +290,8 @@
         }
       ],
       "meta": {
-        "order": 11
+        "order": 11,
+        "label": "Split Pagination"
       }
     },
     {
@@ -305,7 +316,8 @@
         }
       ],
       "meta": {
-        "order": 12
+        "order": 12,
+        "label": "Text Alignment"
       }
     },
     {
@@ -330,7 +342,8 @@
         }
       ],
       "meta": {
-        "order": 13
+        "order": 13,
+        "label": "Vertical Orientation"
       }
     },
     {
@@ -355,7 +368,8 @@
         }
       ],
       "meta": {
-        "order": 14
+        "order": 14,
+        "label": "Vertical Tool Palette"
       }
     },
     {
@@ -382,7 +396,8 @@
         }
       ],
       "meta": {
-        "order": 15
+        "order": 15,
+        "label": "Star With Dropdown"
       }
     },
     {
@@ -409,7 +424,8 @@
         }
       ],
       "meta": {
-        "order": 16
+        "order": 16,
+        "label": "Search Filter Clear"
       }
     },
     {
@@ -435,7 +451,8 @@
         }
       ],
       "meta": {
-        "order": 17
+        "order": 17,
+        "label": "Conversation Menu"
       }
     },
     {
@@ -461,7 +478,8 @@
         }
       ],
       "meta": {
-        "order": 18
+        "order": 18,
+        "label": "Git Split Button"
       }
     },
     {
@@ -488,7 +506,8 @@
         }
       ],
       "meta": {
-        "order": 19
+        "order": 19,
+        "label": "Search With Menu"
       }
     },
     {
@@ -515,7 +534,8 @@
         }
       ],
       "meta": {
-        "order": 20
+        "order": 20,
+        "label": "Search With Button"
       }
     },
     {
@@ -542,7 +562,8 @@
         }
       ],
       "meta": {
-        "order": 21
+        "order": 21,
+        "label": "File Name Menu"
       }
     },
     {
@@ -567,7 +588,8 @@
         }
       ],
       "meta": {
-        "order": 22
+        "order": 22,
+        "label": "Disabled Button"
       }
     },
     {
@@ -592,7 +614,8 @@
         }
       ],
       "meta": {
-        "order": 23
+        "order": 23,
+        "label": "Separated Buttons"
       }
     },
     {
@@ -617,7 +640,8 @@
         }
       ],
       "meta": {
-        "order": 24
+        "order": 24,
+        "label": "Dashboard Views"
       }
     },
     {
@@ -644,7 +668,8 @@
         }
       ],
       "meta": {
-        "order": 25
+        "order": 25,
+        "label": "Rating Scale"
       }
     },
     {
@@ -671,7 +696,8 @@
         }
       ],
       "meta": {
-        "order": 26
+        "order": 26,
+        "label": "User Selection"
       }
     },
     {
@@ -699,7 +725,8 @@
         }
       ],
       "meta": {
-        "order": 27
+        "order": 27,
+        "label": "Status Select"
       }
     },
     {
@@ -724,7 +751,8 @@
         }
       ],
       "meta": {
-        "order": 28
+        "order": 28,
+        "label": "Volume Control"
       }
     },
     {
@@ -749,7 +777,8 @@
         }
       ],
       "meta": {
-        "order": 29
+        "order": 29,
+        "label": "Follower Count"
       }
     },
     {
@@ -774,7 +803,8 @@
         }
       ],
       "meta": {
-        "order": 30
+        "order": 30,
+        "label": "Active Count"
       }
     },
     {
@@ -799,7 +829,8 @@
         }
       ],
       "meta": {
-        "order": 31
+        "order": 31,
+        "label": "Share Caption"
       }
     },
     {
@@ -827,7 +858,8 @@
         }
       ],
       "meta": {
-        "order": 32
+        "order": 32,
+        "label": "Sort & View"
       }
     },
     {
@@ -852,7 +884,8 @@
         }
       ],
       "meta": {
-        "order": 33
+        "order": 33,
+        "label": "Select Controls"
       }
     },
     {
@@ -880,7 +913,8 @@
         }
       ],
       "meta": {
-        "order": 34
+        "order": 34,
+        "label": "Segmented Control"
       }
     },
     {
@@ -905,7 +939,8 @@
         }
       ],
       "meta": {
-        "order": 35
+        "order": 35,
+        "label": "Numbered Pagination"
       }
     },
     {
@@ -932,7 +967,8 @@
         }
       ],
       "meta": {
-        "order": 36
+        "order": 36,
+        "label": "View Switcher"
       }
     },
     {
@@ -957,7 +993,8 @@
         }
       ],
       "meta": {
-        "order": 37
+        "order": 37,
+        "label": "Zoom Controls"
       }
     },
     {
@@ -982,7 +1019,8 @@
         }
       ],
       "meta": {
-        "order": 38
+        "order": 38,
+        "label": "Media Controls"
       }
     },
     {
@@ -1008,7 +1046,8 @@
         }
       ],
       "meta": {
-        "order": 39
+        "order": 39,
+        "label": "Split Button"
       }
     },
     {
@@ -1035,7 +1074,8 @@
         }
       ],
       "meta": {
-        "order": 40
+        "order": 40,
+        "label": "Vertical List"
       }
     },
     {
@@ -1064,7 +1104,8 @@
         }
       ],
       "meta": {
-        "order": 41
+        "order": 41,
+        "label": "Model Selector"
       }
     },
     {
@@ -1092,7 +1133,8 @@
         }
       ],
       "meta": {
-        "order": 42
+        "order": 42,
+        "label": "Order Type"
       }
     },
     {
@@ -1117,7 +1159,8 @@
         }
       ],
       "meta": {
-        "order": 43
+        "order": 43,
+        "label": "Buy Sell Hold"
       }
     },
     {
@@ -1143,7 +1186,8 @@
         }
       ],
       "meta": {
-        "order": 44
+        "order": 44,
+        "label": "Pipeline Stage"
       }
     },
     {
@@ -1171,7 +1215,8 @@
         }
       ],
       "meta": {
-        "order": 45
+        "order": 45,
+        "label": "Environment Switcher"
       }
     },
     {
@@ -1198,7 +1243,8 @@
         }
       ],
       "meta": {
-        "order": 46
+        "order": 46,
+        "label": "Time Interval"
       }
     },
     {
@@ -1224,7 +1270,8 @@
         }
       ],
       "meta": {
-        "order": 47
+        "order": 47,
+        "label": "Review Actions"
       }
     },
     {
@@ -1252,7 +1299,8 @@
         }
       ],
       "meta": {
-        "order": 48
+        "order": 48,
+        "label": "Export Toolbar"
       }
     },
     {
@@ -1279,7 +1327,8 @@
         }
       ],
       "meta": {
-        "order": 49
+        "order": 49,
+        "label": "Vertical Nav"
       }
     },
     {
@@ -1305,7 +1354,8 @@
         }
       ],
       "meta": {
-        "order": 50
+        "order": 50,
+        "label": "Filter Sort More"
       }
     },
     {
@@ -1331,7 +1381,8 @@
         }
       ],
       "meta": {
-        "order": 51
+        "order": 51,
+        "label": "Create Menu"
       }
     },
     {
@@ -1357,7 +1408,8 @@
         }
       ],
       "meta": {
-        "order": 52
+        "order": 52,
+        "label": "Dashboard Actions"
       }
     },
     {
@@ -1385,7 +1437,8 @@
         }
       ],
       "meta": {
-        "order": 53
+        "order": 53,
+        "label": "Publish Controls"
       }
     },
     {
@@ -1411,7 +1464,8 @@
         }
       ],
       "meta": {
-        "order": 54
+        "order": 54,
+        "label": "Service Selectors"
       }
     },
     {
@@ -1437,7 +1491,8 @@
         }
       ],
       "meta": {
-        "order": 55
+        "order": 55,
+        "label": "Payout Release"
       }
     },
     {
@@ -1462,7 +1517,8 @@
         }
       ],
       "meta": {
-        "order": 56
+        "order": 56,
+        "label": "File Attachment"
       }
     },
     {
@@ -1490,7 +1546,8 @@
         }
       ],
       "meta": {
-        "order": 57
+        "order": 57,
+        "label": "Agent Mode"
       }
     }
   ]

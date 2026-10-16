@@ -57,6 +57,8 @@ interface GeneratedRegistryFile {
 
 type ComponentMeta = {
   title?: string
+  /** 1 to 3 words naming the example in lists, selects and its page heading. */
+  label?: string
   description?: string
   order?: number
   gridSize?: 1 | 2
@@ -77,6 +79,7 @@ type ComponentRegistryItem = {
     order?: number
     gridSize?: 1 | 2
     previewHeight?: string
+    label?: string
   }
 }
 
@@ -175,6 +178,8 @@ function sanitizeMeta(meta: ComponentMeta | undefined) {
   if (typeof meta.order === "number") next.order = meta.order
   if (meta.gridSize === 1 || meta.gridSize === 2) next.gridSize = meta.gridSize
   if (meta.previewHeight) next.previewHeight = meta.previewHeight
+  if (typeof meta.label === "string" && meta.label.trim())
+    next.label = meta.label.trim()
 
   return Object.keys(next).length > 0 ? next : undefined
 }
@@ -191,6 +196,7 @@ async function readComponentMeta(categoryDir: string) {
       (acc, entry) => {
         acc[entry.name] = {
           title: entry.title,
+          label: entry.label,
           description: entry.description,
           order: entry.order,
           gridSize: entry.gridSize,

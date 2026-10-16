@@ -36,7 +36,7 @@ export default function Pattern() {
           <Collapsible
             open={isOpen}
             onOpenChange={setIsOpen}
-            className="flex flex-col gap-3"
+            className="flex flex-col"
           >
             <div className="flex items-end gap-2">
               <Field className="flex-1">
@@ -69,8 +69,8 @@ export default function Pattern() {
               </CollapsibleTrigger>
             </div>
 
-            <CollapsibleContent className="data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
-              <FieldGroup className="gap-2">
+            <CollapsibleContent className="-mx-1 -mb-1 h-(--collapsible-panel-height) overflow-hidden px-1 pb-1 transition-[height] duration-200 ease-out data-ending-style:h-0 data-starting-style:h-0 motion-reduce:transition-none">
+              <FieldGroup className="gap-2 pt-3">
                 <Field>
                   <FieldLabel>Tax Rate (%)</FieldLabel>
                   <InputGroup>

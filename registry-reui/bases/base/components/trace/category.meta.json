@@ -1,0 +1,27 @@
+{
+  "guidance": {
+    "whenToUse": [
+      "Agent turns: reasoning, tool calls, subagents and the sources behind an answer",
+      "Run logs that expand to output, from CI jobs and data builds to webhook deliveries",
+      "Checklists of automated checks or setup steps with running, failed and pending states"
+    ],
+    "whenNotToUse": [
+      {
+        "when": "One short status line per step with no expanding detail or status color",
+        "instead": "marker"
+      },
+      {
+        "when": "Dated events or milestones joined by a connecting line",
+        "instead": "timeline"
+      },
+      {
+        "when": "A complete run console with approvals, log views and an outcome report",
+        "instead": "ai-agents/agent-activity"
+      }
+    ],
+    "agentNotes": [
+      "Status is shown by color and motion only, so every `TraceTitle` must also say in words that a step is running, failed or not started",
+      "A `TraceLine` on its own is a plain span; wrap it in a link or a Dialog, Sheet or Popover trigger to make it act"
+    ]
+  }
+}

@@ -57,6 +57,10 @@
         {
           "when": "A summary of changed files with a kind badge and line counts per row",
           "instead": "c-marker-5"
+        },
+        {
+          "when": "Run steps that open to their output or nest steps of their own",
+          "instead": "trace"
         }
       ]
     }
